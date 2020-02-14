@@ -1,3 +1,4 @@
+import json
 from tempfile import NamedTemporaryFile
 
 from flask import Flask, render_template, request
@@ -24,6 +25,11 @@ def process_pdf():
     tf.write(file.read())
     return grobid.process_pdf(tf.name, 'processPDF', headers={'Accept': 'application/json'})
 
+
+@app.route('/config', methods=['GET'])
+def get_config(config_json='./config.json'):
+    config = json.loads(open(config_json).read())
+    return config
 
 
 if __name__ == '__main__':
