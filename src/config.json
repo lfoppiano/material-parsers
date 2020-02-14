@@ -1,0 +1,12 @@
+{
+    "grobid_server": "localhost",
+    "grobid_port": "8072",
+    "url_mapping": {
+        "processPDF": "/service/annotateSuperconductorsPDF",
+        "processText": "/service/processSuperconductorsText",
+        "ping": "/service/isalive"
+    },
+    "batch_size": 1000,
+    "sleep_time": 5,
+    "coordinates": null
+}
