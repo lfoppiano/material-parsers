@@ -20,7 +20,7 @@ var grobid = (function ($) {
             configuration = {};
             $.ajax({
                 type: 'GET',
-                url: '/config',
+                url: 'config',
                 success: function (data) {
                     configuration = data
                 },
