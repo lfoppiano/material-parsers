@@ -13,107 +13,43 @@ var grobid = (function ($) {
         var superconMap = [];
         var measurementMap = [];
         var annotationsMap = [];
+        var configuration = {};
 
 
-        // Transformers to HTML
-        function defineBaseURL(ext) {
-            var baseUrl = null;
-            if ($(location).attr('href').indexOf("index.html") !== -1)
-                baseUrl = $(location).attr('href').replace("index.html", ext);
-            else
-                baseUrl = $(location).attr('href') + ext;
-            return baseUrl;
+        function get_configuration() {
+            configuration = {};
+            $.ajax({
+                type: 'GET',
+                url: '/config',
+                success: function (data) {
+                    configuration = data
+                },
+                error: function(error) {
+                    onError("Cannot read configuration. " + error);
+                },
+                contentType: false,
+                processData: false
+            });
+
+            return configuration;
         }
 
-        function setBaseUrl(ext) {
-            var baseUrl = defineBaseURL(ext);
-            $('#gbdForm').attr('action', baseUrl);
+
+        function getUrl(action) {
+            var requestUrl = "http://" + configuration['grobid_server'] + ":" + configuration['grobid_port'];
+            if (configuration['url_mapping'][action] !== null) {
+                actionUrl = configuration['url_mapping'][action];
+
+                return requestUrl + actionUrl
+            } else {
+                onError("Action " + action + " was not found in configuration. ");
+            }
         }
 
         $(document).ready(function () {
-
-            $("#subTitle").html("About");
-            $("#divAbout").show();
-            $("#divRestI").hide();
-            $("#divDoc").hide();
-            $('#consolidateBlock').show();
-
-            createInputTextArea('text');
-            setBaseUrl('processSuperconductorsText');
-            $('#example0').bind('click', function (event) {
-                event.preventDefault();
-                $('#inputTextArea').val(examples[0]);
-            });
-            setBaseUrl('processQuantityText');
-            $('#example1').bind('click', function (event) {
-                event.preventDefault();
-                $('#inputTextArea').val(examples[1]);
-            });
-            $('#example2').bind('click', function (event) {
-                event.preventDefault();
-                $('#inputTextArea').val(examples[2]);
-            });
-            $('#example3').bind('click', function (event) {
-                event.preventDefault();
-                $('#inputTextArea').val(examples[3]);
-            });
-            $("#selectedService").val('processSuperconductorsText');
-
-            $('#selectedService').change(function () {
-                processChange();
-                return true;
-            });
-
-            $('#submitRequest').bind('click', submitQuery);
-
-            $("#about").click(function () {
-                $("#about").attr('class', 'section-active');
-                $("#rest").attr('class', 'section-not-active');
-                $("#doc").attr('class', 'section-not-active');
-                $("#demo").attr('class', 'section-not-active');
-
-                $("#subTitle").html("About");
-                $("#subTitle").show();
-
-                $("#divAbout").show();
-                $("#divRestI").hide();
-                $("#divDoc").hide();
-                $("#divDemo").hide();
-                $('#requestResult').hide();
-                return false;
-            });
-            $("#rest").click(function () {
-                $("#rest").attr('class', 'section-active');
-                $("#doc").attr('class', 'section-not-active');
-                $("#about").attr('class', 'section-not-active');
-                $("#demo").attr('class', 'section-not-active');
-
-                $("#subTitle").hide();
-                //$("#subTitle").show();
-                processChange();
-
-                $("#divRestI").show();
-                $("#divAbout").hide();
-                $("#divDoc").hide();
-                $("#divDemo").hide();
-                return false;
-            });
-            $("#doc").click(function () {
-                $("#doc").attr('class', 'section-active');
-                $("#rest").attr('class', 'section-not-active');
-                $("#about").attr('class', 'section-not-active');
-                $("#demo").attr('class', 'section-not-active');
-
-                $("#subTitle").html("Doc");
-                $("#subTitle").show();
-
-                $("#divDoc").show();
-                $("#divAbout").hide();
-                $("#divRestI").hide();
-                $("#divDemo").hide();
-                $('#requestResult').hide();
-                return false;
-            });
+            $("#divRestI").show();
+            configuration = get_configuration();
+            $('#submitRequest').bind('click', 'processPDF', submitQuery);
         });
 
         function ShowRequest(formData, jqForm, options) {
@@ -127,7 +63,7 @@ var grobid = (function ($) {
             responseJson = null;
         }
 
-        function AjaxError2(message) {
+        function onError(message) {
             if (!message)
                 message = "";
             message += " - The PDF document cannot be annotated. Please check the server logs.";
@@ -140,168 +76,150 @@ var grobid = (function ($) {
             return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
 
-        function submitQuery() {
-            var selected = $('#selectedService option:selected').attr('value');
-            var urlLocal = $('#gbdForm').attr('action');
-
+        function submitQuery(action) {
             superconMap = [];
 
             $('#infoResult').html('<font color="grey">Requesting server...</font>');
             $('#requestResult').show();
             $('#requestResult').html('');
 
-            if (selected === 'processSuperconductorsText') {
-                var formData = new FormData();
-                formData.append("text", $('#inputTextArea').val());
+            // we will have JSON annotations to be layered on the PDF
+            var nbPages = -1;
+            $('#requestResult').show();
 
-                $.ajax({
-                    type: 'POST',
-                    url: urlLocal,
-                    data: formData,
-                    success: onSuccessText,
-                    error: AjaxError,
-                    contentType: false,
-                    processData: false
-                });
-            } else if (selected === 'annotateSuperconductorsPDF') {
-                // we will have JSON annotations to be layered on the PDF
+            // display the local PDF
+            if ((document.getElementById("input").files[0].type === 'application/pdf') ||
+                (document.getElementById("input").files[0].name.endsWith(".pdf")) ||
+                (document.getElementById("input").files[0].name.endsWith(".PDF")))
+                var reader = new FileReader();
+            reader.onloadend = function () {
+                // to avoid cross origin issue
+                //PDFJS.disableWorker = true;
+                var pdfAsArray = new Uint8Array(reader.result);
+                // Use PDFJS to render a pdfDocument from pdf array
+                PDFJS.getDocument(pdfAsArray).then(function (pdf) {
+                    // Get div#container and cache it for later use
+                    var container = document.getElementById("requestResult");
+                    // enable hyperlinks within PDF files.
+                    //var pdfLinkService = new PDFJS.PDFLinkService();
+                    //pdfLinkService.setDocument(pdf, null);
 
-                // request for the annotation information
-                var form = document.getElementById('gbdForm');
-                var formData = new FormData(form);
-                var xhr = new XMLHttpRequest();
-                var url = $('#gbdForm').attr('action');
-                xhr.responseType = 'json';
-                xhr.open('POST', url, true);
+                    //$('#requestResult').html('');
+                    nbPages = pdf.numPages;
 
-                var nbPages = -1;
-                $('#requestResult').show();
+                    // Loop from 1 to total_number_of_pages in PDF document
+                    for (var i = 1; i <= nbPages; i++) {
 
-                // display the local PDF
-                if ((document.getElementById("input").files[0].type === 'application/pdf') ||
-                    (document.getElementById("input").files[0].name.endsWith(".pdf")) ||
-                    (document.getElementById("input").files[0].name.endsWith(".PDF")))
-                    var reader = new FileReader();
-                reader.onloadend = function () {
-                    // to avoid cross origin issue
-                    //PDFJS.disableWorker = true;
-                    var pdfAsArray = new Uint8Array(reader.result);
-                    // Use PDFJS to render a pdfDocument from pdf array
-                    PDFJS.getDocument(pdfAsArray).then(function (pdf) {
-                        // Get div#container and cache it for later use
-                        var container = document.getElementById("requestResult");
-                        // enable hyperlinks within PDF files.
-                        //var pdfLinkService = new PDFJS.PDFLinkService();
-                        //pdfLinkService.setDocument(pdf, null);
+                        // Get desired page
+                        pdf.getPage(i).then(function (page) {
+                            var table = document.createElement("table");
+                            var tr = document.createElement("tr");
+                            var td1 = document.createElement("td");
+                            var td2 = document.createElement("td");
 
-                        //$('#requestResult').html('');
-                        nbPages = pdf.numPages;
+                            tr.appendChild(td1);
+                            tr.appendChild(td2);
+                            table.appendChild(tr);
 
-                        // Loop from 1 to total_number_of_pages in PDF document
-                        for (var i = 1; i <= nbPages; i++) {
+                            var div0 = document.createElement("div");
+                            div0.setAttribute("style", "text-align: center; margin-top: 1cm; width:80%;");
+                            var pageInfo = document.createElement("p");
+                            var t = document.createTextNode("page " + (page.pageIndex + 1) + "/" + (nbPages));
+                            pageInfo.appendChild(t);
+                            div0.appendChild(pageInfo);
 
-                            // Get desired page
-                            pdf.getPage(i).then(function (page) {
-                                var table = document.createElement("table");
-                                var tr = document.createElement("tr");
-                                var td1 = document.createElement("td");
-                                var td2 = document.createElement("td");
+                            td1.appendChild(div0);
 
-                                tr.appendChild(td1);
-                                tr.appendChild(td2);
-                                table.appendChild(tr);
+                            var scale = 1.5;
+                            var viewport = page.getViewport(scale);
+                            var div = document.createElement("div");
 
-                                var div0 = document.createElement("div");
-                                div0.setAttribute("style", "text-align: center; margin-top: 1cm; width:80%;");
-                                var pageInfo = document.createElement("p");
-                                var t = document.createTextNode("page " + (page.pageIndex + 1) + "/" + (nbPages));
-                                pageInfo.appendChild(t);
-                                div0.appendChild(pageInfo);
+                            // Set id attribute with page-#{pdf_page_number} format
+                            div.setAttribute("id", "page-" + (page.pageIndex + 1));
 
-                                td1.appendChild(div0);
+                            // This will keep positions of child elements as per our needs, and add a light border
+                            div.setAttribute("style", "position: relative; ");
 
-                                var scale = 1.5;
-                                var viewport = page.getViewport(scale);
-                                var div = document.createElement("div");
+                            // Create a new Canvas element
+                            var canvas = document.createElement("canvas");
+                            canvas.setAttribute("style", "border-style: solid; border-width: 1px; border-color: gray;");
 
-                                // Set id attribute with page-#{pdf_page_number} format
-                                div.setAttribute("id", "page-" + (page.pageIndex + 1));
+                            // Append Canvas within div#page-#{pdf_page_number}
+                            div.appendChild(canvas);
 
-                                // This will keep positions of child elements as per our needs, and add a light border
-                                div.setAttribute("style", "position: relative; ");
+                            // Append div within div#container
+                            td1.appendChild(div);
 
+                            var annot = document.createElement("div");
+                            annot.setAttribute('style', 'vertical-align:top;');
+                            annot.setAttribute('id', 'detailed_annot-' + (page.pageIndex + 1));
+                            td2.setAttribute('style', 'vertical-align:top;');
+                            td2.appendChild(annot);
 
-                                // Create a new Canvas element
-                                var canvas = document.createElement("canvas");
-                                canvas.setAttribute("style", "border-style: solid; border-width: 1px; border-color: gray;");
+                            container.appendChild(table);
 
-                                // Append Canvas within div#page-#{pdf_page_number}
-                                div.appendChild(canvas);
+                            var context = canvas.getContext('2d');
+                            canvas.height = viewport.height;
+                            canvas.width = viewport.width;
 
-                                // Append div within div#container
-                                td1.appendChild(div);
+                            var renderContext = {
+                                canvasContext: context,
+                                viewport: viewport
+                            };
 
-                                var annot = document.createElement("div");
-                                annot.setAttribute('style', 'vertical-align:top;');
-                                annot.setAttribute('id', 'detailed_annot-' + (page.pageIndex + 1));
-                                td2.setAttribute('style', 'vertical-align:top;');
-                                td2.appendChild(annot);
+                            // Render PDF page
+                            page.render(renderContext).then(function () {
+                                // Get text-fragments
+                                return page.getTextContent();
+                            })
+                                .then(function (textContent) {
+                                    // Create div which will hold text-fragments
+                                    var textLayerDiv = document.createElement("div");
 
-                                container.appendChild(table);
+                                    // Set it's class to textLayer which have required CSS styles
+                                    textLayerDiv.setAttribute("class", "textLayer");
 
-                                var context = canvas.getContext('2d');
-                                canvas.height = viewport.height;
-                                canvas.width = viewport.width;
+                                    // Append newly created div in `div#page-#{pdf_page_number}`
+                                    div.appendChild(textLayerDiv);
 
-                                var renderContext = {
-                                    canvasContext: context,
-                                    viewport: viewport
-                                };
-
-                                // Render PDF page
-                                page.render(renderContext).then(function () {
-                                    // Get text-fragments
-                                    return page.getTextContent();
-                                })
-                                    .then(function (textContent) {
-                                        // Create div which will hold text-fragments
-                                        var textLayerDiv = document.createElement("div");
-
-                                        // Set it's class to textLayer which have required CSS styles
-                                        textLayerDiv.setAttribute("class", "textLayer");
-
-                                        // Append newly created div in `div#page-#{pdf_page_number}`
-                                        div.appendChild(textLayerDiv);
-
-                                        // Create new instance of TextLayerBuilder class
-                                        var textLayer = new TextLayerBuilder({
-                                            textLayerDiv: textLayerDiv,
-                                            pageIndex: page.pageIndex,
-                                            viewport: viewport
-                                        });
-
-                                        // Set text-fragments
-                                        textLayer.setTextContent(textContent);
-
-                                        // Render text-fragments
-                                        textLayer.render();
+                                    // Create new instance of TextLayerBuilder class
+                                    var textLayer = new TextLayerBuilder({
+                                        textLayerDiv: textLayerDiv,
+                                        pageIndex: page.pageIndex,
+                                        viewport: viewport
                                     });
-                            });
-                        }
-                    });
-                };
-                reader.readAsArrayBuffer(document.getElementById("input").files[0]);
 
-                xhr.onreadystatechange = function (e) {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        var response = e.target.response;
-                        setupAnnotations(response);
-                    } else if (xhr.status !== 200) {
-                        AjaxError2("Response " + xhr.status + ": ");
+                                    // Set text-fragments
+                                    textLayer.setTextContent(textContent);
+
+                                    // Render text-fragments
+                                    textLayer.render();
+                                });
+                        });
                     }
-                };
-                xhr.send(formData);
-            }
+                });
+            };
+            reader.readAsArrayBuffer(document.getElementById("input").files[0]);
+
+            // request for the annotation information
+            var form = document.getElementById('gbdForm');
+            var formData = new FormData(form);
+            var xhr = new XMLHttpRequest();
+            var url = getUrl(action.data);
+            $('#gbdForm').attr('action', url);
+            xhr.responseType = 'json';
+            xhr.open('POST', url, true);
+            console.log(xhr);
+
+            xhr.onreadystatechange = function (e) {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = e.target.response;
+                    setupAnnotations(response);
+                } else if (xhr.status !== 200) {
+                    onError("Response: " + xhr.status);
+                }
+            };
+            xhr.send(formData);
         }
 
         function annotateTextAsHtml(inputText, annotationList) {
@@ -352,7 +270,6 @@ var grobid = (function ($) {
 
             return newString;
         }
-
 
         function extractOffsetsFromAtomic(quantity) {
             offsetStart = -1;
@@ -1120,11 +1037,6 @@ var grobid = (function ($) {
 
             $('#gbdForm').attr('enctype', 'multipart/form-data');
             $('#gbdForm').attr('method', 'post');
-        }
-
-        function createInputTextArea() {
-            $('#fileInputDiv').hide();
-            $('#textInputDiv').show();
         }
 
         var examples = [
