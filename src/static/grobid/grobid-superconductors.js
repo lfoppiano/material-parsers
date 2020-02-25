@@ -52,21 +52,15 @@ var grobid = (function ($) {
             $('#submitRequest').bind('click', 'processPDF', submitQuery);
         });
 
-        function ShowRequest(formData, jqForm, options) {
-            var queryString = $.param(formData);
-            $('#requestResult').html('<font color="grey">Requesting server...</font>');
-            return true;
-        }
-
-        function AjaxError(jqXHR, textStatus, errorThrown) {
-            $('#requestResult').html("<font color='red'>Error encountered while requesting the server.<br/>" + jqXHR.responseText + "</font>");
+        function onError_request(request) {
+            $('#requestResult').html("<font color='red'>Error encountered while requesting the server.<br/>" + request.responseText + "</font>");
             responseJson = null;
         }
 
         function onError(message) {
             if (!message)
-                message = "";
-            message += " - The PDF document cannot be annotated. Please check the server logs.";
+                message = "The PDF document cannot be annotated. Please check the server logs.";
+
             $('#infoResult').html("<font color='red'>Error encountered while requesting the server.<br/>" + message + "</font>");
             responseJson = null;
             return true;
