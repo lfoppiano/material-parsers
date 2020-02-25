@@ -17,6 +17,15 @@ def root():
     return render_template('index.html')
 
 
+@app.route('/annotate', methods=['POST'])
+def annotate_pdf():
+    file = request.files['input']
+    grobid = grobid_client_generic(config_path="./config.json")
+    tf = NamedTemporaryFile()
+    tf.write(file.read())
+    return grobid.process_pdf(tf.name, 'annotatePDF', headers={'Accept': 'application/json'})
+
+
 @app.route('/process', methods=['POST'])
 def process_pdf():
     file = request.files['input']

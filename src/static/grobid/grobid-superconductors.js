@@ -10,8 +10,7 @@ var grobid = (function ($) {
         var responseJson = null;
 
         // for associating several quantities to a measurement
-        var superconMap = [];
-        var measurementMap = [];
+        var spansMap = [];
         var annotationsMap = [];
         var configuration = {};
 
@@ -24,7 +23,7 @@ var grobid = (function ($) {
                 success: function (data) {
                     configuration = data
                 },
-                error: function(error) {
+                error: function (error) {
                     onError("Cannot read configuration. " + error);
                 },
                 contentType: false,
@@ -71,7 +70,7 @@ var grobid = (function ($) {
         }
 
         function submitQuery(action) {
-            superconMap = [];
+            spansMap = [];
 
             $('#infoResult').html('<font color="grey">Requesting server...</font>');
             $('#requestResult').show();
@@ -216,136 +215,6 @@ var grobid = (function ($) {
             xhr.send(formData);
         }
 
-        function annotateTextAsHtml(inputText, annotationList) {
-            var newString = "";
-            // console.log("'" + inputText + "'");
-            var lastMaxIndex = inputText.length;
-            if (annotationList) {
-                var pos = 0; // current position in the text
-
-                for (var annotationIndex = 0; annotationIndex < annotationList.length; annotationIndex++) {
-                    var currentAnnotation = annotationList[annotationIndex];
-                    if (currentAnnotation) {
-                        var startUnit = -1;
-                        var endUnit = -1;
-                        var start = parseInt(currentAnnotation.offsetStart, 10);
-                        var end = parseInt(currentAnnotation.offsetEnd, 10);
-
-                        var type = currentAnnotation.type;
-
-                        // Entities has sub-types
-                        if (currentAnnotation.type === "entity") {
-                            type = currentAnnotation.obj.type;
-                        }
-
-                        if ((startUnit !== -1) && ((startUnit === end) || (startUnit === end + 1)))
-                            end = endUnit;
-                        if ((endUnit !== -1) && ((endUnit === start) || (endUnit + 1 === start)))
-                            start = startUnit;
-
-                        if (start < pos) {
-                            // we have a problem in the initial sort of the quantities
-                            // the server response is not compatible with the present client
-                            console.log("Sorting of quantities as present in the server's response not valid for this client.");
-                            // note: this should never happen?
-                        } else {
-                            newString += inputText.substring(pos, start)
-                                + ' <span id="annot_supercon-' + annotationIndex + '" rel="popover" data-color="interval">'
-                                + '<span class="label ' + type + ' style="cursor:hand;cursor:pointer;" >'
-                                + inputText.substring(start, end) + '</span></span>';
-                            pos = end;
-                        }
-                        // superconMap[currentSuperconIndex] = currentAnnotation;
-                        annotationsMap[annotationIndex] = currentAnnotation;
-                    }
-                }
-                newString += inputText.substring(pos, inputText.length);
-            }
-
-            return newString;
-        }
-
-        function extractOffsetsFromAtomic(quantity) {
-            offsetStart = -1;
-            offsetEnd = -1;
-
-            if (quantity.rawUnit) {
-                if (quantity.offsetStart < quantity.rawUnit.offsetStart) {
-                    offsetStart = quantity.offsetStart;
-                } else {
-                    offsetStart = quantity.rawUnit.offsetStart;
-                }
-
-                if (quantity.offsetEnd > quantity.rawUnit.offsetEnd) {
-                    offsetEnd = quantity.offsetEnd;
-                } else {
-                    offsetEnd = quantity.rawUnit.offsetEnd;
-                }
-            } else {
-                offsetStart = quantity.offsetStart;
-                offsetStart = quantity.offsetEnd;
-            }
-
-            return {'offsetStart': offsetStart, 'offsetEnd': offsetEnd};
-        }
-
-        function extractOffsetsFromIntervals(quantityLow, quantityHigh) {
-            offsets = {'offsetStart': -1, 'offsetEnd': -1};
-            offsetLeast = undefined;
-            offsetMost = undefined;
-
-            if (quantityLow) {
-                offsetLeast = extractOffsetsFromAtomic(quantityLow);
-            }
-
-            if (quantityHigh) {
-                offsetMost = extractOffsetsFromAtomic(quantityHigh);
-            }
-
-            if (offsetLeast) {
-                offsets['offsetStart'] = offsetLeast['offsetStart'];
-                if (offsetMost) {
-                    offsets['offsetEnd'] = offsetMost['offsetEnd'];
-                } else {
-                    offsets['offsetEnd'] = offsetLeast['offsetEnd'];
-                }
-            } else {
-                if (offsetMost) {
-                    offsets['offsetStart'] = offsetMost['offsetStart'];
-                    offsets['offsetEnd'] = offsetMost['offsetEnd'];
-                } else {
-                    console.log("Something very wrong here.");
-                }
-            }
-
-            return offsets;
-        }
-
-        function adjustTemperatureObjcts(temperatures) {
-            for (tmpIdx in temperatures) {
-                var temperature = temperatures[tmpIdx];
-
-                var offsets;
-
-                if (temperature.type === 'value') {
-                    var quantity = temperature.quantity;
-                    offsets = extractOffsetsFromAtomic(quantity);
-
-                } else if (temperature.type === 'interval') {
-                    if (temperature.quantityLeast || temperature.quantityMost) {
-                        offsets = extractOffsetsFromIntervals(temperature.quantityLeast, temperature.quantityMost);
-                    } else if (temperature.quantityRange || temperature.quantityBase) {
-                        offsets = extractOffsetsFromIntervals(temperature.quantityBase, temperature.quantityRange);
-                    }
-                } else if (temperature.type === 'list') {
-                    console.log("For now I'm not implementing this. ")
-                }
-
-                temperature.offsetStart = offsets['offsetStart'];
-                temperature.offsetEnd = offsets['offsetEnd'];
-            }
-            return temperatures;
-        }
 
         function flagCriticalTemperature(quantity, substance) {
             var quantityType = quantity.type;
@@ -357,107 +226,6 @@ var grobid = (function ($) {
                 }
             }
             return quantityType;
-        }
-
-        function onSuccessText(responseText, statusText) {
-            responseJson = responseText;
-            $('#infoResult').html('');
-            if ((responseJson == null) || (responseJson.length === 0)) {
-                $('#requestResult')
-                    .html("<font color='red'>Error encountered while receiving the server's answer: response is empty.</font>");
-                return;
-            }
-
-            var display = '<div class=\"note-tabs\"> \
-            <ul id=\"resultTab\" class=\"nav nav-tabs\"> \
-                <li class="active"><a href=\"#navbar-fixed-annotation\" data-toggle=\"tab\">Annotations</a></li> \
-                <li><a href=\"#navbar-fixed-json\" data-toggle=\"tab\">Response</a></li> \
-            </ul> \
-            <div class="tab-content"> \
-            <div class="tab-pane active" id="navbar-fixed-annotation">\n';
-
-            display += '<pre style="background-color:#FFF;width:95%;" id="displayAnnotatedText">';
-
-            var inputText = $('#inputTextArea').val();
-
-            display += '<table id="sentenceNER" style="width:100%;table-layout:fixed;" class="table">';
-            //var string = responseJson.text;
-
-            display += '<tr style="background-color:#FFF;">';
-
-            annotationList = [];
-
-            function addAnnotations(responseAnnotations, type, annotationList) {
-                if (responseAnnotations) {
-                    for (idx in responseAnnotations) {
-                        annotation = {
-                            'obj': responseAnnotations[idx],
-                            'type': type,
-                            'offsetStart': responseAnnotations[idx].offsetStart,
-                            'offsetEnd': responseAnnotations[idx].offsetEnd
-                        };
-                        annotationList.push(annotation);
-                    }
-                }
-                return annotationList
-            }
-
-            // Custom for measurements
-            addAnnotations(responseJson['entities'], 'entity', annotationList);
-            var temperaturesList = adjustTemperatureObjcts(responseJson.measurements);
-
-            addAnnotations(responseJson.other, 'entity', annotationList);
-
-            addAnnotations(temperaturesList, 'measurement', annotationList);
-
-            annotationList = annotationList.sort(function (a, b) {
-                if (a.offsetStart > b.offsetStart) return 1;
-                else if (a.offsetStart < b.offsetStart) return -1;
-                else return 0;
-            });
-
-            var annotatedTextAsHtml = annotateTextAsHtml(inputText, annotationList);
-
-            annotatedTextAsHtml = "<p>" + annotatedTextAsHtml.replace(/(\r\n|\n|\r)/gm, "</p><p>") + "</p>";
-            //string = string.replace("<p></p>", "");
-
-            display += '<td style="font-size:small;width:60%;border:1px solid #CCC;"><p>' + annotatedTextAsHtml + '</p></td>';
-            display += '<td style="font-size:small;width:40%;padding:0 5px; border:0"><span id="detailed_annot-0-0" /></td>';
-
-            display += '</tr>';
-            display += '</table>\n';
-            display += '</pre>\n';
-            display += '</div> \
-                    <div class="tab-pane " id="navbar-fixed-json">\n';
-
-
-            //JSON Pretty print box
-            display += "<pre class='prettyprint' id='jsonCode'>";
-
-            display += "<pre class='prettyprint lang-json' id='xmlCode'>";
-            var testStr = vkbeautify.json(responseText);
-
-            display += htmll(testStr);
-
-            display += "</pre>";
-            display += '</div></div></div>';
-
-            $('#requestResult').html(display);
-            window.prettyPrint && prettyPrint();
-
-            // Adding events
-            if (annotationList) {
-                for (var annotationIdx = 0; annotationIdx < annotationList.length; annotationIdx++) {
-                    // var measurement = measurements[measurementIndex];
-
-                    $('#annot_supercon-' + annotationIdx).bind('hover', annotationList, viewAnnotation);
-                    $('#annot_supercon-' + annotationIdx).bind('click', annotationList, viewAnnotation);
-                }
-            }
-
-            $('#detailed_annot-0').hide();
-
-            $('#requestResult').show();
         }
 
         function setupAnnotations(response) {
@@ -476,137 +244,37 @@ var grobid = (function ($) {
             var page_height = 0.0;
             var page_width = 0.0;
 
-            // Entities (Materials, Tc expressions etc...
-            var entities = json.entities;
-            if (entities) {
+            var paragraphs = json.paragraphs;
+
+            var spanGlobalIndex = 0;
+            paragraphs.forEach(function (paragraph, paragraphIdx) {
+                var spans = paragraph.spans;
                 // hey bro, this must be asynchronous to avoid blocking the brothers
-                entities.forEach(function (superconductor, superconIdx) {
-                    superconMap[superconIdx] = superconductor;
-                    var entity_type = superconductor['type'];
+
+                spans.forEach(function (span, spanIdx) {
+                    spansMap[spanGlobalIndex] = span;
+                    var entity_type = span['type'];
 
                     var theUrl = null;
-                    var pos = superconductor.boundingBoxes;
-                    if ((pos != null) && (pos.length > 0)) {
-                        pos.forEach(function (thePos, positionIdx) {
+                    var boundingBoxes = span.boundingBoxes;
+                    if ((boundingBoxes != null) && (boundingBoxes.length > 0)) {
+                        boundingBoxes.forEach(function (boundingBox, positionIdx) {
                             // get page information for the annotation
-                            var pageNumber = thePos.p;
+                            var pageNumber = boundingBox.page;
                             if (pageInfo[pageNumber - 1]) {
                                 page_height = pageInfo[pageNumber - 1].page_height;
                                 page_width = pageInfo[pageNumber - 1].page_width;
                             }
-                            annotateEntity(thePos, theUrl, page_height, page_width, superconIdx, positionIdx, entity_type);
+                            annotateSpan(boundingBox, theUrl, page_height, page_width, spanGlobalIndex, positionIdx, entity_type);
                         });
                     }
+                    spanGlobalIndex++;
                 });
-            }
-
-
-            // Measurements
-            var measurements = json.measurements;
-            if (measurements) {
-                // hey bro, this must be asynchronous to avoid blocking the brothers
-                measurements.forEach(function (measurement, n) {
-                    var measurementType = measurement.type;
-                    var quantities = [];
-                    var substance = measurement.quantified;
-
-                    if (measurementType === "value") {
-                        var quantity = measurement.quantity;
-                        if (quantity)
-                            quantities.push(quantity)
-                    } else if (measurementType === "interval") {
-                        var quantityLeast = measurement.quantityLeast;
-                        if (quantityLeast)
-                            quantities.push(quantityLeast);
-                        var quantityMost = measurement.quantityMost;
-                        if (quantityMost)
-                            quantities.push(quantityMost);
-
-                        if (!quantityLeast && !quantityMost) {
-                            var quantityBase = measurement.quantityBase;
-                            if (quantityBase)
-                                quantities.push(quantityBase);
-                            var quantityRange = measurement.quantityRange;
-                            if (quantityRange)
-                                quantities.push(quantityRange);
-                        }
-                    } else {
-                        quantities = measurement.quantities;
-                    }
-
-                    var quantityType = null;
-                    if (quantities) {
-                        var quantityMap = [];
-                        for (var currentQuantityIndex = 0; currentQuantityIndex < quantities.length; currentQuantityIndex++) {
-                            var quantity = quantities[currentQuantityIndex];
-                            quantity['quantified'] = substance;
-                            quantityMap[currentQuantityIndex] = quantity;
-                            quantityType = flagCriticalTemperature(quantity, substance);
-
-                            if (quantityType !== undefined) {
-                                break;
-                            }
-                        }
-                    }
-
-                    measurementMap[n] = quantities;
-
-                    //var theId = measurement.type;
-                    var theUrl = null;
-                    //var theUrl = annotation.url;
-                    var pos = measurement.boundingBoxes;
-                    if ((pos != null) && (pos.length > 0)) {
-                        pos.forEach(function (thePos, m) {
-                            // get page information for the annotation
-                            var pageNumber = thePos.p;
-                            if (pageInfo[pageNumber - 1]) {
-                                page_height = pageInfo[pageNumber - 1].page_height;
-                                page_width = pageInfo[pageNumber - 1].page_width;
-                            }
-                            annotateQuantity(thePos, theUrl, page_height, page_width, n, m, quantityType);
-                        });
-                    }
-                });
-            }
+            });
         }
 
-        function annotateQuantity(thePos, theUrl, page_height, page_width, measurementIndex, positionIndex, type) {
-            var page = thePos.p;
-            var pageDiv = $('#page-' + page);
-            var canvas = pageDiv.children('canvas').eq(0);
-
-            var canvasHeight = canvas.height();
-            var canvasWidth = canvas.width();
-            var scale_x = canvasHeight / page_height;
-            var scale_y = canvasWidth / page_width;
-
-            var x = thePos.x * scale_x - 1;
-            var y = thePos.y * scale_y - 1;
-            var width = thePos.w * scale_x + 1;
-            var height = thePos.h * scale_y + 1;
-
-            var element = document.createElement("a");
-            var attributes = "display:block; width:" + width + "px; height:" + height + "px; position:absolute; top:" +
-                y + "px; left:" + x + "px;";
-            element.setAttribute("style", attributes + "border:2px solid;");
-            element.setAttribute("class", 'area' + ' ' + type);
-            element.setAttribute("id", 'annot_quantity-' + measurementIndex + '-' + positionIndex);
-            element.setAttribute("page", page);
-
-            pageDiv.append(element);
-
-            $('#annot_quantity-' + measurementIndex + '-' + positionIndex).bind('hover', {
-                'type': 'quantity',
-                'map': measurementMap
-            }, viewEntityPDF);
-            $('#annot_quantity-' + measurementIndex + '-' + positionIndex).bind('click', {
-                'type': 'quantity',
-                'map': measurementMap
-            }, viewEntityPDF);
-        }
-
-        function annotateEntity(thePos, theUrl, page_height, page_width, superconIdx, positionIdx, type) {
-            var page = thePos.p;
+        function annotateSpan(boundingBox, theUrl, page_height, page_width, spanIdx, positionIdx, type) {
+            var page = boundingBox.page;
             var pageDiv = $('#page-' + page);
             var canvas = pageDiv.children('canvas').eq(0);
             //var canvas = pageDiv.find('canvas').eq(0);;
@@ -616,62 +284,34 @@ var grobid = (function ($) {
             var scale_x = canvasHeight / page_height;
             var scale_y = canvasWidth / page_width;
 
-            var x = thePos.x * scale_x - 1;
-            var y = thePos.y * scale_y - 1;
-            var width = thePos.w * scale_x + 1;
-            var height = thePos.h * scale_y + 1;
+            var x = boundingBox.x * scale_x - 1;
+            var y = boundingBox.y * scale_y - 1;
+            var width = boundingBox.width * scale_x + 1;
+            var height = boundingBox.height * scale_y + 1;
 
             //make clickable the area
             var element = document.createElement("a");
             var attributes = "display:block; width:" + width + "px; height:" + height + "px; position:absolute; top:" +
                 y + "px; left:" + x + "px;";
             element.setAttribute("style", attributes + "border:2px solid;");
-            if (superconMap[superconIdx].type === 'material' && superconMap[superconIdx].tc) {
+            if (spansMap[spanIdx].type === 'material' && spansMap[spanIdx].tc) {
                 element.setAttribute("class", 'area material-tc');
             } else {
                 element.setAttribute("class", 'area' + ' ' + type);
             }
-            element.setAttribute("id", 'annot_supercon-' + superconIdx + '-' + positionIdx);
+            element.setAttribute("id", 'annot_span-' + spanIdx + '-' + positionIdx);
             element.setAttribute("page", page);
 
             pageDiv.append(element);
 
-            $('#annot_supercon-' + superconIdx + '-' + positionIdx).bind('hover', {
+            $('#annot_span-' + spanIdx + '-' + positionIdx).bind('hover', {
                 'type': 'entity',
-                'map': superconMap
+                'map': spansMap
             }, viewEntityPDF);
-            $('#annot_supercon-' + superconIdx + '-' + positionIdx).bind('click', {
+            $('#annot_span-' + spanIdx + '-' + positionIdx).bind('click', {
                 'type': 'entity',
-                'map': superconMap
+                'map': spansMap
             }, viewEntityPDF);
-        }
-
-
-        function viewAnnotation(annotationsList) {
-
-            if (annotationsList.length === 0) {
-                return;
-            }
-            var localID = $(this).attr('id');
-
-            var ind1 = localID.indexOf('-');
-            var localAnnotationID = parseInt(localID.substring(ind1 + 1));
-            if ((annotationsMap[localAnnotationID] == null) || (annotationsMap[localAnnotationID].length === 0)) {
-                // this should never be the case
-                console.log("Error for visualising annotation measurement with id " + localAnnotationID
-                    + ", empty list of measurement");
-            }
-
-            var annotation = annotationsMap[localAnnotationID];
-            var string = "";
-            if (annotation.type === 'entity') {
-                string = toHtmlEntity(annotation.obj, -1);
-            } else if (annotation.type === 'measurement') {
-                string = toHtmlMeasurement(annotation.obj, -1)
-            }
-
-            $('#detailed_annot-0-0').html(string);
-            $('#detailed_annot-0-0').show();
         }
 
         function viewEntityPDF(param) {
@@ -690,24 +330,8 @@ var grobid = (function ($) {
                 console.log("Error for visualising annotation with id " + localMeasurementNumber
                     + ", empty list of measurement");
             }
-            var string = "";
-            if (type === 'entity') {
-                string = toHtmlEntity(map[localMeasurementNumber], $(this).position().top);
-            } else if (type === 'quantity') {
-                var quantityMap = map[localMeasurementNumber];
-                var measurementType = null;
+            var string = toHtmlEntity(map[localMeasurementNumber], $(this).position().top);
 
-                if (quantityMap.length === 1) {
-                    measurementType = "Atomic value";
-                    string = toHtml(quantityMap, measurementType, $(this).position().top);
-                } else if (quantityMap.length === 2) {
-                    measurementType = "Interval";
-                    string = intervalToHtml(quantityMap, measurementType, $(this).position().top);
-                } else {
-                    measurementType = "List";
-                    string = toHtml(quantityMap, measurementType, $(this).position().top);
-                }
-            }
             if (type === null || string === "") {
                 console.log("Error in viewing annotation, type unknown or null: " + type);
             }
@@ -722,7 +346,7 @@ var grobid = (function ($) {
             var first = true;
 
             colorLabel = entity.type;
-            var name = entity.name;
+            var text = entity.text;
             var type = entity.type;
 
             string += "<div class='info-sense-box ___TYPE___'";
@@ -735,8 +359,8 @@ var grobid = (function ($) {
             string += "<div class='container-fluid' style='background-color:#FFF;color:#70695C;border:padding:5px;margin-top:5px;'>" +
                 "<table style='width:100%;display:inline-table;'><tr style='display:inline-table;'><td>";
 
-            if (name) {
-                string += "<p>name: <b>" + name + "</b></p>";
+            if (text) {
+                string += "<p>name: <b>" + text + "</b></p>";
             }
 
             if (entity.tc) {
@@ -752,292 +376,6 @@ var grobid = (function ($) {
 
             return string;
         }
-
-        function toHtmlMeasurement(measurement, topPos) {
-            var string = "";
-            var first = true;
-
-            colorLabel = 'measurement';
-
-            string += "<div class='info-sense-box " + colorLabel + "'";
-            if (topPos != -1)
-                string += " style='vertical-align:top; position:relative; top:" + topPos + "'";
-
-            string += ">";
-            string += "<h2 style='color:#FFF;padding-left:10px;font-size:16pt;'>Measurement</h2>";
-
-            string += "<div class='container-fluid' style='background-color:#FFF;color:#70695C;border:padding:5px;margin-top:5px;'>" +
-                "<table style='width:100%;display:inline-table;'><tr style='display:inline-table;'><td>";
-
-            quantityMap = [];
-            if (measurement.type === 'value') {
-                measurementType = "Atomic value";
-                measurement.quantity['quantified'] = measurement.quantified;
-                quantityMap.push(measurement.quantity);
-                string = toHtml(quantityMap, measurementType, -1);
-            } else if (measurement.type === 'interval') {
-                measurementType = "Interval";
-                if (measurement.quantityLeast) {
-                    measurement.quantityLeast['quantified'] = measurement.quantified;
-                    quantityMap.push(measurement.quantityLeast)
-                }
-
-                if (measurement.quantityBase) {
-                    measurement.quantityBase['quantified'] = measurement.quantified;
-                    quantityMap.push(measurement.quantityBase)
-                }
-
-                if (measurement.quantityMost) {
-                    measurement.quantityMost['quantified'] = measurement.quantified;
-                    quantityMap.push(measurement.quantityMost)
-                }
-
-                if (measurement.quantityRange) {
-                    measurement.quantityMost['quantified'] = measurement.quantified;
-                    quantityMap.push(measurement.quantityRange)
-                }
-
-                if (quantityMap.length > 1)
-                    string = intervalToHtml(quantityMap, measurementType, -1);
-                else
-                    string = toHtml(quantityMap, measurementType, -1);
-            } else {
-                measurementType = "List";
-                quantityMap.push(measurement.list);
-                string = toHtml(quantityMap, measurementType, -1);
-            }
-
-            string += "</td></tr>";
-            string += "</table></div>";
-
-            string += "</div>";
-
-            return string;
-        }
-
-
-        function intervalToHtml(quantityMap, measurementType, topPos) {
-            var string = "";
-            var rawUnitName = null;
-
-            // LEAST value
-            var quantityLeast = quantityMap[0];
-            var type = quantityLeast.type;
-
-            var colorLabel = null;
-            if (type) {
-                colorLabel = type;
-            } else {
-                colorLabel = quantityLeast.rawName;
-            }
-            if (colorLabel)
-                colorLabel = colorLabel.replace(" ", "_");
-            var leastValue = quantityLeast.rawValue;
-            var startUniLeast = -1;
-            var endUnitLeast = -1;
-
-            var unitLeast = quantityLeast.rawUnit;
-            if (unitLeast) {
-                rawUnitName = unitLeast.name;
-                startUniLeast = parseInt(quantityLeast.offsetStart, 10);
-                endUnitLeast = parseInt(quantityLeast.offsetEnd, 10);
-            }
-            var normalizedQuantityLeast = quantityLeast.normalizedQuantity;
-            var normalizedUnit = quantityLeast.normalizedUnit;
-
-            var substance = quantityLeast.quantified;
-
-            // MOST value
-            var quantityMost = quantityMap[1];
-            var mostValue = quantityMost.rawValue;
-            var startUniMost = -1;
-            var endUnitMost = -1;
-
-            var unitMost = quantityMost.rawUnit;
-            if (unitMost) {
-                startUniMost = parseInt(quantityMost.offsetStart, 10);
-                endUnitMost = parseInt(quantityMost.offsetEnd, 10);
-            }
-            var normalizedQuantityMost = quantityMost.normalizedQuantity;
-
-            if (!substance)
-                substance = quantityMost.quantified;
-
-            string += "<div class='info-sense-box " + colorLabel + "'";
-            if (topPos !== -1)
-                string += " style='vertical-align:top; position:relative; top:" + topPos + "'";
-            string += "><h2 style='color:#FFF;padding-left:10px;font-size:16pt;'>" + measurementType;
-            string += "</h2>";
-            string += "<div class='container-fluid' style='background-color:#FFF;color:#70695C;border:padding:5px;margin-top:5px;'>" +
-                "<table style='width:100%;display:inline-table;'><tr style='display:inline-table;'><td>";
-
-            if (type) {
-                string += "<p>quantity type: <b>" + type + "</b></p>";
-            }
-
-            if (leastValue || mostValue) {
-                string += "<p>raw: from <b>" + leastValue + "</b> to <b>" + mostValue + "</b></p>";
-            }
-
-            if (rawUnitName) {
-                string += "<p>raw unit name: <b>" + rawUnitName + "</b></p>";
-            }
-
-            if (normalizedQuantityLeast || normalizedQuantityMost) {
-                string += "<p>normalized: from <b>" + normalizedQuantityLeast + "</b> to <b>"
-                    + normalizedQuantityMost + "</b></p>";
-            }
-
-            if (normalizedUnit) {
-                string += "<p>normalized unit: <b>" + normalizedUnit.name + "</b></p>";
-            }
-
-            if (substance) {
-                string += "</td></tr><tr style='width:100%;display:inline-table;'><td style='border-top-width:1px;width:100%;border-top:1px solid #ddd;display:inline-table;'>";
-                string += "<p style='display:inline-table;'>quantified (experimental):"
-                string += "<table style='width:100%;display:inline-table;'><tr><td>";
-                string += "<p>raw: <b>" + substance.rawName;
-                string += "</b></p>";
-                string += "<p>normalized: <b>" + substance.normalizedName;
-                string += "</b></p></td></tr></table>";
-                string += "</p>";
-            }
-
-            string += "</td><td style='align:right;bgcolor:#fff'></td></tr>";
-            string += "</table></div>";
-
-            return string;
-
-        }
-
-        function toHtml(quantityMap, measurementType, topPos) {
-            var string = "";
-            var first = true;
-            for (var quantityListIndex = 0; quantityListIndex < quantityMap.length; quantityListIndex++) {
-
-                var quantity = quantityMap[quantityListIndex];
-                var type = quantity.type;
-
-                var colorLabel = null;
-                if (type) {
-                    colorLabel = type;
-                } else {
-                    colorLabel = quantity.rawName;
-                }
-
-                var rawValue = quantity.rawValue;
-                var unit = quantity.rawUnit;
-
-                var parsedValue = quantity.parsedValue;
-                var parsedValueStructure = quantity.parsedValue.structure;
-                // var parsedUnit = quantity.parsedUnit;
-
-                var normalizedQuantity = quantity.normalizedQuantity;
-                var normalizedUnit = quantity.normalizedUnit;
-
-                var substance = quantity.quantified;
-
-                var rawUnitName = null;
-                var startUnit = -1;
-                var endUnit = -1;
-                if (unit) {
-                    rawUnitName = unit.name;
-                    startUnit = parseInt(unit.offsetStart, 10);
-                    endUnit = parseInt(unit.offsetEnd, 10);
-                }
-
-                if (first) {
-                    string += "<div class='info-sense-box " + colorLabel + "'";
-                    if (topPos != -1)
-                        string += " style='vertical-align:top; position:relative; top:" + topPos + "'";
-                    string += "><h2 style='color:#FFF;padding-left:10px;font-size:16pt;'>" + measurementType;
-                    string += "</h2>";
-                    first = false;
-                }
-
-                string += "<div class='container-fluid' style='background-color:#FFF;color:#70695C;border:padding:5px;margin-top:5px;'>" +
-                    "<table style='width:100%;display:inline-table;'><tr style='display:inline-table;'><td>";
-
-                if (type) {
-                    string += "<p>quantity type: <b>" + type + "</b></p>";
-                }
-
-                if (rawValue) {
-                    string += "<p>raw value: <b>" + rawValue + "</b></p>";
-                }
-
-                if (parsedValue) {
-                    if (parsedValue.numeric && parsedValue.numeric !== rawValue) {
-                        string += "<p>parsed value: <b>" + parsedValue.numeric + "</b></p>";
-                    } else if (parsedValue.parsed && parsedValue.parsed !== rawValue) {
-                        string += "<p>parsed value: <b>" + parsedValue.parsed + "</b></p>";
-                    }
-                }
-
-                if (parsedValueStructure) {
-                    string += "<p>&nbsp;&nbsp; - type: <b>" + parsedValueStructure.type + "</b></p>";
-                    string += "<p>&nbsp;&nbsp; - formatted: <b>" + parsedValueStructure.formatted + "</b></p>";
-                }
-
-
-                if (rawUnitName) {
-                    string += "<p>raw unit name: <b>" + rawUnitName + "</b></p>";
-                }
-
-                if (normalizedQuantity) {
-                    string += "<p>normalized value: <b>" + normalizedQuantity + "</b></p>";
-                }
-
-                if (normalizedUnit) {
-                    string += "<p>normalized unit name: <b>" + normalizedUnit.name + "</b></p>";
-                }
-
-                if (substance) {
-                    string += "</td></tr><tr style='width:100%;display:inline-table;'><td style='border-top-width:1px;width:100%;border-top:1px solid #ddd;display:inline-table;'>";
-                    string += "<p style='display:inline-table;'>quantified (experimental):"
-                    string += "<table style='width:100%;display:inline-table;'><tr><td>";
-                    string += "<p>raw: <b>" + substance.rawName;
-                    string += "</b></p>";
-                    string += "<p>normalized: <b>" + substance.normalizedName;
-                    string += "</b></p></td></tr></table>";
-                    string += "</p>";
-                }
-
-                string += "</td></tr>";
-                string += "</table></div>";
-            }
-            string += "</div>";
-
-            return string;
-        }
-
-        function processChange() {
-            var selected = $('#selectedService option:selected').attr('value');
-
-            if (selected === 'processSuperconductorsText') {
-                createInputTextArea();
-                setBaseUrl('processSuperconductorsText');
-                $('#requestResult').hide();
-            } else if (selected === 'annotateSuperconductorsPDF') {
-                createInputFile(selected);
-                setBaseUrl('process');
-                $('#requestResult').hide();
-            }
-        }
-
-        function createInputFile() {
-            $('#textInputDiv').hide();
-            $('#fileInputDiv').show();
-
-            $('#gbdForm').attr('enctype', 'multipart/form-data');
-            $('#gbdForm').attr('method', 'post');
-        }
-
-        var examples = [
-            "In just a few months, the superconducting transition temperature (Tc) was increased to 55 K in the electron-doped system, as well as 25 K in hole-doped La1−x SrxOFeAs compound. Soon after, single crystals of LnFeAs(O1−x Fx) (Ln = Pr, Nd, Sm) were grown successfully by the NaCl/KCl flux method, though the sub-millimeter sizes limit the experimental studies on them. Therefore, FeAs-based single crystals with high crystalline quality, homogeneity and large sizes are highly desired for precise measurements of the properties. Very recently, the BaFe2As2 compound in a tetragonal ThCr2Si2-type structure with infinite Fe–As layers was reported. By replacing the alkaline earth elements (Ba and Sr) with alkali elements (Na, K, and Cs), superconductivity up to 38 K was discovered both in hole-doped and electron-doped samples. Tc varies from 2.7 K in CsFe2As2 to 38 K in A1−xKxFe2As2 (A = Ba, Sr). Meanwhile, superconductivity could also be induced in the parent phase by high pressure or by replacing some of the Fe by Co. More excitingly, large single crystals could be obtained by the Sn flux method in this family to study the rather low melting temperature and the intermetallic characteristics.", "In just a few months, the superconducting transition temperature (Tc) was increased to 55 K in the electron-doped system, as well as 25 K in hole-doped La1−x SrxOFeAs compound. Soon after, single crystals of LnFeAs(O1−x Fx) (Ln = Pr, Nd, Sm) were grown successfully by the NaCl/KCl flux method, though the sub-millimeter sizes limit the experimental studies on them. Therefore, FeAs-based single crystals with high crystalline quality, homogeneity and large sizes are highly desired for precise measurements of the properties. Very recently, the BaFe2As2 compound in a tetragonal ThCr2Si2-type structure with infinite Fe–As layers was reported. By replacing the alkaline earth elements (Ba and Sr) with alkali elements (Na, K, and Cs), superconductivity up to 38 K was discovered both in hole-doped and electron-doped samples. Tc varies from 2.7 K in CsFe2As2 to 38 K in A1−xKxFe2As2 (A = Ba, Sr). Meanwhile, superconductivity could also be induced in the parent phase by high pressure or by replacing some of the Fe by Co. More excitingly, large single crystals could be obtained by the Sn flux method in this family to study the rather low melting temperature and the intermetallic characteristics.",
-
-        ]
-
     }
 
 )(jQuery);
