@@ -44,7 +44,7 @@ var grobid = (function ($) {
             //     onError("Action " + action + " was not found in configuration. ");
             // }
 
-            return "http://localhost:5000/process"
+            return "http://falcon.nims.go.jp/supercuration/process"
         }
 
         $(document).ready(function () {

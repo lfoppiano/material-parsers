@@ -1,0 +1,63 @@
+ * Serving Flask app "interface.py" (lazy loading)
+ * Environment: development
+ * Debug mode: on
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 301-764-587
+ * Serving Flask app "interface.py" (lazy loading)
+ * Environment: development
+ * Debug mode: on
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 301-764-587
+127.0.0.1 - - [14/Feb/2020 15:30:38] "[37mGET / HTTP/1.1[0m" 200 -
+127.0.0.1 - - [14/Feb/2020 15:30:38] "[37mGET /config HTTP/1.1[0m" 200 -
+127.0.0.1 - - [14/Feb/2020 16:19:14] "[37mGET / HTTP/1.1[0m" 200 -
+127.0.0.1 - - [14/Feb/2020 16:19:14] "[37mGET /config HTTP/1.1[0m" 200 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[37mGET / HTTP/1.1[0m" 200 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/js/jquery-1.10.0.min.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/libs/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/js/vkbeautify.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/js/jquery.form.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/libs/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/libs/bootstrap/css/prettify.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/libs/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/libs/pdf.js/web/text_layer_builder.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/libs/pdf.js/web/annotation_layer_builder.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/libs/pdf.js/web/text_layer_builder.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/libs/pdf.js/web/pdf_link_service.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/libs/pdf.js/web/annotation_layer_builder.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/libs/pdf.js/build_/pdf.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/css/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/css/style-ner.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/resources/css/style-superconductors.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[36mGET /static/grobid/grobid-superconductors.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:44] "[37mGET /static/resources/css/style-quantities.css HTTP/1.1[0m" 200 -
+127.0.0.1 - - [17/Feb/2020 09:34:45] "[36mGET /static/resources/libs/bootstrap/js/prettify.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:45] "[37mGET /config HTTP/1.1[0m" 200 -
+127.0.0.1 - - [17/Feb/2020 09:34:48] "[36mGET /static/resources/libs/font-awesome/font/fontawesome-webfont.woff?v=3.1.0 HTTP/1.1[0m" 304 -
+127.0.0.1 - - [17/Feb/2020 09:34:49] "[36mGET /static/resources/libs/pdf.js/build_/pdf.worker.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[37mGET / HTTP/1.1[0m" 200 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[37mGET /static/resources/libs/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 200 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[37mGET /static/resources/libs/bootstrap/css/prettify.css HTTP/1.1[0m" 200 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[37mGET /static/resources/libs/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 200 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[37mGET /static/resources/libs/pdf.js/web/annotation_layer_builder.css HTTP/1.1[0m" 200 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[37mGET /static/resources/css/style.css HTTP/1.1[0m" 200 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[37mGET /static/resources/css/style-ner.css HTTP/1.1[0m" 200 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[37mGET /static/resources/libs/pdf.js/web/text_layer_builder.css HTTP/1.1[0m" 200 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[37mGET /static/resources/css/style-quantities.css HTTP/1.1[0m" 200 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[37mGET /static/resources/css/style-superconductors.css HTTP/1.1[0m" 200 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[37mGET /static/grobid/grobid-superconductors.js HTTP/1.1[0m" 200 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[36mGET /static/resources/js/jquery-1.10.0.min.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[36mGET /static/resources/libs/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[36mGET /static/resources/libs/bootstrap/js/prettify.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[36mGET /static/resources/js/vkbeautify.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[36mGET /static/resources/js/jquery.form.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[36mGET /static/resources/libs/pdf.js/web/annotation_layer_builder.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[36mGET /static/resources/libs/pdf.js/web/text_layer_builder.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[36mGET /static/resources/libs/pdf.js/web/pdf_link_service.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[36mGET /static/resources/libs/pdf.js/build_/pdf.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[37mGET /config HTTP/1.1[0m" 200 -
+127.0.0.1 - - [26/Feb/2020 15:14:06] "[37mGET /static/resources/img/favicon.ico HTTP/1.1[0m" 200 -

@@ -1,9 +1,10 @@
 import json
 import time
+import os 
 
 import requests
 
-from client import ApiClient
+from src.client import ApiClient
 
 '''
 This client is a generic client for any Grobid application and sub-modules.
@@ -16,6 +17,8 @@ class grobid_client_generic(ApiClient):
     def __init__(self, config_path='./config.json'):
         self.config = None
         self._load_config(config_path)
+#        if not grobid_url.startswith("http://localhost"):
+#            os.environ['NO_PROXY'] = 'falcon.nims.go.jp'
 
     def _load_config(self, path='./config.json'):
         """
@@ -29,7 +32,7 @@ class grobid_client_generic(ApiClient):
         if len(self.config['grobid_port']) > 0:
             the_url += ":" + self.config['grobid_port']
         the_url += self.config['url_mapping']['ping']
-
+	
         r = requests.get(the_url)
         status = r.status_code
 
@@ -59,7 +62,7 @@ class grobid_client_generic(ApiClient):
         if len(self.config['grobid_port']) > 0:
             the_url += ":" + self.config['grobid_port']
         the_url += self.config['url_mapping'][method_name]
-
+	
         res, status = self.post(
             url=the_url,
             files=files,
