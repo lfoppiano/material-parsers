@@ -35,14 +35,16 @@ var grobid = (function ($) {
 
 
         function getUrl(action) {
-            var requestUrl = "http://" + configuration['grobid_server'] + ":" + configuration['grobid_port'];
-            if (configuration['url_mapping'][action] !== null) {
-                actionUrl = configuration['url_mapping'][action];
+            // var requestUrl = "http://" + configuration['grobid_server'] + ":" + configuration['grobid_port'];
+            // if (configuration['url_mapping'][action] !== null) {
+            //     actionUrl = configuration['url_mapping'][action];
+            //
+            //     return requestUrl + actionUrl
+            // } else {
+            //     onError("Action " + action + " was not found in configuration. ");
+            // }
 
-                return requestUrl + actionUrl
-            } else {
-                onError("Action " + action + " was not found in configuration. ");
-            }
+            return "http://localhost:5000/process"
         }
 
         $(document).ready(function () {
@@ -215,19 +217,6 @@ var grobid = (function ($) {
             xhr.send(formData);
         }
 
-
-        function flagCriticalTemperature(quantity, substance) {
-            var quantityType = quantity.type;
-
-            if (quantityType === 'temperature') {
-                if (substance != null && substance['normalizedName'] === 'Critical Temperature') {
-                    quantityType = 'temperature-tc';
-                    quantity.type = quantityType;
-                }
-            }
-            return quantityType;
-        }
-
         function setupAnnotations(response) {
             // TBD: we must check/wait that the corresponding PDF page is rendered at this point
             if ((response == null) || (0 === response.length)) {
@@ -294,25 +283,23 @@ var grobid = (function ($) {
             var attributes = "display:block; width:" + width + "px; height:" + height + "px; position:absolute; top:" +
                 y + "px; left:" + x + "px;";
             element.setAttribute("style", attributes + "border:2px solid;");
-            if (spansMap[spanIdx].type === 'material' && spansMap[spanIdx].tc) {
-                element.setAttribute("class", 'area material-tc');
-            } else {
-                element.setAttribute("class", 'area' + ' ' + type);
-            }
+            // if (spansMap[spanIdx].type === 'material' && spansMap[spanIdx].tc) {
+            //     element.setAttribute("class", 'area material-tc');
+            // } else {
+            console.log(type);
+            element.setAttribute("class", 'area' + ' ' + type);
+            // }
             element.setAttribute("id", 'annot_span-' + spanIdx + '-' + positionIdx);
             element.setAttribute("page", page);
 
             pageDiv.append(element);
 
-            $('#annot_span-' + spanIdx + '-' + positionIdx).bind('hover', {
-                'type': 'entity',
-                'map': spansMap
-            }, viewEntityPDF);
-            $('#annot_span-' + spanIdx + '-' + positionIdx).bind('click', {
+            $('#annot_span-' + spanIdx + '-' + positionIdx).bind('mouseenter mouseleave click', {
                 'type': 'entity',
                 'map': spansMap
             }, viewEntityPDF);
         }
+
 
         function viewEntityPDF(param) {
             var type = param.data.type;
