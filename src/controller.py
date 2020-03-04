@@ -40,17 +40,9 @@ def process_pdf():
     new_paragraphs = []
     paragraphs = result_json['paragraphs']
     for index, paragraph in enumerate(paragraphs):
-        if len(paragraph['spans']) > 0:
-            extracted_data_from_paragraphs = process_paragraph(paragraph)
-
-            if len(extracted_data_from_paragraphs) > 0:
-                # here the data has been manipulated and it's a real mess...
-                for sentence in extracted_data_from_paragraphs:
-                    new_paragraphs.append(sentence)
-            else:
-                new_paragraphs.append(paragraph)
-        else:
-            new_paragraphs.append(paragraph)
+        extracted_data_from_paragraphs = process_paragraph(paragraph)
+        for sentence in extracted_data_from_paragraphs:
+            new_paragraphs.append(sentence)
 
     result_json['paragraphs'] = new_paragraphs
 
