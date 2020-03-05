@@ -4,11 +4,20 @@ import spacy
 from gensim.summarization.textcleaner import split_sentences
 from material_parser.material_parser import MaterialParser
 from spacy.tokens import Span, Doc
+from spacy.tokens.token import Token
 
 from src.linking.relationships_resolver import SimpleResolutionResolver, VicinityResolutionResolver, \
     DependencyParserResolutionResolver
 
 nlp = spacy.load("en_core_web_sm", disable=['ner'])
+
+Span.set_extension('id', default=None, force=True)
+Span.set_extension('links', default=[], force=True)
+Span.set_extension('bounding_boxes', default=[], force=True)
+
+Token.set_extension('id', default=None, force=True)
+Token.set_extension('links', default=[], force=True)
+Token.set_extension('bounding_boxes', default=[], force=True)
 
 def decode(response):
     try:
@@ -299,21 +308,14 @@ def process_sentence(words, spaces, spans_remapped):
     doc = Doc(nlp.vocab, words=words, spaces=spaces)
 
     ## Loading GROBID entities in the spaCY document
-    # entities = [Span(doc=doc, start=s['tokenStart'], end=s['tokenEnd'], label=s['type']) for s in spans_remapped]
     entities = []
-    mapping_span_to_entity = {}
-    mapping_entity_to_span = {}
-    mapping_id_to_coordinates = {}
-    for s in spans_remapped:
-        span_id = str(s['id'])
-        span = Span(doc=doc, start=s['tokenStart'], end=s['tokenEnd'], label=s['type'], kb_id=span_id)
-        # span.kb_id=s['id']
-        entities.append(span)
-        mapping_id_to_coordinates[span_id] = s['boundingBoxes']
 
-        # mapping_entity_to_span = {v: k for k, v in mapping_span_to_entity.items()}
-        # if len(mapping_entity_to_span.keys()) != len(mapping_span_to_entity):
-        #     raise Exception("There is a duplicated span identifier. " + str(mapping_span_to_entity))
+    for s in spans_remapped:
+        span = Span(doc=doc, start=s['tokenStart'], end=s['tokenEnd'], label=s['type'])
+        span._.set('id', str(s['id']))
+        span._.set('bounding_boxes', s['boundingBoxes'])
+
+        entities.append(span)
 
     doc.ents = entities
     # print("Entities: " + str(doc.ents))
@@ -323,6 +325,9 @@ def process_sentence(words, spaces, spans_remapped):
         # after setting the entities – otherwise, it would cause mismatched
         # indices!
         span.merge()
+        for token in span:
+            token._.id = span._.id
+            token._.bounding_boxes = span._.bounding_boxes
 
     nlp.tagger(doc)
     nlp.parser(doc)
@@ -366,38 +371,41 @@ def process_sentence(words, spaces, spans_remapped):
     markCriticalTemperature(doc)
 
     ### RELATIONSHIP EXTRACTION
-    extracted_entities['relationships'] = {}
+    extracted_entities['relationships'] = []
 
     ## 1 simple approach (when only one temperature and one material)
     resolver = SimpleResolutionResolver()
-    relationship = resolver.find_relationship(doc)
 
-    if len(relationship) > 0:
-        extracted_entities['relationships']['simple'] = collect_relationships(relationship, mapping_id_to_coordinates)
-        print(" Simple relationships " + str(extracted_entities['relationships']['simple']))
+    materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+    tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc)]
+
+    relationships = resolver.find_relationships(materials, tcValues)
+
+    if len(relationships) > 0:
+        extracted_entities['relationships'].extend(collect_relationships(relationships, 'simple'))
+        # print(" Simple relationships " + str(extracted_entities['relationships']['simple']))
+    else:
 
     ## 2 vicinity matching
 
-    resolver = VicinityResolutionResolver()
-    relationship = resolver.find_relationship(doc)
-    if len(relationship) > 0:
-        extracted_entities['relationships']['vicinity'] = collect_relationships(relationship, mapping_id_to_coordinates)
-        print(" Vicinity relationships " + str(extracted_entities['relationships']['vicinity']))
+        resolver = VicinityResolutionResolver()
+        relationships = resolver.find_relationships(doc, materials, tcValues)
+        if len(relationships) > 0:
+            extracted_entities['relationships'].extend(collect_relationships(relationships, 'vicinity'))
+            # print(" Vicinity relationships " + str(extracted_entities['relationships']['vicinity']))
+        else:
 
     ## 3 dependency parsing matching
 
-    resolver = DependencyParserResolutionResolver()
-    relationship = resolver.find_relationship(doc)
-    if len(relationship) > 0:
-        extracted_entities['relationships']['dependency'] = collect_relationships(relationship,
-                                                                                  mapping_id_to_coordinates)
-        print(" Dep relationships " + str(extracted_entities['relationships']['dependency']))
+            resolver = DependencyParserResolutionResolver()
+            relationships = resolver.find_relationships(materials, tcValues)
+            if len(relationships) > 0:
+                extracted_entities['relationships'].extend(collect_relationships(relationships, 'dependency'))
+                # print(" Dep relationships " + str(extracted_entities['relationships']['dependency']))
 
 
-    spans_not_yet_as_dict = [entity for entity in
+    converted_spans = [span_to_dict(entity) for entity in
                                    filter(lambda w: w.ent_type_ in entities_classes(), doc)]
-
-    converted_spans = [span_to_dict(span_to_be_converted, mapping_id_to_coordinates) for span_to_be_converted in spans_not_yet_as_dict]
 
     extracted_entities['spans'] = converted_spans
     extracted_entities['text'] = text
@@ -422,7 +430,7 @@ def token_to_dict(token):
     return converted_token
 
 
-def span_to_dict(span, mapping_id_to_coordinates):
+def span_to_dict(span):
     converted_span = {
         "text": "",
         "type": "",
@@ -431,7 +439,8 @@ def span_to_dict(span, mapping_id_to_coordinates):
         "tokenStart": "",
         "tokenEnd": "",
         "id": "",
-        "boundingBoxes": []
+        "boundingBoxes": [],
+        "links" : []
     }
 
     converted_span['text'] = span.text
@@ -440,8 +449,9 @@ def span_to_dict(span, mapping_id_to_coordinates):
     converted_span['offsetEnd'] = span.idx + len(span.text)
     converted_span['tokenStart'] = span.i
     converted_span['tokenEnd'] = span.i + len(span)
-    converted_span['id'] = span.ent_kb_id_
-    converted_span['boundingBoxes'] = mapping_id_to_coordinates[converted_span['id']]
+    converted_span['id'] = span._.id
+    converted_span['boundingBoxes'] = span._.bounding_boxes
+    converted_span['links'] = span._.links
 
     return converted_span
 
@@ -451,11 +461,8 @@ def entities_classes():
             'tcValue', 'me_method', 'material-tc', 'temperature-tc']
 
 
-def collect_relationships(relationships, mapping_id_to_coordinates):
-    return [
-        (span_to_dict(re[0], mapping_id_to_coordinates),
-         span_to_dict(re[1], mapping_id_to_coordinates)) for re
-        in relationships]
+def collect_relationships(relationships, type):
+    return [(span_to_dict(re[0]), span_to_dict(re[1]), type) for re in relationships]
 
 def get_sentence_boundaries(words, spaces):
     offset = 0

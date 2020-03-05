@@ -1,13 +1,22 @@
 {
-    "grobid_server": "localhost",
-    "grobid_port": "8072",
+  "grobid": {
+    "server": "http://falcon.nims.go.jp",
+    "prefix": "/superconductorsdl",
     "url_mapping": {
-        "processPDF": "/service/processSuperconductorsPDF",
-        "annotatePDF": "/service/annotateSuperconductorsPDF",
-        "processText": "/service/processSuperconductorsText",
-        "ping": "/service/isalive"
-    },
-    "batch_size": 1000,
-    "sleep_time": 5,
-    "coordinates": null
+      "processPDF": "/service/processSuperconductorsPDF",
+      "annotatePDF": "/service/annotateSuperconductorsPDF",
+      "processText": "/service/processSuperconductorsText",
+      "ping": "/service/isalive"
+    }
+  },
+  "backend": {
+    "server": "http://localhost:5000",
+    "prefix": "",
+    "url_mapping": {
+      "processPDF": "/process"
+    }
+  },
+  "batch_size": 1000,
+  "sleep_time": 5,
+  "coordinates": null
 }

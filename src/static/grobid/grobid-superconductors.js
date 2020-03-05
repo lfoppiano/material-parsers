@@ -11,7 +11,6 @@ var grobid = (function ($) {
 
         // for associating several quantities to a measurement
         var spansMap = [];
-        var annotationsMap = [];
         var configuration = {};
 
 
@@ -35,28 +34,24 @@ var grobid = (function ($) {
 
 
         function getUrl(action) {
-            // var requestUrl = "http://" + configuration['grobid_server'] + ":" + configuration['grobid_port'];
-            // if (configuration['url_mapping'][action] !== null) {
-            //     actionUrl = configuration['url_mapping'][action];
-            //
-            //     return requestUrl + actionUrl
-            // } else {
-            //     onError("Action " + action + " was not found in configuration. ");
-            // }
+            var backend_configuration = configuration['backend'];
 
-            return "http://localhost:5000/process"
+            var requestUrl = backend_configuration['server'] + backend_configuration['prefix'];
+            if (backend_configuration['url_mapping'][action] !== null) {
+                actionUrl = backend_configuration['url_mapping'][action];
+
+                return requestUrl + actionUrl
+            } else {
+                onError("Action " + action + " was not found in configuration. ");
+            }
         }
 
         $(document).ready(function () {
             $("#divRestI").show();
+            $('#tableResults').hide();
             configuration = get_configuration();
             $('#submitRequest').bind('click', 'processPDF', submitQuery);
         });
-
-        function onError_request(request) {
-            $('#requestResult').html("<font color='red'>Error encountered while requesting the server.<br/>" + request.responseText + "</font>");
-            responseJson = null;
-        }
 
         function onError(message) {
             if (!message)
@@ -72,6 +67,8 @@ var grobid = (function ($) {
         }
 
         function submitQuery(action) {
+            $('#tableResults').hide();
+            $('#tableResultsBody').html('');
             spansMap = [];
 
             $('#infoResult').html('<font color="grey">Requesting server...</font>');
@@ -204,7 +201,6 @@ var grobid = (function ($) {
             $('#gbdForm').attr('action', url);
             xhr.responseType = 'json';
             xhr.open('POST', url, true);
-            console.log(xhr);
 
             xhr.onreadystatechange = function (e) {
                 if (xhr.readyState === 4 && xhr.status === 200) {
@@ -225,6 +221,7 @@ var grobid = (function ($) {
                 return;
             } else {
                 $('#infoResult').html('');
+                $('#tableResults').show()
             }
 
             var json = response;
@@ -236,12 +233,15 @@ var grobid = (function ($) {
             var paragraphs = json.paragraphs;
 
             var spanGlobalIndex = 0;
+            var spans_map_by_id = [];
+            var linkId = 0;
             paragraphs.forEach(function (paragraph, paragraphIdx) {
                 var spans = paragraph.spans;
                 // hey bro, this must be asynchronous to avoid blocking the brothers
 
                 spans.forEach(function (span, spanIdx) {
                     spansMap[spanGlobalIndex] = span;
+                    spans_map_by_id[span.id] = span;
                     var entity_type = span['type'];
 
                     var theUrl = null;
@@ -259,6 +259,19 @@ var grobid = (function ($) {
                     }
                     spanGlobalIndex++;
                 });
+
+
+                spans.forEach(function (span, spanIdx) {
+                    if (span.links !== undefined && span.links.length > 0) {
+                        span.links.forEach(function (link, linkIdx) {
+                            console.log(linkId);
+                            current_html_code = $('#tableResultsBody').html();
+                            html_code = "<tr><td>" + linkId + "</td><td>" + span.text + "</td><td>" + spans_map_by_id[link[0]].text + "</td></tr>";
+                            $('#tableResultsBody').html(current_html_code + html_code);
+                            linkId++;
+                        });
+                    }
+                })
             });
         }
 
@@ -286,7 +299,7 @@ var grobid = (function ($) {
             // if (spansMap[spanIdx].type === 'material' && spansMap[spanIdx].tc) {
             //     element.setAttribute("class", 'area material-tc');
             // } else {
-            console.log(type);
+            // console.log(type);
             element.setAttribute("class", 'area' + ' ' + type);
             // }
             element.setAttribute("id", 'annot_span-' + spanIdx + '-' + positionIdx);
@@ -294,7 +307,7 @@ var grobid = (function ($) {
 
             pageDiv.append(element);
 
-            $('#annot_span-' + spanIdx + '-' + positionIdx).bind('mouseenter mouseleave click', {
+            $('#annot_span-' + spanIdx + '-' + positionIdx).bind('click', {
                 'type': 'entity',
                 'map': spansMap
             }, viewEntityPDF);
