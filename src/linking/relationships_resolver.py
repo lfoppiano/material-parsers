@@ -1,15 +1,24 @@
+from spacy.tokens.doc import Doc
+
+
 class ResolutionResolver(object):
-    pass
+    def link_spans(self, material, tcValue):
+        material.ent_type_ = 'material-tc'
+        links = material._.links
+        relationship_link = (tcValue._.id, 'tcValue')
+        if relationship_link in links:
+            print("Link already added. Skipping. Link: " + str(relationship_link))
+        else:
+            links.append(relationship_link)
+            material._.set('links', links)
+
+        return material, tcValue
 
 
 class SimpleResolutionResolver(ResolutionResolver):
-    def find_relationship(self, doc):
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc)]
-
-        if len(materials) == 1 and len(tcValues) == 1:
-            materials[0].ent_type_ = 'material-tc'
-            return [(materials[0], tcValues[0])]
+    def find_relationships(self, entities1: list, entities2: list):
+        if len(entities1) == 1 and len(entities2) == 1:
+            return [self.link_spans(entities1[0], entities2[0])]
         else:
             return []
 
@@ -17,24 +26,20 @@ class SimpleResolutionResolver(ResolutionResolver):
 class VicinityResolutionResolver(ResolutionResolver):
     separators = [',', '.', ';', 'and']
 
-    def find_relationship(self, doc):
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc)]
-
+    def find_relationships(self, doc, entities1, entities2):
         relationships = []
         assigned = []
 
-        if len(materials) < 1 or len(tcValues) < 1:
+        if len(entities1) < 1 or len(entities2) < 1:
             return relationships
 
-        if len(tcValues) == 1:
-            closer_material = self.find_closer_to_pivot(tcValues[0], materials)
-            closer_material.ent_type_ = 'material-tc'
-            relationships.append((closer_material, tcValues[0]))
+        if len(entities2) == 1:
+            closer_material = self.find_closer_to_pivot(entities2[0], entities1)
+            relationships.append(self.link_spans(closer_material, entities2[0]))
 
-        elif len(materials) == 1:
-            closer_tcValue = self.find_closer_to_pivot(materials[0], tcValues)
-            relationships.append((materials[0], closer_tcValue))
+        elif len(entities1) == 1:
+            closer_tcValue = self.find_closer_to_pivot(entities1[0], entities2)
+            relationships.append(self.link_spans(entities1[0], closer_tcValue))
 
         else:
             material_tc_mapping = {}
@@ -44,13 +49,13 @@ class VicinityResolutionResolver(ResolutionResolver):
             if 'respectively' in str(doc):
 
                 ## for each material I find the closest temperature who has not been assigned yet
-                for material in materials:
+                for material in entities1:
                     material_centroid = material.idx + (len(material) / 2)
-                    sorted_tcValue = tcValues
+                    sorted_tcValue = entities2
 
-                    if len(tcValues) > 1:
+                    if len(entities2) > 1:
                         tc_values_wrapper = [(abs(material_centroid - (tc_val.idx + len(tc_val) / 2)), tc_val) for
-                                             tc_val in tcValues]
+                                             tc_val in entities2]
                         sorted_tcValue_wrapper = sorted(tc_values_wrapper, key=itemgetter(0))
                         sorted_tcValue = [tc_val[1] for tc_val in sorted_tcValue_wrapper]
 
@@ -60,16 +65,15 @@ class VicinityResolutionResolver(ResolutionResolver):
 
                     if sorted_tcValue[i] not in assigned:
                         assigned.append(sorted_tcValue[i])
-                        material.ent_type_ = 'material-tc'
                         relationships.append((material, sorted_tcValue[i]))
 
             else:
                 # for each material I find the closest temperature who has not been assigned yet
-                for index, material in enumerate(materials):
+                for index, material in enumerate(entities1):
                     material_centroid = material.idx + (len(material) / 2)
 
                     tc_distances = {tc_val: abs(material_centroid - (tc_val.idx + len(tc_val) / 2)) for tc_val in
-                                    tcValues}
+                                    entities2}
 
                     ## Adding penalties to distance on predicates separated by commas or other punctuation
                     ## If this sentence contains "respectively", it means we should ignore the penalties
@@ -96,19 +100,17 @@ class VicinityResolutionResolver(ResolutionResolver):
                 # print(material_tc_mapping)
                 # print(tc_material_mapping)
 
-                if len(materials) <= len(tcValues):
+                if len(entities1) <= len(entities2):
                     for material in material_tc_mapping.keys():
                         tc = min(material_tc_mapping[material], key=material_tc_mapping[material].get)
                         if material not in assigned:
-                            material.ent_type_ = 'material-tc'
-                            relationships.append((material, tc))
+                            relationships.append(self.link_spans(material, tc))
                             assigned.append(material)
                 else:
                     for tc in tc_material_mapping.keys():
                         material = min(tc_material_mapping[tc], key=tc_material_mapping[tc].get)
                         if material not in assigned:
-                            material.ent_type_ = 'material-tc'
-                            relationships.append((material, tc))
+                            relationships.append(self.link_spans(material, tc))
                             assigned.append(material)
 
         return relationships
@@ -129,28 +131,28 @@ class VicinityResolutionResolver(ResolutionResolver):
 
 class DependencyParserResolutionResolver(ResolutionResolver):
 
-    def find_relationship(self, doc):
+    def find_relationships(self, entities1, entities2):
         relations = []
-        for entity in filter(lambda w: w.ent_type_ in ['material'], doc):
+        for entity in entities1:
             if entity.dep_ in ['nsubjpass']:
                 relations.append((entity, entity.head))
             elif entity.head.dep_ in ['verb', 'ccomp', 'nsubjpass']:
                 if entity.head.dep_ in ['verb', 'ccomp']:
                     relations.append((entity, entity.head))
                 elif entity.head.dep_ in ['nsubjpass']:
-                    relations.append((entity, entity.head.head))
+                    relations.append(self.link_spans(entity, entity.head.head))
 
         output = []
-        for entity in filter(lambda w: w.ent_type_ in ['temperature*'], doc):
+        for entity in entities2:
             if entity.head.dep_ in ['prep', 'pcomp', 'pobj', 'dobj']:
                 if entity.head.head.dep_ in ['verb', 'ccomp', 'prep', 'ROOT']:
                     for e, h in relations:
                         if h.idx == entity.head.head.idx:
-                            output.append((e, entity))
+                            output.append(self.link_spans(e, entity))
 
         return output
 
-    def find_relationship_with_temperature(self, doc, tcType, entityRelations):
+    def find_relationships_with_temperature(self, doc, tcType, entityRelations):
         relations = []
         for entity in filter(lambda w: w.ent_type_ in tcType, doc):
             for rel, ent in entityRelations:
@@ -160,9 +162,9 @@ class DependencyParserResolutionResolver(ResolutionResolver):
                     relations.append((entity.head.head, ent))
         return relations
 
-    def extract_relations2(self, doc):
+    def extract_relations2(self, entities1, entities2):
         relations = []
-        for entity in filter(lambda w: w.ent_type_ in ['material', 'temperature-tc'], doc):
+        for entity in entities1 + entities2:
             if entity.dep_ in ("attr", "dobj"):
                 subject = [w for w in entity.head.lefts if w.dep_ == "nsubj"]
                 if subject:

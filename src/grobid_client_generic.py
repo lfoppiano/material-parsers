@@ -9,8 +9,6 @@ from src.client import ApiClient
 This client is a generic client for any Grobid application and sub-modules.
 At the moment, it supports only single document processing.    
 '''
-
-
 class grobid_client_generic(ApiClient):
 
     def __init__(self, config_path='./config.json'):
@@ -25,18 +23,22 @@ class grobid_client_generic(ApiClient):
         self.config = json.loads(config_json)
 
         # test if the server is up and running...
-        the_url = 'http://' + self.config['grobid_server']
-        if len(self.config['grobid_port']) > 0:
-            the_url += ":" + self.config['grobid_port']
-        the_url += self.config['url_mapping']['ping']
+        ping_url = self.get_grobid_url("ping")
 
-        r = requests.get(the_url)
+        r = requests.get(ping_url)
         status = r.status_code
 
         if status != 200:
             print('GROBID server does not appear up and running ' + str(status))
         else:
             print("GROBID server is up and running")
+
+    def get_grobid_url(self, action):
+        grobid_config = self.config['grobid']
+        base_url = grobid_config['server'] + grobid_config['prefix']
+        action_url = base_url + grobid_config['url_mapping'][action]
+
+        return action_url
 
     def process_text(self, input, params={}):
         pass
@@ -55,10 +57,7 @@ class grobid_client_generic(ApiClient):
             )
         }
 
-        the_url = 'http://' + self.config['grobid_server']
-        if len(self.config['grobid_port']) > 0:
-            the_url += ":" + self.config['grobid_port']
-        the_url += self.config['url_mapping'][method_name]
+        the_url = self.get_grobid_url(method_name);
 
         res, status = self.post(
             url=the_url,
