@@ -14,10 +14,12 @@ nlp = spacy.load("en_core_web_sm", disable=['ner'])
 Span.set_extension('id', default=None, force=True)
 Span.set_extension('links', default=[], force=True)
 Span.set_extension('bounding_boxes', default=[], force=True)
+Span.set_extension('formattedText', default="", force=True)
 
 Token.set_extension('id', default=None, force=True)
 Token.set_extension('links', default=[], force=True)
 Token.set_extension('bounding_boxes', default=[], force=True)
+Token.set_extension('formattedText', default="", force=True)
 
 def decode(response):
     try:
@@ -314,6 +316,7 @@ def process_sentence(words, spaces, spans_remapped):
         span = Span(doc=doc, start=s['tokenStart'], end=s['tokenEnd'], label=s['type'])
         span._.set('id', str(s['id']))
         span._.set('bounding_boxes', s['boundingBoxes'])
+        span._.set('formattedText', s['formattedText'])
 
         entities.append(span)
 
@@ -328,6 +331,7 @@ def process_sentence(words, spaces, spans_remapped):
         for token in span:
             token._.id = span._.id
             token._.bounding_boxes = span._.bounding_boxes
+            token._.formattedText = span._.formattedText
 
     nlp.tagger(doc)
     nlp.parser(doc)
@@ -416,6 +420,7 @@ def process_sentence(words, spaces, spans_remapped):
 def token_to_dict(token):
     converted_token = {
         "text": "",
+        "formattedText": "",
         "font": "",
         "style": "",
         "offset": "",
@@ -423,6 +428,7 @@ def token_to_dict(token):
     }
     converted_token['text'] = token.text
     converted_token['offset'] = token.idx
+    converted_token['formattedText'] = token._.formattedText
     # converted_token['style']
     # converted_token['font'] = span.ent_type_
     # converted_token['fontSize'] = span.i
@@ -433,6 +439,7 @@ def token_to_dict(token):
 def span_to_dict(span):
     converted_span = {
         "text": "",
+        "formattedText": "",
         "type": "",
         "offsetStart": "",
         "offsetEnd": "",
@@ -444,6 +451,7 @@ def span_to_dict(span):
     }
 
     converted_span['text'] = span.text
+    converted_span['formattedText'] = span._.formattedText
     converted_span['type'] = span.ent_type_
     converted_span['offsetStart'] = span.idx
     converted_span['offsetEnd'] = span.idx + len(span.text)

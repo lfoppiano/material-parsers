@@ -264,9 +264,9 @@ var grobid = (function ($) {
                 spans.forEach(function (span, spanIdx) {
                     if (span.links !== undefined && span.links.length > 0) {
                         span.links.forEach(function (link, linkIdx) {
-                            console.log(linkId);
+                            // console.log(span);
                             current_html_code = $('#tableResultsBody').html();
-                            html_code = "<tr><td>" + linkId + "</td><td>" + span.text + "</td><td>" + spans_map_by_id[link[0]].text + "</td></tr>";
+                            html_code = "<tr><td>" + linkId + "</td><td>" + span.formattedText + "</td><td>" + spans_map_by_id[link[0]].text + "</td></tr>";
                             $('#tableResultsBody').html(current_html_code + html_code);
                             linkId++;
                         });
@@ -342,11 +342,13 @@ var grobid = (function ($) {
 
         // Transformation to HTML
         function toHtmlEntity(entity, topPos) {
+            console.log(entity);
             var string = "";
             var first = true;
 
             colorLabel = entity.type;
             var text = entity.text;
+            var formattedText = entity.formattedText;
             var type = entity.type;
 
             string += "<div class='info-sense-box ___TYPE___'";
@@ -359,8 +361,8 @@ var grobid = (function ($) {
             string += "<div class='container-fluid' style='background-color:#FFF;color:#70695C;border:padding:5px;margin-top:5px;'>" +
                 "<table style='width:100%;display:inline-table;'><tr style='display:inline-table;'><td>";
 
-            if (text) {
-                string += "<p>name: <b>" + text + "</b></p>";
+            if (formattedText) {
+                string += "<p>name: <b>" + formattedText + "</b></p>";
             }
 
             if (entity.tc) {
