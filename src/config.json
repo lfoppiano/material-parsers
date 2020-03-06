@@ -1,7 +1,7 @@
 {
   "grobid": {
-    "server": "http://falcon.nims.go.jp",
-    "prefix": "/superconductorsdl",
+    "server": "http://localhost:8072",
+    "prefix": "",
     "url_mapping": {
       "processPDF": "/service/processSuperconductorsPDF",
       "annotatePDF": "/service/annotateSuperconductorsPDF",
