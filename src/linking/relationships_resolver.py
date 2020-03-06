@@ -4,13 +4,13 @@ from spacy.tokens.doc import Doc
 class ResolutionResolver(object):
     def link_spans(self, material, tcValue):
         material.ent_type_ = 'material-tc'
-        links = material._.links
+        material_links = material._.links
         relationship_link = (tcValue._.id, 'tcValue')
-        if relationship_link in links:
+        if relationship_link in material_links:
             print("Link already added. Skipping. Link: " + str(relationship_link))
         else:
-            links.append(relationship_link)
-            material._.set('links', links)
+            material_links.append(relationship_link)
+            material._.set('links', material_links)
 
         return material, tcValue
 
