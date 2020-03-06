@@ -266,7 +266,9 @@ var grobid = (function ($) {
                         span.links.forEach(function (link, linkIdx) {
                             // console.log(span);
                             current_html_code = $('#tableResultsBody').html();
-                            html_code = "<tr><td>" + linkId + "</td><td>" + span.formattedText + "</td><td>" + spans_map_by_id[link[0]].text + "</td></tr>";
+                            var tcValue_text = spans_map_by_id[link[0]].text;
+                            span['tc'] = tcValue_text;
+                            html_code = "<tr><td>" + linkId + "</td><td>" + span.formattedText + "</td><td>" + tcValue_text + "</td></tr>";
                             $('#tableResultsBody').html(current_html_code + html_code);
                             linkId++;
                         });
@@ -342,7 +344,6 @@ var grobid = (function ($) {
 
         // Transformation to HTML
         function toHtmlEntity(entity, topPos) {
-            console.log(entity);
             var string = "";
             var first = true;
 
@@ -363,6 +364,8 @@ var grobid = (function ($) {
 
             if (formattedText) {
                 string += "<p>name: <b>" + formattedText + "</b></p>";
+            } else {
+                string += "<p>name: <b>" + text + "</b></p>";
             }
 
             if (entity.tc) {
