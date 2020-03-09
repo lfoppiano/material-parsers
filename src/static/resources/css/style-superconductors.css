@@ -55,6 +55,10 @@
     background-color: #2262d2;
 }
 
+.label.material-tc {
+    background-color: #50ced2;
+}
+
 .label.class {
     background-color: #d22f09;
 }

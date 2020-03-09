@@ -66,6 +66,12 @@ var grobid = (function ($) {
             return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
 
+        /* jquery-based movement to an anchor, without modifying the displayed url and a bit smoother */
+        function goToByScroll(id) {
+            console.log("Selecting id " + id.data);
+            $('html,body').animate({scrollTop: $("#" + id.data).offset().top}, 'fast');
+        }
+
         function submitQuery(action) {
             $('#tableResults').hide();
             $('#tableResultsBody').html('');
@@ -233,15 +239,13 @@ var grobid = (function ($) {
             var paragraphs = json.paragraphs;
 
             var spanGlobalIndex = 0;
-            var spans_map_by_id = [];
             var linkId = 0;
             paragraphs.forEach(function (paragraph, paragraphIdx) {
                 var spans = paragraph.spans;
                 // hey bro, this must be asynchronous to avoid blocking the brothers
 
                 spans.forEach(function (span, spanIdx) {
-                    spansMap[spanGlobalIndex] = span;
-                    spans_map_by_id[span.id] = span;
+                    spansMap[span.id] = span;
                     var entity_type = span['type'];
 
                     var theUrl = null;
@@ -254,7 +258,9 @@ var grobid = (function ($) {
                                 page_height = pageInfo[pageNumber - 1].page_height;
                                 page_width = pageInfo[pageNumber - 1].page_width;
                             }
-                            annotateSpan(boundingBox, theUrl, page_height, page_width, spanGlobalIndex, positionIdx, entity_type);
+                            // let annotationId = 'annot_span-' + spanIdx + '-' + positionIdx;
+                            let annotationId = span.id;
+                            annotateSpan(boundingBox, theUrl, page_height, page_width, annotationId, entity_type);
                         });
                     }
                     spanGlobalIndex++;
@@ -264,12 +270,34 @@ var grobid = (function ($) {
                 spans.forEach(function (span, spanIdx) {
                     if (span.links !== undefined && span.links.length > 0) {
                         span.links.forEach(function (link, linkIdx) {
-                            // console.log(span);
-                            current_html_code = $('#tableResultsBody').html();
-                            var tcValue_text = spans_map_by_id[link[0]].text;
+                            let link_entity = spansMap[link[0]];
+                            let tcValue_text = link_entity.text;
                             span['tc'] = tcValue_text;
-                            html_code = "<tr><td>" + linkId + "</td><td>" + span.formattedText + "</td><td>" + tcValue_text + "</td></tr>";
-                            $('#tableResultsBody').html(current_html_code + html_code);
+                            let row_id = 'row' + span.id;
+                            let element_id = 'e' + span.id;
+
+                            html_code = "<tr id=" + element_id + ">" +
+                                "<td><a id=" + row_id + ">" + linkId + "</a></td>" +
+                                "<td>" + span.formattedText + "</td>" +
+                                "<td>" + tcValue_text + "</td>" +
+                                "</tr>";
+                            $('#tableResultsBody').append(html_code);
+
+                            $("#" + row_id).bind('click', span.id, goToByScroll);
+
+                            let paragraph_popover = annotateTextAsHtml(paragraph.text, [span, link_entity]);
+
+                            $("#" + element_id).popover({
+                                content: function () {
+                                    return paragraph_popover;
+                                },
+                                html: true,
+                                // container: 'body',
+                                trigger: 'hover',
+                                placement: 'top',
+                                animation: true
+                            });
+
                             linkId++;
                         });
                     }
@@ -277,7 +305,7 @@ var grobid = (function ($) {
             });
         }
 
-        function annotateSpan(boundingBox, theUrl, page_height, page_width, spanIdx, positionIdx, type) {
+        function annotateSpan(boundingBox, theUrl, page_height, page_width, annotationId, type) {
             var page = boundingBox.page;
             var pageDiv = $('#page-' + page);
             var canvas = pageDiv.children('canvas').eq(0);
@@ -298,18 +326,13 @@ var grobid = (function ($) {
             var attributes = "display:block; width:" + width + "px; height:" + height + "px; position:absolute; top:" +
                 y + "px; left:" + x + "px;";
             element.setAttribute("style", attributes + "border:2px solid;");
-            // if (spansMap[spanIdx].type === 'material' && spansMap[spanIdx].tc) {
-            //     element.setAttribute("class", 'area material-tc');
-            // } else {
-            // console.log(type);
             element.setAttribute("class", 'area' + ' ' + type);
-            // }
-            element.setAttribute("id", 'annot_span-' + spanIdx + '-' + positionIdx);
+            element.setAttribute("id", annotationId);
             element.setAttribute("page", page);
 
             pageDiv.append(element);
 
-            $('#annot_span-' + spanIdx + '-' + positionIdx).bind('click', {
+            $('#' + annotationId).bind('click', {
                 'type': 'entity',
                 'map': spansMap
             }, viewEntityPDF);
@@ -321,24 +344,90 @@ var grobid = (function ($) {
             var map = param.data.map;
 
             var pageIndex = $(this).attr('page');
-            var localID = $(this).attr('id');
+            var id = $(this).attr('id');
 
-            var ind1 = localID.indexOf('-');
-            var ind2 = localID.indexOf('-', ind1 + 1);
-            var localMeasurementNumber = parseInt(localID.substring(ind1 + 1, ind2));
-
-            if ((map[localMeasurementNumber] === null) || (map[localMeasurementNumber].length === 0)) {
+            if ((map[id] === null) || (map[id].length === 0)) {
                 // this should never be the case
-                console.log("Error for visualising annotation with id " + localMeasurementNumber
+                console.log("Error for visualising annotation with id " + id
                     + ", empty list of measurement");
             }
-            var string = toHtmlEntity(map[localMeasurementNumber], $(this).position().top);
+            var string = toHtmlEntity(map[id], $(this).position().top);
 
             if (type === null || string === "") {
                 console.log("Error in viewing annotation, type unknown or null: " + type);
             }
 
             $('#detailed_annot-' + pageIndex).html(string).show();
+        }
+
+        function annotateTextAsHtml(inputText, annotationList) {
+            var outputString = "";
+            var pos = 0;
+
+            annotationList.forEach(function (annotation, annotationIdx) {
+                var start = parseInt(annotation.offsetStart, 10);
+                var end = parseInt(annotation.offsetEnd, 10);
+
+                var type = annotation.type;
+
+                outputString += inputText.substring(pos, start)
+                    + ' <span id="annot_supercon-' + annotationIdx + '" rel="popover" data-color="interval">'
+                    + '<span class="label ' + type + ' style="cursor:hand;cursor:pointer;" >'
+                    + inputText.substring(start, end) + '</span></span>';
+                pos = end;
+
+
+            });
+
+            outputString += inputText.substring(pos, inputText.length);
+
+            return outputString;
+
+
+            //
+            // if (annotationList) {
+            //     var pos = 0; // current position in the text
+            //
+            //     for (var annotationIndex = 0; annotationIndex < annotationList.length; annotationIndex++) {
+            //         var currentAnnotation = annotationList[annotationIndex];
+            //         if (currentAnnotation) {
+            //             var startUnit = -1;
+            //             var endUnit = -1;
+            //             var start = parseInt(currentAnnotation.offsetStart, 10);
+            //             var end = parseInt(currentAnnotation.offsetEnd, 10);
+            //
+            //             var type = currentAnnotation.type;
+            //
+            //             // Entities has sub-types
+            //             if (currentAnnotation.type === "entity") {
+            //                 type = currentAnnotation.obj.type;
+            //             }
+            //
+            //             if ((startUnit !== -1) && ((startUnit === end) || (startUnit === end + 1)))
+            //                 end = endUnit;
+            //             if ((endUnit !== -1) && ((endUnit === start) || (endUnit + 1 === start)))
+            //                 start = startUnit;
+            //
+            //             if (start < pos) {
+            //                 // we have a problem in the initial sort of the quantities
+            //                 // the server response is not compatible with the present client
+            //                 console.log("Sorting of quantities as present in the server's response not valid for this client.");
+            //                 // note: this should never happen?
+            //             } else {
+            //                 newString += inputText.substring(pos, start)
+            //                     + ' <span id="annot_supercon-' + annotationIndex + '" rel="popover" data-color="interval">'
+            //                     + '<span class="label ' + type + ' style="cursor:hand;cursor:pointer;" >'
+            //                     + inputText.substring(start, end) + '</span></span>';
+            //                 pos = end;
+            //             }
+            //             // superconMap[currentSuperconIndex] = currentAnnotation;
+            //             annotationsMap[annotationIndex] = currentAnnotation;
+            //         }
+            //     }
+            //     newString += inputText.substring(pos, inputText.length);
+            // }
+            //
+            // return newString;
         }
 
 
