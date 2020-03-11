@@ -364,6 +364,13 @@ var grobid = (function ($) {
             var outputString = "";
             var pos = 0;
 
+            annotationList.sort(function(a, b) {
+                var startA = parseInt(a.offsetStart, 10);
+                var startB = parseInt(b.offsetStart, 10);
+
+                return startA - startB;
+            });
+
             annotationList.forEach(function (annotation, annotationIdx) {
                 var start = parseInt(annotation.offsetStart, 10);
                 var end = parseInt(annotation.offsetEnd, 10);
