@@ -19,6 +19,14 @@ def root():
     return render_template('index.html')
 
 
+@app.route('/annotation/feedback', methods=['POST'])
+def annotation_feedback():
+    # print("Received feedback request. id=" + str(request.form['pk']) + ", name= " + str(
+    #     request.form['name']) + ", value=" + str(request.form['value']))
+    print("Received feedback request. id=" + str(request.form))
+    return request.form
+
+
 @app.route('/annotate', methods=['POST'])
 def annotate_pdf():
     file = request.files['input']

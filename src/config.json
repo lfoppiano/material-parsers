@@ -13,7 +13,8 @@
     "server": "http://localhost:5000",
     "prefix": "",
     "url_mapping": {
-      "processPDF": "/process"
+      "processPDF": "/process",
+      "feedback": "/annotation/feedback"
     }
   },
   "batch_size": 1000,
