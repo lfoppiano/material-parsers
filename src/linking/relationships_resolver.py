@@ -140,7 +140,7 @@ class DependencyParserResolutionResolver(ResolutionResolver):
                 if entity.head.dep_ in ['verb', 'ccomp']:
                     relations.append((entity, entity.head))
                 elif entity.head.dep_ in ['nsubjpass']:
-                    relations.append(self.link_spans(entity, entity.head.head))
+                    relations.append((entity, entity.head.head))
 
         output = []
         for entity in entities2:
