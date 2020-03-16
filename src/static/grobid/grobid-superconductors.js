@@ -14,13 +14,12 @@ var grobid = (function ($) {
         var configuration = {};
 
 
-        function get_configuration() {
-            configuration = {};
+        function load_configuration() {
             $.ajax({
                 type: 'GET',
                 url: 'config',
                 success: function (data) {
-                    configuration = data
+                    configuration = data;
                 },
                 error: function (error) {
                     onError("Cannot read configuration. " + error);
@@ -28,15 +27,13 @@ var grobid = (function ($) {
                 contentType: false,
                 processData: false
             });
-
-            return configuration;
         }
 
 
         function getUrl(action) {
             var backend_configuration = configuration['backend'];
-
             var requestUrl = backend_configuration['server'] + backend_configuration['prefix'];
+
             if (backend_configuration['url_mapping'][action] !== null) {
                 actionUrl = backend_configuration['url_mapping'][action];
 
@@ -49,8 +46,11 @@ var grobid = (function ($) {
         $(document).ready(function () {
             $("#divRestI").show();
             $('#tableResults').hide();
-            configuration = get_configuration();
+            configuration = load_configuration();
             $('#submitRequest').bind('click', 'processPDF', submitQuery);
+
+            //turn to inline mode
+            $.fn.editable.defaults.mode = 'inline';
         });
 
         function onError(message) {
@@ -275,15 +275,19 @@ var grobid = (function ($) {
                             span['tc'] = tcValue_text;
                             let row_id = 'row' + span.id;
                             let element_id = 'e' + span.id;
+                            let mat_element_id = 'mat' + span.id;
+                            let tc_element_id = 'tc' + span.id;
 
                             html_code = "<tr id=" + element_id + ">" +
-                                "<td><a id=" + row_id + ">" + linkId + "</a></td>" +
-                                "<td>" + span.formattedText + "</td>" +
-                                "<td>" + tcValue_text + "</td>" +
+                                "<td><a href='#' id=" + row_id + ">" + linkId + "</a></td>" +
+                                "<td><a href='#' id=" + mat_element_id + " data-pk='" + mat_element_id + "' data-url='" + getUrl('feedback') + "' data-type='text'>" + span.text + "</a></td>" +
+                                "<td><a href='#' id=" + tc_element_id + " data-pk='" + tc_element_id + "' data-url='" + getUrl('feedback') + "' data-type='text'>" + tcValue_text + "</a></td>" +
                                 "</tr>";
                             $('#tableResultsBody').append(html_code);
 
                             $("#" + row_id).bind('click', span.id, goToByScroll);
+                            $("#" + mat_element_id).editable();
+                            $("#" + tc_element_id).editable();
 
                             let paragraph_popover = annotateTextAsHtml(paragraph.text, [span, link_entity]);
 
@@ -364,7 +368,7 @@ var grobid = (function ($) {
             var outputString = "";
             var pos = 0;
 
-            annotationList.sort(function(a, b) {
+            annotationList.sort(function (a, b) {
                 var startA = parseInt(a.offsetStart, 10);
                 var startB = parseInt(b.offsetStart, 10);
 
@@ -382,59 +386,11 @@ var grobid = (function ($) {
                     + '<span class="label ' + type + ' style="cursor:hand;cursor:pointer;" >'
                     + inputText.substring(start, end) + '</span></span>';
                 pos = end;
-
-
             });
 
             outputString += inputText.substring(pos, inputText.length);
 
             return outputString;
-
-
-            //
-            // if (annotationList) {
-            //     var pos = 0; // current position in the text
-            //
-            //     for (var annotationIndex = 0; annotationIndex < annotationList.length; annotationIndex++) {
-            //         var currentAnnotation = annotationList[annotationIndex];
-            //         if (currentAnnotation) {
-            //             var startUnit = -1;
-            //             var endUnit = -1;
-            //             var start = parseInt(currentAnnotation.offsetStart, 10);
-            //             var end = parseInt(currentAnnotation.offsetEnd, 10);
-            //
-            //             var type = currentAnnotation.type;
-            //
-            //             // Entities has sub-types
-            //             if (currentAnnotation.type === "entity") {
-            //                 type = currentAnnotation.obj.type;
-            //             }
-            //
-            //             if ((startUnit !== -1) && ((startUnit === end) || (startUnit === end + 1)))
-            //                 end = endUnit;
-            //             if ((endUnit !== -1) && ((endUnit === start) || (endUnit + 1 === start)))
-            //                 start = startUnit;
-            //
-            //             if (start < pos) {
-            //                 // we have a problem in the initial sort of the quantities
-            //                 // the server response is not compatible with the present client
-            //                 console.log("Sorting of quantities as present in the server's response not valid for this client.");
-            //                 // note: this should never happen?
-            //             } else {
-            //                 newString += inputText.substring(pos, start)
-            //                     + ' <span id="annot_supercon-' + annotationIndex + '" rel="popover" data-color="interval">'
-            //                     + '<span class="label ' + type + ' style="cursor:hand;cursor:pointer;" >'
-            //                     + inputText.substring(start, end) + '</span></span>';
-            //                 pos = end;
-            //             }
-            //             // superconMap[currentSuperconIndex] = currentAnnotation;
-            //             annotationsMap[annotationIndex] = currentAnnotation;
-            //         }
-            //     }
-            //     newString += inputText.substring(pos, inputText.length);
-            // }
-            //
-            // return newString;
         }
 
 
