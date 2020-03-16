@@ -355,6 +355,7 @@ var grobid = (function ($) {
 
                 spans.forEach(function (span, spanIdx) {
                     if (span.links !== undefined && span.links.length > 0) {
+                        copyButtonElement.show();
                         span.links.forEach(function (link, linkIdx) {
                             let link_entity = spansMap[link[0]];
                             let tcValue_text = link_entity.text;
@@ -390,7 +391,6 @@ var grobid = (function ($) {
 
                             linkId++;
                         });
-                        copyButtonElement.show();
                     }
                 })
             });
