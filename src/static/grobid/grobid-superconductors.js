@@ -69,7 +69,12 @@ var grobid = (function ($) {
         /* jquery-based movement to an anchor, without modifying the displayed url and a bit smoother */
         function goToByScroll(id) {
             console.log("Selecting id " + id.data);
-            $('html,body').animate({scrollTop: $("#" + id.data).offset().top}, 'fast');
+            $('html,body').animate({scrollTop: $("#" + id.data).offset().top - 100}, 'slow');
+        }
+
+        function scrollUp() {
+            console.log("Scrolling back up");
+            $('html,body').animate({scrollTop: 0}, 'slow');
         }
 
         function submitQuery(action) {
@@ -278,8 +283,8 @@ var grobid = (function ($) {
                             let mat_element_id = 'mat' + span.id;
                             let tc_element_id = 'tc' + span.id;
 
-                            html_code = "<tr id=" + element_id + ">" +
-                                "<td><a href='#' id=" + row_id + ">" + linkId + "</a></td>" +
+                            html_code = "<tr id=" + element_id + " style='cursor:hand;cursor:pointer;' >" +
+                                "<td><a href='#' id=" + row_id + "><img src='/static/resources/icons/arrow-down.svg' alt='View in PDF' title='View in PDF'></a></td>" +
                                 "<td><a href='#' id=" + mat_element_id + " data-pk='" + mat_element_id + "' data-url='" + getUrl('feedback') + "' data-type='text'>" + span.text + "</a></td>" +
                                 "<td><a href='#' id=" + tc_element_id + " data-pk='" + tc_element_id + "' data-url='" + getUrl('feedback') + "' data-type='text'>" + tcValue_text + "</a></td>" +
                                 "</tr>";
@@ -362,6 +367,7 @@ var grobid = (function ($) {
             }
 
             $('#detailed_annot-' + pageIndex).html(string).show();
+            $('#detailed_annot-' + pageIndex).bind('click', scrollUp);
         }
 
         function annotateTextAsHtml(inputText, annotationList) {
@@ -406,10 +412,18 @@ var grobid = (function ($) {
 
             string += "<div class='info-sense-box ___TYPE___'";
             if (topPos !== -1)
-                string += " style='vertical-align:top; position:relative; top:" + topPos + "'";
+                string += " style='vertical-align:top; position:relative; top:" + topPos + ";cursor:hand;cursor:pointer;'";
+            else
+                string += " style='cursor:hand;cursor:pointer;'";
 
             string += ">";
-            string += "<h2 style='color:#FFF;padding-left:10px;font-size:16pt;'>" + type + "</h2>";
+            if (entity.tc) {
+                var infobox_id = "infobox" + entity.id;
+                string += "<h2 style='color:#FFF;padding-left:10px;font-size:16pt;'>" + type + "<img id='" + infobox_id + "' src='/static/resources/icons/arrow-up.svg'/></h2>";
+
+            } else {
+                string += "<h2 style='color:#FFF;padding-left:10px;font-size:16pt;'>" + type + "</h2>";
+            }
 
             string += "<div class='container-fluid' style='background-color:#FFF;color:#70695C;border:padding:5px;margin-top:5px;'>" +
                 "<table style='width:100%;display:inline-table;'><tr style='display:inline-table;'><td>";
