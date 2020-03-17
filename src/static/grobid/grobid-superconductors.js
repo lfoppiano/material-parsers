@@ -366,7 +366,7 @@ var grobid = (function ($) {
                             let tc_element_id = 'tc' + span.id;
 
                             html_code = "<tr id=" + element_id + " style='cursor:hand;cursor:pointer;' >" +
-                                "<td><a href='#' id=" + row_id + "><img src='/static/resources/icons/arrow-down.svg' alt='View in PDF' title='View in PDF'></a></td>" +
+                                "<td><a href='#' id=" + row_id + "><img src='static/resources/icons/arrow-down.svg' alt='View in PDF' title='View in PDF'></a></td>" +
                                 "<td><a href='#' id=" + mat_element_id + " data-pk='" + mat_element_id + "' data-url='" + getUrl('feedback') + "' data-type='text'>" + span.text + "</a></td>" +
                                 "<td><a href='#' id=" + tc_element_id + " data-pk='" + tc_element_id + "' data-url='" + getUrl('feedback') + "' data-type='text'>" + tcValue_text + "</a></td>" +
                                 "</tr>";
@@ -501,7 +501,7 @@ var grobid = (function ($) {
             string += ">";
             if (entity.tc) {
                 var infobox_id = "infobox" + entity.id;
-                string += "<h2 style='color:#FFF;padding-left:10px;font-size:16pt;'>" + type + "<img id='" + infobox_id + "' src='/static/resources/icons/arrow-up.svg'/></h2>";
+                string += "<h2 style='color:#FFF;padding-left:10px;font-size:16pt;'>" + type + "<img id='" + infobox_id + "' src='static/resources/icons/arrow-up.svg'/></h2>";
 
             } else {
                 string += "<h2 style='color:#FFF;padding-left:10px;font-size:16pt;'>" + type + "</h2>";
