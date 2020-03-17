@@ -91,16 +91,23 @@
         <div id="tableResults" style="width:85%;">
             <table class="table table-editable">
                 <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Material</th>
-                    <th scope="col">Critical temperature</th>
-                </tr>
+                    <tr>
+                        <th class="span1" scope="col"></th>
+                        <th class="span1" scope="col"></th>
+                        <th scope="span6">Material</th>
+                        <th scope="span4">Critical temperature</th>
+                    </tr>
                 </thead>
                 <tbody id="tableResultsBody">
                 </tbody>
                 <tfoot>
-                    <tr><td colspan="3"><text class="btn" id="copy-button">Copy on Clipboard</text></td></tr>
+                    <tr>
+                        <td colspan="3">
+                            <text class="btn" id="add-button">+</text>
+                            <text class="btn" id="copy-button">Clipboard</text>
+                            <text class="btn disabled" id="download-button">Download</text>
+                        </td>
+                    </tr>
                 </tfoot>
 
             </table>
