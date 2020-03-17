@@ -110,8 +110,8 @@ var grobid = (function ($) {
             var rows = tableResultsBody.find("tr");
             $.each(rows, function () {
                 var tds = $(this).children();
-                var material = tds[1].textContent;
-                var tc = tds[2].textContent;
+                var material = tds[2].textContent;
+                var tc = tds[3].textContent;
 
                 textToBeCopied += material + "\t" + tc + "\n";
             });
@@ -125,7 +125,8 @@ var grobid = (function ($) {
             configuration = load_configuration();
             $('#submitRequest').bind('click', 'processPDF', submitQuery);
             $('#copy-button').bind('click', copyOnClipboard);
-            $('#copy-button').hide();
+            $('#add-button').bind('click', addRow);
+            // $('#copy-button').hide();
 
             //turn to inline mode
             $.fn.editable.defaults.mode = 'inline';
@@ -169,10 +170,13 @@ var grobid = (function ($) {
             $('#requestResult').show();
 
             // display the local PDF
-            if ((document.getElementById("input").files[0].type === 'application/pdf') ||
-                (document.getElementById("input").files[0].name.endsWith(".pdf")) ||
-                (document.getElementById("input").files[0].name.endsWith(".PDF")))
+            let inputElement = document.getElementById("input");
+
+            if ((inputElement.files[0].type === 'application/pdf') ||
+                (inputElement.files[0].name.endsWith(".pdf")) ||
+                (inputElement.files[0].name.endsWith(".PDF")))
                 var reader = new FileReader();
+
             reader.onloadend = function () {
                 // to avoid cross origin issue
                 //PDFJS.disableWorker = true;
@@ -280,7 +284,7 @@ var grobid = (function ($) {
                     }
                 });
             };
-            reader.readAsArrayBuffer(document.getElementById("input").files[0]);
+            reader.readAsArrayBuffer(inputElement.files[0]);
 
             // request for the annotation information
             var form = document.getElementById('gbdForm');
@@ -360,25 +364,20 @@ var grobid = (function ($) {
                             let link_entity = spansMap[link[0]];
                             let tcValue_text = link_entity.text;
                             span['tc'] = tcValue_text;
-                            let row_id = 'row' + span.id;
-                            let element_id = 'e' + span.id;
-                            let mat_element_id = 'mat' + span.id;
-                            let tc_element_id = 'tc' + span.id;
 
-                            html_code = "<tr id=" + element_id + " style='cursor:hand;cursor:pointer;' >" +
-                                "<td><a href='#' id=" + row_id + "><img src='static/resources/icons/arrow-down.svg' alt='View in PDF' title='View in PDF'></a></td>" +
-                                "<td><a href='#' id=" + mat_element_id + " data-pk='" + mat_element_id + "' data-url='" + getUrl('feedback') + "' data-type='text'>" + span.text + "</a></td>" +
-                                "<td><a href='#' id=" + tc_element_id + " data-pk='" + tc_element_id + "' data-url='" + getUrl('feedback') + "' data-type='text'>" + tcValue_text + "</a></td>" +
-                                "</tr>";
+                            let {row_id, element_id, mat_element_id, tc_element_id, html_code} =
+                                createRowHtml(span.id, span.text, tcValue_text, true);
+
                             $('#tableResultsBody').append(html_code);
 
-                            $("#" + row_id).bind('click', span.id, goToByScroll);
+                            $("#" + element_id).bind('click', span.id, goToByScroll);
                             $("#" + mat_element_id).editable();
                             $("#" + tc_element_id).editable();
+                            appendRemoveButton(row_id);
 
                             let paragraph_popover = annotateTextAsHtml(paragraph.text, [span, link_entity]);
 
-                            $("#" + element_id).popover({
+                            $("#" + row_id).popover({
                                 content: function () {
                                     return paragraph_popover;
                                 },
@@ -427,6 +426,52 @@ var grobid = (function ($) {
                 'type': 'entity',
                 'map': spansMap
             }, viewEntityPDF);
+        }
+
+        function createRowHtml(id, material = "", tcValue = "", viewInPDF = false) {
+
+            let viewInPDFIcon = "";
+            if (viewInPDF === true) {
+                viewInPDFIcon = "<img src='static/resources/icons/arrow-down.svg' alt='View in PDF' title='View in PDF'></a>";
+            }
+
+            let row_id = "row" + id;
+            let element_id = "e" + id;
+            let mat_element_id = "mat" + id;
+            let tc_element_id = "tc" + id;
+
+            let html_code = "<tr id=" + row_id + " style='cursor:hand;cursor:pointer;' >" +
+                "<td><a href='#' id=" + element_id + ">" + viewInPDFIcon + "</td>" +
+                "<td><img src='static/resources/icons/trash.svg' alt='-' id='remove-button'></img></td>" +
+                "<td><a href='#' id=" + mat_element_id + " data-pk='" + mat_element_id + "' data-url='" + getUrl('feedback') + "' data-type='text'>" + material + "</a></td>" +
+                "<td><a href='#' id=" + tc_element_id + " data-pk='" + tc_element_id + "' data-url='" + getUrl('feedback') + "' data-type='text'>" + tcValue + "</a></td>" +
+                "</tr>";
+
+            return {row_id, element_id, mat_element_id, tc_element_id, html_code};
+        }
+
+        function appendRemoveButton(row_id) {
+            let remove_button = $("#" + row_id).find("img#remove-button");
+            remove_button.bind("click", function () {
+                console.log("Removing row with id " + row_id);
+                let item = $("#" + row_id);
+                item.remove();
+            });
+        }
+
+        function addRow() {
+            console.log("Adding new row. ");
+
+            let random_number = '_' + Math.random().toString(36).substr(2, 9);
+
+            let {row_id, element_id, mat_element_id, tc_element_id, html_code} = createRowHtml(random_number);
+            $('#tableResultsBody').append(html_code);
+
+            $("#" + mat_element_id).editable();
+            $("#" + tc_element_id).editable();
+
+            appendRemoveButton(row_id);
+
         }
 
 
