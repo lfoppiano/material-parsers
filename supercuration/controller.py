@@ -3,8 +3,8 @@ from tempfile import NamedTemporaryFile
 
 from flask import Flask, render_template, request
 
-from src.grobid_client_generic import grobid_client_generic
-from src.linking.linkingModule import process_paragraph
+from commons.grobid_client_generic import grobid_client_generic
+from linking.linking_module import process_paragraph
 
 app = Flask(__name__)
 

@@ -3,7 +3,7 @@ import time
 
 import requests
 
-from src.client import ApiClient
+from commons.client import ApiClient
 
 '''
 This client is a generic client for any Grobid application and sub-modules.
@@ -57,7 +57,7 @@ class grobid_client_generic(ApiClient):
             )
         }
 
-        the_url = self.get_grobid_url(method_name);
+        the_url = self.get_grobid_url(method_name)
 
         res, status = self.post(
             url=the_url,

@@ -2,14 +2,13 @@ import copy
 
 import spacy
 from gensim.summarization.textcleaner import split_sentences
-from material_parser.material_parser import MaterialParser
 from spacy.tokens import Span, Doc
 from spacy.tokens.token import Token
 
-from src.linking.relationships_resolver import SimpleResolutionResolver, VicinityResolutionResolver, \
+from linking.relationships_resolver import SimpleResolutionResolver, VicinityResolutionResolver, \
     DependencyParserResolutionResolver
 
-nlp = spacy.load("en_core_web_sm", disable=['ner'])
+nlp = spacy.load("en_core_sci_sm", disable=['ner'])
 
 Span.set_extension('id', default=None, force=True)
 Span.set_extension('links', default=[], force=True)

@@ -1,0 +1,14 @@
+{
+  "grobid": {
+    "server": "http://localhost:5000",
+    "prefix": "",
+    "url_mapping": {
+      "processPDF": "/process",
+      "annotatePDF": "/annotate",
+      "ping": ""
+    }
+  },
+  "batch_size": 1000,
+  "sleep_time": 5,
+  "coordinates": null
+}

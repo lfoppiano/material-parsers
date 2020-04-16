@@ -1,0 +1,15 @@
+beautifulsoup4==4.7.1
+bottle==0.12.16
+certifi==2018.11.29
+chardet==3.0.4
+idna==2.8
+lmdb==0.94
+numpy==1.16.1
+pandas==0.24.1
+python-dateutil==2.8.0
+pytz==2018.9
+requests==2.21.0
+six==1.12.0
+soupsieve==1.8
+urllib3==1.24.1
+Whoosh==2.7.4
