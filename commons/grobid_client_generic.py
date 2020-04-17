@@ -3,7 +3,7 @@ import time
 
 import requests
 
-from commons.client import ApiClient
+from client import ApiClient
 
 '''
 This client is a generic client for any Grobid application and sub-modules.
