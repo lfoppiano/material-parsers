@@ -5,7 +5,8 @@ import os
 import sys
 from pathlib import Path
 
-from commons.grobid_client_generic import grobid_client_generic
+from grobid_client_generic import grobid_client_generic
+
 grobid_client = grobid_client_generic(config_path='./config.json')
 
 def decode(response_string):
