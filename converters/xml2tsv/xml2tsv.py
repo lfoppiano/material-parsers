@@ -6,8 +6,7 @@ from pathlib import Path
 from sys import argv
 
 from bs4 import BeautifulSoup, NavigableString, Tag
-
-from commons.GrobidTokenizer import tokenizeSimple
+from grobid_tokenizer import tokenizeSimple
 
 
 def tokenise(string):

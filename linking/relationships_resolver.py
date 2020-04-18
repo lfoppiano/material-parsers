@@ -1,6 +1,3 @@
-from spacy.tokens.doc import Doc
-
-
 class ResolutionResolver(object):
     def link_spans(self, material, tcValue):
         material.ent_type_ = 'material-tc'
