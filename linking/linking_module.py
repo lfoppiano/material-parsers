@@ -5,7 +5,7 @@ from gensim.summarization.textcleaner import split_sentences
 from spacy.tokens import Span, Doc
 from spacy.tokens.token import Token
 
-from linking.relationships_resolver import SimpleResolutionResolver, VicinityResolutionResolver, \
+from relationships_resolver import SimpleResolutionResolver, VicinityResolutionResolver, \
     DependencyParserResolutionResolver
 
 nlp = spacy.load("en_core_sci_sm", disable=['ner'])

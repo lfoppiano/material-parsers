@@ -2,6 +2,7 @@ import regex as re
 
 # Generic simple tokenizer for Indo-European languages
 # also python side of GROBID default tokenizer, used for Indo-European languages
+# Source: http://github.com/kermitt2/delft
 
 delimiters = "\n\r\t\f\u00A0([ •*,:;?.!/)-−–‐\"“”‘’'`$]*\u2666\u2665\u2663\u2660\u00A0"
 regex = '|'.join(map(re.escape, delimiters))
