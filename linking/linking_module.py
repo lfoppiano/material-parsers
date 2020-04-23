@@ -20,11 +20,13 @@ Token.set_extension('links', default=[], force=True)
 Token.set_extension('bounding_boxes', default=[], force=True)
 Token.set_extension('formattedText', default="", force=True)
 
+
 def decode(response):
     try:
         return response.json()
     except ValueError as e:
         return "Error: " + str(e)
+
 
 def convert_to_spacy2(tokens):
     outputTokens = []
@@ -36,7 +38,8 @@ def convert_to_spacy2(tokens):
 
     return outputTokens, outputSpaces
 
-def convert_to_spacy(tokens, spans):
+
+def convert_to_spacy(tokens: dict, spans):
     outputTokens = []
     outputSpaces = []
     outputSpans = []
@@ -180,7 +183,8 @@ def process_paragraph(paragraph):
     # print(spans_remapped)
 
     ## Sentence segmentation
-    boundaries = get_sentence_boundaries(words, spaces)
+    # boundaries = get_sentence_boundaries(words, spaces)
+    boundaries = get_sentence_boundaries_spacy(words, spaces)
 
     output_data = []
 
@@ -207,7 +211,7 @@ def process_paragraph(paragraph):
         cumulatedOffset += len(text)
 
         materials = list(filter(lambda w: w['type'] in ['material'], spans_boundary))
-        temperatures = list(filter(lambda w: w['type'] in ['temperature'], spans_boundary))
+        temperatures = list(filter(lambda w: w['type'] in ['temperature', 'tcvalue'], spans_boundary))
 
         ## POST-PROCESS Material names
         # materials = post_process(materials)
@@ -229,12 +233,13 @@ def process_paragraph(paragraph):
 
 
 def markCriticalTemperature(doc):
-    temps = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature'], doc)]
+    temps = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature', 'tcvalue'], doc)]
     tc_expressions = [entity for entity in filter(lambda w: w.ent_type_ in ['tc'], doc)]
 
     tc_expressions_standard = ["T c", "Tc", "tc", "t c"]
 
-    non_tc_expressions_before = ["T N", "TN", "t n", "tn", "Curie", "curie", "Neel", "neel"]
+    non_tc_expressions_before = ["T N", "TN", "t n", "tn", "Curie", "curie", "Neel", "neel", "at T ", "at T =", "at T=",
+                                 "is suppressed at ", "ΔT c", "ΔTc", "Δ T c"]
 
     tc_expressions_before = ["superconducts at", "superconductive at around",
                              "superconducts around", "superconductivity at",
@@ -254,27 +259,36 @@ def markCriticalTemperature(doc):
 
         ## search for nonTC espressions after the temperature
         for non_tc in non_tc_expressions_after:
-            if doc[temp.i + 1].text == non_tc:
+            if temp.i + 1 < len(doc) and doc[temp.i + 1].text == non_tc:
                 marked.append(temp)
                 break
 
+        if temp in marked:
+            continue
+
         for non_tc in non_tc_expressions_before:
-            if doc[temp.i - len(non_tc.split(" ")):temp.i].text == non_tc:
+            if temp.i - len(non_tc.split(" ")) > 0 and doc[temp.i - len(non_tc.split(" ")):temp.i].text == non_tc:
                 marked.append(temp)
                 break
+
+        if temp in marked:
+            continue
 
         ## search for tc espressions just before the temperature
 
         for tc in tc_expressions_before:
             if temp.i - len(tc.split(" ")) > 0 and doc[temp.i - len(tc.split(" ")):temp.i].text == tc:
                 marked.append(temp)
-                temp.ent_type_ = "temperature-tc"
+                # temp.ent_type_ = "temperature-tc"
                 break
 
             if temp.i - len(tc.split(" ")) - 1 > 0 and doc[temp.i - len(tc.split(" ")) - 1:temp.i - 1].text == tc:
                 marked.append(temp)
-                temp.ent_type_ = "temperature-tc"
+                # temp.ent_type_ = "temperature-tc"
                 break
+
+        if temp in marked:
+            continue
 
         ## search for dynamic tc expressions
 
@@ -289,14 +303,15 @@ def markCriticalTemperature(doc):
 
                 if doc[index: start].text == tc.text:
                     marked.append(temp)
-                    temp.ent_type_ = "temperature-tc"
+                    # temp.ent_type_ = "temperature-tc"
                     break
 
                 start -= 1
                 index = start - expression_lenght
 
-    # for temp in temps:
-    #     print(temp.text, temp.ent_type_)
+    for temp in marked:
+        temp.ent_type_ = "temperature-tc"
+        # print(temp.text, temp.ent_type_)
     return doc
 
 
@@ -345,10 +360,10 @@ def process_sentence(words, spaces, spans_remapped):
         for ent in entities:
             # print(ent)
             if (
-                    (span.start <= ent.start <= span.end) or
-                    (span.start <= ent.end >= span.end) or
-                    (span.start >= ent.start and span.end <= ent.end) or
-                    (span.start <= ent.start and span.end >= ent.end)
+                (span.start <= ent.start <= span.end) or
+                (span.start <= ent.end >= span.end) or
+                (span.start >= ent.start and span.end <= ent.end) or
+                (span.start <= ent.start and span.end >= ent.end)
             ):
                 overlapping = True
                 break
@@ -389,7 +404,7 @@ def process_sentence(words, spaces, spans_remapped):
         # print(" Simple relationships " + str(extracted_entities['relationships']['simple']))
     else:
 
-    ## 2 vicinity matching
+        ## 2 vicinity matching
 
         resolver = VicinityResolutionResolver()
         relationships = resolver.find_relationships(doc, materials, tcValues)
@@ -398,7 +413,7 @@ def process_sentence(words, spaces, spans_remapped):
             # print(" Vicinity relationships " + str(extracted_entities['relationships']['vicinity']))
         else:
 
-    ## 3 dependency parsing matching
+            ## 3 dependency parsing matching
 
             resolver = DependencyParserResolutionResolver()
             relationships = resolver.find_relationships(materials, tcValues)
@@ -406,9 +421,8 @@ def process_sentence(words, spaces, spans_remapped):
                 extracted_entities['relationships'].extend(collect_relationships(relationships, 'dependency'))
                 # print(" Dep relationships " + str(extracted_entities['relationships']['dependency']))
 
-
     converted_spans = [span_to_dict(entity) for entity in
-                                   filter(lambda w: w.ent_type_ in entities_classes(), doc)]
+                       filter(lambda w: w.ent_type_ in entities_classes(), doc)]
 
     extracted_entities['spans'] = converted_spans
     extracted_entities['text'] = text
@@ -446,7 +460,7 @@ def span_to_dict(span):
         "tokenEnd": "",
         "id": "",
         "boundingBoxes": [],
-        "links" : []
+        "links": []
     }
 
     converted_span['text'] = span.text
@@ -465,11 +479,13 @@ def span_to_dict(span):
 
 def entities_classes():
     return ['material', 'class', 'temperature', 'tc',
-            'tcValue', 'me_method', 'material-tc', 'temperature-tc']
+            'tcValue', 'tcvalue', 'pressure', 'me_method',
+            'material-tc', 'temperature-tc']
 
 
 def collect_relationships(relationships, type):
     return [(span_to_dict(re[0]), span_to_dict(re[1]), type) for re in relationships]
+
 
 def get_sentence_boundaries(words, spaces):
     offset = 0
@@ -495,3 +511,37 @@ def get_sentence_boundaries(words, spaces):
     return sentence_offsetTokens
 
 
+def get_sentence_boundaries_spacy(words, spaces):
+    offset = 0
+    reconstructed = ''
+    sentence_offsetTokens = []
+    text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
+    doc = Doc(nlp.vocab, words=words, spaces=spaces)
+    nlp.tagger(doc)
+    nlp.parser(doc)
+
+    sentences = list(doc.sents)
+    if len(sentences) == 0:
+        return sentence_offsetTokens
+
+    if len(sentences) == 1:
+        sentence_offsetTokens.append((0, len(str(sentences[0]))))
+        return sentence_offsetTokens
+
+    for sent in doc.sents:
+        start = offset
+
+        for id in range(offset, len(words)):
+            token = words[id]
+            reconstructed += token
+            if spaces[id]:
+                reconstructed += ' '
+            if len(reconstructed.rstrip()) == len(str(sent)):
+                offset += 1
+                end = offset
+                sentence_offsetTokens.append((start, end))
+                reconstructed = ''
+                break
+            offset += 1
+
+    return sentence_offsetTokens
