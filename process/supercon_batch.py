@@ -147,6 +147,7 @@ if __name__ == '__main__':
     if os.path.isdir(input):
         if output is None:
             print("When specified a source directory, is mandatory to specify an output directory too. ")
+            exit(-1)
         input_path = Path(input)
         process_directory(input_path, output)
 
