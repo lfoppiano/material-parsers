@@ -342,6 +342,7 @@ var grobid = (function ($) {
                     var boundingBoxes = span.boundingBoxes;
                     if ((boundingBoxes != null) && (boundingBoxes.length > 0)) {
                         boundingBoxes.forEach(function (boundingBox, positionIdx) {
+                            // console.log(positionIdx)
                             // get page information for the annotation
                             var pageNumber = boundingBox.page;
                             if (pageInfo[pageNumber - 1]) {
@@ -350,7 +351,7 @@ var grobid = (function ($) {
                             }
                             // let annotationId = 'annot_span-' + spanIdx + '-' + positionIdx;
                             let annotationId = span.id;
-                            annotateSpan(boundingBox, theUrl, page_height, page_width, annotationId, entity_type);
+                            annotateSpan(boundingBox, theUrl, page_height, page_width, annotationId, positionIdx, entity_type);
                         });
                     }
                     spanGlobalIndex++;
@@ -395,7 +396,7 @@ var grobid = (function ($) {
             });
         }
 
-        function annotateSpan(boundingBox, theUrl, page_height, page_width, annotationId, type) {
+        function annotateSpan(boundingBox, theUrl, page_height, page_width, annotationId, positionIdx, type) {
             var page = boundingBox.page;
             var pageDiv = $('#page-' + page);
             var canvas = pageDiv.children('canvas').eq(0);
@@ -417,14 +418,22 @@ var grobid = (function ($) {
                 y + "px; left:" + x + "px;";
             element.setAttribute("style", attributes + "border:2px solid;");
             element.setAttribute("class", 'area' + ' ' + type);
-            element.setAttribute("id", annotationId);
+            element.setAttribute("id", (annotationId + positionIdx));
             element.setAttribute("page", page);
 
             pageDiv.append(element);
 
-            $('#' + annotationId).bind('click', {
+            var item = spansMap[annotationId];
+            if (item === null) {
+                // this should never be the case
+                console.log("Error for visualising annotation with id " + annotationId
+                    + ", cannot find the annotation");
+                return
+            }
+
+            $('#' + (annotationId + positionIdx)).bind('click', {
                 'type': 'entity',
-                'map': spansMap
+                'item': item
             }, viewEntityPDF);
         }
 
@@ -477,17 +486,10 @@ var grobid = (function ($) {
 
         function viewEntityPDF(param) {
             var type = param.data.type;
-            var map = param.data.map;
+            var item = param.data.item;
 
             var pageIndex = $(this).attr('page');
-            var id = $(this).attr('id');
-
-            if ((map[id] === null) || (map[id].length === 0)) {
-                // this should never be the case
-                console.log("Error for visualising annotation with id " + id
-                    + ", empty list of measurement");
-            }
-            var string = toHtmlEntity(map[id], $(this).position().top);
+            var string = toHtmlEntity(item, $(this).position().top);
 
             if (type === null || string === "") {
                 console.log("Error in viewing annotation, type unknown or null: " + type);
