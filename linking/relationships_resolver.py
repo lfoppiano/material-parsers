@@ -42,7 +42,7 @@ class VicinityResolutionResolver(ResolutionResolver):
             material_tc_mapping = {}
             tc_material_mapping = {}
 
-            ## If 'respectively' is mention, we need to go in order, rather by absolute distance
+            ## If 'respectively' is happearing in the sentence, we need to go in order, rather by absolute distance
             if 'respectively' in str(doc):
 
                 ## for each material I find the closest temperature who has not been assigned yet
