@@ -239,7 +239,7 @@ def markCriticalTemperature(doc):
     tc_expressions_standard = ["T c", "Tc", "tc", "t c"]
 
     non_tc_expressions_before = ["T N", "TN", "t n", "tn", "Curie", "curie", "Neel", "neel", "at T ", "at T =", "at T=",
-                                 "is suppressed at ", "ΔT c", "ΔTc", "Δ T c"]
+                                 "is suppressed at ", "ΔT c", "ΔTc", "Δ T c", "T =", "T=", "T = ", "T= "]
 
     tc_expressions_before = ["superconducts at", "superconductive at around",
                              "superconducts around", "superconductivity at",
@@ -247,10 +247,11 @@ def markCriticalTemperature(doc):
                              "T c =", "Tc ="]
     non_tc_expressions_after = ['higher', 'lower']
 
-    marked = []
+    marked_as_tc = []
+    marked_as_non_tc = []
 
     for index_t, temp in enumerate(temps):
-        if temp in marked:
+        if temp in marked_as_tc:
             continue
 
         ## Ignore any temperature in Celsius
@@ -260,34 +261,34 @@ def markCriticalTemperature(doc):
         ## search for nonTC espressions after the temperature
         for non_tc in non_tc_expressions_after:
             if temp.i + 1 < len(doc) and doc[temp.i + 1].text == non_tc:
-                marked.append(temp)
+                marked_as_non_tc.append(temp)
                 break
 
-        if temp in marked:
+        if temp in marked_as_non_tc:
             continue
 
         for non_tc in non_tc_expressions_before:
             if temp.i - len(non_tc.split(" ")) > 0 and doc[temp.i - len(non_tc.split(" ")):temp.i].text == non_tc:
-                marked.append(temp)
+                marked_as_non_tc.append(temp)
                 break
 
-        if temp in marked:
+        if temp in marked_as_non_tc:
             continue
 
         ## search for tc espressions just before the temperature
 
         for tc in tc_expressions_before:
             if temp.i - len(tc.split(" ")) > 0 and doc[temp.i - len(tc.split(" ")):temp.i].text == tc:
-                marked.append(temp)
+                marked_as_tc.append(temp)
                 # temp.ent_type_ = "temperature-tc"
                 break
 
             if temp.i - len(tc.split(" ")) - 1 > 0 and doc[temp.i - len(tc.split(" ")) - 1:temp.i - 1].text == tc:
-                marked.append(temp)
+                marked_as_tc.append(temp)
                 # temp.ent_type_ = "temperature-tc"
                 break
 
-        if temp in marked:
+        if temp in marked_as_tc:
             continue
 
         ## search for dynamic tc expressions
@@ -302,81 +303,27 @@ def markCriticalTemperature(doc):
             while index > max(0, previous_temp_index):
 
                 if doc[index: start].text == tc.text:
-                    marked.append(temp)
+                    marked_as_tc.append(temp)
                     # temp.ent_type_ = "temperature-tc"
                     break
 
                 start -= 1
                 index = start - expression_lenght
 
-    for temp in marked:
+    for temp in marked_as_tc:
         temp.ent_type_ = "temperature-tc"
         # print(temp.text, temp.ent_type_)
     return doc
 
 
-def process_sentence(words, spaces, spans_remapped):
+def process_sentence(words, spaces, spans):
     text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
 
-    # print("Processing: " + text)
+    print("Processing: " + text)
 
-    ## Creating a new document with the text
-    doc = Doc(nlp.vocab, words=words, spaces=spaces)
-
-    ## Loading GROBID entities in the spaCY document
-    entities = []
-
-    for s in spans_remapped:
-        span = Span(doc=doc, start=s['tokenStart'], end=s['tokenEnd'], label=s['type'])
-        span._.set('id', str(s['id']))
-        span._.set('bounding_boxes', s['boundingBoxes'])
-        span._.set('formattedText', s['formattedText'])
-
-        entities.append(span)
-
-    doc.ents = entities
-    # print("Entities: " + str(doc.ents))
-
-    for span in entities:
-        # Iterate over all spans and merge them into one token. This is done
-        # after setting the entities – otherwise, it would cause mismatched
-        # indices!
-        span.merge()
-        for token in span:
-            token._.id = span._.id
-            token._.bounding_boxes = span._.bounding_boxes
-            token._.formattedText = span._.formattedText
-
-    nlp.tagger(doc)
-    nlp.parser(doc)
-
-    ## Merge entities and phrase nouns, but only when they are not overlapping,
-    # to avoid loosing the entity type information
-    phrases_ents = extract_phrases_ents(doc)
-    # print(phrases_ents)
-    for span in phrases_ents:
-        # print("Span " + str(span))
-        overlapping = False
-        for ent in entities:
-            # print(ent)
-            if (
-                (span.start <= ent.start <= span.end) or
-                (span.start <= ent.end >= span.end) or
-                (span.start >= ent.start and span.end <= ent.end) or
-                (span.start <= ent.start and span.end >= ent.end)
-            ):
-                overlapping = True
-                break
-
-        # Entities and phrase noun are not Overlapping
-        if not overlapping:
-            span.merge()
-
-    nlp.tagger(doc)
-    nlp.parser(doc)
+    doc = init_doc(words, spaces, spans)
 
     extracted_entities = {}
-
     # svg = displacy.render(doc, style="dep")
     # filename = hashlib.sha224(b"Nobody inspects the spammish repetition").hexdigest()
     # output_path = Path(str(filename) + ".svg")
@@ -428,6 +375,62 @@ def process_sentence(words, spaces, spans_remapped):
     extracted_entities['text'] = text
 
     return extracted_entities
+
+
+def init_doc(words, spaces, spans):
+    ## Creating a new document with the text
+    doc = Doc(nlp.vocab, words=words, spaces=spaces)
+
+    ## Loading GROBID entities in the spaCY document
+    entities = []
+    for s in spans:
+        span = Span(doc=doc, start=s['tokenStart'], end=s['tokenEnd'], label=s['type'])
+        span._.set('id', str(s['id']))
+        if 'boundingBoxes' in s:
+            span._.set('bounding_boxes', s['boundingBoxes'])
+        if 'formattedText' in s:
+            span._.set('formattedText', s['formattedText'])
+
+        entities.append(span)
+
+    doc.ents = entities
+    # print("Entities: " + str(doc.ents))
+    for span in entities:
+        # Iterate over all spans and merge them into one token. This is done
+        # after setting the entities – otherwise, it would cause mismatched
+        # indices!
+        span.merge()
+        for token in span:
+            token._.id = span._.id
+            token._.bounding_boxes = span._.bounding_boxes
+            token._.formattedText = span._.formattedText
+    nlp.tagger(doc)
+    nlp.parser(doc)
+    ## Merge entities and phrase nouns, but only when they are not overlapping,
+    # to avoid loosing the entity type information
+    phrases_ents = extract_phrases_ents(doc)
+    # print(phrases_ents)
+    for span in phrases_ents:
+        # print("Span " + str(span))
+        overlapping = False
+        for ent in entities:
+            # print(ent)
+            if (
+                (span.start <= ent.start <= span.end) or
+                (span.start <= ent.end >= span.end) or
+                (span.start >= ent.start and span.end <= ent.end) or
+                (span.start <= ent.start and span.end >= ent.end)
+            ):
+                overlapping = True
+                break
+
+        # Entities and phrase noun are not Overlapping
+        if not overlapping:
+            span.merge()
+    nlp.tagger(doc)
+    nlp.parser(doc)
+
+    return doc
 
 
 def token_to_dict(token):
