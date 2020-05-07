@@ -4,12 +4,14 @@ import regex as re
 # also python side of GROBID default tokenizer, used for Indo-European languages
 # Source: http://github.com/kermitt2/delft
 
-delimiters = "\n\r\t\f\u00A0([ ^%‰°•,:;?.!/)-–−‐=≈~<>+\"“”‘’'`$]*\u2666\u2665\u2663\u2660\u00A0"
-regex = '|'.join(map(re.escape, delimiters))
-pattern = re.compile('(' + regex + '|(?<=[a-zA-Z])(?=\\d)|(?<=\\d)(?=\\D)' ')')
-# additional parenthesis above are for capturing delimiters and keep then in the token list
+delimiters = "\n\r\t\f\u00A0([ ^%‰°•,:;?.!/)-–−‐=≈~<>+\"“”‘’'`$]*\u2666\u2665\u2663\u2660"
 
-regex_second = "(?<=[a-zA-Z])(?=\\d)|(?<=\\d)(?=\\D)"
+regex = '|'.join(map(re.escape, delimiters))
+regex_second_step = "(?<=[a-zA-Z])(?=\\d)|(?<=\\d)(?=\\D)"
+
+# additional parenthesis are for capturing delimiters and keep then in the token list
+pattern = re.compile('(' + regex + '|' + regex_second_step + ')')
+# pattern = re.compile('(' + regex + ')')
 
 blanks = ' \t\n'
 
@@ -28,6 +30,8 @@ def tokenize(text):
     offsets = []
     tokens = []
     for index, match in enumerate(pattern.split(text)):
+        if len(match) == 0:
+            continue
         tokens.append(match)
         position = (offset, offset + len(match))
         offsets.append(position)
@@ -59,6 +63,9 @@ def tokenizeAndFilterSimple(text):
     """
     tokens = []
     for index, match in enumerate(pattern.split(text)):
+        if len(match) == 0:
+            continue
+
         tokens.append(match)
 
     finalTokens = []
