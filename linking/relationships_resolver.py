@@ -1,3 +1,6 @@
+from operator import itemgetter
+
+
 class ResolutionResolver(object):
     def link_spans(self, material, tcValue):
         material.ent_type_ = 'material-tc'
@@ -120,8 +123,12 @@ class VicinityResolutionResolver(ResolutionResolver):
 
         for index, item in enumerate(items):
             item_centroid = item.idx + (len(item) / 2)
-            if abs(item_centroid - pivot_centroid) < min_distance[1]:
-                min_distance = (index, abs(item_centroid - pivot_centroid))
+            abs_distance = abs(item_centroid - pivot_centroid)
+
+            if index == 0:
+                min_distance = (index, abs_distance)
+            elif abs_distance < min_distance[1]:
+                min_distance = (index, abs_distance)
 
         return items[min_distance[0]]
 

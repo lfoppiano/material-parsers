@@ -29,7 +29,7 @@ def log_on_exception(f: callable) -> callable:
 
 
 def prepare_doc(input, input_spans):
-    spaces, spans, words = get_tokens(input, input_spans)
+    words, spaces, spans = get_tokens(input, input_spans)
 
     doc = init_doc(words, spaces, spans)
 
