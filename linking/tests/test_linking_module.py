@@ -1,52 +1,9 @@
 import logging
 
-from grobid_tokenizer import tokenize
-from linking_module import markCriticalTemperature, convert_to_spacy, init_doc
+from linking_module import markCriticalTemperature, get_sentence_boundaries_pysbd
+from tests.test_utils import prepare_doc, get_tokens
 
 LOGGER = logging.getLogger(__name__)
-
-
-def prepare_input(input, input_spans):
-    input_tokens, offsets = tokenize(input)
-    tokens = [{"text": input_tokens[idx], "offsetStart": offsets[idx][0], "offsetEnd": offsets[idx][1]} for idx in
-              range(0, len(input_tokens))]
-
-    spans = calculate_spans(input, input_spans, tokens=tokens)
-    words, spaces, spans = convert_to_spacy(tokens, spans)
-
-    doc = init_doc(words, spaces, spans)
-
-    return doc
-
-
-def calculate_spans(input, spans, tokens=None):
-    calculated_spans = []
-
-    last_span_offset = 0
-    for index, span in enumerate(spans):
-        if span[0] in input:
-            span_start_offset = input.index(span[0], last_span_offset)
-            span_end_offset = span_start_offset + len(span[0])
-            calculated_span = {
-                "id": index,
-                "text": input[span_start_offset:span_end_offset],
-                "offsetStart": span_start_offset,
-                "offsetEnd": span_end_offset,
-                "type": span[1],
-                "boundingBoxes": [],
-                "formattedText": ""
-            }
-            last_span_offset = span_end_offset
-            if tokens is not None:
-                indexes = [index for index, token in enumerate(tokens) if
-                           token['offsetStart'] >= calculated_span['offsetStart'] and token['offsetEnd'] <=
-                           calculated_span['offsetEnd']]
-
-            calculated_span['tokenStart'] = indexes[0]
-            calculated_span['tokenEnd'] = indexes[-1] + 1
-            calculated_spans.append(calculated_span)
-
-    return calculated_spans
 
 
 class TestLinkingModule:
@@ -55,7 +12,7 @@ class TestLinkingModule:
                 "similar T c for H c-axis at T = 8 K and for H ab-planes at T = 13 K."
 
         spans = [("BaFe 2−x Ni x As 2 crystal", "material"), ("T c", "tc"), ("8 K", "tcvalue"), ("13 K", "tcvalue")]
-        doc = prepare_input(input, spans)
+        doc = prepare_doc(input, spans)
 
         doc2 = markCriticalTemperature(doc)
 
@@ -70,7 +27,7 @@ class TestLinkingModule:
         spans = [("BaFe2(As1−xPx)2", "material"), ("Tc0", "tc"), ("28 K", "tcvalue"), ("Tc0", "tc"),
                  ("29 K", "tcvalue")]
 
-        doc = prepare_input(input, spans)
+        doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc2)]
@@ -87,7 +44,7 @@ class TestLinkingModule:
 
         spans = [("BCO/CCO", "material"), ("CCO)", "material"), ("T C", "tc"), ("5 K", "tcvalue")]
 
-        doc = prepare_input(input, spans)
+        doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc2)]
@@ -102,9 +59,32 @@ class TestLinkingModule:
 
         spans = [("5 K", "tcvalue"), ("La 2/3 Ca 1/3 MnO 3−x film", "material"), ("T C", "tc"), ("220 K", "tcvalue"), ]
 
-        doc = prepare_input(input, spans)
+        doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc2)]
 
         assert len(tcValues) == 0
+
+    def test_get_sentence_boundaries(self):
+        input = "The relatively high superconducting transition tempera- ture in La 3 Ir 2 Ge 2 is noteworthy. " \
+                "Recently, the isostructural compound La 3 Rh 2 Ge 2 was reported to be a superconducting material " \
+                "with critical temperature T C = 3.5 K. This value was considered to be the highest in the series of " \
+                "several La-based superconducting germanides, such as LaGe 2 , LaPd 2 Ge 2 , LaPt 2 Ge 2 , and " \
+                "LaIr 2 Ge 2 ͑see Ref. 21 and refer- ences therein͒. The critical temperature T C = 4.7 K discov- ered " \
+                "for La 3 Ir 2 Ge 2 in this work is by about 1.2 K higher than that found for La 3 Rh 2 Ge 2 . It is " \
+                "also interesting to note that a Y-based ternary germanide, namely, Y 2 PdGe 3 , crystallized in the " \
+                "hexagonal AlB 2 structure, was found to be a type-II su- perconductor with transition temperature " \
+                "T C =3 K. The re- sults of band calculations for this system 25,26 reveal that the Y-4d density of " \
+                "states dominates the Fermi level, and thus the superconductivity in this compound is believed to " \
+                "origi- nate from Y-4d electrons. In the present case of La 3 Ir 2 Ge 2 or La 3 Rh 2 Ge 2 , " \
+                "explanation of their superconductivity requires the knowledge of density of La-5d, Ir-5d ͑or Rh-4d͒, " \
+                "and Ge- 4p states. Hence band-structure calculations are necessary. "
+
+        spans = []
+
+        words, spaces, spans = get_tokens(input, spans)
+
+        boundaries = get_sentence_boundaries_pysbd(words, spaces)
+
+        assert len(boundaries) == 6

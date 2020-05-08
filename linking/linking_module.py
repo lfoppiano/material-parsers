@@ -1,5 +1,6 @@
 import copy
 
+import pysbd
 import spacy
 from gensim.summarization.textcleaner import split_sentences
 from spacy.tokens import Span, Doc
@@ -8,7 +9,7 @@ from spacy.tokens.token import Token
 from relationships_resolver import SimpleResolutionResolver, VicinityResolutionResolver, \
     DependencyParserResolutionResolver
 
-nlp = spacy.load("en_core_sci_sm", disable=['ner'])
+nlp = spacy.load("en_core_sci_lg", disable=['ner', "textcat"])
 
 Span.set_extension('id', default=None, force=True)
 Span.set_extension('links', default=[], force=True)
@@ -184,7 +185,7 @@ def process_paragraph(paragraph):
 
     ## Sentence segmentation
     # boundaries = get_sentence_boundaries(words, spaces)
-    boundaries = get_sentence_boundaries_spacy(words, spaces)
+    boundaries = get_sentence_boundaries_pysbd(words, spaces)
 
     output_data = []
 
@@ -512,6 +513,32 @@ def get_sentence_boundaries(words, spaces):
             offset += 1
 
     return sentence_offsetTokens
+
+def get_sentence_boundaries_pysbd(words, spaces):
+    offset = 0
+    reconstructed = ''
+    sentence_offsetTokens = []
+    text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
+    segmenter = pysbd.Segmenter(language="en")
+
+    for sent in segmenter.segment(text):
+        start = offset
+
+        for id in range(offset, len(words)):
+            token = words[id]
+            reconstructed += token
+            if spaces[id]:
+                reconstructed += ' '
+            if len(reconstructed.rstrip()) == len(sent):
+                offset += 1
+                end = offset
+                sentence_offsetTokens.append((start, end))
+                reconstructed = ''
+                break
+            offset += 1
+
+    return sentence_offsetTokens
+
 
 
 def get_sentence_boundaries_spacy(words, spaces):
