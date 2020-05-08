@@ -371,7 +371,9 @@ var grobid = (function ($) {
 
                             $('#tableResultsBody').append(html_code);
 
-                            $("#" + element_id).bind('click', span.id, goToByScroll);
+                            // in case of multiple bounding boxes, we will have multiple IDs, in this case we can point
+                            // to the first box
+                            $("#" + element_id).bind('click', span.id + "0", goToByScroll);
                             $("#" + mat_element_id).editable();
                             $("#" + tc_element_id).editable();
                             appendRemoveButton(row_id);
