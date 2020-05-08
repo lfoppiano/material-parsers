@@ -66,6 +66,36 @@ class TestLinkingModule:
 
         assert len(tcValues) == 0
 
+    def test_markCriticalTemperature_relative_critical_temperature(self):
+        input = "The R versus T curves (figure 2(c) for samples B1 and B2 (with 6 wt% Ag) show that the HIP process " \
+                "increases T c by 0.8 K and reduces the resistance in the normal state by about 10%."
+
+        spans = [("B1", "material"), ("B2 (with 6 wt% Ag)", "material"),
+                 ("0.8 K", "tcvalue"), ]
+
+        doc = prepare_doc(input, spans)
+        doc2 = markCriticalTemperature(doc)
+
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc2)]
+
+        assert len(tcValues) == 0
+
+
+    def test_markCriticalTemperature_relative_critical_temperature_2(self):
+        input = "The critical temperature T C = 4.7 K discovered for La 3 Ir 2 Ge 2 in this work is by about 1.2 K " \
+                "higher than that found for La 3 Rh 2 Ge 2 ."
+
+        spans = [("critical temperature", "tc"), ("T C", "tc"), ("4.7 K", "tcvalue"), ("La 3 Ir 2 Ge 2", "material"),
+                 ("La 3 Rh 2 Ge 2", "material")]
+
+        doc = prepare_doc(input, spans)
+        doc2 = markCriticalTemperature(doc)
+
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc2)]
+
+        assert len(tcValues) == 1
+        assert tcValues[0].text == "4.7 K"
+
     def test_get_sentence_boundaries(self):
         input = "The relatively high superconducting transition tempera- ture in La 3 Ir 2 Ge 2 is noteworthy. " \
                 "Recently, the isostructural compound La 3 Rh 2 Ge 2 was reported to be a superconducting material " \
