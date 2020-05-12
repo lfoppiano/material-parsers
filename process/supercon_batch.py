@@ -9,6 +9,7 @@ from grobid_client_generic import grobid_client_generic
 
 grobid_client = grobid_client_generic(config_path='./config.json')
 
+
 def decode(response_string):
     try:
         return json.loads(response_string)
@@ -108,7 +109,7 @@ def write_header(output_directory):
 
     with open(output_directory + '/output.supercon.csv', 'w') as f:
         writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
-        writer.writerow(['filename', 'material', 'tc', 'sentence'])
+        writer.writerow(['material', 'tc', 'sentence', 'path', 'filename'])
 
 
 def write_footer(output_directory):
@@ -128,8 +129,8 @@ def write_on_files(output, output_directory, append=False):
 
     with open(output_directory + '/output.supercon.csv', write_mode) as f:
         writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
-        for link in output['links']:
-            writer.writerow([output['filename']] + link)
+        for links in output['links']:
+            writer.writerow(links + [output['sourcepath']] + [output['filename']])
 
 
 if __name__ == '__main__':
