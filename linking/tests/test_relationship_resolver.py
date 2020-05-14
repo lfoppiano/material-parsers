@@ -85,7 +85,6 @@ class TestVicinityResolutionResolver:
         assert str(relationships[0][0]) == "La 3 Ir 2 Ge 2"
         assert str(relationships[0][1]) == "4.7 K"
 
-
     # def test_vicinityResolution_2(self):
     #     input = "The T C of the film differs from bulk YBCO [T C bulk ¼ 90:2 K (Ref. 22)] which is most likely " \
     #             "due to large lattice mismatches between the MgO substrate and the YBCO film, giving rise to slight " \
@@ -104,3 +103,173 @@ class TestVicinityResolutionResolver:
     #     assert len(relationships) == 1
     #     assert str(relationships[0][0]) == "La 3 Ir 2 Ge 2"
     #     assert str(relationships[0][1]) == "4.7 K"
+
+    def test_vicinityResolution_3(self):
+        input = "Havinga et al systematically changed n from 3.00 to 4.00 by synthesizing LaTl 3" \
+                " (n=3.00, T c =1.6 K), LaPb 3 (n=3.75, T c =4.1 K), and " \
+                "ThPb 3 (n=4.00, T c =5.6 K) and the solid solutions " \
+                "La (Tl 1−x Pb x ) 3 and (La 1−x Th x )Pb 3 ."
+
+        spans = [("LaTl 3", "material"), ("T c", "tc"), ("1.6 K", "tcvalue"),
+                 ("LaPb 3", "material"), ("T c", "tc"), ("4.1 K", "tcvalue"),
+                 ("ThPb 3", "material"), ("T c", "tc"), ("5.6 K", "tcvalue"),
+                 ("La (Tl 1−x Pb x ) 3", "material"), ("(La 1−x Th x )Pb 3", "material")]
+
+        doc = prepare_doc(input, spans)
+
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+
+        relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
+
+        assert len(relationships) == 3
+
+    def test_find_closer_to_pivot(self):
+        input = "Havinga et al systematically changed n from 3.00 to 4.00 by synthesizing LaTl 3" \
+                " (n=3.00, T c =1.6 K), LaPb 3 (n=3.75, T c =4.1 K), and " \
+                "ThPb 3 (n=4.00, T c =5.6 K) and the solid solutions " \
+                "La (Tl 1−x Pb x ) 3 and (La 1−x Th x )Pb 3 ."
+
+        spans = [("LaTl 3", "material"), ("T c", "tc"), ("1.6 K", "tcvalue"),
+                 ("LaPb 3", "material"), ("T c", "tc"), ("4.1 K", "tcvalue"),
+                 ("ThPb 3", "material"), ("T c", "tc"), ("5.6 K", "tcvalue"),
+                 ("La (Tl 1−x Pb x ) 3", "material"), ("(La 1−x Th x )Pb 3", "material")]
+
+        doc = prepare_doc(input, spans)
+
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+
+        target = VicinityResolutionResolver()
+        closer_entity = target.find_closer_to_pivot(materials[0], tc_values)
+
+        assert closer_entity != None
+        assert closer_entity.text == "1.6 K"
+
+        closer_entity = target.find_closer_to_pivot(materials[1], tc_values)
+        assert closer_entity != None
+        assert closer_entity.text == "1.6 K"
+
+    def test_find_previous_entity(self):
+        input = "Havinga et al systematically changed n from 3.00 to 4.00 by synthesizing LaTl 3" \
+                " (n=3.00, T c =1.6 K), LaPb 3 (n=3.75, T c =4.1 K), and " \
+                "ThPb 3 (n=4.00, T c =5.6 K) and the solid solutions " \
+                "La (Tl 1−x Pb x ) 3 and (La 1−x Th x )Pb 3 ."
+
+        spans = [("LaTl 3", "material"), ("T c", "tc"), ("1.6 K", "tcvalue"),
+                 ("LaPb 3", "material"), ("T c", "tc"), ("4.1 K", "tcvalue"),
+                 ("ThPb 3", "material"), ("T c", "tc"), ("5.6 K", "tcvalue"),
+                 ("La (Tl 1−x Pb x ) 3", "material"), ("(La 1−x Th x )Pb 3", "material")]
+
+        doc = prepare_doc(input, spans)
+
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+
+        target = VicinityResolutionResolver()
+        previous = target.find_previous_entity(materials[1], tc_values)
+
+        assert previous is not None
+        assert previous.text == "1.6 K"
+
+        all_entities = list(filter(lambda w: w.ent_type_ is not "", doc))
+
+        previous = target.find_previous_entity(materials[1], all_entities)
+
+        assert previous is not None
+        assert previous.text == "1.6 K"
+
+        previous = target.find_previous_entity(materials[0], all_entities)
+        assert previous is None
+
+        previous = target.find_previous_entity(tc_values[0], tc_values, "material")
+        assert previous is None
+
+        previous = target.find_previous_entity(tc_values[0], all_entities, "material")
+        assert previous != None
+        assert previous.text == "LaTl 3"
+
+    def test_find_following_entity(self):
+        input = "Havinga et al systematically changed n from 3.00 to 4.00 by synthesizing LaTl 3" \
+                " (n=3.00, T c =1.6 K), LaPb 3 (n=3.75, T c =4.1 K), and " \
+                "ThPb 3 (n=4.00, T c =5.6 K) and the solid solutions " \
+                "La (Tl 1−x Pb x ) 3 and (La 1−x Th x )Pb 3 ."
+
+        spans = [("LaTl 3", "material"), ("T c", "tc"), ("1.6 K", "tcvalue"),
+                 ("LaPb 3", "material"), ("T c", "tc"), ("4.1 K", "tcvalue"),
+                 ("ThPb 3", "material"), ("T c", "tc"), ("5.6 K", "tcvalue"),
+                 ("La (Tl 1−x Pb x ) 3", "material"), ("(La 1−x Th x )Pb 3", "material")]
+
+        doc = prepare_doc(input, spans)
+
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+
+        target = VicinityResolutionResolver()
+        following = target.find_following_entity(materials[1], tc_values)
+
+        assert following is not None
+        assert following.text == "4.1 K"
+
+        all_entities = list(filter(lambda w: w.ent_type_ is not "", doc))
+
+        following = target.find_following_entity(materials[2], all_entities)
+
+        assert following is not None
+        assert following.text == "T c"
+
+        following = target.find_following_entity(materials[4], all_entities)
+        assert following is None
+
+        following = target.find_following_entity(tc_values[0], tc_values, "material")
+        assert following is None
+
+        following = target.find_following_entity(tc_values[2], all_entities, "material")
+        assert following is not None
+        assert following.text == "La (Tl 1−x Pb x ) 3"
+
+
+    def test_calculate_distances(self):
+        input = "Havinga et al systematically changed n from 3.00 to 4.00 by synthesizing LaTl 3" \
+                " (n=3.00, T c =1.6 K), LaPb 3 (n=3.75, T c =4.1 K), and " \
+                "ThPb 3 with T c =5.6 K and the solid solutions " \
+                "La (Tl 1−x Pb x ) 3 and (La 1−x Th x )Pb 3 ."
+
+        spans = [("LaTl 3", "material"), ("T c", "tc"), ("1.6 K", "tcvalue"),
+                 ("LaPb 3", "material"), ("T c", "tc"), ("4.1 K", "tcvalue"),
+                 ("ThPb 3", "material"), ("T c", "tc"), ("5.6 K", "tcvalue"),
+                 ("La (Tl 1−x Pb x ) 3", "material"), ("(La 1−x Th x )Pb 3", "material")]
+
+        doc = prepare_doc(input, spans)
+
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+
+        target = VicinityResolutionResolver()
+
+        distances = target.calculate_distances(materials, tc_values, doc)
+
+        assert len(distances) == 5
+        assert distances[materials[0]][tc_values[0]] == 4.0
+        assert distances[materials[1]][tc_values[1]] == 4.0
+
+
+    def test_calculate_distances_2(self):
+        input = "Havinga et al systematically changed n from 3.00 to 4.00 by synthesizing LaTl 3. " \
+                "T c = 1.6 K is then found in LaPb 3."
+
+        spans = [("LaTl 3", "material"), ("T c", "tc"), ("1.6 K", "tcvalue"),
+                 ("LaPb 3", "material")]
+
+        doc = prepare_doc(input, spans)
+
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+
+        target = VicinityResolutionResolver()
+
+        distances = target.calculate_distances(materials, tc_values, doc)
+
+        assert len(distances) == 2
+        assert distances[materials[0]][tc_values[0]] == 27.0
+        assert distances[materials[1]][tc_values[0]] == 23.5
