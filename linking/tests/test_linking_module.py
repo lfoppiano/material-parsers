@@ -51,20 +51,20 @@ class TestLinkingModule:
 
         assert len(tcValues) == 0
 
-    def test_markCriticalTemperature_repulsion_for_Curie_temperature(self):
-        input = "The corresponding magnetization loop recorded after ZFC to 5 K with the magnetic field " \
-                "parallel to the a-b plane for a single La 2/3 Ca 1/3 MnO 3−x film of thickness ϳ200 nm on LSAT " \
-                "is shown in A Curie temperature T C of about 220 K and a magnetic moment ͑T → 0 K͒ Ͼ 2 B per Mn ion " \
-                "were derived from these curves."
-
-        spans = [("5 K", "tcvalue"), ("La 2/3 Ca 1/3 MnO 3−x film", "material"), ("T C", "tc"), ("220 K", "tcvalue"), ]
-
-        doc = prepare_doc(input, spans)
-        doc2 = markCriticalTemperature(doc)
-
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc2)]
-
-        assert len(tcValues) == 0
+    # def test_markCriticalTemperature_repulsion_for_Curie_temperature(self):
+    #     input = "The corresponding magnetization loop recorded after ZFC to 5 K with the magnetic field " \
+    #             "parallel to the a-b plane for a single La 2/3 Ca 1/3 MnO 3−x film of thickness ϳ200 nm on LSAT " \
+    #             "is shown in A Curie temperature T C of about 220 K and a magnetic moment ͑T → 0 K͒ Ͼ 2 B per Mn ion " \
+    #             "were derived from these curves."
+    #
+    #     spans = [("5 K", "tcvalue"), ("La 2/3 Ca 1/3 MnO 3−x film", "material"), ("T C", "tc"), ("220 K", "tcvalue"), ]
+    #
+    #     doc = prepare_doc(input, spans)
+    #     doc2 = markCriticalTemperature(doc)
+    #
+    #     tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc2)]
+    #
+    #     assert len(tcValues) == 0
 
     def test_markCriticalTemperature_relative_critical_temperature(self):
         input = "The R versus T curves (figure 2(c) for samples B1 and B2 (with 6 wt% Ag) show that the HIP process " \

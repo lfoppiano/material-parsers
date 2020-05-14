@@ -26,6 +26,7 @@ class SimpleResolutionResolver(ResolutionResolver):
 class VicinityResolutionResolver(ResolutionResolver):
     separators = [',', '.', ';', 'and']
 
+    ## Assume the entities are already sorted
     def find_relationships(self, doc, entities1, entities2):
         relationships = []
         assigned = []
@@ -44,6 +45,12 @@ class VicinityResolutionResolver(ResolutionResolver):
         else:
             material_tc_mapping = {}
             tc_material_mapping = {}
+
+            ## Checking that entities1 contains materials, else swap them
+            if entities1[0].ent_type_ != "material":
+                tmp = entities1
+                entities2 = entities1
+                entities1 = tmp
 
             ## If 'respectively' is happearing in the sentence, we need to go in order, rather by absolute distance
             if 'respectively' in str(doc):
@@ -69,24 +76,7 @@ class VicinityResolutionResolver(ResolutionResolver):
 
             else:
                 # for each material I find the closest temperature who has not been assigned yet
-                for index, material in enumerate(entities1):
-                    material_centroid = material.idx + (len(material) / 2)
-
-                    tc_distances = {tc_val: abs(material_centroid - (tc_val.idx + len(tc_val) / 2)) for tc_val in
-                                    entities2}
-
-                    ## Adding penalties to distance on predicates separated by commas or other punctuation
-                    ## If this sentence contains "respectively", it means we should ignore the penalties
-
-                    for tc_val, distance in tc_distances.items():
-                        if material.i < tc_val.i:
-                            if any(item in str(doc[material.i: tc_val.i]) for item in self.separators):
-                                tc_distances[tc_val] *= 2
-                        else:
-                            if any(item in str(doc[tc_val.i: material.i]) for item in self.separators):
-                                tc_distances[tc_val] *= 2
-
-                    material_tc_mapping[material] = tc_distances
+                material_tc_mapping = self.calculate_distances(entities1, entities2, doc)
 
                 for tc_val_key in material_tc_mapping[list(material_tc_mapping.keys())[0]].keys():
                     for material in material_tc_mapping.keys():
@@ -115,6 +105,20 @@ class VicinityResolutionResolver(ResolutionResolver):
 
         return relationships
 
+    def find_previous_entity(self, pivot, items, entity_type=None):
+        items_before = [item for item in items if item.idx < pivot.idx]
+        if entity_type:
+            items_before = [item for item in items_before if item.ent_type_ == entity_type]
+
+        return self.find_closer_to_pivot(pivot, items_before)
+
+    def find_following_entity(self, pivot, items, entity_type=None):
+        items_before = [item for item in items if item.idx > pivot.idx]
+        if entity_type:
+            items_before = [item for item in items_before if item.ent_type_ == entity_type]
+
+        return self.find_closer_to_pivot(pivot, items_before)
+
     def find_closer_to_pivot(self, pivot, items):
         """Find the closet item from the pivot element"""
 
@@ -130,7 +134,60 @@ class VicinityResolutionResolver(ResolutionResolver):
             elif abs_distance < min_distance[1]:
                 min_distance = (index, abs_distance)
 
-        return items[min_distance[0]]
+        if min_distance[0] > -1:
+            return items[min_distance[0]]
+        else:
+            return None
+
+    def calculate_distances(self, materials, tc_values, doc):
+        '''
+        Calculate the distance between all the elements of source and all the elements of destination:
+            - expand the tc length to the wrapping parenthesis (e.g. Material 1 (blabla Tc = 13K) )
+            - assign in order without distance assessment if "respectively" is found in the sentence
+            - duplicate the distance if a punctuation item is between a couple of material / tc
+        '''
+        material_tc_mapping = {}
+        OPENING_PARENTHESIS = ["(", "[", "{"]
+        CLOSING_PARENTHESIS = [")", "]", "}"]
+        for index, material in enumerate(materials):
+            pivot_centroid = material.idx + (len(material) / 2)
+
+            # If the Tc is present within a parenthesis, I expand the entity to the whole parenthesis itself.
+            tc_distances = {}
+
+            for tc_value in tc_values:
+                previous_material = self.find_previous_entity(tc_value, materials)
+                following_material = self.find_following_entity(tc_value, materials)
+
+                if any(item in str(doc[previous_material.i + 1: tc_value.i - 1]) for item in OPENING_PARENTHESIS) and \
+                    any(item in str(doc[tc_value.i + 1:following_material.i - 1]) for item in CLOSING_PARENTHESIS):
+                    # doc[previous_material.i + 1: following_material.i - 1].merge()
+
+                    starting_token = [token for token in doc[previous_material.i + 1: tc_value.i - 1] if str(token) in OPENING_PARENTHESIS][0]
+                    ending_token = [token for token in doc[tc_value.i + 1:following_material.i - 1] if str(token) in CLOSING_PARENTHESIS][-1]
+
+                    tc_distances[tc_value] = abs(pivot_centroid - starting_token.idx +
+                                                 len(str(doc[ending_token.i: ending_token.i])) / 2)
+
+                    ## Adding penalties to distance on predicates separated by commas or other punctuation
+                    if material.i < tc_value.i:
+                        chunk = str(doc[material.i: starting_token.i])
+                    else:
+                        chunk = str(doc[ending_token.i + 1: material.i - 1])
+                else:
+                    tc_distances[tc_value] = abs(pivot_centroid - (tc_value.idx + len(tc_value) / 2))
+                    ## Adding penalties to distance on predicates separated by commas or other punctuation
+                    if material.i < tc_value.i:
+                        chunk = str(doc[material.i + 1: tc_value.i - 1])
+                    else:
+                        chunk = str(doc[tc_value.i + 1: material.i - 2])
+
+                if any(item in chunk for item in self.separators):
+                    tc_distances[tc_value] *= 2
+
+                material_tc_mapping[material] = tc_distances
+
+        return material_tc_mapping
 
 
 class DependencyParserResolutionResolver(ResolutionResolver):
