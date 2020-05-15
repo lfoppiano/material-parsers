@@ -159,7 +159,8 @@ class VicinityResolutionResolver(ResolutionResolver):
                 previous_material = self.find_previous_entity(tc_value, materials)
                 following_material = self.find_following_entity(tc_value, materials)
 
-                if any(item in str(doc[previous_material.i + 1: tc_value.i - 1]) for item in OPENING_PARENTHESIS) and \
+                if previous_material is not None and following_material is not None and \
+                    any(item in str(doc[previous_material.i + 1: tc_value.i - 1]) for item in OPENING_PARENTHESIS) and \
                     any(item in str(doc[tc_value.i + 1:following_material.i - 1]) for item in CLOSING_PARENTHESIS):
                     # doc[previous_material.i + 1: following_material.i - 1].merge()
 
