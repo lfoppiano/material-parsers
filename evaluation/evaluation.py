@@ -33,8 +33,8 @@ def process(output, reference):
         for row in csv_reader:
             material = row[0]
             tc = row[1]
-            path = row[2]
-            next_rows = row[3:]
+            path = row[3]
+            next_rows = [row[2]]
             skip = False
             if path in reference_map:
                 path_results = reference_map[path]
