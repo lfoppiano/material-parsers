@@ -81,6 +81,8 @@ def process_dir(source_directory):
             if not file_.lower().endswith(".tei.xml"):
                 continue
 
+            skip_file = False
+
             abs_path = os.path.join(root, file_)
 
             print(abs_path)
@@ -99,7 +101,8 @@ def process_dir(source_directory):
                 continue
 
             if len(paragraphs_from_feature_file) != len(paragraphs_from_xml_file):
-                print("XML and features DO NOT have the same amount of paragraphs")
+                print("XML " + str(len(paragraphs_from_xml_file)) + " and features " + str(
+                    len(paragraphs_from_feature_file)) + " DO NOT have the same amount of paragraphs")
 
                 raise Exception
 
