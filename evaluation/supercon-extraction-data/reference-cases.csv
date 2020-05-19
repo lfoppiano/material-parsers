@@ -1,0 +1,620 @@
+Material,Tc,Correct,Pathf
+"(A = K, Rb, Cs, and Tl)",32 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115005/sust_30_11_115005am.pdf
+"(Gd,Y)BCO films",90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/104003/sust_28_10_104003.pdf
+"(Sr,K)-122",33.230.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+"(Tr = Y, Ti, Zr, and Hf)",2.70 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035011/sust_29_3_035011.pdf
+"2H8N2)yFe2−zSe2 (A = Li, Na)",45 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+"A x Fe 2−y Se 2 (122 type, A=K, Rb, and Cs)",31 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/10/105015/sust_29_10_105015.pdf
+"AFe 2 As 2 (A = Ca, Sr, Ba, Eu, etc.)",49 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/035007/sust_30_3_035007am.pdf
+"AM x (NH 3 ) y Fe 2 Ch 2 (AM = alkali, alkali-earth",45 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115005/sust_30_11_115005am.pdf
+"Bi 4 O 4 S 3 , REO −x 1 F x BiS 2 (RE: La , Ce",10 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/1/015008/SUST_28_1_015008.pdf
+"Bi 4 O 4 S 3 , REO −x 1 F x BiS 2",10 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/1/015008/SUST_28_1_015008.pdf
+"BiS 2 -based superconductors Sr x 1-Ln x FBiS 2 (Ln=La, Ce)",8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/4/04LT03/sust_29_4_04LT03.pdf
+"CaC 6 , 4",11.4 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JAP/v123/i13/135304_1/vor_1.5016397.pdf
+"Fe(Te, Se)",15 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115005/sust_30_11_115005am.pdf
+"FeAs 2 (RE=Rare earth,112-type)",40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/5/055005/sust_29_5_055005.pdf
+"Group V hydride (phosphorus hydride, PH 3",103 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JCP/v149/i7/074101_1/vor_1.5031202.pdf
+"La −x 1 M x OBiS 2 (M = Ti, Zr, Hf, Th)",10 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/1/015008/SUST_28_1_015008.pdf
+"LaFeAs(O, F)",26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/065005/sust_28_6_065005.pdf
+"LaFeAs(O,F) thin films",11 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+"Nb 3 Sn, Nb 3 Al, Nb 3 Ge, Nb 3 Ga",15-20 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/11/113002/sust_29_11_113002.pdf
+"Nb 3 Sn, Nb 3 Al, Nb 3 Ge, Nb 3 Ga, V 3 Si",15-20 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/11/113002/sust_29_11_113002.pdf
+"NdFeAs(O,F) films",48 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+"REBa 2 Cu 3 O y (REBCO, RE = rare earth",90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/084009/sust_30_8_084009.pdf
+"Rb, Cs, and Tl) are intercalated into FeCh",32 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115005/sust_30_11_115005am.pdf
+"SmFeAs(O,F)",56 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+"Sr 1−x Na x )Fe 2 As 2 , polycrystalline samples",26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/105007/sust_28_10_105007.pdf
+"Tr-′ = transition metals; X = P, As, Si)",15 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035011/sust_29_3_035011.pdf
+"TrIrSi (Tr = Ti, Zr",1.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035011/sust_29_3_035011.pdf
+"TrIrSi (Tr = Y, Ti, Zr, and Hf)",2.70 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035011/sust_29_3_035011.pdf
+"TrTr X ¢ (Tr, Tr-′ = transition metals; X = P, As, Si)",15 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035011/sust_29_3_035011.pdf
+"V hydride (phosphorus hydride, PH 3",103 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JCP/v149/i7/074101_1/vor_1.5031202.pdf
+"Zr-added (Gd, Y)BaCuO",92 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/015016/sust_30_1_015016.pdf
+"found superconductivity enhancement in several metal-doped 2H-TaSe 2 systems (doped with Cu, Sn, Pb, Bi)",2.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125001/sust_30_12_125001am.pdf
+"hydrogen sulfide, H 3 S",203 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JCP/v149/i7/074101_1/vor_1.5031202.pdf
+"metal-doped 2H-TaSe 2 systems (doped with Cu, Sn, Pb, Bi)",2.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125001/sust_30_12_125001am.pdf
+"metals; X = P, As, Si)",15 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035011/sust_29_3_035011.pdf
+"of Fe(Te, Se)",15 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115005/sust_30_11_115005am.pdf
+"undoped, polycrystalline, selenium-deficient FeSe 1−x",7.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/2/025013/SUST_28_2_025013.pdf
+% BZO-Co-Ba122,21.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/085006/sust_30_8_085006.pdf
+(BHO-doped YBCO,=88.0±0.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/4/044007/sust_31_4_044007.pdf
+(Bi 2.43 Sr 1.85 Ca 0.90 Cu 1.82 O x ),80 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/8/085017/sust_28_8_085017.pdf
+(Mo 0.90 Ru 0.1 ) 3 Sb 7,2.34 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125001/sust_29_12_125001.pdf
+(Mo 2.7 Re 1,11 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/11/113002/sust_29_11_113002.pdf
+(RE)BCO bulk,90-92 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/053002/sust_28_5_053002.pdf
+(Sr 0.45 Na 0.55 )Fe 2 As 2,36.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+(Sr 0.5 Na 0.5 )Fe 2 As 2,35 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+(Sr 0.5 Na 0.5 )Fe 2 As 2,35-36 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+(n = 1) Bi 2 Sr 2 CuO 6+δ,20 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/1/015009/sust_31_1_015009am.pdf
+(n = 2) Bi 2 Sr 2 CaCu 2 O 8+δ (Bi-2212),90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/1/015009/sust_31_1_015009am.pdf
+(n = 3) Bi 2 Sr 2 Ca 2 Cu 3 O 10+δ (Bi-2223),110 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/2/025010/SUST_28_2_025010.pdf
+.1 ⩽ x ⩽ 0.2,32 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/7/075001/sust_28_7_075001.pdf
+0 = 0),400 mK,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/014003/sust_30_1_014003am.pdf
+0 ⩽ x ⩽ 0.42,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+0.01,5.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/10/104004/sust_29_10_104004.pdf
+0.1 ⩽ x ⩽ 0.2,32 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/7/075001/sust_28_7_075001.pdf
+1-UC film on SrTiO3,43 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+111,42 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/RSI/v89/i3/033702_1/vor_1.5016281.pdf
+122-type iron pnictides,38 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095006/sust_29_9_095006.pdf
+122-type iron-pnictides,38 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/7/07LT01/sust_30_7_07LT01am.pdf
+2H-TaS 2,3.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065001/sust_31_6_065001.pdf
+2H-TaSe 2,0.14 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125001/sust_30_12_125001am.pdf
+2H-TaSe 2,2.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125001/sust_30_12_125001am.pdf
+= x 0.1,60 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/8/085001/sust_29_8_085001.pdf
+A x Fe 2−y Se 2 (122,31 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/10/105015/sust_29_10_105015.pdf
+A x Fe y 2-Se 2,31 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/1/015003/sust_31_1_015003.pdf
+AM x (NH 3 ) y Fe 2 Ch 2,45 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115005/sust_30_11_115005am.pdf
+Ag-doped FeSe 0.94,9.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/2/025013/SUST_28_2_025013.pdf
+Al 2 O 3,6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+Al 2 O 3,9.2 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/97/8/10.1063_1.1874292/10.1063_1.1874292_fulltext.pdf
+Al 2 O 3,9.5 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/97/8/10.1063_1.1874292/10.1063_1.1874292_fulltext.pdf
+Al/Al 2 O 3,6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+As-fabricated films grown on SiO 2 / Si,1.4 and 1.27 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/98/1/10.1063_1.1946205/10.1063_1.1946205_fulltext.pdf
+B 1−x C x ) 2,38.1-38.26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/10/105020/sust_29_10_105020.pdf
+B5,4.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/1/015012/sust_29_1_015012.pdf
+BHO film,90.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/5/055002/sust_30_5_055002am.pdf
+BHO-doped YBCO),0±0.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/4/044007/sust_31_4_044007.pdf
+BSCCO superconducting material are (n = 2) Bi 2 Sr 2 CaCu 2 O 8+δ (Bi-2212),90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/2/025010/SUST_28_2_025010.pdf
+BSCCO,108 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/4/043002/sust_30_4_043002am.pdf
+BZO-Co-Ba122 thin film,21.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/085006/sust_30_8_085006.pdf
+BZO-Co-Ba122 thin film,22 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/085006/sust_30_8_085006.pdf
+BZO-Co-Ba122 thin film,4.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/085006/sust_30_8_085006.pdf
+Ba 0.6 K 0.4 Fe 2 As 2 single crystals,38.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/8/085003/sust_28_8_085003.pdf
+Ba 0.6 K 0.4 Fe 2 As 2,38.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/8/085003/sust_28_8_085003.pdf
+Ba 0.6 K 0.4 Fe 2 As 2,5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/9/095015/sust_28_9_095015.pdf
+Ba 0.6 K 0.4 Fe 2 As 2,=38.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/9/095015/sust_28_9_095015.pdf
+Ba 1−x K x BiO 3−δ (BKBO),30 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065004/sust_31_6_065004.pdf
+Ba 1−x K x Fe 2 As 2 (K-Ba122) crystals,38 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/3/034006/sust_31_3_034006am.pdf
+Ba 1−x K x Fe 2 As 2,38 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/3/034006/sust_31_3_034006am.pdf
+Ba NH Fe Se x 3 2 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035005/sust_29_3_035005.pdf
+Ba NH Fe Se,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035005/sust_29_3_035005.pdf
+Ba(Fe 0.935 Co 0.065 ) 2 As 2,21.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125007/sust_30_12_125007am.pdf
+Ba-122 single crystal,38.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/102001/sust_28_10_102001.pdf
+Ba-122,35 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+Ba-122,38.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/102001/sust_28_10_102001.pdf
+Ba0.6K0.4Fe2As2 crystal,37.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/2/025009/sust_31_2_025009am.pdf
+Ba122,20 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/2/025002/sust_31_2_025002am.pdf
+Ba122,20.2 and 19.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/5/055001/sust_31_5_055001.pdf
+Ba122,23.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/2/025002/sust_31_2_025002am.pdf
+Ba122,24.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/085006/sust_30_8_085006.pdf
+Ba122,25.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/2/025002/sust_31_2_025002am.pdf
+Ba122,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/2/025002/sust_31_2_025002am.pdf
+Ba122:Co CCs,20.2 and 19.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/5/055001/sust_31_5_055001.pdf
+Ba122:Co film,1.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/2/025002/sust_31_2_025002am.pdf
+BaBi3,5.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/2/025015/sust_30_2_025015am.pdf
+BaBi3,6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/2/025015/sust_30_2_025015am.pdf
+BaFe 1.84 Co 0.16 As 2,8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/5/055001/sust_31_5_055001.pdf
+BaFe 1.84 Co 0.16 As 2,=24.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/2/025001/sust_30_2_025001am.pdf
+BaFe 1.84 Co 0.16 As 2,=24.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/5/055001/sust_31_5_055001.pdf
+BaFe 1.9 Ni 0.1 As 2,18.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/015007/sust_30_1_015007am.pdf
+BaFe 1.9 Pt 0.1 As 2,23 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/1/014004/SUST_28_1_014004.pdf
+BaFe 2 (As 0.68 P 0.32 ) 2 single crystal,27.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/055017/sust_28_5_055017.pdf
+BaFe 2 (As 0.68 P 0.32 ) 2,27.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/055017/sust_28_5_055017.pdf
+BaFe 2 (As 1−x P x ) 2 crystals,30 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/3/034005/sust_31_3_034005am.pdf
+BaFe 2 (As 1−x P x ) 2,30 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/3/034005/sust_31_3_034005am.pdf
+BaFe 2 (As 1−x P x ) 2,30 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/064002/sust_31_6_064002am.pdf
+BaFe 2 As 2 (Ba-122),38 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/114005/sust_28_11_114005.pdf
+BaFe 2 As 2 (Ba122),38 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/1/015013/sust_29_1_015013.pdf
+BaFe 2 As 2,24 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/8/085003/sust_28_8_085003.pdf
+BaFe 2 S 3,24 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/10/105002/sust_31_10_105002am.pdf
+BaFe 2−x Ni x As 2 crystal with x=0.096,19.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/015007/sust_30_1_015007am.pdf
+BaFe 2−x Ni x As 2 crystal with x=0.096,=19.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/015007/sust_30_1_015007am.pdf
+BaFe 2−x Ni x As 2 crystal,8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/015007/sust_30_1_015007am.pdf
+BaFe 2−x Ni x As 2 single crystals,20 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/015007/sust_30_1_015007am.pdf
+BaFe 2−x Ni x As 2,8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/015007/sust_30_1_015007am.pdf
+BaFe 2−x Ni x As 2,=19.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/015007/sust_30_1_015007am.pdf
+BaFe2(As1−xPx)2,28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/064002/sust_31_6_064002am.pdf
+BaFe2As2 single crystal,30 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+BaIr 2 As 2,1.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/035007/sust_30_3_035007am.pdf
+BaIr 2 As 2,2.45 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/035007/sust_30_3_035007am.pdf
+Bi 2 Sr 2 CaCu 2 O y (Bi-2212),90 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/APL/v112/i25/251109_1/vor_1.5039688.pdf
+Bi 2 Sr 2 CaCu 2 O y (Bi-2212,90 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/APL/v112/i25/251109_1/vor_1.5039688.pdf
+Bi 2 Sr 2 CaCu 2 O y,90 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/APL/v112/i25/251109_1/vor_1.5039688.pdf
+Bi 2 Sr 2−x La x Cu0 y with x = 0.1,12.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/065010/sust_28_6_065010.pdf
+Bi 2 Sr 2−x La x Cu0 y with x = 0.3,21.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/065010/sust_28_6_065010.pdf
+Bi 2.43 Sr 1.85 Ca 0.90 Cu 1.82 O x ),80 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/8/085017/sust_28_8_085017.pdf
+Bi 3 O 2 S 3,4.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/1/015008/SUST_28_1_015008.pdf
+Bi 4 O 4 S 3,10 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/1/015008/SUST_28_1_015008.pdf
+Bi 4 O 4 S 3,4.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115011/sust_30_11_115011.pdf
+Bi 4 O 4 S 3,≈8.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/4/04LT03/sust_29_4_04LT03.pdf
+Bi-2212 superconductor,93 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/10/105011/sust_30_10_105011am.pdf
+Bi-2212,81 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/6/065013/sust_29_6_065013.pdf
+Bi-2212,93 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/4/045014/sust_28_4_045014.pdf
+Bi-2212,93 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/10/105011/sust_30_10_105011am.pdf
+Bi-2223,90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/4/043002/sust_30_4_043002am.pdf
+Bi-2223,90-95 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/5/055008/sust_29_5_055008.pdf
+Bi2201,20 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+Bi2212 single crystals,85 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/98/3/10.1063_1.2006992/10.1063_1.2006992_fulltext.pdf
+BiIn 2,4.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/1/015012/sust_29_1_015012.pdf
+BiO −x 1 F x BiS 2,3.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/1/015008/SUST_28_1_015008.pdf
+BiPd single crystals,3.79 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/6/065001/sust_29_6_065001.pdf
+BiSrCaCuO(2212),95 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/105014/sust_28_10_105014.pdf
+BiSrCaCuO(2212,95 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/105014/sust_28_10_105014.pdf
+Br-doped (PbSe) 1.12 (TaSe 2 ),28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+Br-doped (PbSe) 1.12,≈1.28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+Brdoped (PbSe) 1.12 (TaSe 2 ),28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+CCO,110 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+CCO,38 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+CCO,50 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+CCO,80 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+CCO/BCO,60 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+CCO/STO bilayers,40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/9/095012/sust_28_9_095012.pdf
+CCO/STO,38 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+CCO/STO,40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/9/095012/sust_28_9_095012.pdf
+CCO/STO,50 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+Ca 10 (Pt 4 As 8 )(Fe 1−x Pt x ) 2 As 2 ) 5 (x≈0.05) single crystal,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065010/sust_31_6_065010.pdf
+Ca La 0.82 0.18 FeAs 2 pnictide,42.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/9/092001/sust_28_9_092001.pdf
+Ca-intercalated monolayer graphene (CaC 6,1.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+CaC 6,11.4 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JAP/v123/i13/135304_1/vor_1.5016397.pdf
+CaC 6,11.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+CaF 2,19.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/065005/sust_28_6_065005.pdf
+CaF 2,7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/5/054001/sust_31_5_054001.pdf
+CaFe 2 As 2,49 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/085009/sust_30_8_085009.pdf
+CeFeAsO1-xFx,46 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+Co 2 P,15.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/2/025008/sust_30_2_025008.pdf
+Co-Ba122 thin film,22 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/085006/sust_30_8_085006.pdf
+Co-doped Ba-122,30 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/114005/sust_28_11_114005.pdf
+Co-doped BaFe 2 As 2,24 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/8/085003/sust_28_8_085003.pdf
+Co-doped crystal,24.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/102001/sust_28_10_102001.pdf
+Cu 0.07 TaSe 2,2.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125001/sust_30_12_125001am.pdf
+Cu-doped TaSe 2,2.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125001/sust_30_12_125001am.pdf
+CuO2,30 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+CuO2,80 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+Cuprate Bi 2 Sr 2 CaCu 2 O y (Bi-2212),90 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/APL/v112/i25/251109_1/vor_1.5039688.pdf
+Eu 2 SrBi 2 S 4 F 4,9.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115011/sust_30_11_115011.pdf
+Eu 2 SrBi 2 S 4 F 4,6.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115011/sust_30_11_115011.pdf
+Eu 2 SrBi 2 S 4 F 4,=6.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115011/sust_30_11_115011.pdf
+Eu-123,77 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125006/sust_31_12_125006am.pdf
+EuBCO,77 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125006/sust_31_12_125006am.pdf
+EuBCuO crystals,92 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/9/095010/sust_28_9_095010.pdf
+EuBCuO,92 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/9/095010/sust_28_9_095010.pdf
+EuBiS 2 F,3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115011/sust_30_11_115011.pdf
+EuBiS 2 F,0.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115011/sust_30_11_115011.pdf
+EuBiS 2 F,=0.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115011/sust_30_11_115011.pdf
+EuSr 2 Bi 2 S 4 F 4,8.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115011/sust_30_11_115011.pdf
+EuSr 2 Bi 2 S 4 F 4,3.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115011/sust_30_11_115011.pdf
+EuSr 2 Bi 2 S 4 F 4,=3.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115011/sust_30_11_115011.pdf
+FST films,16 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035013/sust_29_3_035013.pdf
+Fe (Se 0.4 Te 0.6 ) 0.82,14 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/115004/sust_28_11_115004.pdf
+Fe 0.935 Co 0.065 ) 2 As 2 pnictide,21.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125007/sust_30_12_125007am.pdf
+Fe 0.935 Co 0.065 ) 2 As 2,21.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125007/sust_30_12_125007am.pdf
+Fe 1-y Te 1-x Se x with 0.4 < x < 0.8,14 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/015018/sust_30_1_015018am.pdf
+Fe 1−x Pt x ) 2 As 2 ) 5 (x≈0.05) single crystal,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065010/sust_31_6_065010.pdf
+Fe 1−y Se,8.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/085010/sust_30_8_085010.pdf
+Fe-based pnictides,55 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/034004/sust_30_3_034004am.pdf
+Fe-based pnictides,9.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/034004/sust_30_3_034004am.pdf
+Fe1-xCoxSe0.5Te0.5,17 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/2/025009/sust_31_2_025009am.pdf
+FeAs 2,40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/5/055005/sust_29_5_055005.pdf
+FeAs 4,35 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+FeSe (no Te) thin films,11.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+FeSe 0.94,7.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/2/025013/SUST_28_2_025013.pdf
+FeSe 1−x,7.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/2/025013/SUST_28_2_025013.pdf
+FeSe crystals,10 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/12/125001/sust_28_12_125001.pdf
+FeSe film,100 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+FeSe films grown on SrTiO3,50 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+FeSe films,109 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/054001/sust_28_5_054001.pdf
+FeSe films,8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/123001/sust_29_12_123001.pdf
+FeSe single crystals,9.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095002/sust_29_9_095002.pdf
+FeSe single crystals,=9.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095002/sust_29_9_095002.pdf
+FeSe,100 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+FeSe,109 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/054001/sust_28_5_054001.pdf
+FeSe,37 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/115004/sust_28_11_115004.pdf
+FeSe,40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+FeSe,8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/035003/sust_30_3_035003.pdf
+FeSe,9.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/4/045013/sust_28_4_045013.pdf
+FeSe-SrTiO 3,65~100 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+FeSe0.5Te0.5 films,21 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+FeTe 0.6 Se 0.4,14 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115005/sust_30_11_115005am.pdf
+FeTe 0.65 Se 0.35,12.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/015018/sust_30_1_015018am.pdf
+FeTe 0.82,10 K to 14 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/115004/sust_28_11_115004.pdf
+FeTe 0.9 Se 0.1,10.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/4/044002/sust_28_4_044002.pdf
+FeTe 1−x Se x crystals,15 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/4/045018/sust_28_4_045018.pdf
+FeTe-capped monolayer FeSe/SrTiO3,40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/5/055003/sust_31_5_055003am.pdf
+GaV 4 S 8 (111),42 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/RSI/v89/i3/033702_1/vor_1.5016281.pdf
+GaV 4 S 8,42 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/RSI/v89/i3/033702_1/vor_1.5016281.pdf
+Gd 1−x Th x,56 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/085007/sust_30_8_085007am.pdf
+Gd-123,93.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/5/054003/sust_29_5_054003.pdf
+GdBCO films,92.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125010/sust_30_12_125010.pdf
+GdBCO+12%BHO films,93.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/9/094007/sust_30_9_094007am.pdf
+GdBCO+12%BHO,93.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/9/094007/sust_30_9_094007am.pdf
+GdBCO,92.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125010/sust_30_12_125010.pdf
+GdBCO,94-95 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125010/sust_30_12_125010.pdf
+H 2 S,203 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/123001/sust_29_12_123001.pdf
+H3S,200 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+HCl,20 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JCP/v149/i7/074101_1/vor_1.5031202.pdf
+Hf),1.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035011/sust_29_3_035011.pdf
+HfIrSi (1.79,3.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035011/sust_29_3_035011.pdf
+Hg 2 Ba 2 CuO y,90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/065010/sust_28_6_065010.pdf
+Hg-1223 HTS),133 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/115006/sust_28_11_115006.pdf
+HgBa 2 Ca 2 Cu 3 O 9,164 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+Iron-based superconductors,55 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/06LT02/sust_31_6_06LT02.pdf
+K 0.8 Fe 1.6+x Se 2 superconductors,31 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/7/075001/sust_28_7_075001.pdf
+K 0.8 Fe 1.6+x Se 2,31 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/7/075001/sust_28_7_075001.pdf
+K x Fe -y 2 Se 2 sample,28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/8/085015/sust_29_8_085015.pdf
+K x Fe -y 2 Se 2 with,28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/8/085015/sust_29_8_085015.pdf
+K x Fe -y 2 Se 2,28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/8/085015/sust_29_8_085015.pdf
+K x Fe 2−y Se 2,32 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115005/sust_30_11_115005am.pdf
+K-doped Ba-122 single crystal,38.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/102001/sust_28_10_102001.pdf
+KFe 2 As 2,3.4 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/RSI/v89/i9/094704_1/vor_1.5048008.pdf
+LAO,14 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/2/025002/sust_31_2_025002am.pdf
+LAO,18.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/065005/sust_28_6_065005.pdf
+LCO,20 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+LCaMO film,256 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/97/10/10.1063_1.1850378/10.1063_1.1850378_fulltext.pdf
+LSAT,16 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/2/025002/sust_31_2_025002am.pdf
+La 0.82 0.18 FeAs 2 pnictide,42.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/9/092001/sust_28_9_092001.pdf
+La 0.82 0.18 FeAs 2,42.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/9/092001/sust_28_9_092001.pdf
+La 1.85 Sr 0.15 CuO 4,37 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/7/074001/sust_30_7_074001.pdf
+La 2 CuO 4+δ,50 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+La 2-x Sr x CuO 4 /La 2 CuO 4 heterostructure (x = 0.36,38 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+La 2-x Sr x CuO 4 /La 2 CuO 4,30 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+La 3 Ir 2 Ge 2,4.7 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/97/7/10.1063_1.1871335/10.1063_1.1871335_fulltext.pdf
+La 3 Rh 2 Ge 2,3.5 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/97/7/10.1063_1.1871335/10.1063_1.1871335_fulltext.pdf
+La-based compound,4.7 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/97/7/10.1063_1.1871335/10.1063_1.1871335_fulltext.pdf
+La-substituted Bi-2201 (Bi 2 Sr 2−x La x CuO y ),30 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/065010/sust_28_6_065010.pdf
+LaAlO 3 (LAO),21 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/065005/sust_28_6_065005.pdf
+LaAlO 3,16 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035013/sust_29_3_035013.pdf
+LaAlO 3,21 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/065005/sust_28_6_065005.pdf
+LaAlO 3,≈0.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/073001/sust_31_7_073001.pdf
+LaBi 3,3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+LaBi 3,7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+LaBi 3,7.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+LaBi 3,=7.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+LaCa122,5.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/085009/sust_30_8_085009.pdf
+LaCa122-A,5.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/085009/sust_30_8_085009.pdf
+LaFe 1 −x Zn x AsO 0.85,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/5/053001/sust_29_5_053001.pdf
+LaFeAsO 1−x F x (1111,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115008/sust_30_11_115008.pdf
+LaFeAsO 1−x F x [1,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/5/055005/sust_29_5_055005.pdf
+LaFeAsO 1−x F x,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/123001/sust_29_12_123001.pdf
+LaFeAsO 1−x F x,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035007/sust_29_3_035007.pdf
+LaFeAsO 1−x F x,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/5/055005/sust_29_5_055005.pdf
+LaFeAsO [1,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/2/025006/SUST_28_2_025006.pdf
+LaFeAsO,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/5/053001/sust_29_5_053001.pdf
+LaFeAsO1-xFx,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+LaFeAsOδ,38 to 50 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/2/025009/sust_31_2_025009am.pdf
+LaFePO 1−x F x,5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/5/053001/sust_29_5_053001.pdf
+LaO 0.5 F 0.5 BiS 2 compound,10.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115011/sust_30_11_115011.pdf
+LaO 0.5 F 0.5 BiS 2,10.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115011/sust_30_11_115011.pdf
+LaO 0.5 F 0.5 BiS 2,8.28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115004/sust_30_11_115004.pdf
+LaO x 1-F x BiSe 2,3.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/4/04LT03/sust_29_4_04LT03.pdf
+LaO x 1-F x BiSe 2,6.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/4/04LT03/sust_29_4_04LT03.pdf
+LaPb 3 (n=3.75,=4.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+LaPb 3,=4.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+LaSe) 1.14 (NbSe 2 ),1.32 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+LaTl 3 (n=3.00,=1.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+LaTl 3,1.63 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+LaTl 3,=1.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+LaTl 3,=1.63 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+Li 1−x Fe x OH)FeSe,40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/10/105015/sust_29_10_105015.pdf
+Li NH Fe Se,43 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035005/sust_29_3_035005.pdf
+Li x (NH 3 ) y Fe 2 Te 1.2 Se 0.8 single crystals,21 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115005/sust_30_11_115005am.pdf
+Li x (NH 3 ) y Fe 2 Te 1.2 Se 0.8,21 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115005/sust_30_11_115005am.pdf
+LiC 6,8.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+LiFeAs (,18 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+LiFeAs (111-system),26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115008/sust_30_11_115008.pdf
+LiFeAs single crystals,19.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/2/025006/SUST_28_2_025006.pdf
+LnBa2Cu3O7,90 to 96 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+Lu 3 Os 4 Ge 13,3.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/115012/sust_28_11_115012.pdf
+Magnesium diboride (MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095001/sust_29_9_095001.pdf
+Mg 1.1 B 2 ͑Fig,35.9 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/97/5/10.1063_1.1861142/10.1063_1.1861142_fulltext.pdf
+Mg 1.1 B 2,35.9 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/97/5/10.1063_1.1861142/10.1063_1.1861142_fulltext.pdf
+Mg(B 1−x C x ) 2,38.1-38.26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/10/105020/sust_29_10_105020.pdf
+MgB 2 ),39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/055001/sust_28_5_055001.pdf
+MgB 2 ),39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095001/sust_29_9_095001.pdf
+MgB 2 devices,40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/034008/sust_30_3_034008am.pdf
+MgB 2 film,∼8.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/2/023001/sust_29_2_023001.pdf
+MgB 2 thin films,37.2 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/APL/v112/i2/022601_1/vor_1.5013286.pdf
+MgB 2,08 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035004/sust_29_3_035004.pdf
+MgB 2,10-13 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/2/024011/sust_30_2_024011.pdf
+MgB 2,31 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/4/040502/sust_31_4_040502.pdf
+MgB 2,35 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/2/023001/sust_29_2_023001.pdf
+MgB 2,35 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/2/025004/sust_30_2_025004.pdf
+MgB 2,38 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/114005/sust_28_11_114005.pdf
+MgB 2,38 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115003/sust_30_11_115003am.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/98/12/10.1063_1.2142095/10.1063_1.2142095_fulltext.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/1/015002/SUST_28_1_015002.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/12/125006/sust_28_12_125006.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/12/125014/sust_28_12_125014.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/2/025006/SUST_28_2_025006.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/3/035015/sust_28_3_035015.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/053002/sust_28_5_053002.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/055001/sust_28_5_055001.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/10/105019/sust_29_10_105019.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035004/sust_29_3_035004.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095001/sust_29_9_095001.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/2/025021/sust_30_2_025021.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/6/065005/sust_30_6_065005.pdf
+MgB 2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/5/055016/sust_31_5_055016am.pdf
+MgB 2,39K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/11/115003/sust_29_11_115003.pdf
+MgB 2,40 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/APL/v112/i2/022601_1/vor_1.5013286.pdf
+MgB 2,40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/1/014004/SUST_28_1_014004.pdf
+MgB 2,40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/2/025009/sust_29_2_025009.pdf
+MgB 2,40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/034004/sust_30_3_034004am.pdf
+MgB 2,40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/034008/sust_30_3_034008am.pdf
+MgB 2,40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/4/044006/sust_30_4_044006am.pdf
+MgB 2,=39 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/98/12/10.1063_1.2142095/10.1063_1.2142095_fulltext.pdf
+MgB 2,∼8.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/2/023001/sust_29_2_023001.pdf
+MgB 2,=38.08 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035004/sust_29_3_035004.pdf
+MgB2),39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/10/105010/sust_31_10_105010am.pdf
+MgB2,37 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/4/045001/sust_30_4_045001am.pdf
+MgB2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/4/043002/sust_30_4_043002am.pdf
+MgB2,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/10/105010/sust_31_10_105010am.pdf
+MgO,16.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/065005/sust_28_6_065005.pdf
+MgO,20 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/2/025002/sust_31_2_025002am.pdf
+Mo 0.90 Ru 0.1 ) 3 Sb 7,2.34 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125001/sust_29_12_125001.pdf
+Mo 3 Al 2 C,9.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035003/sust_29_3_035003.pdf
+Mo 3 Sb 7 single crystal,=2.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125001/sust_29_12_125001.pdf
+Mo 3 Sb 7,08 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125001/sust_29_12_125001.pdf
+Mo 3 Sb 7,3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125001/sust_29_12_125001.pdf
+Mo 3 Sb 7,2.08 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125001/sust_29_12_125001.pdf
+Mo 3 Sb 7,2.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125001/sust_29_12_125001.pdf
+Mo 3 Sb 7,=2.08 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125001/sust_29_12_125001.pdf
+Mo 3 Sb 7,=2.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125001/sust_29_12_125001.pdf
+Mo 3 Sb 7,=2.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125001/sust_29_12_125001.pdf
+Mo 60 Re 40 films,15 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/11/113002/sust_29_11_113002.pdf
+Mo 60 Re 40,11.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/11/113002/sust_29_11_113002.pdf
+Mo 75 Re 25,11.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/11/113002/sust_29_11_113002.pdf
+Mo 80 Ge 20 thin films,7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125009/sust_31_12_125009.pdf
+Mo 80 Ge 20,7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125009/sust_31_12_125009.pdf
+MoS 2 crystal,10.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+MoS 2,10.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+MoSi films,7.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/1/015002/sust_31_1_015002.pdf
+MoSi,7.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/1/015002/sust_31_1_015002.pdf
+MoTe 2,2.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/093001/sust_29_9_093001.pdf
+Na)Fe 2 As 2,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+Na)Fe 2 As 2,35 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+Na-intercalated 2H-TaS 2,4.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065001/sust_31_6_065001.pdf
+NaFe 2 As 2,11-25 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+Nb 0.87 Si 0.09 □ 0.04 ) (N 0.87 O 0.13,17.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/055009/sust_28_5_055009.pdf
+Nb 3 Sn films,16 to 18 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/11/113002/sust_29_11_113002.pdf
+Nb 3 Sn,15-20 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/11/113002/sust_29_11_113002.pdf
+Nb 3 Sn,18 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/2/025006/sust_30_2_025006.pdf
+Nb 3 Sn,18 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/033004/sust_30_3_033004.pdf
+Nb 3 Sn,18.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/034004/sust_30_3_034004am.pdf
+Nb 3 Sn,18.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/9/093001/sust_30_9_093001.pdf
+Nb film,9.05 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/APL/v112/i15/152601_1/vor_1.5028213.pdf
+Nb,2K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/034004/sust_30_3_034004am.pdf
+Nb-doped SrTiO 3,0.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+NbSe 2,145 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+NbSe 2,3.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+NbSe 2,5.26K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+NbSe 2,7.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+NbSe2,7.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065006/sust_31_6_065006am.pdf
+NbTi,9.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/014007/sust_30_1_014007am.pdf
+NbTi,9.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/2/025021/sust_30_2_025021.pdf
+NdO 0.5 F 0.5 BiS 2,∼2.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/115004/sust_30_11_115004.pdf
+O) 0.97,7.66 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/2/023001/sust_29_2_023001.pdf
+Pb 1.12 Ta(Se 1−x Br x ) 3.12 (0.08x0.16,28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+Pb 1.12 Ta(Se 1−x Br x ) 3.12,1.28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+Pb 1.12 Ta(Se 1−x Br x ) 3.12,≈1.28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+Pb 1.12,≈1.28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+Pb film,1.83 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/9/095011/sust_28_9_095011.pdf
+Pb-SBA-15,7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/10/105004/sust_30_10_105004am.pdf
+Pb-doped,68 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/035014/sust_30_3_035014am.pdf
+Pb-doped,78 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/035014/sust_30_3_035014am.pdf
+Pb-doped,84 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/035014/sust_30_3_035014am.pdf
+Pb-rich PbTe,5.2-5.4 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/98/6/10.1063_1.2037209/10.1063_1.2037209_fulltext.pdf
+Pb/SiO 2,6.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/4/045003/sust_28_4_045003.pdf
+Pb1212 bulk polycrystalline samples,10 to 110 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/8/085007/sust_29_8_085007.pdf
+Pb1212,100 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/8/085007/sust_29_8_085007.pdf
+Pb1212,50 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/8/085007/sust_29_8_085007.pdf
+PbSe) 1.12,≈1.28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+PbSe) 1.16 (TiSe 2 ) 2,3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+PbSe) 1.16,2.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+PbSe,=2.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+PbSr 2 Ca 2 Cu 3 O 9 (Pb1223),100 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/8/085007/sust_29_8_085007.pdf
+PbTe,5.2-5.4 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/98/6/10.1063_1.2037209/10.1063_1.2037209_fulltext.pdf
+PbTe,7.2 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/98/6/10.1063_1.2037209/10.1063_1.2037209_fulltext.pdf
+Pd 0.04 TaS 2,4.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065001/sust_31_6_065001.pdf
+Pd 1−x Ni x Te,2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/7/075008/sust_29_7_075008.pdf
+Pd x TaSe 2,2.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065001/sust_31_6_065001.pdf
+Pd x TiSe 2,2.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065001/sust_31_6_065001.pdf
+PdTe,2.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/055008/sust_28_5_055008.pdf
+PdTe,4.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/055008/sust_28_5_055008.pdf
+PdTe,4.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/7/075008/sust_29_7_075008.pdf
+Pt 4 As 8 )(Fe 1−x Pt x ) 2 As 2,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065010/sust_31_6_065010.pdf
+R=0),9.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/2/025013/SUST_28_2_025013.pdf
+RE) doped CaFe 2 As 2,49 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/085009/sust_30_8_085009.pdf
+REBCO films,77 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125006/sust_31_12_125006am.pdf
+REBCO,92 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/7/075007/sust_31_7_075007.pdf
+REBa 2 Cu 3 O y (RE123),90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125007/sust_29_12_125007.pdf
+RFeAsO,56 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/4/045018/sust_28_4_045018.pdf
+RbCs 2 C 60,33 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JAP/v123/i13/135304_1/vor_1.5016397.pdf
+Re films,6 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/APL/v112/i18/182601_1/vor_1.5027104.pdf
+Re-Mo,13 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/APL/v112/i18/182601_1/vor_1.5027104.pdf
+SSPD,4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/1/015019/sust_31_1_015019.pdf
+STO,77 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/9/094007/sust_30_9_094007am.pdf
+Se 0.4 Te 0.6 ) 0.82,14 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/115004/sust_28_11_115004.pdf
+Si(111)-SIC-Pb,1.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+SiC doped,34 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/1/015002/SUST_28_1_015002.pdf
+SiO 2 / Si and SiN / Si,1.4 and 1.27 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/98/1/10.1063_1.1946205/10.1063_1.1946205_fulltext.pdf
+Sm-1111,54.651.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+Sm1111,9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/105005/sust_28_10_105005.pdf
+SmBCO film,77 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/104004/sust_28_10_104004.pdf
+SmBCO film,77 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/084009/sust_30_8_084009.pdf
+SmBCO,77 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/8/084009/sust_30_8_084009.pdf
+SmFeAs,58 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/3/034007/sust_31_3_034007.pdf
+SmFeAsO films,58 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+SmFeAsO1-xFx,56 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+Sn 3 S 4 − I43d,21.9 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JCP/v148/i19/194701_1/vor_1.5018434.pdf
+Sn 3 S 4 −,21.9 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JCP/v148/i19/194701_1/vor_1.5018434.pdf
+Sn 3 S 4,21.9 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JCP/v148/i19/194701_1/vor_1.5018434.pdf
+SnS-Pm3m,9.74 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JCP/v148/i19/194701_1/vor_1.5018434.pdf
+SnSb,1.50 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125011/sust_31_12_125011am.pdf
+Sr 0.4 Ca 13.6 Cu 24 O 41+δ,13 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/10/105002/sust_31_10_105002am.pdf
+Sr 0.45 Na 0.55 )Fe 2 As 2,36.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+Sr 0.5 La 0.5 FBiSe 2,10 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/4/04LT03/sust_29_4_04LT03.pdf
+Sr 0.5 Na 0.5 )Fe 2 As 2,35 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+Sr 0.5 Na 0.5 )Fe 2 As 2,35-36 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+Sr 0.5 Na 0.5 )Fe 2 As 2,36 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+Sr 1−x Na x ) Fe 2 As 2,36.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/105007/sust_28_10_105007.pdf
+Sr 1−x Sm x FFeAs,56 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+Sr 2 CaCu 2 O 6,103 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/8/085001/sust_29_8_085001.pdf
+Sr 2 RuO 4 thin film (,0.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095005/sust_29_9_095005.pdf
+Sr 2 RuO 4 thin film,0.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095005/sust_29_9_095005.pdf
+Sr 2 RuO 4 thin film,1.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095005/sust_29_9_095005.pdf
+Sr 2 RuO 4,0.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095005/sust_29_9_095005.pdf
+Sr 2 RuO 4,1.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095005/sust_29_9_095005.pdf
+Sr 2 RuO 4,1.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095005/sust_29_9_095005.pdf
+Sr 2 RuO 4,3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095005/sust_29_9_095005.pdf
+Sr x 1-Ln x FBiS 2,10 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/4/04LT03/sust_29_4_04LT03.pdf
+SrBi 3 (n=4.25,5.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+SrBi 3 (n=4.25,=5.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+SrBi 3,9.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+SrBi 3,=5.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+SrBi3,5.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/2/025015/sust_30_2_025015am.pdf
+SrBi3,5.75 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/2/025015/sust_30_2_025015am.pdf
+SrBi3,9.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/2/025015/sust_30_2_025015am.pdf
+SrTiO 3 /LaAlO 3,200 mK,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/8/085002/sust_29_8_085002.pdf
+SrTiO 3,200 mK,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/8/085002/sust_29_8_085002.pdf
+SrTiO 3,450 mK,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JAP/v124/i21/213902_1/vor_1.5049363.pdf
+SrTiO 3,65 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/3/035009/sust_28_3_035009.pdf
+Ta 2 PdSe 5,2.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/115015/sust_28_11_115015.pdf
+TaOs,2.07 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125003/sust_30_12_125003am.pdf
+TaS 2,0.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065001/sust_31_6_065001.pdf
+TaS 2,1.32 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+TaSe 2,1.28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+TaSe 2,≈1.28 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+Te doped Fe-Se based superconductor with nominal composition Fe (Se 0.4 Te 0.6 ) 0.82,14 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/115004/sust_28_11_115004.pdf
+ThCr 2 Si 2,31 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/10/105015/sust_29_10_105015.pdf
+ThPb 3 (n=4.00,=5.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+ThPb 3,=5.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+Ti 0.7 V 0.3,4.1 and 6.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/2/025003/sust_29_2_025003.pdf
+Ti 0.8 V 0.2,4.1 and 6.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/2/025003/sust_29_2_025003.pdf
+TiIrSi shows,1.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035011/sust_29_3_035011.pdf
+TiSe 2 ) 2,=2.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125010/sust_31_12_125010.pdf
+Tl 2 Ba 2 CuO y,80 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/065010/sust_28_6_065010.pdf
+TlBa 2 Ca 2 Cu 3 O 9-δ ),125 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/115006/sust_28_11_115006.pdf
+WB 4.2,2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/11/115005/sust_31_11_115005.pdf
+Y 2 O 3 5.44A%,89.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/2/024002/SUST_28_2_024002.pdf
+Y 2 O 3 nanoparticles,20 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/6/065005/sust_29_6_065005.pdf
+Y 2 O 3,1.5 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/98/12/10.1063_1.2148626/10.1063_1.2148626_fulltext.pdf
+Y 2 PdGe 3,=3 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/97/7/10.1063_1.1871335/10.1063_1.1871335_fulltext.pdf
+Y Rh Sn 5 6 18,3.0 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/105008/sust_28_10_105008.pdf
+Y)BCO films,90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/104003/sust_28_10_104003.pdf
+Y)BCO films,90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/7/072002/sust_28_7_072002.pdf
+Y-123,77 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/5/054003/sust_29_5_054003.pdf
+Y-211,92.15 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/5/054003/sust_29_5_054003.pdf
+Y123,∼91.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/035006/sust_30_3_035006.pdf
+YBCO bulk superconductors,92 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/9/095010/sust_28_9_095010.pdf
+YBCO film,86.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/9/095011/sust_30_9_095011am.pdf
+YBCO film,89.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/114004/sust_28_11_114004.pdf
+YBCO single crystals,82 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/9/095009/sust_30_9_095009am.pdf
+YBCO superconducting tapes,77 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/RSI/v89/i4/045114_1/vor_1.5026932.pdf
+YBCO+BMO films,77 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065012/sust_31_6_065012am.pdf
+YBCO+BMO,77 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065012/sust_31_6_065012am.pdf
+YBCO,50 ∼91.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125010/sust_30_12_125010.pdf
+YBCO,65−80 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125009/sust_29_12_125009.pdf
+YBCO,82 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/9/095009/sust_30_9_095009am.pdf
+YBCO,84.0 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JAP/v124/i21/214503_1/vor_1.5040051.pdf
+YBCO,86.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/9/095011/sust_30_9_095011am.pdf
+YBCO,87 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/2/024002/SUST_28_2_024002.pdf
+YBCO,87 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/114004/sust_30_11_114004am.pdf
+YBCO,89.8 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/114004/sust_28_11_114004.pdf
+YBCO,90 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/RSI/v89/i4/045114_1/vor_1.5026932.pdf
+YBCO,90:2 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/APL/v113/i16/162601_1/vor_1.5051653.pdf
+YBCO,92 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/9/095010/sust_28_9_095010.pdf
+YBCO,=88.0±0.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/4/044007/sust_31_4_044007.pdf
+YBCO-Ar,2.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/11/115001/sust_29_11_115001.pdf
+YBa 2 Cu 3 O 7 film,90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+YBa 2 Cu 3 O 7,90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+YBa 2 Cu 3 O 7-x (YBCO or Y-123,77 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/9/094007/sust_30_9_094007am.pdf
+YBa 2 Cu 3 O 7-x (YBCO,77 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/9/094007/sust_30_9_094007am.pdf
+YBa 2 Cu 3 O 7Àx,0:07 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JAP/v123/i2/023903_1/vor_1.5005045.pdf
+YBa 2 Cu 3 O 7−x (YBCO) film,88 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/3/034006/sust_31_3_034006am.pdf
+YBa 2 Cu 3 O 7−x (YBCO),88 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/3/034006/sust_31_3_034006am.pdf
+YBa 2 Cu 3 O 7−δ [26,=18.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/015007/sust_30_1_015007am.pdf
+YBa 2 Cu 3 O 7−δ films,90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/7/074001/sust_30_7_074001.pdf
+YBa 2 Cu 3 O 7−δ,90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/7/074001/sust_30_7_074001.pdf
+YBa 2 Cu 3 O 7−δ,=18.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/015007/sust_30_1_015007am.pdf
+YBa 2 Cu 3 O x,92 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/7/075009/sust_29_7_075009.pdf
+YFO-YBCO,87 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/11/114004/sust_30_11_114004am.pdf
+YSn 3,7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/03LT02/sust_29_3_03LT02.pdf
+YbBCO film,77 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/12/125006/sust_31_12_125006am.pdf
+YbC 6,6.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+Zr Nb B 0.96 0.04 2,8.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095007/sust_29_9_095007.pdf
+ZrB 12,5.95 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095007/sust_29_9_095007.pdf
+ZrB 2,5.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095007/sust_29_9_095007.pdf
+ZrB 2,5.95 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095007/sust_29_9_095007.pdf
+ZrNCl,12 ~ 15.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+ZrNCl,15 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/093001/sust_29_9_093001.pdf
+ZrRhSi even,10 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035011/sust_29_3_035011.pdf
+a Te doped Fe-Se based,14 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/11/115004/sust_28_11_115004.pdf
+cuprates,120K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/034004/sust_30_3_034004am.pdf
+cuprates,55 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/3/034004/sust_30_3_034004am.pdf
+d ¼ 0.024,470.6 mK,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JAP/v123/i8/084504_1/vor_1.5013624.pdf
+doped Pd 0.04 TaS 2,4.2 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/6/065001/sust_31_6_065001.pdf
+doped samples Gi ≈ 0.01,93 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/9/095009/sust_30_9_095009am.pdf
+graphene (CaC 6,1.4 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/1/013002/sust_30_1_013002am.pdf
+hole-doped Ba 0.6 K 0.4 Fe 2 As 2 single crystals,38.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/8/085003/sust_28_8_085003.pdf
+intercalated FeSe,30 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/7/075001/sust_28_7_075001.pdf
+iron oxypnictide,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/065005/sust_28_6_065005.pdf
+iron-based superconductors,58 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/3/034007/sust_31_3_034007.pdf
+lanthanoid-doped Ca122 single crystals,40 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/1/015013/sust_29_1_015013.pdf
+magnesium diboride,39 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/10/105010/sust_31_10_105010am.pdf
+niobium hydride,1.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/7/075007/sust_28_7_075007.pdf
+niobium hydride,1.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/7/075003/sust_28_7_075003.pdf
+polycrystalline Mo 3 Sb 7,2.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125001/sust_29_12_125001.pdf
+polycrystalline Mo 3 Sb 7,=2.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125001/sust_29_12_125001.pdf
+polycrystalline PdTe,4.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/055008/sust_28_5_055008.pdf
+pristine PdTe,4.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/7/075008/sust_29_7_075008.pdf
+pure Sm1111,∼53.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/10/105005/sust_28_10_105005.pdf
+pure TaSe 2,0.14 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125001/sust_30_12_125001am.pdf
+rare-earth (RE)-based cuprate,90 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/12/125007/sust_29_12_125007.pdf
+selenide,14.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/3/035005/sust_29_3_035005.pdf
+single crystal of (Sr 0.5 Na 0.5 )Fe 2 As 2,35 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+single crystal of Ba(Fe 0.935 Co 0.065 ) 2 As 2 pnictide,21.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125007/sust_30_12_125007am.pdf
+single crystalline PdTe samples,4.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/055008/sust_28_5_055008.pdf
+single crystalline PdTe,4.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/5/055008/sust_28_5_055008.pdf
+single-crystal whiskers of Bi-rich (Bi 2.43 Sr 1.85 Ca 0.90 Cu 1.82 O x ),80 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/8/085017/sust_28_8_085017.pdf
+single-crystal,23 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/1/014004/SUST_28_1_014004.pdf
+sulfur hydride,150 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2018/JCP/v149/i7/074101_1/vor_1.5031202.pdf
+x 0.1,55−60 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/8/085001/sust_29_8_085001.pdf
+x < 6.48),50 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/9/095009/sust_30_9_095009am.pdf
+x = 0.0),122 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125001/sust_30_12_125001am.pdf
+x = 0.04,8.1 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2016/0953-2048/29/9/095007/sust_29_9_095007.pdf
+x = 0.07,2.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125001/sust_30_12_125001am.pdf
+x = 0.07,2.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/12/125001/sust_30_12_125001am.pdf
+x = 0.13,22.3 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+x = 0.144,30.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+x = 0.2 on CaF2,23 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+x = 0.2,23 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+x = 0.24,3.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/1/015008/SUST_28_1_015008.pdf
+x = 0.27,2.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/1/015008/SUST_28_1_015008.pdf
+x = 0.35,36.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+x = 0.4,19 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+x = 0.42,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+x = 0.5,15 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
+x = 0.5,35 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+x = 0.5,͑=249 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/97/10/10.1063_1.1855199/10.1063_1.1855199_fulltext.pdf
+x = 0.55,36.5 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+x = 0.80,4.78 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/97/8/10.1063_1.1870097/10.1063_1.1870097_fulltext.pdf
+x = 1.10,35.9 K,OK,supercon_papers/supercon_files_20190308/aip/data/fy2005/JAP/97/5/10.1063_1.1861142/10.1063_1.1861142_fulltext.pdf
+x = 6.8,82 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/9/095009/sust_30_9_095009am.pdf
+x ⩽ 0.2,32 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/7/075001/sust_28_7_075001.pdf
+x ⩽ 0.42,26 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/062001/sust_28_6_062001.pdf
+x ⩾ 0.05,32 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/7/075001/sust_28_7_075001.pdf
+x=0.03 sample,20.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/10/105006/sust_30_10_105006am.pdf
+x=0.03,20.7 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2017/2017/0953-2048/30/10/105006/sust_30_10_105006am.pdf
+x=0.42,38 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/3/034006/sust_31_3_034006am.pdf
+−x La x Cu0 y with x = 0.3,21.9 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2016/2015/0953-2048/28/6/065010/sust_28_6_065010.pdf
+ab = 0.035%),0.6 K,OK,supercon_papers/supercon_files_20190308/iop/data/fy2018/2018/0953-2048/31/9/093001/sust_31_9_093001am.pdf
