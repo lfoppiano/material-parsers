@@ -72,14 +72,16 @@ class VicinityResolutionResolver(ResolutionResolver):
 
                     if sorted_tcValue[i] not in assigned:
                         assigned.append(sorted_tcValue[i])
+                        assigned.append(material)
                         relationships.append((material, sorted_tcValue[i]))
 
             else:
                 # for each material I find the closest temperature who has not been assigned yet
                 material_tc_mapping = self.calculate_distances(entities1, entities2, doc)
 
-                for tc_val_key in material_tc_mapping[list(material_tc_mapping.keys())[0]].keys():
-                    for material in material_tc_mapping.keys():
+                # build the inverse map tc -> material with each distance
+                for material in material_tc_mapping.keys():
+                    for tc_val_key in material_tc_mapping[material].keys():
                         if tc_val_key not in tc_material_mapping:
                             tc_material_mapping[tc_val_key] = {material: material_tc_mapping[material][tc_val_key]}
                         elif material not in tc_material_mapping[tc_val_key]:
@@ -92,16 +94,23 @@ class VicinityResolutionResolver(ResolutionResolver):
 
                 if len(entities1) <= len(entities2):
                     for material in material_tc_mapping.keys():
-                        tc = min(material_tc_mapping[material], key=material_tc_mapping[material].get)
-                        if material not in assigned:
+                        tc_of_this_material = {tc_: distance for tc_, distance in material_tc_mapping[material].items()
+                                               if tc_ not in assigned}
+
+                        tc = min(tc_of_this_material, key=tc_of_this_material.get)
+                        if material not in assigned and tc not in assigned:
                             relationships.append(self.link_spans(material, tc))
                             assigned.append(material)
+                            assigned.append(tc)
                 else:
                     for tc in tc_material_mapping.keys():
-                        material = min(tc_material_mapping[tc], key=tc_material_mapping[tc].get)
-                        if material not in assigned:
+                        material_of_this_tc = {material_: distance for material_, distance in
+                                               tc_material_mapping[tc].items() if material_ not in assigned}
+                        material = min(material_of_this_tc, key=material_of_this_tc.get)
+                        if material not in assigned and tc not in assigned:
                             relationships.append(self.link_spans(material, tc))
                             assigned.append(material)
+                            assigned.append(tc)
 
         return relationships
 
@@ -164,8 +173,10 @@ class VicinityResolutionResolver(ResolutionResolver):
                     any(item in str(doc[tc_value.i + 1:following_material.i - 1]) for item in CLOSING_PARENTHESIS):
                     # doc[previous_material.i + 1: following_material.i - 1].merge()
 
-                    starting_token = [token for token in doc[previous_material.i + 1: tc_value.i - 1] if str(token) in OPENING_PARENTHESIS][0]
-                    ending_token = [token for token in doc[tc_value.i + 1:following_material.i - 1] if str(token) in CLOSING_PARENTHESIS][-1]
+                    starting_token = [token for token in doc[previous_material.i + 1: tc_value.i - 1] if
+                                      str(token) in OPENING_PARENTHESIS][0]
+                    ending_token = [token for token in doc[tc_value.i + 1:following_material.i - 1] if
+                                    str(token) in CLOSING_PARENTHESIS][-1]
 
                     tc_distances[tc_value] = abs(pivot_centroid - starting_token.idx +
                                                  len(str(doc[ending_token.i: ending_token.i])) / 2)
