@@ -124,6 +124,34 @@ class TestVicinityResolutionResolver:
 
         assert len(relationships) == 3
 
+    ## Unfortunately this test passes and the result is correct, but the algorithm got it by chance.
+    ## The penalisation due to a comma, after MnSi is applied wrongly -- but I don't know what else to do there...
+    def test_vicinityResolution_4(self):
+        input = "The investigated MnSi films are in a thickness regime where the magnetic transition " \
+                "temperature T c assumes a thickness-independent enhanced value of 43 K as compared with " \
+                "that of bulk MnSi, where T c ≈ 29 K. A detailed refinement of the EXAFS data reveals that " \
+                "the Mn positions are unchanged, whereas the Si positions vary along the out-of-plane " \
+                "direction, alternating in orientation from unit cell to unit cell."
+
+        spans = [("MnSi films", "material"), ("T c", "tc"), ("43 K", "tcvalue"),
+                 ("MnSi", "material"), ("T c", "tc"), ("29 K", "tcvalue")]
+
+        doc = prepare_doc(input, spans)
+
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+
+        relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
+
+        assert len(relationships) == 2
+
+        assert str(relationships[0][0]) == "MnSi films"
+        assert str(relationships[0][1]) == "43 K"
+
+        assert str(relationships[1][0]) == "MnSi"
+        assert str(relationships[1][1]) == "29 K"
+
+
     def test_find_closer_to_pivot(self):
         input = "Havinga et al systematically changed n from 3.00 to 4.00 by synthesizing LaTl 3" \
                 " (n=3.00, T c =1.6 K), LaPb 3 (n=3.75, T c =4.1 K), and " \
