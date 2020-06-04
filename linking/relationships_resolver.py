@@ -29,7 +29,6 @@ class VicinityResolutionResolver(ResolutionResolver):
     ## Assume the entities are already sorted
     def find_relationships(self, doc, entities1, entities2):
         relationships = []
-        assigned = []
 
         if len(entities1) < 1 or len(entities2) < 1:
             return relationships
@@ -55,27 +54,34 @@ class VicinityResolutionResolver(ResolutionResolver):
             ## If 'respectively' is happearing in the sentence, we need to go in order, rather by absolute distance
             if 'respectively' in str(doc):
 
-                ## for each material I find the closest temperature who has not been assigned yet
-                for material in entities1:
-                    material_centroid = material.idx + (len(material) / 2)
-                    sorted_tcValue = entities2
+                ## for each material I assign each material to each Tcs, in order of appearance
+                if len(entities1) == len(entities2):
+                    ## Same materials and Tcs, go athead as planned..
+                    relationships = self.assign_relationship_in_order(entities1, entities2)
 
-                    if len(entities2) > 1:
-                        tc_values_wrapper = [(abs(material_centroid - (tc_val.idx + len(tc_val) / 2)), tc_val) for
-                                             tc_val in entities2]
-                        sorted_tcValue_wrapper = sorted(tc_values_wrapper, key=itemgetter(0))
-                        sorted_tcValue = [tc_val[1] for tc_val in sorted_tcValue_wrapper]
-
-                    i = 0
-                    while i < len(sorted_tcValue) - 1 and sorted_tcValue[i] in assigned:
-                        i += 1
-
-                    if sorted_tcValue[i] not in assigned:
-                        assigned.append(sorted_tcValue[i])
-                        assigned.append(material)
-                        relationships.append((material, sorted_tcValue[i]))
+                elif len(entities1) > len(entities2):
+                    ## too many materials, needs to get rid of some of them...
+                    if entities1[0].idx < entities2[0].idx:
+                        ## Materials are coming before - remove the head of materials
+                        relationships = self.assign_relationship_in_order(entities1[len(entities1) - len(entities2):],
+                                                                          entities2)
+                    else:
+                        ## Materials are coming before - remove the tail of tcs
+                        relationships = self.assign_relationship_in_order(entities1[0:-len(entities2) - len(entities1)],
+                                                                          entities2)
+                else:
+                    ## Too many tcs
+                    if entities1[0].idx < entities2[0].idx:
+                        ## Materials are coming before -> remove the tail of the tcs
+                        relationships = self.assign_relationship_in_order(entities1,
+                                                                          entities2[0:-len(entities2) - len(entities1)])
+                    else:
+                        ## Materials are coming after -> remove the head of tcs
+                        relationships = self.assign_relationship_in_order(entities1,
+                                                                          entities2[len(entities1) - len(entities2):])
 
             else:
+                assigned = []
                 # for each material I find the closest temperature who has not been assigned yet
                 material_tc_mapping = self.calculate_distances(entities1, entities2, doc)
 
@@ -111,6 +117,31 @@ class VicinityResolutionResolver(ResolutionResolver):
                             relationships.append(self.link_spans(material, tc))
                             assigned.append(material)
                             assigned.append(tc)
+
+        return relationships
+
+    def assign_relationship_in_order(self, entities1, entities2):
+        assigned = []
+        relationships = []
+
+        for material in entities1:
+            material_centroid = material.idx + (len(material) / 2)
+            sorted_tcValue = entities2
+
+            if len(entities2) > 1:
+                tc_values_wrapper = [(abs(material_centroid - (tc_val.idx + len(tc_val) / 2)), tc_val) for
+                                     tc_val in entities2]
+                sorted_tcValue_wrapper = sorted(tc_values_wrapper, key=itemgetter(0))
+                sorted_tcValue = [tc_val[1] for tc_val in sorted_tcValue_wrapper]
+
+            i = 0
+            while i < len(sorted_tcValue) - 1 and sorted_tcValue[i] in assigned:
+                i += 1
+
+            if sorted_tcValue[i] not in assigned:
+                assigned.append(sorted_tcValue[i])
+                assigned.append(material)
+                relationships.append((material, sorted_tcValue[i]))
 
         return relationships
 
