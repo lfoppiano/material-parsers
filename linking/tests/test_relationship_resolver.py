@@ -85,6 +85,56 @@ class TestVicinityResolutionResolver:
         assert str(relationships[0][0]) == "La 3 Ir 2 Ge 2"
         assert str(relationships[0][1]) == "4.7 K"
 
+    def test_vicinityResolution_respectively_3(self):
+        input = "Ba 1−x K x BiO 3−δ (BKBO) and BaPb 1−x Bi x O 3−δ (BPBO) are two such compounds that show T c 's " \
+                "of 30 K [1] and 13 K [2], respectively, with carrier concentrations as low as 2×10 " \
+                "21 cm −3 ."
+
+        spans = [("Ba 1−x K x BiO 3−δ (BKBO)", "material"), ("BaPb 1−x Bi x O 3−δ (BPBO)", "material"),
+                 ("T c", "tc"), ("30 K", "tcvalue"), ("13 K", "tcvalue")]
+
+        doc = prepare_doc(input, spans)
+
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+
+        relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
+        assert len(relationships) == 2
+
+        assert str(relationships[0][0]) == "Ba 1−x K x BiO 3−δ (BKBO)"
+        assert str(relationships[0][1]) == "30 K"
+
+        assert str(relationships[1][0]) == "BaPb 1−x Bi x O 3−δ (BPBO)"
+        assert str(relationships[1][1]) == "13 K"
+
+    def test_vicinityResolution_respectively_4(self):
+        input = "In this paper, we look at the Bi-based materials that have the chemical formula " \
+                "Bi 2 Sr 2 Ca n-1 Cu n O 2n+4 (BiSCCO) where n=1, 2, 3 gives the first three members of this " \
+                "class: Bi 2 Sr 2 CuO 6 , Bi 2 Sr 2 CaCu 2 O 8 and Bi 2 Sr 2 Ca 2 Cu 3 O 10 , with critical " \
+                "temperatures ( ) T c of 20 K, 85 K and 110 K respectively."
+
+        spans = [("Bi 2 Sr 2 Ca n-1 Cu n O 2n+4 (BiSCCO)", "material"),
+                 ("Bi 2 Sr 2 CuO 6", "material"), ("Bi 2 Sr 2 CaCu 2 O 8", "material"),
+                 ("Bi 2 Sr 2 Ca 2 Cu 3 O 10", "material"),
+                 ("T c", "tc"), ("20 K", "tcvalue"), ("85 K", "tcvalue"), ("110 K", "tcvalue")]
+
+        doc = prepare_doc(input, spans)
+
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+
+        relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
+        assert len(relationships) == 3
+
+        assert str(relationships[0][0]) == "Bi 2 Sr 2 CuO 6"
+        assert str(relationships[0][1]) == "20 K"
+
+        assert str(relationships[1][0]) == "Bi 2 Sr 2 CaCu 2 O 8"
+        assert str(relationships[1][1]) == "85 K"
+
+        assert str(relationships[2][0]) == "Bi 2 Sr 2 Ca 2 Cu 3 O 10"
+        assert str(relationships[2][1]) == "110 K"
+
     # def test_vicinityResolution_2(self):
     #     input = "The T C of the film differs from bulk YBCO [T C bulk ¼ 90:2 K (Ref. 22)] which is most likely " \
     #             "due to large lattice mismatches between the MgO substrate and the YBCO film, giving rise to slight " \
@@ -150,6 +200,78 @@ class TestVicinityResolutionResolver:
 
         assert str(relationships[1][0]) == "MnSi"
         assert str(relationships[1][1]) == "29 K"
+
+    def test_vicinityResolution_5(self):
+        input = "In fact, apart from the very recent discovery of the occurrence of a superconducting " \
+                "phase at 200 K in sulfur hydride systems under ultrahigh pressures (up to 150 GPa) , " \
+                "the highest T c materials found up until now can be grouped into two families: the " \
+                "cuprates, with T c of up to 164 K [5] (in HgBa 2 Ca 2 Cu 3 O 9 at 30 GPa), and " \
+                "Fe-pnictides and -chalcogenides (FPC) with T c of up to 55 K [6]."
+
+        spans = [("200 K", "tcvalue"), ("sulfur hydride", "material"), ("highest T c", "tc"),
+                 ("cuprates", "class"), ("T c", "tc"), ("up to 164 K", "tcvalue"),
+                 ("HgBa 2 Ca 2 Cu 3 O 9", "material"), ("Fe-pnictides and -chalcogenides", "class"),
+                 ("T c", "tc"), ("up to 55 K", "tcvalue")]
+
+        doc = prepare_doc(input, spans)
+
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+
+        relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
+
+        assert len(relationships) == 2
+        assert str(relationships[0][0]) == "sulfur hydride"
+        assert str(relationships[0][1]) == "200 K"
+
+        assert str(relationships[1][0]) == "HgBa 2 Ca 2 Cu 3 O 9"
+        assert str(relationships[1][1]) == "up to 164 K"
+
+    def test_vicinityResolution_6(self):
+        input = "Superconductivity has been discovered in metal diborides like MgB 2 (T c =39 K ), (Mo 0.96 Zr 0.04 ) " \
+                "0.85 B 2 (T c =8.2 K ), NbB 2 (T c =5.2 K [3]) and various other ternary borides ."
+
+        spans = [("MgB 2", "material"), ("T c", "tc"), ("39 K", "tcvalue"),
+                 ("(Mo 0.96 Zr 0.04 ) 0.85 B 2", "material"), ("T c", "tc"), ("8.2 K", "tcvalue"),
+                 ("NbB 2", "material"), ("T c", "tc"), ("5.2 K", "tcvalue")]
+
+        doc = prepare_doc(input, spans)
+
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+
+        relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
+        assert len(relationships) == 3
+
+        assert str(relationships[0][0]) == "MgB 2"
+        assert str(relationships[0][1]) == "39 K"
+
+        assert str(relationships[1][0]) == "(Mo 0.96 Zr 0.04 ) 0.85 B 2"
+        assert str(relationships[1][1]) == "8.2 K"
+
+        assert str(relationships[2][0]) == "NbB 2"
+        assert str(relationships[2][1]) == "5.2 K"
+
+    ## This test simulate that one of the entities is not extracted, unfortunately the result is wrong, but
+    ## there is not really way around it...
+    def test_vicinityResolution_respectively_missingEntities_1(self):
+        input = "Ba 1−x K x BiO 3−δ (BKBO) and BaPb 1−x Bi x O 3−δ (BPBO) are two such compounds that show T c 's " \
+                "of 30 K [1] and 13 K [2], respectively, with carrier concentrations as low as 2×10 " \
+                "21 cm −3 ."
+
+        spans = [("BaPb 1−x Bi x O 3−δ (BPBO)", "material"),
+                 ("T c", "tc"), ("30 K", "tcvalue"), ("13 K", "tcvalue")]
+
+        doc = prepare_doc(input, spans)
+
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+
+        relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
+        assert len(relationships) == 1
+
+        assert str(relationships[0][0]) == "BaPb 1−x Bi x O 3−δ (BPBO)"
+        assert str(relationships[0][1]) == "30 K"
 
 
     def test_find_closer_to_pivot(self):
@@ -256,7 +378,6 @@ class TestVicinityResolutionResolver:
         assert following is not None
         assert following.text == "La (Tl 1−x Pb x ) 3"
 
-
     def test_calculate_distances(self):
         input = "Havinga et al systematically changed n from 3.00 to 4.00 by synthesizing LaTl 3" \
                 " (n=3.00, T c =1.6 K), LaPb 3 (n=3.75, T c =4.1 K), and " \
@@ -280,7 +401,6 @@ class TestVicinityResolutionResolver:
         assert len(distances) == 5
         assert distances[materials[0]][tc_values[0]] == 4.0
         assert distances[materials[1]][tc_values[1]] == 4.0
-
 
     def test_calculate_distances_2(self):
         input = "Havinga et al systematically changed n from 3.00 to 4.00 by synthesizing LaTl 3. " \
