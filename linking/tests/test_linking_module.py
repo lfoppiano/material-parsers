@@ -96,6 +96,20 @@ class TestLinkingModule:
         assert len(tcValues) == 1
         assert tcValues[0].text == "4.7 K"
 
+    def test_markCriticalTemperature_respectively_1(self):
+        input = "The T C values for YBCO + BSO2%, YBCO + BSO2% + YOA, and YBCO + BSO2% + YOB fi lms are 89.7 K, 86.7 K, and 89.7 K respectively"
+
+        spans = [("T C", "tc"),
+                 ("YBCO + BSO2%", "material"), ("YBCO + BSO2% + YOA", "material"), ("YBCO + BSO2% + YOB", "material"),
+                 ("89.7 K", "tcvalue"), ("86.7 K", "tcvalue"), ("89.7 K", "tcvalue")]
+
+        doc = prepare_doc(input, spans)
+        doc2 = markCriticalTemperature(doc)
+
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc2)]
+
+        assert len(tcValues) == 3
+
     def test_get_sentence_boundaries(self):
         input = "The relatively high superconducting transition tempera- ture in La 3 Ir 2 Ge 2 is noteworthy. " \
                 "Recently, the isostructural compound La 3 Rh 2 Ge 2 was reported to be a superconducting material " \
@@ -118,3 +132,5 @@ class TestLinkingModule:
         boundaries = get_sentence_boundaries_pysbd(words, spaces)
 
         assert len(boundaries) == 6
+
+

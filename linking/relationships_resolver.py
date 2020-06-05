@@ -120,27 +120,30 @@ class VicinityResolutionResolver(ResolutionResolver):
             ## too many materials, needs to get rid of some of them...
             if entities1[0].idx < entities2[0].idx:
                 ## Materials are coming before - remove the head of materials
-                relationships = self.assign_relationship_in_order(entities1[len(entities1) - len(entities2):],
+                relationships = self.assign_relationship_in_order(entities1[-len(entities2):],
                                                                   entities2)
             else:
                 ## Materials are coming before - remove the tail of tcs
-                relationships = self.assign_relationship_in_order(entities1[0:-len(entities2) - len(entities1)],
+                relationships = self.assign_relationship_in_order(entities1[0:len(entities2)],
                                                                   entities2)
         else:
             ## Too many tcs
             if entities1[0].idx < entities2[0].idx:
                 ## Materials are coming before -> remove the tail of the tcs
                 relationships = self.assign_relationship_in_order(entities1,
-                                                                  entities2[0:-len(entities2) - len(entities1)])
+                                                                  entities2[0:len(entities1)])
             else:
                 ## Materials are coming after -> remove the head of tcs
                 relationships = self.assign_relationship_in_order(entities1,
-                                                                  entities2[len(entities1) - len(entities2):])
+                                                                  entities2[-len(entities1):])
         return relationships
 
     def assign_relationship_in_order(self, entities1, entities2):
         assigned = []
         relationships = []
+
+        if len(entities1) == 0 or len(entities2) == 0:
+            return relationships
 
         for material in entities1:
             material_centroid = material.idx + (len(material) / 2)
