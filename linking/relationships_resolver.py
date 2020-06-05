@@ -54,31 +54,20 @@ class VicinityResolutionResolver(ResolutionResolver):
             ## If 'respectively' is happearing in the sentence, we need to go in order, rather by absolute distance
             if 'respectively' in str(doc):
 
-                ## for each material I assign each material to each Tcs, in order of appearance
-                if len(entities1) == len(entities2):
-                    ## Same materials and Tcs, go athead as planned..
-                    relationships = self.assign_relationship_in_order(entities1, entities2)
+                ## Find position and how many 'respectively' are present
 
-                elif len(entities1) > len(entities2):
-                    ## too many materials, needs to get rid of some of them...
-                    if entities1[0].idx < entities2[0].idx:
-                        ## Materials are coming before - remove the head of materials
-                        relationships = self.assign_relationship_in_order(entities1[len(entities1) - len(entities2):],
-                                                                          entities2)
-                    else:
-                        ## Materials are coming before - remove the tail of tcs
-                        relationships = self.assign_relationship_in_order(entities1[0:-len(entities2) - len(entities1)],
-                                                                          entities2)
+                respectively_tokens = [token for token in doc if str(token) == 'respectively']
+                if len(respectively_tokens) == 1:
+                    relationships.extend(self.assign_in_order(entities1, entities2))
                 else:
-                    ## Too many tcs
-                    if entities1[0].idx < entities2[0].idx:
-                        ## Materials are coming before -> remove the tail of the tcs
-                        relationships = self.assign_relationship_in_order(entities1,
-                                                                          entities2[0:-len(entities2) - len(entities1)])
-                    else:
-                        ## Materials are coming after -> remove the head of tcs
-                        relationships = self.assign_relationship_in_order(entities1,
-                                                                          entities2[len(entities1) - len(entities2):])
+                    previous_index = 0
+                    for respectively_token in respectively_tokens:
+                        entities1_reduced = [token for token in entities1 if
+                                             respectively_token.i > token.i > previous_index]
+                        entities2_reduced = [token for token in entities2 if
+                                             respectively_token.i > token.i > previous_index]
+                        relationships.extend(self.assign_in_order(entities1_reduced, entities2_reduced))
+                        previous_index = respectively_token.i
 
             else:
                 assigned = []
@@ -120,6 +109,35 @@ class VicinityResolutionResolver(ResolutionResolver):
 
         return relationships
 
+    def assign_in_order(self, entities1, entities2):
+        relationships = []
+        ## for each material I assign each material to each Tcs, in order of appearance
+        if len(entities1) == len(entities2):
+            ## Same materials and Tcs, go athead as planned..
+            relationships = self.assign_relationship_in_order(entities1, entities2)
+
+        elif len(entities1) > len(entities2):
+            ## too many materials, needs to get rid of some of them...
+            if entities1[0].idx < entities2[0].idx:
+                ## Materials are coming before - remove the head of materials
+                relationships = self.assign_relationship_in_order(entities1[len(entities1) - len(entities2):],
+                                                                  entities2)
+            else:
+                ## Materials are coming before - remove the tail of tcs
+                relationships = self.assign_relationship_in_order(entities1[0:-len(entities2) - len(entities1)],
+                                                                  entities2)
+        else:
+            ## Too many tcs
+            if entities1[0].idx < entities2[0].idx:
+                ## Materials are coming before -> remove the tail of the tcs
+                relationships = self.assign_relationship_in_order(entities1,
+                                                                  entities2[0:-len(entities2) - len(entities1)])
+            else:
+                ## Materials are coming after -> remove the head of tcs
+                relationships = self.assign_relationship_in_order(entities1,
+                                                                  entities2[len(entities1) - len(entities2):])
+        return relationships
+
     def assign_relationship_in_order(self, entities1, entities2):
         assigned = []
         relationships = []
@@ -141,7 +159,7 @@ class VicinityResolutionResolver(ResolutionResolver):
             if sorted_tcValue[i] not in assigned:
                 assigned.append(sorted_tcValue[i])
                 assigned.append(material)
-                relationships.append((material, sorted_tcValue[i]))
+                relationships.append(self.link_spans(material, sorted_tcValue[i]))
 
         return relationships
 
