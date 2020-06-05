@@ -251,65 +251,78 @@ def markCriticalTemperature(doc):
     marked_as_tc = []
     marked_as_non_tc = []
 
-    for index_t, temp in enumerate(temps):
-        if temp in marked_as_tc:
-            continue
+    if 'respectively' in str(doc):
+        if len(tc_expressions) > 0:
+            respectively_tokens = [token for token in doc if str(token) == 'respectively']
+            if len(respectively_tokens) == 1:
+                temps_before_respectively = [token for token in temps if respectively_tokens[0].i > token.i]
+                marked_as_tc.extend(temps_before_respectively)
+            else:
+                temps_before_respectively = [token for token in temps if
+                                             respectively_tokens[len(respectively_tokens) - 1].i > token.i]
 
-        ## Ignore any temperature in Celsius
-        if not str.lower(str.rstrip(temp.text)).endswith("k"):
-            continue
+                marked_as_tc.extend(temps_before_respectively)
+    else:
 
-        ## search for nonTC espressions after the temperature
-        for non_tc in non_tc_expressions_after:
-            if temp.i + 1 < len(doc) and doc[temp.i + 1].text == non_tc:
-                marked_as_non_tc.append(temp)
-                break
+        for index_t, temp in enumerate(temps):
+            if temp in marked_as_tc:
+                continue
 
-        if temp in marked_as_non_tc:
-            continue
+            ## Ignore any temperature in Celsius
+            if not str.lower(str.rstrip(temp.text)).endswith("k"):
+                continue
 
-        for non_tc in non_tc_expressions_before:
-            if temp.i - len(non_tc.split(" ")) > 0 and doc[temp.i - len(non_tc.split(" ")):temp.i].text == non_tc:
-                marked_as_non_tc.append(temp)
-                break
+            ## search for nonTC espressions after the temperature
+            for non_tc in non_tc_expressions_after:
+                if temp.i + 1 < len(doc) and doc[temp.i + 1].text == non_tc:
+                    marked_as_non_tc.append(temp)
+                    break
 
-        if temp in marked_as_non_tc:
-            continue
+            if temp in marked_as_non_tc:
+                continue
 
-        ## search for tc espressions just before the temperature
+            for non_tc in non_tc_expressions_before:
+                if temp.i - len(non_tc.split(" ")) > 0 and doc[temp.i - len(non_tc.split(" ")):temp.i].text == non_tc:
+                    marked_as_non_tc.append(temp)
+                    break
 
-        for tc in tc_expressions_before:
-            if temp.i - len(tc.split(" ")) > 0 and doc[temp.i - len(tc.split(" ")):temp.i].text == tc:
-                marked_as_tc.append(temp)
-                # temp.ent_type_ = "temperature-tc"
-                break
+            if temp in marked_as_non_tc:
+                continue
 
-            if temp.i - len(tc.split(" ")) - 1 > 0 and doc[temp.i - len(tc.split(" ")) - 1:temp.i - 1].text == tc:
-                marked_as_tc.append(temp)
-                # temp.ent_type_ = "temperature-tc"
-                break
+            ## search for tc espressions just before the temperature
 
-        if temp in marked_as_tc:
-            continue
-
-        ## search for dynamic tc expressions
-
-        for tc in tc_expressions:
-            # If it's found in the tc_expressions it was merged as a single expression
-            expression_lenght = 1
-
-            start = temp.i
-            previous_temp_index = temps[index_t - 1].i if index_t > 0 else 0
-            index = start - expression_lenght
-            while index > max(0, previous_temp_index):
-
-                if doc[index: start].text == tc.text:
+            for tc in tc_expressions_before:
+                if temp.i - len(tc.split(" ")) > 0 and doc[temp.i - len(tc.split(" ")):temp.i].text == tc:
                     marked_as_tc.append(temp)
                     # temp.ent_type_ = "temperature-tc"
                     break
 
-                start -= 1
+                if temp.i - len(tc.split(" ")) - 1 > 0 and doc[temp.i - len(tc.split(" ")) - 1:temp.i - 1].text == tc:
+                    marked_as_tc.append(temp)
+                    # temp.ent_type_ = "temperature-tc"
+                    break
+
+            if temp in marked_as_tc:
+                continue
+
+            ## search for dynamic tc expressions
+
+            for tc in tc_expressions:
+                # If it's found in the tc_expressions it was merged as a single expression
+                expression_lenght = 1
+
+                start = temp.i
+                previous_temp_index = temps[index_t - 1].i if index_t > 0 else 0
                 index = start - expression_lenght
+                while index > max(0, previous_temp_index):
+
+                    if doc[index: start].text == tc.text:
+                        marked_as_tc.append(temp)
+                        # temp.ent_type_ = "temperature-tc"
+                        break
+
+                    start -= 1
+                    index = start - expression_lenght
 
     for temp in marked_as_tc:
         temp.ent_type_ = "temperature-tc"
@@ -514,6 +527,7 @@ def get_sentence_boundaries(words, spaces):
 
     return sentence_offsetTokens
 
+
 def get_sentence_boundaries_pysbd(words, spaces):
     offset = 0
     reconstructed = ''
@@ -538,7 +552,6 @@ def get_sentence_boundaries_pysbd(words, spaces):
             offset += 1
 
     return sentence_offsetTokens
-
 
 
 def get_sentence_boundaries_spacy(words, spaces):
