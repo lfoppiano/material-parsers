@@ -220,32 +220,51 @@ class VicinityResolutionResolver(ResolutionResolver):
                 previous_material = self.find_previous_entity(tc_value, materials)
                 following_material = self.find_following_entity(tc_value, materials)
 
-                if previous_material is not None and following_material is not None and \
-                    any(item in str(doc[previous_material.i + 1: tc_value.i - 1]) for item in OPENING_PARENTHESIS) and \
-                    any(item in str(doc[tc_value.i + 1:following_material.i - 1]) for item in CLOSING_PARENTHESIS):
+                if previous_material is None:
+                    previous_material_index = -1
+                else:
+                    previous_material_index = previous_material.i
+
+                if following_material is None:
+                    following_material_index = len(doc)
+                else:
+                    following_material_index = following_material.i
+
+                # Find out if the opened parenthesis appearing between this tc and the previous material matches
+                # the closed parenthesis appearing between this tc and the next material
+                any_opened_parenthesis = [item for item in OPENING_PARENTHESIS if
+                                          item in str(doc[previous_material_index + 1: tc_value.i - 1])]
+                any_closed_parenthesis = [item for item in CLOSING_PARENTHESIS if
+                                          item in str(doc[tc_value.i + 1:following_material_index - 1])]
+
+                couple_of_parenthesis = [opened for opened in any_opened_parenthesis if CLOSING_PARENTHESIS[
+                    OPENING_PARENTHESIS.index(opened)] in any_closed_parenthesis]
+
+                if len(couple_of_parenthesis) > 0:
                     # doc[previous_material.i + 1: following_material.i - 1].merge()
 
-                    starting_token = [token for token in doc[previous_material.i + 1: tc_value.i - 1] if
+                    starting_token = [token for token in doc[previous_material_index + 1: tc_value.i - 1] if
                                       str(token) in OPENING_PARENTHESIS][0]
-                    ending_token = [token for token in doc[tc_value.i + 1:following_material.i - 1] if
+                    ending_token = [token for token in doc[tc_value.i + 1:following_material_index - 1] if
                                     str(token) in CLOSING_PARENTHESIS][-1]
 
                     tc_distances[tc_value] = abs(pivot_centroid - starting_token.idx +
-                                                 len(str(doc[ending_token.i: ending_token.i])) / 2)
+                                                 len(str(doc[starting_token.i: ending_token.i])) / 2)
 
-                    ## Adding penalties to distance on predicates separated by commas or other punctuation
+                    # Extracting the chunk of text between the material and the updated tcvalue
                     if material.i < tc_value.i:
-                        chunk = str(doc[material.i: starting_token.i])
+                        chunk = str(doc[material.i + 1: starting_token.i])
                     else:
-                        chunk = str(doc[ending_token.i + 1: material.i - 1])
+                        chunk = str(doc[ending_token.i + 1: material.i])
                 else:
                     tc_distances[tc_value] = abs(pivot_centroid - (tc_value.idx + len(tc_value) / 2))
-                    ## Adding penalties to distance on predicates separated by commas or other punctuation
                     if material.i < tc_value.i:
-                        chunk = str(doc[material.i + 1: tc_value.i - 1])
+                        chunk = str(doc[material.i + 1: tc_value.i])
                     else:
-                        chunk = str(doc[tc_value.i + 1: material.i - 2])
+                        chunk = str(doc[tc_value.i + 1: material.i])
 
+                # Adding penalties in the distances, when the chunk of text in between, contains
+                # commas or other punctuation
                 if any(item in chunk for item in self.separators):
                     tc_distances[tc_value] *= 2
 
