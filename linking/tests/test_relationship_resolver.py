@@ -252,6 +252,30 @@ class TestVicinityResolutionResolver:
         assert str(relationships[2][0]) == "NbB 2"
         assert str(relationships[2][1]) == "5.2 K"
 
+    def test_vicinityResolution_missingOneEntity_1(self):
+        input = "Superconductivity has been discovered in metal diborides like MgB 2 (T c =39 K ), (Mo 0.96 Zr 0.04 ) " \
+                "0.85 B 2 (T c =8.2 K ), NbB 2 (T c =5.2 K [3]) and various other ternary borides ."
+
+        spans = [("MgB 2", "material"), ("T c", "tc"),
+                 ("(Mo 0.96 Zr 0.04 ) 0.85 B 2", "material"), ("T c", "tc"), ("8.2 K", "tcvalue"),
+                 ("NbB 2", "material"), ("T c", "tc"), ("5.2 K", "tcvalue")]
+
+        doc = prepare_doc(input, spans)
+
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+
+        relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
+        assert len(relationships) == 2
+
+        assert str(relationships[0][0]) == "(Mo 0.96 Zr 0.04 ) 0.85 B 2"
+        assert str(relationships[0][1]) == "8.2 K"
+
+        assert str(relationships[1][0]) == "NbB 2"
+        assert str(relationships[1][1]) == "5.2 K"
+
+
+
     ## This test simulate that one of the entities is not extracted, unfortunately the result is wrong, but
     ## there is not really way around it...
     def test_vicinityResolution_respectively_missingEntities_1(self):
@@ -399,8 +423,9 @@ class TestVicinityResolutionResolver:
         distances = target.calculate_distances(materials, tc_values, doc)
 
         assert len(distances) == 5
-        assert distances[materials[0]][tc_values[0]] == 4.0
-        assert distances[materials[1]][tc_values[1]] == 4.0
+        assert distances[materials[0]][tc_values[0]] == 7.5
+        assert distances[materials[1]][tc_values[1]] == 7.5
+        assert distances[materials[2]][tc_values[2]] == 18
 
     def test_calculate_distances_2(self):
         input = "Havinga et al systematically changed n from 3.00 to 4.00 by synthesizing LaTl 3. " \
