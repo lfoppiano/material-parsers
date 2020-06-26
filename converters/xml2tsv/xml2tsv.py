@@ -129,6 +129,7 @@ def processFile(finput, foutput):
         source_entity_id = dic_source_relationships[par_num, token_num][1]
         label = dic_source_relationships[par_num, token_num][2]
 
+        ## TODO: implement a smarter approach that verify the source and destination
         if str.lower(label) == 'tcvalue':
             relationship_name = 'material-tc'
         elif str.lower(label) == 'pressure':
