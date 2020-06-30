@@ -7,6 +7,58 @@ LOGGER = logging.getLogger(__name__)
 
 
 class TestLinkingModule:
+    def test_markCriticalTemperature_simple_1(self):
+        input = "The Tc of the BaClE2 is 30K."
+
+        spans = [("Tc", "tc"), ("BaClE2", "material"), ("30K", "tcvalue")]
+
+        doc = prepare_doc(input, spans)
+        doc2 = markCriticalTemperature(doc)
+
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc2)]
+
+        assert len(tcValues) == 1
+        assert tcValues[0].text == "30K"
+
+    def test_markCriticalTemperature_simple_2(self):
+        input = "The material BaClE2 superconducts at 30K."
+
+        spans = [("BaClE2", "material"), ("superconducts", "tc"), ("30K", "tcvalue")]
+
+        doc = prepare_doc(input, spans)
+        doc2 = markCriticalTemperature(doc)
+
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc2)]
+
+        assert len(tcValues) == 1
+        assert tcValues[0].text == "30K"
+
+    def test_markCriticalTemperature_simple_3(self):
+        input = "We are explaining some important notions. The material BaClE2 superconducts at 30K. What about going for a beer?"
+
+        spans = [("Tc", "tc"), ("BaClE2", "material"), ("30K", "tcvalue")]
+
+        doc = prepare_doc(input, spans)
+        doc2 = markCriticalTemperature(doc)
+
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc2)]
+
+        assert len(tcValues) == 1
+        assert tcValues[0].text == "30K"
+
+    def test_markCriticalTemperature_simple_4(self):
+        input = "The material BaClE2 has Tc at 30K."
+
+        spans = [("BaClE2", "material"), ("Tc", "tc"), ("30K", "tcvalue")]
+
+        doc = prepare_doc(input, spans)
+        doc2 = markCriticalTemperature(doc)
+
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc2)]
+
+        assert len(tcValues) == 1
+        assert tcValues[0].text == "30K"
+
     def test_markCriticalTemperature_1(self):
         input = "We also plot in values of U 0 obtained from flux-creep in a BaFe 2−x Ni x As 2 crystal with " \
                 "similar T c for H c-axis at T = 8 K and for H ab-planes at T = 13 K."
@@ -80,7 +132,6 @@ class TestLinkingModule:
 
         assert len(tcValues) == 0
 
-
     def test_markCriticalTemperature_relative_critical_temperature_2(self):
         input = "The critical temperature T C = 4.7 K discovered for La 3 Ir 2 Ge 2 in this work is by about 1.2 K " \
                 "higher than that found for La 3 Rh 2 Ge 2 ."
@@ -95,6 +146,19 @@ class TestLinkingModule:
 
         assert len(tcValues) == 1
         assert tcValues[0].text == "4.7 K"
+
+    def test_markCriticalTemperature_relative_critical_temperature_3(self):
+        input = "The material BaClE2 has Tc at 30K higher than 77K."
+
+        spans = [("BaClE2", "material"), ("Tc", "tc"), ("30K", "tcvalue")]
+
+        doc = prepare_doc(input, spans)
+        doc2 = markCriticalTemperature(doc)
+
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc2)]
+
+        assert len(tcValues) == 0
+
 
     def test_markCriticalTemperature_respectively_1(self):
         input = "The T C values for YBCO + BSO2%, YBCO + BSO2% + YOA, and YBCO + BSO2% + YOB fi lms are 89.7 K, 86.7 K, and 89.7 K respectively"
@@ -132,5 +196,3 @@ class TestLinkingModule:
         boundaries = get_sentence_boundaries_pysbd(words, spaces)
 
         assert len(boundaries) == 6
-
-
