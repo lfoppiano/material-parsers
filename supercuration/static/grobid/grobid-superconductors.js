@@ -334,67 +334,69 @@ var grobid = (function ($) {
                 var spans = paragraph.spans;
                 // hey bro, this must be asynchronous to avoid blocking the brothers
 
-                spans.forEach(function (span, spanIdx) {
-                    spansMap[span.id] = span;
-                    var entity_type = span['type'];
+                if (spans) {
+                    spans.forEach(function (span, spanIdx) {
+                        spansMap[span.id] = span;
+                        var entity_type = span['type'].replace("<", "").replace(">", "");
 
-                    var theUrl = null;
-                    var boundingBoxes = span.boundingBoxes;
-                    if ((boundingBoxes != null) && (boundingBoxes.length > 0)) {
-                        boundingBoxes.forEach(function (boundingBox, positionIdx) {
-                            // console.log(positionIdx)
-                            // get page information for the annotation
-                            var pageNumber = boundingBox.page;
-                            if (pageInfo[pageNumber - 1]) {
-                                page_height = pageInfo[pageNumber - 1].page_height;
-                                page_width = pageInfo[pageNumber - 1].page_width;
-                            }
-                            // let annotationId = 'annot_span-' + spanIdx + '-' + positionIdx;
-                            let annotationId = span.id;
-                            annotateSpan(boundingBox, theUrl, page_height, page_width, annotationId, positionIdx, entity_type);
-                        });
-                    }
-                    spanGlobalIndex++;
-                });
-
-
-                spans.forEach(function (span, spanIdx) {
-                    if (span.links !== undefined && span.links.length > 0) {
-                        copyButtonElement.show();
-                        span.links.forEach(function (link, linkIdx) {
-                            let link_entity = spansMap[link[0]];
-                            let tcValue_text = link_entity.text;
-                            span['tc'] = tcValue_text;
-
-                            let {row_id, element_id, mat_element_id, tc_element_id, html_code} =
-                                createRowHtml(span.id, span.text, tcValue_text, true);
-
-                            $('#tableResultsBody').append(html_code);
-
-                            // in case of multiple bounding boxes, we will have multiple IDs, in this case we can point
-                            // to the first box
-                            $("#" + element_id).bind('click', span.id + "0", goToByScroll);
-                            $("#" + mat_element_id).editable();
-                            $("#" + tc_element_id).editable();
-                            appendRemoveButton(row_id);
-
-                            let paragraph_popover = annotateTextAsHtml(paragraph.text, [span, link_entity]);
-
-                            $("#" + row_id).popover({
-                                content: function () {
-                                    return paragraph_popover;
-                                },
-                                html: true,
-                                // container: 'body',
-                                trigger: 'hover',
-                                placement: 'top',
-                                animation: true
+                        var theUrl = null;
+                        var boundingBoxes = span.boundingBoxes;
+                        if ((boundingBoxes != null) && (boundingBoxes.length > 0)) {
+                            boundingBoxes.forEach(function (boundingBox, positionIdx) {
+                                // console.log(positionIdx)
+                                // get page information for the annotation
+                                var pageNumber = boundingBox.page;
+                                if (pageInfo[pageNumber - 1]) {
+                                    page_height = pageInfo[pageNumber - 1].page_height;
+                                    page_width = pageInfo[pageNumber - 1].page_width;
+                                }
+                                // let annotationId = 'annot_span-' + spanIdx + '-' + positionIdx;
+                                let annotationId = span.id;
+                                annotateSpan(boundingBox, theUrl, page_height, page_width, annotationId, positionIdx, entity_type);
                             });
+                        }
+                        spanGlobalIndex++;
+                    });
 
-                            linkId++;
-                        });
-                    }
-                })
+
+                    spans.forEach(function (span, spanIdx) {
+                        if (span.links !== undefined && span.links.length > 0) {
+                            copyButtonElement.show();
+                            span.links.forEach(function (link, linkIdx) {
+                                let link_entity = spansMap[link[0]];
+                                let tcValue_text = link_entity.text;
+                                span['tc'] = tcValue_text;
+
+                                let {row_id, element_id, mat_element_id, tc_element_id, html_code} =
+                                    createRowHtml(span.id, span.text, tcValue_text, true);
+
+                                $('#tableResultsBody').append(html_code);
+
+                                // in case of multiple bounding boxes, we will have multiple IDs, in this case we can point
+                                // to the first box
+                                $("#" + element_id).bind('click', span.id + "0", goToByScroll);
+                                $("#" + mat_element_id).editable();
+                                $("#" + tc_element_id).editable();
+                                appendRemoveButton(row_id);
+
+                                let paragraph_popover = annotateTextAsHtml(paragraph.text, [span, link_entity]);
+
+                                $("#" + row_id).popover({
+                                    content: function () {
+                                        return paragraph_popover;
+                                    },
+                                    html: true,
+                                    // container: 'body',
+                                    trigger: 'hover',
+                                    placement: 'top',
+                                    animation: true
+                                });
+
+                                linkId++;
+                            });
+                        }
+                    })
+                }
             });
         }
 
@@ -516,7 +518,7 @@ var grobid = (function ($) {
                 var start = parseInt(annotation.offsetStart, 10);
                 var end = parseInt(annotation.offsetEnd, 10);
 
-                var type = annotation.type;
+                var type = annotation.type.replace("<", "").replace(">", "");
 
                 outputString += inputText.substring(pos, start)
                     + ' <span id="annot_supercon-' + annotationIdx + '" rel="popover" data-color="interval">'
@@ -536,7 +538,8 @@ var grobid = (function ($) {
             var string = "";
             var first = true;
 
-            colorLabel = entity.type;
+            var type = span.type.replace("<", "").replace(">", "");
+            colorLabel = type;
             var text = entity.text;
             var formattedText = entity.formattedText;
             var type = entity.type;

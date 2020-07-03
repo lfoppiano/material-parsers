@@ -49,6 +49,10 @@ def process_pdf():
     new_paragraphs = []
     paragraphs = result_json['paragraphs']
     for index, paragraph in enumerate(paragraphs):
+        if 'spans' not in paragraph:
+            new_paragraphs.append(paragraph)
+            continue
+
         extracted_data_from_paragraphs = process_paragraph(paragraph)
         for sentence in extracted_data_from_paragraphs:
             new_paragraphs.append(sentence)

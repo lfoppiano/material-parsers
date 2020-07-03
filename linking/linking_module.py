@@ -1,4 +1,5 @@
 import copy
+import json
 
 import pysbd
 import spacy
@@ -40,7 +41,7 @@ def convert_to_spacy2(tokens):
     return outputTokens, outputSpaces
 
 
-def convert_to_spacy(tokens: dict, spans):
+def convert_to_spacy(tokens, spans):
     outputTokens = []
     outputSpaces = []
     outputSpans = []
@@ -174,11 +175,7 @@ def filter_spans(spans):
     return result
 
 
-def process_paragraph(paragraph):
-    text_ = paragraph['text']
-    spans_ = paragraph['spans']
-    tokens_ = paragraph['tokens']
-
+def process(text_, spans_, tokens_):
     ## Convert tokens from GROBID tokenisation
     words, spaces, spans_remapped = convert_to_spacy(tokens_, spans_)
     # print(spans_remapped)
@@ -211,8 +208,8 @@ def process_paragraph(paragraph):
         cumulatedIndex += len(words_boundary)
         cumulatedOffset += len(text)
 
-        materials = list(filter(lambda w: w['type'] in ['material'], spans_boundary))
-        temperatures = list(filter(lambda w: w['type'] in ['temperature', 'tcvalue'], spans_boundary))
+        materials = list(filter(lambda w: w['type'] in ['<material>'], spans_boundary))
+        temperatures = list(filter(lambda w: w['type'] in ['<tcValue>', '<tcvalue>'], spans_boundary))
 
         ## POST-PROCESS Material names
         # materials = post_process(materials)
@@ -233,9 +230,22 @@ def process_paragraph(paragraph):
     return output_data
 
 
+def process_paragraph(paragraph):
+    text_ = paragraph['text']
+    spans_ = paragraph['spans']
+    tokens_ = paragraph['tokens']
+
+    return process(text_, spans_, tokens_)
+
+
+def process_paragraph_json(paragraph_json):
+    paragraph = json.loads(paragraph_json)
+    return json.dumps(process_paragraph(paragraph))
+
+
 def markCriticalTemperature(doc):
-    temps = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature', 'tcvalue'], doc)]
-    tc_expressions = [entity for entity in filter(lambda w: w.ent_type_ in ['tc'], doc)]
+    temps = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature>', '<tcvalue>', '<tcValue>'], doc)]
+    tc_expressions = [entity for entity in filter(lambda w: w.ent_type_ in ['<tc>'], doc)]
 
     tc_expressions_standard = ["T c", "Tc", "tc", "t c"]
 
@@ -325,7 +335,7 @@ def markCriticalTemperature(doc):
                     index = start - expression_lenght
 
     for temp in marked_as_tc:
-        temp.ent_type_ = "temperature-tc"
+        temp.ent_type_ = "<temperature-tc>"
         # print(temp.text, temp.ent_type_)
     return doc
 
@@ -355,8 +365,8 @@ def process_sentence(words, spaces, spans):
     ## 1 simple approach (when only one temperature and one material)
     resolver = SimpleResolutionResolver()
 
-    materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-    tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['temperature-tc'], doc)]
+    materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+    tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc)]
 
     relationships = resolver.find_relationships(materials, tcValues)
 
@@ -495,13 +505,13 @@ def span_to_dict(span):
 
 
 def entities_classes():
-    return ['material', 'class', 'temperature', 'tc',
-            'tcValue', 'tcvalue', 'pressure', 'me_method',
-            'material-tc', 'temperature-tc']
+    return ['<material>', '<class>', '<temperature>', '<tc>',
+            '<tcValue>', '<tcvalue>', '<pressure>', '<me_method>',
+            '<material-tc>', '<temperature-tc>']
 
 
 def collect_relationships(relationships, type):
-    return [(span_to_dict(re[0]), span_to_dict(re[1]), type) for re in relationships]
+    return [{"type": type, "left": span_to_dict(re[0]), "right": span_to_dict(re[1])} for re in relationships]
 
 
 def get_sentence_boundaries(words, spaces):
