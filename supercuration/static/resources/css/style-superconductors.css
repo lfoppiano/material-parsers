@@ -30,6 +30,10 @@
     background-color: #356635;
 }
 
+.info-sense-box.tcValue {
+    background-color: #356635;
+}
+
 .info-sense-box.temperature-tc {
     background-color: #83ff83;
 }
@@ -72,6 +76,10 @@
 }
 
 .label.temperature {
+    background-color: #356635;
+}
+
+.label.tcValue {
     background-color: #356635;
 }
 
@@ -118,6 +126,10 @@
 }
 
 .area.temperature {
+    border-color: #356635 !important;
+}
+
+.area.tcValue {
     border-color: #356635 !important;
 }
 

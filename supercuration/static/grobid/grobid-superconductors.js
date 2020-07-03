@@ -538,11 +538,10 @@ var grobid = (function ($) {
             var string = "";
             var first = true;
 
-            var type = span.type.replace("<", "").replace(">", "");
+            var type = entity.type.replace("<", "").replace(">", "");
             colorLabel = type;
             var text = entity.text;
             var formattedText = entity.formattedText;
-            var type = entity.type;
 
             string += "<div class='info-sense-box ___TYPE___'";
             if (topPos !== -1)
