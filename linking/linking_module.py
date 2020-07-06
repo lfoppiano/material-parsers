@@ -324,7 +324,7 @@ def markCriticalTemperature(doc):
                 start = temp.i
                 previous_temp_index = temps[index_t - 1].i if index_t > 0 else 0
                 index = start - expression_lenght
-                while index > max(0, previous_temp_index):
+                while index >= max(0, previous_temp_index):
 
                     if doc[index: start].text == tc.text:
                         marked_as_tc.append(temp)

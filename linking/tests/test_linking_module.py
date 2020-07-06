@@ -63,7 +63,8 @@ class TestLinkingModule:
         input = "We also plot in values of U 0 obtained from flux-creep in a BaFe 2−x Ni x As 2 crystal with " \
                 "similar T c for H c-axis at T = 8 K and for H ab-planes at T = 13 K."
 
-        spans = [("BaFe 2−x Ni x As 2 crystal", "<material>"), ("T c", "<tc>"), ("8 K", "<tcValue>"), ("13 K", "<tcValue>")]
+        spans = [("BaFe 2−x Ni x As 2 crystal", "<material>"), ("T c", "<tc>"), ("8 K", "<tcValue>"),
+                 ("13 K", "<tcValue>")]
         doc = prepare_doc(input, spans)
 
         doc2 = markCriticalTemperature(doc)
@@ -136,7 +137,8 @@ class TestLinkingModule:
         input = "The critical temperature T C = 4.7 K discovered for La 3 Ir 2 Ge 2 in this work is by about 1.2 K " \
                 "higher than that found for La 3 Rh 2 Ge 2 ."
 
-        spans = [("critical temperature", "<tc>"), ("T C", "<tc>"), ("4.7 K", "<tcValue>"), ("La 3 Ir 2 Ge 2", "<material>"),
+        spans = [("critical temperature", "<tc>"), ("T C", "<tc>"), ("4.7 K", "<tcValue>"),
+                 ("La 3 Ir 2 Ge 2", "<material>"),
                  ("La 3 Rh 2 Ge 2", "<material>")]
 
         doc = prepare_doc(input, spans)
@@ -164,7 +166,8 @@ class TestLinkingModule:
         input = "The T C values for YBCO + BSO2%, YBCO + BSO2% + YOA, and YBCO + BSO2% + YOB fi lms are 89.7 K, 86.7 K, and 89.7 K respectively"
 
         spans = [("T C", "<tc>"),
-                 ("YBCO + BSO2%", "<material>"), ("YBCO + BSO2% + YOA", "<material>"), ("YBCO + BSO2% + YOB", "<material>"),
+                 ("YBCO + BSO2%", "<material>"), ("YBCO + BSO2% + YOA", "<material>"),
+                 ("YBCO + BSO2% + YOB", "<material>"),
                  ("89.7 K", "<tcValue>"), ("86.7 K", "<tcValue>"), ("89.7 K", "<tcValue>")]
 
         doc = prepare_doc(input, spans)
@@ -173,6 +176,30 @@ class TestLinkingModule:
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
 
         assert len(tcValues) == 3
+
+        assert tcValues[0].text == "89.7 K"
+        assert tcValues[1].text == "86.7 K"
+        assert tcValues[2].text == "89.7 K"
+
+    ## This test follows the current implementation, where we cannot say whether the Tc at the beginning of the sentence
+    ## refers also to the value in the middle (38K)
+    def test_markCriticalTemperature_complex_case(self):
+        input = "Tc varies from 2.7 K in CsFe2As2 to 38 K in A1−xKxFe2As2 (A = Ba, Sr). Meanwhile, superconductivity " \
+                "could also be induced in the parent phase by high pressure or by replacing some of the Fe by Co. " \
+                "More excitingly, large single crystals could be obtained by the Sn flux method in this family to " \
+                "study the rather low melting temperature and the intermetallic characteristics."
+
+        spans = [("Tc", "<tc>"), ("2.7 K", "<tcValue>"), ("CsFe2As2", "<material>"),
+                 ("38 K", "<tcValue>"), ("A1−xKxFe2As2", "<material>")]
+
+        doc = prepare_doc(input, spans)
+        doc2 = markCriticalTemperature(doc)
+
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
+
+        assert len(tcValues) == 1
+
+        assert tcValues[0].text == "2.7 K"
 
     def test_get_sentence_boundaries(self):
         input = "The relatively high superconducting transition tempera- ture in La 3 Ir 2 Ge 2 is noteworthy. " \

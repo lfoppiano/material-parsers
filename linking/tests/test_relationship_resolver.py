@@ -13,7 +13,8 @@ class TestSimpleResolutionResolver:
                 "crystallized in the hexagonal AlB 2 structure, was found to be a type-II superconductor " \
                 "with transition temperature T C =3 K."
 
-        spans = [("Y 2 PdGe 3", "<material>"), ("AlB 2", "<material>"), ("superconductor", "<tc>"), ("T C", "<tcValue>"),
+        spans = [("Y 2 PdGe 3", "<material>"), ("AlB 2", "<material>"), ("superconductor", "<tc>"),
+                 ("T C", "<tcValue>"),
                  ("3 K", "<tcValue>")]
         doc = prepare_doc(input, spans)
 
@@ -32,7 +33,8 @@ class TestVicinityResolutionResolver:
                 "crystallized in the hexagonal AlB 2 structure, was found to be a type-II superconductor " \
                 "with transition temperature T C =3 K."
 
-        spans = [("Y 2 PdGe 3", "<material>"), ("AlB 2", "<material>"), ("superconductor", "<tc>"), ("T C", "<tcValue>"),
+        spans = [("Y 2 PdGe 3", "<material>"), ("AlB 2", "<material>"), ("superconductor", "<tc>"),
+                 ("T C", "<tcValue>"),
                  ("3 K", "<tcValue>")]
         doc = prepare_doc(input, spans)
 
@@ -71,7 +73,8 @@ class TestVicinityResolutionResolver:
         input = "The critical temperature T C = 4.7 K discovered for La 3 Ir 2 Ge 2 in this work is by about 1.2 K " \
                 "higher than that found for La 3 Rh 2 Ge 2 ."
 
-        spans = [("critical temperature", "<tc>"), ("T C", "<tc>"), ("4.7 K", "<tcValue>"), ("La 3 Ir 2 Ge 2", "<material>"),
+        spans = [("critical temperature", "<tc>"), ("T C", "<tc>"), ("4.7 K", "<tcValue>"),
+                 ("La 3 Ir 2 Ge 2", "<material>"),
                  ("La 3 Rh 2 Ge 2", "<material>")]
 
         doc = prepare_doc(input, spans)
@@ -252,6 +255,25 @@ class TestVicinityResolutionResolver:
         assert str(relationships[2][0]) == "NbB 2"
         assert str(relationships[2][1]) == "5.2 K"
 
+    # def test_vicinityResolution_7(self):
+    #     input = "Tc varies from 2.7 K in CsFe2As2 to 38 K in A1−xKxFe2As2 (A = Ba, Sr). Meanwhile, superconductivity " \
+    #             "could also be induced in the parent phase by high pressure or by replacing some of the Fe by Co. " \
+    #             "More excitingly, large single crystals could be obtained by the Sn flux method in this family to " \
+    #             "study the rather low melting temperature and the intermetallic characteristics."
+    #
+    #     spans = [("Tc", "<tc>"), ("2.7 K", "<tcValue>"), ("CsFe2As2", "<material>")]
+    #
+    #     doc = prepare_doc(input, spans)
+    #
+    #     materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+    #     tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
+    #
+    #     relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
+    #     assert len(relationships) == 2
+    #
+    #     assert str(relationships[0][0]) == "CsFe2As2"
+    #     assert str(relationships[0][1]) == "2.7 K"
+
     def test_vicinityResolution_missingOneEntity_1(self):
         input = "Superconductivity has been discovered in metal diborides like MgB 2 (T c =39 K ), (Mo 0.96 Zr 0.04 ) " \
                 "0.85 B 2 (T c =8.2 K ), NbB 2 (T c =5.2 K [3]) and various other ternary borides ."
@@ -274,8 +296,6 @@ class TestVicinityResolutionResolver:
         assert str(relationships[1][0]) == "NbB 2"
         assert str(relationships[1][1]) == "5.2 K"
 
-
-
     ## This test simulate that one of the entities is not extracted, unfortunately the result is wrong, but
     ## there is not really way around it...
     def test_vicinityResolution_respectively_missingEntities_1(self):
@@ -296,7 +316,6 @@ class TestVicinityResolutionResolver:
 
         assert str(relationships[0][0]) == "BaPb 1−x Bi x O 3−δ (BPBO)"
         assert str(relationships[0][1]) == "30 K"
-
 
     def test_find_closer_to_pivot(self):
         input = "Havinga et al systematically changed n from 3.00 to 4.00 by synthesizing LaTl 3" \
