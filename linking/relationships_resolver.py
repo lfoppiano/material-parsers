@@ -3,9 +3,9 @@ from operator import itemgetter
 
 class ResolutionResolver(object):
     def link_spans(self, material, tcValue):
-        material.ent_type_ = 'material-tc'
+        material.ent_type_ = '<material-tc>'
         material_links = material._.links
-        relationship_link = (tcValue._.id, 'tcValue')
+        relationship_link = (tcValue._.id, '<tcValue>')
         if relationship_link in material_links:
             print("Link already added. Skipping. Link: " + str(relationship_link))
         else:
@@ -46,7 +46,7 @@ class VicinityResolutionResolver(ResolutionResolver):
             tc_material_mapping = {}
 
             ## Checking that entities1 contains materials, else swap them
-            if entities1[0].ent_type_ != "material":
+            if entities1[0].ent_type_ != "<material>":
                 tmp = entities1
                 entities2 = entities1
                 entities1 = tmp
