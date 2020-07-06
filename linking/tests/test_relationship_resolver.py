@@ -13,12 +13,13 @@ class TestSimpleResolutionResolver:
                 "crystallized in the hexagonal AlB 2 structure, was found to be a type-II superconductor " \
                 "with transition temperature T C =3 K."
 
-        spans = [("Y 2 PdGe 3", "material"), ("AlB 2", "material"), ("superconductor", "tc"), ("T C", "tcvalue"),
-                 ("3 K", "tcvalue")]
+        spans = [("Y 2 PdGe 3", "<material>"), ("AlB 2", "<material>"), ("superconductor", "<tc>"),
+                 ("T C", "<tcValue>"),
+                 ("3 K", "<tcValue>")]
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         relationships = SimpleResolutionResolver().find_relationships(materials, tc_values)
 
@@ -32,12 +33,13 @@ class TestVicinityResolutionResolver:
                 "crystallized in the hexagonal AlB 2 structure, was found to be a type-II superconductor " \
                 "with transition temperature T C =3 K."
 
-        spans = [("Y 2 PdGe 3", "material"), ("AlB 2", "material"), ("superconductor", "tc"), ("T C", "tcvalue"),
-                 ("3 K", "tcvalue")]
+        spans = [("Y 2 PdGe 3", "<material>"), ("AlB 2", "<material>"), ("superconductor", "<tc>"),
+                 ("T C", "<tcValue>"),
+                 ("3 K", "<tcValue>")]
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         relationships = SimpleResolutionResolver().find_relationships(materials, tc_values)
 
@@ -48,12 +50,12 @@ class TestVicinityResolutionResolver:
                 "resistance point) and 38 K (midpoint) were measured for CCO/STO, CCO/BCO and LSCO/LCO, " \
                 "respectively."
 
-        spans = [("38 K", "tcvalue"), ("25 K", "tcvalue"), ("38 K", "tcvalue"),
-                 ("CCO/STO", "material"), ("CCO/BCO", "material"), ("LSCO/LCO", "material")]
+        spans = [("38 K", "<tcValue>"), ("25 K", "<tcValue>"), ("38 K", "<tcValue>"),
+                 ("CCO/STO", "<material>"), ("CCO/BCO", "<material>"), ("LSCO/LCO", "<material>")]
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
 
@@ -71,13 +73,14 @@ class TestVicinityResolutionResolver:
         input = "The critical temperature T C = 4.7 K discovered for La 3 Ir 2 Ge 2 in this work is by about 1.2 K " \
                 "higher than that found for La 3 Rh 2 Ge 2 ."
 
-        spans = [("critical temperature", "tc"), ("T C", "tc"), ("4.7 K", "tcvalue"), ("La 3 Ir 2 Ge 2", "material"),
-                 ("La 3 Rh 2 Ge 2", "material")]
+        spans = [("critical temperature", "<tc>"), ("T C", "<tc>"), ("4.7 K", "<tcValue>"),
+                 ("La 3 Ir 2 Ge 2", "<material>"),
+                 ("La 3 Rh 2 Ge 2", "<material>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
 
@@ -90,13 +93,13 @@ class TestVicinityResolutionResolver:
                 "of 30 K [1] and 13 K [2], respectively, with carrier concentrations as low as 2×10 " \
                 "21 cm −3 ."
 
-        spans = [("Ba 1−x K x BiO 3−δ (BKBO)", "material"), ("BaPb 1−x Bi x O 3−δ (BPBO)", "material"),
-                 ("T c", "tc"), ("30 K", "tcvalue"), ("13 K", "tcvalue")]
+        spans = [("Ba 1−x K x BiO 3−δ (BKBO)", "<material>"), ("BaPb 1−x Bi x O 3−δ (BPBO)", "<material>"),
+                 ("T c", "<tc>"), ("30 K", "<tcValue>"), ("13 K", "<tcValue>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
         assert len(relationships) == 2
@@ -113,15 +116,15 @@ class TestVicinityResolutionResolver:
                 "class: Bi 2 Sr 2 CuO 6 , Bi 2 Sr 2 CaCu 2 O 8 and Bi 2 Sr 2 Ca 2 Cu 3 O 10 , with critical " \
                 "temperatures ( ) T c of 20 K, 85 K and 110 K respectively."
 
-        spans = [("Bi 2 Sr 2 Ca n-1 Cu n O 2n+4 (BiSCCO)", "material"),
-                 ("Bi 2 Sr 2 CuO 6", "material"), ("Bi 2 Sr 2 CaCu 2 O 8", "material"),
-                 ("Bi 2 Sr 2 Ca 2 Cu 3 O 10", "material"),
-                 ("T c", "tc"), ("20 K", "tcvalue"), ("85 K", "tcvalue"), ("110 K", "tcvalue")]
+        spans = [("Bi 2 Sr 2 Ca n-1 Cu n O 2n+4 (BiSCCO)", "<material>"),
+                 ("Bi 2 Sr 2 CuO 6", "<material>"), ("Bi 2 Sr 2 CaCu 2 O 8", "<material>"),
+                 ("Bi 2 Sr 2 Ca 2 Cu 3 O 10", "<material>"),
+                 ("T c", "<tc>"), ("20 K", "<tcValue>"), ("85 K", "<tcValue>"), ("110 K", "<tcValue>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
         assert len(relationships) == 3
@@ -140,13 +143,13 @@ class TestVicinityResolutionResolver:
     #             "due to large lattice mismatches between the MgO substrate and the YBCO film, giving rise to slight " \
     #             "stoichiometric and crystalline defects, finite size effects, and residual strain."
     #
-    #     spans = [("critical temperature", "tc"), ("T C", "tc"), ("4.7 K", "tcvalue"), ("La 3 Ir 2 Ge 2", "material"),
-    #              ("La 3 Rh 2 Ge 2", "material")]
+    #     spans = [("critical temperature", "<tc>"), ("T C", "<tc>"), ("4.7 K", "<tcValue>"), ("La 3 Ir 2 Ge 2", "<material>"),
+    #              ("La 3 Rh 2 Ge 2", "<material>")]
     #
     #     doc = prepare_doc(input, spans)
     #
-    #     materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-    #     tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+    #     materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+    #     tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
     #
     #     relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
     #
@@ -160,15 +163,15 @@ class TestVicinityResolutionResolver:
                 "ThPb 3 (n=4.00, T c =5.6 K) and the solid solutions " \
                 "La (Tl 1−x Pb x ) 3 and (La 1−x Th x )Pb 3 ."
 
-        spans = [("LaTl 3", "material"), ("T c", "tc"), ("1.6 K", "tcvalue"),
-                 ("LaPb 3", "material"), ("T c", "tc"), ("4.1 K", "tcvalue"),
-                 ("ThPb 3", "material"), ("T c", "tc"), ("5.6 K", "tcvalue"),
-                 ("La (Tl 1−x Pb x ) 3", "material"), ("(La 1−x Th x )Pb 3", "material")]
+        spans = [("LaTl 3", "<material>"), ("T c", "<tc>"), ("1.6 K", "<tcValue>"),
+                 ("LaPb 3", "<material>"), ("T c", "<tc>"), ("4.1 K", "<tcValue>"),
+                 ("ThPb 3", "<material>"), ("T c", "<tc>"), ("5.6 K", "<tcValue>"),
+                 ("La (Tl 1−x Pb x ) 3", "<material>"), ("(La 1−x Th x )Pb 3", "<material>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
 
@@ -183,13 +186,13 @@ class TestVicinityResolutionResolver:
                 "the Mn positions are unchanged, whereas the Si positions vary along the out-of-plane " \
                 "direction, alternating in orientation from unit cell to unit cell."
 
-        spans = [("MnSi films", "material"), ("T c", "tc"), ("43 K", "tcvalue"),
-                 ("MnSi", "material"), ("T c", "tc"), ("29 K", "tcvalue")]
+        spans = [("MnSi films", "<material>"), ("T c", "<tc>"), ("43 K", "<tcValue>"),
+                 ("MnSi", "<material>"), ("T c", "<tc>"), ("29 K", "<tcValue>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
 
@@ -208,15 +211,15 @@ class TestVicinityResolutionResolver:
                 "cuprates, with T c of up to 164 K [5] (in HgBa 2 Ca 2 Cu 3 O 9 at 30 GPa), and " \
                 "Fe-pnictides and -chalcogenides (FPC) with T c of up to 55 K [6]."
 
-        spans = [("200 K", "tcvalue"), ("sulfur hydride", "material"), ("highest T c", "tc"),
-                 ("cuprates", "class"), ("T c", "tc"), ("up to 164 K", "tcvalue"),
-                 ("HgBa 2 Ca 2 Cu 3 O 9", "material"), ("Fe-pnictides and -chalcogenides", "class"),
-                 ("T c", "tc"), ("up to 55 K", "tcvalue")]
+        spans = [("200 K", "<tcValue>"), ("sulfur hydride", "<material>"), ("highest T c", "<tc>"),
+                 ("cuprates", "<class>"), ("T c", "<tc>"), ("up to 164 K", "<tcValue>"),
+                 ("HgBa 2 Ca 2 Cu 3 O 9", "<material>"), ("Fe-pnictides and -chalcogenides", "<class>"),
+                 ("T c", "<tc>"), ("up to 55 K", "<tcValue>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
 
@@ -231,14 +234,14 @@ class TestVicinityResolutionResolver:
         input = "Superconductivity has been discovered in metal diborides like MgB 2 (T c =39 K ), (Mo 0.96 Zr 0.04 ) " \
                 "0.85 B 2 (T c =8.2 K ), NbB 2 (T c =5.2 K [3]) and various other ternary borides ."
 
-        spans = [("MgB 2", "material"), ("T c", "tc"), ("39 K", "tcvalue"),
-                 ("(Mo 0.96 Zr 0.04 ) 0.85 B 2", "material"), ("T c", "tc"), ("8.2 K", "tcvalue"),
-                 ("NbB 2", "material"), ("T c", "tc"), ("5.2 K", "tcvalue")]
+        spans = [("MgB 2", "<material>"), ("T c", "<tc>"), ("39 K", "<tcValue>"),
+                 ("(Mo 0.96 Zr 0.04 ) 0.85 B 2", "<material>"), ("T c", "<tc>"), ("8.2 K", "<tcValue>"),
+                 ("NbB 2", "<material>"), ("T c", "<tc>"), ("5.2 K", "<tcValue>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
         assert len(relationships) == 3
@@ -252,18 +255,37 @@ class TestVicinityResolutionResolver:
         assert str(relationships[2][0]) == "NbB 2"
         assert str(relationships[2][1]) == "5.2 K"
 
+    # def test_vicinityResolution_7(self):
+    #     input = "Tc varies from 2.7 K in CsFe2As2 to 38 K in A1−xKxFe2As2 (A = Ba, Sr). Meanwhile, superconductivity " \
+    #             "could also be induced in the parent phase by high pressure or by replacing some of the Fe by Co. " \
+    #             "More excitingly, large single crystals could be obtained by the Sn flux method in this family to " \
+    #             "study the rather low melting temperature and the intermetallic characteristics."
+    #
+    #     spans = [("Tc", "<tc>"), ("2.7 K", "<tcValue>"), ("CsFe2As2", "<material>")]
+    #
+    #     doc = prepare_doc(input, spans)
+    #
+    #     materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+    #     tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
+    #
+    #     relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
+    #     assert len(relationships) == 2
+    #
+    #     assert str(relationships[0][0]) == "CsFe2As2"
+    #     assert str(relationships[0][1]) == "2.7 K"
+
     def test_vicinityResolution_missingOneEntity_1(self):
         input = "Superconductivity has been discovered in metal diborides like MgB 2 (T c =39 K ), (Mo 0.96 Zr 0.04 ) " \
                 "0.85 B 2 (T c =8.2 K ), NbB 2 (T c =5.2 K [3]) and various other ternary borides ."
 
-        spans = [("MgB 2", "material"), ("T c", "tc"),
-                 ("(Mo 0.96 Zr 0.04 ) 0.85 B 2", "material"), ("T c", "tc"), ("8.2 K", "tcvalue"),
-                 ("NbB 2", "material"), ("T c", "tc"), ("5.2 K", "tcvalue")]
+        spans = [("MgB 2", "<material>"), ("T c", "<tc>"),
+                 ("(Mo 0.96 Zr 0.04 ) 0.85 B 2", "<material>"), ("T c", "<tc>"), ("8.2 K", "<tcValue>"),
+                 ("NbB 2", "<material>"), ("T c", "<tc>"), ("5.2 K", "<tcValue>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
         assert len(relationships) == 2
@@ -274,8 +296,6 @@ class TestVicinityResolutionResolver:
         assert str(relationships[1][0]) == "NbB 2"
         assert str(relationships[1][1]) == "5.2 K"
 
-
-
     ## This test simulate that one of the entities is not extracted, unfortunately the result is wrong, but
     ## there is not really way around it...
     def test_vicinityResolution_respectively_missingEntities_1(self):
@@ -283,13 +303,13 @@ class TestVicinityResolutionResolver:
                 "of 30 K [1] and 13 K [2], respectively, with carrier concentrations as low as 2×10 " \
                 "21 cm −3 ."
 
-        spans = [("BaPb 1−x Bi x O 3−δ (BPBO)", "material"),
-                 ("T c", "tc"), ("30 K", "tcvalue"), ("13 K", "tcvalue")]
+        spans = [("BaPb 1−x Bi x O 3−δ (BPBO)", "<material>"),
+                 ("T c", "<tc>"), ("30 K", "<tcValue>"), ("13 K", "<tcValue>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         relationships = VicinityResolutionResolver().find_relationships(doc, materials, tc_values)
         assert len(relationships) == 1
@@ -297,22 +317,21 @@ class TestVicinityResolutionResolver:
         assert str(relationships[0][0]) == "BaPb 1−x Bi x O 3−δ (BPBO)"
         assert str(relationships[0][1]) == "30 K"
 
-
     def test_find_closer_to_pivot(self):
         input = "Havinga et al systematically changed n from 3.00 to 4.00 by synthesizing LaTl 3" \
                 " (n=3.00, T c =1.6 K), LaPb 3 (n=3.75, T c =4.1 K), and " \
                 "ThPb 3 (n=4.00, T c =5.6 K) and the solid solutions " \
                 "La (Tl 1−x Pb x ) 3 and (La 1−x Th x )Pb 3 ."
 
-        spans = [("LaTl 3", "material"), ("T c", "tc"), ("1.6 K", "tcvalue"),
-                 ("LaPb 3", "material"), ("T c", "tc"), ("4.1 K", "tcvalue"),
-                 ("ThPb 3", "material"), ("T c", "tc"), ("5.6 K", "tcvalue"),
-                 ("La (Tl 1−x Pb x ) 3", "material"), ("(La 1−x Th x )Pb 3", "material")]
+        spans = [("LaTl 3", "<material>"), ("T c", "<tc>"), ("1.6 K", "<tcValue>"),
+                 ("LaPb 3", "<material>"), ("T c", "<tc>"), ("4.1 K", "<tcValue>"),
+                 ("ThPb 3", "<material>"), ("T c", "<tc>"), ("5.6 K", "<tcValue>"),
+                 ("La (Tl 1−x Pb x ) 3", "<material>"), ("(La 1−x Th x )Pb 3", "<material>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         target = VicinityResolutionResolver()
         closer_entity = target.find_closer_to_pivot(materials[0], tc_values)
@@ -330,15 +349,15 @@ class TestVicinityResolutionResolver:
                 "ThPb 3 (n=4.00, T c =5.6 K) and the solid solutions " \
                 "La (Tl 1−x Pb x ) 3 and (La 1−x Th x )Pb 3 ."
 
-        spans = [("LaTl 3", "material"), ("T c", "tc"), ("1.6 K", "tcvalue"),
-                 ("LaPb 3", "material"), ("T c", "tc"), ("4.1 K", "tcvalue"),
-                 ("ThPb 3", "material"), ("T c", "tc"), ("5.6 K", "tcvalue"),
-                 ("La (Tl 1−x Pb x ) 3", "material"), ("(La 1−x Th x )Pb 3", "material")]
+        spans = [("LaTl 3", "<material>"), ("T c", "<tc>"), ("1.6 K", "<tcValue>"),
+                 ("LaPb 3", "<material>"), ("T c", "<tc>"), ("4.1 K", "<tcValue>"),
+                 ("ThPb 3", "<material>"), ("T c", "<tc>"), ("5.6 K", "<tcValue>"),
+                 ("La (Tl 1−x Pb x ) 3", "<material>"), ("(La 1−x Th x )Pb 3", "<material>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         target = VicinityResolutionResolver()
         previous = target.find_previous_entity(materials[1], tc_values)
@@ -356,10 +375,10 @@ class TestVicinityResolutionResolver:
         previous = target.find_previous_entity(materials[0], all_entities)
         assert previous is None
 
-        previous = target.find_previous_entity(tc_values[0], tc_values, "material")
+        previous = target.find_previous_entity(tc_values[0], tc_values, "<material>")
         assert previous is None
 
-        previous = target.find_previous_entity(tc_values[0], all_entities, "material")
+        previous = target.find_previous_entity(tc_values[0], all_entities, "<material>")
         assert previous != None
         assert previous.text == "LaTl 3"
 
@@ -369,15 +388,15 @@ class TestVicinityResolutionResolver:
                 "ThPb 3 (n=4.00, T c =5.6 K) and the solid solutions " \
                 "La (Tl 1−x Pb x ) 3 and (La 1−x Th x )Pb 3 ."
 
-        spans = [("LaTl 3", "material"), ("T c", "tc"), ("1.6 K", "tcvalue"),
-                 ("LaPb 3", "material"), ("T c", "tc"), ("4.1 K", "tcvalue"),
-                 ("ThPb 3", "material"), ("T c", "tc"), ("5.6 K", "tcvalue"),
-                 ("La (Tl 1−x Pb x ) 3", "material"), ("(La 1−x Th x )Pb 3", "material")]
+        spans = [("LaTl 3", "<material>"), ("T c", "<tc>"), ("1.6 K", "<tcValue>"),
+                 ("LaPb 3", "<material>"), ("T c", "<tc>"), ("4.1 K", "<tcValue>"),
+                 ("ThPb 3", "<material>"), ("T c", "<tc>"), ("5.6 K", "<tcValue>"),
+                 ("La (Tl 1−x Pb x ) 3", "<material>"), ("(La 1−x Th x )Pb 3", "<material>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         target = VicinityResolutionResolver()
         following = target.find_following_entity(materials[1], tc_values)
@@ -395,10 +414,10 @@ class TestVicinityResolutionResolver:
         following = target.find_following_entity(materials[4], all_entities)
         assert following is None
 
-        following = target.find_following_entity(tc_values[0], tc_values, "material")
+        following = target.find_following_entity(tc_values[0], tc_values, "<material>")
         assert following is None
 
-        following = target.find_following_entity(tc_values[2], all_entities, "material")
+        following = target.find_following_entity(tc_values[2], all_entities, "<material>")
         assert following is not None
         assert following.text == "La (Tl 1−x Pb x ) 3"
 
@@ -408,15 +427,15 @@ class TestVicinityResolutionResolver:
                 "ThPb 3 with T c =5.6 K and the solid solutions " \
                 "La (Tl 1−x Pb x ) 3 and (La 1−x Th x )Pb 3 ."
 
-        spans = [("LaTl 3", "material"), ("T c", "tc"), ("1.6 K", "tcvalue"),
-                 ("LaPb 3", "material"), ("T c", "tc"), ("4.1 K", "tcvalue"),
-                 ("ThPb 3", "material"), ("T c", "tc"), ("5.6 K", "tcvalue"),
-                 ("La (Tl 1−x Pb x ) 3", "material"), ("(La 1−x Th x )Pb 3", "material")]
+        spans = [("LaTl 3", "<material>"), ("T c", "<tc>"), ("1.6 K", "<tcValue>"),
+                 ("LaPb 3", "<material>"), ("T c", "<tc>"), ("4.1 K", "<tcValue>"),
+                 ("ThPb 3", "<material>"), ("T c", "<tc>"), ("5.6 K", "<tcValue>"),
+                 ("La (Tl 1−x Pb x ) 3", "<material>"), ("(La 1−x Th x )Pb 3", "<material>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         target = VicinityResolutionResolver()
 
@@ -431,13 +450,13 @@ class TestVicinityResolutionResolver:
         input = "Havinga et al systematically changed n from 3.00 to 4.00 by synthesizing LaTl 3. " \
                 "T c = 1.6 K is then found in LaPb 3."
 
-        spans = [("LaTl 3", "material"), ("T c", "tc"), ("1.6 K", "tcvalue"),
-                 ("LaPb 3", "material")]
+        spans = [("LaTl 3", "<material>"), ("T c", "<tc>"), ("1.6 K", "<tcValue>"),
+                 ("LaPb 3", "<material>")]
 
         doc = prepare_doc(input, spans)
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['material'], doc)]
-        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['tcvalue'], doc)]
+        materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+        tc_values = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'], doc)]
 
         target = VicinityResolutionResolver()
 

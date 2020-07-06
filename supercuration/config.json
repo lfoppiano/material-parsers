@@ -3,10 +3,8 @@
     "server": "http://localhost:8072",
     "prefix": "",
     "url_mapping": {
-      "processPDF": "/service/processSuperconductorsPDF",
-      "annotatePDF": "/service/annotateSuperconductorsPDF",
-      "processText": "/service/processSuperconductorsText",
-      "ping": "/service/isalive"
+      "processPDF": "/service/process/pdf",
+      "processText": "/service/process/text"
     }
   },
   "backend": {
