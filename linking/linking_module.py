@@ -3,7 +3,7 @@ import json
 
 import pysbd
 import spacy
-from gensim.summarization.textcleaner import split_sentences
+# from gensim.summarization.textcleaner import split_sentences
 from spacy.tokens import Span, Doc
 from spacy.tokens.token import Token
 
@@ -514,28 +514,28 @@ def collect_relationships(relationships, type):
     return [{"type": type, "left": span_to_dict(re[0]), "right": span_to_dict(re[1])} for re in relationships]
 
 
-def get_sentence_boundaries(words, spaces):
-    offset = 0
-    reconstructed = ''
-    sentence_offsetTokens = []
-    text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
-    for sent in split_sentences(text):
-        start = offset
-
-        for id in range(offset, len(words)):
-            token = words[id]
-            reconstructed += token
-            if spaces[id]:
-                reconstructed += ' '
-            if len(reconstructed.rstrip()) == len(sent):
-                offset += 1
-                end = offset
-                sentence_offsetTokens.append((start, end))
-                reconstructed = ''
-                break
-            offset += 1
-
-    return sentence_offsetTokens
+# def get_sentence_boundaries(words, spaces):
+#     offset = 0
+#     reconstructed = ''
+#     sentence_offsetTokens = []
+#     text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
+#     for sent in split_sentences(text):
+#         start = offset
+#
+#         for id in range(offset, len(words)):
+#             token = words[id]
+#             reconstructed += token
+#             if spaces[id]:
+#                 reconstructed += ' '
+#             if len(reconstructed.rstrip()) == len(sent):
+#                 offset += 1
+#                 end = offset
+#                 sentence_offsetTokens.append((start, end))
+#                 reconstructed = ''
+#                 break
+#             offset += 1
+#
+#     return sentence_offsetTokens
 
 
 def get_sentence_boundaries_pysbd(words, spaces):
