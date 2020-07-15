@@ -4,7 +4,6 @@ from tempfile import NamedTemporaryFile
 from flask import Flask, render_template, request
 
 from grobid_client_generic import grobid_client_generic
-
 from linking_module import process_paragraph
 
 app = Flask(__name__)
@@ -28,22 +27,14 @@ def annotation_feedback():
     return request.form
 
 
-@app.route('/annotate', methods=['POST'])
-def annotate_pdf():
-    file = request.files['input']
-    grobid = grobid_client_generic(config_path="./config.json")
-    tf = NamedTemporaryFile()
-    tf.write(file.read())
-    return grobid.process_pdf(tf.name, 'annotatePDF', headers={'Accept': 'application/json'})
-
-
 @app.route('/process', methods=['POST'])
 def process_pdf():
     file = request.files['input']
     grobid = grobid_client_generic(config_path="./config.json")
     tf = NamedTemporaryFile()
     tf.write(file.read())
-    result_text = grobid.process_pdf(tf.name, 'processPDF', headers={'Accept': 'application/json'})
+    result_text = grobid.process_pdf(tf.name, 'processPDF', params={'disableLinking': 'true'},
+                                     headers={'Accept': 'application/json'})
 
     result_json = json.loads(result_text)
     new_paragraphs = []
