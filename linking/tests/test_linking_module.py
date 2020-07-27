@@ -15,7 +15,7 @@ class TestLinkingModule:
         doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
         assert len(tcValues) == 1
         assert tcValues[0].text == "30K"
@@ -28,7 +28,7 @@ class TestLinkingModule:
         doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
         assert len(tcValues) == 1
         assert tcValues[0].text == "30K"
@@ -41,7 +41,7 @@ class TestLinkingModule:
         doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
         assert len(tcValues) == 1
         assert tcValues[0].text == "30K"
@@ -54,7 +54,7 @@ class TestLinkingModule:
         doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
         assert len(tcValues) == 1
         assert tcValues[0].text == "30K"
@@ -69,7 +69,7 @@ class TestLinkingModule:
 
         doc2 = markCriticalTemperature(doc)
 
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
         assert len(tcValues) == 0
 
@@ -83,7 +83,7 @@ class TestLinkingModule:
         doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
         assert len(tcValues) == 2
 
@@ -100,7 +100,7 @@ class TestLinkingModule:
         doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
         assert len(tcValues) == 0
 
@@ -129,7 +129,7 @@ class TestLinkingModule:
         doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
         assert len(tcValues) == 0
 
@@ -144,7 +144,7 @@ class TestLinkingModule:
         doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
         assert len(tcValues) == 1
         assert tcValues[0].text == "4.7 K"
@@ -157,10 +157,9 @@ class TestLinkingModule:
         doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
         assert len(tcValues) == 0
-
 
     def test_markCriticalTemperature_respectively_1(self):
         input = "The T C values for YBCO + BSO2%, YBCO + BSO2% + YOA, and YBCO + BSO2% + YOB fi lms are 89.7 K, 86.7 K, and 89.7 K respectively"
@@ -173,7 +172,7 @@ class TestLinkingModule:
         doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
         assert len(tcValues) == 3
 
@@ -195,7 +194,7 @@ class TestLinkingModule:
         doc = prepare_doc(input, spans)
         doc2 = markCriticalTemperature(doc)
 
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc2)]
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
         assert len(tcValues) == 1
 
