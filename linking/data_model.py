@@ -30,6 +30,16 @@ def token_to_dict(token):
     return converted_token
 
 
+def to_dict_link(target_id, target_text, target_type, type= None):
+    link = {
+        "targetId": target_id,
+        "targetText": target_text,
+        "targetType": target_type,
+        "type": type
+    }
+    return link
+
+
 def to_dict_token(text="", offset=-1):
     token = {
         "text": text,

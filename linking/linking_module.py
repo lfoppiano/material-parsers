@@ -24,6 +24,26 @@ Token.set_extension('linkable', default=False, force=True)
 Token.set_extension('bounding_boxes', default=[], force=True)
 Token.set_extension('formattedText', default="", force=True)
 
+MATERIAL_TC_TYPE = "<material-tc>"
+TC_PRESSURE_TYPE = "<tc-pressure>"
+TC_ME_METHOD_TYPE = "<tc-me_method>"
+
+def get_link_type(type1, type2):
+    if type1 == "<material>" and type2 == "<tcValue>":
+        return MATERIAL_TC_TYPE
+    elif type2 == "<material>" and type1 == "<tcValue>":
+        return MATERIAL_TC_TYPE
+    elif type1 == "<pressure>" and type2 == "<tcValue>":
+        return TC_PRESSURE_TYPE
+    elif type2 == "<pressure>" and type1 == "<tcValue>":
+        return TC_PRESSURE_TYPE
+    elif type1 == "<me_method>" and type2 == "<tcValue>":
+        return TC_ME_METHOD_TYPE
+    elif type2 == "<me_method>" and type1 == "<tcValue>":
+        return TC_ME_METHOD_TYPE
+    else:
+        raise Exception("The provided type are invalid. " + type1 + ", " + type2)
+
 
 def decode(response):
     try:
@@ -345,7 +365,7 @@ def markCriticalTemperature(doc):
 def process_sentence(words, spaces, spans):
     text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
 
-    print("Processing: " + text)
+    # print("Processing: " + text)
 
     doc = init_doc(words, spaces, spans)
 
