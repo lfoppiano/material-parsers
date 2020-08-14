@@ -7,7 +7,14 @@ import pymatgen as pg
 # and_compunds is satisfied if ALL of the contained compounds are present
 # or_compounds is satisfied if ANY of the contained compound is present
 
-class Material2Class:
+class ClassResolver:
+    """
+    This is the superclass of an object that is able to resolve the class from a raw material name, which has,
+    potentially a relevant amount of garbage in it.
+    """
+
+
+class Material2Class(ClassResolver):
     composition_map = [
         {"and_compounds": ["O", "Cu"], "name": "Cuprate"},
         {"and_compounds": ["Fe", "P"], "name": "Iron-pnictide"},
@@ -73,8 +80,8 @@ class Material2Class:
 
         return output
 
-class Material2Tags:
 
+class Material2Tags(ClassResolver):
     material2class_first_level = [
         {"and_compounds": ["O", "Cu"], "name": "Cuprate"},
         {"and_compounds": ["Fe", "P"], "name": "Iron-pnictide"},
