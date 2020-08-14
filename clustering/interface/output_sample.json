@@ -1,0 +1,22 @@
+[
+  {
+    "filename": "10.1088_1361-6668_aa9efa_fulltext.pdf",
+    "classes": [
+      "Fe-based"
+    ],
+    "sourcepath": "/Users/lfoppiano/development/projects/grobid/grobid-superconductors/resources/web/process/pdfs/10.1088_1361-6668_aa9a6d_fulltext.pdf"
+  },
+  {
+    "filename": "10.1088_1361-6668_aae506_fulltext.pdf",
+    "classes": [
+      "dime- thyl sulfoxide"
+    ],
+    "sourcepath": "/Users/lfoppiano/development/projects/grobid/grobid-superconductors/resources/web/process/pdfs/10.1088_1361-6668_aa9a6d_fulltext.pdf"
+  },
+    {
+    "filename": "10.1088_1361-6668_aae5062_fulltext.pdf",
+    "classes": [
+    ],
+    "sourcepath": "/Users/lfoppiano/development/projects/grobid/grobid-superconductors/resources/web/process/pdfs/10.1088_1361-6668_aa9a6d_fulltext.pdf"
+  }
+]
