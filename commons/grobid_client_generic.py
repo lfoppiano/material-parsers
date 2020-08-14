@@ -85,6 +85,13 @@ class grobid_client_generic(ApiClient):
 
         the_url = self.get_grobid_url(method_name)
 
+        if "?" in the_url:
+            split = the_url.split("?")
+            the_url = split[0]
+            params = split[1]
+
+            params = {param.split("=")[0]: param.split("=")[1] for param in params.split("&")}
+
         res, status = self.post(
             url=the_url,
             files=files,
