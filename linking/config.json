@@ -1,0 +1,13 @@
+{
+  "grobid": {
+    "server": "http://localhost:8072",
+    "prefix": "/service",
+    "url_mapping": {
+      "linker": "/linker/link",
+      "ping": ""
+    }
+  },
+  "batch_size": 1000,
+  "sleep_time": 5,
+  "coordinates": null
+}

@@ -3,10 +3,10 @@ import json
 
 import pysbd
 import spacy
-# from gensim.summarization.textcleaner import split_sentences
 from spacy.tokens import Span, Doc
 from spacy.tokens.token import Token
 
+from data_model import span_to_dict
 from relationships_resolver import SimpleResolutionResolver, VicinityResolutionResolver, \
     DependencyParserResolutionResolver
 
@@ -14,13 +14,35 @@ nlp = spacy.load("en_core_sci_lg", disable=['ner', "textcat"])
 
 Span.set_extension('id', default=None, force=True)
 Span.set_extension('links', default=[], force=True)
+Span.set_extension('linkable', default=False, force=True)
 Span.set_extension('bounding_boxes', default=[], force=True)
 Span.set_extension('formattedText', default="", force=True)
 
 Token.set_extension('id', default=None, force=True)
 Token.set_extension('links', default=[], force=True)
+Token.set_extension('linkable', default=False, force=True)
 Token.set_extension('bounding_boxes', default=[], force=True)
 Token.set_extension('formattedText', default="", force=True)
+
+MATERIAL_TC_TYPE = "<material-tc>"
+TC_PRESSURE_TYPE = "<tc-pressure>"
+TC_ME_METHOD_TYPE = "<tc-me_method>"
+
+def get_link_type(type1, type2):
+    if type1 == "<material>" and type2 == "<tcValue>":
+        return MATERIAL_TC_TYPE
+    elif type2 == "<material>" and type1 == "<tcValue>":
+        return MATERIAL_TC_TYPE
+    elif type1 == "<pressure>" and type2 == "<tcValue>":
+        return TC_PRESSURE_TYPE
+    elif type2 == "<pressure>" and type1 == "<tcValue>":
+        return TC_PRESSURE_TYPE
+    elif type1 == "<me_method>" and type2 == "<tcValue>":
+        return TC_ME_METHOD_TYPE
+    elif type2 == "<me_method>" and type1 == "<tcValue>":
+        return TC_ME_METHOD_TYPE
+    else:
+        raise Exception("The provided type are invalid. " + type1 + ", " + type2)
 
 
 def decode(response):
@@ -335,7 +357,7 @@ def markCriticalTemperature(doc):
                     index = start - expression_lenght
 
     for temp in marked_as_tc:
-        temp.ent_type_ = "<temperature-tc>"
+        temp._.set('linkable', True)
         # print(temp.text, temp.ent_type_)
     return doc
 
@@ -343,7 +365,7 @@ def markCriticalTemperature(doc):
 def process_sentence(words, spaces, spans):
     text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
 
-    print("Processing: " + text)
+    # print("Processing: " + text)
 
     doc = init_doc(words, spaces, spans)
 
@@ -362,12 +384,14 @@ def process_sentence(words, spaces, spans):
     ### RELATIONSHIP EXTRACTION
     extracted_entities['relationships'] = []
 
+    materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
+    for material in materials:
+        material._.set('linkable', True)
+
+    tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable == True, doc)]
+
     ## 1 simple approach (when only one temperature and one material)
     resolver = SimpleResolutionResolver()
-
-    materials = [entity for entity in filter(lambda w: w.ent_type_ in ['<material>'], doc)]
-    tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature-tc>'], doc)]
-
     relationships = resolver.find_relationships(materials, tcValues)
 
     if len(relationships) > 0:
@@ -414,6 +438,8 @@ def init_doc(words, spaces, spans):
             span._.set('bounding_boxes', s['boundingBoxes'])
         if 'formattedText' in s:
             span._.set('formattedText', s['formattedText'])
+        if 'links' in s:
+            span._.set('links', s['links'])
 
         entities.append(span)
 
@@ -428,6 +454,7 @@ def init_doc(words, spaces, spans):
             token._.id = span._.id
             token._.bounding_boxes = span._.bounding_boxes
             token._.formattedText = span._.formattedText
+            token._.links = span._.links
     nlp.tagger(doc)
     nlp.parser(doc)
     ## Merge entities and phrase nouns, but only when they are not overlapping,
@@ -455,53 +482,6 @@ def init_doc(words, spaces, spans):
     nlp.parser(doc)
 
     return doc
-
-
-def token_to_dict(token):
-    converted_token = {
-        "text": "",
-        "formattedText": "",
-        "font": "",
-        "style": "",
-        "offset": "",
-        "fontSize": ""
-    }
-    converted_token['text'] = token.text
-    converted_token['offset'] = token.idx
-    converted_token['formattedText'] = token._.formattedText
-    # converted_token['style']
-    # converted_token['font'] = span.ent_type_
-    # converted_token['fontSize'] = span.i
-
-    return converted_token
-
-
-def span_to_dict(span):
-    converted_span = {
-        "text": "",
-        "formattedText": "",
-        "type": "",
-        "offsetStart": "",
-        "offsetEnd": "",
-        "tokenStart": "",
-        "tokenEnd": "",
-        "id": "",
-        "boundingBoxes": [],
-        "links": []
-    }
-
-    converted_span['text'] = span.text
-    converted_span['formattedText'] = span._.formattedText
-    converted_span['type'] = span.ent_type_
-    converted_span['offsetStart'] = span.idx
-    converted_span['offsetEnd'] = span.idx + len(span.text)
-    converted_span['tokenStart'] = span.i
-    converted_span['tokenEnd'] = span.i + len(span)
-    converted_span['id'] = span._.id
-    converted_span['boundingBoxes'] = span._.bounding_boxes
-    converted_span['links'] = span._.links
-
-    return converted_span
 
 
 def entities_classes():

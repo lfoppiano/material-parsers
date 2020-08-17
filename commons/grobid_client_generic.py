@@ -46,8 +46,28 @@ class grobid_client_generic(ApiClient):
 
         return action_url
 
-    def process_text(self, input, params={}):
-        pass
+    def process_text(self, input, method_name='superconductors', params={}, headers={"Accept": "application/json"}):
+
+        files = {
+            'text': input
+        }
+
+        the_url = self.get_grobid_url(method_name)
+
+        res, status = self.post(
+            url=the_url,
+            files=files,
+            data=params,
+            headers=headers
+        )
+
+        if status == 503:
+            time.sleep(self.config['sleep_time'])
+            return self.process_text(input, method_name, params, headers)
+        elif status != 200:
+            print('Processing failed with error ' + str(status))
+        else:
+            return res.text
 
     def process_pdf_batch(self, pdf_files, params={}):
         pass
@@ -64,6 +84,13 @@ class grobid_client_generic(ApiClient):
         }
 
         the_url = self.get_grobid_url(method_name)
+
+        if "?" in the_url:
+            split = the_url.split("?")
+            the_url = split[0]
+            params = split[1]
+
+            params = {param.split("=")[0]: param.split("=")[1] for param in params.split("&")}
 
         res, status = self.post(
             url=the_url,
