@@ -2,15 +2,33 @@ from operator import itemgetter
 
 
 class ResolutionResolver(object):
-    def link_spans(self, material, tcValue):
-        material.ent_type_ = '<material-tc>'
+    def link_spans(self, material, tcValue, linkingType):
+        # material.ent_type_ = '<material-tc>'
         material_links = material._.links
-        relationship_link = (tcValue._.id, '<tcValue>')
+        relationship_link = {
+            'targetId': tcValue._.id,
+            'targetText': tcValue.text,
+            'targetType': tcValue.ent_type_,
+            'type': linkingType
+        }
         if relationship_link in material_links:
             print("Link already added. Skipping. Link: " + str(relationship_link))
         else:
             material_links.append(relationship_link)
             material._.set('links', material_links)
+
+        tcValue_links = tcValue._.links
+        relationship_link = {
+            'targetId': material._.id,
+            'targetText': material.text,
+            'targetType': material.ent_type_,
+            'type': linkingType
+        }
+        if relationship_link in tcValue_links:
+            print("Link already added. Skipping. Link: " + str(relationship_link))
+        else:
+            tcValue_links.append(relationship_link)
+            tcValue._.set('links', tcValue_links)
 
         return material, tcValue
 
@@ -18,7 +36,7 @@ class ResolutionResolver(object):
 class SimpleResolutionResolver(ResolutionResolver):
     def find_relationships(self, entities1: list, entities2: list):
         if len(entities1) == 1 and len(entities2) == 1:
-            return [self.link_spans(entities1[0], entities2[0])]
+            return [self.link_spans(entities1[0], entities2[0], 'simple')]
         else:
             return []
 
@@ -35,11 +53,11 @@ class VicinityResolutionResolver(ResolutionResolver):
 
         if len(entities2) == 1:
             closer_material = self.find_closer_to_pivot(entities2[0], entities1)
-            relationships.append(self.link_spans(closer_material, entities2[0]))
+            relationships.append(self.link_spans(closer_material, entities2[0], 'vicinity'))
 
         elif len(entities1) == 1:
             closer_tcValue = self.find_closer_to_pivot(entities1[0], entities2)
-            relationships.append(self.link_spans(entities1[0], closer_tcValue))
+            relationships.append(self.link_spans(entities1[0], closer_tcValue, 'vicinity'))
 
         else:
             material_tc_mapping = {}
@@ -94,7 +112,7 @@ class VicinityResolutionResolver(ResolutionResolver):
 
                         tc = min(tc_of_this_material, key=tc_of_this_material.get)
                         if material not in assigned and tc not in assigned:
-                            relationships.append(self.link_spans(material, tc))
+                            relationships.append(self.link_spans(material, tc, 'vicinity'))
                             assigned.append(material)
                             assigned.append(tc)
                 else:
@@ -103,7 +121,7 @@ class VicinityResolutionResolver(ResolutionResolver):
                                                tc_material_mapping[tc].items() if material_ not in assigned}
                         material = min(material_of_this_tc, key=material_of_this_tc.get)
                         if material not in assigned and tc not in assigned:
-                            relationships.append(self.link_spans(material, tc))
+                            relationships.append(self.link_spans(material, tc, 'vicinity'))
                             assigned.append(material)
                             assigned.append(tc)
 
@@ -162,7 +180,7 @@ class VicinityResolutionResolver(ResolutionResolver):
             if sorted_tcValue[i] not in assigned:
                 assigned.append(sorted_tcValue[i])
                 assigned.append(material)
-                relationships.append(self.link_spans(material, sorted_tcValue[i]))
+                relationships.append(self.link_spans(material, sorted_tcValue[i], 'vicinity'))
 
         return relationships
 
@@ -292,7 +310,7 @@ class DependencyParserResolutionResolver(ResolutionResolver):
                 if entity.head.head.dep_ in ['verb', 'ccomp', 'prep', 'ROOT']:
                     for e, h in relations:
                         if h.idx == entity.head.head.idx:
-                            output.append(self.link_spans(e, entity))
+                            output.append(self.link_spans(e, entity, 'dependencyParser1'))
 
         return output
 
