@@ -1,6 +1,6 @@
 import logging
 
-from material2class import Material2Class
+from material2class import Material2Class, Material2Tags
 
 LOGGER = logging.getLogger(__name__)
 
