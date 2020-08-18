@@ -1,19 +1,20 @@
 import logging
 
-from linking_module import markCriticalTemperature, get_sentence_boundaries_pysbd
-from tests.test_utils import prepare_doc, get_tokens
+from linking_module import RuleBasedLinker
+from tests.test_utils import prepare_doc, get_tokens, get_tokens_and_spans
 
 LOGGER = logging.getLogger(__name__)
 
 
-class TestLinkingModule:
+class TestRuleBasedLinker:
     def test_markCriticalTemperature_simple_1(self):
         input = "The Tc of the BaClE2 is 30K."
 
         spans = [("Tc", "<tc>"), ("BaClE2", "<material>"), ("30K", "<tcValue>")]
 
+        target = RuleBasedLinker()
         doc = prepare_doc(input, spans)
-        doc2 = markCriticalTemperature(doc)
+        doc2 = target.markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -25,8 +26,9 @@ class TestLinkingModule:
 
         spans = [("BaClE2", "<material>"), ("superconducts", "<tc>"), ("30K", "<tcValue>")]
 
+        target = RuleBasedLinker()
         doc = prepare_doc(input, spans)
-        doc2 = markCriticalTemperature(doc)
+        doc2 = target.markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -38,8 +40,9 @@ class TestLinkingModule:
 
         spans = [("<tc>", "<tc>"), ("BaClE2", "<material>"), ("30K", "<tcValue>")]
 
+        target = RuleBasedLinker()
         doc = prepare_doc(input, spans)
-        doc2 = markCriticalTemperature(doc)
+        doc2 = target.markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -51,8 +54,9 @@ class TestLinkingModule:
 
         spans = [("BaClE2", "<material>"), ("Tc", "<tc>"), ("30K", "<tcValue>")]
 
+        target = RuleBasedLinker()
         doc = prepare_doc(input, spans)
-        doc2 = markCriticalTemperature(doc)
+        doc2 = target.markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -65,9 +69,10 @@ class TestLinkingModule:
 
         spans = [("BaFe 2−x Ni x As 2 crystal", "<material>"), ("T c", "<tc>"), ("8 K", "<tcValue>"),
                  ("13 K", "<tcValue>")]
-        doc = prepare_doc(input, spans)
 
-        doc2 = markCriticalTemperature(doc)
+        target = RuleBasedLinker()
+        doc = prepare_doc(input, spans)
+        doc2 = target.markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -80,8 +85,9 @@ class TestLinkingModule:
         spans = [("BaFe2(As1−xPx)2", "<material>"), ("Tc0", "<tc>"), ("28 K", "<tcValue>"), ("Tc0", "<tc>"),
                  ("29 K", "<tcValue>")]
 
+        target = RuleBasedLinker()
         doc = prepare_doc(input, spans)
-        doc2 = markCriticalTemperature(doc)
+        doc2 = target.markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -97,8 +103,9 @@ class TestLinkingModule:
 
         spans = [("BCO/CCO", "<material>"), ("CCO)", "<material>"), ("T C", "<tc>"), ("5 K", "<tcValue>")]
 
+        target = RuleBasedLinker()
         doc = prepare_doc(input, spans)
-        doc2 = markCriticalTemperature(doc)
+        doc2 = target.markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -126,8 +133,9 @@ class TestLinkingModule:
         spans = [("B1", "<material>"), ("B2 (with 6 wt% Ag)", "<material>"),
                  ("0.8 K", "<tcValue>"), ]
 
+        target = RuleBasedLinker()
         doc = prepare_doc(input, spans)
-        doc2 = markCriticalTemperature(doc)
+        doc2 = target.markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -141,8 +149,9 @@ class TestLinkingModule:
                  ("La 3 Ir 2 Ge 2", "<material>"),
                  ("La 3 Rh 2 Ge 2", "<material>")]
 
+        target = RuleBasedLinker()
         doc = prepare_doc(input, spans)
-        doc2 = markCriticalTemperature(doc)
+        doc2 = target.markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -154,8 +163,9 @@ class TestLinkingModule:
 
         spans = [("BaClE2", "<material>"), ("<tc>", "<tc>"), ("30K", "<tcValue>")]
 
+        target = RuleBasedLinker()
         doc = prepare_doc(input, spans)
-        doc2 = markCriticalTemperature(doc)
+        doc2 = target.markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -169,8 +179,9 @@ class TestLinkingModule:
                  ("YBCO + BSO2% + YOB", "<material>"),
                  ("89.7 K", "<tcValue>"), ("86.7 K", "<tcValue>"), ("89.7 K", "<tcValue>")]
 
+        target = RuleBasedLinker()
         doc = prepare_doc(input, spans)
-        doc2 = markCriticalTemperature(doc)
+        doc2 = target.markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -191,8 +202,9 @@ class TestLinkingModule:
         spans = [("Tc", "<tc>"), ("2.7 K", "<tcValue>"), ("CsFe2As2", "<material>"),
                  ("38 K", "<tcValue>"), ("A1−xKxFe2As2", "<material>")]
 
+        target = RuleBasedLinker()
         doc = prepare_doc(input, spans)
-        doc2 = markCriticalTemperature(doc)
+        doc2 = target.markCriticalTemperature(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -219,6 +231,24 @@ class TestLinkingModule:
 
         words, spaces, spans = get_tokens(input, spans)
 
-        boundaries = get_sentence_boundaries_pysbd(words, spaces)
+        target = RuleBasedLinker()
+        boundaries = target.get_sentence_boundaries_pysbd(words, spaces)
 
         assert len(boundaries) == 6
+
+    def test_linking_pressure(self):
+        text = "The LaFe0.2 Sr 0.4 was discovered to be superconducting at 3K applying a pressure of 5Gpa."
+        input_spans = [("LaFe0.2 Sr 0.4", "<material>"), ("superconducting", "<tc>"), ("3K", "<tcValue>"), ("5Gpa", "<pressure>")]
+        tokens, spans = get_tokens_and_spans(text, input_spans)
+
+        paragraph = {
+            "text": text,
+            "spans": spans,
+            "tokens": tokens
+        }
+
+        target = RuleBasedLinker(source="<pressure>", destination="<tcValue>")
+
+        process_paragraph = target.process_paragraph(paragraph)
+
+        print(process_paragraph)

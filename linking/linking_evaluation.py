@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 from data_model import to_dict_span, to_dict_token
 from grobid_client_generic import grobid_client_generic
 from grobid_tokenizer import tokenizeSimple
-from linking_module import process_paragraph, get_link_type, MATERIAL_TC_TYPE, TC_PRESSURE_TYPE, TC_ME_METHOD_TYPE
+from linking_module import RuleBasedLinker
 
 
 def tokenise(string):
@@ -168,7 +168,7 @@ def extract_links_same_paragraphs(paragraphs):
             # local_links.append((rel_from, target[0]))
             for target_id, target_type in targets.items():
                 source_type = rel_paragraph_ptrs_to[target_id][source_id]
-                global_links.append((source_id, target_id, get_link_type(source_type, target_type)))
+                global_links.append((source_id, target_id, RuleBasedLinker.get_link_type(source_type, target_type)))
 
     return global_links
 
@@ -205,10 +205,11 @@ def run_linking_crf(paragraphs):
 
 
 def run_linking_rule_based(paragraphs):
+    target = RuleBasedLinker()
     predicted_links = []
 
     for paragraph in paragraphs:
-        output_paragraph = process_paragraph(paragraph)
+        output_paragraph = target.process_paragraph(paragraph)
 
         if len(output_paragraph) == 1:
             merged_paragraph = output_paragraph[0]
@@ -243,7 +244,7 @@ def extract_predicted_links(paragraph):
 
             targets_in_paragraph = [span_['id'] for span_ in paragraph['spans'] if
                                     str(span_['id']) == str(targetId)]
-            link_type = get_link_type(sourceType, targetType)
+            link_type = RuleBasedLinker.get_link_type(sourceType, targetType)
             if len(targets_in_paragraph) > 0 and (targetId, sourceId, link_type) not in predicted_links:
                 predicted_links.append((sourceId, targetId, link_type))
 
@@ -255,7 +256,7 @@ def compute_metrics(expected_links, predicted_links, link_type=None):
     if link_type:
         output['labels'][link_type] = compute_metrics_by_type(expected_links, predicted_links, link_type)
     else:
-        for link_type in [MATERIAL_TC_TYPE, TC_PRESSURE_TYPE, TC_ME_METHOD_TYPE]:
+        for link_type in [RuleBasedLinker.MATERIAL_TC_TYPE, RuleBasedLinker.TC_PRESSURE_TYPE, RuleBasedLinker.TC_ME_METHOD_TYPE]:
             output['labels'][link_type] = compute_metrics_by_type(expected_links, predicted_links, link_type)
 
     return output
@@ -408,14 +409,14 @@ if __name__ == '__main__':
                 predicted_links_rb = run_linking_rule_based(paragraphs)
 
                 ## MICRO AVERAGE
-                counters_by_type_rb = compute_counters_by_type(expected_links, predicted_links_rb, MATERIAL_TC_TYPE)
+                counters_by_type_rb = compute_counters_by_type(expected_links, predicted_links_rb, RuleBasedLinker.MATERIAL_TC_TYPE)
                 avg_num_correct_rb += counters_by_type_rb['num_correct']
                 avg_num_wrong_rb += counters_by_type_rb['num_wrong']
                 count_num_expected_rb += counters_by_type_rb['num_expected']
 
                 ## MACRO AVERAGE
-                metrics_by_type_rb = compute_metrics_by_type(expected_links, predicted_links_rb, MATERIAL_TC_TYPE)
-                print(get_report({"labels": {MATERIAL_TC_TYPE: metrics_by_type_rb}}))
+                metrics_by_type_rb = compute_metrics_by_type(expected_links, predicted_links_rb, RuleBasedLinker.MATERIAL_TC_TYPE)
+                print(get_report({"labels": {RuleBasedLinker.MATERIAL_TC_TYPE: metrics_by_type_rb}}))
 
                 avg_macro_precision_rb += metrics_by_type_rb['precision']
                 avg_macro_recall_rb += metrics_by_type_rb['recall']
@@ -426,14 +427,14 @@ if __name__ == '__main__':
                 predicted_links_crf = run_linking_crf(paragraphs)
 
                 ## MICRO AVERAGE
-                counters_by_type_crf = compute_counters_by_type(expected_links, predicted_links_crf, MATERIAL_TC_TYPE)
+                counters_by_type_crf = compute_counters_by_type(expected_links, predicted_links_crf, RuleBasedLinker.MATERIAL_TC_TYPE)
                 avg_num_correct_crf += counters_by_type_crf['num_correct']
                 avg_num_wrong_crf += counters_by_type_crf['num_wrong']
                 count_num_expected_crf += counters_by_type_crf['num_expected']
 
                 ## MACRO AVERAGE
-                metrics_by_type_crf = compute_metrics_by_type(expected_links, predicted_links_crf, MATERIAL_TC_TYPE)
-                print(get_report({"labels": {MATERIAL_TC_TYPE: metrics_by_type_crf}}))
+                metrics_by_type_crf = compute_metrics_by_type(expected_links, predicted_links_crf, RuleBasedLinker.MATERIAL_TC_TYPE)
+                print(get_report({"labels": {RuleBasedLinker.MATERIAL_TC_TYPE: metrics_by_type_crf}}))
 
                 avg_macro_precision_crf += metrics_by_type_crf['precision']
                 avg_macro_recall_crf += metrics_by_type_crf['recall']
@@ -451,7 +452,7 @@ if __name__ == '__main__':
         avg_macro_f1_rb = avg_macro_f1_rb / file_count if file_count > 0 else 0
 
         print(get_report({"labels": {
-            MATERIAL_TC_TYPE: {"precision": avg_macro_precision_rb, "recall": avg_macro_recall_rb, "f1": avg_macro_f1_rb,
+            RuleBasedLinker.MATERIAL_TC_TYPE: {"precision": avg_macro_precision_rb, "recall": avg_macro_recall_rb, "f1": avg_macro_f1_rb,
                                "support": avg_support_rb}}}))
 
         print("Micro average Rules-based")
@@ -461,7 +462,7 @@ if __name__ == '__main__':
         avg_micro_f1_rb = 2 * (avg_micro_precision_rb * avg_micro_recall_rb) / (
             avg_micro_precision_rb + avg_micro_recall_rb) if avg_micro_precision_rb + avg_micro_recall_rb > 0 else 0
         print(get_report({"labels": {
-            MATERIAL_TC_TYPE: {"precision": avg_micro_precision_rb, "recall": avg_micro_recall_rb, "f1": avg_micro_f1_rb,
+            RuleBasedLinker.MATERIAL_TC_TYPE: {"precision": avg_micro_precision_rb, "recall": avg_micro_recall_rb, "f1": avg_micro_f1_rb,
                                "support": avg_support_rb}}}))
 
         print("CRF")
@@ -484,7 +485,7 @@ if __name__ == '__main__':
         avg_micro_f1_crf = 2 * (avg_micro_precision_crf * avg_micro_recall_crf) / (
             avg_micro_precision_crf + avg_micro_recall_crf) if avg_micro_precision_crf + avg_micro_recall_crf > 0 else 0
         print(get_report({"labels": {
-            MATERIAL_TC_TYPE: {"precision": avg_micro_precision_crf, "recall": avg_micro_recall_crf,
+            RuleBasedLinker.MATERIAL_TC_TYPE: {"precision": avg_micro_precision_crf, "recall": avg_micro_recall_crf,
                                "f1": avg_micro_f1_crf,
                                "support": avg_support_crf}}}))
 
@@ -494,11 +495,11 @@ if __name__ == '__main__':
         paragraphs, rel_ptrs_from, rel_ptrs_to = read_evaluation_file(str(input_path))
         expected_links = extract_links_same_paragraphs(paragraphs)
         predicted_links_rb = run_linking_rule_based(paragraphs)
-        metrics_by_type_rb = compute_metrics_by_type(expected_links, predicted_links_rb, MATERIAL_TC_TYPE)
+        metrics_by_type_rb = compute_metrics_by_type(expected_links, predicted_links_rb, RuleBasedLinker.MATERIAL_TC_TYPE)
         print("== Rule based ==")
-        print(get_report({"labels": {MATERIAL_TC_TYPE: metrics_by_type_rb}}))
+        print(get_report({"labels": {RuleBasedLinker.MATERIAL_TC_TYPE: metrics_by_type_rb}}))
 
         predicted_links_crf = run_linking_crf(paragraphs)
-        metrics_by_type_crf = compute_metrics_by_type(expected_links, predicted_links_crf, MATERIAL_TC_TYPE)
+        metrics_by_type_crf = compute_metrics_by_type(expected_links, predicted_links_crf, RuleBasedLinker.MATERIAL_TC_TYPE)
         print("== CRF based ==")
-        print(get_report({"labels": {MATERIAL_TC_TYPE: metrics_by_type_crf}}))
+        print(get_report({"labels": {RuleBasedLinker.MATERIAL_TC_TYPE: metrics_by_type_crf}}))
