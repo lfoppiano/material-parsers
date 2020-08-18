@@ -2,9 +2,8 @@ import logging
 from functools import wraps
 
 from grobid_tokenizer import tokenize
-from linking_module import convert_to_spacy, init_doc
-
 # derived from https://github.com/elifesciences/sciencebeam-trainer-delft/tree/develop/tests
+from linking_module import RuleBasedLinker
 
 LOGGER = logging.getLogger(__name__)
 
@@ -31,18 +30,23 @@ def log_on_exception(f: callable) -> callable:
 def prepare_doc(input, input_spans):
     words, spaces, spans = get_tokens(input, input_spans)
 
-    doc = init_doc(words, spaces, spans)
+    doc = RuleBasedLinker.init_doc(words, spaces, spans)
 
     return doc
 
 
-def get_tokens(input, input_spans):
+def get_tokens_and_spans(input, input_spans):
     input_tokens, offsets = tokenize(input)
     tokens = [{"text": input_tokens[idx], "offsetStart": offsets[idx][0], "offsetEnd": offsets[idx][1]} for idx in
               range(0, len(input_tokens))]
     spans = calculate_spans(input, input_spans, tokens=tokens)
 
-    words, spaces, spans = convert_to_spacy(tokens, spans)
+    return tokens, spans
+
+
+def get_tokens(input, input_spans):
+    tokens, spans = get_tokens_and_spans(input, input_spans)
+    words, spaces, spans = RuleBasedLinker.convert_to_spacy(tokens, spans)
 
     return words, spaces, spans
 
