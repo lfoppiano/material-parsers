@@ -161,38 +161,73 @@ class Material2Tags(ClassResolver):
         input_formula = list(dc)
         # print(" Input Formula: " + str(input_formula))
 
-        for composition in composition_map:
-            and_compounds = []
-            if 'and_compounds' in composition:
-                and_compounds = composition['and_compounds']
+        if type(composition_map) == list:
+            for composition in composition_map:
+                and_compounds = []
+                if 'and_compounds' in composition:
+                    and_compounds = composition['and_compounds']
 
-            or_compounds = []
-            if 'or_compounds' in composition:
-                or_compounds = composition['or_compounds']
+                or_compounds = []
+                if 'or_compounds' in composition:
+                    or_compounds = composition['or_compounds']
 
-            not_compounds = []
-            if 'not_compounds' in composition:
-                not_compounds = composition['not_compounds']
+                not_compounds = []
+                if 'not_compounds' in composition:
+                    not_compounds = composition['not_compounds']
 
-            output_class = composition['name']
+                output_class = composition['name']
 
-            if len(and_compounds) > 0:
-                if all(elem in input_formula for elem in and_compounds if type(elem) == str):
-                    output_tags.append(output_class)
-                    continue
-            elif len(or_compounds) > 0:
-                if any(elem in input_formula for elem in or_compounds if type(elem) == str):
-                    output_tags.append(output_class)
-                    continue
-            elif len(not_compounds) > 0:
-                if not any(elem in input_formula for elem in not_compounds if type(elem) == str):
-                    output_tags.append(output_class)
-                    continue
+                if len(and_compounds) > 0:
+                    if all(elem in input_formula for elem in and_compounds if type(elem) == str):
+                        output_tags.append(output_class)
+                        continue
+                elif len(or_compounds) > 0:
+                    if any(elem in input_formula for elem in or_compounds if type(elem) == str):
+                        output_tags.append(output_class)
+                        continue
+                elif len(not_compounds) > 0:
+                    if not any(elem in input_formula for elem in not_compounds if type(elem) == str):
+                        output_tags.append(output_class)
+                        continue
 
+        elif type(composition_map) == map:
+            for first_element, composition in composition_map.items():
+                and_compounds = []
+                if 'and_compounds' in composition:
+                    and_compounds = composition['and_compounds']
+
+                or_compounds = []
+                if 'or_compounds' in composition:
+                    or_compounds = composition['or_compounds']
+
+                not_compounds = []
+                if 'not_compounds' in composition:
+                    not_compounds = composition['not_compounds']
+
+                output_class = composition_map[first_element]['name']
+
+                if len(and_compounds) > 0:
+                    if all(elem in input_formula for elem in and_compounds if type(elem) == str):
+                        output_tags.append(output_class)
+                        continue
+                elif len(or_compounds) > 0:
+                    if any(elem in input_formula for elem in or_compounds if type(elem) == str):
+                        output_tags.append(output_class)
+                        continue
+                elif len(not_compounds) > 0:
+                    if not any(elem in input_formula for elem in not_compounds if type(elem) == str):
+                        output_tags.append(output_class)
+                        continue
         return set(output_tags)
 
-    def get_class_1(self, formula):
-        return self.assign_tags(formula, self.material2class_first_level)
+    def get_classes(self, formula):
+        tags = self.assign_tags(formula, composition_map=self.material2class_first_level)
 
-    def get_class_2(self, formula):
-        return self.assign_tags(formula, self.material2class_second_level)
+        output = {tag: [] for tag in tags}
+
+        for tag in tags:
+            output[tag] = list(self.assign_tags(formula, composition_map=self.material2class_second_level[tag]))
+
+        return output
+
+
