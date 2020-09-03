@@ -1,10 +1,10 @@
 {
   "grobid": {
-    "server": "http://localhost:5000",
+    "server": "http://localhost:8072",
     "prefix": "",
     "url_mapping": {
-      "processPDF": "/process",
-      "annotatePDF": "/annotate",
+      "processPDF": "/service/process/pdf",
+      "processText": "/service/process/text",
       "ping": ""
     }
   },
