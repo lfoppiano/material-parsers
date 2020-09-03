@@ -66,7 +66,8 @@ def calculate_spans(input, spans, tokens=None):
                 "offsetEnd": span_end_offset,
                 "type": span[1],
                 "boundingBoxes": [],
-                "formattedText": ""
+                "formattedText": "",
+                "linkable": False
             }
             last_span_offset = span_end_offset
             if tokens is not None:
