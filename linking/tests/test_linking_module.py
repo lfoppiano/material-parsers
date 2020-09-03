@@ -252,3 +252,26 @@ class TestRuleBasedLinker:
         process_paragraph = target.process_paragraph(paragraph)
 
         print(process_paragraph)
+
+    def test_mark_temperatures_process(self):
+        text = "The LaFe0.2 Sr 0.4 was discovered to be superconducting at 3K applying a pressure of 5Gpa."
+        input_spans = [("LaFe0.2 Sr 0.4", "<material>"), ("superconducting", "<tc>"), ("3K", "<tcValue>"), ("5Gpa", "<pressure>")]
+        tokens, spans = get_tokens_and_spans(text, input_spans)
+
+        paragraph = {
+            "text": text,
+            "spans": spans,
+            "tokens": tokens
+        }
+
+        target = RuleBasedLinker(source="<material>", destination="<tcValue>")
+
+        spans[0]['linkable'] = True
+        process_paragraph = target.mark_temperatures_paragraph(paragraph)
+
+        linkable_spans = [span for span in process_paragraph['spans'] if span['linkable'] is True]
+
+        assert len(linkable_spans) == 2
+        assert process_paragraph['spans'][0]['linkable'] is True
+        assert process_paragraph['spans'][2]['linkable'] is True
+

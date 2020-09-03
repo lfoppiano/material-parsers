@@ -367,6 +367,32 @@ class RuleBasedLinker:
             # print(temp.text, temp.ent_type_)
         return doc
 
+    def mark_temperatures(self, text_, tokens_, spans_):
+        words, spaces, spans_remapped = self.convert_to_spacy(tokens_, spans_)
+        doc = self.init_doc(words, spaces, spans_remapped)
+        self.markCriticalTemperature(doc)
+
+        extracted_entities = {}
+
+        converted_spans = [span_to_dict(entity) for entity in
+                           filter(lambda w: w.ent_type_ in RuleBasedLinker.entities_classes(), doc)]
+
+        extracted_entities['spans'] = converted_spans
+        extracted_entities['text'] = text_
+
+        return extracted_entities
+
+    def mark_temperatures_paragraph(self, paragraph):
+        text_ = paragraph['text']
+        spans_ = paragraph['spans']
+        tokens_ = paragraph['tokens']
+
+        return self.mark_temperatures(text_, tokens_, spans_)
+
+    def mark_temperatures_paragraph_json(self, paragraph_json):
+        paragraph = json.loads(paragraph_json)
+        return json.dumps(self.mark_temperatures_paragraph(paragraph))
+
     def process_sentence(self, words, spaces, spans):
         text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
 
@@ -447,6 +473,8 @@ class RuleBasedLinker:
                 span._.set('formattedText', s['formattedText'])
             if 'links' in s:
                 span._.set('links', s['links'])
+            if 'linkable' in s:
+                span._.set('linkable', s['linkable'])
 
             entities.append(span)
 
@@ -462,6 +490,7 @@ class RuleBasedLinker:
                 token._.bounding_boxes = span._.bounding_boxes
                 token._.formattedText = span._.formattedText
                 token._.links = span._.links
+                token._.linkable = span._.linkable
         nlp.tagger(doc)
         nlp.parser(doc)
         ## Merge entities and phrase nouns, but only when they are not overlapping,
