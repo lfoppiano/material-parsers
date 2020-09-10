@@ -1,8 +1,7 @@
 # transform tei annotation into prodigy annotations
+import argparse
 import os
-import sys
 from html import escape
-from sys import argv
 from pathlib import Path
 
 
@@ -256,21 +255,50 @@ def writeOutput(datas, output):
         fo.write(xmlSuffix)
         fo.flush()
 
-if __name__ == '__main__':
-    if len(argv) != 3:
-        print("Invalid parameters. Usage: python tsv2xml_webanno.py input_file output_file")
-        sys.exit(-1)
 
-    input = argv[1]
-    output = argv[2]
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description="Converter TSV to XML (Grobid training data based on TEI)")
+
+    parser.add_argument("--input", help="Input file or directory")
+    parser.add_argument("--output",
+                        help="Output directory (if omitted, the output will be the same directory/file with different extension)")
+    parser.add_argument("--recursive", action="store_true", default=False,
+                        help="Process input directory recursively. If input is a file, this parameter is ignored. ")
+
+    args = parser.parse_args()
+
+    input = args.input
+    output = args.output
+    recursive = args.recursive
 
     if os.path.isdir(input):
-        path_list = Path(input).glob('*.tsv')
+        path_list = []
+
+        if recursive:
+            for root, dirs, files in os.walk(input):
+                for file_ in files:
+                    if not file_.lower().endswith(".tsv"):
+                        continue
+
+                    abs_path = os.path.join(root, file_)
+                    path_list.append(abs_path)
+
+        else:
+            path_list = Path(input).glob('*.tsv')
+
         for path in path_list:
             print("Processing: ", path)
-            output_filename = path.stem
+            output_filename = Path(path).stem
             data = processFile(path)
-            writeOutput(data, os.path.join(output, str(output_filename) + ".tei.xml"))
+            parent_dir = Path(path).parent
+            if os.path.isdir(str(output)):
+                output_path = os.path.join(output, str(output_filename)) + ".tei.xml"
+            else:
+                output_path = os.path.join(parent_dir, output_filename + ".tei.xml")
+
+            writeOutput(data, output_path)
+
     elif os.path.isfile(input):
         input_path = Path(input)
         data = processFile(input_path)
