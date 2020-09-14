@@ -2,40 +2,60 @@
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae7b6_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae7b6_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Chalcogenides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae0e7_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae0e7_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aadcb9_fulltext.pdf",
     "filename": "10.1088_1361-6668_aadcb9_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaaed9_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaaed9_fulltext.pdf",
     "classes": [
       "cuprates"
+    ],
+    "classes_from_materials": [
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9e17_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa9e17_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac614_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac614_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Carbides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aacae3_fulltext.pdf",
     "filename": "10.1088_1361-6668_aacae3_fulltext.pdf",
     "classes": [
       "MgB 2 -based"
+    ],
+    "classes_from_materials": [
+      "Borides",
+      "Alloy"
     ]
   },
   {
@@ -46,6 +66,10 @@
       "Bi-based cuprates",
       "BaBiO 3 -based compounds",
       "BaBiO 3 -based"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate"
     ]
   },
   {
@@ -54,25 +78,40 @@
     "classes": [
       "iron-based",
       "cuprate"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Iron-pnictide",
+      "Iron-chalcogenides",
+      "Fluorides",
+      "Cuprate",
+      "Borides"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad112_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad112_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac25e_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac25e_fulltext.pdf",
     "classes": [
       "cuprate"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab0c5_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab0c5_fulltext.pdf",
     "classes": [
       "metal oxides"
+    ],
+    "classes_from_materials": [
+      "Cuprate",
+      "Carbides",
+      "Borides"
     ]
   },
   {
@@ -84,12 +123,24 @@
       "cuprate",
       "HTS",
       "Bi-based"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Iron-pnictide",
+      "Hydrides",
+      "Cuprate",
+      "Carbides",
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab58c_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab58c_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Cuprate"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa8b9_fulltext.pdf",
@@ -100,12 +151,20 @@
       "iron-based",
       "Fe-based compounds",
       "Fe-based"
+    ],
+    "classes_from_materials": [
+      "Iron-pnictide",
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa34e_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa34e_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aabf33_fulltext.pdf",
@@ -114,6 +173,10 @@
       "iron-based Sr-122",
       "iron-based",
       "cuprate"
+    ],
+    "classes_from_materials": [
+      "Carbides",
+      "Borides"
     ]
   },
   {
@@ -122,34 +185,49 @@
     "classes": [
       "yttrium-barium-copper-oxygen",
       "LTS"
+    ],
+    "classes_from_materials": [
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa105_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa105_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad788_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad788_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae506_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae506_fulltext.pdf",
     "classes": [
       "dime- thyl sulfoxide"
+    ],
+    "classes_from_materials": [
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa703_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa703_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa94b7_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa94b7_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9912_fulltext.pdf",
@@ -157,27 +235,44 @@
     "classes": [
       "iron-based",
       "cuprate"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Iron-pnictide",
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa820_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa820_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab3bf_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab3bf_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac871_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac871_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Chalcogenides",
+      "Borides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad163_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad163_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae7c2_fulltext.pdf",
@@ -185,12 +280,17 @@
     "classes": [
       "Fe-based",
       "CeMIn 5 , M\uf0a0=\uf0a0Co"
+    ],
+    "classes_from_materials": [
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa3c1_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa3c1_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aabb4b_fulltext.pdf",
@@ -198,6 +298,10 @@
     "classes": [
       "perovskite-type oxide film",
       "metal oxide"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Carbides"
     ]
   },
   {
@@ -205,6 +309,10 @@
     "filename": "10.1088_1361-6668_aad4f1_fulltext.pdf",
     "classes": [
       "cuprate"
+    ],
+    "classes_from_materials": [
+      "Cuprate",
+      "Borides"
     ]
   },
   {
@@ -213,6 +321,11 @@
     "classes": [
       "cuprates",
       "La214"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate",
+      "Carbides"
     ]
   },
   {
@@ -221,6 +334,12 @@
     "classes": [
       "RE-123 nucleate",
       "RE-123"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate",
+      "Carbides",
+      "Alloy"
     ]
   },
   {
@@ -228,6 +347,11 @@
     "filename": "10.1088_1361-6668_aabb4e_fulltext.pdf",
     "classes": [
       "RE-rare earth element) bulk single-grain"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate",
+      "Alloy"
     ]
   },
   {
@@ -240,6 +364,10 @@
       "SrO oxide",
       "AP oxides",
       "11\uf0a0\u00d7\uf0a042\uf0a0\u00d7\uf0a01"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Alloy"
     ]
   },
   {
@@ -248,18 +376,29 @@
     "classes": [
       "iron-based",
       "cuprates"
+    ],
+    "classes_from_materials": [
+      "Iron-pnictide",
+      "Iron-chalcogenides",
+      "Cuprate",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab75d_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab75d_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab8c3_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab8c3_fulltext.pdf",
     "classes": [
       "iron-based"
+    ],
+    "classes_from_materials": [
+      "Iron-pnictide",
+      "Borides"
     ]
   },
   {
@@ -268,6 +407,10 @@
     "classes": [
       "pnictide",
       "cuprates"
+    ],
+    "classes_from_materials": [
+      "Cuprate",
+      "Chalcogenides"
     ]
   },
   {
@@ -280,12 +423,18 @@
       "cuprates",
       "Fe-based compounds, iron oxypnictides",
       "Bi-based compounds"
+    ],
+    "classes_from_materials": [
+      "Iron-pnictide",
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaba67_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaba67_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aada2f_fulltext.pdf",
@@ -294,12 +443,20 @@
       "metallic oxide",
       "cuprate",
       "HTS-SC-04"
+    ],
+    "classes_from_materials": [
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aadd26_fulltext.pdf",
     "filename": "10.1088_1361-6668_aadd26_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Cuprate",
+      "Borides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa821_fulltext.pdf",
@@ -307,29 +464,45 @@
     "classes": [
       "iron-based",
       "Fe-based"
+    ],
+    "classes_from_materials": [
+      "Borides"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab4ea_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab4ea_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Iron-chalcogenides",
+      "Chalcogenides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aadbfd_fulltext.pdf",
     "filename": "10.1088_1361-6668_aadbfd_fulltext.pdf",
     "classes": [
       "11; 21.5; 111; 555; 1111"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa826_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa826_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Borides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac55d_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac55d_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac55c_fulltext.pdf",
@@ -337,27 +510,38 @@
     "classes": [
       "earth-barium-copper-oxide",
       "HTS) rare earth-bar- ium-copper-oxide"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aabbf5_fulltext.pdf",
     "filename": "10.1088_1361-6668_aabbf5_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab5fa_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab5fa_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aabf32_fulltext.pdf",
     "filename": "10.1088_1361-6668_aabf32_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aacbec_fulltext.pdf",
     "filename": "10.1088_1361-6668_aacbec_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate",
+      "Carbides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae2ce_fulltext.pdf",
@@ -365,6 +549,11 @@
     "classes": [
       "cuprates",
       "cuprate oxides"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate",
+      "Alloy"
     ]
   },
   {
@@ -378,46 +567,67 @@
       "iron oxides",
       "HTS",
       "Fe-based"
+    ],
+    "classes_from_materials": [
+      "Cuprate",
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac290_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac290_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Chalcogenides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad78d_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad78d_fulltext.pdf",
     "classes": [
       "metal-oxide-"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac1d3_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac1d3_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Carbides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa49e_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa49e_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9b09_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa9b09_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab585_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab585_fulltext.pdf",
     "classes": [
       "HTS"
+    ],
+    "classes_from_materials": [
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac1d4_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac1d4_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae146_fulltext.pdf",
@@ -428,34 +638,52 @@
       "iron-based and nickel-based",
       "iron-based",
       "cuprates"
+    ],
+    "classes_from_materials": [
+      "Pnictides",
+      "Iron-chalcogenides",
+      "Chalcogenides",
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aadffb_fulltext.pdf",
     "filename": "10.1088_1361-6668_aadffb_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaafaa_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaafaa_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Carbides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9d48_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa9d48_fulltext.pdf",
     "classes": [
       "cuprates"
+    ],
+    "classes_from_materials": [
+      "Borides"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa82a_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa82a_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Carbides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac66d_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac66d_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aade5a_fulltext.pdf",
@@ -467,17 +695,30 @@
       "early transition metal diboride",
       "diborides",
       "borides"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Borides"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaebe8_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaebe8_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Cuprate",
+      "Carbides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa6b4_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa6b4_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Fluorides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac6a1_fulltext.pdf",
@@ -486,6 +727,10 @@
       "Zr 5 Ge 3\u2212x M x (M\uf0a0=\uf0a0Pd, Ir, and Pt)",
       "M 5 X 3 (M\uf0a0=\uf0a0alkaline earth or transition metal, and X\uf0a0=\uf0a0main group elements including Al, Si and As families)",
       "M 5 X 3"
+    ],
+    "classes_from_materials": [
+      "Pnictides",
+      "Alloy"
     ]
   },
   {
@@ -495,6 +740,10 @@
       "cuprates",
       "Fe-based",
       "1\u2212x Pt x ) 2 As 2 ) 5 (x\uf0a0\u2248\uf0a00"
+    ],
+    "classes_from_materials": [
+      "Iron-pnictide",
+      "Iron-chalcogenides"
     ]
   },
   {
@@ -503,12 +752,16 @@
     "classes": [
       "magnesium diboride",
       "MgB 2 -based racetrack"
+    ],
+    "classes_from_materials": [
+      "Borides"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aabcfd_fulltext.pdf",
     "filename": "10.1088_1361-6668_aabcfd_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac246_fulltext.pdf",
@@ -521,6 +774,10 @@
       "STO-CCO sequences",
       "HTS cuprates",
       "Fe-pnictides and -chalcogenides"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate"
     ]
   },
   {
@@ -529,34 +786,52 @@
     "classes": [
       "cuprate",
       "DI-BSCCO"
+    ],
+    "classes_from_materials": [
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad224_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad224_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Borides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa1b3_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa1b3_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaacc4_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaacc4_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aabb9b_fulltext.pdf",
     "filename": "10.1088_1361-6668_aabb9b_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Hydrides",
+      "Borides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaacc3_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaacc3_fulltext.pdf",
     "classes": [
       "cuprates"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac11c_fulltext.pdf",
@@ -565,7 +840,8 @@
       "cuprate",
       "Hg- based",
       "Bi-based"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad790_fulltext.pdf",
@@ -573,6 +849,10 @@
     "classes": [
       "iron-based ladder",
       "iron-based"
+    ],
+    "classes_from_materials": [
+      "Iron-chalcogenides",
+      "Alloy"
     ]
   },
   {
@@ -580,22 +860,31 @@
     "filename": "10.1088_1361-6668_aae147_fulltext.pdf",
     "classes": [
       "hydrides"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae714_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae714_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9c7b_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa9c7b_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Fluorides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab8dd_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab8dd_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9882_fulltext.pdf",
@@ -604,12 +893,20 @@
       "iron-based compounds",
       "iron-based",
       "cuprates"
+    ],
+    "classes_from_materials": [
+      "Iron-pnictide",
+      "Iron-chalcogenides",
+      "Cuprate",
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac86d_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac86d_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae42d_fulltext.pdf",
@@ -620,6 +917,12 @@
       "122' families of iron pnictides",
       "122' families",
       "122'"
+    ],
+    "classes_from_materials": [
+      "Pnictides",
+      "Other oxides",
+      "Iron-pnictide",
+      "Carbides"
     ]
   },
   {
@@ -630,12 +933,18 @@
       "iron-based",
       "cuprates and pnictides)",
       "cuprates"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Iron-chalcogenides",
+      "Cuprate"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac0e6_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac0e6_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaadf6_fulltext.pdf",
@@ -645,28 +954,38 @@
       "cuprates/oxides",
       "cuprates",
       "1212-Mo-cuprate"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad225_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad225_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaadf1_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaadf1_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Iron-chalcogenides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad277_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad277_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa980f_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa980f_fulltext.pdf",
     "classes": [
       "NbSn 2 -based PIT designs"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Alloy"
     ]
   },
   {
@@ -674,13 +993,20 @@
     "filename": "10.1088_1361-6668_aadc92_fulltext.pdf",
     "classes": [
       "M 12 , M 13 , M 14 , M 21 , M 23"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac6a0_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac6a0_fulltext.pdf",
     "classes": [
       "MgB 2 -based electronic devices"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Hydrides",
+      "Borides",
+      "Alloy"
     ]
   },
   {
@@ -689,33 +1015,52 @@
     "classes": [
       "M M M M M M M M M M M A A",
       "M M M M M M . B"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa81f_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa81f_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Carbides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa96f5_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa96f5_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Borides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa5de_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa5de_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Borides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9e6c_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa9e6c_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaacc1_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaacc1_fulltext.pdf",
     "classes": [
       "cuprate"
+    ],
+    "classes_from_materials": [
+      "Other oxides"
     ]
   },
   {
@@ -723,12 +1068,17 @@
     "filename": "10.1088_1361-6668_aa94b8_fulltext.pdf",
     "classes": [
       "cuprate"
+    ],
+    "classes_from_materials": [
+      "Carbides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa5db_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa5db_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9b1e_fulltext.pdf",
@@ -736,17 +1086,30 @@
     "classes": [
       "pnictide-chalcogenides",
       "111' iron-based"
+    ],
+    "classes_from_materials": [
+      "Pnictides",
+      "Other oxides",
+      "Chalcogenides"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aade5b_fulltext.pdf",
     "filename": "10.1088_1361-6668_aade5b_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Cuprate"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae6fe_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae6fe_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Pnictides",
+      "Chalcogenides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa501_fulltext.pdf",
@@ -755,52 +1118,83 @@
       "iron pnictides",
       "iron chalcogenides",
       "Fe-based"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aadffa_fulltext.pdf",
     "filename": "10.1088_1361-6668_aadffa_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac949_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac949_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad00c_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad00c_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9f41_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa9f41_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Borides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9694_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa9694_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Fluorides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa987e_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa987e_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa987b_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa987b_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Borides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaae94_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaae94_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Iron-pnictide",
+      "Cuprate",
+      "Borides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9dd2_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa9dd2_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Fluorides",
+      "Carbides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aacd2d_fulltext.pdf",
@@ -811,57 +1205,81 @@
       "Cu oxides",
       "Cr oxides",
       "Copper oxide"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad8f4_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad8f4_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad275_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad275_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab293_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab293_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Cuprate"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaab81_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaab81_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad080_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad080_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Cuprate"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaba69_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaba69_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa65e_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa65e_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac180_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac180_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa99f2_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa99f2_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Carbides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae7bc_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae7bc_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Borides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa98d7_fulltext.pdf",
@@ -869,6 +1287,9 @@
     "classes": [
       "titanium oxides",
       "Tl-based cuprate"
+    ],
+    "classes_from_materials": [
+      "Borides"
     ]
   },
   {
@@ -877,24 +1298,37 @@
     "classes": [
       "iron-pnictide",
       "cuprates"
+    ],
+    "classes_from_materials": [
+      "Iron-pnictide"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa95fd_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa95fd_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad786_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad786_fulltext.pdf",
     "classes": [
       "iron-based"
+    ],
+    "classes_from_materials": [
+      "Carbides",
+      "Borides"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aade1d_fulltext.pdf",
     "filename": "10.1088_1361-6668_aade1d_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Cuprate"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaae95_fulltext.pdf",
@@ -904,6 +1338,11 @@
       "impurity oxides",
       "cuprate",
       "Propionate-based solutions"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate",
+      "Carbides"
     ]
   },
   {
@@ -911,12 +1350,18 @@
     "filename": "10.1088_1361-6668_aa9881_fulltext.pdf",
     "classes": [
       "cuprates"
+    ],
+    "classes_from_materials": [
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac87e_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac87e_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae548_fulltext.pdf",
@@ -924,23 +1369,35 @@
     "classes": [
       "Si oxide",
       "Al oxide"
+    ],
+    "classes_from_materials": [
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa6b6_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa6b6_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae4b4_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae4b4_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Borides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad980_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad980_fulltext.pdf",
     "classes": [
       "Nb-based"
+    ],
+    "classes_from_materials": [
+      "Alloy"
     ]
   },
   {
@@ -952,27 +1409,39 @@
       "hydrides",
       "cuprates",
       "HTS"
+    ],
+    "classes_from_materials": [
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae45f_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae45f_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad07d_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad07d_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aadacb_fulltext.pdf",
     "filename": "10.1088_1361-6668_aadacb_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Nitrides",
+      "Borides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aadac8_fulltext.pdf",
     "filename": "10.1088_1361-6668_aadac8_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Cuprate"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aabddb_fulltext.pdf",
@@ -1012,12 +1481,26 @@
       "1111 compounds",
       "1111",
       "111 families"
+    ],
+    "classes_from_materials": [
+      "Pnictides",
+      "Other oxides",
+      "Iron-pnictide",
+      "Iron-chalcogenides",
+      "Hydrides",
+      "Fluorides",
+      "Cuprate",
+      "Chalcogenides",
+      "Carbides",
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaaee5_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaaee5_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab673_fulltext.pdf",
@@ -1028,6 +1511,12 @@
       "metal hydrogen oxide",
       "hydrogen oxide",
       "CS-YBCO"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate",
+      "Carbides",
+      "Alloy"
     ]
   },
   {
@@ -1035,6 +1524,10 @@
     "filename": "10.1088_1361-6668_aaafbe_fulltext.pdf",
     "classes": [
       "BHO-doped YBCO"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Alloy"
     ]
   },
   {
@@ -1044,6 +1537,9 @@
       "iron-based",
       "cuprates",
       "BaFe 2 As 2 -based compounds"
+    ],
+    "classes_from_materials": [
+      "Iron-pnictide"
     ]
   },
   {
@@ -1054,27 +1550,40 @@
       "iron-based",
       "iron pnictides",
       "2x = (blue circles)"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaadf2_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaadf2_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Carbides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aacc53_fulltext.pdf",
     "filename": "10.1088_1361-6668_aacc53_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab0c1_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab0c1_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Cuprate",
+      "Borides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9651_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa9651_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa3c4_fulltext.pdf",
@@ -1083,49 +1592,79 @@
       "single- crystal iron-based",
       "iron-based",
       "cuprate"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Iron-pnictide",
+      "Iron-chalcogenides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9539_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa9539_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Borides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaab20_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaab20_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Hydrides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aacf6b_fulltext.pdf",
     "filename": "10.1088_1361-6668_aacf6b_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaad8f_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaad8f_fulltext.pdf",
     "classes": [
       "160711-056A)"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad30d_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad30d_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Borides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaaaa3_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaaaa3_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Iron-chalcogenides",
+      "Borides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae2a9_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae2a9_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae7b5_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae7b5_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Borides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac121_fulltext.pdf",
@@ -1133,12 +1672,16 @@
     "classes": [
       "rare-earth oxides",
       "cuprate"
+    ],
+    "classes_from_materials": [
+      "Cuprate"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9d24_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa9d24_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9802_fulltext.pdf",
@@ -1149,67 +1692,99 @@
       "chalcogenides",
       "FeSeTe iron based",
       "11 chalcogenides"
+    ],
+    "classes_from_materials": [
+      "Iron-chalcogenides",
+      "Borides"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa44f_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa44f_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad34c_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad34c_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab887_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab887_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Carbides",
+      "Borides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac55a_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac55a_fulltext.pdf",
     "classes": [
       "earth oxides"
+    ],
+    "classes_from_materials": [
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae4bc_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae4bc_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae460_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae460_fulltext.pdf",
     "classes": [
       "RE-123"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Carbides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab4ec_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab4ec_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa954b_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa954b_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa823_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa823_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab3be_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab3be_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab93d_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab93d_fulltext.pdf",
     "classes": [
       "metal dichalcogenides"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Chalcogenides"
     ]
   },
   {
@@ -1217,65 +1792,105 @@
     "filename": "10.1088_1361-6668_aabb3f_fulltext.pdf",
     "classes": [
       "metal dichalcogenides (TMDCs)"
+    ],
+    "classes_from_materials": [
+      "Chalcogenides"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac860_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac860_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa7aa_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa7aa_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Nitrides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9a6d_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa9a6d_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Carbides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad78a_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad78a_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab5f9_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab5f9_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad842_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad842_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aa9efa_fulltext.pdf",
     "filename": "10.1088_1361-6668_aa9efa_fulltext.pdf",
     "classes": [
       "Fe-based"
+    ],
+    "classes_from_materials": [
+      "Iron-pnictide",
+      "Iron-chalcogenides",
+      "Borides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa831_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa831_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate",
+      "Carbides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab5fd_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab5fd_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab149_fulltext.pdf",
     "filename": "10.1088_1361-6668_aab149_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aada2e_fulltext.pdf",
     "filename": "10.1088_1361-6668_aada2e_fulltext.pdf",
     "classes": [
       "nitrides"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Nitrides",
+      "Alloy"
     ]
   },
   {
@@ -1283,6 +1898,10 @@
     "filename": "10.1088_1361-6668_aaaad7_fulltext.pdf",
     "classes": [
       "oxides"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate"
     ]
   },
   {
@@ -1291,23 +1910,37 @@
     "classes": [
       "oxides",
       "magnesium oxide"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Nitrides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aacd89_fulltext.pdf",
     "filename": "10.1088_1361-6668_aacd89_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Pnictides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad278_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad278_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Carbides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad4f2_fulltext.pdf",
     "filename": "10.1088_1361-6668_aad4f2_fulltext.pdf",
     "classes": [
       "oxides"
+    ],
+    "classes_from_materials": [
+      "Other oxides"
     ]
   },
   {
@@ -1317,6 +1950,10 @@
       "iron-based",
       "cuprates",
       "122'"
+    ],
+    "classes_from_materials": [
+      "Iron-pnictide",
+      "Alloy"
     ]
   },
   {
@@ -1324,6 +1961,9 @@
     "filename": "10.1088_1361-6668_aabe68_fulltext.pdf",
     "classes": [
       "cuprate"
+    ],
+    "classes_from_materials": [
+      "Other oxides"
     ]
   },
   {
@@ -1331,12 +1971,14 @@
     "filename": "10.1088_1361-6668_aac294_fulltext.pdf",
     "classes": [
       "HTS"
-    ]
+    ],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae426_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae426_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae2cf_fulltext.pdf",
@@ -1344,24 +1986,40 @@
     "classes": [
       "rare-earth element like yttrium) bulk",
       "Yb-based"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate",
+      "Carbides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aacb14_fulltext.pdf",
     "filename": "10.1088_1361-6668_aacb14_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": []
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae8c6_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae8c6_fulltext.pdf",
     "classes": [
       "Bi-based"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Cuprate"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aac943_fulltext.pdf",
     "filename": "10.1088_1361-6668_aac943_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Nitrides",
+      "Carbides",
+      "Alloy"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aad844_fulltext.pdf",
@@ -1369,22 +2027,37 @@
     "classes": [
       "earth barium copper oxide",
       "copper oxide"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Carbides",
+      "Alloy"
     ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aaa26b_fulltext.pdf",
     "filename": "10.1088_1361-6668_aaa26b_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Chalcogenides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae345_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae345_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Carbides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aae4bb_fulltext.pdf",
     "filename": "10.1088_1361-6668_aae4bb_fulltext.pdf",
-    "classes": []
+    "classes": [],
+    "classes_from_materials": [
+      "Other oxides",
+      "Nitrides"
+    ]
   },
   {
     "sourcepath": "pdfs/10.1088_1361-6668_aab3bd_fulltext.pdf",
@@ -1393,6 +2066,11 @@
       "iron-based",
       "cuprates",
       "1111 FeSCs families"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Iron-pnictide",
+      "Iron-chalcogenides"
     ]
   },
   {
@@ -1400,6 +2078,10 @@
     "filename": "10.1088_1361-6668_aa94b2_fulltext.pdf",
     "classes": [
       "MgB 2 -A"
+    ],
+    "classes_from_materials": [
+      "Cuprate",
+      "Borides"
     ]
   },
   {
@@ -1407,6 +2089,11 @@
     "filename": "10.1088_1361-6668_aab4eb_fulltext.pdf",
     "classes": [
       "oxides"
+    ],
+    "classes_from_materials": [
+      "Other oxides",
+      "Borides",
+      "Alloy"
     ]
   }
 ]
