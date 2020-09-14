@@ -5,8 +5,8 @@ function linkFormatter(value, row) {
 }
 
 function classesFormatter(value) {
-    if (value.length === 0) {
-        return ""
+    if (value === undefined || value.length === 0) {
+        return "";
     } else {
         return value.join(", ");
     }

@@ -23,6 +23,7 @@ def decode(response_string):
 
 def process_file(source_path):
     output_classes = []
+    output_classes_from_materials = []
 
     output = {
         'sourcepath': str(source_path),
@@ -30,6 +31,7 @@ def process_file(source_path):
 
         # classes
         'classes': output_classes,
+        'classes_from_materials': output_classes_from_materials
     }
 
     print("Processing file " + str(source_path))
@@ -49,8 +51,16 @@ def process_file(source_path):
 
         class_span = [item['text'] for item in sentence['spans'] if
                       'type' in item and (item['type'] == '<class>')]
+
         if len(class_span) > 0:
             output_classes.extend(class_span)
+
+        class_span = [item['attributes'][attribute] for item in sentence['spans'] if
+                      'type' in item and (item['type'] == '<material>') for attribute in item['attributes'] if
+                      attribute.endswith("clazz")]
+
+        if len(class_span) > 0:
+            output_classes_from_materials.extend(class_span)
 
     return output
 
@@ -73,9 +83,10 @@ def process_directory(source_directory, output_directory):
                 print("Something went wrong. Skipping. " + str(e))
                 continue
 
-
             cluster_single_file['classes'] = compact_classes(cluster_single_file['classes'])
-            cluster_single_file['sourcepath'] = os.path.relpath(cluster_single_file['sourcepath'], Path(output_directory).absolute())
+            cluster_single_file['classes_from_materials'] = compact_classes(cluster_single_file['classes_from_materials'])
+            cluster_single_file['sourcepath'] = os.path.relpath(cluster_single_file['sourcepath'],
+                                                                Path(output_directory).absolute())
             output.append(cluster_single_file)
             # write_on_files(cluster_single_file, output_directory, append=True)
     return output
@@ -151,6 +162,7 @@ if __name__ == '__main__':
         content = process_file(input_path)
 
         content['classes'] = compact_classes(content['classes'])
+        content['classes_from_materials'] = compact_classes(content['classes_from_materials'])
 
         # if output is None:
         print(json.dumps(content))
