@@ -49,30 +49,29 @@ def process_file(source_path):
             continue
 
         materials_spans = [item['text'] for item in sentence['spans'] if
-                           'type' in item and (item['type'] == 'material')]
+                           'type' in item and (item['type'] == '<material>')]
         if len(materials_spans) > 0:
             output_materials.extend(materials_spans)
 
-        if 'relationships' in sentence:
-            output_rows = []
-            sentence_text = sentence['text']
+        output_rows = []
+        sentence_text = sentence['text']
 
-            for relationship in sentence['relationships']:
-                # collect relationships
+        for relationship in sentence['relationships'] if 'relationships' in sentence else []:
+            # collect relationships
 
-                materials = [item for item in relationship if
-                             'type' in item and (item['type'] == 'material-tc')]
+            materials = [item for item in relationship if
+                         'type' in item and (item['type'] == 'material-tc')]
 
-                material = materials[0] if len(materials) > 0 else None
+            material = materials[0] if len(materials) > 0 else None
 
-                tcValues = [item for item in relationship if
-                            'type' in item and (item['type'] == 'temperature-tc')]
+            tcValues = [item for item in relationship if
+                        'type' in item and (item['type'] == 'temperature-tc')]
 
-                tcValue = tcValues[0] if len(tcValues) > 0 else None
+            tcValue = tcValues[0] if len(tcValues) > 0 else None
 
-                output_rows.append([material['text'], tcValue['text'], sentence_text])
-            if len(output_rows) > 0:
-                output_links.extend(output_rows)
+            output_rows.append([material['text'], tcValue['text'], sentence_text])
+        if len(output_rows) > 0:
+            output_links.extend(output_rows)
 
     return output
 
@@ -157,6 +156,7 @@ if __name__ == '__main__':
         content = process_file(input_path)
 
         if output is None:
-            print(json.dumps(content))
+            print(content)
         else:
-            write_on_files(content, output)
+            write_header(output)
+            write_on_files(content, output, append=True)
