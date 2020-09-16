@@ -25,6 +25,10 @@ def process_file(source_path, type="pdf"):
     output_classes = []
     output_classes_from_materials = []
     materials = []
+    materials_from_abstract = []
+    materials_from_body = []
+    materials_from_keywords = []
+    materials_from_title = []
 
     output = {
         'sourcepath': str(source_path),
@@ -33,7 +37,12 @@ def process_file(source_path, type="pdf"):
         # classes
         'classes': output_classes,
         'classes_from_materials': output_classes_from_materials,
-        'materials': materials
+        'materials': materials,
+        'materials_from_abstract': materials_from_abstract,
+        'materials_from_body': materials_from_body,
+        'materials_from_keywords': materials_from_keywords,
+        'materials_from_title': materials_from_title
+
     }
 
     print("Processing file " + str(source_path))
@@ -75,6 +84,34 @@ def process_file(source_path, type="pdf"):
         if len(material_spans) > 0:
             materials.extend(material_spans)
 
+        if 'subSection' in sentence and sentence['subSection'] == 'abstract':
+            materials_from_abstract_spans = [item['text'] for item in sentence['spans'] if
+                                             'type' in item and (item['type'] == '<material>')]
+
+            if len(materials_from_abstract_spans) > 0:
+                materials_from_abstract.extend(materials_from_abstract_spans)
+
+        if 'subSection' in sentence and sentence['subSection'] == 'title':
+            materials_from_title_spans = [item['text'] for item in sentence['spans'] if
+                                          'type' in item and (item['type'] == '<material>')]
+
+            if len(materials_from_title_spans) > 0:
+                materials_from_title.extend(materials_from_title_spans)
+
+        if 'subSection' in sentence and sentence['subSection'] == 'keywords':
+            materials_from_keywords_spans = [item['text'] for item in sentence['spans'] if
+                                             'type' in item and (item['type'] == '<material>')]
+
+            if len(materials_from_keywords_spans) > 0:
+                materials_from_keywords.extend(materials_from_keywords_spans)
+
+        if 'section' in sentence and sentence['section'] == 'body':
+            materials_from_body_spans = [item['text'] for item in sentence['spans'] if
+                                             'type' in item and (item['type'] == '<material>')]
+
+            if len(materials_from_body_spans) > 0:
+                materials_from_body.extend(materials_from_body_spans)
+
     return output
 
 
@@ -100,10 +137,18 @@ def process_directory(source_directory, output_directory, type="pdf"):
             cluster_single_file['classes_from_materials'] = compact_classes(
                 cluster_single_file['classes_from_materials'])
             cluster_single_file['materials'] = compact_classes(cluster_single_file['materials'])
+            cluster_single_file['materials_from_title'] = compact_classes(cluster_single_file['materials_from_title'])
+            cluster_single_file['materials_from_keywords'] = compact_classes(cluster_single_file['materials_from_keywords'])
+            cluster_single_file['materials_from_abstract'] = compact_classes(cluster_single_file['materials_from_abstract'])
+            cluster_single_file['materials_from_body'] = compact_classes(cluster_single_file['materials_from_body'])
+
             cluster_single_file['sourcepath'] = os.path.relpath(cluster_single_file['sourcepath'],
-                                                                Path(output_directory).absolute())
+                                                                Path(output_directory).absolute()) \
+                .replace(".json", ".pdf").replace("jsons/", "pdfs/")
+
+            cluster_single_file['filename'] = cluster_single_file['filename'].replace(".json", "")
+
             output.append(cluster_single_file)
-            # write_on_files(cluster_single_file, output_directory, append=True)
     return output
 
 
