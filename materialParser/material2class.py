@@ -226,7 +226,10 @@ class Material2Tags(ClassResolver):
         output = {tag: [] for tag in tags}
 
         for tag in tags:
-            output[tag] = list(self.assign_tags(formula, composition_map=self.material2class_second_level[tag]))
+            if tag in self.material2class_second_level:
+                output[tag] = list(self.assign_tags(formula, composition_map=self.material2class_second_level[tag]))
+            else:
+                output[tag] = []
 
         return output
 
