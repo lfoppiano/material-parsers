@@ -4,6 +4,7 @@ import csv
 import json
 import os
 import re
+import traceback
 from difflib import SequenceMatcher
 from pathlib import Path
 
@@ -29,6 +30,10 @@ def process_file(source_path, type="pdf"):
     materials_from_body = []
     materials_from_keywords = []
     materials_from_title = []
+    classes_from_materials_from_abstract = []
+    classes_from_materials_from_keywords = []
+    classes_from_keywords = []
+    classes_from_materials_from_title = []
 
     output = {
         'sourcepath': str(source_path),
@@ -39,9 +44,13 @@ def process_file(source_path, type="pdf"):
         'classes_from_materials': output_classes_from_materials,
         'materials': materials,
         'materials_from_abstract': materials_from_abstract,
+        'classes_from_materials_from_abstract': classes_from_materials_from_abstract,
         'materials_from_body': materials_from_body,
         'materials_from_keywords': materials_from_keywords,
-        'materials_from_title': materials_from_title
+        'materials_from_title': materials_from_title,
+        'classes_from_materials_from_keywords': classes_from_materials_from_keywords,
+        'classes_from_keywords': classes_from_keywords,
+        'classes_from_materials_from_title': classes_from_materials_from_title
 
     }
 
@@ -87,16 +96,28 @@ def process_file(source_path, type="pdf"):
         if 'subSection' in sentence and sentence['subSection'] == 'abstract':
             materials_from_abstract_spans = [item['text'] for item in sentence['spans'] if
                                              'type' in item and (item['type'] == '<material>')]
-
             if len(materials_from_abstract_spans) > 0:
                 materials_from_abstract.extend(materials_from_abstract_spans)
+
+            classes_from_materials_from_abstract_spans = [item['attributes'][attribute] for item in sentence['spans'] if
+                                                          'type' in item and (item['type'] == '<material>') for
+                                                          attribute in item['attributes'] if
+                                                          attribute.endswith("clazz")]
+            if len(classes_from_materials_from_abstract_spans) > 0:
+                classes_from_materials_from_abstract.extend(classes_from_materials_from_abstract_spans)
 
         if 'subSection' in sentence and sentence['subSection'] == 'title':
             materials_from_title_spans = [item['text'] for item in sentence['spans'] if
                                           'type' in item and (item['type'] == '<material>')]
-
             if len(materials_from_title_spans) > 0:
                 materials_from_title.extend(materials_from_title_spans)
+
+            classes_from_materials_from_title_spans = [item['attributes'][attribute] for item in sentence['spans'] if
+                                                       'type' in item and (item['type'] == '<material>') for attribute
+                                                       in item['attributes'] if
+                                                       attribute.endswith("clazz")]
+            if len(classes_from_materials_from_title_spans) > 0:
+                classes_from_materials_from_title.extend(classes_from_materials_from_title_spans)
 
         if 'subSection' in sentence and sentence['subSection'] == 'keywords':
             materials_from_keywords_spans = [item['text'] for item in sentence['spans'] if
@@ -105,9 +126,23 @@ def process_file(source_path, type="pdf"):
             if len(materials_from_keywords_spans) > 0:
                 materials_from_keywords.extend(materials_from_keywords_spans)
 
+            classes_from_materials_from_keywords_spans = [item['attributes'][attribute] for item in sentence['spans'] if
+                                                          'type' in item and (item['type'] == '<material>') for
+                                                          attribute in item['attributes'] if
+                                                          attribute.endswith("clazz")]
+            if len(classes_from_materials_from_keywords_spans) > 0:
+                classes_from_materials_from_keywords.extend(classes_from_materials_from_keywords_spans)
+
+
+            class_from_keywords_spans = [item['text'] for item in sentence['spans'] if
+                           'type' in item and (item['type'] == '<class>')]
+
+            if len(class_from_keywords_spans) > 0:
+                classes_from_keywords.extend(class_from_keywords_spans)
+
         if 'section' in sentence and sentence['section'] == 'body':
             materials_from_body_spans = [item['text'] for item in sentence['spans'] if
-                                             'type' in item and (item['type'] == '<material>')]
+                                         'type' in item and (item['type'] == '<material>')]
 
             if len(materials_from_body_spans) > 0:
                 materials_from_body.extend(materials_from_body_spans)
@@ -130,17 +165,22 @@ def process_directory(source_directory, output_directory, type="pdf"):
             try:
                 cluster_single_file = process_file(Path(abs_path), type)
             except Exception as e:
-                print("Something went wrong. Skipping. " + str(e))
+                print("Something went wrong. Skipping. ", e)
+                traceback.print_exc()
                 continue
 
             cluster_single_file['classes'] = compact_classes(cluster_single_file['classes'])
-            cluster_single_file['classes_from_materials'] = compact_classes(
-                cluster_single_file['classes_from_materials'])
+            cluster_single_file['classes_from_materials'] = compact_classes(cluster_single_file['classes_from_materials'])
             cluster_single_file['materials'] = compact_classes(cluster_single_file['materials'])
             cluster_single_file['materials_from_title'] = compact_classes(cluster_single_file['materials_from_title'])
             cluster_single_file['materials_from_keywords'] = compact_classes(cluster_single_file['materials_from_keywords'])
             cluster_single_file['materials_from_abstract'] = compact_classes(cluster_single_file['materials_from_abstract'])
             cluster_single_file['materials_from_body'] = compact_classes(cluster_single_file['materials_from_body'])
+            cluster_single_file['classes_from_keywords'] = compact_classes(cluster_single_file['classes_from_keywords'])
+
+            cluster_single_file['classes_from_materials_from_keywords'] = compact_classes(cluster_single_file['classes_from_materials_from_keywords'])
+            cluster_single_file['classes_from_materials_from_title'] = compact_classes(cluster_single_file['classes_from_materials_from_title'])
+            cluster_single_file['classes_from_materials_from_abstract'] = compact_classes(cluster_single_file['classes_from_materials_from_abstract'])
 
             cluster_single_file['sourcepath'] = os.path.relpath(cluster_single_file['sourcepath'],
                                                                 Path(output_directory).absolute()) \
