@@ -83,9 +83,9 @@ class Material2Class(ClassResolver):
 
 class Material2Tags(ClassResolver):
     material2class_first_level = [
-        {"and_compounds": ["O", "Cu"], "name": "Cuprate"},
-        {"and_compounds": ["Fe", "P"], "name": "Iron-pnictide"},
-        {"and_compounds": ["Fe", "As"], "name": "Iron-pnictide"},
+        {"and_compounds": ["O", "Cu"], "name": "Cuprates"},
+        {"and_compounds": ["Fe", "P"], "name": "Iron-pnictides"},
+        {"and_compounds": ["Fe", "As"], "name": "Iron-pnictides"},
         {"and_compounds": ["Fe", 'S'], "name": "Iron-chalcogenides"},
         {"and_compounds": ["Fe", 'Se'], "name": "Iron-chalcogenides"},
         {"and_compounds": ["Fe", 'Te'], "name": "Iron-chalcogenides"},
@@ -103,7 +103,7 @@ class Material2Tags(ClassResolver):
     ]
 
     material2class_second_level = {
-        'Cuprate': [
+        'Cuprates': [
             {"and_compounds": ["Bi"], "name": "Bi-based"},
             {"and_compounds": ["Hg"], "name": "Hg-based"},
             {"and_compounds": ["Tl"], "name": "Tl-based"},
@@ -113,14 +113,14 @@ class Material2Tags(ClassResolver):
             {"and_compounds": ["Pr", "Ce", "Cu", "O"], "name": "T'"},
             {"and_compounds": ["Pr", "Ce", "La", "Cu", "O"], "name": "T'"},
         ],
-        'Iron-pnictide': [],
+        'Iron-pnictides': [],
         'Iron-chalcogenides': [],
         'Hydrides': [
             {"and_compounds": ["H", "S"], "name": "Sulfure Hydrate"}
         ],
         'Carbides': [
             {"and_compounds": ["B", "C"], "name": "Borocarbides"},
-            {"and_compounds": ["O", "C"], "name": "organics"}
+            {"and_compounds": ["O", "C"], "name": "Organics"}
         ],
         'Chalcogenides': [
             {"and_compounds": ["Bi", {"S": 2}], "name": "BiCh2"},
@@ -136,7 +136,7 @@ class Material2Tags(ClassResolver):
         ],
         'Alloys': [
             {"or_compounds": ["Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "U"],
-             "name": "possible Heavy-fermions"}
+             "name": "Possible Heavy-fermions"}
         ]
 
     }
