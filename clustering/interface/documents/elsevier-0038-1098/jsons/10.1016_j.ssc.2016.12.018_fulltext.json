@@ -1,0 +1,10 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title>Error 500 Request failed.</title>
+</head>
+<body><h2>HTTP ERROR 500</h2>
+<p>Problem accessing /service/process/pdf. Reason:
+<pre>    Request failed.</pre></p>
+</body>
+</html>
