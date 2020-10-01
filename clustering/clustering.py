@@ -133,9 +133,8 @@ def process_file(source_path, type="pdf"):
             if len(classes_from_materials_from_keywords_spans) > 0:
                 classes_from_materials_from_keywords.extend(classes_from_materials_from_keywords_spans)
 
-
             class_from_keywords_spans = [item['text'] for item in sentence['spans'] if
-                           'type' in item and (item['type'] == '<class>')]
+                                         'type' in item and (item['type'] == '<class>')]
 
             if len(class_from_keywords_spans) > 0:
                 classes_from_keywords.extend(class_from_keywords_spans)
@@ -165,22 +164,28 @@ def process_directory(source_directory, output_directory, type="pdf"):
             try:
                 cluster_single_file = process_file(Path(abs_path), type)
             except Exception as e:
-                print("Something went wrong. Skipping. ", e)
+                print("Something went wrong. Skipping " + str(abs_path) + ". ", e)
                 traceback.print_exc()
                 continue
 
             cluster_single_file['classes'] = compact_classes(cluster_single_file['classes'])
-            cluster_single_file['classes_from_materials'] = compact_classes(cluster_single_file['classes_from_materials'])
+            cluster_single_file['classes_from_materials'] = compact_classes(
+                cluster_single_file['classes_from_materials'])
             cluster_single_file['materials'] = compact_classes(cluster_single_file['materials'])
             cluster_single_file['materials_from_title'] = compact_classes(cluster_single_file['materials_from_title'])
-            cluster_single_file['materials_from_keywords'] = compact_classes(cluster_single_file['materials_from_keywords'])
-            cluster_single_file['materials_from_abstract'] = compact_classes(cluster_single_file['materials_from_abstract'])
+            cluster_single_file['materials_from_keywords'] = compact_classes(
+                cluster_single_file['materials_from_keywords'])
+            cluster_single_file['materials_from_abstract'] = compact_classes(
+                cluster_single_file['materials_from_abstract'])
             cluster_single_file['materials_from_body'] = compact_classes(cluster_single_file['materials_from_body'])
             cluster_single_file['classes_from_keywords'] = compact_classes(cluster_single_file['classes_from_keywords'])
 
-            cluster_single_file['classes_from_materials_from_keywords'] = compact_classes(cluster_single_file['classes_from_materials_from_keywords'])
-            cluster_single_file['classes_from_materials_from_title'] = compact_classes(cluster_single_file['classes_from_materials_from_title'])
-            cluster_single_file['classes_from_materials_from_abstract'] = compact_classes(cluster_single_file['classes_from_materials_from_abstract'])
+            cluster_single_file['classes_from_materials_from_keywords'] = compact_classes(
+                cluster_single_file['classes_from_materials_from_keywords'])
+            cluster_single_file['classes_from_materials_from_title'] = compact_classes(
+                cluster_single_file['classes_from_materials_from_title'])
+            cluster_single_file['classes_from_materials_from_abstract'] = compact_classes(
+                cluster_single_file['classes_from_materials_from_abstract'])
 
             cluster_single_file['sourcepath'] = os.path.relpath(cluster_single_file['sourcepath'],
                                                                 Path(output_directory).absolute()) \
