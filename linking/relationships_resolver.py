@@ -42,7 +42,10 @@ class SimpleResolutionResolver(ResolutionResolver):
 
 
 class VicinityResolutionResolver(ResolutionResolver):
-    separators = [',', '.', ';', 'and']
+
+    ## this separator list contains tokens suggested by Oka Hiroyuki (OKA.Hiroyuki@nims.go.jp)
+    separators = [',', '.', ';', 'and', 'but', 'while', 'whereas', 'which', 'although']
+    # TODO: add multi tokens, should modify the way tokens are looked up first...
 
     ## Assume the entities are already sorted
     def find_relationships(self, doc, entities1, entities2):
