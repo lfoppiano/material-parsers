@@ -57,11 +57,12 @@ def process_directory(source_directory, output_directory):
             write_on_files(output, output_directory, append=True)
 
 
-
 def write_header(output_directory):
     with open(output_directory + '/output.supercon.csv', 'w') as f:
         writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
-        writer.writerow(['Raw material', 'name', 'formula', 'doping', 'shape', 'class', 'critical temperature', 'applied pressure', 'link type', 'sentence', 'path', 'filename'])
+        writer.writerow(["Raw material", "Name", "Formula", "Doping", "Shape", "Class", "Fabrication", "Substrate",
+                         "Critical temperature", "Applied pressure", "Link type", "Section", "Subsection", "Sentence",
+                         'path', 'filename'])
 
 
 def write_on_files(output, output_directory, append=False):
