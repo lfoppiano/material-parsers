@@ -9,7 +9,7 @@ from sys import argv
 import spacy
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from commons.GrobidTokenizer import tokenizeAndFilterSimple
+from grobid_tokenizer import tokenizeAndFilterSimple
 
 nlp = spacy.load("en_core_sci_sm", disable=['ner', 'tagger'])
 

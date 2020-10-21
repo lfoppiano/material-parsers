@@ -1,9 +1,8 @@
 # transform XML Tei to TSV for WebAnno
+import argparse
 import os
 import re
-import sys
 from pathlib import Path
-from sys import argv
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 from grobid_tokenizer import tokenizeSimple
@@ -12,13 +11,14 @@ from grobid_tokenizer import tokenizeSimple
 def tokenise(string):
     return tokenizeSimple(string)
 
+
 def write_on_file(fw, paragraphText, dic_token, i, len_root):
     # tsvText += f'#Text={paragraphText}\n'
     print(f'#Text={paragraphText}', file=fw)
     for k, v in dic_token.items():
         # print(v)
         if k[0] == i + 1 and v[2]:
-            print('{}-{}\t{}-{}\t{}\t{}\t{}\t{}\t{}\t'.format(*k, *v), file=fw)
+            print('{}-{}\t{}-{}\t{}\t{}\t{}\t{}\t{}\t{}\t'.format(*k, *v), file=fw)
     if i != len_root - 1:
         print('', file=fw)
 
@@ -35,6 +35,7 @@ def processFile(finput, foutput):
 
     fw = open(foutput, 'w', encoding='utf-8')
     print('#FORMAT=WebAnno TSV 3.2', file=fw)
+    print('#T_SP=webanno.custom.Section|name', file=fw)
     print('#T_SP=webanno.custom.Supercon|extra_tag|supercon_tag', file=fw)
     print('#T_RL=webanno.custom.Supercon_link|relationships|BT_webanno.custom.Supercon\n\n', file=fw)
 
@@ -52,6 +53,7 @@ def processFile(finput, foutput):
     paragraphs = []
     dic_dest_relationships = {}
     dic_source_relationships = {}
+    section = "body"
 
     for i, pTag in enumerate(root('p')):
         j = 0
@@ -72,8 +74,8 @@ def processFile(finput, foutput):
                     e = off_token
                     if token.rstrip(' '):
                         dic_token[(i + 1, j + 1)] = [
-                            s, e, token.rstrip(' '), entity_class, entity_class, entity_class, entity_class,
-                            entity_class]
+                            s, e, token.rstrip(' '), section + f'[{i + 10000}]', entity_class, entity_class, entity_class,
+                            entity_class, entity_class]
                         #                     print((i+1, j+1), s, e, [token], len(token.rstrip(' ')), off_token)
                         j += 1
                     if len(token) > 0 and token[-1] == ' ':
@@ -112,8 +114,8 @@ def processFile(finput, foutput):
                     off_token += len(token.rstrip(' '))
                     e = off_token
                     if token.rstrip(' '):
-                        dic_token[(i + 1, j + 1)] = [s, e, token.rstrip(' '), f'*[{ient}]', entity_class + f'[{ient}]',
-                                                     link_name, link_location]
+                        dic_token[(i + 1, j + 1)] = [s, e, token.rstrip(' '), section + f'[{i + 10000}]', f'*[{ient}]',
+                                                     entity_class + f'[{ient}]', link_name, link_location]
                         #                     print((i+1, j+1), s, e, [token], len(token.rstrip(' ')), off_token)
                         j += 1
                     if len(token) > 0 and token[-1] == ' ':
@@ -129,15 +131,6 @@ def processFile(finput, foutput):
         source_entity_id = dic_source_relationships[par_num, token_num][1]
         label = dic_source_relationships[par_num, token_num][2]
 
-        ## TODO: implement a smarter approach that verify the source and destination
-        if str.lower(label) == 'tcvalue':
-            relationship_name = 'material-tc'
-        elif str.lower(label) == 'pressure':
-            relationship_name = 'pressure-tc'
-        else:
-            raise Exception("Something is wrong in the links. "
-                            "The origin label is not recognised: " + label)
-
         # destination_xml_id: Use this to pick up information from dic_dest_relationship
 
         for des in destination_xml_id.split(","):
@@ -145,42 +138,90 @@ def processFile(finput, foutput):
             destination_paragraph_tsv = destination_item[0]
             destination_token_tsv = destination_item[1]
             destination_entity_id = destination_item[2]
+            destination_type = destination_item[3]
+
+            if str.lower(label) == 'tcvalue':
+                if destination_type == 'material':
+                    relationship_name = 'tcValue-material'
+                elif str.lower(destination_type) == 'me_method':
+                    relationship_name = 'tcValue-me_method'
+                else:
+                    raise Exception("Something is wrong in the links. "
+                                    "The origin label " + str(label) + ", or the destination " + str(
+                        destination_type) + " is not recognised. ")
+            elif str.lower(label) == 'pressure':
+                relationship_name = 'tcValue-pressure'
+            else:
+                raise Exception("Something is wrong in the links. "
+                                "The origin label " + str(label) + ", or the destination " + str(
+                    destination_type) + " is not recognised. ")
 
             dict_coordinates = (destination_paragraph_tsv, destination_token_tsv)
 
             dic_token_entry = dic_token[dict_coordinates]
-            if dic_token_entry[5] == 'link_name' and dic_token_entry[6] == 'link_location':
-                dic_token_entry[5] = relationship_name
-                dic_token_entry[
-                    6] = str(par_num) + '-' + str(token_num) + "[" + str(
+            if dic_token_entry[6] == 'link_name' and dic_token_entry[7] == 'link_location':
+                dic_token_entry[6] = relationship_name
+                dic_token_entry[7] = str(par_num) + '-' + str(token_num) + "[" + str(
                     source_entity_id) + '_' + str(destination_entity_id) + ']'
             else:
-                dic_token_entry[5] += '|' + relationship_name
-                dic_token_entry[6] += '|' + str(par_num) + '-' + str(token_num) + "[" + str(
+                dic_token_entry[6] += '|' + relationship_name
+                dic_token_entry[7] += '|' + str(par_num) + '-' + str(token_num) + "[" + str(
                     source_entity_id) + '_' + str(destination_entity_id) + ']'
 
     # Cleaning up the dictionary token
     for k, v in dic_token.items():
-        v[5] = v[5].replace('link_name', '_')
-        v[6] = v[6].replace('link_location', '_')
+        v[6] = v[6].replace('link_name', '_')
+        v[7] = v[7].replace('link_location', '_')
 
     for paragraph in paragraphs:
         write_on_file(fw, paragraph[1], dic_token, paragraph[0], len(root('p')))
 
 
 if __name__ == '__main__':
-    if len(argv) != 3:
-        print("Invalid parameters. Usage: python xml2tsv_webanno.py input_dir output_dir")
-        sys.exit(-1)
+    parser = argparse.ArgumentParser(
+        description="Converter XML (Grobid training data based on TEI) to TSV (Webanno )")
 
-    input = argv[1]
-    output = argv[2]
+    parser.add_argument("--input", help="Input file or directory", required=True)
+    parser.add_argument("--output", default=None,
+                        help="Output directory (if omitted, the output will be the same directory/file with different extension)")
+    parser.add_argument("--recursive", action="store_true", default=False,
+                        help="Process input directory recursively. If input is a file, this parameter is ignored. ")
+
+    args = parser.parse_args()
+
+    input = args.input
+    output = args.output
+    recursive = args.recursive
 
     if os.path.isdir(input):
-        path_list = Path(input).glob('*.tei.xml')
+        path_list = []
+
+        if recursive:
+            for root, dirs, files in os.walk(input):
+                for file_ in files:
+                    if not file_.lower().endswith(".tsv"):
+                        continue
+
+                    abs_path = os.path.join(root, file_)
+                    path_list.append(abs_path)
+
+        else:
+            path_list = Path(input).glob('*.tei.xml')
+
         for path in path_list:
             print("Processing: ", path)
-            processFile(str(path), os.path.join(output, str(path.name) + ".tsv"))
+            output_filename = Path(path).stem
+            parent_dir = Path(path).parent
+
+            if os.path.isdir(str(output)):
+                output_path = os.path.join(output, str(output_filename)) + ".tsv"
+            else:
+                output_path = os.path.join(parent_dir, output_filename + ".tsv")
+
+            processFile(str(path), output_path)
+
     elif os.path.isfile(input):
         input_path = Path(input)
-        processFile(str(input_path), os.path.join(output, str(input_path.name) + ".tsv"))
+        data = processFile(input_path)
+        output_filename = input_path.stem
+        processFile(str(input_path), os.path.join(output, str(output_filename) + ".tsv"))

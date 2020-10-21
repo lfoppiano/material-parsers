@@ -25,9 +25,11 @@ def processFile(file):
         tokenId = 0
 
         # If there are no relationships, the TSV has two column less.
-        withRelationships = False
+        with_relationships = False
         relation_source_dest = {}
         relation_dest_source = {}
+        spans_layers = 0
+        relationship_layer_index = 5    # The usual value
         for line in fp.readlines():
             if line.startswith("#Text") and not inside:  # Start paragraph
                 currentParagraph['text'] = line.replace("#Text=", "")
@@ -53,8 +55,12 @@ def processFile(file):
                 inside = False
             else:
                 if not inside:
+                    if line.startswith("#T_SP"):
+                        spans_layers = len(line.split('|')) - 1
                     if line.startswith("#T_RL"):
-                        withRelationships = True
+                        with_relationships = True
+                        if spans_layers > 0:
+                            relationship_layer_index = 2 + spans_layers
 
                     print("Ignoring " + line)
                     continue
@@ -75,9 +81,9 @@ def processFile(file):
 
                 tag = split[4].strip()
                 tag = tag.replace('\\', '')
-                if withRelationships:
-                    relationship_name = split[5].strip()
-                    relationship_references = split[6].strip()
+                if with_relationships:
+                    relationship_name = split[relationship_layer_index].strip()
+                    relationship_references = split[relationship_layer_index+1].strip()
                 else:
                     relationship_name = '_'
                     relationship_references = '_'
@@ -260,9 +266,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Converter TSV to XML (Grobid training data based on TEI)")
 
-    parser.add_argument("--input", help="Input file or directory")
+    parser.add_argument("--input", help="Input file or directory", required=True)
     parser.add_argument("--output",
-                        help="Output directory (if omitted, the output will be the same directory/file with different extension)")
+                        help="Output directory (if omitted, the output will be the same directory/file with different extension)",
+                        required=False)
     parser.add_argument("--recursive", action="store_true", default=False,
                         help="Process input directory recursively. If input is a file, this parameter is ignored. ")
 
