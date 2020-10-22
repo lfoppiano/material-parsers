@@ -13,15 +13,18 @@ def tokenise(string):
     return tokenizeSimple(string)
 
 
-def write_on_file(fw, paragraphText, dic_token, i, len_root):
+def write_on_file(fw, paragraphText, dic_token, i, item_length):
     # tsvText += f'#Text={paragraphText}\n'
     print(f'#Text={paragraphText}', file=fw)
     for k, v in dic_token.items():
         # print(v)
         if k[0] == i + 1 and v[2]:
             print('{}-{}\t{}-{}\t{}\t{}\t{}\t{}\t{}\t{}\t'.format(*k, *v), file=fw)
-    if i != len_root - 1:
+
+    # Avoid adding a line break too much at the end of the file
+    if i != item_length - 1:
         print('', file=fw)
+
 
 def getSection(pTag):
     if pTag.name == 'p':
@@ -209,7 +212,7 @@ def processFile(finput, foutput):
         v[7] = v[7].replace('link_location', '_')
 
     for paragraph in paragraphs:
-        write_on_file(fw, paragraph[1], dic_token, paragraph[0], len(children))
+        write_on_file(fw, paragraph[1], dic_token, paragraph[0], len(paragraphs))
 
 
 if __name__ == '__main__':
@@ -246,10 +249,11 @@ if __name__ == '__main__':
         for path in path_list:
             print("Processing: ", path)
             output_filename = Path(path).stem
+            output_filename = output_filename.replace(".tei", "")
             parent_dir = Path(path).parent
 
             if os.path.isdir(str(output)):
-                output_path = os.path.join(output, str(output_filename)) + ".tsv"
+                output_path = os.path.join(output, str(output_filename) + ".tsv")
             else:
                 output_path = os.path.join(parent_dir, output_filename + ".tsv")
 

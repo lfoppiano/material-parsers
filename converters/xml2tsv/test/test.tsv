@@ -761,6 +761,7 @@
 4-543	3868-3881	intermetallic	body[10003]	_	_	_	_	
 4-544	3882-3891	compounds	body[10003]	_	_	_	_	
 4-545	3891-3892	.	body[10003]	_	_	_	_	
+
 #Text=The MCE is a intrinsic phenomenon for magnetic materials which manifests as the isothermal magnetic entropy change S M or/and the adiabatic temperature change T ad when it is exposed to a varying magnetic field, the definition of S M and T ad can be found in .
 5-1	3893-3896	The	body[10004]	_	_	_	_	
 5-2	3897-3900	MCE	body[10004]	_	_	_	_	
@@ -11505,4 +11506,3 @@
 55-16	47653-47654	2	body[10054]	*[218]	tcValue[218]	_	_	
 55-17	47655-47656	K	body[10054]	*[218]	tcValue[218]	_	_	
 55-18	47656-47657	.	body[10054]	_	_	_	_	
-
