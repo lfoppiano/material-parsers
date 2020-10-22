@@ -107,8 +107,7 @@ def processFile(finput, foutput):
                         if token.rstrip(' '):
                             dic_token[(i + 1, j + 1)] = [
                                 s, e, token.rstrip(' '), section + f'[{i + 10000}]', entity_class, entity_class,
-                                entity_class,
-                                entity_class, entity_class]
+                                entity_class, entity_class, entity_class]
                             #                     print((i+1, j+1), s, e, [token], len(token.rstrip(' ')), off_token)
                             j += 1
                         if len(token) > 0 and token[-1] == ' ':

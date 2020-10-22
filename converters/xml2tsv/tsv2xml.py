@@ -62,7 +62,7 @@ def processFile(file):
                     if line.startswith("#T_RL"):
                         with_relationships = True
                         if spans_layers > 0:
-                            relationship_layer_index = 2 + spans_layers
+                            relationship_layer_index = 2 + spans_layers + 1
 
                     print("Ignoring " + line)
                     continue
@@ -271,7 +271,7 @@ def writeOutput(datas, output):
                             identifier = ' xml:id="x' + span['tagIndex'] + '"'
 
                         if pointers is not '' or identifier is not '':
-                            tagLabel = '<' + span_label + identifier + pointers + '>'
+                            tagLabel = '<rs type="' + span_label + '"' + identifier + pointers + '>'
 
                         paragraph += tagLabel
                     paragraph += escape(token['text'])
