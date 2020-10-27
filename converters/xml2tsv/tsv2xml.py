@@ -25,12 +25,16 @@ def processFile(file):
         tagValue = None
         currentSpan = None
         tokenId = 0
+        entitiesLayerFirstIndex = -1
+        sectionLayerFirstIndex = -1
+        hasDocumentStructure = False
+
 
         # If there are no relationships, the TSV has two column less.
         with_relationships = False
         relation_source_dest = {}
         relation_dest_source = {}
-        spans_layers = 0
+        spans_layers = 3
         relationship_layer_index = 5  # The usual value
         for line in fp.readlines():
             if line.startswith("#Text") and not inside:  # Start paragraph
@@ -58,11 +62,20 @@ def processFile(file):
             else:
                 if not inside:
                     if line.startswith("#T_SP"):
-                        spans_layers += len(line.split('|')) - 1
+                        layerName = line.split('|')[0].split('=')[1]
+                        if layerName == 'webanno.custom.Supercon':
+                            entitiesLayerFirstIndex = spans_layers
+                            entitiesLayerLabelIndex = entitiesLayerFirstIndex + 1
+                        elif layerName == 'webanno.custom.Section':
+                            sectionLayerFirstIndex = spans_layers
+                            hasDocumentStructure = True
+                        layerTagsets = len(line.split('|')) - 1
+                        spans_layers += layerTagsets
+
                     if line.startswith("#T_RL"):
                         with_relationships = True
                         if spans_layers > 0:
-                            relationship_layer_index = 2 + spans_layers + 1
+                            relationship_layer_index = entitiesLayerLabelIndex + 1
 
                     print("Ignoring " + line)
                     continue
@@ -81,9 +94,12 @@ def processFile(file):
                 text = split[2]
                 tokens.append({'start': tokenPositionStart, 'end': tokenPositionEnd, 'text': text, 'id': tokenId})
 
-                section = split[3].split('[')[0]
+                section = "body"
+                if sectionLayerFirstIndex > -1:
+                    section = split[3].split('[')[0]
+
                 currentParagraph['section'] = section
-                tag = split[5].strip()
+                tag = split[entitiesLayerLabelIndex].strip()
                 tag = tag.replace('\\', '')
 
                 if with_relationships:
