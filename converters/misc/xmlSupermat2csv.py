@@ -65,16 +65,17 @@ def processFile(finput):
                                                                           entity_text, entity_class]
                     j += 1
                 ient += 1
-        i += 1
+            i += 1
 
     output = []
     output_idx = []
 
     struct = {
+        'id': None,
         'material': None,
         'tcValue': None,
-        'me_method': None,
-        'pressure': None
+        'pressure': None,
+        'me_method': None
     }
     mapping = {}
 
@@ -112,15 +113,25 @@ def processFile(finput):
                     indexes_in_output_table = mapping[destination_label][destination_id]
                     for index_in_output_table in indexes_in_output_table:
                         if source_label in output[index_in_output_table]:
-
-                            output.append({destination_label: destination_text, source_label: source_text})
+                            row_copy = {key: value for key, value in output[index_in_output_table].items()}
+                            row_copy[destination_label] = destination_text
+                            row_copy[source_label] = source_text
+                            output.append(row_copy)
+                            # output.append({destination_label: destination_text, source_label: source_text})
                         else:
                             output[index_in_output_table][source_label] = source_text
                 elif source_entity_id in mapping[source_label]:
                     indexes_in_output_table = mapping[source_label][source_entity_id]
                     for index_in_output_table in indexes_in_output_table:
                         if destination_label in output[index_in_output_table]:
-                            output.append({destination_label: destination_text, source_label: source_text})
+                            # output.append({destination_label: destination_text, source_label: source_text})
+                            # if source_label in output[index_in_output_table]:
+                            #     output.append({destination_label: destination_text, source_label: source_text})
+                            # else:
+                            row_copy = {key: value for key, value in output[index_in_output_table].items()}
+                            row_copy[source_label] = source_text
+                            row_copy[destination_label] = destination_text
+                            output.append(row_copy)
                         else:
                             output[index_in_output_table][destination_label] = destination_text
                 else:
@@ -166,7 +177,7 @@ def get_relationship_name(source_label, destination_label):
 def writeOutput(data, output_path, format):
     delimiter = '\t' if format == 'tsv' else ','
     fw = csv.writer(open(output_path, encoding='utf-8', mode='w'), delimiter=delimiter, quotechar='"')
-    columns = ['material', 'tcValue', 'pressure', 'me_method']
+    columns = ['id', 'material', 'tcValue', 'pressure', 'me_method', 'filename']
     fw.writerow(columns)
     for d in data:
         fw.writerow([d[c] if c in d else '' for c in columns])
@@ -208,7 +219,10 @@ if __name__ == '__main__':
         data = []
         for path in path_list:
             print("Processing: ", path)
-            data.extend(processFile(path))
+            file_data = processFile(path)
+            for r in file_data:
+                r['filename'] = Path(path).name
+            data.extend(file_data)
 
         if os.path.isdir(str(output)):
             output_path = os.path.join(output, "output") + "." + format
