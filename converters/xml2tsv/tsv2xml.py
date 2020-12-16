@@ -4,6 +4,8 @@ import os
 from html import escape
 from pathlib import Path
 
+from bs4 import BeautifulSoup
+
 
 def processFile(file):
     output = {'paragraphs': [], 'rel_source_dest': [], 'rel_dest_source': []}
@@ -11,7 +13,7 @@ def processFile(file):
     spans = []
     tokens = []
 
-    currentParagraph = {'text': "", 'spans': spans, 'tokens': tokens}
+    currentParagraph = {'text': "", 'spans': spans, 'tokens': tokens, 'section': 'body'}
 
     inside = False
 
@@ -23,13 +25,17 @@ def processFile(file):
         tagValue = None
         currentSpan = None
         tokenId = 0
+        entitiesLayerFirstIndex = -1
+        sectionLayerFirstIndex = -1
+        hasDocumentStructure = False
+
 
         # If there are no relationships, the TSV has two column less.
         with_relationships = False
         relation_source_dest = {}
         relation_dest_source = {}
-        spans_layers = 0
-        relationship_layer_index = 5    # The usual value
+        spans_layers = 3
+        relationship_layer_index = 5  # The usual value
         for line in fp.readlines():
             if line.startswith("#Text") and not inside:  # Start paragraph
                 currentParagraph['text'] = line.replace("#Text=", "")
@@ -41,7 +47,7 @@ def processFile(file):
                     spans.append(currentSpan)
 
                 output['paragraphs'].append(currentParagraph)
-                currentParagraph = {'text': "", 'spans': [], 'tokens': []}
+                currentParagraph = {'text': "", 'spans': [], 'tokens': [], 'section': "body"}
 
                 spans = currentParagraph['spans']
                 tokens = currentParagraph['tokens']
@@ -56,11 +62,20 @@ def processFile(file):
             else:
                 if not inside:
                     if line.startswith("#T_SP"):
-                        spans_layers = len(line.split('|')) - 1
+                        layerName = line.split('|')[0].split('=')[1]
+                        if layerName == 'webanno.custom.Supercon':
+                            entitiesLayerFirstIndex = spans_layers
+                            entitiesLayerLabelIndex = entitiesLayerFirstIndex + 1
+                        elif layerName == 'webanno.custom.Section':
+                            sectionLayerFirstIndex = spans_layers
+                            hasDocumentStructure = True
+                        layerTagsets = len(line.split('|')) - 1
+                        spans_layers += layerTagsets
+
                     if line.startswith("#T_RL"):
                         with_relationships = True
                         if spans_layers > 0:
-                            relationship_layer_index = 2 + spans_layers
+                            relationship_layer_index = entitiesLayerLabelIndex + 1
 
                     print("Ignoring " + line)
                     continue
@@ -79,11 +94,17 @@ def processFile(file):
                 text = split[2]
                 tokens.append({'start': tokenPositionStart, 'end': tokenPositionEnd, 'text': text, 'id': tokenId})
 
-                tag = split[4].strip()
+                section = "body"
+                if sectionLayerFirstIndex > -1:
+                    section = split[3].split('[')[0]
+
+                currentParagraph['section'] = section
+                tag = split[entitiesLayerLabelIndex].strip()
                 tag = tag.replace('\\', '')
+
                 if with_relationships:
                     relationship_name = split[relationship_layer_index].strip()
-                    relationship_references = split[relationship_layer_index+1].strip()
+                    relationship_references = split[relationship_layer_index + 1].strip()
                 else:
                     relationship_name = '_'
                     relationship_references = '_'
@@ -184,14 +205,40 @@ def processFile(file):
     return output
 
 
-xmlPrefix = """<tei xmlns="http://www.tei-c.org/ns/1.0">
+xmlTemplate = """<tei xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
-        <fileDesc xml:id="_1" />
-        <encodingDesc/>
+        <fileDesc xml:id="_0">
+            <titleStmt/>
+            <publicationStmt>
+                <publisher>National Institute for Materials Science (NIMS), Tsukuba, Japan</publisher>
+                <availability>
+                    <licence target="http://creativecommons.org/licenses/by/3.0/">
+                        <p>The Creative Commons Attribution 3.0 Unported (CC BY 3.0) Licence applies to this document.</p>
+                    </licence>
+                </availability>
+            </publicationStmt>
+        </fileDesc>
+        <encodingDesc>
+            <appInfo>
+                <application version="project.version" ident="grobid-superconductors">
+                    <ref target="https://github.com/lfoppiano/grobid-superconductors">A machine learning software for extracting materials and their properties from scientific literature.</ref>
+                </application>
+            </appInfo>
+        </encodingDesc>
+        <profileDesc>
+            <abstract/>            
+        </profileDesc>
     </teiHeader>
-    <text xml:lang="en">\n"""
+    <text xml:lang="en">
+        <body/>
+    </text>
+</tei>"""
 
-xmlSuffix = "\t</text>\n</tei>"
+
+def get_text_under_body(soup):
+    children = soup.findChildren('text')
+    return children[0] if children is not None and len(
+        children) > 0 else None
 
 
 def writeOutput(datas, output):
@@ -202,7 +249,8 @@ def writeOutput(datas, output):
         tokens = data['tokens']
         spans = data['spans']
         text = data['text']
-        paragraph = '\t\t<p>'
+        section = data['section']
+        paragraph = ''
 
         spanIdx = 0
 
@@ -222,7 +270,7 @@ def writeOutput(datas, output):
                     # paragraph += token['text']
                 elif span_token_start <= i <= span_token_end:
                     if i == span_token_start:
-                        tagLabel = '<' + span_label + '>'
+                        tagLabel = '<rs type="' + span_label + '">'
                         pointers = ''
                         identifier = ''
                         if span['tagIndex'] in rel_source_dest:
@@ -230,35 +278,51 @@ def writeOutput(datas, output):
                             for dest in rel_source_dest[span['tagIndex']]:
                                 if first:
                                     first = False
-                                    pointers = ' ptr="#' + dest
+                                    pointers = ' corresp="#x' + dest
                                 else:
-                                    pointers += ',#' + dest
+                                    pointers += ',#x' + dest
                             pointers += '"'
 
                         if span['tagIndex'] in rel_dest_source:
-                            identifier = ' id="' + span['tagIndex'] + '"'
+                            identifier = ' xml:id="x' + span['tagIndex'] + '"'
 
                         if pointers is not '' or identifier is not '':
-                            tagLabel = '<' + span_label + identifier + pointers + '>'
+                            tagLabel = '<rs type="' + span_label + '"' + identifier + pointers + '>'
 
                         paragraph += tagLabel
                     paragraph += escape(token['text'])
                     if i == span_token_end:
                         # paragraph += token['text']
-                        paragraph += '</' + span_label + '>'
+                        paragraph += '</rs>'
                         spanIdx += 1
 
             else:
                 paragraph += escape(token['text'])
 
-        paragraph += '</p>\n'
-        paragraphs.append(paragraph)
+        paragraphs.append((section, paragraph))
 
     with open(output, 'w') as fo:
-        fo.write(xmlPrefix)
-        for paragraphObj in paragraphs:
-            fo.write(paragraphObj)
-        fo.write(xmlSuffix)
+        soup = BeautifulSoup(xmlTemplate, 'xml')
+        for section, paragraphObj in paragraphs:
+            if section == 'title':
+                tag = BeautifulSoup('<title>' + paragraphObj + '</title>', 'xml')
+                soup.teiHeader.titleStmt.append(tag)
+            elif section == 'abstract':
+                tag = BeautifulSoup('<p>' + paragraphObj + '</p>', 'xml')
+                soup.teiHeader.profileDesc.abstract.append(tag)
+            elif section == 'keywords':
+                tag = BeautifulSoup('<ab type="keywords">' + paragraphObj + '</ab>', 'xml')
+                soup.teiHeader.profileDesc.append(tag)
+            elif section == 'body':
+                tag = BeautifulSoup('<p>' + paragraphObj + '</p>', 'xml')
+                text_tag = get_text_under_body(soup)
+                text_tag.body.append(tag)
+            elif section == 'figureCaption' or section == 'tableCaption':
+                tag = BeautifulSoup('<ab type="' + section + '">' + paragraphObj + '</ab>', 'xml')
+                text_tag = get_text_under_body(soup)
+                text_tag.body.append(tag)
+
+        fo.write(str(soup))
         fo.flush()
 
 

@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 
 from bs4 import BeautifulSoup, NavigableString, Tag
+
 from grobid_tokenizer import tokenizeSimple
 
 
@@ -12,15 +13,37 @@ def tokenise(string):
     return tokenizeSimple(string)
 
 
-def write_on_file(fw, paragraphText, dic_token, i, len_root):
+def write_on_file(fw, paragraphText, dic_token, i, item_length):
     # tsvText += f'#Text={paragraphText}\n'
     print(f'#Text={paragraphText}', file=fw)
     for k, v in dic_token.items():
         # print(v)
         if k[0] == i + 1 and v[2]:
             print('{}-{}\t{}-{}\t{}\t{}\t{}\t{}\t{}\t{}\t'.format(*k, *v), file=fw)
-    if i != len_root - 1:
+
+    # Avoid adding a line break too much at the end of the file
+    if i != item_length - 1:
         print('', file=fw)
+
+
+def getSection(pTag):
+    if pTag.name == 'p':
+        section = pTag.parent.name
+    elif pTag.name == 'ab':
+        if 'type' in pTag.attrs:
+            type = pTag.attrs['type']
+            if type == 'keywords':
+                section = "keywords"
+            elif type == 'figureCaption':
+                section = 'figureCaption'
+            elif type == 'tableCaption':
+                section = 'tableCaption'
+    elif pTag.name == 'title':
+        section = 'title'
+    else:
+        raise Exception("Something wrong")
+
+    return section
 
 
 def processFile(finput, foutput):
@@ -39,10 +62,17 @@ def processFile(finput, foutput):
     print('#T_SP=webanno.custom.Supercon|extra_tag|supercon_tag', file=fw)
     print('#T_RL=webanno.custom.Supercon_link|relationships|BT_webanno.custom.Supercon\n\n', file=fw)
 
-    root = None
+    children = []
     for child in soup.tei.children:
-        if child.name == 'text':
-            root = child
+        if child.name == 'teiHeader':
+            children.append(child.find_all("title"))
+            children.extend([subchild.find_all("p") for subchild in child.find_all("abstract")])
+            children.append(child.find_all("ab", {"type": "keywords"}))
+        elif child.name == 'text':
+            children.append([subsubchild for subchild in child.find_all("body") for subsubchild in subchild.children if
+                             type(subsubchild) is Tag])
+
+    print(str(children))
 
     off_token = 0
     tsvText = ''
@@ -53,78 +83,85 @@ def processFile(finput, foutput):
     paragraphs = []
     dic_dest_relationships = {}
     dic_source_relationships = {}
-    section = "body"
 
-    for i, pTag in enumerate(root('p')):
-        j = 0
-        paragraphText = ''
-        for item in pTag.contents:
-            if type(item) == NavigableString:
-                paragraphText += str(item)
+    i = 0
+    for child in children:
+        for pTag in child:
+            j = 0
+            section = getSection(pTag)
+            paragraphText = ''
+            for item in pTag.contents:
+                if type(item) == NavigableString:
+                    paragraphText += str(item)
 
-                token_list = tokenise(item.string)
-                if token_list[0] == ' ':  # remove space after tags
-                    del token_list[0]
+                    token_list = tokenise(item.string)
+                    if token_list[0] == ' ':  # remove space after tags
+                        del token_list[0]
 
-                entity_class = '_'
+                    entity_class = '_'
 
-                for token in token_list:
-                    s = off_token
-                    off_token += len(token.rstrip(' '))
-                    e = off_token
-                    if token.rstrip(' '):
-                        dic_token[(i + 1, j + 1)] = [
-                            s, e, token.rstrip(' '), section + f'[{i + 10000}]', entity_class, entity_class, entity_class,
-                            entity_class, entity_class]
-                        #                     print((i+1, j+1), s, e, [token], len(token.rstrip(' ')), off_token)
-                        j += 1
-                    if len(token) > 0 and token[-1] == ' ':
-                        off_token += 1  #
-            elif type(item) is Tag:
-                paragraphText += item.text
+                    for token in token_list:
+                        s = off_token
+                        off_token += len(token.rstrip(' '))
+                        e = off_token
+                        if token.rstrip(' '):
+                            dic_token[(i + 1, j + 1)] = [
+                                s, e, token.rstrip(' '), section + f'[{i + 10000}]', entity_class, entity_class,
+                                entity_class, entity_class, entity_class]
+                            #                     print((i+1, j+1), s, e, [token], len(token.rstrip(' ')), off_token)
+                            j += 1
+                        if len(token) > 0 and token[-1] == ' ':
+                            off_token += 1  #
+                elif type(item) is Tag and item.name == 'rs':
+                    paragraphText += item.text
 
-                token_list = tokenise(item.string)
-                #                 token_list[-1] += ' ' # add space the end of tag contents
-                entity_class = item.name
-                link_name = '_'
-                link_location = '_'
+                    token_list = tokenise(item.string)
+                    #                 token_list[-1] += ' ' # add space the end of tag contents
+                    if 'type' not in item.attrs:
+                        raise Exception("RS without type is invalid. Stopping")
 
-                if len(item.attrs) > 0:
-                    if 'id' in item.attrs:
-                        if item.attrs['id'] not in dic_dest_relationships:
-                            dic_dest_relationships[item.attrs['id']] = [i + 1, j + 1, ient, entity_class]
+                    entity_class = item.attrs['type']
+                    link_name = '_'
+                    link_location = '_'
 
-                    if 'ptr' in item.attrs:
-                        if (i + 1, j + 1) not in dic_source_relationships:
-                            dic_source_relationships[i + 1, j + 1] = [item.attrs['ptr'].replace('#', ''), ient,
-                                                                      entity_class]
+                    if len(item.attrs) > 0:
+                        if 'xml:id' in item.attrs:
+                            if item.attrs['xml:id'] not in dic_dest_relationships:
+                                dic_dest_relationships[item.attrs['xml:id']] = [i + 1, j + 1, ient, entity_class]
 
-                        # link_to = dic_relationships[item.attrs['ptr'].replace("#", '')]
-                        # relationship_name = link_to[2] + '-' + entity
-                        # relationship_references = str(link_to[0]) + '-' + str(link_to[1]) + '[' + str(
-                        #     i + 1) + '-' + str(j + 1) + ']'
-                        # print(dic_token[link_to[0], link_to[1]])
-                    link_name = 'link_name'
-                    link_location = 'link_location'
+                        if 'corresp' in item.attrs:
+                            if (i + 1, j + 1) not in dic_source_relationships:
+                                dic_source_relationships[i + 1, j + 1] = [item.attrs['corresp'].replace('#', ''), ient,
+                                                                          entity_class]
 
-                entity_class = entity_class.replace("_", "\_")
+                            # link_to = dic_relationships[item.attrs['ptr'].replace("#", '')]
+                            # relationship_name = link_to[2] + '-' + entity
+                            # relationship_references = str(link_to[0]) + '-' + str(link_to[1]) + '[' + str(
+                            #     i + 1) + '-' + str(j + 1) + ']'
+                            # print(dic_token[link_to[0], link_to[1]])
+                        link_name = 'link_name'
+                        link_location = 'link_location'
 
-                for token in token_list:
-                    s = off_token
-                    off_token += len(token.rstrip(' '))
-                    e = off_token
-                    if token.rstrip(' '):
-                        dic_token[(i + 1, j + 1)] = [s, e, token.rstrip(' '), section + f'[{i + 10000}]', f'*[{ient}]',
-                                                     entity_class + f'[{ient}]', link_name, link_location]
-                        #                     print((i+1, j+1), s, e, [token], len(token.rstrip(' ')), off_token)
-                        j += 1
-                    if len(token) > 0 and token[-1] == ' ':
-                        off_token += 1  #
-                ient += 1  # entity No.
+                    entity_class = entity_class.replace("_", "\_")
 
-        off_token += 1  # return
+                    for token in token_list:
+                        s = off_token
+                        off_token += len(token.rstrip(' '))
+                        e = off_token
+                        if token.rstrip(' '):
+                            dic_token[(i + 1, j + 1)] = [s, e, token.rstrip(' '), section + f'[{i + 10000}]',
+                                                         f'*[{ient}]',
+                                                         entity_class + f'[{ient}]', link_name, link_location]
+                            #                     print((i+1, j+1), s, e, [token], len(token.rstrip(' ')), off_token)
+                            j += 1
+                        if len(token) > 0 and token[-1] == ' ':
+                            off_token += 1  #
+                    ient += 1  # entity No.
 
-        paragraphs.append((i, paragraphText))
+            off_token += 1  # return
+
+            paragraphs.append((i, paragraphText))
+            i += 1
 
     for par_num, token_num in dic_source_relationships:
         destination_xml_id = dic_source_relationships[par_num, token_num][0]
@@ -174,7 +211,7 @@ def processFile(finput, foutput):
         v[7] = v[7].replace('link_location', '_')
 
     for paragraph in paragraphs:
-        write_on_file(fw, paragraph[1], dic_token, paragraph[0], len(root('p')))
+        write_on_file(fw, paragraph[1], dic_token, paragraph[0], len(paragraphs))
 
 
 if __name__ == '__main__':
@@ -211,10 +248,11 @@ if __name__ == '__main__':
         for path in path_list:
             print("Processing: ", path)
             output_filename = Path(path).stem
+            output_filename = output_filename.replace(".tei", "")
             parent_dir = Path(path).parent
 
             if os.path.isdir(str(output)):
-                output_path = os.path.join(output, str(output_filename)) + ".tsv"
+                output_path = os.path.join(output, str(output_filename) + ".tsv")
             else:
                 output_path = os.path.join(parent_dir, output_filename + ".tsv")
 
