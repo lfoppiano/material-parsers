@@ -22,6 +22,7 @@ def extract_log(log_file):
 
     with open(log_file, 'r') as file:
         for line in file:
+            line = line.strip('\n')
             if line.startswith("======================"):
                 fold_text = line.split("====================== ")[1]
                 if first:
@@ -111,10 +112,11 @@ def extract_error_cases(input_data, tokens_before=5, tokens_after=5):
                             error_cases.append(error_case)
                             error_case = []
 
-
             elif in_error == True:
                 in_error = False
+                error_case.append("|")
                 error_cases.append(error_case)
+                error_case = []
 
         if len(error_case) > 0:
             error_case.append(['|', '', ''])

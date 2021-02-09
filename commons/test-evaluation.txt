@@ -1,0 +1,76 @@
+=== START RAW RESULTS ===
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<formula>	I-<formula>
+2	2	2	2	2	2	2	2	2	2	NOCAPS	ALLDIGIT	1	NOPUNCT	X	d	d	<formula>	<formula>
+Se	se	S	Se	Se	Se	e	Se	Se	Se	INITCAP	NODIGIT	0	NOPUNCT	Se	Xx	Xx	<formula>	<formula>
+
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<formula>	I-<formula>
+2	2	2	2	2	2	2	2	2	2	NOCAPS	ALLDIGIT	1	NOPUNCT	X	d	d	<formula>	<formula>
+Se	se	S	Se	Se	Se	e	Se	Se	Se	INITCAP	NODIGIT	0	NOPUNCT	Se	Xx	Xx	<formula>	<formula>
+crystals	crystals	c	cr	cry	crys	s	ls	als	tals	NOCAPS	NODIGIT	0	NOPUNCT	crystals	xxxx	x	I-<shape>	I-<shape>
+
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<formula>	I-<formula>
+2	2	2	2	2	2	2	2	2	2	NOCAPS	ALLDIGIT	1	NOPUNCT	X	d	d	<formula>	<formula>
+Te	te	T	Te	Te	Te	e	Te	Te	Te	INITCAP	NODIGIT	0	NOPUNCT	Te	Xx	Xx	<formula>	<formula>
+
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<formula>	I-<formula>
+2	2	2	2	2	2	2	2	2	2	NOCAPS	ALLDIGIT	1	NOPUNCT	X	d	d	<formula>	<formula>
++	+	+	+	+	+	+	+	+	+	ALLCAPS	NODIGIT	1	NOPUNCT	+	+	+	<formula>	<formula>
+δ	δ	δ	δ	δ	δ	δ	δ	δ	δ	NOCAPS	NODIGIT	1	NOPUNCT	δ	x	x	<formula>	<formula>
+
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<formula>	I-<formula>
+5	5	5	5	5	5	5	5	5	5	NOCAPS	ALLDIGIT	1	NOPUNCT	X	d	d	<formula>	<formula>
+%	%	%	%	%	%	%	%	%	%	ALLCAPS	NODIGIT	1	NOPUNCT	%	%	%	<formula>	<formula>
+
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<doping>	I-<doping>
+doped	doped	d	do	dop	dope	d	ed	ped	oped	NOCAPS	NODIGIT	0	NOPUNCT	doped	xxxx	x	<other>	<other>
+SmBCO	smbco	S	Sm	SmB	SmBC	O	CO	BCO	mBCO	INITCAP	NODIGIT	0	NOPUNCT	SmBCO	XxXXX	XxX	I-<formula>	I-<formula>
+
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<doping>	I-<formula>
+-	-	-	-	-	-	-	-	-	-	ALLCAPS	NODIGIT	1	HYPHEN	-	-	-	<doping>	<formula>
+5	5	5	5	5	5	5	5	5	5	NOCAPS	ALLDIGIT	1	NOPUNCT	X	d	d	<doping>	<formula>
+at	at	a	at	at	at	t	at	at	at	NOCAPS	NODIGIT	0	NOPUNCT	at	xx	x	<doping>	<formula>
+%	%	%	%	%	%	%	%	%	%	ALLCAPS	NODIGIT	1	NOPUNCT	%	%	%	<doping>	<formula>
+and	and	a	an	and	and	d	nd	and	and	NOCAPS	NODIGIT	0	NOPUNCT	and	xxx	x	<doping>	<formula>
+7	7	7	7	7	7	7	7	7	7	NOCAPS	ALLDIGIT	1	NOPUNCT	X	d	d	<doping>	<formula>
+.	.	.	.	.	.	.	.	.	.	ALLCAPS	NODIGIT	1	DOT	.	.	.	<doping>	<formula>
+5	5	5	5	5	5	5	5	5	5	NOCAPS	ALLDIGIT	1	NOPUNCT	X	d	d	<doping>	<formula>
+
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<doping>	I-<name>
+-	-	-	-	-	-	-	-	-	-	ALLCAPS	NODIGIT	1	HYPHEN	-	-	-	<other>	<name>
+YBCO	ybco	Y	YB	YBC	YBCO	O	CO	BCO	YBCO	ALLCAPS	NODIGIT	0	NOPUNCT	YBCO	XXXX	X	I-<name>	<name>
+
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<doping>	I-<name>
+-	-	-	-	-	-	-	-	-	-	ALLCAPS	NODIGIT	1	HYPHEN	-	-	-	<other>	<name>
+alloy	alloy	a	al	all	allo	y	oy	loy	lloy	NOCAPS	NODIGIT	0	NOPUNCT	alloy	xxxx	x	I-<fabrication>	<name>
+clad	clad	c	cl	cla	clad	d	ad	lad	clad	NOCAPS	NODIGIT	0	NOPUNCT	clad	xxxx	x	<fabrication>	<name>
+Bi	bi	B	Bi	Bi	Bi	i	Bi	Bi	Bi	INITCAP	NODIGIT	0	NOPUNCT	Bi	Xx	Xx	I-<name>	<name>
+-	-	-	-	-	-	-	-	-	-	ALLCAPS	NODIGIT	1	HYPHEN	-	-	-	<name>	<name>
+2212	2212	2	22	221	2212	2	12	212	2212	NOCAPS	ALLDIGIT	0	NOPUNCT	XXXX	dddd	d	<name>	<name>
+
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<doping>	I-<doping>
+-	-	-	-	-	-	-	-	-	-	ALLCAPS	NODIGIT	1	HYPHEN	-	-	-	<doping>	<doping>
+containing	containing	c	co	con	cont	g	ng	ing	ning	NOCAPS	NODIGIT	0	NOPUNCT	containing	xxxx	x	<doping>	<doping>
+GdBCO	gdbco	G	Gd	GdB	GdBC	O	CO	BCO	dBCO	INITCAP	NODIGIT	0	NOPUNCT	GdBCO	XxXXX	XxX	I-<name>	I-<name>
+
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<doping>	I-<doping>
+-	-	-	-	-	-	-	-	-	-	ALLCAPS	NODIGIT	1	HYPHEN	-	-	-	<other>	<other>
+doped	doped	d	do	dop	dope	d	ed	ped	oped	NOCAPS	NODIGIT	0	NOPUNCT	doped	xxxx	x	<other>	<other>
+
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<doping>	I-<doping>
+-	-	-	-	-	-	-	-	-	-	ALLCAPS	NODIGIT	1	HYPHEN	-	-	-	<other>	<other>
+doped	doped	d	do	dop	dope	d	ed	ped	oped	NOCAPS	NODIGIT	0	NOPUNCT	doped	xxxx	x	<other>	<other>
+FeSe	fese	F	Fe	FeS	FeSe	e	Se	eSe	FeSe	INITCAP	NODIGIT	0	NOPUNCT	FeSe	XxXXx	XxXx	I-<formula>	I-<formula>
+
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<doping>	I-<doping>
+-	-	-	-	-	-	-	-	-	-	ALLCAPS	NODIGIT	1	HYPHEN	-	-	-	<other>	<other>
+doped	doped	d	do	dop	dope	d	ed	ped	oped	NOCAPS	NODIGIT	0	NOPUNCT	doped	xxxx	x	<other>	<other>
+FeSe	fese	F	Fe	FeS	FeSe	e	Se	eSe	FeSe	INITCAP	NODIGIT	0	NOPUNCT	FeSe	XxXXx	XxXx	I-<formula>	I-<formula>
+0	0	0	0	0	0	0	0	0	0	NOCAPS	ALLDIGIT	1	NOPUNCT	X	d	d	<formula>	<formula>
+.	.	.	.	.	.	.	.	.	.	ALLCAPS	NODIGIT	1	DOT	.	.	.	<formula>	<formula>
+94	94	9	94	94	94	4	94	94	94	NOCAPS	ALLDIGIT	0	NOPUNCT	XX	dd	d	<formula>	<formula>
+
+Ag	ag	A	Ag	Ag	Ag	g	Ag	Ag	Ag	INITCAP	NODIGIT	0	NOPUNCT	Ag	Xx	Xx	I-<doping>	I-<doping>
+-	-	-	-	-	-	-	-	-	-	ALLCAPS	NODIGIT	1	HYPHEN	-	-	-	<other>	<other>
+doped	doped	d	do	dop	dope	d	ed	ped	oped	NOCAPS	NODIGIT	0	NOPUNCT	doped	xxxx	x	<other>	<other>
+PbTe	pbte	P	Pb	PbT	PbTe	e	Te	bTe	PbTe	INITCAP	NODIGIT	0	NOPUNCT	PbTe	XxXXx	XxXx	I-<formula>	I-<formula>
+=== END RAw RESULTS ===
