@@ -1,13 +1,15 @@
-from material_parser.material_parser import MaterialParser
-from sympy import SympifyError
+import argparse
 
 from material_data_commons import readMaterialData
+from material_parser.material_parser import MaterialParser
+from material2class import Material2Class
 
 mp = MaterialParser(pubchem_lookup=False, verbose=False)
 data = readMaterialData('evaluation/500papers.material.tei.xml')
 
-def test1_MaterialParser_from_raw():
-    print(" Test 1a: test the method parse_material_string() from the Material Parser")
+
+def evaluation1():
+    print(" Test 1a: test the method parse_material_string() from the Ceder Material Parser")
     ## TEST 1: ability to parser a more complext material string
     correct = 0
     wrong = 0
@@ -39,10 +41,8 @@ def test1_MaterialParser_from_raw():
     print("total: " + str(total))
 
 
-test1_MaterialParser_from_raw()
-
-def test2():
-    print(" Test 2: test the method extract_formula_from_string() from the Material Parser  ")
+def evaluation2():
+    print(" Test 2: test the method extract_formula_from_string() from the Ceder Material Parser  ")
     correct = 0
     wrong = 0
     total = 0
@@ -66,24 +66,19 @@ def test2():
     print("wrong: " + str(wrong / total))
     print("total: " + str(total))
 
-test2()
 
 from delft.sequenceLabelling import Sequence
 from delft.sequenceLabelling.models import BidLSTM_CRF
 from material_parser.material_parser import MaterialParser
 from sympy import SympifyError
 
-from material2class import Material2Class
-from materialParser_evaluation import readMaterialData
-
-def test3():
+## Test 3: Application of material parser (crf) + ceder material parser
+def evaluation3():
     data = readMaterialData('evaluation/eval2.xml')
 
     mp = MaterialParser(pubchem_lookup=False, verbose=False)
 
     raw_data = [d['raw'] for d in data]
-
-    ## Test 3: Application of material parser (crf) + ceder material parser
 
     model = Sequence("material", BidLSTM_CRF.name)
     model.load(dir_path="./models")
@@ -145,3 +140,20 @@ def test3():
                 print("String2formula: " + name + " -> " + str(formula))
             except SympifyError as e:
                 print("Error when parsing: ", str(e))
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description="Material parser tests and evaluation")
+
+    # parser.add_argument("--input", help="Input file or directory", required=True)
+    # parser.add_argument("--output", default=None,
+    #                     help="Output directory (if omitted, the output will be the same directory/file with different extension)")
+    # parser.add_argument("--recursive", action="store_true", default=False,
+    #                     help="Process input directory recursively. If input is a file, this parameter is ignored. ")
+
+    args = parser.parse_args()
+
+    evaluation1()
+    evaluation2()
+    evaluation3()
