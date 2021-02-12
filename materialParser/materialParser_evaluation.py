@@ -1,159 +1,280 @@
 import argparse
+import json
+import os
+from pathlib import Path
+
+import requests
 
 from material_data_commons import readMaterialData
-from material_parser.material_parser import MaterialParser
-from material2class import Material2Class
 
-mp = MaterialParser(pubchem_lookup=False, verbose=False)
-data = readMaterialData('evaluation/500papers.material.tei.xml')
+os.environ['NO_PROXY'] = "nims.go.jp"
 
 
-def evaluation1():
-    print(" Test 1a: test the method parse_material_string() from the Ceder Material Parser")
-    ## TEST 1: ability to parser a more complext material string
-    correct = 0
-    wrong = 0
-    total = 0
+# data = readMaterialData('evaluation/500papers.material.tei.xml')
 
-    for item in data:
-        # print(item['raw'])
-        try:
-            result = mp.parse_material_string(str(item['raw']))
 
-            if 'formula' in item['entities']:
-                total += 1
-                if 'material_formula' in result:
-                    if result['material_formula'] == item['entities']['formula']:
-                        correct += 1
-                    else:
-                        wrong += 1
+class Evaluation:
 
+    def evaluate(self, expected, predicted, log_errors=False):
+        assert "The expected data should have the same cardinality as the input", len(expected) == len(
+            predicted)
+
+        total = 0
+        tp = 0
+        fp = 0
+        fn = 0
+        tn = 0
+        for idx, predicted_item in enumerate(predicted):
+            expected_item = expected[idx]
+            # we ignore the blank items
+            if predicted_item:
+                if predicted_item == expected_item or predicted_item.replace(" ", "").replace("−",
+                                                                                              "-") == expected_item.replace(
+                    " ", "").replace("−", "-"):
+                    tp += 1
                 else:
-                    wrong += 1
-
-        except Exception as e:
-            print("Exception for " + item['raw'] + " -> " + str(e))
-        except SympifyError as e:
-            print("Syntax error for " + item['raw'] + " -> " + str(e))
-
-    print("correct: " + str(correct / total))
-    print("wrong: " + str(wrong / total))
-    print("total: " + str(total))
-
-
-def evaluation2():
-    print(" Test 2: test the method extract_formula_from_string() from the Ceder Material Parser  ")
-    correct = 0
-    wrong = 0
-    total = 0
-    for item in data:
-        # print(item['raw'])
-        try:
-            result = mp.extract_formula_from_string(str(item['raw']))
-
-            if 'formula' in item['entities']:
-                total += 1
-                if result[0] == item['entities']['formula']:
-                    correct += 1
+                    if log_errors:
+                        print("Mismatch (predicted/expected): ", predicted_item, "/", expected_item)
+                    fp += 1
+            else:
+                if expected_item:
+                    fn += 1
                 else:
-                    wrong += 1
+                    tn += 1
 
-        except Exception:
-            print("Exception for " + item['raw'])
-        except SympifyError:
-            print("Syntax error for " + item['raw'])
-    print("correct: " + str(correct / total))
-    print("wrong: " + str(wrong / total))
-    print("total: " + str(total))
+        return tp, fp, tn, fn
+
+    def print_report(self, tp, fp, tn, fn):
+        precision = tp / (tp + fp) if tp + fp > 0 else 0
+        recall = tp / (tp + fn) if tp + fn > 0 else 0
+        f1score = 2 * (precision * recall / (precision + recall)) if precision + recall > 0 else 0
+        total = tp + fp + tn + fn
+
+        print("Precision: ", precision)
+        print("Recall: ", recall)
+        print("F1-score: ", f1score)
+        print("total: ", total)
 
 
-from delft.sequenceLabelling import Sequence
-from delft.sequenceLabelling.models import BidLSTM_CRF
-from material_parser.material_parser import MaterialParser
-from sympy import SympifyError
+class BaseRecogniser():
+    @staticmethod
+    def get_description(self):
+        return "Generic recognised, this method should be overloaded by the super class"
 
-## Test 3: Application of material parser (crf) + ceder material parser
-def evaluation3():
-    data = readMaterialData('evaluation/eval2.xml')
+    @staticmethod
+    def get_name(self):
+        return "base"
 
-    mp = MaterialParser(pubchem_lookup=False, verbose=False)
+    def prepare_input_data(self, data):
+        return data
 
-    raw_data = [d['raw'] for d in data]
+    def prepare_output_data(self, data):
+        return data
 
-    model = Sequence("material", BidLSTM_CRF.name)
-    model.load(dir_path="./models")
-    tags = model.tag(raw_data, "json")
 
-    for tag in tags['texts'] if 'texts' in tags else []:
-        print("===>>>" + str(tag) + "<<<===")
-        variables = {}
-        lastVariable = ""
-        name = ""
-        formula = ""
+class CederMaterialParserRecogniser_parse_material_string(BaseRecogniser):
+    def __init__(self):
+        from material_parser.material_parser import MaterialParser
 
-        for entity in tag['entities'] if 'entities' in tag else []:
-            if entity['class'] == "<variable>":
-                lastVariable = str(entity['text'])
-                variables[lastVariable] = []
-            if entity['class'] == "<value>":
-                if lastVariable:
-                    variables[lastVariable].append(str(entity['text']))
-            if entity['class'] == "<formula>":
-                formula = str(entity['text']).replace(" ", "")
-            elif entity['class'] == "<name>":
-                name = str(entity['text'])
+        self.mp = MaterialParser(pubchem_lookup=False, verbose=False)
 
-        if formula:
+    @staticmethod
+    def get_description():
+        return "test the method parse_material_string() from the Ceder Material Parser"
+
+    @staticmethod
+    def get_name():
+        return "ceder-parse"
+
+    def prepare_input_data(self, data):
+        return [d['raw'] for d in data]
+
+    def prepare_output_data(self, data):
+        predicted = []
+        for item in data:
+            formula = item['material_formula'] if 'material_formula' in item else ""
+            if formula.startswith("M") and 'elements_vars' in item and len(item['elements_vars']) > 0:
+                element_var_replacement = "(" + ", ".join(item['elements_vars']["M"]) + ")"
+                formula = formula.replace("M", element_var_replacement, 1)
+
+            predicted.append(formula)
+
+        return predicted
+
+    def process(self, input):
+        from sympy import SympifyError
+        results = []
+        input_prepared = self.prepare_input_data(input)
+
+        for item in input_prepared:
             try:
-                composition = mp.formula2composition(formula)
-                print("Extract composition from formula: " + formula + " -> " + str(composition))
-
-                if composition:
-                    vars = composition['amounts_vars']
-                    elements = composition['elements_vars']
-
-                    if len(variables.keys()) > 0:
-                        print("Examining the variables in " + str(variables))
-                        for key, value in variables.items():
-                            if key in vars:
-                                vars[key] = value
-                            elif key in elements:
-                                elements[key] = value
-                            else:
-                                print("variable " + key + "was not found.")
-
-                # reconstructed_formula = mp.reconstruct_formula_from_string(formula)
-                # print("reconstruct_formula_from_string: " + formula + " -> " + str(reconstructed_formula))
-
-                # split_formula = mp.split_formula_into_compounds(formula)
-                # print("split_formula_into_compounds: " + formula + " -> " + str(split_formula))
+                results.append(self.mp.parse_material_string(str(item)))
+            except Exception as e:
+                print("Exception for " + item + " -> " + str(e))
+                results.append("")
             except SympifyError as e:
-                print("Error when parsing: ", str(e))
+                print("Syntax error for " + item + " -> " + str(e))
+                results.append("")
 
-            clazz = Material2Class().get_class(formula)
+        predicted = self.prepare_output_data(results)
 
-            print("Formula2Class: " + formula + " -> " + clazz)
+        return predicted
 
-        if name:
+
+class CederMaterialParserRecogniser_extract_formula_from_string(BaseRecogniser):
+    def __init__(self):
+        from material_parser.material_parser import MaterialParser
+
+        self.mp = MaterialParser(pubchem_lookup=False, verbose=False)
+
+    @staticmethod
+    def get_description():
+        return "test the method extract_formula_from_string() from the Ceder Material Parser"
+
+    @staticmethod
+    def get_name():
+        return "ceder-extract"
+
+    def prepare_input_data(self, data):
+        return [d['raw'] for d in data]
+
+    def prepare_output_data(self, data):
+        predicted = [str(formula) for formula, name in data]
+        return predicted
+
+    def process(self, input):
+        from sympy import SympifyError
+        results = []
+        input_prepared = self.prepare_input_data(input)
+        for item in input_prepared:
             try:
-                formula = mp.string2formula(name)
-                print("String2formula: " + name + " -> " + str(formula))
+                results.append(self.mp.extract_formula_from_string(str(item)))
+            except Exception as e:
+                print("Exception for " + item + " -> " + str(e))
+                results.append("")
             except SympifyError as e:
-                print("Error when parsing: ", str(e))
+                print("Syntax error for " + item + " -> " + str(e))
+                results.append("")
+
+        predicted = self.prepare_output_data(results)
+
+        return predicted
+
+
+class MaterialParserCRF(BaseRecogniser):
+    def __init__(self):
+        from delft.sequenceLabelling import Sequence
+        from delft.sequenceLabelling.models import BidLSTM_CRF
+
+        self.model = Sequence("material", BidLSTM_CRF.name)
+        self.model.load(dir_path="./models")
+
+    @staticmethod
+    def get_description():
+        return "test the MaterialParser with BidLSTM+CRF"
+
+    @staticmethod
+    def get_name():
+        return "crf"
+
+    def prepare_input_data(self, data):
+        return [d['raw'] for d in data]
+
+    def prepare_output_data(self, data):
+        predicted = []
+        for text in data['texts']:
+            predicted.append(
+                "".join([str(entity['text']) if entity['class'] == "<formula>" else "" for entity in text['entities']]))
+
+        return predicted
+
+    def process(self, input):
+        input_prepared = self.prepare_input_data(input)
+        results = self.model.tag(input_prepared, "json")
+        predicted = self.prepare_output_data(results)
+
+        return predicted
+
+
+class ChemDataExtraction(BaseRecogniser):
+    url = 'http://falcon.nims.go.jp/cde/process'
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def get_description():
+        return "test the parse with chemdata extractor"
+
+    @staticmethod
+    def get_name():
+        return "cde"
+
+    def prepare_input_data(self, data):
+        return [d['raw'] for d in data]
+
+    def prepare_output_data(self, data):
+        predicted = []
+        for response_json in data:
+            parsed_response_content = json.loads(response_json)
+            text_response = parsed_response_content[0]['label'] if len(
+                parsed_response_content) > 0 and 'label' in parsed_response_content[0] else ""
+            predicted.append(text_response)
+
+        return predicted
+
+    def process(self, input):
+        results = []
+        input_prepared = self.prepare_input_data(input)
+        for item in input_prepared:
+            try:
+                data = {'text': item}
+
+                response = requests.post(self.url, data=data)
+                if response.status_code == 200:
+                    results.append(response.text)
+                else:
+                    results.append("")
+
+            except Exception as e:
+                print("Exception for " + item + " -> " + str(e))
+                results.append("")
+
+        predicted = self.prepare_output_data(results)
+
+        return predicted
 
 
 if __name__ == '__main__':
+    experiments = {
+        CederMaterialParserRecogniser_extract_formula_from_string.get_name(): CederMaterialParserRecogniser_extract_formula_from_string(),
+        CederMaterialParserRecogniser_parse_material_string.get_name(): CederMaterialParserRecogniser_parse_material_string(),
+        MaterialParserCRF.get_name(): MaterialParserCRF(),
+        ChemDataExtraction.get_name(): ChemDataExtraction()
+    }
     parser = argparse.ArgumentParser(
         description="Material parser tests and evaluation")
 
-    # parser.add_argument("--input", help="Input file or directory", required=True)
-    # parser.add_argument("--output", default=None,
-    #                     help="Output directory (if omitted, the output will be the same directory/file with different extension)")
-    # parser.add_argument("--recursive", action="store_true", default=False,
-    #                     help="Process input directory recursively. If input is a file, this parameter is ignored. ")
+    parser.add_argument("--input", help="Input file or directory in pseudo-XML", required=True, type=Path)
+    parser.add_argument("--log-errors", help="Log mismatches", required=False, action="store_true", default=False)
+    parser.add_argument("--experiment", help="Run single experiment", required=False, choices=experiments.keys(),
+                        type=str, default="all")
 
     args = parser.parse_args()
+    input_path = args.input
+    log_errors = args.log_errors
+    experiment = args.experiment
 
-    evaluation1()
-    evaluation2()
-    evaluation3()
+    data = readMaterialData(input_path)
+
+    expected = [d['entities']['formula'] if 'entities' in d and 'formula' in d['entities'] else "" for d in data]
+
+    evaluation = Evaluation()
+
+    experiment_keys = experiments.keys() if experiment == "all" else [experiment]
+
+    for experiment_name in experiment_keys:
+        recogniser = experiments[experiment_name]
+        predicted = recogniser.process(data)
+        print("Report ", recogniser.get_description())
+        evaluation.print_report(*evaluation.evaluate(expected, predicted, log_errors=log_errors))
