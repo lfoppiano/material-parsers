@@ -1,6 +1,7 @@
 # transform tei annotation into prodigy annotations
 import argparse
 import os
+import re
 from html import escape
 from pathlib import Path
 
@@ -29,12 +30,12 @@ def processFile(file):
         sectionLayerFirstIndex = -1
         hasDocumentStructure = False
 
-
         # If there are no relationships, the TSV has two column less.
         with_relationships = False
         relation_source_dest = {}
         relation_dest_source = {}
         spans_layers = 3
+        layerTagsets = []
         relationship_layer_index = 5  # The usual value
         for line in fp.readlines():
             if line.startswith("#Text") and not inside:  # Start paragraph
@@ -61,28 +62,32 @@ def processFile(file):
                 inside = False
             else:
                 if not inside:
+                    ignored_layers = []
                     if line.startswith("#T_SP"):
-                        layerName = line.split('|')[0].split('=')[1]
-                        if layerName == 'webanno.custom.Supercon':
-                            entitiesLayerFirstIndex = spans_layers
-                            entitiesLayerLabelIndex = entitiesLayerFirstIndex + 1
-                        elif layerName == 'webanno.custom.Section':
+                        layers = line.replace("\n", "").split('|')
+                        layerName = layers[0].split('=')[1]
+                        layerTagsets += layers[1:]
+                        if layerName == 'webanno.custom.Section':
                             sectionLayerFirstIndex = spans_layers
                             hasDocumentStructure = True
-                        layerTagsets = len(line.split('|')) - 1
-                        spans_layers += layerTagsets
+                        else:
+                            entitiesLayerFirstIndex = spans_layers
+                            # entitiesLayerLabelIndex = entitiesLayerFirstIndex + 1
+
+                        # layerTagsets = len(line.split('|')) - 1
+                        # spans_layers += len(layerTagsets)
 
                     if line.startswith("#T_RL"):
                         with_relationships = True
                         if spans_layers > 0:
-                            relationship_layer_index = entitiesLayerLabelIndex + 1
+                            relationship_layer_index = spans_layers + len(layerTagsets)
 
                     print("Ignoring " + line)
                     continue
 
-                split = line.split('\t')
-                annotationId = split[0]
-                position = split[1]
+                line_split = line.split('\t')
+                annotationId = line_split[0]
+                position = line_split[1]
                 tokenPositionStart = position.split("-")[0]
                 tokenPositionEnd = position.split("-")[1]
 
@@ -91,20 +96,26 @@ def processFile(file):
                         {'start': tokenPreviousPositionEnd, 'end': tokenPositionStart, 'text': " ", 'id': tokenId})
                     tokenId = tokenId + 1
 
-                text = split[2]
+                text = line_split[2]
                 tokens.append({'start': tokenPositionStart, 'end': tokenPositionEnd, 'text': text, 'id': tokenId})
 
                 section = "body"
                 if sectionLayerFirstIndex > -1:
-                    section = split[3].split('[')[0]
+                    section = line_split[sectionLayerFirstIndex].split('[')[0]
 
                 currentParagraph['section'] = section
-                tag = split[entitiesLayerLabelIndex].strip()
+                tags = line_split[spans_layers:spans_layers + len(layerTagsets)]
+                # We assume to have only one tag
+                tag = "_"
+                for idx, tag_ in enumerate(tags):
+                    if idx not in [1, 3, 4] and tag_ != '_' and not re.search("\\*\\[\d+\\]", tag_):
+                        tag = tag_.strip()
+
                 tag = tag.replace('\\', '')
 
                 if with_relationships:
-                    relationship_name = split[relationship_layer_index].strip()
-                    relationship_references = split[relationship_layer_index + 1].strip()
+                    relationship_name = line_split[relationship_layer_index].strip()
+                    relationship_references = line_split[relationship_layer_index + 1].strip()
                 else:
                     relationship_name = '_'
                     relationship_references = '_'
@@ -348,26 +359,47 @@ if __name__ == '__main__':
 
         if recursive:
             for root, dirs, files in os.walk(input):
+                # Manage to create the directories
+                for dir in dirs:
+                    abs_path_dir = os.path.join(root, dir)
+                    output_path = abs_path_dir.replace(str(input), str(output))
+                    if not os.path.exists(output_path):
+                        os.makedirs(output_path)
+
                 for file_ in files:
                     if not file_.lower().endswith(".tsv"):
                         continue
 
                     abs_path = os.path.join(root, file_)
-                    path_list.append(abs_path)
+                    output_filename = Path(abs_path).stem
+                    parent_dir = Path(abs_path).parent
+                    if os.path.isdir(str(output)):
+                        output_ = Path(str(parent_dir).replace(str(input), str(output)))
+                        output_filename_with_extension = str(output_filename) + ".tei.xml"
+                        output_path = os.path.join(output_, output_filename_with_extension)
+                    else:
+                        output_path = os.path.join(parent_dir, output_filename + ".tei.xml")
+
+                    path_list.append((abs_path, output_path))
 
         else:
-            path_list = Path(input).glob('*.tsv')
 
-        for path in path_list:
-            print("Processing: ", path)
-            output_filename = Path(path).stem
-            data = processFile(path)
-            parent_dir = Path(path).parent
-            if os.path.isdir(str(output)):
-                output_path = os.path.join(output, str(output_filename)) + ".tei.xml"
-            else:
-                output_path = os.path.join(parent_dir, output_filename + ".tei.xml")
+            for abs_path in Path(input).glob('*.tsv'):
+                abs_path_ = str(abs_path).replace(".tei", "")
+                output_filename = Path(abs_path_).stem
+                parent_dir = Path(abs_path_).parent
+                if os.path.isdir(str(output)):
+                    output_ = Path(str(parent_dir).replace(str(input), str(output)))
+                    output_filename_with_extension = str(output_filename) + ".tei.xml"
+                    output_path = os.path.join(output_, output_filename_with_extension)
+                else:
+                    output_path = os.path.join(output_, output_filename + ".tei.xml")
 
+                path_list.append((abs_path, output_path))
+
+        for input_path, output_path in path_list:
+            print("Processing: ", input_path)
+            data = processFile(input_path)
             writeOutput(data, output_path)
 
     elif os.path.isfile(input):
