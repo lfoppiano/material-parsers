@@ -1,7 +1,7 @@
 from bs4 import Tag, BeautifulSoup
 
 
-def readMaterialData(path):
+def read_material_data(path):
     """
     This method parses the xml file in the form <materials><material>blablabla</material></materials> and extract
     the entities within the <material> tags

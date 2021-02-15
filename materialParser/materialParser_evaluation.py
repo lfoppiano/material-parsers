@@ -5,7 +5,7 @@ from pathlib import Path
 
 import requests
 
-from material_data_commons import readMaterialData
+from material_data_commons import read_material_data
 
 os.environ['NO_PROXY'] = "nims.go.jp"
 
@@ -265,7 +265,7 @@ if __name__ == '__main__':
     log_errors = args.log_errors
     experiment = args.experiment
 
-    data = readMaterialData(input_path)
+    data = read_material_data(input_path)
 
     expected = [d['entities']['formula'] if 'entities' in d and 'formula' in d['entities'] else "" for d in data]
 

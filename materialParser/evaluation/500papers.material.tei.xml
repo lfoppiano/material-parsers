@@ -201,5 +201,5 @@
     <material><formula>Ag 2 Te</formula></material>
     <material><formula>Ag 2+δ</formula></material>
     <material><formula>Ag 5%</formula></material>
-    <material><doping>Ag doped</doping> <name>SmBCO</name></material>
+    <material><doping>Ag doped</doping> <formula>SmBCO</formula></material>
 </materials>
