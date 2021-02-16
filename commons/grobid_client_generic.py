@@ -103,6 +103,8 @@ class grobid_client_generic(ApiClient):
             time.sleep(self.config['sleep_time'])
             return self.process_pdf(pdf_file, method_name, params, headers)
         elif status != 200:
-            print('Processing failed with error ' + str(status))
+            print('Processing failed with error ', status)
+        elif status == 204:
+            print('No content returned. Moving on. ')
         else:
             return res.text

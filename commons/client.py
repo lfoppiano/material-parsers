@@ -58,7 +58,7 @@ class ApiClient(object):
             return request
 
         request.add_header('Content-Type', 'application/json')
-        request.data = json.dumps(data)
+        request.extracted_data = json.dumps(data)
 
         return request
 
