@@ -1,5 +1,6 @@
 {
   "grobid": {
+    "server__": "http://falcon.nims.go.jp/superconductors",
     "server": "http://localhost:8072",
     "prefix": "",
     "url_mapping": {

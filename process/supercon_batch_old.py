@@ -20,19 +20,58 @@ def decode(response_string):
 
 
 def process_file(source_path):
+    output_materials = []
+    output_links = []
+    output = {
+        'sourcepath': str(source_path),
+        'filename': source_path.name,
+
+        # material, material formatted
+        'materials': output_materials,
+
+        # material, tc, sentence
+        'links': output_links
+    }
+
     print("Processing file " + str(source_path))
 
-    r = grobid_client.process_pdf(str(source_path), "processPDF", headers={"Accept": "text/csv"})
+    r = grobid_client.process_pdf(str(source_path), "processPDF")
     if r is None:
         raise Exception("Response is None for " + str(source_path) + ". Moving on. ")
-    output = []
-    header = True
-    for row in csv.reader(r.split("\n")):
-        if header:
-            header = False
+    jsonOut = decode(r)
+
+    if 'paragraphs' not in jsonOut:
+        return
+
+    for sentence in jsonOut['paragraphs']:
+
+        if 'spans' not in sentence:
             continue
-        if len(row) > 0:
-            output.append(row + [source_path] + [source_path.name])
+
+        materials_spans = [item['text'] for item in sentence['spans'] if
+                           'type' in item and (item['type'] == '<material>')]
+        if len(materials_spans) > 0:
+            output_materials.extend(materials_spans)
+
+        output_rows = []
+        sentence_text = sentence['text']
+
+        for relationship in sentence['relationships'] if 'relationships' in sentence else []:
+            # collect relationships
+
+            materials = [item for item in relationship if
+                         'type' in item and (item['type'] == 'material-tc')]
+
+            material = materials[0] if len(materials) > 0 else None
+
+            tcValues = [item for item in relationship if
+                        'type' in item and (item['type'] == 'temperature-tc')]
+
+            tcValue = tcValues[0] if len(tcValues) > 0 else None
+
+            output_rows.append([material['text'], tcValue['text'], sentence_text])
+        if len(output_rows) > 0:
+            output_links.extend(output_rows)
 
     return output
 
@@ -56,21 +95,41 @@ def process_directory(source_directory, output_directory):
 
             write_on_files(output, output_directory, append=True)
 
+    write_footer(output_directory)
+
 
 def write_header(output_directory):
+    with open(output_directory + "/output.complete.json", 'w') as f:
+        f.write('[\n')
+
+    with open(output_directory + '/output.materials.csv', 'w') as f:
+        writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
+        writer.writerow(['material'])
+
     with open(output_directory + '/output.supercon.csv', 'w') as f:
         writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
-        writer.writerow(["Raw material", "Name", "Formula", "Doping", "Shape", "Class", "Fabrication", "Substrate",
-                         "Critical temperature", "Applied pressure", "Link type", "Section", "Subsection", "Sentence",
-                         'path', 'filename'])
+        writer.writerow(['material', 'tc', 'sentence', 'path', 'filename'])
+
+
+def write_footer(output_directory):
+    with open(output_directory + "/output.complete.json", 'a') as f:
+        f.write("]")
 
 
 def write_on_files(output, output_directory, append=False):
     write_mode = 'a' if append else 'w'
+    with open(output_directory + "/output.complete.json", write_mode) as f:
+        f.write(json.dumps(output))
+
+    with open(output_directory + '/output.materials.csv', write_mode) as f:
+        writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
+        for material in output['materials']:
+            writer.writerow([material])
 
     with open(output_directory + '/output.supercon.csv', write_mode) as f:
         writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
-        writer.writerows(output)
+        for links in output['links']:
+            writer.writerow(links + [output['sourcepath']] + [output['filename']])
 
 
 if __name__ == '__main__':
