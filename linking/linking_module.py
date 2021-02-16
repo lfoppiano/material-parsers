@@ -3,6 +3,7 @@ import json
 
 import pysbd
 import spacy
+from blingfire import text_to_sentences
 from spacy.tokens import Span, Doc
 from spacy.tokens.token import Token
 
@@ -208,7 +209,7 @@ class RuleBasedLinker:
 
         ## Sentence segmentation
         # boundaries = get_sentence_boundaries(words, spaces)
-        boundaries = RuleBasedLinker.get_sentence_boundaries_pysbd(words, spaces)
+        boundaries = RuleBasedLinker.get_sentence_boundaries_blingfire(words, spaces)
 
         output_data = []
 
@@ -551,6 +552,31 @@ class RuleBasedLinker:
     #             offset += 1
     #
     #     return sentence_offsetTokens
+
+    @staticmethod
+    def get_sentence_boundaries_blingfire(words, spaces):
+        offset = 0
+        reconstructed = ''
+        sentence_offsetTokens = []
+        text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
+
+        for sent in text_to_sentences(text).split('\n'):
+            start = offset
+
+            for id in range(offset, len(words)):
+                token = words[id]
+                reconstructed += token
+                if spaces[id]:
+                    reconstructed += ' '
+                if len(reconstructed.rstrip()) == len(sent):
+                    offset += 1
+                    end = offset
+                    sentence_offsetTokens.append((start, end))
+                    reconstructed = ''
+                    break
+                offset += 1
+
+        return sentence_offsetTokens
 
     @staticmethod
     def get_sentence_boundaries_pysbd(words, spaces):
