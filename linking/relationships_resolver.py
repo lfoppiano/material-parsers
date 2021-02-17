@@ -42,9 +42,9 @@ class SimpleResolutionResolver(ResolutionResolver):
 
 
 class VicinityResolutionResolver(ResolutionResolver):
-
     ## this separator list contains tokens suggested by Oka Hiroyuki (OKA.Hiroyuki@nims.go.jp)
     separators = [',', '.', ';', 'and', 'but', 'while', 'whereas', 'which', 'although']
+
     # TODO: add multi tokens, should modify the way tokens are looked up first...
 
     ## Assume the entities are already sorted
@@ -254,9 +254,9 @@ class VicinityResolutionResolver(ResolutionResolver):
                 # Find out if the opened parenthesis appearing between this tc and the previous material matches
                 # the closed parenthesis appearing between this tc and the next material
                 any_opened_parenthesis = [item for item in OPENING_PARENTHESIS if
-                                          item in str(doc[previous_material_index + 1: tc_value.i - 1])]
+                                          item in str(doc[previous_material_index + 1: tc_value.i])]
                 any_closed_parenthesis = [item for item in CLOSING_PARENTHESIS if
-                                          item in str(doc[tc_value.i + 1:following_material_index - 1])]
+                                          item in str(doc[tc_value.i + 1:following_material_index])]
 
                 couple_of_parenthesis = [opened for opened in any_opened_parenthesis if CLOSING_PARENTHESIS[
                     OPENING_PARENTHESIS.index(opened)] in any_closed_parenthesis]
@@ -264,9 +264,9 @@ class VicinityResolutionResolver(ResolutionResolver):
                 if len(couple_of_parenthesis) > 0:
                     # doc[previous_material.i + 1: following_material.i - 1].merge()
 
-                    starting_token = [token for token in doc[previous_material_index + 1: tc_value.i - 1] if
+                    starting_token = [token for token in doc[previous_material_index + 1: tc_value.i] if
                                       str(token) in OPENING_PARENTHESIS][0]
-                    ending_token = [token for token in doc[tc_value.i + 1:following_material_index - 1] if
+                    ending_token = [token for token in doc[tc_value.i + 1:following_material_index] if
                                     str(token) in CLOSING_PARENTHESIS][-1]
 
                     tc_distances[tc_value] = abs(pivot_centroid - starting_token.idx +
@@ -274,15 +274,15 @@ class VicinityResolutionResolver(ResolutionResolver):
 
                     # Extracting the chunk of text between the material and the updated tcvalue
                     if material.i < tc_value.i:
-                        chunk = str(doc[material.i + 1: starting_token.i])
+                        chunk = str(doc[material.i + 1: starting_token.i]) if material.i + 1 < starting_token.i else ""
                     else:
-                        chunk = str(doc[ending_token.i + 1: material.i])
+                        chunk = str(doc[ending_token.i + 1: material.i]) if ending_token.i + 1 < material.i else ""
                 else:
                     tc_distances[tc_value] = abs(pivot_centroid - (tc_value.idx + len(tc_value) / 2))
                     if material.i < tc_value.i:
-                        chunk = str(doc[material.i + 1: tc_value.i])
+                        chunk = str(doc[material.i + 1: tc_value.i]) if material.i + 1 < tc_value.i else ""
                     else:
-                        chunk = str(doc[tc_value.i + 1: material.i])
+                        chunk = str(doc[tc_value.i + 1: material.i]) if tc_value.i + 1 < material.i else ""
 
                 # Adding penalties in the distances, when the chunk of text in between, contains
                 # commas or other punctuation
