@@ -108,8 +108,16 @@ def processFile(file):
                 # We assume to have only one tag
                 tag = "_"
                 for idx, tag_ in enumerate(tags):
-                    if idx not in [1, 3, 4] and tag_ != '_' and not re.search("\\*\\[\d+\\]", tag_):
-                        tag = tag_.strip()
+                    if idx not in [1, 3, 4] and tag_ != '_':
+                        if not re.search("\\*\\[\d+\\]", tag_) and tag_ != '*':
+                            tag = tag_.strip()
+                            break
+                        else:
+                            # If we dont' find the tag, we try to see if it's hidden into ['*[83]|material[84]', 'process[83]|*[84]', '*[83]|*[84]', '_', '_']
+                            matching = re.match("\\*\\[\d+\\]\\|([^\\[*\\]]+\\[\d+\\])", tag_)
+                            if matching and len(matching.groups()) > 0:
+                                tag = matching.group(1).strip()
+                                break
 
                 tag = tag.replace('\\', '')
 
@@ -223,8 +231,8 @@ xmlTemplate = """<tei xmlns="http://www.tei-c.org/ns/1.0">
             <publicationStmt>
                 <publisher>National Institute for Materials Science (NIMS), Tsukuba, Japan</publisher>
                 <availability>
-                    <licence target="http://creativecommons.org/licenses/by/3.0/">
-                        <p>The Creative Commons Attribution 3.0 Unported (CC BY 3.0) Licence applies to this document.</p>
+                    <licence target="http://nims.go.jp">
+                        <p>Copyright National Institute for Materials Science (NIMS), Tsukuba, Japan</p>
                     </licence>
                 </availability>
             </publicationStmt>
