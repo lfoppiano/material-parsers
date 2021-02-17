@@ -25,10 +25,10 @@ class TestMaterial2Tags:
 
         assert len(taxonomy.keys()) == 2
         first_level = sorted(list(taxonomy.keys()))
-        assert first_level[0] == 'Cuprate'
+        assert first_level[0] == 'Cuprates'
         assert first_level[1] == 'Oxides'
         assert len(taxonomy['Oxides']) == 1
-        assert len(taxonomy['Cuprate']) == 0
+        assert len(taxonomy['Cuprates']) == 0
 
     def test_material2Tags_mixedCombinations_1(self):
         target = Material2Tags()
@@ -38,10 +38,10 @@ class TestMaterial2Tags:
         first_level = sorted(list(taxonomy.keys()))
 
         assert first_level[0] == 'Carbides'
-        assert first_level[1] == 'Cuprate'
+        assert first_level[1] == 'Cuprates'
         assert first_level[2] == 'Oxides'
         assert len(taxonomy['Carbides']) == 1
-        assert len(taxonomy['Cuprate']) == 0
+        assert len(taxonomy['Cuprates']) == 0
         assert len(taxonomy['Oxides']) == 1
 
     def test_material2Tags_mixedCombinations_2(self):
@@ -51,10 +51,10 @@ class TestMaterial2Tags:
         assert len(taxonomy.keys()) == 3
         first_level = sorted(list(taxonomy.keys()))
 
-        assert first_level[0] == 'Cuprate'
+        assert first_level[0] == 'Cuprates'
         assert first_level[1] == 'Hydrides'
         assert first_level[2] == 'Oxides'
-        assert len(taxonomy['Cuprate']) == 0
+        assert len(taxonomy['Cuprates']) == 0
         assert len(taxonomy['Hydrides']) == 0
         assert len(taxonomy['Oxides']) == 1
 
@@ -66,10 +66,10 @@ class TestMaterial2Tags:
         first_level = sorted(list(taxonomy.keys()))
 
         assert first_level[0] == 'Carbides'
-        assert first_level[1] == 'Cuprate'
+        assert first_level[1] == 'Cuprates'
         assert first_level[2] == 'Hydrides'
         assert first_level[3] == 'Oxides'
-        assert len(taxonomy['Cuprate']) == 0
+        assert len(taxonomy['Cuprates']) == 0
         assert len(taxonomy['Carbides']) == 1
         assert len(taxonomy['Hydrides']) == 0
         assert len(taxonomy['Oxides']) == 1
@@ -80,7 +80,7 @@ class TestMaterial2Tags:
 
         assert len(taxonomy.keys()) == 2
         first_level = sorted(list(taxonomy.keys()))
-        assert first_level[0] == 'Iron-pnictide'
+        assert first_level[0] == 'Iron-pnictides'
         assert first_level[1] == 'Pnictides'
-        assert len(taxonomy['Iron-pnictide']) == 0
+        assert len(taxonomy['Iron-pnictides']) == 0
         assert len(taxonomy['Pnictides']) == 0
