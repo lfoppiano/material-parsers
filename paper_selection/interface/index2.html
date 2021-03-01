@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paper selection interface</title>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="libs/jquery/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="libs/jquery/jquery.form.3.51.js"></script>
+
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css" media="screen"/>
+
+    <link href="libs/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <script src="libs/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="libs/bootstrap-table/locale/bootstrap-table-en-US.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="libs/bootstrap-table/extensions/filter-control/bootstrap-table-filter-control.css">
+    <script src="libs/bootstrap-table/extensions/filter-control/bootstrap-table-filter-control.js"></script>
+
+    <script src="javascript.js"></script>
+<body>
+<div class="container-fluid">
+
+    <div class="page-header">
+        <h1>Clustering by classes</h1>
+    </div>
+    <div class="row">
+        <div class="col-10">
+            <table id="mainTable"
+                   data-url="output.json"
+                   data-filter-control="true"
+                   data-toggle="#mainTable"
+                   data-pagination="true"
+                   data-sortable="true"
+                   data-show-search-clear-button="true"
+                   data-page-size="50">
+                <thead>
+                <tr>
+                    <th data-field="filename" data-filter-control="input" data-width="125" data-formatter="linkFormatter">Filename</th>
+                    <th data-field="title" data-filter-control="input">Title</th>
+                    <th data-field="abstract" data-filter-control="input">Abstract</th>
+                    <th data-field="keywords" data-filter-control="input">Keywords</th>
+                    <th data-field="entity_per_paragraphs" data-filter-control="input">Entities per paragraph</th>
+                    <th data-field="entity_per_tokens" data-filter-control="input">Entities per tokens</th>
+                </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
