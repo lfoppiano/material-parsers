@@ -99,6 +99,8 @@ def process_directory(source_directory, output_directory, type="pdf", force=Fals
                                                             Path(output_directory).absolute()) \
                 .replace(".json", ".pdf").replace("jsons/", "pdfs/")
 
+            aggregated_data['link'] = "=HYPERLINK(\"http://falcon.nims.go.jp/paper_selection/" + aggregated_data['sourcepath'] + "\", \""+aggregated_data['filename']+"\")"
+
             aggregated_data['filename'] = aggregated_data['filename'].replace(".json", "")
 
             output.append(aggregated_data)
@@ -141,6 +143,13 @@ if __name__ == '__main__':
     if os.path.isdir(input):
         input_path = Path(input)
         content = process_directory(input_path, output, type, force)
+
+        delimiter = '\t'
+        fw = csv.writer(open(output + '/output.tsv', encoding='utf-8', mode='w'), delimiter=delimiter, quotechar='"')
+        columns = ['filename', 'link', 'title', 'abstract', 'keywords', 'entity_per_paragraphs', 'entity_per_tokens']
+        fw.writerow(columns)
+        for d in content:
+            fw.writerow([d[c] if c in d else '' for c in columns])
 
         with open(output + '/output.json', 'w') as f:
             json.dump(content, f)
