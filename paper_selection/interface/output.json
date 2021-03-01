@@ -9,7 +9,7 @@
     "nb_spans": 41,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 2.2777777777777777,
-    "entity_per_tokens": 0.010421962379257754
+    "entity_per_tokens": 95.95121951219512
   },
   {
     "sourcepath": "documents/batch-7/PR05003221-CC.pdf",
@@ -21,7 +21,7 @@
     "nb_spans": 63,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 3.7058823529411766,
-    "entity_per_tokens": 0.027925531914893616
+    "entity_per_tokens": 35.80952380952381
   },
   {
     "sourcepath": "documents/batch-7/PR05809504-CC.pdf",
@@ -33,7 +33,7 @@
     "nb_spans": 59,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 3.4705882352941178,
-    "entity_per_tokens": 0.02868254739912494
+    "entity_per_tokens": 34.86440677966102
   },
   {
     "sourcepath": "documents/batch-7/PR05514733-CC.pdf",
@@ -45,7 +45,7 @@
     "nb_spans": 82,
     "nb_paragraphs": 22,
     "entity_per_paragraphs": 3.727272727272727,
-    "entity_per_tokens": 0.024419297200714712
+    "entity_per_tokens": 40.951219512195124
   },
   {
     "sourcepath": "documents/batch-7/PR05703245-CC.pdf",
@@ -57,7 +57,7 @@
     "nb_spans": 7,
     "nb_paragraphs": 37,
     "entity_per_paragraphs": 0.1891891891891892,
-    "entity_per_tokens": 0.0008527226215129736
+    "entity_per_tokens": 1172.7142857142858
   },
   {
     "sourcepath": "documents/batch-7/PR06103604-CC.pdf",
@@ -69,7 +69,7 @@
     "nb_spans": 62,
     "nb_paragraphs": 19,
     "entity_per_paragraphs": 3.263157894736842,
-    "entity_per_tokens": 0.011397058823529411
+    "entity_per_tokens": 87.74193548387096
   },
   {
     "sourcepath": "documents/batch-7/PR06100107-CC.pdf",
@@ -81,7 +81,7 @@
     "nb_spans": 139,
     "nb_paragraphs": 21,
     "entity_per_paragraphs": 6.619047619047619,
-    "entity_per_tokens": 0.035695942475603495
+    "entity_per_tokens": 28.014388489208635
   },
   {
     "sourcepath": "documents/batch-7/PR05814581-CC.pdf",
@@ -93,7 +93,7 @@
     "nb_spans": 88,
     "nb_paragraphs": 19,
     "entity_per_paragraphs": 4.631578947368421,
-    "entity_per_tokens": 0.01517503017761683
+    "entity_per_tokens": 65.89772727272727
   },
   {
     "sourcepath": "documents/batch-7/PR04909084-CC.pdf",
@@ -105,7 +105,7 @@
     "nb_spans": 83,
     "nb_paragraphs": 31,
     "entity_per_paragraphs": 2.6774193548387095,
-    "entity_per_tokens": 0.026808785529715762
+    "entity_per_tokens": 37.30120481927711
   },
   {
     "sourcepath": "documents/batch-7/PR06006991-CC.pdf",
@@ -117,7 +117,7 @@
     "nb_spans": 90,
     "nb_paragraphs": 13,
     "entity_per_paragraphs": 6.923076923076923,
-    "entity_per_tokens": 0.027898326100433975
+    "entity_per_tokens": 35.84444444444444
   },
   {
     "sourcepath": "documents/batch-7/PR05903948-CC.pdf",
@@ -129,7 +129,7 @@
     "nb_spans": 55,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 3.235294117647059,
-    "entity_per_tokens": 0.014091724314629772
+    "entity_per_tokens": 70.96363636363637
   },
   {
     "sourcepath": "documents/batch-7/PR06013094-CC.pdf",
@@ -141,7 +141,7 @@
     "nb_spans": 73,
     "nb_paragraphs": 11,
     "entity_per_paragraphs": 6.636363636363637,
-    "entity_per_tokens": 0.02860501567398119
+    "entity_per_tokens": 34.95890410958904
   },
   {
     "sourcepath": "documents/batch-7/PR0446999-CC.pdf",
@@ -153,7 +153,7 @@
     "nb_spans": 97,
     "nb_paragraphs": 11,
     "entity_per_paragraphs": 8.818181818181818,
-    "entity_per_tokens": 0.046411483253588515
+    "entity_per_tokens": 21.54639175257732
   },
   {
     "sourcepath": "documents/batch-7/PR04310568-CC.pdf",
@@ -165,7 +165,7 @@
     "nb_spans": 32,
     "nb_paragraphs": 11,
     "entity_per_paragraphs": 2.909090909090909,
-    "entity_per_tokens": 0.031840796019900496
+    "entity_per_tokens": 31.40625
   },
   {
     "sourcepath": "documents/batch-7/PR05914099-CC.pdf",
@@ -177,7 +177,7 @@
     "nb_spans": 184,
     "nb_paragraphs": 31,
     "entity_per_paragraphs": 5.935483870967742,
-    "entity_per_tokens": 0.02280332135332755
+    "entity_per_tokens": 43.85326086956522
   },
   {
     "sourcepath": "documents/batch-7/PR05514152-CC.pdf",
@@ -189,7 +189,7 @@
     "nb_spans": 57,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 3.1666666666666665,
-    "entity_per_tokens": 0.01744186046511628
+    "entity_per_tokens": 57.333333333333336
   },
   {
     "sourcepath": "documents/batch-7/PR05511832-CC.pdf",
@@ -201,7 +201,7 @@
     "nb_spans": 63,
     "nb_paragraphs": 30,
     "entity_per_paragraphs": 2.1,
-    "entity_per_tokens": 0.016207872395163365
+    "entity_per_tokens": 61.698412698412696
   },
   {
     "sourcepath": "documents/batch-7/PR05713422-CC.pdf",
@@ -213,7 +213,7 @@
     "nb_spans": 93,
     "nb_paragraphs": 13,
     "entity_per_paragraphs": 7.153846153846154,
-    "entity_per_tokens": 0.025244299674267102
+    "entity_per_tokens": 39.61290322580645
   },
   {
     "sourcepath": "documents/batch-7/PR05907184-CC.pdf",
@@ -225,7 +225,7 @@
     "nb_spans": 144,
     "nb_paragraphs": 48,
     "entity_per_paragraphs": 3.0,
-    "entity_per_tokens": 0.02772963604852686
+    "entity_per_tokens": 36.0625
   },
   {
     "sourcepath": "documents/batch-7/PR06114350-CC.pdf",
@@ -237,7 +237,7 @@
     "nb_spans": 56,
     "nb_paragraphs": 15,
     "entity_per_paragraphs": 3.7333333333333334,
-    "entity_per_tokens": 0.01644640234948605
+    "entity_per_tokens": 60.80357142857143
   },
   {
     "sourcepath": "documents/batch-7/PR05814617-CC.pdf",
@@ -249,7 +249,7 @@
     "nb_spans": 104,
     "nb_paragraphs": 19,
     "entity_per_paragraphs": 5.473684210526316,
-    "entity_per_tokens": 0.026700898587933248
+    "entity_per_tokens": 37.45192307692308
   },
   {
     "sourcepath": "documents/batch-7/PR05909642-CC.pdf",
@@ -261,7 +261,7 @@
     "nb_spans": 87,
     "nb_paragraphs": 34,
     "entity_per_paragraphs": 2.5588235294117645,
-    "entity_per_tokens": 0.016228315612758813
+    "entity_per_tokens": 61.62068965517241
   },
   {
     "sourcepath": "documents/batch-7/PR06012475-CC.pdf",
@@ -273,7 +273,7 @@
     "nb_spans": 105,
     "nb_paragraphs": 23,
     "entity_per_paragraphs": 4.565217391304348,
-    "entity_per_tokens": 0.02623032725455908
+    "entity_per_tokens": 38.12380952380953
   },
   {
     "sourcepath": "documents/batch-7/PR06014617-CC.pdf",
@@ -285,7 +285,7 @@
     "nb_spans": 68,
     "nb_paragraphs": 16,
     "entity_per_paragraphs": 4.25,
-    "entity_per_tokens": 0.01995305164319249
+    "entity_per_tokens": 50.11764705882353
   },
   {
     "sourcepath": "documents/batch-7/PR06114956-CC.pdf",
@@ -297,7 +297,7 @@
     "nb_spans": 141,
     "nb_paragraphs": 19,
     "entity_per_paragraphs": 7.421052631578948,
-    "entity_per_tokens": 0.03950686466797422
+    "entity_per_tokens": 25.31205673758865
   },
   {
     "sourcepath": "documents/batch-7/PR06103808-CC.pdf",
@@ -309,7 +309,7 @@
     "nb_spans": 68,
     "nb_paragraphs": 14,
     "entity_per_paragraphs": 4.857142857142857,
-    "entity_per_tokens": 0.02361111111111111
+    "entity_per_tokens": 42.35294117647059
   },
   {
     "sourcepath": "documents/batch-7/PR05009672-CC.pdf",
@@ -321,7 +321,7 @@
     "nb_spans": 82,
     "nb_paragraphs": 27,
     "entity_per_paragraphs": 3.037037037037037,
-    "entity_per_tokens": 0.025015253203172667
+    "entity_per_tokens": 39.97560975609756
   },
   {
     "sourcepath": "documents/batch-1/L090137002-CC.pdf",
@@ -333,7 +333,7 @@
     "nb_spans": 14,
     "nb_paragraphs": 13,
     "entity_per_paragraphs": 1.0769230769230769,
-    "entity_per_tokens": 0.012646793134598013
+    "entity_per_tokens": 79.07142857142857
   },
   {
     "sourcepath": "documents/batch-1/SSC1310125-CC.pdf",
@@ -345,7 +345,7 @@
     "nb_spans": 79,
     "nb_paragraphs": 22,
     "entity_per_paragraphs": 3.590909090909091,
-    "entity_per_tokens": 0.024772656005017248
+    "entity_per_tokens": 40.36708860759494
   },
   {
     "sourcepath": "documents/batch-1/Liu_2018_Supercond._Sci._Technol._31_125011-CC.pdf",
@@ -357,7 +357,7 @@
     "nb_spans": 154,
     "nb_paragraphs": 24,
     "entity_per_paragraphs": 6.416666666666667,
-    "entity_per_tokens": 0.032779906343124735
+    "entity_per_tokens": 30.506493506493506
   },
   {
     "sourcepath": "documents/batch-1/EPL0580589.pdf",
@@ -369,7 +369,7 @@
     "nb_spans": 102,
     "nb_paragraphs": 21,
     "entity_per_paragraphs": 4.857142857142857,
-    "entity_per_tokens": 0.02865973588086541
+    "entity_per_tokens": 34.8921568627451
   },
   {
     "sourcepath": "documents/batch-1/L088207005-CC.pdf",
@@ -381,7 +381,7 @@
     "nb_spans": 76,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 4.222222222222222,
-    "entity_per_tokens": 0.02658272123119972
+    "entity_per_tokens": 37.61842105263158
   },
   {
     "sourcepath": "documents/batch-1/L089147002-CC.pdf",
@@ -393,7 +393,7 @@
     "nb_spans": 55,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 3.0555555555555554,
-    "entity_per_tokens": 0.018462571332661968
+    "entity_per_tokens": 54.163636363636364
   },
   {
     "sourcepath": "documents/batch-1/APL0774202-CC.pdf",
@@ -405,7 +405,7 @@
     "nb_spans": 56,
     "nb_paragraphs": 20,
     "entity_per_paragraphs": 2.8,
-    "entity_per_tokens": 0.01868535201868535
+    "entity_per_tokens": 53.517857142857146
   },
   {
     "sourcepath": "documents/batch-1/EPL0410207-CC.pdf",
@@ -417,7 +417,7 @@
     "nb_spans": 39,
     "nb_paragraphs": 19,
     "entity_per_paragraphs": 2.0526315789473686,
-    "entity_per_tokens": 0.012044471896232242
+    "entity_per_tokens": 83.02564102564102
   },
   {
     "sourcepath": "documents/batch-1/1609.04957-CC.pdf",
@@ -429,7 +429,7 @@
     "nb_spans": 183,
     "nb_paragraphs": 16,
     "entity_per_paragraphs": 11.4375,
-    "entity_per_tokens": 0.05013698630136986
+    "entity_per_tokens": 19.94535519125683
   },
   {
     "sourcepath": "documents/batch-1/PhysRevX.9.021044-CC.pdf",
@@ -441,7 +441,7 @@
     "nb_spans": 33,
     "nb_paragraphs": 27,
     "entity_per_paragraphs": 1.2222222222222223,
-    "entity_per_tokens": 0.005263997447758813
+    "entity_per_tokens": 189.96969696969697
   },
   {
     "sourcepath": "documents/batch-1/L093157004-CC.pdf",
@@ -453,7 +453,7 @@
     "nb_spans": 90,
     "nb_paragraphs": 25,
     "entity_per_paragraphs": 3.6,
-    "entity_per_tokens": 0.029315960912052116
+    "entity_per_tokens": 34.111111111111114
   },
   {
     "sourcepath": "documents/batch-1/SSC1280097-CC.pdf",
@@ -465,7 +465,7 @@
     "nb_spans": 65,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 3.823529411764706,
-    "entity_per_tokens": 0.02892745883400089
+    "entity_per_tokens": 34.56923076923077
   },
   {
     "sourcepath": "documents/batch-1/JPS081033701-CC.pdf",
@@ -477,7 +477,7 @@
     "nb_spans": 96,
     "nb_paragraphs": 15,
     "entity_per_paragraphs": 6.4,
-    "entity_per_tokens": 0.024883359253499222
+    "entity_per_tokens": 40.1875
   },
   {
     "sourcepath": "documents/batch-1/L088207003-CC.pdf",
@@ -489,7 +489,7 @@
     "nb_spans": 54,
     "nb_paragraphs": 16,
     "entity_per_paragraphs": 3.375,
-    "entity_per_tokens": 0.021218074656188603
+    "entity_per_tokens": 47.129629629629626
   },
   {
     "sourcepath": "documents/batch-1/SST0180041-CC.pdf",
@@ -501,7 +501,7 @@
     "nb_spans": 102,
     "nb_paragraphs": 21,
     "entity_per_paragraphs": 4.857142857142857,
-    "entity_per_tokens": 0.024079320113314446
+    "entity_per_tokens": 41.529411764705884
   },
   {
     "sourcepath": "documents/batch-1/L094047006-CC.pdf",
@@ -513,7 +513,7 @@
     "nb_spans": 104,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 6.117647058823529,
-    "entity_per_tokens": 0.03002309468822171
+    "entity_per_tokens": 33.30769230769231
   },
   {
     "sourcepath": "documents/batch-1/L092157004-CC.pdf",
@@ -525,7 +525,7 @@
     "nb_spans": 68,
     "nb_paragraphs": 24,
     "entity_per_paragraphs": 2.8333333333333335,
-    "entity_per_tokens": 0.017754569190600523
+    "entity_per_tokens": 56.3235294117647
   },
   {
     "sourcepath": "documents/batch-1/EPJ0290369-CC.pdf",
@@ -537,7 +537,7 @@
     "nb_spans": 270,
     "nb_paragraphs": 44,
     "entity_per_paragraphs": 6.136363636363637,
-    "entity_per_tokens": 0.030238548549669616
+    "entity_per_tokens": 33.07037037037037
   },
   {
     "sourcepath": "documents/batch-1/SSC1270493-CC.pdf",
@@ -549,7 +549,7 @@
     "nb_spans": 120,
     "nb_paragraphs": 24,
     "entity_per_paragraphs": 5.0,
-    "entity_per_tokens": 0.026572187776793623
+    "entity_per_tokens": 37.63333333333333
   },
   {
     "sourcepath": "documents/batch-1/SSC1230017-CC.pdf",
@@ -561,7 +561,7 @@
     "nb_spans": 77,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 4.529411764705882,
-    "entity_per_tokens": 0.021448467966573816
+    "entity_per_tokens": 46.62337662337662
   },
   {
     "sourcepath": "documents/batch-1/L094037007-CC.pdf",
@@ -573,7 +573,7 @@
     "nb_spans": 140,
     "nb_paragraphs": 16,
     "entity_per_paragraphs": 8.75,
-    "entity_per_tokens": 0.042067307692307696
+    "entity_per_tokens": 23.771428571428572
   },
   {
     "sourcepath": "documents/batch-1/L088167005-CC.pdf",
@@ -585,7 +585,7 @@
     "nb_spans": 72,
     "nb_paragraphs": 20,
     "entity_per_paragraphs": 3.6,
-    "entity_per_tokens": 0.01932367149758454
+    "entity_per_tokens": 51.75
   },
   {
     "sourcepath": "documents/batch-1/L095167004-CC.pdf",
@@ -597,7 +597,7 @@
     "nb_spans": 218,
     "nb_paragraphs": 23,
     "entity_per_paragraphs": 9.478260869565217,
-    "entity_per_tokens": 0.05912666124220233
+    "entity_per_tokens": 16.912844036697248
   },
   {
     "sourcepath": "documents/batch-1/L091217001-CC.pdf",
@@ -609,7 +609,7 @@
     "nb_spans": 59,
     "nb_paragraphs": 20,
     "entity_per_paragraphs": 2.95,
-    "entity_per_tokens": 0.022323117669315173
+    "entity_per_tokens": 44.79661016949152
   },
   {
     "sourcepath": "documents/batch-1/L092227003-CC.pdf",
@@ -621,7 +621,7 @@
     "nb_spans": 66,
     "nb_paragraphs": 22,
     "entity_per_paragraphs": 3.0,
-    "entity_per_tokens": 0.020320197044334975
+    "entity_per_tokens": 49.21212121212121
   },
   {
     "sourcepath": "documents/batch-1/L094047001-CC.pdf",
@@ -633,7 +633,7 @@
     "nb_spans": 102,
     "nb_paragraphs": 19,
     "entity_per_paragraphs": 5.368421052631579,
-    "entity_per_tokens": 0.02551913935451589
+    "entity_per_tokens": 39.18627450980392
   },
   {
     "sourcepath": "documents/batch-1/L088227002-CC.pdf",
@@ -645,7 +645,7 @@
     "nb_spans": 106,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 5.888888888888889,
-    "entity_per_tokens": 0.029080932784636488
+    "entity_per_tokens": 34.386792452830186
   },
   {
     "sourcepath": "documents/batch-1/L090137001-CC.pdf",
@@ -657,7 +657,7 @@
     "nb_spans": 48,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 2.823529411764706,
-    "entity_per_tokens": 0.015722240419259743
+    "entity_per_tokens": 63.604166666666664
   },
   {
     "sourcepath": "documents/batch-1/JPS081113707-CC.pdf",
@@ -669,7 +669,7 @@
     "nb_spans": 79,
     "nb_paragraphs": 16,
     "entity_per_paragraphs": 4.9375,
-    "entity_per_tokens": 0.03153692614770459
+    "entity_per_tokens": 31.70886075949367
   },
   {
     "sourcepath": "documents/batch-1/Suzuki_etal_2015-CC.pdf",
@@ -681,7 +681,7 @@
     "nb_spans": 87,
     "nb_paragraphs": 13,
     "entity_per_paragraphs": 6.6923076923076925,
-    "entity_per_tokens": 0.06165839829907867
+    "entity_per_tokens": 16.2183908045977
   },
   {
     "sourcepath": "documents/batch-1/PhysRevX.8.041024-CC.pdf",
@@ -693,7 +693,7 @@
     "nb_spans": 52,
     "nb_paragraphs": 34,
     "entity_per_paragraphs": 1.5294117647058822,
-    "entity_per_tokens": 0.007897934386391251
+    "entity_per_tokens": 126.61538461538461
   },
   {
     "sourcepath": "documents/batch-1/EPL0330153-CC.pdf",
@@ -705,7 +705,7 @@
     "nb_spans": 56,
     "nb_paragraphs": 22,
     "entity_per_paragraphs": 2.5454545454545454,
-    "entity_per_tokens": 0.01674641148325359
+    "entity_per_tokens": 59.714285714285715
   },
   {
     "sourcepath": "documents/batch-1/L089157004-CC.pdf",
@@ -717,7 +717,7 @@
     "nb_spans": 124,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 6.888888888888889,
-    "entity_per_tokens": 0.03893249607535322
+    "entity_per_tokens": 25.68548387096774
   },
   {
     "sourcepath": "documents/batch-1/L095117006-CC.pdf",
@@ -729,7 +729,7 @@
     "nb_spans": 92,
     "nb_paragraphs": 23,
     "entity_per_paragraphs": 4.0,
-    "entity_per_tokens": 0.026285714285714287
+    "entity_per_tokens": 38.04347826086956
   },
   {
     "sourcepath": "documents/batch-1/Carnicom_2018_Supercond._Sci._Technol._31_115005.pdf",
@@ -741,7 +741,7 @@
     "nb_spans": 155,
     "nb_paragraphs": 26,
     "entity_per_paragraphs": 5.961538461538462,
-    "entity_per_tokens": 0.03441385435168739
+    "entity_per_tokens": 29.058064516129033
   },
   {
     "sourcepath": "documents/batch-1/Li_2018_Supercond._Sci._Technol._31_085001.pdf",
@@ -753,7 +753,7 @@
     "nb_spans": 180,
     "nb_paragraphs": 25,
     "entity_per_paragraphs": 7.2,
-    "entity_per_tokens": 0.03715170278637771
+    "entity_per_tokens": 26.916666666666668
   },
   {
     "sourcepath": "documents/batch-1/L094127001-CC.pdf",
@@ -765,7 +765,7 @@
     "nb_spans": 98,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 5.764705882352941,
-    "entity_per_tokens": 0.026630434782608695
+    "entity_per_tokens": 37.55102040816327
   },
   {
     "sourcepath": "documents/batch-1/L091087001-CC.pdf",
@@ -777,7 +777,7 @@
     "nb_spans": 92,
     "nb_paragraphs": 22,
     "entity_per_paragraphs": 4.181818181818182,
-    "entity_per_tokens": 0.026543566070398154
+    "entity_per_tokens": 37.67391304347826
   },
   {
     "sourcepath": "documents/batch-1/Tanaka_etal_2017-CC.pdf",
@@ -789,7 +789,7 @@
     "nb_spans": 166,
     "nb_paragraphs": 31,
     "entity_per_paragraphs": 5.354838709677419,
-    "entity_per_tokens": 0.027159685863874346
+    "entity_per_tokens": 36.81927710843374
   },
   {
     "sourcepath": "documents/batch-1/L093156802-CC.pdf",
@@ -801,7 +801,7 @@
     "nb_spans": 43,
     "nb_paragraphs": 20,
     "entity_per_paragraphs": 2.15,
-    "entity_per_tokens": 0.011186264308012487
+    "entity_per_tokens": 89.3953488372093
   },
   {
     "sourcepath": "documents/batch-1/Drozdov_etal_2015.pdf",
@@ -813,7 +813,7 @@
     "nb_spans": 315,
     "nb_paragraphs": 33,
     "entity_per_paragraphs": 9.545454545454545,
-    "entity_per_tokens": 0.04844663180559828
+    "entity_per_tokens": 20.641269841269843
   },
   {
     "sourcepath": "documents/batch-1/1903.04321-CC.pdf",
@@ -825,7 +825,7 @@
     "nb_spans": 71,
     "nb_paragraphs": 13,
     "entity_per_paragraphs": 5.461538461538462,
-    "entity_per_tokens": 0.02048470859780727
+    "entity_per_tokens": 48.816901408450704
   },
   {
     "sourcepath": "documents/batch-1/SST01600L7-CC.pdf",
@@ -837,7 +837,7 @@
     "nb_spans": 52,
     "nb_paragraphs": 12,
     "entity_per_paragraphs": 4.333333333333333,
-    "entity_per_tokens": 0.021885521885521887
+    "entity_per_tokens": 45.69230769230769
   },
   {
     "sourcepath": "documents/batch-6/sun2012re-emerging-CC.pdf",
@@ -849,7 +849,7 @@
     "nb_spans": 126,
     "nb_paragraphs": 20,
     "entity_per_paragraphs": 6.3,
-    "entity_per_tokens": 0.03349282296650718
+    "entity_per_tokens": 29.857142857142858
   },
   {
     "sourcepath": "documents/batch-6/xing2014theAnomaly-CC.pdf",
@@ -861,7 +861,7 @@
     "nb_spans": 88,
     "nb_paragraphs": 19,
     "entity_per_paragraphs": 4.631578947368421,
-    "entity_per_tokens": 0.025836758661186142
+    "entity_per_tokens": 38.70454545454545
   },
   {
     "sourcepath": "documents/batch-6/yamaguchi2014ac.pdf",
@@ -873,7 +873,7 @@
     "nb_spans": 108,
     "nb_paragraphs": 14,
     "entity_per_paragraphs": 7.714285714285714,
-    "entity_per_tokens": 0.05687203791469194
+    "entity_per_tokens": 17.583333333333332
   },
   {
     "sourcepath": "documents/batch-6/kotegawa2008abrupt-CC.pdf",
@@ -885,7 +885,7 @@
     "nb_spans": 149,
     "nb_paragraphs": 16,
     "entity_per_paragraphs": 9.3125,
-    "entity_per_tokens": 0.04950166112956811
+    "entity_per_tokens": 20.201342281879196
   },
   {
     "sourcepath": "documents/batch-6/mydeen2010temperature-CC.pdf",
@@ -897,7 +897,7 @@
     "nb_spans": 106,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 6.235294117647059,
-    "entity_per_tokens": 0.03302180685358255
+    "entity_per_tokens": 30.28301886792453
   },
   {
     "sourcepath": "documents/batch-6/piva2015combined-CC.pdf",
@@ -909,7 +909,7 @@
     "nb_spans": 120,
     "nb_paragraphs": 13,
     "entity_per_paragraphs": 9.23076923076923,
-    "entity_per_tokens": 0.036396724294813464
+    "entity_per_tokens": 27.475
   },
   {
     "sourcepath": "documents/batch-6/wang2011effect.pdf",
@@ -921,7 +921,7 @@
     "nb_spans": 91,
     "nb_paragraphs": 14,
     "entity_per_paragraphs": 6.5,
-    "entity_per_tokens": 0.05075292805354155
+    "entity_per_tokens": 19.703296703296704
   },
   {
     "sourcepath": "documents/batch-6/ivanovskii2008newHigh.pdf",
@@ -933,7 +933,7 @@
     "nb_spans": 749,
     "nb_paragraphs": 172,
     "entity_per_paragraphs": 4.354651162790698,
-    "entity_per_tokens": 0.02774896265560166
+    "entity_per_tokens": 36.03738317757009
   },
   {
     "sourcepath": "documents/batch-6/ying2011pressure-CC.pdf",
@@ -945,7 +945,7 @@
     "nb_spans": 218,
     "nb_paragraphs": 14,
     "entity_per_paragraphs": 15.571428571428571,
-    "entity_per_tokens": 0.07719546742209632
+    "entity_per_tokens": 12.954128440366972
   },
   {
     "sourcepath": "documents/batch-6/chu2009high-CC.pdf",
@@ -957,7 +957,7 @@
     "nb_spans": 486,
     "nb_paragraphs": 61,
     "entity_per_paragraphs": 7.967213114754099,
-    "entity_per_tokens": 0.04856600379734186
+    "entity_per_tokens": 20.590534979423868
   },
   {
     "sourcepath": "documents/batch-6/okada2008supercondctivity-CC.pdf",
@@ -969,7 +969,7 @@
     "nb_spans": 134,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 7.444444444444445,
-    "entity_per_tokens": 0.059030837004405284
+    "entity_per_tokens": 16.940298507462686
   },
   {
     "sourcepath": "documents/batch-6/hott2013review-CC.pdf",
@@ -981,7 +981,7 @@
     "nb_spans": 581,
     "nb_paragraphs": 133,
     "entity_per_paragraphs": 4.368421052631579,
-    "entity_per_tokens": 0.027155877541481653
+    "entity_per_tokens": 36.82444061962134
   },
   {
     "sourcepath": "documents/batch-6/kotegawa2009contrasting-CC.pdf",
@@ -993,7 +993,7 @@
     "nb_spans": 209,
     "nb_paragraphs": 20,
     "entity_per_paragraphs": 10.45,
-    "entity_per_tokens": 0.06052707790327252
+    "entity_per_tokens": 16.52153110047847
   },
   {
     "sourcepath": "documents/batch-8/1802.09882-CC.pdf",
@@ -1005,7 +1005,7 @@
     "nb_spans": 57,
     "nb_paragraphs": 24,
     "entity_per_paragraphs": 2.375,
-    "entity_per_tokens": 0.013616817964644052
+    "entity_per_tokens": 73.43859649122807
   },
   {
     "sourcepath": "documents/batch-8/HfV2O431805.08285-CC.pdf",
@@ -1017,7 +1017,7 @@
     "nb_spans": 69,
     "nb_paragraphs": 27,
     "entity_per_paragraphs": 2.5555555555555554,
-    "entity_per_tokens": 0.017083436494181727
+    "entity_per_tokens": 58.53623188405797
   },
   {
     "sourcepath": "documents/batch-8/Rb2Cr3As3_quasi1D_SC1412.2596-CC.pdf",
@@ -1029,7 +1029,7 @@
     "nb_spans": 86,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 4.777777777777778,
-    "entity_per_tokens": 0.02210796915167095
+    "entity_per_tokens": 45.23255813953488
   },
   {
     "sourcepath": "documents/batch-8/SCinTiO_1612.02502-CC.pdf",
@@ -1041,7 +1041,7 @@
     "nb_spans": 151,
     "nb_paragraphs": 42,
     "entity_per_paragraphs": 3.5952380952380953,
-    "entity_per_tokens": 0.024052245938196878
+    "entity_per_tokens": 41.57615894039735
   },
   {
     "sourcepath": "documents/batch-8/CoA4_HTSC_theory1807.00934-CC.pdf",
@@ -1053,7 +1053,7 @@
     "nb_spans": 96,
     "nb_paragraphs": 47,
     "entity_per_paragraphs": 2.0425531914893615,
-    "entity_per_tokens": 0.017429193899782137
+    "entity_per_tokens": 57.375
   },
   {
     "sourcepath": "documents/batch-8/1802.03907-CC.pdf",
@@ -1065,7 +1065,7 @@
     "nb_spans": 411,
     "nb_paragraphs": 66,
     "entity_per_paragraphs": 6.2272727272727275,
-    "entity_per_tokens": 0.023839907192575407
+    "entity_per_tokens": 41.94647201946472
   },
   {
     "sourcepath": "documents/batch-8/Tc4k_interfaceBi_Ni-CC.pdf",
@@ -1077,7 +1077,7 @@
     "nb_spans": 40,
     "nb_paragraphs": 25,
     "entity_per_paragraphs": 1.6,
-    "entity_per_tokens": 0.010441138084051161
+    "entity_per_tokens": 95.775
   },
   {
     "sourcepath": "documents/batch-3/MAT0305503-CC.pdf",
@@ -1089,7 +1089,7 @@
     "nb_spans": 86,
     "nb_paragraphs": 20,
     "entity_per_paragraphs": 4.3,
-    "entity_per_tokens": 0.02198364008179959
+    "entity_per_tokens": 45.48837209302326
   },
   {
     "sourcepath": "documents/batch-3/P066214509-CC.pdf",
@@ -1101,7 +1101,7 @@
     "nb_spans": 57,
     "nb_paragraphs": 26,
     "entity_per_paragraphs": 2.1923076923076925,
-    "entity_per_tokens": 0.01826923076923077
+    "entity_per_tokens": 54.73684210526316
   },
   {
     "sourcepath": "documents/batch-3/P066104528-CC.pdf",
@@ -1113,7 +1113,7 @@
     "nb_spans": 107,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 5.944444444444445,
-    "entity_per_tokens": 0.035395302679457494
+    "entity_per_tokens": 28.252336448598133
   },
   {
     "sourcepath": "documents/batch-3/P065104523-CC.pdf",
@@ -1125,7 +1125,7 @@
     "nb_spans": 156,
     "nb_paragraphs": 33,
     "entity_per_paragraphs": 4.7272727272727275,
-    "entity_per_tokens": 0.023794996949359364
+    "entity_per_tokens": 42.02564102564103
   },
   {
     "sourcepath": "documents/batch-3/P065172501-CC.pdf",
@@ -1137,7 +1137,7 @@
     "nb_spans": 102,
     "nb_paragraphs": 23,
     "entity_per_paragraphs": 4.434782608695652,
-    "entity_per_tokens": 0.03300970873786408
+    "entity_per_tokens": 30.294117647058822
   },
   {
     "sourcepath": "documents/batch-3/P064144524-CC.pdf",
@@ -1149,7 +1149,7 @@
     "nb_spans": 143,
     "nb_paragraphs": 31,
     "entity_per_paragraphs": 4.612903225806452,
-    "entity_per_tokens": 0.025490196078431372
+    "entity_per_tokens": 39.23076923076923
   },
   {
     "sourcepath": "documents/batch-3/MAT0106521-CC.pdf",
@@ -1161,7 +1161,7 @@
     "nb_spans": 76,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 4.222222222222222,
-    "entity_per_tokens": 0.04155276107162384
+    "entity_per_tokens": 24.06578947368421
   },
   {
     "sourcepath": "documents/batch-3/MCP0750110-CC.pdf",
@@ -1173,7 +1173,7 @@
     "nb_spans": 140,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 7.777777777777778,
-    "entity_per_tokens": 0.0421179302045728
+    "entity_per_tokens": 23.742857142857144
   },
   {
     "sourcepath": "documents/batch-3/P066024503-CC.pdf",
@@ -1185,7 +1185,7 @@
     "nb_spans": 179,
     "nb_paragraphs": 39,
     "entity_per_paragraphs": 4.589743589743589,
-    "entity_per_tokens": 0.029025458083346847
+    "entity_per_tokens": 34.452513966480446
   },
   {
     "sourcepath": "documents/batch-3/MPL0150497-CC.pdf",
@@ -1197,7 +1197,7 @@
     "nb_spans": 171,
     "nb_paragraphs": 28,
     "entity_per_paragraphs": 6.107142857142857,
-    "entity_per_tokens": 0.022150259067357514
+    "entity_per_tokens": 45.146198830409354
   },
   {
     "sourcepath": "documents/batch-3/NAT3500600.pdf",
@@ -1209,7 +1209,7 @@
     "nb_spans": 35,
     "nb_paragraphs": 13,
     "entity_per_paragraphs": 2.6923076923076925,
-    "entity_per_tokens": 0.02619760479041916
+    "entity_per_tokens": 38.17142857142857
   },
   {
     "sourcepath": "documents/batch-3/P067104503-CC.pdf",
@@ -1221,7 +1221,7 @@
     "nb_spans": 109,
     "nb_paragraphs": 20,
     "entity_per_paragraphs": 5.45,
-    "entity_per_tokens": 0.022441836524603666
+    "entity_per_tokens": 44.559633027522935
   },
   {
     "sourcepath": "documents/batch-3/P063224522-CC.pdf",
@@ -1233,7 +1233,7 @@
     "nb_spans": 307,
     "nb_paragraphs": 54,
     "entity_per_paragraphs": 5.685185185185185,
-    "entity_per_tokens": 0.04453793703757435
+    "entity_per_tokens": 22.452768729641694
   },
   {
     "sourcepath": "documents/batch-3/P065224520-CC.pdf",
@@ -1245,7 +1245,7 @@
     "nb_spans": 84,
     "nb_paragraphs": 41,
     "entity_per_paragraphs": 2.048780487804878,
-    "entity_per_tokens": 0.015861027190332326
+    "entity_per_tokens": 63.04761904761905
   },
   {
     "sourcepath": "documents/batch-3/P064172514-CC.pdf",
@@ -1257,7 +1257,7 @@
     "nb_spans": 68,
     "nb_paragraphs": 20,
     "entity_per_paragraphs": 3.4,
-    "entity_per_tokens": 0.0194786594099112
+    "entity_per_tokens": 51.338235294117645
   },
   {
     "sourcepath": "documents/batch-3/P067172501-CC.pdf",
@@ -1269,7 +1269,7 @@
     "nb_spans": 56,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 3.2941176470588234,
-    "entity_per_tokens": 0.016538688718251624
+    "entity_per_tokens": 60.464285714285715
   },
   {
     "sourcepath": "documents/batch-3/P066020503-CC.pdf",
@@ -1281,7 +1281,7 @@
     "nb_spans": 43,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 2.388888888888889,
-    "entity_per_tokens": 0.012236767216846899
+    "entity_per_tokens": 81.72093023255815
   },
   {
     "sourcepath": "documents/batch-3/P066132510-CC.pdf",
@@ -1293,7 +1293,7 @@
     "nb_spans": 124,
     "nb_paragraphs": 22,
     "entity_per_paragraphs": 5.636363636363637,
-    "entity_per_tokens": 0.03259726603575184
+    "entity_per_tokens": 30.677419354838708
   },
   {
     "sourcepath": "documents/batch-3/P065024523-CC.pdf",
@@ -1305,7 +1305,7 @@
     "nb_spans": 68,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 4.0,
-    "entity_per_tokens": 0.017480719794344474
+    "entity_per_tokens": 57.205882352941174
   },
   {
     "sourcepath": "documents/batch-3/P066020501-CC.pdf",
@@ -1317,7 +1317,7 @@
     "nb_spans": 66,
     "nb_paragraphs": 20,
     "entity_per_paragraphs": 3.3,
-    "entity_per_tokens": 0.01655379984951091
+    "entity_per_tokens": 60.40909090909091
   },
   {
     "sourcepath": "documents/batch-3/P066024502-CC.pdf",
@@ -1329,7 +1329,7 @@
     "nb_spans": 74,
     "nb_paragraphs": 37,
     "entity_per_paragraphs": 2.0,
-    "entity_per_tokens": 0.02009231604670106
+    "entity_per_tokens": 49.770270270270274
   },
   {
     "sourcepath": "documents/batch-4/P070184523-CC.pdf",
@@ -1341,7 +1341,7 @@
     "nb_spans": 96,
     "nb_paragraphs": 22,
     "entity_per_paragraphs": 4.363636363636363,
-    "entity_per_tokens": 0.022003208801283522
+    "entity_per_tokens": 45.447916666666664
   },
   {
     "sourcepath": "documents/batch-4/P072064520-CC.pdf",
@@ -1353,7 +1353,7 @@
     "nb_spans": 108,
     "nb_paragraphs": 25,
     "entity_per_paragraphs": 4.32,
-    "entity_per_tokens": 0.02778492410599434
+    "entity_per_tokens": 35.99074074074074
   },
   {
     "sourcepath": "documents/batch-4/P068100502-CC.pdf",
@@ -1365,7 +1365,7 @@
     "nb_spans": 75,
     "nb_paragraphs": 20,
     "entity_per_paragraphs": 3.75,
-    "entity_per_tokens": 0.01765536723163842
+    "entity_per_tokens": 56.64
   },
   {
     "sourcepath": "documents/batch-4/P069184513-CC.pdf",
@@ -1377,7 +1377,7 @@
     "nb_spans": 124,
     "nb_paragraphs": 49,
     "entity_per_paragraphs": 2.5306122448979593,
-    "entity_per_tokens": 0.010048622366288493
+    "entity_per_tokens": 99.51612903225806
   },
   {
     "sourcepath": "documents/batch-4/P071134526-CC.pdf",
@@ -1389,7 +1389,7 @@
     "nb_spans": 78,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 4.333333333333333,
-    "entity_per_tokens": 0.01849656153663742
+    "entity_per_tokens": 54.06410256410256
   },
   {
     "sourcepath": "documents/batch-4/P070020503-CC.pdf",
@@ -1401,7 +1401,7 @@
     "nb_spans": 125,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 7.352941176470588,
-    "entity_per_tokens": 0.0319693094629156
+    "entity_per_tokens": 31.28
   },
   {
     "sourcepath": "documents/batch-4/P072174508-CC.pdf",
@@ -1413,7 +1413,7 @@
     "nb_spans": 169,
     "nb_paragraphs": 20,
     "entity_per_paragraphs": 8.45,
-    "entity_per_tokens": 0.04100946372239748
+    "entity_per_tokens": 24.384615384615383
   },
   {
     "sourcepath": "documents/batch-4/P072214523-CC.pdf",
@@ -1425,7 +1425,7 @@
     "nb_spans": 93,
     "nb_paragraphs": 26,
     "entity_per_paragraphs": 3.576923076923077,
-    "entity_per_tokens": 0.02327909887359199
+    "entity_per_tokens": 42.956989247311824
   },
   {
     "sourcepath": "documents/batch-4/PHC1910237.pdf",
@@ -1437,7 +1437,7 @@
     "nb_spans": 69,
     "nb_paragraphs": 14,
     "entity_per_paragraphs": 4.928571428571429,
-    "entity_per_tokens": 0.021049420378279438
+    "entity_per_tokens": 47.507246376811594
   },
   {
     "sourcepath": "documents/batch-4/P068132504-CC.pdf",
@@ -1449,7 +1449,7 @@
     "nb_spans": 99,
     "nb_paragraphs": 12,
     "entity_per_paragraphs": 8.25,
-    "entity_per_tokens": 0.03420870767104354
+    "entity_per_tokens": 29.232323232323232
   },
   {
     "sourcepath": "documents/batch-4/P068064507-CC.pdf",
@@ -1461,7 +1461,7 @@
     "nb_spans": 129,
     "nb_paragraphs": 27,
     "entity_per_paragraphs": 4.777777777777778,
-    "entity_per_tokens": 0.03408190224570674
+    "entity_per_tokens": 29.34108527131783
   },
   {
     "sourcepath": "documents/batch-4/P071100502-CC.pdf",
@@ -1473,7 +1473,7 @@
     "nb_spans": 100,
     "nb_paragraphs": 23,
     "entity_per_paragraphs": 4.3478260869565215,
-    "entity_per_tokens": 0.028960324355632783
+    "entity_per_tokens": 34.53
   },
   {
     "sourcepath": "documents/batch-4/P072094504-CC.pdf",
@@ -1485,7 +1485,7 @@
     "nb_spans": 74,
     "nb_paragraphs": 22,
     "entity_per_paragraphs": 3.3636363636363638,
-    "entity_per_tokens": 0.019402202412165705
+    "entity_per_tokens": 51.54054054054054
   },
   {
     "sourcepath": "documents/batch-4/P071104513-CC.pdf",
@@ -1497,7 +1497,7 @@
     "nb_spans": 211,
     "nb_paragraphs": 33,
     "entity_per_paragraphs": 6.393939393939394,
-    "entity_per_tokens": 0.03786791098348887
+    "entity_per_tokens": 26.407582938388625
   },
   {
     "sourcepath": "documents/batch-4/P072104504-CC.pdf",
@@ -1509,7 +1509,7 @@
     "nb_spans": 100,
     "nb_paragraphs": 29,
     "entity_per_paragraphs": 3.4482758620689653,
-    "entity_per_tokens": 0.01812250815512867
+    "entity_per_tokens": 55.18
   },
   {
     "sourcepath": "documents/batch-4/P069014507-CC.pdf",
@@ -1521,7 +1521,7 @@
     "nb_spans": 125,
     "nb_paragraphs": 34,
     "entity_per_paragraphs": 3.676470588235294,
-    "entity_per_tokens": 0.026904864399483426
+    "entity_per_tokens": 37.168
   },
   {
     "sourcepath": "documents/batch-4/P072220505-CC.pdf",
@@ -1533,7 +1533,7 @@
     "nb_spans": 84,
     "nb_paragraphs": 19,
     "entity_per_paragraphs": 4.421052631578948,
-    "entity_per_tokens": 0.02771362586605081
+    "entity_per_tokens": 36.083333333333336
   },
   {
     "sourcepath": "documents/batch-4/P070052502-CC.pdf",
@@ -1545,7 +1545,7 @@
     "nb_spans": 77,
     "nb_paragraphs": 26,
     "entity_per_paragraphs": 2.9615384615384617,
-    "entity_per_tokens": 0.025370675453047775
+    "entity_per_tokens": 39.41558441558441
   },
   {
     "sourcepath": "documents/batch-4/PHC1580178.pdf",
@@ -1557,7 +1557,7 @@
     "nb_spans": 100,
     "nb_paragraphs": 13,
     "entity_per_paragraphs": 7.6923076923076925,
-    "entity_per_tokens": 0.031625553447185324
+    "entity_per_tokens": 31.62
   },
   {
     "sourcepath": "documents/batch-4/P072014504-CC.pdf",
@@ -1569,7 +1569,7 @@
     "nb_spans": 154,
     "nb_paragraphs": 34,
     "entity_per_paragraphs": 4.529411764705882,
-    "entity_per_tokens": 0.023040095751047276
+    "entity_per_tokens": 43.4025974025974
   },
   {
     "sourcepath": "documents/batch-4/PHC1580183-CC.pdf",
@@ -1581,7 +1581,7 @@
     "nb_spans": 22,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 1.2941176470588236,
-    "entity_per_tokens": 0.008807045636509208
+    "entity_per_tokens": 113.54545454545455
   },
   {
     "sourcepath": "documents/batch-4/PHB1480442.pdf",
@@ -1593,7 +1593,7 @@
     "nb_spans": 70,
     "nb_paragraphs": 22,
     "entity_per_paragraphs": 3.1818181818181817,
-    "entity_per_tokens": 0.030395136778115502
+    "entity_per_tokens": 32.9
   },
   {
     "sourcepath": "documents/batch-4/P069174506-CC.pdf",
@@ -1605,7 +1605,7 @@
     "nb_spans": 175,
     "nb_paragraphs": 33,
     "entity_per_paragraphs": 5.303030303030303,
-    "entity_per_tokens": 0.02909876953774526
+    "entity_per_tokens": 34.36571428571428
   },
   {
     "sourcepath": "documents/batch-4/P068132507-CC.pdf",
@@ -1617,7 +1617,7 @@
     "nb_spans": 64,
     "nb_paragraphs": 16,
     "entity_per_paragraphs": 4.0,
-    "entity_per_tokens": 0.02337472607742878
+    "entity_per_tokens": 42.78125
   },
   {
     "sourcepath": "documents/batch-4/P070054519-CC.pdf",
@@ -1629,7 +1629,7 @@
     "nb_spans": 147,
     "nb_paragraphs": 23,
     "entity_per_paragraphs": 6.391304347826087,
-    "entity_per_tokens": 0.025244719216898505
+    "entity_per_tokens": 39.61224489795919
   },
   {
     "sourcepath": "documents/batch-4/P071104516-CC.pdf",
@@ -1641,7 +1641,7 @@
     "nb_spans": 127,
     "nb_paragraphs": 23,
     "entity_per_paragraphs": 5.521739130434782,
-    "entity_per_tokens": 0.031427864390002475
+    "entity_per_tokens": 31.818897637795274
   },
   {
     "sourcepath": "documents/batch-4/P068214517-CC.pdf",
@@ -1653,7 +1653,7 @@
     "nb_spans": 138,
     "nb_paragraphs": 36,
     "entity_per_paragraphs": 3.8333333333333335,
-    "entity_per_tokens": 0.013676907829534192
+    "entity_per_tokens": 73.1159420289855
   },
   {
     "sourcepath": "documents/batch-4/PHC1480411-CC.pdf",
@@ -1665,7 +1665,7 @@
     "nb_spans": 44,
     "nb_paragraphs": 8,
     "entity_per_paragraphs": 5.5,
-    "entity_per_tokens": 0.026731470230862697
+    "entity_per_tokens": 37.40909090909091
   },
   {
     "sourcepath": "documents/batch-4/P070214505-CC.pdf",
@@ -1677,7 +1677,7 @@
     "nb_spans": 163,
     "nb_paragraphs": 45,
     "entity_per_paragraphs": 3.6222222222222222,
-    "entity_per_tokens": 0.012305601691076551
+    "entity_per_tokens": 81.2638036809816
   },
   {
     "sourcepath": "documents/batch-4/P072224509-CC.pdf",
@@ -1689,7 +1689,7 @@
     "nb_spans": 62,
     "nb_paragraphs": 19,
     "entity_per_paragraphs": 3.263157894736842,
-    "entity_per_tokens": 0.0167658193618172
+    "entity_per_tokens": 59.645161290322584
   },
   {
     "sourcepath": "documents/batch-4/P072064527-CC.pdf",
@@ -1701,7 +1701,7 @@
     "nb_spans": 65,
     "nb_paragraphs": 13,
     "entity_per_paragraphs": 5.0,
-    "entity_per_tokens": 0.02399409376153562
+    "entity_per_tokens": 41.676923076923075
   },
   {
     "sourcepath": "documents/batch-4/PCS2739-CC.pdf",
@@ -1713,7 +1713,7 @@
     "nb_spans": 91,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 5.055555555555555,
-    "entity_per_tokens": 0.03766556291390728
+    "entity_per_tokens": 26.54945054945055
   },
   {
     "sourcepath": "documents/batch-4/P071184510-CC.pdf",
@@ -1725,7 +1725,7 @@
     "nb_spans": 118,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 6.9411764705882355,
-    "entity_per_tokens": 0.01783824640967498
+    "entity_per_tokens": 56.059322033898304
   },
   {
     "sourcepath": "documents/batch-4/P072180504-CC.pdf",
@@ -1737,7 +1737,7 @@
     "nb_spans": 88,
     "nb_paragraphs": 21,
     "entity_per_paragraphs": 4.190476190476191,
-    "entity_per_tokens": 0.024458032240133407
+    "entity_per_tokens": 40.88636363636363
   },
   {
     "sourcepath": "documents/batch-4/P068180505-CC.pdf",
@@ -1749,7 +1749,7 @@
     "nb_spans": 83,
     "nb_paragraphs": 10,
     "entity_per_paragraphs": 8.3,
-    "entity_per_tokens": 0.02687823834196891
+    "entity_per_tokens": 37.204819277108435
   },
   {
     "sourcepath": "documents/batch-5/PHC4210001-CC.pdf",
@@ -1761,7 +1761,7 @@
     "nb_spans": 115,
     "nb_paragraphs": 59,
     "entity_per_paragraphs": 1.9491525423728813,
-    "entity_per_tokens": 0.022299786697692458
+    "entity_per_tokens": 44.84347826086957
   },
   {
     "sourcepath": "documents/batch-5/PHC1980027.pdf",
@@ -1773,7 +1773,7 @@
     "nb_spans": 62,
     "nb_paragraphs": 22,
     "entity_per_paragraphs": 2.8181818181818183,
-    "entity_per_tokens": 0.017744705208929592
+    "entity_per_tokens": 56.354838709677416
   },
   {
     "sourcepath": "documents/batch-5/PHC4020027-CC.pdf",
@@ -1785,7 +1785,7 @@
     "nb_spans": 70,
     "nb_paragraphs": 14,
     "entity_per_paragraphs": 5.0,
-    "entity_per_tokens": 0.028386050283860504
+    "entity_per_tokens": 35.22857142857143
   },
   {
     "sourcepath": "documents/batch-5/PHC3410729-CC.pdf",
@@ -1797,7 +1797,7 @@
     "nb_spans": 33,
     "nb_paragraphs": 8,
     "entity_per_paragraphs": 4.125,
-    "entity_per_tokens": 0.028350515463917526
+    "entity_per_tokens": 35.27272727272727
   },
   {
     "sourcepath": "documents/batch-5/PHC3660299-CC.pdf",
@@ -1809,7 +1809,7 @@
     "nb_spans": 74,
     "nb_paragraphs": 27,
     "entity_per_paragraphs": 2.740740740740741,
-    "entity_per_tokens": 0.016407982261640797
+    "entity_per_tokens": 60.945945945945944
   },
   {
     "sourcepath": "documents/batch-5/PHC3130001-CC.pdf",
@@ -1821,7 +1821,7 @@
     "nb_spans": 52,
     "nb_paragraphs": 33,
     "entity_per_paragraphs": 1.5757575757575757,
-    "entity_per_tokens": 0.008763060330299966
+    "entity_per_tokens": 114.11538461538461
   },
   {
     "sourcepath": "documents/batch-5/PHC2640145-CC.pdf",
@@ -1833,7 +1833,7 @@
     "nb_spans": 4,
     "nb_paragraphs": 3,
     "entity_per_paragraphs": 1.3333333333333333,
-    "entity_per_tokens": 0.008948545861297539
+    "entity_per_tokens": 111.75
   },
   {
     "sourcepath": "documents/batch-5/PHC2240263-CC.pdf",
@@ -1845,7 +1845,7 @@
     "nb_spans": 80,
     "nb_paragraphs": 55,
     "entity_per_paragraphs": 1.4545454545454546,
-    "entity_per_tokens": 0.016810254255095608
+    "entity_per_tokens": 59.4875
   },
   {
     "sourcepath": "documents/batch-5/PHC3910237-CC.pdf",
@@ -1857,7 +1857,7 @@
     "nb_spans": 135,
     "nb_paragraphs": 24,
     "entity_per_paragraphs": 5.625,
-    "entity_per_tokens": 0.03068181818181818
+    "entity_per_tokens": 32.592592592592595
   },
   {
     "sourcepath": "documents/batch-5/PHC4020152-CC.pdf",
@@ -1869,7 +1869,7 @@
     "nb_spans": 178,
     "nb_paragraphs": 33,
     "entity_per_paragraphs": 5.393939393939394,
-    "entity_per_tokens": 0.03479960899315738
+    "entity_per_tokens": 28.735955056179776
   },
   {
     "sourcepath": "documents/batch-5/PHC4320193-CC.pdf",
@@ -1881,7 +1881,7 @@
     "nb_spans": 142,
     "nb_paragraphs": 21,
     "entity_per_paragraphs": 6.761904761904762,
-    "entity_per_tokens": 0.028803245436105476
+    "entity_per_tokens": 34.71830985915493
   },
   {
     "sourcepath": "documents/batch-5/PHC3830337-CC.pdf",
@@ -1893,7 +1893,7 @@
     "nb_spans": 106,
     "nb_paragraphs": 21,
     "entity_per_paragraphs": 5.0476190476190474,
-    "entity_per_tokens": 0.03641360357265545
+    "entity_per_tokens": 27.462264150943398
   },
   {
     "sourcepath": "documents/batch-5/PHC4030200-CC.pdf",
@@ -1905,7 +1905,7 @@
     "nb_spans": 21,
     "nb_paragraphs": 7,
     "entity_per_paragraphs": 3.0,
-    "entity_per_tokens": 0.01984877126654064
+    "entity_per_tokens": 50.38095238095238
   },
   {
     "sourcepath": "documents/batch-5/PHC3200009-CC.pdf",
@@ -1917,7 +1917,7 @@
     "nb_spans": 115,
     "nb_paragraphs": 36,
     "entity_per_paragraphs": 3.1944444444444446,
-    "entity_per_tokens": 0.02135561745589601
+    "entity_per_tokens": 46.82608695652174
   },
   {
     "sourcepath": "documents/batch-5/PHC4170033-CC.pdf",
@@ -1929,7 +1929,7 @@
     "nb_spans": 141,
     "nb_paragraphs": 29,
     "entity_per_paragraphs": 4.862068965517241,
-    "entity_per_tokens": 0.033651551312649165
+    "entity_per_tokens": 29.71631205673759
   },
   {
     "sourcepath": "documents/batch-5/PHC3411655-CC.pdf",
@@ -1941,7 +1941,7 @@
     "nb_spans": 58,
     "nb_paragraphs": 19,
     "entity_per_paragraphs": 3.0526315789473686,
-    "entity_per_tokens": 0.020444131124427212
+    "entity_per_tokens": 48.91379310344828
   },
   {
     "sourcepath": "documents/batch-5/PHC4200023-CC.pdf",
@@ -1953,7 +1953,7 @@
     "nb_spans": 95,
     "nb_paragraphs": 23,
     "entity_per_paragraphs": 4.130434782608695,
-    "entity_per_tokens": 0.034926470588235295
+    "entity_per_tokens": 28.63157894736842
   },
   {
     "sourcepath": "documents/batch-2/JP01103169-CC.pdf",
@@ -1965,7 +1965,7 @@
     "nb_spans": 86,
     "nb_paragraphs": 19,
     "entity_per_paragraphs": 4.526315789473684,
-    "entity_per_tokens": 0.030714285714285715
+    "entity_per_tokens": 32.55813953488372
   },
   {
     "sourcepath": "documents/batch-2/JPS0730819-CC.pdf",
@@ -1977,7 +1977,7 @@
     "nb_spans": 93,
     "nb_paragraphs": 19,
     "entity_per_paragraphs": 4.894736842105263,
-    "entity_per_tokens": 0.05923566878980892
+    "entity_per_tokens": 16.881720430107528
   },
   {
     "sourcepath": "documents/batch-2/JPS0731655-CC.pdf",
@@ -1989,7 +1989,7 @@
     "nb_spans": 93,
     "nb_paragraphs": 12,
     "entity_per_paragraphs": 7.75,
-    "entity_per_tokens": 0.07282693813625685
+    "entity_per_tokens": 13.731182795698924
   },
   {
     "sourcepath": "documents/batch-2/JPS0732912-CC.pdf",
@@ -2001,7 +2001,7 @@
     "nb_spans": 81,
     "nb_paragraphs": 9,
     "entity_per_paragraphs": 9.0,
-    "entity_per_tokens": 0.06035767511177347
+    "entity_per_tokens": 16.567901234567902
   },
   {
     "sourcepath": "documents/batch-2/JPS0731297-CC.pdf",
@@ -2013,7 +2013,7 @@
     "nb_spans": 96,
     "nb_paragraphs": 31,
     "entity_per_paragraphs": 3.096774193548387,
-    "entity_per_tokens": 0.024
+    "entity_per_tokens": 41.666666666666664
   },
   {
     "sourcepath": "documents/batch-2/JPS0723041-CC.pdf",
@@ -2025,7 +2025,7 @@
     "nb_spans": 95,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 5.588235294117647,
-    "entity_per_tokens": 0.02660319238308597
+    "entity_per_tokens": 37.589473684210525
   },
   {
     "sourcepath": "documents/batch-2/JPC0150L17-CC.pdf",
@@ -2037,7 +2037,7 @@
     "nb_spans": 82,
     "nb_paragraphs": 18,
     "entity_per_paragraphs": 4.555555555555555,
-    "entity_per_tokens": 0.021404333072304882
+    "entity_per_tokens": 46.71951219512195
   },
   {
     "sourcepath": "documents/batch-2/EPL0490086-CC.pdf",
@@ -2049,7 +2049,7 @@
     "nb_spans": 106,
     "nb_paragraphs": 13,
     "entity_per_paragraphs": 8.153846153846153,
-    "entity_per_tokens": 0.037310806054206266
+    "entity_per_tokens": 26.80188679245283
   },
   {
     "sourcepath": "documents/batch-2/EPL0480073-CC.pdf",
@@ -2061,7 +2061,7 @@
     "nb_spans": 20,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 1.1764705882352942,
-    "entity_per_tokens": 0.007352941176470588
+    "entity_per_tokens": 136.0
   },
   {
     "sourcepath": "documents/batch-2/JPS0710709-CC.pdf",
@@ -2073,7 +2073,7 @@
     "nb_spans": 61,
     "nb_paragraphs": 23,
     "entity_per_paragraphs": 2.652173913043478,
-    "entity_per_tokens": 0.01940203562340967
+    "entity_per_tokens": 51.540983606557376
   },
   {
     "sourcepath": "documents/batch-2/JPS0722453-CC.pdf",
@@ -2085,7 +2085,7 @@
     "nb_spans": 56,
     "nb_paragraphs": 20,
     "entity_per_paragraphs": 2.8,
-    "entity_per_tokens": 0.021806853582554516
+    "entity_per_tokens": 45.857142857142854
   },
   {
     "sourcepath": "documents/batch-2/JPS0731131-CC.pdf",
@@ -2097,7 +2097,7 @@
     "nb_spans": 93,
     "nb_paragraphs": 16,
     "entity_per_paragraphs": 5.8125,
-    "entity_per_tokens": 0.026488180005696384
+    "entity_per_tokens": 37.75268817204301
   },
   {
     "sourcepath": "documents/batch-2/JPS0731123-CC.pdf",
@@ -2109,6 +2109,6 @@
     "nb_spans": 61,
     "nb_paragraphs": 17,
     "entity_per_paragraphs": 3.588235294117647,
-    "entity_per_tokens": 0.017978190391983496
+    "entity_per_tokens": 55.622950819672134
   }
 ]

@@ -75,7 +75,7 @@ def process_file(source_path, type="pdf", force=False):
         output['nb_tokens'] += len(tokenizeAndFilterSimple(sentence['text']))
 
     output['entity_per_paragraphs'] = output['nb_spans'] / output['nb_paragraphs'] if output['nb_paragraphs'] != 0 else 0
-    output['entity_per_tokens'] = output['nb_spans'] / output['nb_tokens'] if output['nb_tokens'] != 0 else 0
+    output['entity_per_tokens'] = output['nb_tokens']/output['nb_spans']  if output['nb_spans'] != 0 else 0
 
     return output
 
