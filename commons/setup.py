@@ -1,5 +1,5 @@
-from codecs import open
 from os import path
+
 from setuptools import setup
 
 here = path.abspath(path.dirname(__file__))
@@ -18,9 +18,9 @@ here = path.abspath(path.dirname(__file__))
 
 
 setup(
-    name='commons',
+    name='grobid-superconductors-python-commons',
     version='0.0.1',
-    description='Commons packages',
+    description='Commons python packages and code under grobid-superconductors',
     url='https://github.com/lfoppiano/grobid-superconductors-web',
     author='Luca Foppiano',
     author_email='FOPPIANO.Luca@nims.go.jp',
