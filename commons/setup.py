@@ -19,7 +19,7 @@ here = path.abspath(path.dirname(__file__))
 
 setup(
     name='grobid-superconductors-python-commons',
-    version='0.0.1',
+    version='0.1.0',
     description='Commons python packages and code under grobid-superconductors',
     url='https://github.com/lfoppiano/grobid-superconductors-web',
     author='Luca Foppiano',
@@ -33,7 +33,7 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     keywords=['text mining', 'machine learning'],
-    #install_requires=['requests', 'zenlog'],
+    install_requires=['requests', 'Beautifulsoup4'],
     # package_dir={'commons': ''},
     # packages={'commons'},
     zip_safe=False#,
