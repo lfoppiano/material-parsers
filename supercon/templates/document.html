@@ -1,0 +1,120 @@
+<!DOCTYPE XHTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>GROBID Superconductors TDM application</title>
+    <!-- jquery -->
+    <script type="text/javascript" src="/static/resources/libs/jquery/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="/static/resources/libs/jquery/jquery.form.3.51.js"></script>
+
+    <!-- bootstrap -->
+    <script type="text/javascript" src="/static/resources/libs/bootstrap-4.5.0/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/static/resources/libs/bootstrap-4.5.0/css/bootstrap.min.css" media="screen"/>
+    <link rel="stylesheet" href="/static/resources/libs/font-awesome/css/font-awesome.min.css">
+
+    <!-- X-editable -->
+    <link href="/static/resources/libs/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <script src="/static/resources/libs/bootstrap-editable/js/bootstrap-editable.js"></script>
+
+    <!-- PDF.js stuff -->
+    <link type="text/css" href="/static/resources/libs/pdf.js/web/text_layer_builder.css" rel="stylesheet"/>
+    <link type="text/css" href="/static/resources/libs/pdf.js/web/annotation_layer_builder.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/static/resources/libs/pdf.js/web/text_layer_builder.js"></script>
+    <script type="text/javascript" src="/static/resources/libs/pdf.js/web/pdf_link_service.js"></script>
+    <script type="text/javascript" src="/static/resources/libs/pdf.js/web/annotation_layer_builder.js"></script>
+    <script type="text/javascript" src="/static/resources/libs/pdf.js/build_/pdf.js"></script>
+
+    <!-- Grobid Javascript/CSS -->
+    <link rel="stylesheet" href="/static/resources/css/style.css"/>
+    <link rel="stylesheet" href="/static/resources/css/style-ner.css"/>
+    <link rel="stylesheet" href="/static/resources/css/style-quantities.css"/>
+    <link rel="stylesheet" href="/static/resources/css/style-superconductors.css"/>
+    <script src="/static/grobid/grobid-superconductors.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="content">
+
+        <div class="page-header">
+            <div class="row">
+                <div class="col-11">
+                    <h1>GROBID Superconductors Text and Data Mining - document viewer</h1>
+                </div>
+                <div class="col-1">
+                    <!--                    <a href="http://www.github.com/lfoppiano/grobid-superconductors"><img-->
+                    <!--                        src="resources/img/GitHub-Mark-32px.png"></a>-->
+                </div>
+            </div>
+        </div>
+
+        <div id="hash">{{ hash }}</div>
+
+        <div id="infoResultBlock">
+            <div class="row m-3">
+                <div id="infoResultMessage"></div>
+            </div>
+        </div>
+
+        <div id="requestResultPdf">
+            <div id="tableResults">
+                <div class="row">
+                    <div class="col-1">
+                        <a data-toggle="collapse" href="#tableResultCollapseDiv" role="button"
+                           aria-expanded="false" aria-controls="tableResultCollapseDiv">
+                            <svg class="bi" width="32" height="32" viewBox="0 0 20 20" fill="currentColor">
+                                <img src="/static/resources/icons/chevron-right.svg" alt="" width="32" height="32"
+                                     title="Bootstrap"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="collapse show col-9" id="tableResultCollapseDiv">
+                        <table class="table table-editable">
+                            <thead>
+                            <tr class="d-flex">
+                                <th scope="col">#</th>
+                                <th scope="col">#</th>
+                                <th class="col-3">Material</th>
+                                <th class="col-2">Class</th>
+                                <th class="col-2">Shape</th>
+                                <th class="col-2">Critical temperature</th>
+                                <th class="col-2">Applied pressure</th>
+                                <th class="col-1">Link type</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tableResultsBody">
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="3">
+                                    <button type="button" class="btn btn-outline-dark" id="add-button">+</button>
+                                    <button type="button" class="btn btn-outline-dark" id="copy-button">
+                                        Clipboard
+                                    </button>
+                                    <button type="button" class="btn btn-outline-dark" id="download-rdf-button">
+                                        Download RDF
+                                    </button>
+                                    <button type="button" class="btn btn-outline-dark" id="download-csv-button">
+                                        Download CSV
+                                    </button>
+                                </td>
+                            </tr>
+                            </tfoot>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="requestResultPdfContent">
+
+            </div>
+        </div>
+
+    <footer>
+        <p><span style="color:#848484;">&copy; GROBID contributors, 2019 - 2021 </span>
+        </p>
+    </footer>
+</div>
+
+</body>
+</html>
