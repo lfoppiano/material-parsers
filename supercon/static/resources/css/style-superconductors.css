@@ -99,50 +99,62 @@
 
 .area.abbreviation {
     border-color: #b92c28 !important;
+    z-index: 100;
 }
 
 .area.me_method {
     border-color: #0e90d2 !important;
+    z-index: 100;
 }
 
 .area.material {
     border-color: #2262d2 !important;
+    z-index: 100;
 }
 
 .area.material-tc {
     border-color: #50ced2 !important;
+    z-index: 100;
 }
 
 .area.class {
     border-color: #d22f09 !important;
+    z-index: 100;
 }
 
 .area.tc {
     border-color: #ffe294 !important;
+    z-index: 100;
 }
 
 .area.sample {
     border-color: #5bd2b2 !important;
+    z-index: 100;
 }
 
 .area.temperature {
     border-color: #356635 !important;
+    z-index: 100;
 }
 
 .area.tcValue {
     border-color: #356635 !important;
+    z-index: 100;
 }
 
 .area.temperature-tc {
     border-color: #83ff83 !important;
+    z-index: 100;
 }
 
 .area.magnetisation {
     border-color: #20bd4e !important;
+    z-index: 100;
 }
 
 .area.pressure {
     border-color: #92d983 !important;
+    z-index: 100;
 }
 
 
