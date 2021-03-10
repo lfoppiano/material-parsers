@@ -11,7 +11,7 @@ from data_model import span_to_dict
 from relationships_resolver import SimpleResolutionResolver, VicinityResolutionResolver, \
     DependencyParserResolutionResolver
 
-nlp = spacy.load("en_core_sci_lg", disable=['ner', "textcat"])
+nlp = spacy.load("en_core_web_sm", disable=['ner', "textcat"])
 
 Span.set_extension('id', default=None, force=True)
 Span.set_extension('links', default=[], force=True)
