@@ -61,19 +61,65 @@ def process_pdf():
     return result_json
 
 
-@app.route("/documents", methods=["GET"])
-def get_documents():
+@app.route("/tabular", methods=["GET"])
+def get_tabular():
     connection = connect_mongo("config.json")
     db_supercon_dev = connection['supercon_dev']
 
-    pipeline = [
-        {"$group": {"_id": "$hash", "versions": {"$addToSet": "$timestamp"}, "count": {"$sum": 1}}},
-        {"$sort": {"count": -1}}
-    ]
+    # pipeline = [
+    #     {"$group": {"_id": "$hash", "versions": {"$addToSet": "$timestamp"}, "count": {"$sum": 1}}},
+    #     {"$sort": {"count": -1}}
+    # ]
 
-    documents = db_supercon_dev.get_collection("document").aggregate(pipeline)
-    document_list = list(documents)
-    return render_template("documents.html", documents=document_list)
+    document_collection = db_supercon_dev.get_collection("document")
+    # documents = document_collection.aggregate(pipeline)
+    # document_list = list(documents)
+    cursor_aggregation = document_collection.aggregate(
+        [{"$sort": {"hash": 1, "timestamp": 1}}, {"$group": {"_id": "$hash", "lastDate": {"$last": "$timestamp"}}}])
+
+    tabular_collection = db_supercon_dev.get_collection("tabular")
+    entries = []
+    for document in cursor_aggregation:
+        hash = document['_id']
+        timestamp = document['lastDate']
+
+        for entry in tabular_collection.find({"hash": hash, "timestamp": timestamp}):
+            del entry['_id']
+            entry['section'] = entry['section'][1:-1]
+            entry['subsection'] = entry['subsection'][1:-1]
+            entries.append(entry)
+
+    return json.dumps(entries, default=json_serial)
+
+
+@app.route("/documents", methods=["GET"])
+def get_documents():
+    # connection = connect_mongo("config.json")
+    # db_supercon_dev = connection['supercon_dev']
+
+    # pipeline = [
+    #     {"$group": {"_id": "$hash", "versions": {"$addToSet": "$timestamp"}, "count": {"$sum": 1}}},
+    #     {"$sort": {"count": -1}}
+    # ]
+
+    # document_collection = db_supercon_dev.get_collection("document")
+    # # documents = document_collection.aggregate(pipeline)
+    # # document_list = list(documents)
+    # cursor_aggregation = document_collection.aggregate(
+    #     [{"$sort": {"hash": 1, "timestamp": 1}}, {"$group": {"_id": "$hash", "lastDate": {"$last": "$timestamp"}}}])
+    #
+    # tabular_collection = db_supercon_dev.get_collection("tabular")
+    # entries = []
+    # for document in cursor_aggregation:
+    #     hash = document['_id']
+    #     timestamp = document['lastDate']
+    #
+    #     for entry in tabular_collection.find({"hash": hash, "timestamp": timestamp}):
+    #         entry['section'] = entry['section'][1:-1]
+    #         entry['subsection'] = entry['subsection'][1:-1]
+    #         entries.append(entry)
+
+    return render_template("documents.html")
 
 
 def json_serial(obj):

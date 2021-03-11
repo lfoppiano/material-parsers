@@ -108,3 +108,42 @@ class grobid_client_generic(ApiClient):
             print('No content returned. Moving on. ')
         else:
             return res.text
+
+
+    def process_json(self, text, method_name="processJson", params={}, headers={"Accept": "application/json"}):
+
+
+        files = {
+            'input': (
+                None,
+                text,
+                'application/json',
+                {'Expires': '0'}
+            )
+        }
+
+        the_url = self.get_grobid_url(method_name)
+
+        if "?" in the_url:
+            split = the_url.split("?")
+            the_url = split[0]
+            params = split[1]
+
+            params = {param.split("=")[0]: param.split("=")[1] for param in params.split("&")}
+
+        res, status = self.post(
+            url=the_url,
+            files=files,
+            data=params,
+            headers=headers
+        )
+
+        if status == 503:
+            time.sleep(self.config['sleep_time'])
+            return self.process_json(text, method_name, params, headers)
+        elif status != 200:
+            print('Processing failed with error ', status)
+        elif status == 204:
+            print('No content returned. Moving on. ')
+        else:
+            return res.text
