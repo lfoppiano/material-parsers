@@ -79,5 +79,5 @@ if __name__ == '__main__':
                 ag_e['timestamp'] = item['lastDate']
 
             tabular_collection = db_supercon_dev.get_collection("tabular")
-            tabular_collection.remove({"hash": item['_id']})
+            tabular_collection.delete_many({"hash": item['_id']})
             tabular_collection.insert_many(json_aggregated_entries)

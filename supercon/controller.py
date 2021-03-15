@@ -119,7 +119,7 @@ def get_documents():
     #         entry['subsection'] = entry['subsection'][1:-1]
     #         entries.append(entry)
 
-    return render_template("documents.html")
+    return render_template("database.html")
 
 
 def json_serial(obj):
