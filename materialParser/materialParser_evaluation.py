@@ -211,9 +211,6 @@ class MaterialParserCRF(BaseRecogniser):
 
         return predicted
 
-    def evalate(self, input_file):
-        self.model.eval()
-
 class ChemDataExtraction(BaseRecogniser):
     url = 'http://falcon.nims.go.jp/cde/process'
 
