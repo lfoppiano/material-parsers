@@ -1,5 +1,5 @@
 from bs4 import Tag, BeautifulSoup
-
+import os
 
 def read_material_data(path):
     """
@@ -9,6 +9,26 @@ def read_material_data(path):
     :param path:
     :return: a list of dicts, each dicts has the element "raw", and "entities"
     """
+    files_out = []
+    if os.path.isdir(path):
+        for root, dirs, files in os.walk(path):
+            for file_ in files:
+                if not file_.lower().endswith(".tei.xml"):
+                    continue
+
+                files_out.append(os.path.join(root, file_))
+
+    else:
+        files_out = [path]
+
+    entities = []
+    for file in files_out:
+        entities += read_material_data_from_file(file)
+
+    return entities
+
+
+def read_material_data_from_file(path):
     entities = []
 
     ## Loading evaluation data

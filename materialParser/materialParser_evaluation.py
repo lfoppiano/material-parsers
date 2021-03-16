@@ -4,7 +4,6 @@ import os
 from pathlib import Path
 
 import requests
-
 from material_data_commons import read_material_data
 
 os.environ['NO_PROXY'] = "nims.go.jp"
@@ -58,12 +57,29 @@ class Evaluation:
 
 class BaseRecogniser():
     @staticmethod
-    def get_description(self):
+    def get_description():
         return "Generic recognised, this method should be overloaded by the super class"
 
     @staticmethod
-    def get_name(self):
+    def get_name():
         return "base"
+
+    @staticmethod
+    def get_implementation_names():
+        return [CederMaterialParserRecogniser_extract_formula_from_string.get_name(),
+                CederMaterialParserRecogniser_parse_material_string.get_name(), MaterialParserCRF.get_name(),
+                ChemDataExtraction.get_name()]
+
+    @staticmethod
+    def get_implementation(name):
+        if name == ChemDataExtraction.get_name():
+            return ChemDataExtraction()
+        elif name == CederMaterialParserRecogniser_extract_formula_from_string.get_name():
+            return CederMaterialParserRecogniser_extract_formula_from_string()
+        elif name == MaterialParserCRF.get_name():
+            return MaterialParserCRF()
+        elif name == CederMaterialParserRecogniser_parse_material_string.get_name():
+            return CederMaterialParserRecogniser_parse_material_string();
 
     def prepare_input_data(self, data):
         return data
@@ -195,6 +211,8 @@ class MaterialParserCRF(BaseRecogniser):
 
         return predicted
 
+    def evalate(self, input_file):
+        self.model.eval()
 
 class ChemDataExtraction(BaseRecogniser):
     url = 'http://falcon.nims.go.jp/cde/process'
@@ -246,18 +264,12 @@ class ChemDataExtraction(BaseRecogniser):
 
 
 if __name__ == '__main__':
-    experiments = {
-        CederMaterialParserRecogniser_extract_formula_from_string.get_name(): CederMaterialParserRecogniser_extract_formula_from_string(),
-        CederMaterialParserRecogniser_parse_material_string.get_name(): CederMaterialParserRecogniser_parse_material_string(),
-        MaterialParserCRF.get_name(): MaterialParserCRF(),
-        ChemDataExtraction.get_name(): ChemDataExtraction()
-    }
     parser = argparse.ArgumentParser(
         description="Material parser tests and evaluation")
 
     parser.add_argument("--input", help="Input file or directory in pseudo-XML", required=True, type=Path)
     parser.add_argument("--log-errors", help="Log mismatches", required=False, action="store_true", default=False)
-    parser.add_argument("--experiment", help="Run single experiment", required=False, choices=experiments.keys(),
+    parser.add_argument("--experiment", help="Run single experiment", required=False, choices=BaseRecogniser.get_implementation_names() + ['all'],
                         type=str, default="all")
 
     args = parser.parse_args()
@@ -271,10 +283,10 @@ if __name__ == '__main__':
 
     evaluation = Evaluation()
 
-    experiment_keys = experiments.keys() if experiment == "all" else [experiment]
+    experiment_keys = BaseRecogniser.get_implementation_names() if experiment == "all" else [experiment]
 
     for experiment_name in experiment_keys:
-        recogniser = experiments[experiment_name]
+        recogniser = BaseRecogniser.get_implementation(experiment_name)
         predicted = recogniser.process(data)
         print("Report ", recogniser.get_description())
         evaluation.print_report(*evaluation.evaluate(expected, predicted, log_errors=log_errors))
