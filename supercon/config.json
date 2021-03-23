@@ -1,18 +1,19 @@
 {
   "grobid": {
-    "server__": "http://falcon.nims.go.jp/superconductors",
-    "server": "http://localhost:8072",
+    "server": "http://falcon.nims.go.jp/superconductors",
+    "server__": "http://localhost:8072",
     "prefix": "",
     "url_mapping": {
       "processPDF": "/service/process/pdf",
       "processText": "/service/process/text",
       "processJson": "/service/process/json",
-      "ping": "/service/ping"
+      "ping": "/"
     }
   },
   "mongo": {
-    "server__": "falcon.nims.go.jp:27017",
-    "server": "localhost:27017"
+    "server": "falcon.nims.go.jp:27017",
+    "server__": "localhost:27017",
+    "database": "supercon_dev3"
   },
   "backend": {
     "server": "http://localhost:5000",

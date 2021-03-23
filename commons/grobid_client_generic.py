@@ -1,5 +1,6 @@
 import json
 import time
+import os
 
 import requests
 
@@ -13,9 +14,15 @@ Source: https://github.com/kermitt2/grobid-client-python
 '''
 class grobid_client_generic(ApiClient):
 
+
     def __init__(self, config_path='./config.json', ping=False):
         self.config = None
         self._load_config(config_path, ping)
+        os.environ['NO_PROXY'] = "nims.go.jp"
+
+    def __init__(self, config={}, ping=False):
+        self._load_config(config=config, ping=ping)
+        os.environ['NO_PROXY'] = "nims.go.jp"
 
     def _load_config(self, path='./config.json', ping=False):
         """
@@ -23,6 +30,11 @@ class grobid_client_generic(ApiClient):
         """
         config_json = open(path).read()
         self.config = json.loads(config_json)
+        if ping:
+            self.ping_grobid()
+
+    def _load_config(self, config, ping=False):
+        self.config = config
         if ping:
             self.ping_grobid()
 

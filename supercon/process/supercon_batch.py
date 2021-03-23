@@ -37,7 +37,7 @@ def process_file(source_path, format: str):
         if format == 'json':
             output = r
         else:
-            output = [row for row in csv.reader(r.split("\n")) if len(row) > 0 ]
+            output = [row for row in csv.reader(r.split("\n")) if len(row) > 0]
 
     return output
 
@@ -97,8 +97,8 @@ if __name__ == '__main__':
                         output_ = Path(str(parent_dir).replace(str(input_path), str(output_path)))
                         output_filename_with_extension = str(output_filename) + '.' + format
                         output_path_with_filename_and_extension = os.path.join(output_, output_filename_with_extension)
-                    # else:
-                    #     output_path = os.path.join(parent_dir, output_filename + ".tei.xml")
+                        # else:
+                        #     output_path = os.path.join(parent_dir, output_filename + ".tei.xml")
 
                         path_list.append((Path(abs_path), output_path_with_filename_and_extension))
 
