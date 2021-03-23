@@ -11,6 +11,9 @@ from supercon.process.supercon_batch_mongo_extraction import connect_mongo
 
 app = Flask(__name__)
 
+with open('./config.json', 'r') as fp:
+    config = json.load(fp)
+    db_name = config['mongo']['database']
 
 @app.route('/version')
 def version():
@@ -63,8 +66,8 @@ def process_pdf():
 
 @app.route("/tabular", methods=["GET"])
 def get_tabular():
-    connection = connect_mongo("config.json")
-    db_supercon_dev = connection['supercon_dev']
+    connection = connect_mongo(config=config)
+    db_supercon_dev = connection[db_name]
 
     # pipeline = [
     #     {"$group": {"_id": "$hash", "versions": {"$addToSet": "$timestamp"}, "count": {"$sum": 1}}},
@@ -151,8 +154,8 @@ def get_document(hash):
 @app.route('/annotation/<hash>', methods=['GET'])
 def get_annotations(hash):
     '''Get annotations (latest version)'''
-    connection = connect_mongo("config.json")
-    db_supercon_dev = connection['supercon_dev']
+    connection = connect_mongo(config=config)
+    db_supercon_dev = connection[db_name]
     annotations = db_supercon_dev.get_collection("document").find({"hash": hash}).sort("timestamp", -1)
     annotation = annotations[0]
     del annotation["_id"]
