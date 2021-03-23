@@ -88,8 +88,8 @@ def get_tabular():
 
         for entry in tabular_collection.find({"hash": hash, "timestamp": timestamp}):
             del entry['_id']
-            entry['section'] = entry['section'][1:-1]
-            entry['subsection'] = entry['subsection'][1:-1]
+            entry['section'] = entry['section'][1:-1] if 'section' in entry and entry['section'] is not None else ''
+            entry['subsection'] = entry['subsection'][1:-1] if 'subsection' in entry and entry['subsection'] is not None else ''
             entries.append(entry)
 
     return json.dumps(entries, default=json_serial)
