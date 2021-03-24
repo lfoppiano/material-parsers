@@ -47,11 +47,10 @@ class MongoSuperconProcessor:
     def __init__(self, config_path):
         config_json = open(config_path).read()
         self.config = json.loads(config_json)
-        self.grobid_client = grobid_client_generic(config=self.config)
-        self.grobid_client.ping_grobid()
+        self.grobid_client = grobid_client_generic(config=self.config, ping=True)
 
     def write_mongo_single(self, queue_output, db_name):
-        connection = connect_mongo(config= self.config)
+        connection = connect_mongo(config=self.config)
         db_supercon_dev = connection[db_name]
         fs_binary = gridfs.GridFS(db_supercon_dev, collection='binary')
         while True:
@@ -61,15 +60,17 @@ class MongoSuperconProcessor:
                 queue_output.put(None)
                 break
 
-            hash = output['hash']
-            timestamp = output['timestamp']
+            output_json = output[0]
+            output_original_path = output[1]
+            hash = output_json['hash']
+            timestamp = output_json['timestamp']
 
             print("Storing annotations in mongodb, hash: ", hash)
-            document_id = db_supercon_dev.document.insert_one(output).inserted_id
+            document_id = db_supercon_dev.document.insert_one(output_json).inserted_id
             print("Storing binary ", hash)
             file = fs_binary.find_one({"hash": hash})
             if not file:
-                with open(abs_path, 'rb') as f:
+                with open(output_original_path, 'rb') as f:
                     fs_binary.put(f, hash=hash, timestamp=timestamp)
             else:
                 print("Binary already there, skipping")
@@ -90,7 +91,7 @@ class MongoSuperconProcessor:
                 print("Response is empty or without content for " + str(source_path) + ". Moving on. ")
             else:
                 extracted_json = self.prepare_data(r, source_path)
-                queue_output.put(extracted_json, block=True)
+                queue_output.put((extracted_json, source_path), block=True)
 
     def prepare_data(self, extracted_data, abs_path):
         extracted_json = json.loads(extracted_data)
@@ -102,12 +103,12 @@ class MongoSuperconProcessor:
 
         return extracted_json
 
-    def process_batch(self, source_paths, db_name=None, num_threads=os.cpu_count()):
+    def process_batch(self, source_paths, db_name=None, num_threads=os.cpu_count() - 1):
         if db_name is None:
             db_name = self.config["mongo"]["database"]
 
         m = Manager()
-        num_threads_process = num_threads - 1
+        num_threads_process = num_threads
         num_threads_store = math.ceil(num_threads / 2)
         queue_input = m.Queue(maxsize=num_threads_process)
         queue_output = m.Queue(maxsize=num_threads_store)

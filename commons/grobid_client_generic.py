@@ -31,12 +31,16 @@ class grobid_client_generic(ApiClient):
         config_json = open(path).read()
         self.config = json.loads(config_json)
         if ping:
-            self.ping_grobid()
+            result = self.ping_grobid()
+            if not result:
+                raise Exception("Grobid is down.")
 
     def _load_config(self, config, ping=False):
         self.config = config
         if ping:
-            self.ping_grobid()
+            result = self.ping_grobid()
+            if not result:
+                raise Exception("Grobid is down.")
 
     def ping_grobid(self):
         # test if the server is up and running...
@@ -47,8 +51,10 @@ class grobid_client_generic(ApiClient):
 
         if status != 200:
             print('GROBID server does not appear up and running ' + str(status))
+            return False
         else:
             print("GROBID server is up and running")
+            return True
 
 
     def get_grobid_url(self, action):

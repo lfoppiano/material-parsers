@@ -165,8 +165,8 @@ def get_annotations(hash):
 @app.route('/pdf/<hash>', methods=['GET'])
 def get_binary(hash):
     '''GET PDF / binary file '''
-    connection = connect_mongo("config.json")
-    db_supercon_dev = connection['supercon_dev']
+    connection = connect_mongo(config=config)
+    db_supercon_dev = connection[db_name]
     fs_binary = gridfs.GridFS(db_supercon_dev, collection='binary')
 
     file = fs_binary.find_one({"hash": hash})
