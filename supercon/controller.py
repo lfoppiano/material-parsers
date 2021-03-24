@@ -3,42 +3,41 @@ from datetime import date, datetime
 from tempfile import NamedTemporaryFile
 
 import gridfs
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, request, Response, Blueprint
 from grobid_client_generic import grobid_client_generic
 from linking_module import RuleBasedLinker
 
 from supercon.process.supercon_batch_mongo_extraction import connect_mongo
 
-app = Flask(__name__)
+bp = Blueprint('supercon', __name__)
 
 with open('./config.json', 'r') as fp:
     config = json.load(fp)
     db_name = config['mongo']['database']
 
-@app.route('/version')
+
+@bp.route('/version')
 def version():
     return '0.0.1'
 
 
-@app.route('/')
-def root():
+@bp.route('/')
+def index():
     return render_template('index.html')
 
 
-@app.route('/<page>')
+@bp.route('/<page>')
 def render_page(page):
     return render_template(page)
 
 
-@app.route('/annotation/feedback', methods=['POST'])
+@bp.route('/annotation/feedback', methods=['POST'])
 def annotation_feedback():
-    # print("Received feedback request. id=" + str(request.form['pk']) + ", name= " + str(
-    #     request.form['name']) + ", value=" + str(request.form['value']))
     print("Received feedback request. id=" + str(request.form))
     return request.form
 
 
-@app.route('/process', methods=['POST'])
+@bp.route('/process', methods=['POST'])
 def process_pdf():
     file = request.files['input']
     grobid = grobid_client_generic(config_path="./config.json")
@@ -64,7 +63,7 @@ def process_pdf():
     return result_json
 
 
-@app.route("/tabular", methods=["GET"])
+@bp.route("/tabular", methods=["GET"])
 def get_tabular():
     connection = connect_mongo(config=config)
     db_supercon_dev = connection[db_name]
@@ -89,13 +88,14 @@ def get_tabular():
         for entry in tabular_collection.find({"hash": hash, "timestamp": timestamp}):
             del entry['_id']
             entry['section'] = entry['section'][1:-1] if 'section' in entry and entry['section'] is not None else ''
-            entry['subsection'] = entry['subsection'][1:-1] if 'subsection' in entry and entry['subsection'] is not None else ''
+            entry['subsection'] = entry['subsection'][1:-1] if 'subsection' in entry and entry[
+                'subsection'] is not None else ''
             entries.append(entry)
 
     return json.dumps(entries, default=json_serial)
 
 
-@app.route("/documents", methods=["GET"])
+@bp.route("/documents", methods=["GET"])
 def get_documents():
     return render_template("database.html")
 
@@ -108,12 +108,12 @@ def json_serial(obj):
     raise TypeError("Type %s not serializable" % type(obj))
 
 
-@app.route('/document/<hash>', methods=['GET'])
+@bp.route('/document/<hash>', methods=['GET'])
 def get_document(hash):
     return render_template("document.html", hash=hash)
 
 
-@app.route('/annotation/<hash>', methods=['GET'])
+@bp.route('/annotation/<hash>', methods=['GET'])
 def get_annotations(hash):
     '''Get annotations (latest version)'''
     connection = connect_mongo(config=config)
@@ -124,7 +124,7 @@ def get_annotations(hash):
     return Response(json.dumps(annotation, default=json_serial), mimetype="application/json")
 
 
-@app.route('/pdf/<hash>', methods=['GET'])
+@bp.route('/pdf/<hash>', methods=['GET'])
 def get_binary(hash):
     '''GET PDF / binary file '''
     connection = connect_mongo(config=config)
@@ -138,11 +138,15 @@ def get_binary(hash):
         return Response(fs_binary.get(file._id).read(), mimetype='application/pdf')
 
 
-@app.route('/config', methods=['GET'])
+@bp.route('/config', methods=['GET'])
 def get_config(config_json='./config.json'):
     config = json.loads(open(config_json).read())
     return config
 
+
+app = Flask(__name__, static_url_path='/supercon/static')
+app.register_blueprint(bp, url_prefix='/supercon')
+print(app.url_map)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
