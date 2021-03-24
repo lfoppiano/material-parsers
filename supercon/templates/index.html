@@ -11,18 +11,12 @@
     <script type="text/javascript" src="static/resources/libs/jquery/jquery.form.3.51.js"></script>
 
     <!-- Bootstrap -->
-    <script type="text/javascript" src="static/resources/libs/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="static/resources/libs/bootstrap/css/bootstrap.min.css" media="screen"/>
-    <script type="text/javascript" src="static/resources/libs/bootstrap/js/prettify.js"></script>
+    <script type="text/javascript" src="static/resources/libs/bootstrap-4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="static/resources/libs/bootstrap-4.5.0/css/bootstrap.min.css" media="screen"/>
+    <script type="text/javascript" src="static/resources/libs/bootstrap-4.5.0/js/prettify.js"></script>
 
-    <script type="text/javascript" src="static/resources/libs/vkbeautify/vkbeautify.js"></script>
-    <link rel="stylesheet" href="static/resources/libs/bootstrap/css/prettify.css"/>
-    <link rel="stylesheet" href="static/resources/libs/font-awesome/css/font-awesome.min.css">
-
-    <!-- X-editable -->
-
-    <link href="static/resources/libs/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
-    <script src="static/resources/libs/bootstrap-editable/js/bootstrap-editable.js"></script>
+    <link rel="stylesheet" href="static/resources/libs/bootstrap-4.5.0/css/prettify.css"/>
+    <link rel="stylesheet" href="static/resources/libs/font-awesome/font-awesome.min.css">
 
     <!-- PDF.js stuff -->
     <link type="text/css" href="static/resources/libs/pdf.js/web/text_layer_builder.css" rel="stylesheet"/>
@@ -38,10 +32,6 @@
     <link rel="stylesheet" href="static/resources/css/style-quantities.css"/>
     <link rel="stylesheet" href="static/resources/css/style-superconductors.css"/>
 
-    <!-- The Grobid Javascript library -->
-    <script src="static/grobid/grobid-superconductors.js"></script>
-
-
 </head>
 
 <body>
@@ -50,13 +40,14 @@
     <div class="content">
 
         <div class="page-header">
-            <h1><span style="color:#333;">Supercon 2 interface</span></h1>
+            <h1><span style="color:#333;">Supercon<sup>2</sup></span></h1>
+            <h5>Made in the M<sup>3</sup> building at <a href="https://www.nims.go.jp">NIMS</a>.</h5>
         </div>
 
         <div id="divRestI">
             <ul>
-                <li><a href="http://falcon.nims.go.jp/supeconductors" target="_blank">PDF live process</a></li>
-                <li><a href="/documents">Processed documents</a></li>
+                <li><a href="{{ url_for('get_documents') }}">Processed documents</a></li>
+                <li><a href="http://falcon.nims.go.jp/superconductors" target="_blank">PDF document live process</a></li>
             </ul>
         </div>
     </div>

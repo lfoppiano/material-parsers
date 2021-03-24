@@ -97,31 +97,6 @@ def get_tabular():
 
 @app.route("/documents", methods=["GET"])
 def get_documents():
-    # connection = connect_mongo("config.json")
-    # db_supercon_dev = connection['supercon_dev']
-
-    # pipeline = [
-    #     {"$group": {"_id": "$hash", "versions": {"$addToSet": "$timestamp"}, "count": {"$sum": 1}}},
-    #     {"$sort": {"count": -1}}
-    # ]
-
-    # document_collection = db_supercon_dev.get_collection("document")
-    # # documents = document_collection.aggregate(pipeline)
-    # # document_list = list(documents)
-    # cursor_aggregation = document_collection.aggregate(
-    #     [{"$sort": {"hash": 1, "timestamp": 1}}, {"$group": {"_id": "$hash", "lastDate": {"$last": "$timestamp"}}}])
-    #
-    # tabular_collection = db_supercon_dev.get_collection("tabular")
-    # entries = []
-    # for document in cursor_aggregation:
-    #     hash = document['_id']
-    #     timestamp = document['lastDate']
-    #
-    #     for entry in tabular_collection.find({"hash": hash, "timestamp": timestamp}):
-    #         entry['section'] = entry['section'][1:-1]
-    #         entry['subsection'] = entry['subsection'][1:-1]
-    #         entries.append(entry)
-
     return render_template("database.html")
 
 
@@ -135,19 +110,6 @@ def json_serial(obj):
 
 @app.route('/document/<hash>', methods=['GET'])
 def get_document(hash):
-    # connection = connect_mongo("config.json")
-    # db_supercon_dev = connection['supercon_dev']
-    # fs_binary = gridfs.GridFS(db_supercon_dev, collection='binary')
-    # file = fs_binary.find_one({"hash": hash})
-    # if file is None:
-    #     return 404
-    # else:
-    #     binary_pdf = fs_binary.get(file._id).read()
-    #     annotations = db_supercon_dev.get_collection("document").find({"hash": hash}).sort("timestamp", -1)
-    #     annotation = annotations[0]
-    #     del annotation["_id"]
-    #     json_annotation = json.dumps(annotation, default=json_serial)
-
     return render_template("document.html", hash=hash)
 
 
