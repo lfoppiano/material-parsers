@@ -177,7 +177,7 @@ let grobid = (function ($) {
             // Collapse icon
             $('a[data-toggle="collapse"]').click(function () {
                 let currentIcon = $(this).find('img').attr("src")
-                let newIcon = currentIcon === '/static/resources/icons/chevron-right.svg' ? '/static/resources/icons/chevron-down.svg' : '/static/resources/icons/chevron-right.svg';
+                let newIcon = currentIcon === chevron_right_path ? chevron_down_path : chevron_right_path;
                 $(this).find('img').attr("src", newIcon);
             })
 
@@ -351,7 +351,7 @@ let grobid = (function ($) {
                     }
                 }).then(function () {
                     var xhr2 = new XMLHttpRequest();
-                    xhr2.open('GET', "/annotation/" + hash, true);
+                    xhr2.open('GET', annotation_url.replaceAll("_HASH_", hash), true);
                     xhr2.responseType = "application/json";
                     xhr2.onreadystatechange = function (e) {
                         if (xhr2.readyState === 4 && xhr2.status === 200) {
@@ -368,7 +368,7 @@ let grobid = (function ($) {
 
             // request for the annotation information
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', "/pdf/" + hash, true);
+            xhr.open('GET', pdf_document_url.replaceAll("_HASH_", hash), true);
             xhr.responseType = "blob";
             xhr.onreadystatechange = function (e) {
                 if (xhr.readyState === 4 && xhr.status === 200) {
@@ -671,7 +671,7 @@ let grobid = (function ($) {
 
             let viewInPDFIcon = "";
             if (viewInPDF === true) {
-                viewInPDFIcon = "<img src='/static/resources/icons/arrow-down.svg' alt='View in PDF' title='View in PDF'></a>";
+                viewInPDFIcon = "<img src='" + arrow_down_path + "' alt='View in PDF' title='View in PDF'></a>";
             }
 
             let {
@@ -686,7 +686,7 @@ let grobid = (function ($) {
 
             let html_code = "<tr class='d-flex' id=" + row_id + " style='cursor:hand;cursor:pointer;' >" +
                 "<td><a href='#' id=" + element_id + ">" + viewInPDFIcon + "</td>" +
-                "<td><img src='/static/resources/icons/trash.svg' alt='-' id='remove-button'/></td>" +
+                "<td><img src='"+trash_path+"' alt='-' id='remove-button'/></td>" +
                 "<td class='col-3'><a href='#' id=" + mat_element_id + " data-pk='" + mat_element_id + "' data-url='" + '/annotations/feedback' + "' data-type='text'>" + material + "</a></td>" +
                 "<td class='col-2'><a href='#' id=" + cla_element_id + " data-pk='" + cla_element_id + "' data-url='" + '/annotations/feedback' + "' data-type='text'>" + cla + "</a></td>" +
                 "<td class='col-2'><a href='#' id=" + shape_element_id + " data-pk='" + shape_element_id + "' data-url='" + '/annotations/feedback' + "' data-type='text'>" + shape + "</a></td>" +
@@ -804,7 +804,7 @@ let grobid = (function ($) {
             string += ">";
             if (span.links && topPos > -1) {
                 let infobox_id = "infobox" + span.id;
-                string += "<h2 class='ml-1' style='color:#FFF;font-size:16pt;'>" + type + "<img id='" + infobox_id + "' src='/static/resources/icons/arrow-up.svg'/></h2>";
+                string += "<h2 class='ml-1' style='color:#FFF;font-size:16pt;'>" + type + "<img id='" + infobox_id + "' src='" + arrow_up_path + "' /></h2>";
             } else {
                 string += "<h2 class='ml-1' style='color:#FFF;font-size:16pt;'>" + type + "</h2>";
             }

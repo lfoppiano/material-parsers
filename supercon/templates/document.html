@@ -3,33 +3,41 @@
 <head>
     <meta charset="utf-8">
     <title>GROBID Superconductors TDM application</title>
+    <script>
+        var annotation_url = "{{ url_for('supercon.get_annotations', hash="_HASH_") }}"
+        var pdf_document_url = "{{ url_for('supercon.get_binary', hash="_HASH_") }}"
+        var chevron_right_path = "{{ url_for('static', filename='resources/icons/chevron-right.svg') }}"
+        var chevron_down_path = "{{ url_for('static', filename='resources/icons/chevron-down.svg') }}"
+        var arrow_down_path = "{{ url_for('static', filename='resources/icons/arrow-down.svg') }}"
+        var trash_path = "{{ url_for('static', filename='resources/icons/trash.svg') }}"
+    </script>
     <!-- jquery -->
-    <script type="text/javascript" src="/static/resources/libs/jquery/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="/static/resources/libs/jquery/jquery.form.3.51.js"></script>
+    <script type="text/javascript" src={{ url_for('static', filename='resources/libs/jquery/jquery-3.4.1.js') }}></script>
+    <script type="text/javascript" src={{ url_for('static', filename='resources/libs/jquery/jquery.form.3.51.js') }}></script>
 
     <!-- bootstrap -->
-    <script type="text/javascript" src="/static/resources/libs/bootstrap-4.5.0/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/static/resources/libs/bootstrap-4.5.0/css/bootstrap.min.css" media="screen"/>
-    <link rel="stylesheet" href="/static/resources/libs/font-awesome/css/font-awesome.min.css">
+    <script type="text/javascript" src={{ url_for('static', filename='resources/libs/bootstrap-4.5.0/js/bootstrap.bundle.min.js') }}></script>
+    <link rel="stylesheet" href={{ url_for('static', filename='resources/libs/bootstrap-4.5.0/css/bootstrap.min.css') }} media="screen"/>
+    <link rel="stylesheet" href={{ url_for('static', filename='resources/libs/font-awesome/font-awesome.min.css') }}>
 
     <!-- X-editable -->
-    <link href="/static/resources/libs/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
-    <script src="/static/resources/libs/bootstrap-editable/js/bootstrap-editable.js"></script>
+    <link href={{ url_for('static', filename='resources/libs/bootstrap-editable/css/bootstrap-editable.css') }} rel="stylesheet">
+    <script src={{ url_for('static', filename='resources/libs/bootstrap-editable/js/bootstrap-editable.js') }}></script>
 
     <!-- PDF.js stuff -->
-    <link type="text/css" href="/static/resources/libs/pdf.js/web/text_layer_builder.css" rel="stylesheet"/>
-    <link type="text/css" href="/static/resources/libs/pdf.js/web/annotation_layer_builder.css" rel="stylesheet"/>
-    <script type="text/javascript" src="/static/resources/libs/pdf.js/web/text_layer_builder.js"></script>
-    <script type="text/javascript" src="/static/resources/libs/pdf.js/web/pdf_link_service.js"></script>
-    <script type="text/javascript" src="/static/resources/libs/pdf.js/web/annotation_layer_builder.js"></script>
-    <script type="text/javascript" src="/static/resources/libs/pdf.js/build_/pdf.js"></script>
+    <link type="text/css" href={{ url_for('static', filename='resources/libs/pdf.js/web/text_layer_builder.css') }} rel="stylesheet"/>
+    <link type="text/css" href={{ url_for('static', filename='resources/libs/pdf.js/web/annotation_layer_builder.css') }} rel="stylesheet"/>
+    <script type="text/javascript" src={{ url_for('static', filename='resources/libs/pdf.js/web/text_layer_builder.js') }}></script>
+    <script type="text/javascript" src={{ url_for('static', filename='resources/libs/pdf.js/web/pdf_link_service.js') }}></script>
+    <script type="text/javascript" src={{ url_for('static', filename='resources/libs/pdf.js/web/annotation_layer_builder.js') }}></script>
+    <script type="text/javascript" src={{ url_for('static', filename='resources/libs/pdf.js/build_/pdf.js') }}></script>
 
     <!-- Grobid Javascript/CSS -->
-    <link rel="stylesheet" href="/static/resources/css/style.css"/>
-    <link rel="stylesheet" href="/static/resources/css/style-ner.css"/>
-    <link rel="stylesheet" href="/static/resources/css/style-quantities.css"/>
-    <link rel="stylesheet" href="/static/resources/css/style-superconductors.css"/>
-    <script src="/static/grobid/grobid-superconductors.js"></script>
+    <link rel="stylesheet" href={{ url_for('static', filename='resources/css/style.css') }}/>
+    <link rel="stylesheet" href={{ url_for('static', filename='resources/css/style-ner.css') }}/>
+    <link rel="stylesheet" href={{ url_for('static', filename='resources/css/style-quantities.css') }}/>
+    <link rel="stylesheet" href={{ url_for('static', filename='resources/css/style-superconductors.css') }}/>
+    <script src={{ url_for('static', filename='grobid/grobid-superconductors.js') }}></script>
 </head>
 
 <body>
@@ -63,7 +71,7 @@
                         <a data-toggle="collapse" href="#tableResultCollapseDiv" role="button"
                            aria-expanded="false" aria-controls="tableResultCollapseDiv">
                             <svg class="bi" width="32" height="32" viewBox="0 0 20 20" fill="currentColor">
-                                <img src="/static/resources/icons/chevron-right.svg" alt="" width="32" height="32"
+                                <img src={{ url_for('static', filename='resources/icons/chevron-right.svg') }} alt="" width="32" height="32"
                                      title="Bootstrap"/>
                             </svg>
                         </a>

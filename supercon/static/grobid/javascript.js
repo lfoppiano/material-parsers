@@ -1,7 +1,7 @@
 // var root = (function ($) {
 
 function linkFormatter(value, row) {
-    return "<a href='/document/" + row.hash + "' target='_blank'>" + row.hash + "</a>";
+    return "<a href='" + row.doc_url + "' target='_blank'>" + row.hash + "</a>";
 }
 
 function classesFormatter(value) {

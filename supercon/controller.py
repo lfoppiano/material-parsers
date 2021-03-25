@@ -3,7 +3,7 @@ from datetime import date, datetime
 from tempfile import NamedTemporaryFile
 
 import gridfs
-from flask import Flask, render_template, request, Response, Blueprint
+from flask import Flask, render_template, request, Response, Blueprint, url_for
 from grobid_client_generic import grobid_client_generic
 from linking_module import RuleBasedLinker
 
@@ -90,6 +90,7 @@ def get_tabular():
             entry['section'] = entry['section'][1:-1] if 'section' in entry and entry['section'] is not None else ''
             entry['subsection'] = entry['subsection'][1:-1] if 'subsection' in entry and entry[
                 'subsection'] is not None else ''
+            entry['doc_url'] = url_for('supercon.get_document', hash=entry['hash'])
             entries.append(entry)
 
     return json.dumps(entries, default=json_serial)
