@@ -41,19 +41,53 @@
 
         <div class="page-header">
             <h1><span style="color:#333;">Supercon<sup>2</sup></span></h1>
-            <h5>Made in the M<sup>3</sup> building at <a href="https://www.nims.go.jp">NIMS</a>.</h5>
         </div>
 
-        <div id="divRestI">
-            <ul>
-                <li><a href="{{ url_for('supercon.get_documents') }}">Processed documents</a></li>
-                <li><a href="http://falcon.nims.go.jp/superconductors" target="_blank">PDF document live process</a></li>
-            </ul>
+        <div class="modal-body row">
+            <div class="col-md-4">
+                <ul>
+                    <li><a href="{{ url_for('supercon.get_documents') }}">Database view</a></li>
+                    <li><a href="http://falcon.nims.go.jp/superconductors" target="_blank">PDF document live process</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <strong>Work in progress.</strong>
+
+                <p>
+                    This database is an experimental application to extract automatically superconductors material and
+                    their
+                    properties from superconductors-related scientific literature.
+                </p>
+                <p>The interface can be used to view the extracted properties (no modification for the moment).</p>
+                <p>
+                    <strong>References</strong>
+                <ul>
+                    <li>Luca Foppiano, Thaer Dieb, Akira Suzuki, Masashi Ishii. Proposal for Automatic Extraction
+                        Framework of Superconductors Related Information from Scientific Literature.
+                        電子情報通信学会サービスコンピューティング研究会　2019年度第一回研究会、 第４３回MaDIS研究交流会合同研究会, May 2019, Tsukuba, Japan.
+                        ⟨hal-02870896⟩
+                    </li>
+                    <li>Luca Foppiano, Sae Dieb, Akira Suzuki, Pedro Baptista de Castro, Suguru Iwasaki, et al..
+                        SuperMat: Construction of a linked annotated dataset from superconductors-related publications.
+                        2021. ⟨hal-03101177v2⟩
+                    </li>
+                </ul>
+
+                </p>
+            </div>
+            <div class="footer row border-top" style="width: 100%">
+                <div class="col-xl-12">
+                    <strong>Contacts</strong>: FOPPIANO.Luca AT nims.go.jp - <a
+                        href="http://falcon.nims.go.jp">homepage@NIMS</a> - <a href="http://github.com/lfoppiano">Github</a>
+
+                </div>
+            </div>
         </div>
     </div>
 
     <footer>
-        <p><span style="color:#848484;">contributors - 2021</span></p>
+        <p><span style="color:#848484;">Contributors - 2021</span></p>
     </footer>
 </div>
 
