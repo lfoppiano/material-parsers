@@ -108,7 +108,8 @@ def processFile(file):
                 # We assume to have only one tag
                 tag = "_"
                 for idx, tag_ in enumerate(tags):
-                    if idx not in [1, 3, 4] and tag_ != '_':
+                    # Change 0 to 1 for the NEDO project
+                    if idx not in [0, 3, 4] and tag_ != '_':
                         if not re.search("\\*\\[\d+\\]", tag_) and tag_ != '*':
                             tag = tag_.strip()
                             break
@@ -349,10 +350,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Converter TSV to XML (Grobid training data based on TEI)")
 
-    parser.add_argument("--input", help="Input file or directory", required=True)
+    parser.add_argument("--input", help="Input file or directory", required=True, type=Path)
     parser.add_argument("--output",
                         help="Output directory (if omitted, the output will be the same directory/file with different extension)",
-                        required=False)
+                        required=False, type=Path, default=None)
     parser.add_argument("--recursive", action="store_true", default=False,
                         help="Process input directory recursively. If input is a file, this parameter is ignored. ")
 
