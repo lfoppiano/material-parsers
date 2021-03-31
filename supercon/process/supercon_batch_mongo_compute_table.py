@@ -60,6 +60,7 @@ class MongoTabularProcessor():
                 for ag_e in json_aggregated_entries:
                     ag_e['hash'] = hash
                     ag_e['timestamp'] = timestamp
+                    ag_e['type'] = 'automatic'
 
                 tabular_collection.delete_many({"hash": hash})
                 tabular_collection.insert_many(json_aggregated_entries)

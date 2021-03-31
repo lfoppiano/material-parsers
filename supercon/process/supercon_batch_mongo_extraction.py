@@ -91,6 +91,7 @@ class MongoSuperconProcessor:
                 print("Response is empty or without content for " + str(source_path) + ". Moving on. ")
             else:
                 extracted_json = self.prepare_data(r, source_path)
+                extracted_json['type'] = 'automatic'
                 queue_output.put((extracted_json, source_path), block=True)
 
     def prepare_data(self, extracted_data, abs_path):

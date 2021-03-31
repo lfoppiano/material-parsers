@@ -65,6 +65,7 @@ def process_pdf():
 
 @bp.route("/tabular", methods=["GET"])
 def get_tabular():
+    type = request.args.get('type', default="automatic", type=str)
     connection = connect_mongo(config=config)
     db_supercon_dev = connection[db_name]
 
@@ -72,33 +73,49 @@ def get_tabular():
     #     {"$group": {"_id": "$hash", "versions": {"$addToSet": "$timestamp"}, "count": {"$sum": 1}}},
     #     {"$sort": {"count": -1}}
     # ]
-
-    document_collection = db_supercon_dev.get_collection("document")
-    # documents = document_collection.aggregate(pipeline)
-    # document_list = list(documents)
-    cursor_aggregation = document_collection.aggregate(
-        [{"$sort": {"hash": 1, "timestamp": 1}}, {"$group": {"_id": "$hash", "lastDate": {"$last": "$timestamp"}}}])
-
-    tabular_collection = db_supercon_dev.get_collection("tabular")
     entries = []
-    for document in cursor_aggregation:
-        hash = document['_id']
-        timestamp = document['lastDate']
-
-        for entry in tabular_collection.find({"hash": hash, "timestamp": timestamp}):
+    tabular_collection = db_supercon_dev.get_collection("tabular")
+    if type == "manual":
+        for entry in tabular_collection.find({"type": "manual"}):
             del entry['_id']
             entry['section'] = entry['section'][1:-1] if 'section' in entry and entry['section'] is not None else ''
             entry['subsection'] = entry['subsection'][1:-1] if 'subsection' in entry and entry[
                 'subsection'] is not None else ''
-            entry['doc_url'] = url_for('supercon.get_document', hash=entry['hash'])
+            entry['doc_url'] = None
             entries.append(entry)
+
+    elif type == 'automatic':
+        document_collection = db_supercon_dev.get_collection("document")
+        # documents = document_collection.aggregate(pipeline)
+        # document_list = list(documents)
+        aggregation_query = [{"$sort": {"hash": 1, "timestamp": 1}},
+                         {"$group": {"_id": "$hash", "lastDate": {"$last": "$timestamp"}}}]
+        aggregation_query = [{"$match": {"type": type}}] + aggregation_query
+        cursor_aggregation = document_collection.aggregate(aggregation_query)
+
+        for document in cursor_aggregation:
+            hash = document['_id']
+            timestamp = document['lastDate']
+
+            for entry in tabular_collection.find({"hash": hash, "timestamp": timestamp}):
+                del entry['_id']
+                entry['section'] = entry['section'][1:-1] if 'section' in entry and entry['section'] is not None else ''
+                entry['subsection'] = entry['subsection'][1:-1] if 'subsection' in entry and entry[
+                    'subsection'] is not None else ''
+                entry['doc_url'] = url_for('supercon.get_document', hash=entry['hash'])
+                entries.append(entry)
 
     return json.dumps(entries, default=json_serial)
 
 
-@bp.route("/documents", methods=["GET"])
-def get_documents():
-    return render_template("database.html")
+@bp.route("/automatic_database", methods=["GET"])
+def get_automatic_database():
+    return render_template("automatic_database.html")
+
+
+@bp.route("/manual_database", methods=["GET"])
+def get_manual_database():
+    return render_template("manual_database.html")
 
 
 def json_serial(obj):

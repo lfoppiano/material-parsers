@@ -52,11 +52,11 @@
     <div class="content">
 
         <div class="page-header">
-            <h1><span style="color:#333;">Supercon<sup>2</sup> tabular view</span></h1>
+            <h1><span style="color:#333;">Supercon<sup>2</sup> "automatically extracted database" tabular view</span></h1>
         </div>
 {#        <button id="exportCsv" type="button" class="btn btn-primary">CSV Export</button>#}
         <table id="mainTable"
-               data-url="{{ url_for('supercon.get_tabular') }}"
+               data-url="{{ url_for('supercon.get_tabular', type='automatic') }}"
                data-show-columns="true"
                data-show-columns-toggle-all="true"
                data-filter-control="true"
