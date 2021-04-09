@@ -1,7 +1,9 @@
 ## Analysis ML results
 import argparse
 import os
+import re
 import sys
+from collections import OrderedDict
 from pathlib import Path
 
 
@@ -64,89 +66,201 @@ def extract_log(log_file):
 def extract_error_cases(input_data, tokens_before=5, tokens_after=5):
     error_cases = []
     for idx, fold in enumerate(input_data):
-        error_case = []
+        # a combined list:
+        # error_case[0] consist in the expected class
+        # error_case[1] consiste in the list of tokens
+        error_case = ["", []]
+        # error_case = {"label": "", "stream": []}
         in_error = False
 
         for i, raw_line in enumerate(fold['data']):
             # If the line is not empty
             if len(raw_line) > 1:
-                # if the entities are wrongly recognised (and not <other>)
                 expected_class_index = len(raw_line) - 2
                 predicted_class_index = len(raw_line) - 1
-                if raw_line[expected_class_index] != '<other>' and raw_line[expected_class_index] != raw_line[
-                    predicted_class_index].replace('\n', ''):
-                    if in_error == True:
-                        # check if the previous item is part of the same label
-                        if i > 0 and fold['data'][i - 1][expected_class_index].replace("I-", "") == raw_line[
-                            expected_class_index]:
-                            if raw_line[expected_class_index].startswith("I-"):
-                                error_case = append_tokens_after(error_case, fold, i, tokens_after)
-                                error_cases.append(error_case)
-                                error_case = []
-                                error_case = append_tokens_before(error_case, fold, i, tokens_before)
-                            error_case.append([raw_line[0], raw_line[expected_class_index],
-                                               raw_line[predicted_class_index].replace('\n', '')])
-                        else:
-                            error_case = append_tokens_after(error_case, fold, i, tokens_after)
-                            error_cases.append(error_case)
-                            error_case = []
-                            error_case = append_tokens_before(error_case, fold, i, tokens_before)
-                            error_case.append([raw_line[0], raw_line[expected_class_index],
-                                               raw_line[predicted_class_index].replace('\n', '')])
-                    else:
+                expected_class = raw_line[expected_class_index]
+                predicted_class = raw_line[predicted_class_index].replace('\n', '')
+                # if the entities are wrongly recognised (and not <other>)
+                if expected_class != predicted_class:
+                    reference_class = expected_class if expected_class != "<other>" else predicted_class
+                    reference_class_plain = reference_class.replace("I-", "")
+                    previous_reference_class = ''
+                    if i > 0 and len(fold['data'][i - 1]) > 1:
+                        previous_reference_class = fold['data'][i - 1][expected_class_index] if expected_class != "<other>" else fold['data'][i - 1][predicted_class_index]
+                    previous_reference_class_plain = previous_reference_class.replace("I-", "")
+                    if in_error is False:
                         if len(error_case) > 0:
-                            error_case = append_tokens_after(error_case, fold, i, tokens_after)
+                            if len(error_case[1]) > 0:
+                                error_case[1] = append_tokens_after(error_case[1], fold, i - 1, tokens_after)
+                                error_cases.append(error_case)
+                                error_case = [reference_class, []]
+
+                            if error_case[0] == '':
+                                error_case[0] = reference_class
+
+                            error_case[1] = append_tokens_before(error_case[1], fold, i, tokens_before)
+
+                            item_string = get_item_diff_marker(expected_class, predicted_class)
+                            error_case[1].append([raw_line[0] + item_string, expected_class, predicted_class])
+                            in_error = True
+                        else:
+                            raise Exception("This should never be reached. Boom! ")
+                    else:
+                        # check if the previous item is part of the same label
+                        if previous_reference_class_plain == reference_class_plain and reference_class != '<other>':
+                            if expected_class.startswith("I-"):
+                                error_case[1] = append_tokens_after(error_case[1], fold, i - 1, tokens_after)
+                                error_cases.append(error_case)
+                                error_case = [reference_class, []]
+                                error_case[1] = append_tokens_before(error_case[1], fold, i, tokens_before)
+
+                            item_string = get_item_diff_marker(expected_class, predicted_class)
+                            error_case[1].append([raw_line[0] + item_string, expected_class, predicted_class])
+                        else:
+                            error_case[1] = append_tokens_after(error_case[1], fold, i - 1, tokens_after)
                             error_cases.append(error_case)
-                            error_case = []
-
-                        error_case = append_tokens_before(error_case, fold, i, tokens_before)
-
-                        error_case.append([raw_line[0], raw_line[expected_class_index],
-                                           raw_line[predicted_class_index].replace('\n', '')])
-                        in_error = True
+                            error_case = [reference_class, []]
+                            error_case[1] = append_tokens_before(error_case[1], fold, i, tokens_before)
+                            item_string = get_item_diff_marker(expected_class, predicted_class)
+                            error_case[1].append([raw_line[0] + item_string, expected_class, predicted_class])
                 else:
-                    if in_error == True:
+                    if in_error is True:
                         in_error = False
                         if len(error_case) > 0:
-                            error_case = append_tokens_after(error_case, fold, i, tokens_after)
-                            error_cases.append(error_case)
-                            error_case = []
+                            if len(error_case[1]) > 0:
+                                error_case[1] = append_tokens_after(error_case[1], fold, i - 1, tokens_after)
+                                error_cases.append(error_case)
+                                error_case = ["", []]
+                        else:
+                            print("Perhaps something wrong")
+
+                    else:
+                        pass
+
+
 
             elif in_error == True:
                 in_error = False
-                error_case.append("|")
+                # error_case.append("|")
                 error_cases.append(error_case)
-                error_case = []
+                error_case = ["", []]
 
-        if len(error_case) > 0:
-            error_case.append(['|', '', ''])
+        if len(error_case) > 0 and len(error_case[1]) > 0:
+            # error_case.append(['|', '', ''])
             error_cases.append(error_case)
 
     return error_cases
 
 
-def append_tokens_before(error_case, fold, i, tokens_before):
-    if i > tokens_before - 1 and len(fold['data'][i - 1]) > 1:
-        for x in range(i - tokens_before, i):
+def append_tokens_before(error_case, fold, i, nb_tokens_to_include):
+    reached_annotation_beginning = False
+    if i > nb_tokens_to_include - 1 and len(fold['data'][i - 1]) > 1:
+        current_item = fold['data'][i]
+        current_expected_class = current_item[len(current_item) - 2]
+        if current_expected_class.startswith("I-"):
+            reached_annotation_beginning = True
+
+        for x in range(i - 1, i - nb_tokens_to_include - 1, -1):
             item = fold['data'][x]
             if len(item) <= 1:
                 error_case = []
                 continue
-            error_case.append([item[0], item[len(item) - 2], item[len(item) - 1].replace('\n', '')])
-    error_case.append(['|', '', ''])
+
+            expected_class = item[len(item) - 2]
+            expected_class_plain = item[len(item) - 2].replace("I-", "")
+            predicted_class = item[len(item) - 1].replace('\n', '')
+
+            item_string = ''
+            if not reached_annotation_beginning:
+                if expected_class_plain == current_expected_class.replace("I-", ""):
+                    item_string = get_item_diff_marker(expected_class, predicted_class)
+                    if expected_class.startswith("I-"):
+                        reached_annotation_beginning = True
+
+            error_case.insert(0, [item[0] + item_string, expected_class, predicted_class.replace('\n', '')])
+
     return error_case
 
 
 def append_tokens_after(error_case, fold, i, tokens_after):
-    error_case.append(['|', '', ''])
-    if len(fold['data']) > i + tokens_after:
-        for x in range(i, i + tokens_after):
+    data_length = len(fold['data'])
+    if i + 1 < data_length:
+        tokens_after = tokens_after if data_length - i > tokens_after else data_length - i - 1
+        current_item = fold['data'][i]
+        current_expected_class = current_item[len(current_item) - 2]
+
+        for x in range(i + 1, i + 1 + tokens_after):
             item = fold['data'][x]
             if len(item) <= 1:
                 break
-            error_case.append([item[0], item[len(item) - 2], item[len(item) - 1].replace('\n', '')])
+
+            expected_class = item[len(item) - 2]
+            expected_class_plain = item[len(item) - 2].replace("I-", "")
+            predicted_class = item[len(item) - 1].replace('\n', '')
+            item_string = ''
+            if expected_class_plain == current_expected_class.replace("I-", ""):
+                if not expected_class.startswith("I-"):
+                    item_string = get_item_diff_marker(expected_class, predicted_class)
+
+            error_case.append([item[0] + item_string, expected_class, predicted_class])
 
     return error_case
+
+
+def get_item_diff_marker(expected_class, predicted_class):
+    item_string = ""
+    if expected_class == predicted_class:
+        if expected_class == "<other>":
+            item_string = ""
+        else:
+            item_string = "<=>"
+    else:  # expected_class != predicted_class:
+        if expected_class == "<other>":
+            item_string = "<+>"
+        else:
+            # predicted class is <other> (recall issue) or other classes (precision issue)
+            if predicted_class == "<other>":
+                item_string = "<-r>"
+            else:
+                item_string = "<-p>"
+
+    return item_string
+
+
+def count_discrepancies(cases):
+    wrong_prediction_suffix_precision = '<-p>'
+    wrong_prediction_suffix_recall = '<-r>'
+    possible_wrong_annotation_suffix = '<+>'
+
+    allowed_suffixes = [wrong_prediction_suffix_recall, wrong_prediction_suffix_precision,
+                        possible_wrong_annotation_suffix]
+
+    discrepancies_counter_by_label = {
+
+    }
+
+    for item in cases:
+        label = item[0].replace("I-", "")
+        if label not in discrepancies_counter_by_label:
+            discrepancies_counter_by_label[label] = {}
+
+        local_counter = discrepancies_counter_by_label[label]
+        for token in item[1]:
+            matching = re.match(r"^.+(<[+-=][rp]?>)$", token[0])
+            if matching and len(matching.groups()) > 0:
+                suffix = matching.group(1).strip()
+                if suffix not in allowed_suffixes:
+                    continue
+                plain_token = token[0].replace(suffix, '')
+                if suffix not in local_counter:
+                    local_counter[suffix] = {}
+
+                if plain_token in local_counter[suffix]:
+                    local_counter[suffix][plain_token].append(item[1])
+                else:
+                    local_counter[suffix][plain_token] = [item[1]]
+
+    return discrepancies_counter_by_label
 
 
 if __name__ == '__main__':
@@ -176,31 +290,62 @@ if __name__ == '__main__':
     grouped_cases = {}
 
     for case in error_cases:
+        expected_label = case[0].replace("I-", "")
+        tokens = case[1]
         text = ""
-        annotation = []
-        in_annotation = False
-        for x in case:
-            if x[0] == "|":
-                if in_annotation:
-                    in_annotation = False
-                else:
-                    in_annotation = True
-                continue
 
-            if in_annotation == True:
-                annotation.append(x)
-
-        expected_label = annotation[0][1].replace("I-", "")
-        for t in case:
+        for t in tokens:
             text += t[0] + " "
 
         if expected_label not in grouped_cases.keys():
             grouped_cases[expected_label] = []
         grouped_cases[expected_label].append(text)
 
-    for i, key in enumerate(grouped_cases.keys()):
-        print('\n\n===', key, '\n')
-        for case in grouped_cases[key]:
+    for i, suffix in enumerate(grouped_cases.keys()):
+        print('\n\n===', suffix, '\n')
+        for case in grouped_cases[suffix]:
             print(case)
 
         print('==========')
+
+    ## Documentaton
+    print("<=> -> the model predicts correctly")
+    print("<+> -> the model recognise an entity that wasn't expected - could be a discrepancy in annotation")
+    print("<-p> -> the model wrongly recognise an entity (precision) ")
+    print("<-r> -> the model misses an entity (recall)")
+
+    # class specific mismatches
+    # material_keywords = ['crystal', 'crystals', 'doped', 'film', 'films', 'powder', 'bulk', 'pure', 'underdoped']
+    # material_discrepancies, wrong_prediction_counter_precision, wrong_prediction_counter_recall, wrong_annotation_counter = count_discrepancies_near_annotations(
+    #     grouped_cases['<material>'], material_keywords)
+    # print("Material discrepancies ", material_discrepancies, "on ", len(grouped_cases['<material>']))
+    # print("- Wrong predictions (precision)", wrong_prediction_counter_precision)
+    # print("- Wrong predictions (recall)", wrong_prediction_counter_recall)
+    # print("- Wrong annotations", wrong_annotation_counter)
+    #
+    # me_method_keywords = ['measurement', 'measurements', 'mea- surement', 'mea- surements', 'ac', 'dc']
+    # me_method_discrepancies, wrong_prediction_counter_precision, wrong_prediction_counter_recall, wrong_annotation_counter = count_discrepancies_near_annotations(
+    #     grouped_cases['<me_method>'], me_method_keywords)
+    # print("Me_methods discrepancies ", me_method_discrepancies, "on ", len(grouped_cases['<me_method>']))
+    # print("- Wrong predictions (precision) ", wrong_prediction_counter_precision)
+    # print("- Wrong predictions (recall) ", wrong_prediction_counter_recall)
+    # print("- Wrong annotations", wrong_annotation_counter)
+
+    # Automatic detection of mismatches
+    discrepancies = count_discrepancies(error_cases)
+    sorted_discrepancies = OrderedDict()
+    for label in discrepancies.keys():
+        print(" \n == ", label)
+        sorted_discrepancies[label] = OrderedDict()
+        for suffix in discrepancies[label]:
+            print(" === ", suffix, "count: ", len(discrepancies[label][suffix]))
+            sorted_items = sorted(discrepancies[label][suffix].items(), key=lambda item: len(item[1]), reverse=True)
+            for sorted_item in sorted_items[:10]:
+                print(" ==== ", sorted_item[0], "count: ", len(sorted_item[1]))
+                for error_case in sorted_item[1]:
+                    for line in error_case:
+                        print(" ", line)
+                    print("")
+                print(" --\n")
+
+            sorted_discrepancies[label][suffix] = sorted_items[:10]

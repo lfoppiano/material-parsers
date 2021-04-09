@@ -10,6 +10,7 @@ def tokenise(string):
 
 
 def getSection(pTag):
+    section = None
     if pTag.name == 'p':
         section = pTag.parent.name
     elif pTag.name == 'ab':
