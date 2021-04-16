@@ -232,7 +232,7 @@ class TestRuleBasedLinker:
         words, spaces, spans = get_tokens(input, spans)
 
         target = RuleBasedLinker()
-        boundaries = target.get_sentence_boundaries_pysbd(words, spaces)
+        boundaries = target.get_sentence_boundaries(words, spaces)
 
         assert len(boundaries) == 6
 
