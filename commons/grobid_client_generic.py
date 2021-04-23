@@ -121,16 +121,16 @@ class grobid_client_generic(ApiClient):
             time.sleep(self.config['sleep_time'])
             return self.process_pdf(pdf_file, method_name, params, headers)
         elif status != 200:
-            print('Processing failed with error ', status)
+            # print('Processing failed with error ', status)
+            return None, status
         elif status == 204:
-            print('No content returned. Moving on. ')
+            # print('No content returned. Moving on. ')
+            return None, status
         else:
-            return res.text
+            return res.text, status
 
 
     def process_json(self, text, method_name="processJson", params={}, headers={"Accept": "application/json"}):
-
-
         files = {
             'input': (
                 None,
@@ -158,10 +158,12 @@ class grobid_client_generic(ApiClient):
 
         if status == 503:
             time.sleep(self.config['sleep_time'])
-            return self.process_json(text, method_name, params, headers)
+            return self.process_json(text, method_name, params, headers),status
         elif status != 200:
             print('Processing failed with error ', status)
+            return None, status
         elif status == 204:
             print('No content returned. Moving on. ')
+            return None, status
         else:
-            return res.text
+            return res.text, status

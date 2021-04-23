@@ -1,5 +1,14 @@
 # Supercon 2 
 
+**Work in progress**
+
+Scripts: 
+
+1. supercon_batch_mongo_extraction (save pdf, extract JSON response)
+2. supercon_bath_mongo_compute_table (compute tables and save back)
+
+
+
 ## Supercuration
 Supercuration (Superconductors Curation) is an interface based on [Grobid Superconductor](https://github.com/lfoppiano/grobid-superconductors) 
 which allows extraction and visualisation of material and properties from Superconductors-related papers. 

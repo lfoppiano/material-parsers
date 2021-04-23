@@ -9,7 +9,7 @@ from pathlib import Path
 from grobid_client_generic import grobid_client_generic
 
 from supercon.controller import json_serial
-from supercon.process.supercon_batch_mongo_extraction import connect_mongo
+from supercon.process.supercon_batch_mongo_extraction import connect_mongo, MongoSuperconProcessor
 
 
 class MongoTabularProcessor():
@@ -33,10 +33,10 @@ class MongoTabularProcessor():
                 del para['tokens']
         return document
 
-    def process_json_single(self, queue_json, db_name):
+    def process_json_single(self, queue_json, queue_status, db_name):
         connection = connect_mongo(config=self.config)
-        db_supercon_dev = connection[db_name]
-        tabular_collection = db_supercon_dev.get_collection("tabular")
+        db = connection[db_name]
+        tabular_collection = db.get_collection("tabular")
 
         while True:
             data = queue_json.get(block=True)
@@ -50,8 +50,9 @@ class MongoTabularProcessor():
             timestamp = data[2]
 
             preprocessed_json = self.prepare_document(raw_json)
+            biblio_data = preprocessed_json['biblio'] if 'biblio' in preprocessed_json else {}
 
-            r = self.grobid_client.process_json(json.dumps(preprocessed_json, default=json_serial), "processJson")
+            r, status = self.grobid_client.process_json(json.dumps(preprocessed_json, default=json_serial), "processJson")
             if r is None:
                 print("Response is empty or without content for TBD. Moving on. ")
             else:
@@ -61,9 +62,13 @@ class MongoTabularProcessor():
                     ag_e['hash'] = hash
                     ag_e['timestamp'] = timestamp
                     ag_e['type'] = 'automatic'
+                    for item in ['doi', 'authors', 'publisher', 'journal', 'year']:
+                        ag_e[item] = biblio_data[item] if item in biblio_data else ""
 
+                # We remove the previous version of the same data
                 tabular_collection.delete_many({"hash": hash})
                 tabular_collection.insert_many(json_aggregated_entries)
+            queue_status.put({'hash': hash, 'timestamp': timestamp, 'status': status}, block=True)
 
     def process_json_batch(self):
         connection = connect_mongo(config=self.config)
@@ -74,9 +79,11 @@ class MongoTabularProcessor():
         m = Manager()
         num_threads_process = num_threads - 1
         queue_input = m.Queue(maxsize=num_threads_process)
-        print("Processing documents using ", num_threads_process, "processes. ")
+        queue_status = m.Queue(maxsize=num_threads_process)
+        print("Processing documents using", num_threads_process, "processes. ")
 
-        pool_process = multiprocessing.Pool(num_threads_process, self.process_json_single, (queue_input, db_name,))
+        pool_process = multiprocessing.Pool(num_threads_process, self.process_json_single, (queue_input, queue_status, db_name,))
+        pool_status = multiprocessing.Pool(num_threads_process, MongoSuperconProcessor(config_path=config_path).write_mongo_status, (queue_status, db_name, 'aggregation', ))
 
         # cursor = db_supercon_dev.find({}, {"hash": 1}).distinct()
         cursor_aggregation = document_collection.aggregate(
@@ -89,6 +96,10 @@ class MongoTabularProcessor():
         queue_input.put(None)
         pool_process.close()
         pool_process.join()
+
+        queue_status.put(None)
+        pool_status.close()
+        pool_status.join()
 
 
 if __name__ == '__main__':

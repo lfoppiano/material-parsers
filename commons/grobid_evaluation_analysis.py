@@ -2,6 +2,8 @@
 import argparse
 import os
 import re
+import shutil
+import string
 import sys
 from collections import OrderedDict
 from pathlib import Path
@@ -86,7 +88,9 @@ def extract_error_cases(input_data, tokens_before=5, tokens_after=5):
                     reference_class_plain = reference_class.replace("I-", "")
                     previous_reference_class = ''
                     if i > 0 and len(fold['data'][i - 1]) > 1:
-                        previous_reference_class = fold['data'][i - 1][expected_class_index] if expected_class != "<other>" else fold['data'][i - 1][predicted_class_index]
+                        previous_reference_class = fold['data'][i - 1][
+                            expected_class_index] if expected_class != "<other>" else fold['data'][i - 1][
+                            predicted_class_index]
                     previous_reference_class_plain = previous_reference_class.replace("I-", "")
                     if in_error is False:
                         if len(error_case) > 0:
@@ -231,6 +235,7 @@ def count_discrepancies(cases):
     wrong_prediction_suffix_precision = '<-p>'
     wrong_prediction_suffix_recall = '<-r>'
     possible_wrong_annotation_suffix = '<+>'
+    # correct_annotation_suffix = '<=>'
 
     allowed_suffixes = [wrong_prediction_suffix_recall, wrong_prediction_suffix_precision,
                         possible_wrong_annotation_suffix]
@@ -245,30 +250,57 @@ def count_discrepancies(cases):
             discrepancies_counter_by_label[label] = {}
 
         local_counter = discrepancies_counter_by_label[label]
+        tokens_collector = []
+        item_suffix = ""
         for token in item[1]:
             matching = re.match(r"^.+(<[+-=][rp]?>)$", token[0])
             if matching and len(matching.groups()) > 0:
                 suffix = matching.group(1).strip()
-                if suffix not in allowed_suffixes:
+                if item_suffix == "":
+                    item_suffix = suffix
+                elif item_suffix != matching.group(1).strip():
+                    print("Suffix has changed. Ignoring")
+
+                if item_suffix not in allowed_suffixes:
                     continue
                 plain_token = token[0].replace(suffix, '')
-                if suffix not in local_counter:
+                tokens_collector.append(plain_token)
+                if item_suffix not in local_counter:
                     local_counter[suffix] = {}
 
-                if plain_token in local_counter[suffix]:
-                    local_counter[suffix][plain_token].append(item[1])
+            elif len(tokens_collector) > 0:
+                string_tokens = tokens_to_string(tokens_collector)
+                if string_tokens in local_counter[item_suffix]:
+                    local_counter[item_suffix][string_tokens] += 1
                 else:
-                    local_counter[suffix][plain_token] = [item[1]]
+                    local_counter[item_suffix][string_tokens] = 1
+
+                tokens_collector = []
+
+                # if plain_token in local_counter[suffix]:
+                #     local_counter[suffix][plain_token].append(item[1])
+                # else:
+                #     local_counter[suffix][plain_token] = [item[1]]
 
     return discrepancies_counter_by_label
 
 
+def tokens_to_string(tokens_collector):
+    output =  "".join(
+        [x if i < len(tokens_collector)-1 and tokens_collector[i + 1] in string.punctuation else x + " "
+         for i, x in enumerate(tokens_collector)])
+
+    return output.strip()
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description="Analysis n-fold cross-validation / holdout evaluation  results")
+        description="Analysis n-fold cross-validation / holdout evaluation results")
 
     parser.add_argument("--input", help="Input output file produced by grobid", required=True, type=Path)
-    # parser.add_argument("--output", help="Output directory", required=True)
+    parser.add_argument("--output", help="Output directory", required=False, default=None, type=Path)
+    parser.add_argument("--force", action="store_true", default=False,
+                        help="Force rewrite the output directory if exists.")
     # parser.add_argument("--recursive", action="store_true", default=False,
     #                     help="Process input directory recursively. If input is a file, this parameter is ignored.")
     # parser.add_argument("--format", default='csv', choices=['tsv', 'csv'],
@@ -277,16 +309,16 @@ if __name__ == '__main__':
     #                     help='Extract data from a certain type of licenced documents')
 
     args = parser.parse_args()
-    input = args.input
+    input_file = args.input
+    output_dir = args.output
+    force = args.force
 
-    if not os.path.isfile(input):
+    if not os.path.isfile(input_file):
         help()
         sys.exit(-1)
 
-    data = extract_log(input)
-
+    data = extract_log(input_file)
     error_cases = extract_error_cases(data)
-
     grouped_cases = {}
 
     for case in error_cases:
@@ -301,14 +333,10 @@ if __name__ == '__main__':
             grouped_cases[expected_label] = []
         grouped_cases[expected_label].append(text)
 
-    for i, suffix in enumerate(grouped_cases.keys()):
-        print('\n\n===', suffix, '\n')
-        for case in grouped_cases[suffix]:
-            print(case)
-
-        print('==========')
+    print('==========')
 
     ## Documentaton
+    print("\n== Description ==")
     print("<=> -> the model predicts correctly")
     print("<+> -> the model recognise an entity that wasn't expected - could be a discrepancy in annotation")
     print("<-p> -> the model wrongly recognise an entity (precision) ")
@@ -331,21 +359,59 @@ if __name__ == '__main__':
     # print("- Wrong predictions (recall) ", wrong_prediction_counter_recall)
     # print("- Wrong annotations", wrong_annotation_counter)
 
-    # Automatic detection of mismatches
     discrepancies = count_discrepancies(error_cases)
+    # Automatic detection of mismatches
+    if output_dir is None or (output_dir is not None and not os.path.isdir(output_dir)):
+        print("\n** The output directory is not defined, invalid or not-a-directory: "
+              "the script will only print the summary.**")
+        print("\n== Summary ==")
+        for label in discrepancies.keys():
+            print(" \n == ", label)
+            for suffix in discrepancies[label]:
+                print(" === ", suffix, "count: ", len(discrepancies[label][suffix]))
+
+        sys.exit(-1)
+
+    print("\n== Summary ==")
     sorted_discrepancies = OrderedDict()
+    root = os.path.join(output_dir, "detailed_data")
+    if os.path.exists(root):
+        if not force:
+            print("The directory ", root,
+                  "exists. To override, just run using --force or remove the directory before running the script.")
+            sys.exit(-1)
+        else:
+            print("Removing output directory. ")
+            shutil.rmtree(root)
+            os.mkdir(root)
+    else:
+        os.mkdir(root)
+
     for label in discrepancies.keys():
         print(" \n == ", label)
+        label_dir = os.path.join(root, label)
+        os.mkdir(label_dir)
         sorted_discrepancies[label] = OrderedDict()
         for suffix in discrepancies[label]:
+            suffix_dir = os.path.join(label_dir, suffix)
+            os.mkdir(suffix_dir)
             print(" === ", suffix, "count: ", len(discrepancies[label][suffix]))
-            sorted_items = sorted(discrepancies[label][suffix].items(), key=lambda item: len(item[1]), reverse=True)
-            for sorted_item in sorted_items[:10]:
-                print(" ==== ", sorted_item[0], "count: ", len(sorted_item[1]))
-                for error_case in sorted_item[1]:
-                    for line in error_case:
-                        print(" ", line)
-                    print("")
-                print(" --\n")
+            sorted_items = sorted(discrepancies[label][suffix].items(), key=lambda item: item[1], reverse=True)
+            for idx, sorted_item in enumerate(sorted_items[:10]):
+                filename = os.path.join(suffix_dir, "item_" + str(sorted_item[0]) + "_" + str(idx) + ".txt")
+                with open(filename, 'w') as f:
+                    f.write(" ==== " + str(sorted_item[0]) + " count: " + str(len(sorted_item[1])))
+                    f.write("\n")
+                    for error_case in sorted_item[1]:
+                        for line in error_case:
+                            f.write(", ".join(line) + "\n")
+                        f.write("\n")
 
-            sorted_discrepancies[label][suffix] = sorted_items[:10]
+    for i, label in enumerate(grouped_cases.keys()):
+        label_dir = os.path.join(root, label)
+        filename = os.path.join(label_dir, "summary.txt")
+        with open(filename, 'w') as f:
+            for case in grouped_cases[label]:
+                f.write(case + "\n")
+
+            # sorted_discrepancies[label][suffix] = sorted_items[:10]
