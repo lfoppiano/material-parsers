@@ -118,14 +118,6 @@ def get_manual_database():
     return render_template("manual_database.html")
 
 
-def json_serial(obj):
-    """JSON serializer for objects not serializable by default json code"""
-
-    if isinstance(obj, (datetime, date)):
-        return obj.isoformat()
-    raise TypeError("Type %s not serializable" % type(obj))
-
-
 @bp.route('/document/<hash>', methods=['GET'])
 def get_document(hash):
     return render_template("document.html", hash=hash)

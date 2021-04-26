@@ -7,9 +7,7 @@ from multiprocessing import Manager
 from pathlib import Path
 
 from grobid_client_generic import grobid_client_generic
-
-from supercon.controller import json_serial
-from supercon.process.supercon_batch_mongo_extraction import connect_mongo, MongoSuperconProcessor
+from supercon_batch_mongo_extraction import connect_mongo, MongoSuperconProcessor
 
 
 class MongoTabularProcessor():

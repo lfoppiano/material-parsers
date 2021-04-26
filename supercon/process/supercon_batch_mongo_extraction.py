@@ -198,6 +198,6 @@ if __name__ == '__main__':
             abs_path = os.path.join(root, file_)
             pdf_files.append(abs_path)
 
-    processor_.process_batch(pdf_files, num_threads=num_threads)
+    processor_.process_batch(pdf_files, num_threads=num_threads, db_name=db_name)
 
     # print("Finishing!")
