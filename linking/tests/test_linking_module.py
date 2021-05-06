@@ -1,7 +1,7 @@
 import logging
 
 from linking_module import RuleBasedLinker
-from tests.test_utils import prepare_doc, get_tokens, get_tokens_and_spans
+from test_utils import prepare_doc, get_tokens, get_tokens_and_spans
 
 LOGGER = logging.getLogger(__name__)
 
@@ -234,7 +234,7 @@ class TestRuleBasedLinker:
         target = RuleBasedLinker()
         boundaries = target.get_sentence_boundaries(words, spaces)
 
-        assert len(boundaries) == 6
+        assert len(boundaries) == 8
 
     def test_linking_pressure(self):
         text = "The LaFe0.2 Sr 0.4 was discovered to be superconducting at 3K applying a pressure of 5Gpa."

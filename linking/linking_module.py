@@ -26,7 +26,7 @@ Token.set_extension('formattedText', default="", force=True)
 
 
 class RuleBasedLinker:
-    def __init__(self, source="<material>", destination="<tcValue>"):
+    def __init__(self, source="<tcValue>", destination="<material>"):
         self.source = source
         self.destination = destination
 
@@ -235,13 +235,15 @@ class RuleBasedLinker:
             cumulatedIndex += len(words_boundary)
             cumulatedOffset += len(text)
 
-            materials = list(filter(lambda w: w['type'] in [self.source], spans_boundary))
-            temperatures = list(filter(lambda w: w['type'] in [self.destination], spans_boundary))
+            # material
+            destination_entities = list(filter(lambda w: w['type'] in [self.destination], spans_boundary))
+            # tcValue
+            source_entities = list(filter(lambda w: w['type'] in [self.source], spans_boundary))
 
             ## POST-PROCESS Material names
             # materials = post_process(materials)
 
-            if len(materials) > 0 and len(temperatures) > 0:
+            if len(destination_entities) > 0 and len(source_entities) > 0:
                 data_return = self.process_sentence(words_boundary, spaces_boundary, spans_boundary)
 
                 if len(data_return) > 0:
@@ -391,7 +393,7 @@ class RuleBasedLinker:
 
     def mark_temperatures_paragraph_json(self, paragraph_json):
         paragraph = json.loads(paragraph_json)
-        return json.dumps(self.mark_temperatures_paragraph(paragraph))
+        return json.dumps([self.mark_temperatures_paragraph(paragraph)])
 
     def process_sentence(self, words, spaces, spans):
         text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
@@ -410,20 +412,17 @@ class RuleBasedLinker:
 
         ### TC VALUES CLASSIFICATION
 
-        self.markCriticalTemperature(doc)
+        # self.markCriticalTemperature(doc)
 
         ### RELATIONSHIP EXTRACTION
         extracted_entities['relationships'] = []
 
-        materials = [entity for entity in filter(lambda w: w.ent_type_ in [self.source], doc)]
-        for material in materials:
-            material._.set('linkable', True)
-
-        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in [self.destination] and w._.linkable == True, doc)]
+        destination_entities = [entity for entity in filter(lambda w: w.ent_type_ in [self.destination], doc)]
+        source_entities = [entity for entity in filter(lambda w: w.ent_type_ in [self.source] and w._.linkable is True, doc)]
 
         ## 1 simple approach (when only one temperature and one material)
         resolver = SimpleResolutionResolver()
-        relationships = resolver.find_relationships(materials, tcValues)
+        relationships = resolver.find_relationships(destination_entities, source_entities)
 
         if len(relationships) > 0:
             extracted_entities['relationships'].extend(RuleBasedLinker.collect_relationships(relationships, 'simple'))
@@ -433,7 +432,7 @@ class RuleBasedLinker:
             ## 2 vicinity matching
 
             resolver = VicinityResolutionResolver()
-            relationships = resolver.find_relationships(doc, materials, tcValues)
+            relationships = resolver.find_relationships(doc, destination_entities, source_entities)
             if len(relationships) > 0:
                 extracted_entities['relationships'].extend(
                     RuleBasedLinker.collect_relationships(relationships, 'vicinity'))
@@ -443,7 +442,7 @@ class RuleBasedLinker:
                 ## 3 dependency parsing matching
 
                 resolver = DependencyParserResolutionResolver()
-                relationships = resolver.find_relationships(materials, tcValues)
+                relationships = resolver.find_relationships(destination_entities, source_entities)
                 if len(relationships) > 0:
                     extracted_entities['relationships'].extend(
                         RuleBasedLinker.collect_relationships(relationships, 'dependency'))

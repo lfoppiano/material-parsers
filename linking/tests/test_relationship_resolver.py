@@ -1,7 +1,7 @@
 import logging
 
 from relationships_resolver import SimpleResolutionResolver, VicinityResolutionResolver
-from tests.test_utils import prepare_doc
+from test_utils import prepare_doc
 
 LOGGER = logging.getLogger(__name__)
 

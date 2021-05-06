@@ -48,29 +48,29 @@ class VicinityResolutionResolver(ResolutionResolver):
     # TODO: add multi tokens, should modify the way tokens are looked up first...
 
     ## Assume the entities are already sorted
-    def find_relationships(self, doc, entities1, entities2):
+    def find_relationships(self, doc, destination_entities, source_entities):
         relationships = []
 
-        if len(entities1) < 1 or len(entities2) < 1:
+        if len(destination_entities) < 1 or len(source_entities) < 1:
             return relationships
 
-        if len(entities2) == 1:
-            closer_material = self.find_closer_to_pivot(entities2[0], entities1)
-            relationships.append(self.link_spans(closer_material, entities2[0], 'vicinity'))
+        if len(source_entities) == 1:
+            closer_material = self.find_closer_to_pivot(source_entities[0], destination_entities)
+            relationships.append(self.link_spans(closer_material, source_entities[0], 'vicinity'))
 
-        elif len(entities1) == 1:
-            closer_tcValue = self.find_closer_to_pivot(entities1[0], entities2)
-            relationships.append(self.link_spans(entities1[0], closer_tcValue, 'vicinity'))
+        elif len(destination_entities) == 1:
+            closer_tcValue = self.find_closer_to_pivot(destination_entities[0], source_entities)
+            relationships.append(self.link_spans(destination_entities[0], closer_tcValue, 'vicinity'))
 
         else:
             material_tc_mapping = {}
             tc_material_mapping = {}
 
             ## Checking that entities1 contains materials, else swap them
-            if entities1[0].ent_type_ != "<material>":
-                tmp = entities1
-                entities2 = entities1
-                entities1 = tmp
+            # if destination_entities[0].ent_type_ != "<material>" :
+            #     tmp = destination_entities
+            #     source_entities = destination_entities
+            #     destination_entities = tmp
 
             ## If 'respectively' is happearing in the sentence, we need to go in order, rather by absolute distance
             if 'respectively' in str(doc):
@@ -79,13 +79,13 @@ class VicinityResolutionResolver(ResolutionResolver):
 
                 respectively_tokens = [token for token in doc if str(token) == 'respectively']
                 if len(respectively_tokens) == 1:
-                    relationships.extend(self.assign_in_order(entities1, entities2))
+                    relationships.extend(self.assign_in_order(destination_entities, source_entities))
                 else:
                     previous_index = 0
                     for respectively_token in respectively_tokens:
-                        entities1_reduced = [token for token in entities1 if
+                        entities1_reduced = [token for token in destination_entities if
                                              respectively_token.i > token.i > previous_index]
-                        entities2_reduced = [token for token in entities2 if
+                        entities2_reduced = [token for token in source_entities if
                                              respectively_token.i > token.i > previous_index]
                         relationships.extend(self.assign_in_order(entities1_reduced, entities2_reduced))
                         previous_index = respectively_token.i
@@ -93,7 +93,7 @@ class VicinityResolutionResolver(ResolutionResolver):
             else:
                 assigned = []
                 # for each material I find the closest temperature who has not been assigned yet
-                material_tc_mapping = self.calculate_distances(entities1, entities2, doc)
+                material_tc_mapping = self.calculate_distances(destination_entities, source_entities, doc)
 
                 # build the inverse map tc -> material with each distance
                 for material in material_tc_mapping.keys():
@@ -108,7 +108,7 @@ class VicinityResolutionResolver(ResolutionResolver):
                 # print(material_tc_mapping)
                 # print(tc_material_mapping)
 
-                if len(entities1) <= len(entities2):
+                if len(destination_entities) <= len(source_entities):
                     for material in material_tc_mapping.keys():
                         tc_of_this_material = {tc_: distance for tc_, distance in material_tc_mapping[material].items()
                                                if tc_ not in assigned}
