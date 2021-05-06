@@ -75,7 +75,7 @@ def init(host='0.0.0.0', port='8080'):
     bottle.route('/process/tc', method="POST")(app.mark_critical_temperature)
     bottle.route('/process/formula', method="POST")(app.resolve_class)
     bottle.route('/info')(app.info)
-    bottle.debug(True)
+    bottle.debug(False)
     run(host=host, port=port, debug=True)
 
 
