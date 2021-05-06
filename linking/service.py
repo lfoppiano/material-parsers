@@ -3,7 +3,9 @@ import json
 import bottle
 import plac
 from bottle import request, run
+
 from linking_module import RuleBasedLinker
+from materialParserWrapper import MaterialParserWrapper
 
 
 class Service(object):
@@ -12,7 +14,7 @@ class Service(object):
         self.linker_tc_pressure = RuleBasedLinker(source="<pressure>", destination="<tcValue>")
 
     def info(self):
-        returnText = "Rule-based entity linker."
+        returnText = "Python utilities wrapper as a micro-service."
         return returnText
 
     def mark_critical_temperature(self):
@@ -46,6 +48,12 @@ class Service(object):
 
         return json.dumps(material_tc_linked)
 
+    def resolve_class(self):
+        formula_raw = request.forms.get("input")
+        classes = MaterialParserWrapper().formula_to_classes(formula_raw)
+
+        return json.dumps(list(classes.keys()))
+
     def process(self):
         input_raw = request.forms.get("input")
         input_json = json.loads(input_raw)
@@ -65,6 +73,7 @@ def init(host='0.0.0.0', port='8080'):
     bottle.route('/process/links', method="POST")(app.create_links)
     bottle.route('/process/all', method="POST")(app.process)
     bottle.route('/process/tc', method="POST")(app.mark_critical_temperature)
+    bottle.route('/process/formula', method="POST")(app.resolve_class)
     bottle.route('/info')(app.info)
     bottle.debug(True)
     run(host=host, port=port, debug=True)

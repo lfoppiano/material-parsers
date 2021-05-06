@@ -26,7 +26,7 @@ Token.set_extension('formattedText', default="", force=True)
 
 
 class RuleBasedLinker:
-    def __init__(self, source="<tcValue>", destination="<material>"):
+    def __init__(self, source="<tcValue>", destination="<material>", ):
         self.source = source
         self.destination = destination
 
