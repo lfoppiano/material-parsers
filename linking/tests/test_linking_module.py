@@ -1,18 +1,65 @@
 import logging
 
-from linking_module import RuleBasedLinker
+from linking_module import RuleBasedLinker, CriticalTemperatureClassifier
 from test_utils import prepare_doc, get_tokens, get_tokens_and_spans
 
 LOGGER = logging.getLogger(__name__)
 
 
+class TestSpacyPipeline:
+    def test_get_sentence_boundaries(self):
+        input = "The relatively high superconducting transition tempera- ture in La 3 Ir 2 Ge 2 is noteworthy. " \
+                "Recently, the isostructural compound La 3 Rh 2 Ge 2 was reported to be a superconducting material " \
+                "with critical temperature T C = 3.5 K. This value was considered to be the highest in the series of " \
+                "several La-based superconducting germanides, such as LaGe 2 , LaPd 2 Ge 2 , LaPt 2 Ge 2 , and " \
+                "LaIr 2 Ge 2 ͑see Ref. 21 and refer- ences therein͒. The critical temperature T C = 4.7 K discov- ered " \
+                "for La 3 Ir 2 Ge 2 in this work is by about 1.2 K higher than that found for La 3 Rh 2 Ge 2 . It is " \
+                "also interesting to note that a Y-based ternary germanide, namely, Y 2 PdGe 3 , crystallized in the " \
+                "hexagonal AlB 2 structure, was found to be a type-II su- perconductor with transition temperature " \
+                "T C =3 K. The re- sults of band calculations for this system 25,26 reveal that the Y-4d density of " \
+                "states dominates the Fermi level, and thus the superconductivity in this compound is believed to " \
+                "origi- nate from Y-4d electrons. In the present case of La 3 Ir 2 Ge 2 or La 3 Rh 2 Ge 2 , " \
+                "explanation of their superconductivity requires the knowledge of density of La-5d, Ir-5d ͑or Rh-4d͒, " \
+                "and Ge- 4p states. Hence band-structure calculations are necessary. "
+
+        spans = []
+
+        words, spaces, spans = get_tokens(input, spans)
+
+        target = RuleBasedLinker()
+        boundaries = target.get_sentence_boundaries(words, spaces)
+
+        assert len(boundaries) == 8
+
+
 class TestRuleBasedLinker:
+
+    def test_linking_pressure(self):
+        text = "The LaFe0.2 Sr 0.4 was discovered to be superconducting at 3K applying a pressure of 5Gpa."
+        input_spans = [("LaFe0.2 Sr 0.4", "<material>"), ("superconducting", "<tc>"), ("3K", "<tcValue>"),
+                       ("5Gpa", "<pressure>")]
+        tokens, spans = get_tokens_and_spans(text, input_spans)
+
+        paragraph = {
+            "text": text,
+            "spans": spans,
+            "tokens": tokens
+        }
+
+        target = RuleBasedLinker(source="<pressure>", destination="<tcValue>")
+
+        process_paragraph = target.process_paragraph(paragraph)
+
+        print(process_paragraph)
+
+
+class TestCriticalTemperatureClassifier:
     def test_markCriticalTemperature_simple_1(self):
         input = "The Tc of the BaClE2 is 30K."
 
         spans = [("Tc", "<tc>"), ("BaClE2", "<material>"), ("30K", "<tcValue>")]
 
-        target = RuleBasedLinker()
+        target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
         doc2 = target.markCriticalTemperature(doc)
 
@@ -26,7 +73,7 @@ class TestRuleBasedLinker:
 
         spans = [("BaClE2", "<material>"), ("superconducts", "<tc>"), ("30K", "<tcValue>")]
 
-        target = RuleBasedLinker()
+        target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
         doc2 = target.markCriticalTemperature(doc)
 
@@ -40,7 +87,7 @@ class TestRuleBasedLinker:
 
         spans = [("<tc>", "<tc>"), ("BaClE2", "<material>"), ("30K", "<tcValue>")]
 
-        target = RuleBasedLinker()
+        target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
         doc2 = target.markCriticalTemperature(doc)
 
@@ -54,7 +101,7 @@ class TestRuleBasedLinker:
 
         spans = [("BaClE2", "<material>"), ("Tc", "<tc>"), ("30K", "<tcValue>")]
 
-        target = RuleBasedLinker()
+        target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
         doc2 = target.markCriticalTemperature(doc)
 
@@ -70,7 +117,7 @@ class TestRuleBasedLinker:
         spans = [("BaFe 2−x Ni x As 2 crystal", "<material>"), ("T c", "<tc>"), ("8 K", "<tcValue>"),
                  ("13 K", "<tcValue>")]
 
-        target = RuleBasedLinker()
+        target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
         doc2 = target.markCriticalTemperature(doc)
 
@@ -85,7 +132,7 @@ class TestRuleBasedLinker:
         spans = [("BaFe2(As1−xPx)2", "<material>"), ("Tc0", "<tc>"), ("28 K", "<tcValue>"), ("Tc0", "<tc>"),
                  ("29 K", "<tcValue>")]
 
-        target = RuleBasedLinker()
+        target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
         doc2 = target.markCriticalTemperature(doc)
 
@@ -103,7 +150,7 @@ class TestRuleBasedLinker:
 
         spans = [("BCO/CCO", "<material>"), ("CCO)", "<material>"), ("T C", "<tc>"), ("5 K", "<tcValue>")]
 
-        target = RuleBasedLinker()
+        target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
         doc2 = target.markCriticalTemperature(doc)
 
@@ -133,7 +180,7 @@ class TestRuleBasedLinker:
         spans = [("B1", "<material>"), ("B2 (with 6 wt% Ag)", "<material>"),
                  ("0.8 K", "<tcValue>"), ]
 
-        target = RuleBasedLinker()
+        target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
         doc2 = target.markCriticalTemperature(doc)
 
@@ -149,7 +196,7 @@ class TestRuleBasedLinker:
                  ("La 3 Ir 2 Ge 2", "<material>"),
                  ("La 3 Rh 2 Ge 2", "<material>")]
 
-        target = RuleBasedLinker()
+        target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
         doc2 = target.markCriticalTemperature(doc)
 
@@ -163,7 +210,7 @@ class TestRuleBasedLinker:
 
         spans = [("BaClE2", "<material>"), ("<tc>", "<tc>"), ("30K", "<tcValue>")]
 
-        target = RuleBasedLinker()
+        target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
         doc2 = target.markCriticalTemperature(doc)
 
@@ -179,7 +226,7 @@ class TestRuleBasedLinker:
                  ("YBCO + BSO2% + YOB", "<material>"),
                  ("89.7 K", "<tcValue>"), ("86.7 K", "<tcValue>"), ("89.7 K", "<tcValue>")]
 
-        target = RuleBasedLinker()
+        target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
         doc2 = target.markCriticalTemperature(doc)
 
@@ -202,7 +249,7 @@ class TestRuleBasedLinker:
         spans = [("Tc", "<tc>"), ("2.7 K", "<tcValue>"), ("CsFe2As2", "<material>"),
                  ("38 K", "<tcValue>"), ("A1−xKxFe2As2", "<material>")]
 
-        target = RuleBasedLinker()
+        target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
         doc2 = target.markCriticalTemperature(doc)
 
@@ -212,50 +259,10 @@ class TestRuleBasedLinker:
 
         assert tcValues[0].text == "2.7 K"
 
-    def test_get_sentence_boundaries(self):
-        input = "The relatively high superconducting transition tempera- ture in La 3 Ir 2 Ge 2 is noteworthy. " \
-                "Recently, the isostructural compound La 3 Rh 2 Ge 2 was reported to be a superconducting material " \
-                "with critical temperature T C = 3.5 K. This value was considered to be the highest in the series of " \
-                "several La-based superconducting germanides, such as LaGe 2 , LaPd 2 Ge 2 , LaPt 2 Ge 2 , and " \
-                "LaIr 2 Ge 2 ͑see Ref. 21 and refer- ences therein͒. The critical temperature T C = 4.7 K discov- ered " \
-                "for La 3 Ir 2 Ge 2 in this work is by about 1.2 K higher than that found for La 3 Rh 2 Ge 2 . It is " \
-                "also interesting to note that a Y-based ternary germanide, namely, Y 2 PdGe 3 , crystallized in the " \
-                "hexagonal AlB 2 structure, was found to be a type-II su- perconductor with transition temperature " \
-                "T C =3 K. The re- sults of band calculations for this system 25,26 reveal that the Y-4d density of " \
-                "states dominates the Fermi level, and thus the superconductivity in this compound is believed to " \
-                "origi- nate from Y-4d electrons. In the present case of La 3 Ir 2 Ge 2 or La 3 Rh 2 Ge 2 , " \
-                "explanation of their superconductivity requires the knowledge of density of La-5d, Ir-5d ͑or Rh-4d͒, " \
-                "and Ge- 4p states. Hence band-structure calculations are necessary. "
-
-        spans = []
-
-        words, spaces, spans = get_tokens(input, spans)
-
-        target = RuleBasedLinker()
-        boundaries = target.get_sentence_boundaries(words, spaces)
-
-        assert len(boundaries) == 8
-
-    def test_linking_pressure(self):
-        text = "The LaFe0.2 Sr 0.4 was discovered to be superconducting at 3K applying a pressure of 5Gpa."
-        input_spans = [("LaFe0.2 Sr 0.4", "<material>"), ("superconducting", "<tc>"), ("3K", "<tcValue>"), ("5Gpa", "<pressure>")]
-        tokens, spans = get_tokens_and_spans(text, input_spans)
-
-        paragraph = {
-            "text": text,
-            "spans": spans,
-            "tokens": tokens
-        }
-
-        target = RuleBasedLinker(source="<pressure>", destination="<tcValue>")
-
-        process_paragraph = target.process_paragraph(paragraph)
-
-        print(process_paragraph)
-
     def test_mark_temperatures_process(self):
         text = "The LaFe0.2 Sr 0.4 was discovered to be superconducting at 3K applying a pressure of 5Gpa."
-        input_spans = [("LaFe0.2 Sr 0.4", "<material>"), ("superconducting", "<tc>"), ("3K", "<tcValue>"), ("5Gpa", "<pressure>")]
+        input_spans = [("LaFe0.2 Sr 0.4", "<material>"), ("superconducting", "<tc>"), ("3K", "<tcValue>"),
+                       ("5Gpa", "<pressure>")]
         tokens, spans = get_tokens_and_spans(text, input_spans)
 
         paragraph = {
@@ -264,7 +271,7 @@ class TestRuleBasedLinker:
             "tokens": tokens
         }
 
-        target = RuleBasedLinker(source="<material>", destination="<tcValue>")
+        target = CriticalTemperatureClassifier()
 
         spans[0]['linkable'] = True
         process_paragraph = target.mark_temperatures_paragraph(paragraph)
@@ -274,4 +281,3 @@ class TestRuleBasedLinker:
         assert len(linkable_spans) == 2
         assert process_paragraph['spans'][0]['linkable'] is True
         assert process_paragraph['spans'][2]['linkable'] is True
-
