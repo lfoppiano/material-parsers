@@ -61,7 +61,7 @@ class TestCriticalTemperatureClassifier:
 
         target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
-        doc2 = target.markCriticalTemperature(doc)
+        doc2 = target.process_doc(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -75,7 +75,7 @@ class TestCriticalTemperatureClassifier:
 
         target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
-        doc2 = target.markCriticalTemperature(doc)
+        doc2 = target.process_doc(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -89,7 +89,7 @@ class TestCriticalTemperatureClassifier:
 
         target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
-        doc2 = target.markCriticalTemperature(doc)
+        doc2 = target.process_doc(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -103,7 +103,7 @@ class TestCriticalTemperatureClassifier:
 
         target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
-        doc2 = target.markCriticalTemperature(doc)
+        doc2 = target.process_doc(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -119,7 +119,7 @@ class TestCriticalTemperatureClassifier:
 
         target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
-        doc2 = target.markCriticalTemperature(doc)
+        doc2 = target.process_doc(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -134,7 +134,7 @@ class TestCriticalTemperatureClassifier:
 
         target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
-        doc2 = target.markCriticalTemperature(doc)
+        doc2 = target.process_doc(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -152,7 +152,7 @@ class TestCriticalTemperatureClassifier:
 
         target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
-        doc2 = target.markCriticalTemperature(doc)
+        doc2 = target.process_doc(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -182,7 +182,7 @@ class TestCriticalTemperatureClassifier:
 
         target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
-        doc2 = target.markCriticalTemperature(doc)
+        doc2 = target.process_doc(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -198,7 +198,7 @@ class TestCriticalTemperatureClassifier:
 
         target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
-        doc2 = target.markCriticalTemperature(doc)
+        doc2 = target.process_doc(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -212,7 +212,7 @@ class TestCriticalTemperatureClassifier:
 
         target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
-        doc2 = target.markCriticalTemperature(doc)
+        doc2 = target.process_doc(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -228,7 +228,7 @@ class TestCriticalTemperatureClassifier:
 
         target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
-        doc2 = target.markCriticalTemperature(doc)
+        doc2 = target.process_doc(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 
@@ -251,7 +251,7 @@ class TestCriticalTemperatureClassifier:
 
         target = CriticalTemperatureClassifier()
         doc = prepare_doc(input, spans)
-        doc2 = target.markCriticalTemperature(doc)
+        doc2 = target.process_doc(doc)
 
         tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
 

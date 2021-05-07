@@ -149,7 +149,6 @@ class SpacyPipeline:
 
         return outputTokens, outputSpaces
 
-
     @staticmethod
     def convert_to_spacy(tokens, spans):
         outputTokens = []
@@ -435,7 +434,7 @@ class CriticalTemperatureClassifier(SpacyPipeline):
     def __init__(self):
         super(CriticalTemperatureClassifier, self).__init__()
 
-    def markCriticalTemperature(self, doc):
+    def process_doc(self, doc):
         temps = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature>', '<tcvalue>', '<tcValue>'], doc)]
         tc_expressions = [entity for entity in filter(lambda w: w.ent_type_ in ['<tc>'], doc)]
 
@@ -537,7 +536,7 @@ class CriticalTemperatureClassifier(SpacyPipeline):
     def mark_temperatures(self, text_, tokens_, spans_):
         words, spaces, spans_remapped = self.convert_to_spacy(tokens_, spans_)
         doc = self.init_doc(words, spaces, spans_remapped)
-        self.markCriticalTemperature(doc)
+        self.process_doc(doc)
 
         extracted_entities = {}
 

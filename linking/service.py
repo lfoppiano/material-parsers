@@ -4,7 +4,7 @@ import bottle
 import plac
 from bottle import request, run
 
-from linking_module import RuleBasedLinker
+from linking_module import RuleBasedLinker, CriticalTemperatureClassifier
 from materialParserWrapper import MaterialParserWrapper
 
 
@@ -12,6 +12,7 @@ class Service(object):
     def __init__(self):
         self.linker_material_tc = RuleBasedLinker(source="<tcValue>", destination="<material>")
         self.linker_tc_pressure = RuleBasedLinker(source="<pressure>", destination="<tcValue>")
+        self.temperature_classifier = CriticalTemperatureClassifier()
 
     def info(self):
         returnText = "Python utilities wrapper as a micro-service."
@@ -20,7 +21,7 @@ class Service(object):
     def mark_critical_temperature(self):
         input_raw = request.forms.get("input")
 
-        return self.linker_material_tc.mark_temperatures_paragraph_json(input_raw)
+        return self.temperature_classifier.mark_temperatures_paragraph_json(input_raw)
 
     def create_links(self):
         input_raw = request.forms.get("input")
