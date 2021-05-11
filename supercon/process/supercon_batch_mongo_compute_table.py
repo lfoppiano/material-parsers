@@ -7,6 +7,7 @@ from multiprocessing import Manager
 from pathlib import Path
 
 from grobid_client_generic import grobid_client_generic
+from process.utils import json_serial
 from supercon_batch_mongo_extraction import connect_mongo, MongoSuperconProcessor
 
 
@@ -81,7 +82,7 @@ class MongoTabularProcessor():
         print("Processing documents using", num_threads_process, "processes. ")
 
         pool_process = multiprocessing.Pool(num_threads_process, self.process_json_single, (queue_input, queue_status, db_name,))
-        pool_status = multiprocessing.Pool(num_threads_process, MongoSuperconProcessor(config_path=config_path).write_mongo_status, (queue_status, db_name, 'aggregation', ))
+        pool_status = multiprocessing.Pool(num_threads_process, MongoSuperconProcessor(config_path=config_path).write_mongo_status, (db_name, 'aggregation', ))
 
         # cursor = db_supercon_dev.find({}, {"hash": 1}).distinct()
         cursor_aggregation = document_collection.aggregate(

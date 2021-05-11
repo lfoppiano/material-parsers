@@ -7,6 +7,7 @@ from bottle import request, run
 from linking_module import RuleBasedLinker, CriticalTemperatureClassifier
 from materialParserWrapper import MaterialParserWrapper
 
+bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024 * 1024
 
 class Service(object):
     def __init__(self):

@@ -7,7 +7,7 @@ from flask import Flask, render_template, request, Response, Blueprint, url_for
 from grobid_client_generic import grobid_client_generic
 from linking_module import RuleBasedLinker
 
-from supercon.process.supercon_batch_mongo_extraction import connect_mongo
+from process.supercon_batch_mongo_extraction import connect_mongo
 
 bp = Blueprint('supercon', __name__)
 
