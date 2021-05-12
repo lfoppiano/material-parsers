@@ -1,13 +1,14 @@
+import argparse
 import json
 
 import bottle
-import plac
-from bottle import request, run
+from bottle import request, run, route
 
 from linking_module import RuleBasedLinker, CriticalTemperatureClassifier
 from materialParserWrapper import MaterialParserWrapper
 
 bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024 * 1024
+
 
 class Service(object):
     def __init__(self):
@@ -15,15 +16,18 @@ class Service(object):
         self.linker_tc_pressure = RuleBasedLinker(source="<pressure>", destination="<tcValue>")
         self.temperature_classifier = CriticalTemperatureClassifier()
 
+    @route('/info')
     def info(self):
         returnText = "Python utilities wrapper as a micro-service."
         return returnText
 
+    @route('/process/tc', method="POST")
     def mark_critical_temperature(self):
         input_raw = request.forms.get("input")
 
         return self.temperature_classifier.mark_temperatures_paragraph_json(input_raw)
 
+    @route('/process/links', method="POST")
     def create_links(self):
         input_raw = request.forms.get("input")
         paragraph_input = json.loads(input_raw)
@@ -52,12 +56,14 @@ class Service(object):
 
         return json.dumps(material_tc_linked)
 
+    @route('/process/formula', method="POST")
     def resolve_class(self):
         formula_raw = request.forms.get("input")
         classes = MaterialParserWrapper().formula_to_classes(formula_raw)
 
         return json.dumps(list(classes.keys()))
 
+    @route('/process/all', method="POST")
     def process(self):
         input_raw = request.forms.get("input")
         input_json = json.loads(input_raw)
@@ -67,21 +73,15 @@ class Service(object):
         return self.linker_tc_pressure.process_paragraph_json(material_tc_linked)
 
 
-@plac.annotations(
-    host=("Hostname where to run the service", "option", "host", str),
-    port=("Port where to run the service", "option", "port", str),
-)
-def init(host='0.0.0.0', port='8080'):
-    app = Service()
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description="Linking module API")
+    parser.add_argument("--host", help="Hostname to be bound the service", type=str, required=False, default="0.0.0.0")
+    parser.add_argument("--port", help="Port to be listening to", type=str, required=False, default="8090")
 
-    bottle.route('/process/links', method="POST")(app.create_links)
-    bottle.route('/process/all', method="POST")(app.process)
-    bottle.route('/process/tc', method="POST")(app.mark_critical_temperature)
-    bottle.route('/process/formula', method="POST")(app.resolve_class)
-    bottle.route('/info')(app.info)
-    bottle.debug(False)
+    args = parser.parse_args()
+
+    host = args.host
+    port = args.port
+
     run(host=host, port=port, debug=True)
-
-
-if __name__ == "__main__":
-    plac.call(init)
