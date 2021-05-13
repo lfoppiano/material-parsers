@@ -35,18 +35,20 @@ def create_links():
     spans_map = {}
     for paragraphs in tc_pressure_linked:
         for span in paragraphs['spans'] if 'spans' in paragraphs else []:
-            if 'links' in span and span['id'] in spans_map and 'links' in spans_map[span['id']] \
-                and len(list(filter(lambda w: w['type'] != "crf", spans_map[span['id']]['links']))) > 0:
-                spans_map[span['id']] = span
+            if 'links' in span and len(span['links']) > 0:
+                links = span['links']
+                if span['id'] in spans_map:
+                    spans_map[span['id']].extend(list(filter(lambda w: w['type'] != "crf", links)))
+                else:
+                    spans_map[span['id']] = list(filter(lambda w: w['type'] != "crf", links))
 
     for paragraphs in material_tc_linked:
         for span in paragraphs['spans'] if 'spans' in paragraphs else []:
-            if span['id'] in spans_map and 'links' in spans_map[span['id']]:
-                links_list = list(filter(lambda w: w['type'] != "crf", spans_map[span['id']]['links']))
+            if span['id'] in spans_map:
                 if 'links' in span:
-                    span['links'].extend(links_list)
+                    span['links'].extend(spans_map[span['id']])
                 else:
-                    span['links'] = links_list
+                    span['links'] = spans_map[span['id']]
 
     # for paragraphs in material_tc_linked:
     #     material_tc_linked['relationships'].extends(tc_pressure_linked['relationships'])
