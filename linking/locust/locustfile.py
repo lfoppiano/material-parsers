@@ -3,7 +3,8 @@ import os
 import random
 
 import pydevd_pycharm
-from locust import HttpUser, task, between
+from locust import HttpUser, task, between, tag
+
 
 class QuickstartUser(HttpUser):
     wait_time = between(5, 9)
@@ -14,6 +15,7 @@ class QuickstartUser(HttpUser):
     # def process_class(self):
     #     pass
 
+    @tag('classify_temperature')
     @task
     def classify_temperature(self):
         n = random.randint(0, len(self.paragraphs) - 1)
@@ -23,6 +25,7 @@ class QuickstartUser(HttpUser):
         files = {"input": json.dumps(paragraph)}
         self.client.post(url="/process/tc", data=files, headers=headers, name="process/tc")
 
+    @tag('process_links')
     @task
     def process_links(self):
         n = random.randint(0, len(self.paragraphs) - 1)
