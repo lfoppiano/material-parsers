@@ -107,11 +107,11 @@ class SpacyPipeline:
                     overlapping = True
                     break
 
-            # Entities and phrase noun are not Overlapping
+            # Entities and phrase noun are not overlapping
             if not overlapping:
                 span.merge()
-        self.nlp.tagger(doc)
-        self.nlp.parser(doc)
+        # self.nlp.tagger(doc)
+        # self.nlp.parser(doc)
 
         return doc
 
@@ -435,8 +435,8 @@ class CriticalTemperatureClassifier(SpacyPipeline):
         super(CriticalTemperatureClassifier, self).__init__()
 
     def process_doc(self, doc):
-        temps = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature>', '<tcvalue>', '<tcValue>'], doc)]
-        tc_expressions = [entity for entity in filter(lambda w: w.ent_type_ in ['<tc>'], doc)]
+        temps = list(filter(lambda w: w.ent_type_ in ['<temperature>', '<tcvalue>', '<tcValue>'], doc))
+        tc_expressions = list(filter(lambda w: w.ent_type_ in ['<tc>'], doc))
 
         tc_expressions_standard = ["T c", "Tc", "tc", "t c"]
 
@@ -465,7 +465,6 @@ class CriticalTemperatureClassifier(SpacyPipeline):
 
                     marked_as_tc.extend(temps_before_respectively)
         else:
-
             for index_t, temp in enumerate(temps):
                 if temp in marked_as_tc:
                     continue
@@ -536,7 +535,7 @@ class CriticalTemperatureClassifier(SpacyPipeline):
     def mark_temperatures(self, text_, tokens_, spans_):
         words, spaces, spans_remapped = self.convert_to_spacy(tokens_, spans_)
         doc = self.init_doc(words, spaces, spans_remapped)
-        self.process_doc(doc)
+        doc = self.process_doc(doc)
 
         extracted_entities = {}
 
