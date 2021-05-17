@@ -17,7 +17,8 @@ class MongoTabularProcessor():
     def __init__(self, config_path):
         config_json = open(config_path).read()
         self.config = json.loads(config_json)
-        self.grobid_client = grobid_client_generic(config=self.config)
+        self.grobid_client = grobid_client_generic()
+        self.grobid_client.set_config(self.config)
         self.grobid_client.ping_grobid()
 
     def prepare_document(self, document):

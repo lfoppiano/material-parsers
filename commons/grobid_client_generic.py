@@ -12,6 +12,8 @@ At the moment, it supports only single document processing.
 
 Source: https://github.com/kermitt2/grobid-client-python 
 '''
+
+
 class grobid_client_generic(ApiClient):
 
 
@@ -38,9 +40,12 @@ class grobid_client_generic(ApiClient):
     def _load_config(self, config, ping=False):
         self.config = config
         if ping:
-            result = self.ping_grobid()
-            if not result:
-                raise Exception("Grobid is down.")
+            try:
+                result = self.ping_grobid()
+                if not result:
+                    raise Exception("Grobid is down.")
+            except Exception:
+                raise Exception("Grobid is down")
 
     def ping_grobid(self):
         # test if the server is up and running...
@@ -55,7 +60,6 @@ class grobid_client_generic(ApiClient):
         else:
             print("GROBID server is up and running")
             return True
-
 
     def get_grobid_url(self, action):
         grobid_config = self.config['grobid']
@@ -129,7 +133,6 @@ class grobid_client_generic(ApiClient):
         else:
             return res.text, status
 
-
     def process_json(self, text, method_name="processJson", params={}, headers={"Accept": "application/json"}):
         files = {
             'input': (
@@ -158,7 +161,7 @@ class grobid_client_generic(ApiClient):
 
         if status == 503:
             time.sleep(self.config['sleep_time'])
-            return self.process_json(text, method_name, params, headers),status
+            return self.process_json(text, method_name, params, headers), status
         elif status != 200:
             print('Processing failed with error ', status)
             return None, status
