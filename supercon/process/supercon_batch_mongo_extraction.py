@@ -57,7 +57,7 @@ class MongoSuperconProcessor:
 
 
     def write_mongo_status(self, db_name, service):
-        '''Writed the status of the document being processed'''
+        '''Write the status of the document being processed'''
         connection = connect_mongo(config=self.config)
         db = connection[db_name]
         while True:
@@ -70,6 +70,7 @@ class MongoSuperconProcessor:
             status_info['service'] = service
             db.logger.insert_one(status_info)
         pass
+
 
     def write_mongo_single(self, db_name):
         '''Write the result of the document being processed'''
@@ -143,10 +144,10 @@ class MongoSuperconProcessor:
 
     def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_failed=False):
         if db_name is None:
-            db_name = self.config["mongo"]["database"]
+            self.db_name = self.config["mongo"]["database"]
 
         num_threads_process = num_threads
-        num_threads_store = math.ceil(num_threads / 2)
+        num_threads_store = math.ceil(num_threads / 2) if num_threads > 1 else 1
         self.queue_input = self.m.Queue(maxsize=num_threads_process)
         self.queue_output = self.m.Queue(maxsize=num_threads_store)
         self.queue_status = self.m.Queue(maxsize=num_threads_store)
@@ -154,12 +155,9 @@ class MongoSuperconProcessor:
         print("Processing files using ", num_threads_process, "/", num_threads_store,
               "for process/store on mongodb.")
 
-        self.pool_write = multiprocessing.Pool(num_threads_store, self.write_mongo_single,
-                                               (db_name,))
-        self.pool_logger = multiprocessing.Pool(num_threads_store, self.write_mongo_status,
-                                                (db_name, 'extraction',))
-        self.pool_process = multiprocessing.Pool(num_threads_process, self.process_batch_single,
-                                                 ( ))
+        self.pool_write = multiprocessing.Pool(num_threads_store, self.write_mongo_single, (db_name,))
+        self.pool_logger = multiprocessing.Pool(num_threads_store, self.write_mongo_status, (db_name, 'extraction',))
+        self.pool_process = multiprocessing.Pool(num_threads_process, self.process_batch_single, ( ))
 
         self.process_only_failed = only_failed
 

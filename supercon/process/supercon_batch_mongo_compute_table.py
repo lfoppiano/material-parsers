@@ -1,25 +1,22 @@
 import argparse
 import json
+import math
 import multiprocessing
 import os
 import sys
 from multiprocessing import Manager
 from pathlib import Path
 
-from grobid_client_generic import grobid_client_generic
+from utils import json_serial
 from supercon_batch_mongo_extraction import connect_mongo, MongoSuperconProcessor
 
 
-class MongoTabularProcessor():
+class MongoTabularProcessor(MongoSuperconProcessor):
     grobid_client = None
     config = {}
 
     def __init__(self, config_path):
-        config_json = open(config_path).read()
-        self.config = json.loads(config_json)
-        self.grobid_client = grobid_client_generic()
-        self.grobid_client.set_config(self.config)
-        self.grobid_client.ping_grobid()
+        super(MongoTabularProcessor, self).__init__(config_path)
 
     def prepare_document(self, document):
         del document['pages']
@@ -32,16 +29,16 @@ class MongoTabularProcessor():
                 del para['tokens']
         return document
 
-    def process_json_single(self, queue_json, queue_status, db_name):
+    def process_json_single(self, db_name):
         connection = connect_mongo(config=self.config)
-        db = connection[db_name]
+        db = connection[self.db_name]
         tabular_collection = db.get_collection("tabular")
 
         while True:
-            data = queue_json.get(block=True)
+            data = self.queue_input.get(block=True)
             if data is None:
                 print("Got termination. Shutdown processor.")
-                queue_json.put(None)
+                self.queue_input.put(None)
                 break
 
             raw_json = data[0]
@@ -51,7 +48,8 @@ class MongoTabularProcessor():
             preprocessed_json = self.prepare_document(raw_json)
             biblio_data = preprocessed_json['biblio'] if 'biblio' in preprocessed_json else {}
 
-            r, status = self.grobid_client.process_json(json.dumps(preprocessed_json, default=json_serial), "processJson")
+            r, status = self.grobid_client.process_json(json.dumps(preprocessed_json, default=json_serial),
+                                                        "processJson")
             if r is None:
                 print("Response is empty or without content for TBD. Moving on. ")
             else:
@@ -67,22 +65,12 @@ class MongoTabularProcessor():
                 # We remove the previous version of the same data
                 tabular_collection.delete_many({"hash": hash})
                 tabular_collection.insert_many(json_aggregated_entries)
-            queue_status.put({'hash': hash, 'timestamp': timestamp, 'status': status}, block=True)
+            self.queue_status.put({'hash': hash, 'timestamp': timestamp, 'status': status}, block=True)
 
     def process_json_batch(self):
         connection = connect_mongo(config=self.config)
-        db_name = self.config['mongo']['database']
-        db_supercon_dev = connection[db_name]
+        db_supercon_dev = connection[self.db_name]
         document_collection = db_supercon_dev.get_collection("document")
-
-        m = Manager()
-        num_threads_process = num_threads - 1
-        queue_input = m.Queue(maxsize=num_threads_process)
-        queue_status = m.Queue(maxsize=num_threads_process)
-        print("Processing documents using", num_threads_process, "processes. ")
-
-        pool_process = multiprocessing.Pool(num_threads_process, self.process_json_single, (queue_input, queue_status, db_name,))
-        pool_status = multiprocessing.Pool(num_threads_process, MongoSuperconProcessor(config_path=config_path).write_mongo_status, (queue_status, db_name, 'aggregation', ))
 
         # cursor = db_supercon_dev.find({}, {"hash": 1}).distinct()
         cursor_aggregation = document_collection.aggregate(
@@ -90,15 +78,42 @@ class MongoTabularProcessor():
 
         for item in cursor_aggregation:
             document = document_collection.find_one({"hash": item['_id'], "timestamp": item['lastDate']})
-            queue_input.put((document, item['_id'], item['lastDate']))
+            self.queue_input.put((document, item['_id'], item['lastDate']))
 
-        queue_input.put(None)
-        pool_process.close()
-        pool_process.join()
+        self.tear_down_batch_processes()
 
-        queue_status.put(None)
-        pool_status.close()
-        pool_status.join()
+    def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_failed=False):
+        if db_name is None:
+            self.db_name = self.config["mongo"]["database"]
+            print(self.config)
+
+        num_threads_process = num_threads
+        num_threads_store = math.ceil(num_threads / 2) if num_threads > 1 else 1
+        self.queue_input = self.m.Queue(maxsize=num_threads_process)
+        self.queue_status = self.m.Queue(maxsize=num_threads_store)
+
+        print("Processing files using ", num_threads_process, "/", num_threads_store,
+              "for process/store on mongodb.")
+
+        self.pool_process = multiprocessing.Pool(num_threads_process, self.process_json_single,
+                                            (self.db_name,))
+        self.pool_status = multiprocessing.Pool(num_threads_process, self.write_mongo_status, (self.db_name, 'table_compute',))
+
+        self.process_only_failed = only_failed
+
+        return self.pool_process, self.queue_status, self.pool_status
+
+    def tear_down_batch_processes(self):
+        self.queue_input.put(None)
+        self.pool_process.close()
+        self.pool_process.join()
+
+        self.queue_status.put(None)
+        self.pool_logger.close()
+        self.pool_logger.join()
+
+    def get_queue_input(self):
+        return self.queue_input
 
 
 if __name__ == '__main__':
@@ -107,14 +122,22 @@ if __name__ == '__main__':
     parser.add_argument("--config", help="Configuration file", type=Path, required=True)
     parser.add_argument("--num-threads", "-n", help="Number of concurrent processes", type=int, default=2,
                         required=False)
+    parser.add_argument("--database", "-db",
+                        help="Force the database name which is normally read from the configuration file", type=str, required=False)
+
 
     args = parser.parse_args()
     config_path = args.config
     num_threads = args.num_threads
+    db_name = args.database
 
     if not os.path.exists(config_path):
         print("The config file does not exists. ")
         parser.print_help()
         sys.exit(-1)
 
-    MongoTabularProcessor(config_path=config_path).process_json_batch()
+    processor = MongoTabularProcessor(config_path=config_path)
+    processor.setup_batch_processes(num_threads=num_threads, db_name=db_name)
+
+    processor.process_json_batch()
+
