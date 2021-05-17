@@ -19,14 +19,10 @@ class grobid_client_generic(ApiClient):
 
     def __init__(self, config_path='./config.json', ping=False):
         self.config = None
-        self._load_config(config_path, ping)
+        self._load_config_from_file(path=config_path, ping=ping)
         os.environ['NO_PROXY'] = "nims.go.jp"
 
-    def __init__(self, config={}, ping=False):
-        self._load_config(config=config, ping=ping)
-        os.environ['NO_PROXY'] = "nims.go.jp"
-
-    def _load_config(self, path='./config.json', ping=False):
+    def _load_config_from_file(self, path='./config.json', ping=False):
         """
         Load the json configuration 
         """
@@ -37,7 +33,7 @@ class grobid_client_generic(ApiClient):
             if not result:
                 raise Exception("Grobid is down.")
 
-    def _load_config(self, config, ping=False):
+    def set_config(self, config, ping=False):
         self.config = config
         if ping:
             try:
