@@ -17,9 +17,10 @@ Source: https://github.com/kermitt2/grobid-client-python
 class grobid_client_generic(ApiClient):
 
 
-    def __init__(self, config_path='./config.json', ping=False):
+    def __init__(self, config_path=None, ping=False):
         self.config = None
-        self._load_config_from_file(path=config_path, ping=ping)
+        if config_path:
+            self._load_config_from_file(path=config_path, ping=ping)
         os.environ['NO_PROXY'] = "nims.go.jp"
 
     def _load_config_from_file(self, path='./config.json', ping=False):
