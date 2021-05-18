@@ -4,6 +4,7 @@ import math
 import multiprocessing
 import os
 import sys
+from datetime import datetime
 from pathlib import Path
 
 from supercon_batch_mongo_extraction import connect_mongo, MongoSuperconProcessor
@@ -64,7 +65,9 @@ class MongoTabularProcessor(MongoSuperconProcessor):
                 tabular_collection.delete_many({"hash": hash})
                 tabular_collection.insert_many(json_aggregated_entries)
 
-            self.queue_status.put({'hash': hash, 'timestamp': timestamp, 'status': status}, block=True)
+            self.queue_status.put(
+                {'hash': hash, 'timestamp_doc': timestamp, 'status': status, 'timestamp': datetime.utcnow()},
+                block=True)
 
     def process_json_batch(self):
         connection = connect_mongo(config=self.config)

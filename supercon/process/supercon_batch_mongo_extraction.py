@@ -129,7 +129,7 @@ class MongoSuperconProcessor:
                 extracted_json['type'] = 'automatic'
                 self.queue_output.put((extracted_json, source_path), block=True)
 
-            status_info = {'path': str(source_path), 'status': status}
+            status_info = {'path': str(source_path), 'status': status, 'timestamp': datetime.utcnow()}
             self.queue_status.put(status_info, block=True)
 
     def prepare_data(self, extracted_data, abs_path):
