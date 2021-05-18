@@ -109,7 +109,7 @@ class MongoSuperconProcessor:
                 self.queue_input.put(source_path)
                 break
 
-            if self.process_only_failed:
+            if self.process_only_new:
                 connection = connect_mongo(config=self.config)
                 db = connection[db_name]
                 hash_full = get_file_hash(abs_path)
@@ -142,7 +142,7 @@ class MongoSuperconProcessor:
 
         return extracted_json
 
-    def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_failed=False):
+    def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_new=False):
         if db_name is None:
             self.db_name = self.config["mongo"]["database"]
 
@@ -159,7 +159,7 @@ class MongoSuperconProcessor:
         self.pool_logger = multiprocessing.Pool(num_threads_store, self.write_mongo_status, (db_name, 'extraction',))
         self.pool_process = multiprocessing.Pool(num_threads_process, self.process_batch_single, ( ))
 
-        self.process_only_failed = only_failed
+        self.process_only_new = only_new
 
         return self.queue_input, self.pool_process, self.queue_status, self.pool_logger, self.queue_output, self.pool_write
 
@@ -187,7 +187,7 @@ if __name__ == '__main__':
     parser.add_argument("--config", help="Configuration file", type=Path, required=True)
     parser.add_argument("--num-threads", "-n", help="Number of concurrent processes", type=int, default=2,
                         required=False)
-    parser.add_argument("--only-failed", "-n", help="Processes only documents that have not record in the database", type=bool, default=False,
+    parser.add_argument("--only-new", help="Processes only documents that have not record in the database", type=bool, default=False,
                         required=False)
     parser.add_argument("--database", "-db",
                         help="Force the database name which is normally read from the configuration file", type=str, required=False)
@@ -198,7 +198,7 @@ if __name__ == '__main__':
     num_threads = args.num_threads
     config_path = args.config
     db_name = args.database
-    only_failed = args.only_failed
+    only_new = args.only_new
 
     if not os.path.exists(config_path):
         print("The config file does not exists. ")
@@ -212,7 +212,7 @@ if __name__ == '__main__':
 
     processor_ = MongoSuperconProcessor(config_path)
     pdf_files = []
-    processor_.setup_batch_processes(num_threads=num_threads, db_name=db_name, only_failed=only_failed)
+    processor_.setup_batch_processes(num_threads=num_threads, db_name=db_name, only_new=only_new)
     start_queue = processor_.get_queue_input()
 
     for root, dirs, files in os.walk(input_path):
