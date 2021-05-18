@@ -130,7 +130,7 @@ class grobid_client_generic(ApiClient):
         else:
             return res.text, status
 
-    def process_json(self, text, method_name="processJson", params={}, headers={"Accept": "application/json"}):
+    def process_json(self, text, method_name="processJson", params={}, headers={"Accept": "application/json"}, verbose=False):
         files = {
             'input': (
                 None,
@@ -160,10 +160,12 @@ class grobid_client_generic(ApiClient):
             time.sleep(self.config['sleep_time'])
             return self.process_json(text, method_name, params, headers), status
         elif status != 200:
-            print('Processing failed with error ', status)
+            if verbose:
+                print('Processing failed with error ', status)
             return None, status
         elif status == 204:
-            print('No content returned. Moving on. ')
+            if verbose:
+                print('No content returned. Moving on. ')
             return None, status
         else:
             return res.text, status
