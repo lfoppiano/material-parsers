@@ -104,7 +104,7 @@ class MongoTabularProcessor(MongoSuperconProcessor):
             print(self.config)
 
         num_threads_process = num_threads
-        num_threads_store = math.ceil(num_threads / 2) if num_threads > 1 else 1
+        num_threads_store = num_threads #math.ceil(num_threads / 2) if num_threads > 1 else 1
         self.queue_input = self.m.Queue(maxsize=num_threads_process)
         self.queue_status = self.m.Queue(maxsize=num_threads_store)
 
