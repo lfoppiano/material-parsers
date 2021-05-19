@@ -31,15 +31,23 @@ class Service(object):
 
         spans_map = {}
         for paragraphs in tc_pressure_linked:
-            for span in paragraphs['spans'] if 'spans' in paragraphs else []:
-                if 'links' in span and span['id'] in spans_map and 'links' in spans_map[span['id']] \
-                    and len(list(filter(lambda w: w['type'] != "crf", spans_map[span['id']]['links']))) > 0:
-                    spans_map[span['id']] = span
+            spans = paragraphs['spans'] if 'spans' in paragraphs else []
+            for span in spans:
+                if 'links' in span:
+                    non_crf_links = list(filter(lambda w: w['type'] != "crf", span['links']))
+
+                    if len(non_crf_links) > 0:
+                        span['links'] = non_crf_links
+                        spans_map[span['id']] = span
+
+                    # span['id'] in spans_map and 'links' in spans_map[span['id']]
+
+
 
         for paragraphs in material_tc_linked:
             for span in paragraphs['spans'] if 'spans' in paragraphs else []:
                 if span['id'] in spans_map and 'links' in spans_map[span['id']]:
-                    links_list = list(filter(lambda w: w['type'] != "crf", spans_map[span['id']]['links']))
+                    links_list = spans_map[span['id']]['links']
                     if 'links' in span:
                         span['links'].extend(links_list)
                     else:

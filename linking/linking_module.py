@@ -80,7 +80,7 @@ class RuleBasedLinker:
         entityOffset = 0
         inside = False
         if len(spans) > 0:
-            span = copy.copy(spans[entityOffset])
+            span = spans[entityOffset]
 
         for index, s in enumerate(tokens):
             if len(spans) > 0:
@@ -93,7 +93,7 @@ class RuleBasedLinker:
                     inside = False
                     if entityOffset + 1 < len(spans):
                         entityOffset += 1
-                        span = copy.copy(spans[entityOffset])
+                        span = spans[entityOffset]
                         if index == span['tokenStart']:
                             span['tokenStart'] = newIndexOffset
                             inside = True
@@ -224,7 +224,7 @@ class RuleBasedLinker:
 
             for s in spans_remapped:
                 if s['tokenStart'] >= boundary[0] and s['tokenEnd'] <= boundary[1]:
-                    copied_span = copy.copy(s)
+                    copied_span = s
                     copied_span['tokenStart'] = s['tokenStart'] - cumulatedIndex
                     copied_span['tokenEnd'] = s['tokenEnd'] - cumulatedIndex
                     copied_span['offsetStart'] = s['offsetStart'] - cumulatedOffset
@@ -260,9 +260,9 @@ class RuleBasedLinker:
         return output_data
 
     def process_paragraph(self, paragraph):
-        text_ = paragraph['text']
-        spans_ = paragraph['spans']
-        tokens_ = paragraph['tokens']
+        text_ = copy.deepcopy(paragraph['text'])
+        spans_ = copy.deepcopy(paragraph['spans'])
+        tokens_ = copy.deepcopy(paragraph['tokens'])
 
         return self.process(text_, spans_, tokens_)
 
