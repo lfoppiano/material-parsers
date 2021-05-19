@@ -9,6 +9,8 @@ from linking_module import RuleBasedLinker
 
 from process.supercon_batch_mongo_extraction import connect_mongo
 
+from process.utils import json_serial
+
 bp = Blueprint('supercon', __name__)
 
 with open('./config.json', 'r') as fp:
@@ -85,25 +87,20 @@ def get_tabular():
             entries.append(entry)
 
     elif type == 'automatic':
-        document_collection = db_supercon_dev.get_collection("document")
+        # document_collection = db_supercon_dev.get_collection("document")
         # documents = document_collection.aggregate(pipeline)
         # document_list = list(documents)
-        aggregation_query = [{"$sort": {"hash": 1, "timestamp": 1}},
-                         {"$group": {"_id": "$hash", "lastDate": {"$last": "$timestamp"}}}]
-        aggregation_query = [{"$match": {"type": type}}] + aggregation_query
-        cursor_aggregation = document_collection.aggregate(aggregation_query)
+        # aggregation_query = [{"$sort": {"hash": 1, "timestamp": 1}}, {"$group": {"_id": "$hash", "lastDate": {"$last": "$timestamp"}}}]
+        # aggregation_query = [{"$match": {"type": type}}] + aggregation_query
+        # cursor_aggregation = document_collection.aggregate(aggregation_query)
 
-        for document in cursor_aggregation:
-            hash = document['_id']
-            timestamp = document['lastDate']
-
-            for entry in tabular_collection.find({"hash": hash, "timestamp": timestamp}):
-                del entry['_id']
-                entry['section'] = entry['section'][1:-1] if 'section' in entry and entry['section'] is not None else ''
-                entry['subsection'] = entry['subsection'][1:-1] if 'subsection' in entry and entry[
-                    'subsection'] is not None else ''
-                entry['doc_url'] = url_for('supercon.get_document', hash=entry['hash'])
-                entries.append(entry)
+        for entry in tabular_collection.find({"type": "automatic"}):
+            del entry['_id']
+            entry['section'] = entry['section'][1:-1] if 'section' in entry and entry['section'] is not None else ''
+            entry['subsection'] = entry['subsection'][1:-1] if 'subsection' in entry and entry[
+                'subsection'] is not None else ''
+            entry['doc_url'] = url_for('supercon.get_document', hash=entry['hash'])
+            entries.append(entry)
 
     return json.dumps(entries, default=json_serial)
 

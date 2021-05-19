@@ -47,28 +47,30 @@ class MongoSuperconProcessor:
     m = Manager()
     queue_input = m.Queue()
     queue_output = m.Queue()
-    queue_status = m.Queue()
+    queue_logger = m.Queue()
 
     def __init__(self, config_path):
         config_json = open(config_path).read()
         self.config = json.loads(config_json)
-        self.grobid_client = grobid_client_generic(config=self.config, ping=True)
+        self.grobid_client = grobid_client_generic()
+        self.grobid_client.set_config(self.config, ping=True)
 
 
     def write_mongo_status(self, db_name, service):
-        '''Writed the status of the document being processed'''
+        '''Write the status of the document being processed'''
         connection = connect_mongo(config=self.config)
         db = connection[db_name]
         while True:
-            status_info = self.queue_status.get(block=True)
+            status_info = self.queue_logger.get(block=True)
             if status_info is None:
                 print("Got termination. Shutdown processor.")
-                self.queue_status.put(None)
+                self.queue_logger.put(None)
                 break
 
             status_info['service'] = service
             db.logger.insert_one(status_info)
         pass
+
 
     def write_mongo_single(self, db_name):
         '''Write the result of the document being processed'''
@@ -107,6 +109,15 @@ class MongoSuperconProcessor:
                 self.queue_input.put(source_path)
                 break
 
+            if self.process_only_new:
+                connection = connect_mongo(config=self.config)
+                db = connection[db_name]
+                hash_full = get_file_hash(abs_path)
+                hash = hash_full[:10]
+                document = db.document.find_one({"hash": hash})
+                if document:
+                    continue
+
             print("Processing file " + str(source_path))
 
             r, status = self.grobid_client.process_pdf(str(source_path), "processPDF",
@@ -118,8 +129,8 @@ class MongoSuperconProcessor:
                 extracted_json['type'] = 'automatic'
                 self.queue_output.put((extracted_json, source_path), block=True)
 
-            status_info = {'path': str(source_path), 'status': status}
-            self.queue_status.put(status_info, block=True)
+            status_info = {'path': str(source_path), 'status': status, 'timestamp': datetime.utcnow()}
+            self.queue_logger.put(status_info, block=True)
 
     def prepare_data(self, extracted_data, abs_path):
         extracted_json = json.loads(extracted_data)
@@ -131,27 +142,26 @@ class MongoSuperconProcessor:
 
         return extracted_json
 
-    def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1):
+    def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_new=False):
         if db_name is None:
-            db_name = self.config["mongo"]["database"]
+            self.db_name = self.config["mongo"]["database"]
 
         num_threads_process = num_threads
-        num_threads_store = math.ceil(num_threads / 2)
+        num_threads_store = math.ceil(num_threads / 2) if num_threads > 1 else 1
         self.queue_input = self.m.Queue(maxsize=num_threads_process)
         self.queue_output = self.m.Queue(maxsize=num_threads_store)
-        self.queue_status = self.m.Queue(maxsize=num_threads_store)
+        self.queue_logger = self.m.Queue(maxsize=num_threads_store)
 
         print("Processing files using ", num_threads_process, "/", num_threads_store,
               "for process/store on mongodb.")
 
-        self.pool_write = multiprocessing.Pool(num_threads_store, self.write_mongo_single,
-                                               (db_name,))
-        self.pool_logger = multiprocessing.Pool(num_threads_store, self.write_mongo_status,
-                                                (db_name, 'extraction',))
-        self.pool_process = multiprocessing.Pool(num_threads_process, self.process_batch_single,
-                                                 ( ))
+        self.pool_write = multiprocessing.Pool(num_threads_store, self.write_mongo_single, (db_name,))
+        self.pool_logger = multiprocessing.Pool(num_threads_store, self.write_mongo_status, (db_name, 'extraction',))
+        self.pool_process = multiprocessing.Pool(num_threads_process, self.process_batch_single, ( ))
 
-        return self.queue_input, self.pool_process, self.queue_status, self.pool_logger, self.queue_output, self.pool_write
+        self.process_only_new = only_new
+
+        return self.queue_input, self.pool_process, self.queue_logger, self.pool_logger, self.queue_output, self.pool_write
 
     def tear_down_batch_processes(self):
         self.queue_input.put(None)
@@ -162,7 +172,7 @@ class MongoSuperconProcessor:
         self.pool_write.close()
         self.pool_write.join()
 
-        self.queue_status.put(None)
+        self.queue_logger.put(None)
         self.pool_logger.close()
         self.pool_logger.join()
 
@@ -177,6 +187,8 @@ if __name__ == '__main__':
     parser.add_argument("--config", help="Configuration file", type=Path, required=True)
     parser.add_argument("--num-threads", "-n", help="Number of concurrent processes", type=int, default=2,
                         required=False)
+    parser.add_argument("--only-new", help="Processes only documents that have not record in the database", type=bool, default=False,
+                        required=False)
     parser.add_argument("--database", "-db",
                         help="Force the database name which is normally read from the configuration file", type=str, required=False)
 
@@ -186,6 +198,7 @@ if __name__ == '__main__':
     num_threads = args.num_threads
     config_path = args.config
     db_name = args.database
+    only_new = args.only_new
 
     if not os.path.exists(config_path):
         print("The config file does not exists. ")
@@ -199,7 +212,7 @@ if __name__ == '__main__':
 
     processor_ = MongoSuperconProcessor(config_path)
     pdf_files = []
-    processor_.setup_batch_processes(num_threads=num_threads, db_name=db_name)
+    processor_.setup_batch_processes(num_threads=num_threads, db_name=db_name, only_new=only_new)
     start_queue = processor_.get_queue_input()
 
     for root, dirs, files in os.walk(input_path):
