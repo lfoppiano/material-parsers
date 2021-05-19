@@ -10,6 +10,8 @@ from multiprocessing import Manager
 from pathlib import Path
 
 import gridfs
+from tqdm import tqdm
+
 from grobid_client_generic import grobid_client_generic
 from pymongo import MongoClient
 
@@ -155,11 +157,11 @@ class MongoSuperconProcessor:
         print("Processing files using ", num_threads_process, "/", num_threads_store,
               "for process/store on mongodb.")
 
-        self.pool_write = multiprocessing.Pool(num_threads_store, self.write_mongo_single, (db_name,))
-        self.pool_logger = multiprocessing.Pool(num_threads_store, self.write_mongo_status, (db_name, 'extraction',))
-        self.pool_process = multiprocessing.Pool(num_threads_process, self.process_batch_single, ( ))
-
         self.process_only_new = only_new
+
+        self.pool_write = multiprocessing.Pool(num_threads_store, self.write_mongo_single, (self.db_name,))
+        self.pool_logger = multiprocessing.Pool(num_threads_store, self.write_mongo_status, (self.db_name, 'extraction',))
+        self.pool_process = multiprocessing.Pool(num_threads_process, self.process_batch_single, ( ))
 
         return self.queue_input, self.pool_process, self.queue_logger, self.pool_logger, self.queue_output, self.pool_write
 
@@ -215,7 +217,7 @@ if __name__ == '__main__':
     processor_.setup_batch_processes(num_threads=num_threads, db_name=db_name, only_new=only_new)
     start_queue = processor_.get_queue_input()
 
-    for root, dirs, files in os.walk(input_path):
+    for root, dirs, files in tqdm(os.walk(input_path)):
         for file_ in files:
             if not file_.lower().endswith(".pdf"):
                 continue

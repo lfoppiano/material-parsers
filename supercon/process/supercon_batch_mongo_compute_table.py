@@ -7,6 +7,8 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from tqdm import tqdm
+
 from supercon_batch_mongo_extraction import connect_mongo, MongoSuperconProcessor
 from utils import json_serial
 
@@ -76,15 +78,19 @@ class MongoTabularProcessor(MongoSuperconProcessor):
         tabular_collection = db_supercon_dev.get_collection("tabular")
 
         total_documents = len(document_collection.distinct("hash"))
-        processed_documents = len(tabular_collection.distinct("hash"))
+        if not self.force:
+            processed_documents = len(tabular_collection.distinct("hash"))
+            documents_to_process = (total_documents - processed_documents)
+        else:
+            documents_to_process = total_documents
 
-        print("Document to process:", (total_documents - processed_documents))
+        print("Document to process:", documents_to_process)
 
         # cursor = db_supercon_dev.find({}, {"hash": 1}).distinct()
         cursor_aggregation = document_collection.aggregate(
             [{"$sort": {"hash": 1, "timestamp": 1}}, {"$group": {"_id": "$hash", "lastDate": {"$last": "$timestamp"}}}])
 
-        for item in cursor_aggregation:
+        for item in tqdm(iterable=cursor_aggregation, maxinterval=documents_to_process):
             # We skip data that has been already extracted
             if not self.force:
                 tabular_entry = tabular_collection.find_one({"hash": item['_id']}, {"hash": 1})
