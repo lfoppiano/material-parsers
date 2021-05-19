@@ -65,7 +65,7 @@ class MongoTabularProcessor(MongoSuperconProcessor):
                 tabular_collection.delete_many({"hash": hash})
                 tabular_collection.insert_many(json_aggregated_entries)
 
-            self.queue_status.put(
+            self.queue_logger.put(
                 {'hash': hash, 'timestamp_doc': timestamp, 'status': status, 'timestamp': datetime.utcnow()},
                 block=True)
 
@@ -106,25 +106,25 @@ class MongoTabularProcessor(MongoSuperconProcessor):
         num_threads_process = num_threads
         num_threads_store = num_threads #math.ceil(num_threads / 2) if num_threads > 1 else 1
         self.queue_input = self.m.Queue(maxsize=num_threads_process)
-        self.queue_status = self.m.Queue(maxsize=num_threads_store)
+        self.queue_logger = self.m.Queue(maxsize=num_threads_store)
 
         print("Processing files using ", num_threads_process, "/", num_threads_store,
               "for process/store on mongodb.")
 
         self.pool_process = multiprocessing.Pool(num_threads_process, self.process_json_single, ())
-        self.pool_status = multiprocessing.Pool(num_threads_process, self.write_mongo_status,
+        self.pool_logger = multiprocessing.Pool(num_threads_process, self.write_mongo_status,
                                                 (self.db_name, 'table_compute',))
 
         self.process_only_failed = only_failed
 
-        return self.pool_process, self.queue_status, self.pool_status
+        return self.pool_process, self.queue_logger, self.pool_logger
 
     def tear_down_batch_processes(self):
         self.queue_input.put(None)
         self.pool_process.close()
         self.pool_process.join()
 
-        self.queue_status.put(None)
+        self.queue_logger.put(None)
         self.pool_logger.close()
         self.pool_logger.join()
 

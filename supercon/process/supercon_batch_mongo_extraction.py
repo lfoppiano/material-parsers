@@ -47,7 +47,7 @@ class MongoSuperconProcessor:
     m = Manager()
     queue_input = m.Queue()
     queue_output = m.Queue()
-    queue_status = m.Queue()
+    queue_logger = m.Queue()
 
     def __init__(self, config_path):
         config_json = open(config_path).read()
@@ -61,10 +61,10 @@ class MongoSuperconProcessor:
         connection = connect_mongo(config=self.config)
         db = connection[db_name]
         while True:
-            status_info = self.queue_status.get(block=True)
+            status_info = self.queue_logger.get(block=True)
             if status_info is None:
                 print("Got termination. Shutdown processor.")
-                self.queue_status.put(None)
+                self.queue_logger.put(None)
                 break
 
             status_info['service'] = service
@@ -130,7 +130,7 @@ class MongoSuperconProcessor:
                 self.queue_output.put((extracted_json, source_path), block=True)
 
             status_info = {'path': str(source_path), 'status': status, 'timestamp': datetime.utcnow()}
-            self.queue_status.put(status_info, block=True)
+            self.queue_logger.put(status_info, block=True)
 
     def prepare_data(self, extracted_data, abs_path):
         extracted_json = json.loads(extracted_data)
@@ -150,7 +150,7 @@ class MongoSuperconProcessor:
         num_threads_store = math.ceil(num_threads / 2) if num_threads > 1 else 1
         self.queue_input = self.m.Queue(maxsize=num_threads_process)
         self.queue_output = self.m.Queue(maxsize=num_threads_store)
-        self.queue_status = self.m.Queue(maxsize=num_threads_store)
+        self.queue_logger = self.m.Queue(maxsize=num_threads_store)
 
         print("Processing files using ", num_threads_process, "/", num_threads_store,
               "for process/store on mongodb.")
@@ -161,7 +161,7 @@ class MongoSuperconProcessor:
 
         self.process_only_new = only_new
 
-        return self.queue_input, self.pool_process, self.queue_status, self.pool_logger, self.queue_output, self.pool_write
+        return self.queue_input, self.pool_process, self.queue_logger, self.pool_logger, self.queue_output, self.pool_write
 
     def tear_down_batch_processes(self):
         self.queue_input.put(None)
@@ -172,7 +172,7 @@ class MongoSuperconProcessor:
         self.pool_write.close()
         self.pool_write.join()
 
-        self.queue_status.put(None)
+        self.queue_logger.put(None)
         self.pool_logger.close()
         self.pool_logger.join()
 
