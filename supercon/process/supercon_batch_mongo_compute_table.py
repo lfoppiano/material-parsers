@@ -1,6 +1,5 @@
 import argparse
 import json
-import math
 import multiprocessing
 import os
 import sys
@@ -40,7 +39,8 @@ class MongoTabularProcessor(MongoSuperconProcessor):
         while True:
             data = self.queue_input.get(block=True)
             if data is None:
-                print("Got termination. Shutdown processor.")
+                if self.verbose:
+                    print("Got termination. Shutdown processor.")
                 self.queue_input.put(None)
                 break
 
@@ -104,13 +104,13 @@ class MongoTabularProcessor(MongoSuperconProcessor):
 
         self.tear_down_batch_processes()
 
-    def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_failed=False):
+    def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_failed=False, verbose=False):
         if db_name is None:
             self.db_name = self.config["mongo"]["database"]
             print(self.config)
 
         num_threads_process = num_threads
-        num_threads_store = num_threads #math.ceil(num_threads / 2) if num_threads > 1 else 1
+        num_threads_store = num_threads  # math.ceil(num_threads / 2) if num_threads > 1 else 1
         self.queue_input = self.m.Queue(maxsize=num_threads_process)
         self.queue_logger = self.m.Queue(maxsize=num_threads_store)
 
@@ -122,6 +122,7 @@ class MongoTabularProcessor(MongoSuperconProcessor):
                                                 (self.db_name, 'table_compute',))
 
         self.process_only_failed = only_failed
+        self.verbose = verbose
 
         return self.pool_process, self.queue_logger, self.pool_logger
 
@@ -148,12 +149,15 @@ if __name__ == '__main__':
                         help="Set the database name which is normally read from the configuration file", type=str,
                         required=False)
     parser.add_argument("--force", "-f", help="Re-process all the records and replace existing one. ", default=False)
+    parser.add_argument("--verbose",
+                        help="Print all log information", type=bool, required=False, default=False)
 
     args = parser.parse_args()
     config_path = args.config
     num_threads = args.num_threads
     db_name = args.database
     force = args.force
+    verbose = args.verbose
 
     if not os.path.exists(config_path):
         print("The config file does not exists. ")
@@ -161,6 +165,6 @@ if __name__ == '__main__':
         sys.exit(-1)
 
     processor = MongoTabularProcessor(config_path=config_path, force=force)
-    processor.setup_batch_processes(num_threads=num_threads, db_name=db_name)
+    processor.setup_batch_processes(num_threads=num_threads, db_name=db_name, verbose=verbose)
 
     processor.process_json_batch()

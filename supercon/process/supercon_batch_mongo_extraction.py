@@ -83,7 +83,8 @@ class MongoSuperconProcessor:
         while True:
             output = self.queue_output.get(block=True)
             if output is None:
-                print("Got termination. Shutdown processor.")
+                if self.verbose:
+                    print("Got termination. Shutdown processor.")
                 self.queue_output.put(None)
                 break
 
@@ -92,22 +93,28 @@ class MongoSuperconProcessor:
             hash = output_json['hash']
             timestamp = output_json['timestamp']
 
-            print("Storing annotations in mongodb, hash: ", hash)
+            if self.verbose:
+                print("Storing annotations in mongodb, hash: ", hash)
             document_id = db.document.insert_one(output_json).inserted_id
-            print("Storing binary ", hash)
+            if self.verbose:
+                print("Storing binary ", hash)
             file = fs_binary.find_one({"hash": hash})
             if not file:
                 with open(output_original_path, 'rb') as f:
                     fs_binary.put(f, hash=hash, timestamp=timestamp)
             else:
-                print("Binary already there, skipping")
-            print("Inserted document ", document_id)
+                if self.verbose:
+                    print("Binary already there, skipping")
+
+            if self.verbose:
+                print("Inserted document ", document_id)
 
     def process_batch_single(self):
         while True:
             source_path = self.queue_input.get(block=True)
             if source_path is None:
-                print("Got termination. Shutdown processor.")
+                if self.verbose:
+                    print("Got termination. Shutdown processor.")
                 self.queue_input.put(source_path)
                 break
 
@@ -120,12 +127,14 @@ class MongoSuperconProcessor:
                 if document:
                     continue
 
-            print("Processing file " + str(source_path))
+            if self.verbose:
+                print("Processing file " + str(source_path))
 
             r, status = self.grobid_client.process_pdf(str(source_path), "processPDF",
                                                        headers={"Accept": "application/json"})
             if r is None:
-                print("Response is empty or without content for " + str(source_path) + ". Moving on. ")
+                if self.verbose:
+                    print("Response is empty or without content for " + str(source_path) + ". Moving on. ")
             else:
                 extracted_json = self.prepare_data(r, source_path)
                 extracted_json['type'] = 'automatic'
@@ -144,7 +153,7 @@ class MongoSuperconProcessor:
 
         return extracted_json
 
-    def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_new=False):
+    def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_new=False, verbose=False):
         if db_name is None:
             self.db_name = self.config["mongo"]["database"]
 
@@ -158,6 +167,7 @@ class MongoSuperconProcessor:
               "for process/store on mongodb.")
 
         self.process_only_new = only_new
+        self.verbose = verbose
 
         self.pool_write = multiprocessing.Pool(num_threads_store, self.write_mongo_single, (self.db_name,))
         self.pool_logger = multiprocessing.Pool(num_threads_store, self.write_mongo_status, (self.db_name, 'extraction',))
@@ -193,6 +203,8 @@ if __name__ == '__main__':
                         required=False)
     parser.add_argument("--database", "-db",
                         help="Force the database name which is normally read from the configuration file", type=str, required=False)
+    parser.add_argument("--verbose",
+                        help="Print all log information", type=bool, required=False, default=False)
 
     args = parser.parse_args()
 
@@ -201,6 +213,7 @@ if __name__ == '__main__':
     config_path = args.config
     db_name = args.database
     only_new = args.only_new
+    verbose = args.verbose
 
     if not os.path.exists(config_path):
         print("The config file does not exists. ")
@@ -214,7 +227,7 @@ if __name__ == '__main__':
 
     processor_ = MongoSuperconProcessor(config_path)
     pdf_files = []
-    processor_.setup_batch_processes(num_threads=num_threads, db_name=db_name, only_new=only_new)
+    processor_.setup_batch_processes(num_threads=num_threads, db_name=db_name, only_new=only_new, verbose=verbose)
     start_queue = processor_.get_queue_input()
 
     for root, dirs, files in tqdm(os.walk(input_path)):
@@ -226,6 +239,7 @@ if __name__ == '__main__':
             # pdf_files.append(abs_path)
 
             start_queue.put(abs_path, block=True)
+
 
     print("Finishing!")
     processor_.tear_down_batch_processes()
