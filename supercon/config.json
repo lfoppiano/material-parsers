@@ -4,6 +4,7 @@
     "server": "http://localhost:8072",
     "prefix": "",
     "url_mapping": {
+      "processPDF_disableLinking": "/service/process/pdf?disableLinking=true",
       "processPDF": "/service/process/pdf",
       "processText": "/service/process/text",
       "processJson": "/service/process/json",
