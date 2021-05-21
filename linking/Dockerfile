@@ -28,5 +28,6 @@ RUN python3 -m pip install pip --upgrade
 RUN pip install -r ./requirements.txt
 RUN python -m spacy download en_core_web_sm
 
+EXPOSE 8080
 
 CMD ["python3", "/opt/linking/service.py"]
