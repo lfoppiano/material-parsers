@@ -8,8 +8,6 @@ from pathlib import Path
 
 from grobid_client_generic import grobid_client_generic
 
-grobid_client = grobid_client_generic(config_path='./config.json')
-
 header_row = ["Raw material", "Name", "Formula", "Doping", "Shape", "Class", "Fabrication", "Substrate",
               "Critical temperature", "Applied pressure", "Link type", "Section", "Subsection", "Sentence",
               'path', 'filename']
@@ -24,18 +22,18 @@ def decode(response_string):
         return "Type error: " + str(te)
 
 
-def process_file(source_path, format: str):
+def process_file(grobid_client, source_path, format: str, task="processPDF"):
     print("Processing file " + str(source_path))
     accept_header_value = "application/json" if format == 'json' else "text/csv"
 
-    r = grobid_client.process_pdf(str(source_path), "processPDF", headers={"Accept": accept_header_value})
+    r, error_code = grobid_client.process_pdf(str(source_path), task, headers={"Accept": accept_header_value})
     if r is None:
         print("Response is empty or without content for " + str(source_path) + ". Moving on. ")
         return []
         # raise Exception("Response is None for " + str(source_path) + ". Moving on. ")
     else:
         if format == 'json':
-            output = r
+            output = json.loads(r)
         else:
             output = [row for row in csv.reader(r.split("\n")) if len(row) > 0]
 
@@ -59,10 +57,13 @@ if __name__ == '__main__':
 
     parser.add_argument("--input", help="Input file or directory", type=Path, required=True)
     parser.add_argument("--output", help="Output directory", type=Path, required=True)
+    parser.add_argument("--config", help="Config file", type=Path, required=False, default='./config.json')
     parser.add_argument("--recursive", action="store_true", default=False,
                         help="Process input directory recursively. If input is a file, this parameter is ignored.")
     parser.add_argument("--format", default='csv', choices=['tsv', 'csv', 'json'],
                         help="Output format.")
+    parser.add_argument("--task", default='processPDF', choices=['processPDF', 'processPDF_disableLinking'],
+                        help="Tasks to be executed.")
 
     args = parser.parse_args()
 
@@ -70,6 +71,10 @@ if __name__ == '__main__':
     output_path = args.output
     recursive = args.recursive
     format = args.format
+    config = args.config
+    task = args.task
+
+    grobid_client = grobid_client_generic(config_path=config)
 
     if os.path.isdir(input_path):
         if not os.path.isdir(output_path):
@@ -107,14 +112,14 @@ if __name__ == '__main__':
 
         # output_data = []
         for input_file_path, output_file_path in path_list:
-            extracted_data = process_file(input_file_path, format)
+            extracted_data = process_file(grobid_client, input_file_path, format, task=task)
             # output_data.extend(file_data)
             # write_rows(output_file_path, header_row)
             if len(extracted_data) > 0:
                 write_data(output_file_path, extracted_data, format)
 
     elif os.path.isfile(input_path):
-        extracted_data = process_file(input_path, format)
+        extracted_data = process_file(grobid_client, input_path, format, task=task)
         output_filename = os.path.join(output_path, input_path.stem + "." + format)
 
         # write_rows(output_filename, header_row)

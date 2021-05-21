@@ -12,8 +12,6 @@ At the moment, it supports only single document processing.
 
 Source: https://github.com/kermitt2/grobid-client-python 
 '''
-
-
 class grobid_client_generic(ApiClient):
 
 

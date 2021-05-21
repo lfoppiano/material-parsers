@@ -3,7 +3,7 @@ from functools import wraps
 
 from grobid_tokenizer import tokenize
 # derived from https://github.com/elifesciences/sciencebeam-trainer-delft/tree/develop/tests
-from linking_module import RuleBasedLinker
+from linking_module import RuleBasedLinker, SpacyPipeline
 
 LOGGER = logging.getLogger(__name__)
 
@@ -30,7 +30,7 @@ def log_on_exception(f: callable) -> callable:
 def prepare_doc(input, input_spans):
     words, spaces, spans = get_tokens(input, input_spans)
 
-    doc = RuleBasedLinker.init_doc(words, spaces, spans)
+    doc = SpacyPipeline().init_doc(words, spaces, spans)
 
     return doc
 
@@ -46,7 +46,7 @@ def get_tokens_and_spans(input, input_spans):
 
 def get_tokens(input, input_spans):
     tokens, spans = get_tokens_and_spans(input, input_spans)
-    words, spaces, spans = RuleBasedLinker.convert_to_spacy(tokens, spans)
+    words, spaces, spans = SpacyPipeline.convert_to_spacy(tokens, spans)
 
     return words, spaces, spans
 

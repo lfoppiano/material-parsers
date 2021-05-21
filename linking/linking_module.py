@@ -7,10 +7,7 @@ from spacy.tokens import Span, Doc
 from spacy.tokens.token import Token
 
 from data_model import span_to_dict
-from relationships_resolver import SimpleResolutionResolver, VicinityResolutionResolver, \
-    DependencyParserResolutionResolver
-
-nlp = spacy.load("en_core_web_sm", disable=['ner', "textcat"])
+from relationships_resolver import SimpleResolutionResolver, VicinityResolutionResolver
 
 Span.set_extension('id', default=None, force=True)
 Span.set_extension('links', default=[], force=True)
@@ -25,40 +22,124 @@ Token.set_extension('bounding_boxes', default=[], force=True)
 Token.set_extension('formattedText', default="", force=True)
 
 
-class RuleBasedLinker:
-    def __init__(self, source="<tcValue>", destination="<material>", ):
-        self.source = source
-        self.destination = destination
+def decode(response):
+    try:
+        return response.json()
+    except ValueError as e:
+        return "Error: " + str(e)
 
-    MATERIAL_TC_TYPE = "<material-tc>"
-    TC_PRESSURE_TYPE = "<tc-pressure>"
-    TC_ME_METHOD_TYPE = "<tc-me_method>"
 
-    @staticmethod
-    def get_link_type(type1, type2):
-        if type1 == "<material>" and type2 == "<tcValue>":
-            return RuleBasedLinker.MATERIAL_TC_TYPE
-        elif type2 == "<material>" and type1 == "<tcValue>":
-            return RuleBasedLinker.MATERIAL_TC_TYPE
-        elif type1 == "<pressure>" and type2 == "<tcValue>":
-            return RuleBasedLinker.TC_PRESSURE_TYPE
-        elif type2 == "<pressure>" and type1 == "<tcValue>":
-            return RuleBasedLinker.TC_PRESSURE_TYPE
-        elif type1 == "<me_method>" and type2 == "<tcValue>":
-            return RuleBasedLinker.TC_ME_METHOD_TYPE
-        elif type2 == "<me_method>" and type1 == "<tcValue>":
-            return RuleBasedLinker.TC_ME_METHOD_TYPE
-        else:
-            raise Exception("The provided type are invalid. " + type1 + ", " + type2)
+def entities_classes():
+    return ['<material>', '<class>', '<temperature>', '<tc>',
+            '<tcValue>', '<tcvalue>', '<pressure>', '<me_method>',
+            '<material-tc>', '<temperature-tc>']
 
-    def decode(self, response):
-        try:
-            return response.json()
-        except ValueError as e:
-            return "Error: " + str(e)
 
-    @staticmethod
-    def convert_to_spacy2_simple(tokens):
+class SpacyPipeline:
+    def __init__(self):
+        self.nlp = spacy.load("en_core_web_sm", disable=['ner', "textcat", "lemmatizer", "tokenizer"])
+
+    def filter_spans(self, spans):
+        # Filter a sequence of spans so they don't contain overlaps
+        # For spaCy 2.1.4+: this function is available as spacy.util.filter_spans()
+        get_sort_key = lambda span: (span.end - span.start, -span.start)
+        sorted_spans = sorted(spans, key=get_sort_key, reverse=True)
+        result = []
+        seen_tokens = set()
+        for span in sorted_spans:
+            # Check for end - 1 here because boundaries are inclusive
+            if span.start not in seen_tokens and span.end - 1 not in seen_tokens:
+                result.append(span)
+            seen_tokens.update(range(span.start, span.end))
+        result = sorted(result, key=lambda span: span.start)
+        return result
+
+    def init_doc(self, words, spaces, spans):
+        ## Creating a new document with the text
+        doc = Doc(self.nlp.vocab, words=words, spaces=spaces)
+
+        ## Loading GROBID entities in the spaCY document
+        entities = []
+        for s in spans:
+            span = Span(doc=doc, start=s['tokenStart'], end=s['tokenEnd'], label=s['type'])
+            span._.set('id', str(s['id']))
+            if 'boundingBoxes' in s:
+                span._.set('bounding_boxes', s['boundingBoxes'])
+            if 'formattedText' in s:
+                span._.set('formattedText', s['formattedText'])
+            if 'links' in s:
+                span._.set('links', s['links'])
+            if 'linkable' in s:
+                span._.set('linkable', s['linkable'])
+
+            entities.append(span)
+
+        doc.ents = entities
+        # print("Entities: " + str(doc.ents))
+        for span in entities:
+            # Iterate over all spans and merge them into one token. This is done
+            # after setting the entities – otherwise, it would cause mismatched
+            # indices!
+            span.merge()
+            for token in span:
+                token._.id = span._.id
+                token._.bounding_boxes = span._.bounding_boxes
+                token._.formattedText = span._.formattedText
+                token._.links = span._.links
+                token._.linkable = span._.linkable
+        self.nlp.tagger(doc)
+        self.nlp.parser(doc)
+        ## Merge entities and phrase nouns, but only when they are not overlapping,
+        # to avoid loosing the entity type information
+        phrases_ents = self.extract_phrases_ents(doc)
+        # print(phrases_ents)
+        for span in phrases_ents:
+            # print("Span " + str(span))
+            overlapping = False
+            for ent in entities:
+                # print(ent)
+                if (
+                    (span.start <= ent.start <= span.end) or
+                    (span.start <= ent.end >= span.end) or
+                    (span.start >= ent.start and span.end <= ent.end) or
+                    (span.start <= ent.start and span.end >= ent.end)
+                ):
+                    overlapping = True
+                    break
+
+            # Entities and phrase noun are not overlapping
+            if not overlapping:
+                span.merge()
+        # self.nlp.tagger(doc)
+        # self.nlp.parser(doc)
+
+        return doc
+
+    def get_sentence_boundaries(self, words, spaces):
+        offset = 0
+        reconstructed = ''
+        sentence_offsetTokens = []
+        text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
+
+        for sent in text_to_sentences(text).split('\n'):
+            start = offset
+
+            for id in range(offset, len(words)):
+                token = words[id]
+                reconstructed += token
+                if spaces[id]:
+                    reconstructed += ' '
+                if len(reconstructed.rstrip()) == len(sent):
+                    offset += 1
+                    end = offset
+                    sentence_offsetTokens.append((start, end))
+                    reconstructed = ''
+                    break
+                offset += 1
+
+        return sentence_offsetTokens
+
+    def convert_to_spacy_simple(self, tokens):
         outputTokens = []
         outputSpaces = []
 
@@ -178,28 +259,44 @@ class RuleBasedLinker:
 
         return outputTokens, outputSpaces, outputSpans
 
-    @staticmethod
-    def extract_phrases_ents(doc):
+    def extract_phrases_ents(self, doc):
         phrases_ents = []
         for chunk in doc.noun_chunks:
             phrases_ents.append(Span(doc=doc, start=chunk.start, end=chunk.end, label='phrase'))
 
         return phrases_ents
 
-    def filter_spans(self, spans):
-        # Filter a sequence of spans so they don't contain overlaps
-        # For spaCy 2.1.4+: this function is available as spacy.util.filter_spans()
-        get_sort_key = lambda span: (span.end - span.start, -span.start)
-        sorted_spans = sorted(spans, key=get_sort_key, reverse=True)
-        result = []
-        seen_tokens = set()
-        for span in sorted_spans:
-            # Check for end - 1 here because boundaries are inclusive
-            if span.start not in seen_tokens and span.end - 1 not in seen_tokens:
-                result.append(span)
-            seen_tokens.update(range(span.start, span.end))
-        result = sorted(result, key=lambda span: span.start)
-        return result
+
+class RuleBasedLinker(SpacyPipeline):
+    def __init__(self, source="<tcValue>", destination="<material>", ):
+        super(RuleBasedLinker, self).__init__()
+        self.source = source
+        self.destination = destination
+
+    MATERIAL_TC_TYPE = "<material-tc>"
+    TC_PRESSURE_TYPE = "<tc-pressure>"
+    TC_ME_METHOD_TYPE = "<tc-me_method>"
+
+    @staticmethod
+    def collect_relationships(relationships, type):
+        return [{"type": type, "left": span_to_dict(re[0]), "right": span_to_dict(re[1])} for re in relationships]
+
+    @staticmethod
+    def get_link_type(type1, type2):
+        if type1 == "<material>" and type2 == "<tcValue>":
+            return RuleBasedLinker.MATERIAL_TC_TYPE
+        elif type2 == "<material>" and type1 == "<tcValue>":
+            return RuleBasedLinker.MATERIAL_TC_TYPE
+        elif type1 == "<pressure>" and type2 == "<tcValue>":
+            return RuleBasedLinker.TC_PRESSURE_TYPE
+        elif type2 == "<pressure>" and type1 == "<tcValue>":
+            return RuleBasedLinker.TC_PRESSURE_TYPE
+        elif type1 == "<me_method>" and type2 == "<tcValue>":
+            return RuleBasedLinker.TC_ME_METHOD_TYPE
+        elif type2 == "<me_method>" and type1 == "<tcValue>":
+            return RuleBasedLinker.TC_ME_METHOD_TYPE
+        else:
+            raise Exception("The provided type are invalid. " + type1 + ", " + type2)
 
     def process(self, text_, spans_, tokens_):
         ## Convert tokens from GROBID tokenisation
@@ -208,7 +305,7 @@ class RuleBasedLinker:
 
         ## Sentence segmentation
         # boundaries = get_sentence_boundaries(words, spaces)
-        boundaries = RuleBasedLinker.get_sentence_boundaries(words, spaces)
+        boundaries = self.get_sentence_boundaries(words, spaces)
 
         output_data = []
 
@@ -250,7 +347,8 @@ class RuleBasedLinker:
                     output_data.append(data_return)
             else:
                 data_return = {
-                    "spans": [entity for entity in filter(lambda w: w['type'] in RuleBasedLinker.entities_classes(), spans_boundary)],
+                    "spans": [entity for entity in
+                              filter(lambda w: w['type'] in entities_classes(), spans_boundary)],
                     "text": ''.join(
                         [words_boundary[i] + (' ' if spaces_boundary[i] else '') for i in
                          range(0, len(words_boundary))])
@@ -270,9 +368,75 @@ class RuleBasedLinker:
         paragraph = json.loads(paragraph_json)
         return json.dumps(self.process_paragraph(paragraph))
 
-    def markCriticalTemperature(self, doc):
-        temps = [entity for entity in filter(lambda w: w.ent_type_ in ['<temperature>', '<tcvalue>', '<tcValue>'], doc)]
-        tc_expressions = [entity for entity in filter(lambda w: w.ent_type_ in ['<tc>'], doc)]
+    def process_sentence(self, words, spaces, spans):
+        text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
+
+        # print("Processing: " + text)
+
+        doc = self.init_doc(words, spaces, spans)
+
+        extracted_entities = {}
+        # svg = displacy.render(doc, style="dep")
+        # filename = hashlib.sha224(b"Nobody inspects the spammish repetition").hexdigest()
+        # output_path = Path(str(filename) + ".svg")
+        # output_path.open("w", encoding="utf-8").write(svg)
+
+        # extracted_entities['tokens'] = words
+
+        ### TC VALUES CLASSIFICATION
+
+        # self.markCriticalTemperature(doc)
+
+        ### RELATIONSHIP EXTRACTION
+        extracted_entities['relationships'] = []
+
+        destination_entities = [entity for entity in filter(lambda w: w.ent_type_ in [self.destination], doc)]
+        source_entities = [entity for entity in
+                           filter(lambda w: w.ent_type_ in [self.source] and w._.linkable is True, doc)]
+
+        ## 1 simple approach (when only one temperature and one material)
+        resolver = SimpleResolutionResolver()
+        relationships = resolver.find_relationships(destination_entities, source_entities)
+
+        if len(relationships) > 0:
+            extracted_entities['relationships'].extend(RuleBasedLinker.collect_relationships(relationships, 'simple'))
+            # print(" Simple relationships " + str(extracted_entities['relationships']['simple']))
+        else:
+            ## 2 vicinity matching
+
+            resolver = VicinityResolutionResolver()
+            relationships = resolver.find_relationships(doc, destination_entities, source_entities)
+            if len(relationships) > 0:
+                extracted_entities['relationships'].extend(
+                    RuleBasedLinker.collect_relationships(relationships, 'vicinity'))
+                # print(" Vicinity relationships " + str(extracted_entities['relationships']['vicinity']))
+            # else:
+
+            ## 3 dependency parsing matching
+
+            # resolver = DependencyParserResolutionResolver()
+            # relationships = resolver.find_relationships(destination_entities, source_entities)
+            # if len(relationships) > 0:
+            #     extracted_entities['relationships'].extend(
+            #         RuleBasedLinker.collect_relationships(relationships, 'dependency'))
+            # print(" Dep relationships " + str(extracted_entities['relationships']['dependency']))
+
+        converted_spans = [span_to_dict(entity) for entity in
+                           filter(lambda w: w.ent_type_ in entities_classes(), doc)]
+
+        extracted_entities['spans'] = converted_spans
+        extracted_entities['text'] = text
+
+        return extracted_entities
+
+
+class CriticalTemperatureClassifier(SpacyPipeline):
+    def __init__(self):
+        super(CriticalTemperatureClassifier, self).__init__()
+
+    def process_doc(self, doc):
+        temps = list(filter(lambda w: w.ent_type_ in ['<temperature>', '<tcvalue>', '<tcValue>'], doc))
+        tc_expressions = list(filter(lambda w: w.ent_type_ in ['<tc>'], doc))
 
         tc_expressions_standard = ["T c", "Tc", "tc", "t c"]
 
@@ -301,7 +465,6 @@ class RuleBasedLinker:
 
                     marked_as_tc.extend(temps_before_respectively)
         else:
-
             for index_t, temp in enumerate(temps):
                 if temp in marked_as_tc:
                     continue
@@ -372,12 +535,12 @@ class RuleBasedLinker:
     def mark_temperatures(self, text_, tokens_, spans_):
         words, spaces, spans_remapped = self.convert_to_spacy(tokens_, spans_)
         doc = self.init_doc(words, spaces, spans_remapped)
-        self.markCriticalTemperature(doc)
+        doc = self.process_doc(doc)
 
         extracted_entities = {}
 
         converted_spans = [span_to_dict(entity) for entity in
-                           filter(lambda w: w.ent_type_ in RuleBasedLinker.entities_classes(), doc)]
+                           filter(lambda w: w.ent_type_ in entities_classes(), doc)]
 
         extracted_entities['spans'] = converted_spans
         extracted_entities['text'] = text_
@@ -394,184 +557,3 @@ class RuleBasedLinker:
     def mark_temperatures_paragraph_json(self, paragraph_json):
         paragraph = json.loads(paragraph_json)
         return json.dumps([self.mark_temperatures_paragraph(paragraph)])
-
-    def process_sentence(self, words, spaces, spans):
-        text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
-
-        # print("Processing: " + text)
-
-        doc = self.init_doc(words, spaces, spans)
-
-        extracted_entities = {}
-        # svg = displacy.render(doc, style="dep")
-        # filename = hashlib.sha224(b"Nobody inspects the spammish repetition").hexdigest()
-        # output_path = Path(str(filename) + ".svg")
-        # output_path.open("w", encoding="utf-8").write(svg)
-
-        # extracted_entities['tokens'] = words
-
-        ### TC VALUES CLASSIFICATION
-
-        # self.markCriticalTemperature(doc)
-
-        ### RELATIONSHIP EXTRACTION
-        extracted_entities['relationships'] = []
-
-        destination_entities = [entity for entity in filter(lambda w: w.ent_type_ in [self.destination], doc)]
-        source_entities = [entity for entity in filter(lambda w: w.ent_type_ in [self.source] and w._.linkable is True, doc)]
-
-        ## 1 simple approach (when only one temperature and one material)
-        resolver = SimpleResolutionResolver()
-        relationships = resolver.find_relationships(destination_entities, source_entities)
-
-        if len(relationships) > 0:
-            extracted_entities['relationships'].extend(RuleBasedLinker.collect_relationships(relationships, 'simple'))
-            # print(" Simple relationships " + str(extracted_entities['relationships']['simple']))
-        else:
-
-            ## 2 vicinity matching
-
-            resolver = VicinityResolutionResolver()
-            relationships = resolver.find_relationships(doc, destination_entities, source_entities)
-            if len(relationships) > 0:
-                extracted_entities['relationships'].extend(
-                    RuleBasedLinker.collect_relationships(relationships, 'vicinity'))
-                # print(" Vicinity relationships " + str(extracted_entities['relationships']['vicinity']))
-            else:
-
-                ## 3 dependency parsing matching
-
-                resolver = DependencyParserResolutionResolver()
-                relationships = resolver.find_relationships(destination_entities, source_entities)
-                if len(relationships) > 0:
-                    extracted_entities['relationships'].extend(
-                        RuleBasedLinker.collect_relationships(relationships, 'dependency'))
-                    # print(" Dep relationships " + str(extracted_entities['relationships']['dependency']))
-
-        converted_spans = [span_to_dict(entity) for entity in
-                           filter(lambda w: w.ent_type_ in RuleBasedLinker.entities_classes(), doc)]
-
-        extracted_entities['spans'] = converted_spans
-        extracted_entities['text'] = text
-
-        return extracted_entities
-
-    @staticmethod
-    def init_doc(words, spaces, spans):
-        ## Creating a new document with the text
-        doc = Doc(nlp.vocab, words=words, spaces=spaces)
-
-        ## Loading GROBID entities in the spaCY document
-        entities = []
-        for s in spans:
-            span = Span(doc=doc, start=s['tokenStart'], end=s['tokenEnd'], label=s['type'])
-            span._.set('id', str(s['id']))
-            if 'boundingBoxes' in s:
-                span._.set('bounding_boxes', s['boundingBoxes'])
-            if 'formattedText' in s:
-                span._.set('formattedText', s['formattedText'])
-            if 'links' in s:
-                span._.set('links', s['links'])
-            if 'linkable' in s:
-                span._.set('linkable', s['linkable'])
-
-            entities.append(span)
-
-        doc.ents = entities
-        # print("Entities: " + str(doc.ents))
-        for span in entities:
-            # Iterate over all spans and merge them into one token. This is done
-            # after setting the entities – otherwise, it would cause mismatched
-            # indices!
-            span.merge()
-            for token in span:
-                token._.id = span._.id
-                token._.bounding_boxes = span._.bounding_boxes
-                token._.formattedText = span._.formattedText
-                token._.links = span._.links
-                token._.linkable = span._.linkable
-        nlp.tagger(doc)
-        nlp.parser(doc)
-        ## Merge entities and phrase nouns, but only when they are not overlapping,
-        # to avoid loosing the entity type information
-        phrases_ents = RuleBasedLinker.extract_phrases_ents(doc)
-        # print(phrases_ents)
-        for span in phrases_ents:
-            # print("Span " + str(span))
-            overlapping = False
-            for ent in entities:
-                # print(ent)
-                if (
-                    (span.start <= ent.start <= span.end) or
-                    (span.start <= ent.end >= span.end) or
-                    (span.start >= ent.start and span.end <= ent.end) or
-                    (span.start <= ent.start and span.end >= ent.end)
-                ):
-                    overlapping = True
-                    break
-
-            # Entities and phrase noun are not Overlapping
-            if not overlapping:
-                span.merge()
-        nlp.tagger(doc)
-        nlp.parser(doc)
-
-        return doc
-
-    @staticmethod
-    def entities_classes():
-        return ['<material>', '<class>', '<temperature>', '<tc>',
-                '<tcValue>', '<tcvalue>', '<pressure>', '<me_method>',
-                '<material-tc>', '<temperature-tc>']
-
-    @staticmethod
-    def collect_relationships(relationships, type):
-        return [{"type": type, "left": span_to_dict(re[0]), "right": span_to_dict(re[1])} for re in relationships]
-
-    # def get_sentence_boundaries(words, spaces):
-    #     offset = 0
-    #     reconstructed = ''
-    #     sentence_offsetTokens = []
-    #     text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
-    #     for sent in split_sentences(text):
-    #         start = offset
-    #
-    #         for id in range(offset, len(words)):
-    #             token = words[id]
-    #             reconstructed += token
-    #             if spaces[id]:
-    #                 reconstructed += ' '
-    #             if len(reconstructed.rstrip()) == len(sent):
-    #                 offset += 1
-    #                 end = offset
-    #                 sentence_offsetTokens.append((start, end))
-    #                 reconstructed = ''
-    #                 break
-    #             offset += 1
-    #
-    #     return sentence_offsetTokens
-
-    @staticmethod
-    def get_sentence_boundaries(words, spaces):
-        offset = 0
-        reconstructed = ''
-        sentence_offsetTokens = []
-        text = ''.join([words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
-
-        for sent in text_to_sentences(text).split('\n'):
-            start = offset
-
-            for id in range(offset, len(words)):
-                token = words[id]
-                reconstructed += token
-                if spaces[id]:
-                    reconstructed += ' '
-                if len(reconstructed.rstrip()) == len(sent):
-                    offset += 1
-                    end = offset
-                    sentence_offsetTokens.append((start, end))
-                    reconstructed = ''
-                    break
-                offset += 1
-
-        return sentence_offsetTokens
