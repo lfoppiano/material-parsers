@@ -121,7 +121,7 @@ class MongoSuperconProcessor:
             if self.process_only_new:
                 connection = connect_mongo(config=self.config)
                 db = connection[db_name]
-                hash_full = get_file_hash(abs_path)
+                hash_full = get_file_hash(source_path)
                 hash = hash_full[:10]
                 document = db.document.find_one({"hash": hash})
                 if document:
@@ -156,6 +156,8 @@ class MongoSuperconProcessor:
     def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_new=False, verbose=False):
         if db_name is None:
             self.db_name = self.config["mongo"]["database"]
+        else:
+            self.db_name = db_name
 
         num_threads_process = num_threads
         num_threads_store = math.ceil(num_threads / 2) if num_threads > 1 else 1
@@ -199,7 +201,7 @@ if __name__ == '__main__':
     parser.add_argument("--config", help="Configuration file", type=Path, required=True)
     parser.add_argument("--num-threads", "-n", help="Number of concurrent processes", type=int, default=2,
                         required=False)
-    parser.add_argument("--only-new", help="Processes only documents that have not record in the database", type=bool, default=False,
+    parser.add_argument("--only-new", help="Processes only documents that have not record in the database", action="store_true",
                         required=False)
     parser.add_argument("--database", "-db",
                         help="Force the database name which is normally read from the configuration file", type=str, required=False)
