@@ -51,9 +51,12 @@ class MongoSuperconProcessor:
     queue_output = m.Queue()
     queue_logger = m.Queue()
 
-    def __init__(self, config_path):
+    def __init__(self, config_path, verbose=False):
+        self.verbose = verbose
         config_json = open(config_path).read()
         self.config = json.loads(config_json)
+        if verbose:
+            print("Configuration: ", self.config)
         self.grobid_client = grobid_client_generic()
         self.grobid_client.set_config(self.config, ping=True)
 
@@ -153,11 +156,14 @@ class MongoSuperconProcessor:
 
         return extracted_json
 
-    def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_new=False, verbose=False):
+    def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_new=False):
         if db_name is None:
             self.db_name = self.config["mongo"]["database"]
         else:
             self.db_name = db_name
+
+        if self.verbose:
+            print("Database:", self.db_name)
 
         num_threads_process = num_threads
         num_threads_store = math.ceil(num_threads / 2) if num_threads > 1 else 1
@@ -169,7 +175,6 @@ class MongoSuperconProcessor:
               "for process/store on mongodb.")
 
         self.process_only_new = only_new
-        self.verbose = verbose
 
         self.pool_write = multiprocessing.Pool(num_threads_store, self.write_mongo_single, (self.db_name,))
         self.pool_logger = multiprocessing.Pool(num_threads_store, self.write_mongo_status, (self.db_name, 'extraction',))
@@ -207,7 +212,7 @@ if __name__ == '__main__':
                         help="Force the database name which is normally read from the configuration file", type=str, required=False,
                         default=None)
     parser.add_argument("--verbose",
-                        help="Print all log information", type=bool, required=False, default=False)
+                        help="Print all log information", action="store_true", required=False, default=False)
 
     args = parser.parse_args()
 
@@ -228,9 +233,9 @@ if __name__ == '__main__':
         parser.print_help()
         sys.exit(-1)
 
-    processor_ = MongoSuperconProcessor(config_path)
+    processor_ = MongoSuperconProcessor(config_path, verbose)
     pdf_files = []
-    processor_.setup_batch_processes(num_threads=num_threads, db_name=db_name, only_new=only_new, verbose=verbose)
+    processor_.setup_batch_processes(num_threads=num_threads, db_name=db_name, only_new=only_new)
     start_queue = processor_.get_queue_input()
 
     for root, dirs, files in tqdm(os.walk(input_path)):

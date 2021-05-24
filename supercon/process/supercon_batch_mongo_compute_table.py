@@ -16,8 +16,8 @@ class MongoTabularProcessor(MongoSuperconProcessor):
     grobid_client = None
     config = {}
 
-    def __init__(self, config_path, force=False):
-        super(MongoTabularProcessor, self).__init__(config_path)
+    def __init__(self, config_path, force=False, verbose=False):
+        super(MongoTabularProcessor, self).__init__(config_path, verbose)
         self.force = force
 
     def prepare_document(self, document):
@@ -107,7 +107,11 @@ class MongoTabularProcessor(MongoSuperconProcessor):
     def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_failed=False, verbose=False):
         if db_name is None:
             self.db_name = self.config["mongo"]["database"]
-            print(self.config)
+        else:
+            self.db_name = db_name
+
+        if self.verbose:
+            print("Database: ", self.db_name)
 
         num_threads_process = num_threads
         num_threads_store = num_threads  # math.ceil(num_threads / 2) if num_threads > 1 else 1
@@ -150,7 +154,7 @@ if __name__ == '__main__':
                         required=False)
     parser.add_argument("--force", "-f", help="Re-process all the records and replace existing one. ", default=False)
     parser.add_argument("--verbose",
-                        help="Print all log information", type=bool, required=False, default=False)
+                        help="Print all log information", action="store_true", required=False, default=False)
 
     args = parser.parse_args()
     config_path = args.config
@@ -164,7 +168,7 @@ if __name__ == '__main__':
         parser.print_help()
         sys.exit(-1)
 
-    processor = MongoTabularProcessor(config_path=config_path, force=force)
-    processor.setup_batch_processes(num_threads=num_threads, db_name=db_name, verbose=verbose)
+    processor = MongoTabularProcessor(config_path=config_path, force=force, verbose=verbose)
+    processor.setup_batch_processes(num_threads=num_threads, db_name=db_name)
 
     processor.process_json_batch()
