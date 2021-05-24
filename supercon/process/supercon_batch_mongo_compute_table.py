@@ -104,7 +104,7 @@ class MongoTabularProcessor(MongoSuperconProcessor):
 
         self.tear_down_batch_processes()
 
-    def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_failed=False, verbose=False):
+    def setup_batch_processes(self, db_name=None, num_threads=os.cpu_count() - 1, only_failed=False):
         if db_name is None:
             self.db_name = self.config["mongo"]["database"]
         else:
@@ -126,7 +126,6 @@ class MongoTabularProcessor(MongoSuperconProcessor):
                                                 (self.db_name, 'table_compute',))
 
         self.process_only_failed = only_failed
-        self.verbose = verbose
 
         return self.pool_process, self.queue_logger, self.pool_logger
 

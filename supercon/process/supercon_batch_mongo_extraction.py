@@ -123,7 +123,7 @@ class MongoSuperconProcessor:
 
             if self.process_only_new:
                 connection = connect_mongo(config=self.config)
-                db = connection[db_name]
+                db = connection[self.db_name]
                 hash_full = get_file_hash(source_path)
                 hash = hash_full[:10]
                 document = db.document.find_one({"hash": hash})
