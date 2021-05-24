@@ -204,7 +204,8 @@ if __name__ == '__main__':
     parser.add_argument("--only-new", help="Processes only documents that have not record in the database", action="store_true",
                         required=False)
     parser.add_argument("--database", "-db",
-                        help="Force the database name which is normally read from the configuration file", type=str, required=False)
+                        help="Force the database name which is normally read from the configuration file", type=str, required=False,
+                        default=None)
     parser.add_argument("--verbose",
                         help="Print all log information", type=bool, required=False, default=False)
 
