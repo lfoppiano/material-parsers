@@ -87,13 +87,13 @@ def get_stats():
     db_supercon_dev = connection[db_name]
     tabular_collection = db_supercon_dev.get_collection("tabular")
 
-    pipeline_group_by_publisher = [{"type": "automatic"}, {"$group": {"_id": "$publisher", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}]
+    pipeline_group_by_publisher = [{"$match": {"type": "automatic"}}, {"$group": {"_id": "$publisher", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}]
     by_publisher = tabular_collection.aggregate(pipeline_group_by_publisher)
 
-    pipeline_group_by_year = [{"type": "automatic"}, {"$group": {"_id": "$year", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}]
+    pipeline_group_by_year = [{"$match": {"type": "automatic"}}, {"$group": {"_id": "$year", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}]
     by_year = tabular_collection.aggregate(pipeline_group_by_year)
 
-    pipeline_group_by_journal = [{"type": "automatic"}, {"$group": {"_id": "$journal", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}]
+    pipeline_group_by_journal = [{"$match": {"type": "automatic"}}, {"$group": {"_id": "$journal", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}]
     by_journal = tabular_collection.aggregate(pipeline_group_by_journal)
 
     return render_template("stats.html", by_publisher=by_publisher, by_year=by_year, by_journal=by_journal)
