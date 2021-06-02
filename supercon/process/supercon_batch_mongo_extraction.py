@@ -10,25 +10,22 @@ from multiprocessing import Manager
 from pathlib import Path
 
 import gridfs
+from pymongo import MongoClient
 from tqdm import tqdm
 
 from grobid_client_generic import grobid_client_generic
-from pymongo import MongoClient
 
 
-def connect_mongo(config_path):
-    with open(config_path, 'r') as fp:
-        configuration = json.load(fp)
-    mongo_client_url = configuration['mongo']['server']
-    c = MongoClient(mongo_client_url)
-
-    return c
-
-
-def connect_mongo(config=None):
-    if config is None:
+def connect_mongo(config_path=None, config=None):
+    if config_path:
+        with open(config_path, 'r') as fp:
+            configuration = json.load(fp)
+        mongo_client_url = configuration['mongo']['server']
+    elif config:
+        mongo_client_url = config['mongo']['server'] if 'mongo' in config and 'server' in config['mongo'] else ''
+    else:
         raise Exception("Config is None")
-    mongo_client_url = config['mongo']['server'] if 'mongo' in config and 'server' in config['mongo'] else ''
+
     c = MongoClient(mongo_client_url)
 
     return c
@@ -59,7 +56,29 @@ class MongoSuperconProcessor:
             print("Configuration: ", self.config)
         self.grobid_client = grobid_client_generic()
         self.grobid_client.set_config(self.config, ping=True)
+        if verbose:
+            print("Checking indexes")
+            self.ensure_indexes()
 
+        if verbose:
+            print("Init completed.")
+
+    def ensure_indexes(self, db_name=None):
+        connection = connect_mongo(config=self.config)
+        db = connection[db_name]
+
+        db.document.createIndex({"hash": 1, "timestamp": 1})
+        db.document.createIndex({"hash": 1})
+        db.document.createIndex({"type": 1})
+        db.document.createIndex({"timestamp": 1})
+
+        db.tabular.createIndex({"type": 1})
+        db.tabular.createIndex({"hash": 1, "timestamp": 1, "type": 1})
+        db.tabular.createIndex({"hash": 1, "timestamp": 1})
+        db.tabular.createIndex({"hash": 1})
+
+        db.binary.files.createIndex({"filename": 1, "uploadDate": 1})
+        db.binary.files.createIndex({"hash": 1})
 
     def write_mongo_status(self, db_name, service):
         '''Write the status of the document being processed'''
@@ -75,7 +94,6 @@ class MongoSuperconProcessor:
             status_info['service'] = service
             db.logger.insert_one(status_info)
         pass
-
 
     def write_mongo_single(self, db_name):
         '''Write the result of the document being processed'''
@@ -177,7 +195,8 @@ class MongoSuperconProcessor:
         self.process_only_new = only_new
 
         self.pool_write = multiprocessing.Pool(num_threads_store, self.write_mongo_single, (self.db_name,))
-        self.pool_logger = multiprocessing.Pool(num_threads_store, self.write_mongo_status, (self.db_name, 'extraction',))
+        self.pool_logger = multiprocessing.Pool(num_threads_store, self.write_mongo_status,
+                                                (self.db_name, 'extraction',))
         self.pool_process = multiprocessing.Pool(num_threads_process, self.process_batch_single, ( ))
 
         return self.queue_input, self.pool_process, self.queue_logger, self.pool_logger, self.queue_output, self.pool_write
@@ -206,10 +225,12 @@ if __name__ == '__main__':
     parser.add_argument("--config", help="Configuration file", type=Path, required=True)
     parser.add_argument("--num-threads", "-n", help="Number of concurrent processes", type=int, default=2,
                         required=False)
-    parser.add_argument("--only-new", help="Processes only documents that have not record in the database", action="store_true",
+    parser.add_argument("--only-new", help="Processes only documents that have not record in the database",
+                        action="store_true",
                         required=False)
     parser.add_argument("--database", "-db",
-                        help="Force the database name which is normally read from the configuration file", type=str, required=False,
+                        help="Force the database name which is normally read from the configuration file", type=str,
+                        required=False,
                         default=None)
     parser.add_argument("--verbose",
                         help="Print all log information", action="store_true", required=False, default=False)
@@ -247,7 +268,6 @@ if __name__ == '__main__':
             # pdf_files.append(abs_path)
 
             start_queue.put(abs_path, block=True)
-
 
     print("Finishing!")
     processor_.tear_down_batch_processes()
