@@ -313,8 +313,12 @@ if __name__ == '__main__':
     output_dir = args.output
     force = args.force
 
-    if not os.path.isfile(input_file):
-        help()
+    if not os.path.exists(input_file):
+        print("The file", input_file, "does not exists. Exiting.")
+        sys.exit(-1)
+
+    if not os.path.isfile(str(input_file)):
+        print("The file", input_file, "does is not a file. Exiting.")
         sys.exit(-1)
 
     data = extract_log(input_file)
@@ -398,11 +402,11 @@ if __name__ == '__main__':
             print(" === ", suffix, "count: ", len(discrepancies[label][suffix]))
             sorted_items = sorted(discrepancies[label][suffix].items(), key=lambda item: item[1], reverse=True)
             for idx, sorted_item in enumerate(sorted_items[:10]):
-                filename = os.path.join(suffix_dir, "item_" + str(sorted_item[0]) + "_" + str(idx) + ".txt")
+                filename = os.path.join(suffix_dir, "item_" + str(sorted_item[0].replace(" ", "_").replace("/", "__")) + "_" + str(idx) + ".txt")
                 with open(filename, 'w') as f:
-                    f.write(" ==== " + str(sorted_item[0]) + " count: " + str(len(sorted_item[1])))
+                    f.write(" ==== " + str(sorted_item[0]) + " count: " + str(len(str(sorted_item[1]))))
                     f.write("\n")
-                    for error_case in sorted_item[1]:
+                    for error_case in str(sorted_item[1]):
                         for line in error_case:
                             f.write(", ".join(line) + "\n")
                         f.write("\n")
