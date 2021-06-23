@@ -1,5 +1,6 @@
 # transform XML Tei to TSV for WebAnno
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -7,6 +8,7 @@ from collections import OrderedDict
 from pathlib import Path
 
 from bs4 import BeautifulSoup, NavigableString, Tag
+
 from grobid_tokenizer import tokenizeSimple
 from supermat_tei_parser import getSection
 
@@ -60,6 +62,8 @@ def process_file(finput):
     output_document['level'] = 'paragraph'
     output_document['paragraphs'] = paragraphs
 
+    linked_entity_registry = {}
+
     i = 0
     for child in children:
         for pTag in child:
@@ -105,16 +109,39 @@ def process_file(finput):
                     span['type'] = entity_class
 
                     if len(item.attrs) > 0:
+                        ## multiple entities can point ot the same one, so "corresp" value can be duplicated
+                        allow_duplicates = False
                         if 'xml:id' in item.attrs:
+                            span['id'] = item['xml:id']
                             if item.attrs['xml:id'] not in dic_dest_relationships:
                                 dic_dest_relationships[item.attrs['xml:id']] = [i + 1, j + 1, ient, entity_class]
 
                         if 'corresp' in item.attrs:
-                            if (i + 1, j + 1) not in dic_source_relationships:
-                                dic_source_relationships[i + 1, j + 1] = [item.attrs['corresp'].replace('#', ''), ient,
-                                                                          entity_class]
+                            if 'id' not in span or span['id'] == "":
+                                id_str = str(i + 1) + "," + str(j + 1)
+                                span['id'] = get_hash(id_str)
+                                if (span['id']) not in dic_source_relationships:
+                                    dic_source_relationships[span['id']] = [item.attrs['corresp'].replace('#', ''),
+                                                                              ient,
+                                                                              entity_class]
+                            else:
+                                if (span['id']) not in dic_source_relationships:
+                                    dic_source_relationships[span['id']] = [item.attrs['corresp'].replace('#', ''),
+                                                                              ient,
+                                                                              entity_class]
 
-                    ient += 1  # entity No.
+                            allow_duplicates = True
+
+                        if 'id' in span:
+                            if span['id'] not in linked_entity_registry.keys():
+                                linked_entity_registry[span['id']] = span
+                            else:
+                                if not allow_duplicates:
+                                    print("The same key exists... something's wrong: ", span['id'])
+
+                    j += 1
+
+                ient += 1  # entity No.
 
             paragraph['text'] = paragraph_text
             off_token += 1  # return
@@ -122,7 +149,54 @@ def process_file(finput):
             paragraphs.append(paragraph)
             i += 1
 
+    for id__ in dic_source_relationships:
+        destination_xml_id = dic_source_relationships[id__][0]
+        # source_entity_id = dic_source_relationships[par_num, token_num][1]
+        # label_source = dic_source_relationships[id__][2]
+
+        # destination_xml_id: Use this to pick up information from dic_dest_relationship
+
+        for des in destination_xml_id.split(","):
+            destination_item = dic_dest_relationships[str(des)]
+            # destination_paragraph_tsv = destination_item[0]
+            # destination_token_tsv = destination_item[1]
+            # destination_entity_id = destination_item[2]
+            # label_destination = destination_item[3]
+
+            # relationship_name = get_relationship_name(label, destination_label)
+
+            dict_coordinates = get_hash(id__)
+
+            span_destination = linked_entity_registry[des]
+            span_source = linked_entity_registry[dict_coordinates]
+            link_source = {
+                "targetId": span_destination['id'],
+                "targetText": span_destination['text'],
+                "targetType": span_destination['type']
+            }
+
+            link_destination = {
+                "targetId": span_source['id'],
+                "targetText": span_source['text'],
+                "targetType": span_source['type']
+            }
+
+            if 'links' in span_source:
+                span_source['links'].append(link_source)
+            else:
+                span_source['links'] = [link_source]
+
+            if 'links' in span_destination:
+                span_destination['links'].append(link_destination)
+            else:
+                span_destination['links'] = [link_destination]
+
     return output_document
+
+
+def get_hash(dict_coordinates_str):
+    return dict_coordinates_str
+    # return hashlib.md5(dict_coordinates_str.encode('utf-8')).hexdigest()
 
 
 if __name__ == '__main__':
