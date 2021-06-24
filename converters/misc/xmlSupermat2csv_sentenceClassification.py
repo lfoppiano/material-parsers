@@ -2,14 +2,15 @@ import argparse
 import copy
 import csv
 import difflib
+import hashlib
 import os
 from collections import OrderedDict
 from pathlib import Path
 
 from blingfire import text_to_sentences
-
 from grobid_tokenizer import tokenizeAndFilterSimple
-from misc.xml2LossyJSON import process_file
+
+from misc.xml2LossyJSON import process_file, get_hash
 
 
 def write_on_file(fw, row):
@@ -175,7 +176,8 @@ def from_paragraphs_to_sentences(document_object):
 
 
 def extract_tabular_information(document):
-    csv_output = [["sentence", "entity1", "entity2", "linked"]]
+    # csv_output = [["id", "sentence", "entity1", "entity2", "linked"]]
+    csv_output = [["id", "sentence", "linked"]]
     for paragraph in document['paragraphs']:
         for sentence in paragraph['sentences']:
             if len(sentence['spans']) == 0:
@@ -196,7 +198,10 @@ def extract_tabular_information(document):
                         else:
                             linked = False
 
-                        csv_output.append([sentence['text'], entity1['text'], entity2['text'], linked])
+                        linked = 0 if not linked else 1
+
+                        # csv_output.append([get_hash(sentence['text']), sentence['text'], entity1['text'], entity2['text'], linked])
+                        csv_output.append([hashlib.md5(sentence['text'].encode('utf-8')).hexdigest(), sentence['text'], linked])
 
     return csv_output
 
@@ -247,7 +252,6 @@ if __name__ == '__main__':
 
         else:
             path_list = Path(input).glob('*.xml')
-
 
         first = True
         for path in path_list:
