@@ -7,7 +7,7 @@ class MaterialNER():
         from delft.sequenceLabelling import Sequence
         from delft.sequenceLabelling.models import BidLSTM_CRF
 
-        self.model = Sequence("materialNER_fastText_oS+Sm-BidLSTM_CRF", BidLSTM_CRF.name)
+        self.model = Sequence("materialNER-glove_batch_10-BidLSTM_CRF", BidLSTM_CRF.name)
         if model_path and os.path.exists(model_path):
             self.model.load(dir_path=model_path)
         else:
