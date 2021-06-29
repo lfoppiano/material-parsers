@@ -1,4 +1,3 @@
-## Analysis ML results
 import argparse
 import os
 import re
@@ -286,8 +285,8 @@ def count_discrepancies(cases):
 
 
 def tokens_to_string(tokens_collector):
-    output =  "".join(
-        [x if i < len(tokens_collector)-1 and tokens_collector[i + 1] in string.punctuation else x + " "
+    output = "".join(
+        [x if i < len(tokens_collector) - 1 and tokens_collector[i + 1] in string.punctuation else x + " "
          for i, x in enumerate(tokens_collector)])
 
     return output.strip()
@@ -402,7 +401,9 @@ if __name__ == '__main__':
             print(" === ", suffix, "count: ", len(discrepancies[label][suffix]))
             sorted_items = sorted(discrepancies[label][suffix].items(), key=lambda item: item[1], reverse=True)
             for idx, sorted_item in enumerate(sorted_items[:10]):
-                filename = os.path.join(suffix_dir, "item_" + str(sorted_item[0].replace(" ", "_").replace("/", "__")) + "_" + str(idx) + ".txt")
+                filename = os.path.join(suffix_dir,
+                                        "item_" + str(sorted_item[0].replace(" ", "_").replace("/", "__")) + "_" + str(
+                                            idx) + ".txt")
                 with open(filename, 'w') as f:
                     f.write(" ==== " + str(sorted_item[0]) + " count: " + str(len(str(sorted_item[1]))))
                     f.write("\n")
