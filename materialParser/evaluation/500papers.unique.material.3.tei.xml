@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<materials>
+	<material><formula>KFe 2 As 2</formula></material>
+	<material><formula>KFe 2 Se 2</formula></material>
+	<material><formula>KFe2As2</formula></material>
+	<material><formula>KFe2As2</formula> <shape>films</shape></material>
+	<material><name>KFeS-Zn</name> (<formula>K 0.8 Fe 2−y−x Zn x Se 2</formula></material>
+	<material><formula>KTaO 3</formula></material>
+	<material><formula>KTaO 3</formula> and <formula>SrTiO 3</formula></material>
+	<material><formula>KTaO 3</formula> <shape>crystals</shape></material>
+	<material><formula>KTaO 3</formula> <shape>single crystals</shape></material>
+	<material>Keywords: <formula>Ba(Fe,Co) 2 As 2</formula></material>
+	<material>Keywords: <name>Bi-2212</name></material>
+	<material>Keywords: <name>Bi2212</name></material>
+	<material>Keywords: <name>Pb1212</name></material>
+	<material>Keywords: <name>YBCO</name> <shape>films</shape></material>
+	<material>Keywords: <name>YBaCuO</name>, <shape>ultra-thin film</shape></material>
+	<material><formula>KxFe2−ySe2</formula></material>
+	<material>LB-<formula>MgB 4</formula></material>
+	<material>LBNL <name>Bi-2212</name></material>
+	<material><name>LCMO</name> <shape>thin films</shape></material>
+	<material><name>LCO</name></material>
+    <material><formula>LFePnO −x 1 F x</formula> (<variable>Pn</variable> = <value>P, As</value>>; <variable>L</variable> = <value>La, Ce, Pr, Nd, Sm, Gd, Tb, Dy, Ho, and Y</value>)</material>
+	<material><fabrication>LPE-grown</fabrication> <name>Bi-2212</name> <shape>film</shape></material>
+	<material><fabrication>LPE-grown</fabrication> <name>Bi-2212</name> <shape>films</shape></material>
+	<material><formula>LRE 1−x Ba 2−x Cu 3 O 7−δ</formula></material>
+	<material><formula>LREBa 2 Cu 3 O y</formula> (<variable>LRE</variable>: <value>Sm, Gd, NEG</value>) &apos;<name>LRE-123</name></material>
+	<material><name>LSCO</name></material>
+	<material><name>LSCO-LCO</name></material>
+    <material><name>LSCO-LCO</name> bilayers</material>
+	<material><formula>La (2−x) Sr x CuO 4</formula></material>
+	<material><formula>La (Fe 1−x Zn x )AsO 0.85</formula></material>
+	<material><formula>La (Tl 1−x Pb x ) 3</formula></material>
+	<material><formula>La -x 2 Sr 2 CuO 4</formula></material>
+	<material><formula>La 0.272 Sr 0.728</formula></material>
+	<material><formula>La 0.67 Sr 0.33 MnO 3</formula> (<name>LSMO</name>)/<formula>YBa 2 Cu 3 O 7+d</formula> (<name>YBCO</name>)</material>
+	<material><formula>La 0.7 Ce 0.3 MnO 3</formula> / <formula>La 0.7 Ca 0.3 MnO 3</formula></material>
+	<material><formula>La 0.7 Ce 0.3 MnO 3</formula> /<formula>La 0.7 Ca 0.3 MnO 3</formula></material>
+	<material><formula>La 0.7 Ce 0.3 MnO 3</formula> /<formula>La 0.7 Ca 0.3 MnO 3</formula> / <substrate>STO</substrate> <shape>films</shape></material>
+	<material><formula>La 0.7 Ce 0.3 MnO 3</formula> ͑<name>LCeMO͒</name> and <formula>La 0.7 Ca 0.3 MnO 3</formula> ͑<name>LCaMO͒</name></material>
+	<material><formula>La 0.7 Sr 0.3 MnO 3</formula> /<name>YBCO</name></material>
+	<material><formula>La 0.7 Sr 0.3 MnO 3</formula> /<formula>YBa 2 Cu 3 O 7</formula></material>
+	<material><formula>La 1-x K x MnO 3</formula></material>
+	<material><formula>La 1.3 Bi 3</formula></material>
+	<material><formula>La 1.5 Ca 0.5 CoMnO 6</formula></material>
+	<material><formula>La 1.5 Sr 0.5 CoMnO 6</formula></material>
+	<material><formula>La 1.55 Sr 0.45 CuO 4</formula></material>
+	<material><formula>La 1.55 Sr 0.45 CuO 4</formula> <shape>films</shape></material>
+	<material><formula>La 1.64 Sr 0.36 CuO 4</formula></material>
+	<material><formula>La 1.85 Sr 0.15 CuO 4</formula></material>
+	<material><formula>La 1.85 Sr 0.15 CuO 4</formula> <shape>films</shape></material>
+	<material><formula>La 1.85 Sr 0.15 CuO 4</formula> <shape>single crystals</shape></material>
+	<material><formula>La 1.85 Sr 0.15 CuO 4</formula> <shape>thin film</shape></material>
+	<material><formula>La 1.85 Sr 0.15 CuO 4</formula> <shape>thin films</shape></material>
+	<material><formula>La 1/3 Ca 2/3 MnO 3</formula></material>
+	<material><formula>La 1/3 Ca 2/3 MnO 3−x</formula></material>
+	<material><formula>La 1−x A x MnO 3</formula></material>
+	<material><formula>La 1−x M x OBiS 2</formula></material>
+	<material><formula>La 1−x Sr x ) 2 CuO 4</formula></material>
+	<material><formula>La 1−x Sr x CoO 3</formula></material>
+	<material><formula>La 1−x Sr x CoO 3</formula> samples with <variable>x</variable> = <value>0.05, 0.07, 0.1, 0.14, 0.15, 0.2, 0.3, 0.4, and 0.5</value></material>
+    <material><formula>La 1−x Sr x CoO 3 ͑0 Ͻ</formula> <variable>x</variable> ഛ <value>0.5</value></material>
+    <material><formula>La 1−x Sr x CoO 3 ͑0 Ͻ</formula> <variable>x</variable> ഛ <value>0.5͒</value></material>
+	<material><formula>La 1−x Th x )Pb 3</formula></material>
+<!--	<material><formula>La 2 @C 80</formula></material>-->
+	<material><formula>La 2 C 3</formula></material>
+	<material><formula>La 2 CoMnO 6</formula></material>
+	<material><formula>La 2 CuO</formula></material>
+	<material><formula>La 2 CuO +y 4</formula></material>
+	<material><formula>La 2 CuO 4</formula></material>
+	<material><formula>La 2 CuO 4</formula> (<name>LCO</name>)</material>
+	<material><formula>La 2 CuO 4</formula> <shape>films</shape></material>
+	<material><formula>La 2 CuO 4+δ</formula></material>
+	<material><formula>La 2 CuO 4.1</formula></material>
+	<material><formula>La 2 Se 3</formula></material>
+	<material><formula>La 2 Zr 2 O 7</formula></material>
+	<material><formula>La 2-x Sr x CuO 4</formula></material>
+	<material><formula>La 2-x Sr x CuO 4</formula> (<variable>x</variable> = <value>0.45</value></material>
+	<material><formula>La 2-x Sr x CuO 4</formula> /<formula>La 2 CuO 4</formula></material>
+	<material><formula>La 2-x Sr x CuO 4</formula> /<formula>La 2 CuO 4</formula> (<variable>x</variable> = <value>0.45</value>)</material>
+	<material><formula>La 2-x Sr x CuO 4</formula> /<formula>La 2 CuO 4</formula> <shape>bilayer films</shape></material>
+	<material><formula>La 2/3 Ca 1/3 MnO 3</formula></material>
+	<material><formula>La 2/3 Ca 1/3 MnO 3</formula> /<formula>YBCO</formula></material>
+	<material><formula>La 2/3 Ca 1/3 MnO 3−x</formula></material>
+	<material><formula>La 2Àx Ca x CoMnO 6</formula></material>
+	<material><formula>La 2−x Sr x CuO 4</formula></material>
+	<material><formula>La 2−x Sr x CuO 4</formula> (<name>LSCO</name>)</material>
+	<material><formula>La 2−x Sr x CuO 4 </formula>/<formula>La 2 CuO 4</formula></material>
+	<material><formula>La 3 Ir 2 Ge 2</formula></material>
+	<material><formula>La 3 Pt 2 Ge 2</formula></material>
+	<material><formula>La 3 Rh 2 Ge 2</formula></material>
+	<material><formula>La 3 Rh 4 Sn 13</formula></material>
+	<material><formula>La 3 Rh 4 Sn 3</formula></material>
+	<material><formula>La 3 X 2 Ge 2</formula></material>
+	<material><formula>La O F FeAs x x 1</formula></material>
+	<material><formula>La x Sr 2Àx FeMoO 6</formula></material>
+	<material><formula>La ͑1−x͒ Ca x MnO 3</formula> ͑<name>LCMO͒</name> ferromagnets</material>
+	<material><formula>La −x 1 M x OBiS 2</formula> (<variable>M</variable> = <value>Ti, Zr, Hf, Th</value>)</material>
+	<material><formula>La −x 2 Sr x CuO</formula></material>
+	<material><formula>La(Fe 1−x Zn x )AsO 0.85</formula></material>
+	<material><name>La-1111</name></material>
+<!--	<material><formula>La-5d, Ir-5d ͑or Rh-4</formula></material>-->
+	<material><name>La-Bi2212</name></material>
+	<material><formula>La-Ca-Mn-O</formula></material>
+	<material><formula>La-Pr</formula></material>
+	<material><doping>La</doping>-doped <formula>Ca122</formula></material>
+	<material><doping>La</doping>-doped <formula>Ca122</formula> <shape>single crystals</shape></material>
+	<material><doping>La</doping>-doped <formula>CaFe 2 As 2</formula></material>
+	<material><doping>La</doping>-doped <formula>CaFe 2 As 2</formula> (<name>LaCa122</name>) <shape>single crystals</shape></material>
+	<material><doping>La</doping>-doped <formula>Sr 0.5 La 0.5 FBiSe 2</formula></material>
+	<material><formula>La0.7Sr0.3MnO3</formula>/<substrate>La1.85Sr0.15CuO4</substrate></material>
+	<material><formula>La1.44Nd0.4Sr0.16CuO4</formula> <shape>films</shape></material>
+	<material><formula>La1.85Sr0.15CuO4</formula></material>
+	<material><formula>La2-xSrxCuO4+δ</formula></material>
+	<material><formula>La2O3</formula></material>
+	<material><formula>LaAl 2</formula></material>
+	<material><formula>LaAlO 3</formula></material>
+	<material><formula>LaAlO 3</formula> (<name>LAO</name>) <shape>single crystal</shape></material>
+	<material><formula>LaAlO 3</formula> -<substrate>SrTiO 3</substrate></material>
+	<material><formula>LaAlO 3</formula> /<substrate>SrTiO 3</substrate></material>
+	<material><formula>LaAlO 3</formula> <shape>film</shape></material>
+	<material><formula>LaAlO 3</formula> <shape>single crystals</shape></material>
+<!--	<material><formula>LaAlO 3 ͑LAO͒</formula> <shape>single-crystal</shape></material>-->
+	<material><formula>LaAlO3</formula></material>
+	<material><formula>LaAlO3</formula> <shape>single crystals</shape></material>
+	<material><formula>LaAlO3</formula>)</material>
+	<material><formula>LaAlO3</formula>, <formula>SrTiO3</formula></material>
+	<material><formula>LaAs</formula></material>
+	<material><formula>LaB 6</formula></material>
+	<material><formula>LaBi</formula></material>
+	<material><formula>LaBi 3</formula></material>
+	<material><formula>LaBi 3</formula> (<variable>n</variable>=<value>4.5</value>)</material>
+	<material><name>LaCa122</name></material>
+	<material><name>LaCa122</name> crystals</material>
+	<material><name>LaCa122</name> <shape>single crystals</shape></material>
+	<material><name>LaCa122-A</name></material>
+	<material><name>LaCa122-B</name></material>
+	<material><formula>LaCuO 4</formula></material>
+	<material><formula>LaFe 1 −x Zn x AsO</formula></material>
+	<material><formula>LaFe 1 −x Zn x AsO 0.85</formula></material>
+	<material><formula>LaFe 1 −y Zn y AsO 1−x F x</formula></material>
+	<material><formula>LaFe 1-x-y Co x Zn y AsO</formula></material>
+	<material><formula>LaFe 11.2 Si 1.8</formula></material>
+	<material><formula>LaFe 11.33 Co 0.47 Si 1.2 237</formula></material>
+	<material><formula>LaFe 11.44 Si 1.56</formula></material>
+	<material><formula>LaFe 11.57 Si 1.43</formula></material>
+	<material><formula>LaFe 11.7 Si 1.3</formula></material>
+	<material><formula>LaFe 11.8 Si 1.2</formula></material>
+	<material><formula>LaFe 12</formula></material>
+	<material><formula>LaFe 12 Si</formula></material>
+	<material><formula>LaFe 13−x Si x</formula></material>
+	<material><formula>LaFe 13−x Si x</formula> <shape>ribbons</shape> with <variable>x</variable> = <value>1 and 1.2</value></material>
+	<material><formula>LaFe 13−x Si x</formula> <shape>ribbons</shape> with <variable>x</variable> = <value>1, 1.2</value></material>
+	<material><formula>LaFe 13−x Si x</formula> ribbons ͑<variable>x</variable> = <value>1, 1.2</value></material>
+	<material><formula>LaFe 13−x Si x</formula> ͑<variable>x</variable> = <value>1,1.2</value></material>
+	<material><formula>LaFe 1−x Zn x AsO</formula></material>
+	<material><formula>LaFe 1−x Zn x AsO 0.85</formula></material>
+	<material><formula>LaFe 1−x Zn x AsO 1−δ</formula></material>
+	<material><formula>LaFe 1−x Zn x AsO</formula> with various doping levels of <doping>Zn</doping></material>
+	<material><formula>LaFe 1−x−y Co y Zn x AsO</formula></material>
+	<material><formula>LaFe 1−y Zn y AsO 1−x F x</formula></material>
+<!--	<material><formula>LaFeAs(O</formula></material>-->
+	<material><formula>LaFeAs(O,F)</formula></material>
+	<material><formula>LaFeAs(O,F)</formula> <shape>film</shape></material>
+	<material><formula>LaFeAs(O,F)</formula> <shape>polycrystalline</shape> sample</material>
+	<material><formula>LaFeAs(O,F)</formula> <shape>thin films</shape></material>
+	<material><formula>LaFeAs(O,F)</formula> <shape>thin films</shape> on <substrate>MgO(001)</substrate></material>
+	<material><formula>LaFeAs(O,F)</formula>, 2 <formula>NdFeAs(O,F)</formula>, <formula>Ba(Fe,Co)2As2</formula></material>
+	<material><formula>LaFeAsO</formula> (<name>La-1111</name>)</material>
+	<material><formula>LaFeAsO 0.7 F 0.3</formula></material>
+	<material><formula>LaFeAsO 0.85</formula></material>
+	<material><formula>LaFeAsO 0.85</formula> <shape>polycrystal</shape></material>
+	<material><formula>LaFeAsO 0.89 F 0.11</formula></material>
+	<material><formula>LaFeAsO 0.9 F 0.1</formula></material>
+	<material><formula>LaFeAsO 1-x F x</formula> <shape>thin film</shape></material>
+	<material><formula>LaFeAsO 1−x F x</formula></material>
+	<material><formula>LaFeAsO 1−x F x</formula> [24</material>
+	<material><formula>LaFeAsO 1−x F x</formula> <shape>thin films</shape></material>
+<!--	<material><formula>LaFeAsO of 2dFeSC</formula></material>-->
+	<material><formula>LaFeAsO −x 1 F x</formula></material>
+	<material><formula>LaFeAsO</formula>)</material>
+	<material><formula>LaFeAsO1-xFx</formula></material>
+	<material><formula>LaFeAsO1-xFx</formula> (<variable>x</variable> = <value>0.1 and 0.25</value></material>
+	<material><formula>LaFeAsO1−xFx</formula></material>
+	<material><formula>LaGe 2</formula></material>
+	<material><formula>LaIr 2 Ge 2</formula></material>
+	<material><formula>LaM 3</formula></material>
+	<material><formula>LaMnO 3</formula></material>
+<!--	<material><formula>LaMnO 3</formula> (LMO) on 5-7 nm IBAD-MgO on 30-50 nm <formula>Y 2 O 3</formula></material>-->
+	<material><formula>LaNiC 2</formula> , <formula>Nb 0.18 Re 0.82</formula></material>
+	<material><formula>LaNiGa 2</formula></material>
+	<material><formula>LaNiO 3</formula></material>
+	<material><formula>LaO 0.5 F 0.5 BiS 2</formula></material>
+	<material><formula>LaO 0.5 F 0.5 BiSe 2</formula></material>
+	<material><formula>LaO 1−x F x BiS 2</formula></material>
+	<material><formula>LaO x 1-F x BiS 2</formula></material>
+	<material><formula>LaO x 1-F x BiSe 2</formula></material>
+	<material><formula>LaOFeP</formula></material>
+	<material><formula>LaPb 3</formula></material>
+	<material><formula>LaPd 2 Ge 2</formula></material>
+	<material><formula>LaPt 2 Ge 2</formula></material>
+	<material><formula>LaRu 2 As 2</formula></material>
+	<material><formula>LaRu 3 Si 2</formula></material>
+	<material><name>LaSCO</name></material>
+	<material><formula>LaSe) 1.14 NbSe 2</formula></material>
+	<material><formula>LaTl 3</formula></material>
+	<material><doping>Ladoped</doping> <name>Ca122</name> <shape>single crystals</shape></material>
+	<material><formula>Li 0.32 (NH 3 ) y Fe 2 Te 1.2 Se 0.8</formula> <shape>single crystals</shape></material>
+	<material><formula>Li 0.9 Mo 6 O 17</formula></material>
+	<material><formula>Li 1 −x Fe x OH)FeSe</formula></material>
+	<material><formula>Li 1 −x Fe x OH)FeSe</formula> <shape>single crystals</shape></material>
+	<material><formula>Li 1−x Fe x</formula></material>
+	<material><formula>Li 1−x Fe x OH</formula></material>
+	<material><formula>Li 1−x Fe x OH</formula>)</material>
+	<material><formula>Li 1−x Fe x OH)FeSe</formula> <shape>crystals</shape></material>
+	<material><formula>Li 1−x Fe x OH)FeSe</formula> <shape>single crystal</shape></material>
+	<material><formula>Li 1−x Fe x OH)FeSe</formula> <shape>single crystals</shape></material>
+	<material><formula>Li 1−x FeAs</formula></material>
+	<!-- <material><formula>Li 2</formula></material> -->
+	<material><formula>Li 2 Pd 3 B</formula></material>
+	<material><formula>Li x (NH 3 ) y Fe 2 (Te z Se 1−z ) 2</formula> <shape>single crystals</shape></material>
+	<material><formula>Li x (NH 3 ) y Fe 2 (Te z Se z 1-) 2</formula></material>
+	<material><formula>Li x (NH 3 ) y Fe 2 (Te z Se z 1-) 2</formula> <shape>single crystals</shape></material>
+	<material><formula>Li x (NH 3 ) y Fe 2 (Te z Se z 1-) 2</formula> <shape>single crystals</shape> with <variable>z</variable> <value>0 = and 0.6</value></material>
+	<material><formula>Li x (NH 3 ) y Fe 2 Se 2</formula></material>
+	<material><formula>Li x (NH 3 ) y Fe 2 Te 1.2 Se 0.8</formula> (<name>LiFeTeSe-122</name>) <shape>single crystals</shape></material>
+	<material><formula>Li x (NH 3 ) y Fe 2 Te 1.2 Se 0.8</formula> <shape>single crystal</shape></material>
+	<material><formula>Li x (NH 3 ) y Fe 2 Te 1.2 Se 0.8</formula> <shape>single crystals</shape></material>
+	<material><name>Li111</name> (<formula>LiFeAs</formula>)</material>
+	<material><doping>Li2CO3</doping> doped <name>GdBCO</name></material>
+	<material><name>LiFe-TeSe-122</name></material>
+	<material><formula>LiFeAs</formula></material>
+	<material><formula>LiFeAs</formula> (<name>111-system</name>)</material>
+	<material><formula>LiFeAs</formula> (<name>Li111</name>)</material>
+	<material><formula>LiFeAs</formula> and (<formula>Nb 0.87 Si 0.09 □ 0.04</formula></material>
+	<material><formula>LiFeAs</formula> <shape>epitaxial thin films</shape> on <substrate>SrTiO3(001)</substrate></material>
+	<material><formula>LiFeAs</formula> <shape>films</shape></material>
+	<material><formula>LiFeAs</formula> <shape>polycrystal</shape></material>
+	<material><formula>LiFeAs</formula> <shape>polycrystalline</shape></material>
+	<material><formula>LiFeAs</formula> <shape>single crystals</shape></material>
+	<material><formula>LiFeAs</formula> <shape>single-crystals</shape></material>
+	<material><formula>LiFeAs</formula>(<name>111type</name>)</material>
+	<material><name>LiFeSe-122</name></material>
+	<material><name>LiFeTeSe-122</name></material>
+	<material><name>LiFeTeSe-122</name> <shape>single crystal</shape></material>
+	<material><name>LiFeTeSe-122</name> <shape>single crystals</shape></material>
+	<material><formula>LiNbO 3</formula></material>
+	<material><formula>LiNbO 3</formula> <shape>crystal</shape></material>
+	<material><formula>LiOH·H 2 O</formula></material>
+	<material><formula>LiOsO 3</formula></material>
+	<material><formula>LiV 2 O 4</formula></material>
+	<!-- <material><name>Liquid hydrogen</name> (<name>LH2</name></material> -->
+<!--	<material><formula>Ln)Fe2As2</formula> (Ln: <value>rare earth elements</value>)</material>-->
+	<material><name>Ln-1111</name> <shape>films</shape></material>
+	<material><name>Ln-1111</name> <shape>thin films</shape></material>
+	<material><formula>Ln2CuO4</formula></material>
+	<material><formula>LnFeAs(O,F)</formula></material>
+    <material><formula>LnFeAs(O,F)</formula> (<variable>Ln</variable> = <value>lanthanide element</value>), <doping>doped</doping> <formula>AeFe2As2</formula> (<variable>Ae</variable> = <value>alkaline-earth element</value>)</material>
+	<material><formula>LnFeAs(O,F)</formula> -overview <value>4.5</value></material>
+	<material><formula>LnFeAs(O,F)</formula> <shape>films</shape></material>
+	<material><name>LnFeAs</name>.</material>
+	<material><formula>LnFeAsO</formula> (<variable>Ln</variable> = <value>Nd</value>)</material>
+	<material><formula>LnFeAsO 1−x F x</formula> <name>1111</name> 58</material>
+	<material><formula>LnFeAsO1−xFx</formula> (<variable>Ln</variable> = <value>La, Pr, Nd, Sm, Gd</value>)</material>
+	<material><formula>LnNi2B2C</formula> <name>borocarbides</name></material>
+	<material><formula>LnO x 1-F x BiS 2</formula></material>
+	<material><formula>LnOBiS 2</formula> , <formula>Sr/EuFBiS 2</formula></material>
+	<material><formula>LnSn 3</formula> (<variable>Ln</variable>=<value>Tb, Dy, Ho, Er, and Y</value>)</material>
+	<material><formula>Lu 2 Fe 3 Si 5</formula></material>
+	<material><formula>Lu 3 Os 4 Ge 13</formula></material>
+	<material><formula>Lu 3 Os 4 Ge 13</formula> <shape>single crystal</shape></material>
+	<material><formula>Lu 5 Ir 4 Si 10</formula></material>
+	<material><formula>Lu 5 Rh 6 Sn 18</formula></material>
+	<material><formula>Lu Rh Sn 5 6 18</formula></material>
+<!--	<material><doping>Lu</doping>-and <doping>Ru</doping>-based <shape>polycrystalline</shape></material>-->
+	<material><formula>LuAl 2</formula></material>
+	<material><formula>LuNi 2 B 2</formula></material>
+	<material><formula>LuNi 2 B 2 C</formula></material>
+	<material><formula>LuNi2B2C</formula></material>
+	<material><formula>MBa 2 Cu 3 O 7−x</formula> (<variable>M</variable>=<value>Y</value></material>
+	<!-- <material><name>MINECO</name></material> -->
+	<material><name>ML-SmBCO</name> <shape>films</shape></material>
+	<!-- <material><doping>MOCVD-(Gd,Y)BCO+BZO(15%Zr)</doping> <shape>films</shape></material> -->
+	<material><fabrication>MOD-grown</fabrication> <formula>Y 0.77 Gd 0.23 Ba 2 Cu 3 O y</formula> CCs</material>
+    <material><formula>MX 2</formula> (<variable>M</variable> = <value>transition metals</value>, <variable>X</variable> = <value>S</value></material>
+	<material><formula>Mg</formula></material>
+	<material><formula>Mg 0.25 Ti 0.75 ) 3 O 8</formula></material>
+	<material><formula>Mg 0.9 B 2</formula></material>
+	<material><formula>Mg 1 −x Ta x B 2</formula></material>
+	<material><formula>Mg 1.1 B 2</formula></material>
+	<material><formula>Mg 1/3 Nb 2/3 )O 3 -xPbTiO 3</formula></material>
+	<material><formula>Mg 10 Ir 19 B 16</formula></material>
+	<material><formula>Mg 2 B 25</formula></material>
+	<material><formula>Mg 2 Si</formula></material>
+	<material><formula>Mg 2 Si</formula> (8%)</material>
+	<!-- <material><formula>Mg 37 × 18 25% 412</formula></material> -->
+	<!-- <material><formula>Mg 37 × 18 25% 497</formula></material> -->
+	<material><formula>Mg x B 2</formula></material>
+	<material><formula>Mg x B 2</formula> <variable>x</variable> = <value>0.90</value></material>
+	<material><formula>Mg(B 1−x C x ) 2</formula></material>
+	<!-- <material><formula>Mg-B</formula> <shape>films</shape></material> -->
+	<!-- <material><formula>Mg-B-O</formula></material> -->
+	<material><name>Mg-NdBCO</name> seed</material>
+	<material>Mg-RLI<formula> MgB 2</formula></material>
+	<material><doping>Mg</doping>-doped <name>NdBCO</name></material>
+	<material><doping>Mg</doping>-rich <name>borides</name></material>
+	<material><formula>Mg2Cu</formula></material>
+<!--	<material><formula>Mg: 0.06</formula>, <variable>K</variable><value>: 0.07, Si: 0.01, Na: 0.01, Si: 0.01, Na: 0.01, Al: 0.01 Al: 0.01</value></material>-->
+	<material><formula>MgAl 2 O 4</formula></material>
+	<material><formula>MgAl2O4</formula></material>
+	<material><formula>MgB</formula> , and <formula>Nb 3 Sn</formula></material>
+	<material><formula>MgB 12</formula></material>
+	<material><formula>MgB 2</formula></material>
+	<material><formula>MgB 2</formula> )</material>
+	<material><formula>MgB 2</formula> + 2</material>
+	<material><formula>MgB 2</formula> + 5</material>
+<!--	<material><formula>MgB 2 , and 1.66 and 1.69 for Si-and SiCl 4 -doped MgB 2</formula></material>-->
+	<material><formula>MgB 2</formula> -SN2</material>
+<!--	<material><formula>MgB 2 0.187 0.119 0.188 Nb 0.300 0.107 0.176 Nb-Ni -0.050 0.071 Cu 0.131 0.052 -Ni -0.156</formula></material>-->
+	<material><formula>MgB 2</formula> 0.5</material>
+<!--	<material><formula>MgB 2 10%SiC Nb Cu 14.9 0.83 6 30 700 1 G F2 MgB 2 10%SiC Nb Cu 14.9 0.83</formula></material>-->
+<!--	<material><formula>MgB 2 12% 13% 16% Cu 15% 14% 27% Ni 63</formula></material>-->
+	<material><formula>MgB 2</formula> H c2</material>
+	<material><formula>MgB 2</formula> HV0.05</material>
+	<material><formula>MgB 2</formula> R s</material>
+	<material><formula>MgB 2</formula> RW</material>
+<!--	<material><formula>MgB 2 TaB 2 SiC MgO Mg 2 Si MgB 2</formula></material>-->
+	<material><formula>MgB 2</formula> bulk</material>
+	<material><formula>MgB 2</formula> crystal</material>
+	<material><formula>MgB 2</formula> crystals</material>
+	<material><formula>MgB 2</formula> <shape>film</shape></material>
+	<material><formula>MgB 2</formula> <shape>film</shape> (~ 120</material>
+	<material><formula>MgB 2</formula> <shape>film B</shape></material>
+	<material><formula>MgB 2</formula> <shape>film</shape> on <substrate>Nb</substrate> substrate</material>
+	<material><formula>MgB 2</formula> <shape>films</shape></material>
+	<material><formula>MgB 2</formula> <shape>films</shape> 0.09</material>
+	<material><formula>MgB 2</formula> <shape>polycrystal</shape></material>
+	<material><formula>MgB 2</formula> <shape>polycrystalline</shape> bulks, <shape>thin films</shape></material>
+	<material><formula>MgB 2</formula> <shape>thin film</shape></material>
+	<material><formula>MgB 2</formula> <shape>thin films</shape></material>
+	<material><formula>MgB 2</formula>, and <formula>Nb 3 Sn</formula></material>
+	<material><formula>MgB 4</formula></material>
+	<material><formula>MgB 4</formula> 4 700 1 0.5</material>
+	<material><formula>MgB 6</formula></material>
+	<material><formula>MgB 7</formula></material>
+	<material><formula>MgB 9</formula></material>
+	<material><formula>MgB 9 N (7.3</formula></material>
+<!--	<material><formula>MgB MgB Nb Nb NbNi NbNi 2 2</formula></material>-->
+	<material><formula>MgB x</formula></material>
+    <material><formula>MgB y</formula> (<variable>y</variable> <value>2 &gt;</value> )</material>
+	<material><formula>MgB y</formula> (<variable>y</variable> = <value>2.4-2</value></material>
+	<material><formula>MgB y</formula> (<variable>y</variable> = <value>2.8-4.2</value>)</material>
+	<material><formula>MgB2</formula></material>
+	<material><formula>MgB2</formula> 1</material>
+<!--	<material><formula>MgB2 10% 15% 15% Cu 27% 42% 42% Nb 24% 20% 20</formula></material>-->
+	<material><formula>MgB2</formula> 12 <shape>films</shape></material>
+<!--	<material><formula>MgB2 185 4.9 37.8 40 0.017 0.26 0.21</formula></material>-->
+	<material><formula>MgB2</formula> MRI</material>
+<!--	<material><formula>MgB2 Nature 410 186-9 6</formula></material>-->
+<!--	<material><formula>MgB2 ex-situ Bi:2212 Bi:2223 YBCO Nb3Sn Reference</formula></material>-->
+	<material><formula>MgB2</formula> <shape>film</shape></material>
+	<material><formula>MgB2</formula> <shape>film</shape> on <substrate>Cu</substrate></material>
+	<material><formula>MgB2</formula> <shape>films</shape></material>
+	<material><formula>MgB2</formula> <shape>thin film</shape></material>
+	<material><formula>MgB2</formula> <shape>thin films</shape></material>
+<!--	<material><formula>MgB2</formula><value>, 0.4%, and 0.2%</value></material>-->
+<!--	<material><formula>MgB2, 27% Cu, 24% Nb</formula></material>-->
+	<material><formula>MgB2</formula>, <formula>ReBCO</formula></material>
+<!--	<material><formula>MgB2-MgO-Nb-MgO[52</formula></material>-->
+<!--	<material><formula>MgB2: 14% Monel: 38% Cu-Ni: 26% Nb: 20% Cu: 2% MgB2</formula></material>-->
+<!--	<material><formula>MgB2_2%C SMI 1:2 0.834 11.7</formula></material>-->
+	<material><formula>MgCNi 3</formula></material>
+	<material><formula>MgCu2</formula></material>
+	<material><formula>MgCxNi3</formula></material>
+	<material><formula>MgF 2</formula></material>
+<!--	<material><formula>MgF2, SiO2, Si, Ta2O5</formula></material>-->
+	<material><formula>MgH 2</formula></material>
+	<material><formula>MgO</formula></material>
+<!--	<material><formula>MgO (7%</formula>)</material>-->
+	<material><formula>MgO</formula> (<variable>a</variable> = <value>0.4212</value></material>
+<!--	<material><formula>MgO 0.4212 4.3 RT 0.13 5 12</formula></material>-->
+	<material><formula>MgO 2</formula></material>
+<!--	<material><doping>MgO SrTiO3-buffered PMN-PT Fe-buffered MgO Fe-buffered IBAD-MgO Fe-buffered</doping> <formula>MgAl2O4 BaF2</formula></material>-->
+	<material><formula>MgO</formula> crystal</material>
+	<material><formula>MgO</formula> crystals</material>
+	<material><formula>MgO</formula> <shape>single-crystal</shape></material>
+	<material><formula>MgO</formula> <shape>single-crystal</shape> (SC MgO)</material>
+	<material><formula>MgO</formula> <shape>single-crystal</shape> substrate</material>
+	<material><formula>MgO</formula> <shape>single-crystals</shape></material>
+	<material><substrate>MgO substrate</substrate>, <formula>Mn 3.86 Gd 0.14 N</formula></material>
+	<material><doping>MgO-free</doping> <name>NdBCO</name></material>
+<!--	<material><formula>MgO͑001͒1 ϫ 1</formula></material>-->
+	<material><formula>MgO͒</formula></material>
+	<material><formula>MgSi 4</formula></material>
+	<!-- <material><formula>Mg−MgB 2</formula></material> -->
+	<!-- <material><formula>Mg+MgB 4</formula></material> -->
+	<material><formula>Mn 1/3 TaS 2</formula></material>
+	<material><formula>Mn 1/3 TaS 2</formula> <shape>single crystals</shape></material>
+	<material><formula>Mn 1−x Co x Si</formula> [2]</material>
+	<material><formula>Mn 1−x Fe x Si</formula></material>
+	<material><formula>Mn 2 O 3</formula></material>
+	<material><formula>Mn 3.52 Gd 0.48</formula></material>
+	<material><formula>Mn 3.86 Gd 0.14</formula></material>
+	<material><formula>Mn 3.9 Gd 0.1 N</formula></material>
+	<material><formula>Mn 3.9 Gd 0.10</formula></material>
+	<material><formula>Mn 4-x Gd x N</formula></material>
+	<material><formula>Mn 4-x Gd x N</formula> <shape>film</shape></material>
+	<material><formula>Mn 4-x Gd x N</formula> <shape>films</shape></material>
+	<material><doping>Mn</doping> doped <formula>FeSe 0.5 Te 0.5</formula></material>
+	<!-- <material><formula>Mn-Si-2</formula></material> -->
+	<!-- <material><formula>Mn-Si-3</formula></material> -->
+	<material><doping>Mn</doping>-<fabrication>intercalated</fabrication> <formula>2H-TaS 2</formula></material>
+	<material><formula>MnAs</formula></material>
+	<material><formula>MnAs 1−x Sb x</formula></material>
+	<material><formula>MnAs</formula> <shape>films</shape></material>
+	<material><formula>MnCoGe 0.99 In 0.01</formula></material>
+	<material><formula>MnCoGe</formula> and <formula>MnNiSi</formula>)</material>
+	<material><formula>MnCoSi</formula>)</material>
+	<material><formula>MnFe 2 O 4</formula></material>
+	<material><formula>MnFeP 0.45 As 0.55</formula></material>
+	<material><formula>MnGa 0.5 Sn 0.5</formula></material>
+	<material><formula>MnNiGe</formula>)</material>
+	<material><formula>MnNiSi) 0.62 (FeCoGe) 0.38</formula></material>
+	<material><formula>MnNiSi) 1Àx (FeCoGe) x</formula></material>
+	<material><formula>MnNiSi) 1Àx (FeCoGe) x</formula> (<variable>x</variable> ¼ <value>0.38</value>)</material>
+	<material><formula>MnNiSi) 1Àx (FeCoGe) x</formula> with <variable>x</variable> ¼ <value>0.38</value></material>
+	<material><formula>MnNiSi) 1Àx (FeCoGe) x</formula>.</material>
+    <material>MnNiSi-based compound, <formula>(MnNiSi) 1Àx (FeCoGe) x</formula> (<variable>x</variable> ¼ <value>0.38</value>)</material>
+	<material><formula>MnO 2</formula></material>
+	<!-- <material><formula>MnO 6</formula></material> -->
+	<material><formula>MnSi</formula></material>
+	<material><formula>MnSi 13</formula></material>
+	<material><formula>MnSi 3</formula> and <formula>Fe x Co 1Àx Si 7</formula></material>
+	<material><formula>MnSi</formula> <shape>bulk crystals</shape></material>
+	<material><formula>MnSi</formula> <shape>crystal</shape></material>
+	<material><formula>MnSi</formula> <shape>film</shape></material>
+	<material><formula>MnSi</formula> <shape>films</shape></material>
+	<material><formula>MnSi</formula> <shape>films</shape> on <substrate>Si (111)</substrate></material>
+	<material><formula>MnSi</formula> <shape>films</shape> on <substrate>Si(111)</substrate></material>
+    <material><formula>MnSi</formula> on <substrate>Si(111)</substrate></material>
+	<material><formula>MnSi</formula> <shape>powder</shape></material>
+	<material><formula>MnSi</formula> <shape>thin film</shape></material>
+	<material><formula>MnSi</formula> <shape>thin films</shape></material>
+	<material><formula>MnSi</formula> <shape>thin films</shape> grown on <substrate>Si(111)</substrate></material>
+	<material><formula>MnSi</formula> <shape>thin films</shape> on <substrate>Si(111)</substrate></material>
+	<material><formula>MnSi(111)</formula></material>
+	<material><formula>MnSi(111)</formula> <formula>Si(111)</formula></material>
+    <material><formula>MnSi(111)</formula> and <formula>Si(111)</formula></material>
+	<material><formula>MnSi(111)</formula> <shape>thin films</shape></material>
+	<material><formula>MnSi</formula>/<substrate>Si(111)</substrate></material>
+<!--	<material><formula>MnSi{111} 112 Si{111} 110</formula></material>-->
+	<material><formula>MnTe</formula></material>
+	<material><formula>MnTe</formula> <shape>crystal</shape></material>
+	<material><formula>MnTe</formula> <shape>thin film</shape></material>
+	<material><formula>MnTe</formula> <shape>thin films</shape></material>
+	<material><doping>Mndoped</doping> <name>YBCO</name> <shape>thin films</shape></material>
+	<material><formula>Mo -x 1 Fe x ) 3 Sb 7</formula></material>
+	<material><formula>Mo -x 1 Re x</formula></material>
+	<material><formula>Mo -x 1 Re x</formula> (<variable>x</variable> = <value>0.20, 0.25</value>)</material>
+	<material><formula>Mo -x 1 Re x</formula> = <variable>x</variable> <value>0.20, 0.25</value></material>
+	<material><formula>Mo -x 1 Re x</formula> <shape>superconductors</shape></material>
+	<material><formula>Mo -x 1 Re x </formula>(<variable>x</variable>=<value>0.20, 0.25</value>)</material>
+	<material><formula>Mo -x 1 Ru x ) 3 Sb 7</formula></material>
+	<material><formula>Mo -x 1 T x ) 3 Sb 7</formula></material>
+	<material><formula>Mo 0.75 Re 0.25</formula></material>
+	<material><formula>Mo 0.80 Re 0.20</formula></material>
+	<material><formula>Mo 0.90 Ru 0.1 ) 3 Sb 7</formula></material>
+<!--	<material><formula>Mo 0.90 Ru 0.10 ) 3 Sb 7 265 8.66 110 1.3 40 0.04 32 (Mo 0.95 Fe 0.05 ) 3 Sb 7</formula></material>-->
+	<material><formula>Mo 0.95 Ru 0.05 ) 3 Sb 7</formula></material>
+	<material><formula>Mo 0.96 Zr 0.04 ) 0.85 B 2</formula></material>
+<!--	<material><formula>Mo 0.98 Ru 0.02 ) 3 Sb 7 2.08 -2.66 (Mo 0.95 Ru 0.05 ) 3 Sb 7 2.18 4.86 2.56 3.0 2.64 (Mo 0.90 Ru 0.10 ) 3 Sb 7 2.35 5.41 2.52 3.8 2.4 (Mo 0.98 Fe 0.02 ) 3 Sb 7 2.10 -(Mo 0.95 Fe 0.05 ) 3 Sb 7</formula></material>-->
+	<material><formula>Mo 1-x Re x</formula></material>
+	<material><formula>Mo 100−x Re x</formula></material>
+	<material><formula>Mo 2 C</formula></material>
+	<material><formula>Mo 2 C</formula> (JCPDS 31-0871)</material>
+	<material><formula>Mo 2.75 Nb 0.25 Al 2</formula></material>
+	<material><formula>Mo 2.75 Nb 0.25 Al 2 C</formula></material>
+	<material><formula>Mo 2.85 Ru 0.15 Al 2 C</formula></material>
+	<material><formula>Mo 2.9 Nb 0.1 Al 2</formula></material>
+	<material><formula>Mo 2.9 Nb 0.1 Al 2 C</formula></material>
+	<material><formula>Mo 2.9 Ru 0.1 Al 2</formula></material>
+	<material><formula>Mo 3 Al 2 C</formula></material>
+<!--	<material><formula>Mo 3 Al 2 C 181.4 1.23 8.6 0.5 Mo 2.90 Nb 0.10 Al 2 C 191.8 0.97 8.2 0.3 Mo 2.75 Nb 0.25 Al 2 C 193.0 0.97 7.9 0.3 Mo 2.95 Ru 0.05 Al 2 C 164.3 0.95 7.9 0.3 Mo 2.90 Ru 0.10 Al 2 C 212.0 1.04 7.7 0.5 Mo 2.85 Ru 0.15 Al 2 C 205.0 1.00 7.5 0.7</formula></material>-->
+	<material><formula>Mo 3 Al 8</formula></material>
+	<material><formula>Mo 3 Re</formula></material>
+	<material><formula>Mo 3 Re</formula> <shape>films</shape></material>
+	<material><formula>Mo 3 Sb 7</formula></material>
+	<material><formula>Mo 3 Sb 7</formula> and <formula>(Mo -x 1 Ru x ) 3 Sb 7</formula></material>
+	<material><formula>Mo 3 Sb 7 single</formula> <shape>crystal</shape></material>
+	<material><formula>Mo 3 Si</formula> <shape>films</shape></material>
+	<material><formula>Mo 3−x Nb x Al 2 C</formula></material>
+	<material><formula>Mo 3−x Nb x Al 2 C</formula> (<variable>x</variable>=<value>0.00-0.25</value>)</material>
+	<material><formula>Mo 3−x Ru x Al 2 C</formula></material>
+	<material><formula>Mo 52 Re 48</formula></material>
+	<material><formula>Mo 60 Re 40</formula></material>
+	<material><formula>Mo 75 Re 25</formula></material>
+	<material><formula>Mo x Si -x 1</formula></material>
+<!--	<material><doping>Mo-Au TESs with Mo/Nb</doping></material>-->
+<!--	<material><doping>Mo-Cu, Mo-Au, and Ti-Au</doping>)</material>-->
+	<material><formula>MoGe</formula></material>
+	<material><formula>MoGe</formula> and <formula>Bi</formula> <shape>films</shape></material>
+	<material><formula>MoGe</formula> <shape>film</shape></material>
+	<material><formula>MoGe</formula> <shape>films</shape></material>
+	<material><formula>MoGe</formula> <shape>thin films</shape></material>
+	<material><formula>MoO 3</formula></material>
+	<!-- <material><formula>MoO 3 -TeO 2</formula></material> -->
+	<!-- <material><formula>MoO 3 -TeO 2</formula> <shape>thin films</shape></material> -->
+	<material><formula>MoS 2</formula></material>
+	<material><formula>MoS 2</formula> <shape>crystal</shape></material>
+	<material><formula>MoSe 2</formula></material>
+	<material><formula>MoSi</formula></material>
+	<material><formula>MoSi 3</formula></material>
+	<material><formula>MoSi</formula> <shape>film</shape></material>
+	<material><formula>MoSi</formula> <shape>films</shape></material>
+	<material><formula>MoSi x</formula></material>
+	<material>N122 <formula>BaFe 2 Se 2</formula></material>
+	<material><name>NCCO</name></material>
+	<material><name>NCCO</name> + 15</material>
+	<material><name>NCCO</name> + 5</material>
+	<material><name>NCCO</name> + 5% Ag</material>
+	<material><name>NCCO</name>, <name>NCCO</name> + 5</material>
+	<material><name>NCO</name></material>
+	<material><name>NCO</name> )</material>
+<!--	<material><doping>ND-Ba-122/Co-doped</doping> <formula>Ba-122</formula></material>-->
+<!--	<material><doping>ND-Ba-122/Co-doped</doping> <formula>Ba-122</formula> multilayers, ND-<name>Ba-122</name></material>-->
+	<material><formula>Na 0.79 CoO 2</formula></material>
+	<material><formula>Na CoO x 2</formula></material>
+	<material><formula>Na x TaS 2</formula></material>
+	<material><formula>Na(Fe 0.97−x Co 0.03 Cu x</formula></material>
+	<material><doping>Na</doping>-doped <formula>BaFe 2 As 2</formula></material>
+	<material><doping>Na</doping>-doped material <formula>(Sr,Na) Fe 2 As 2</formula></material>
+	<material><formula>NaAs</formula></material>
+<!--	<material><formula>NaCl cubic 4.212 4.212 MgAl2O4</formula></material>-->
+	<material><formula>NaFe 0.97 Co 0.03 As</formula> <shape>crystal</shape></material>
+	<material><formula>NaFe 1−x Co x</formula></material>
+	<material><formula>NaFe 1−x Co x As</formula></material>
+	<material><formula>NaFe 1−x Co x As</formula> (<variable>x</variable>=<value>0.01, 0.03, 0.05 and 0.07</value>)</material>
+	<material><formula>NaFe 1−x Co x As</formula> (<variable>x</variable>=<value>0.01, 0.03, 0.05, and 0.07</value>)</material>
+	<material><formula>NaFe 1−x Co x As</formula> (<variable>x</variable>=<value>0.01, 0.03, 0.05, and 0.07</value>) <shape>single crystals</shape></material>
+	<material><formula>NaFe 1−x Co x As</formula> (<variable>x</variable>=<value>0.01, 0.03, and 0.07</value>)</material>
+	<material><formula>NaFe 1−x Co x As</formula> samples</material>
+	<material><formula>NaFe 2 As 2</formula></material>
+	<material><formula>NaFe 2 As 2</formula> <shape>crystal</shape></material>
+	<material><formula>NaFe0.972Co0.028</formula></material>
+	<material><formula>NaFe0.97Co0.03</formula></material>
+	<material><formula>NaFe0.97Co0.03As</formula> <shape>single crystals</shape></material>
+	<material><formula>NaFe0.97Co0.03As</formula>, 12 <formula>Sr4V2O6Fe2As2</formula></material>
+	<material><formula>NaFe0.97Co0.03As</formula>, <formula>Sr4V2O6Fe2As2</formula></material>
+	<material><formula>NaFe1−xCoxAs</formula></material>
+	<material><formula>NaFe1−xCoxAs</formula> (<variable>x</variable>=<value>0.01, 0.03</value></material>
+	<material><formula>NaFe1−xCoxAs</formula> (<variable>x</variable>=<value>0.01, 0.03, 0.05, and 0.07</value>)</material>
+	<material><formula>NaFe1−xCoxAs</formula> (<variable>x</variable>=<value>0.01, 0.03, 0.05, and 0.07</value>) <shape>single crystals</shape></material>
+	<material><formula>NaFe1−xCoxAs</formula> (<variable>x</variable>=<value>0.01, 0.03, and 0.07</value>)</material>
+	<material><formula>NaFeAs</formula> (<name>111</name>)</material>
+<!--	<material><formula>NanoSQUIDs</formula> based on Niobium <shape>Nitride films</shape></material>-->
+	<material><formula>Nb</formula></material>
+	<material><formula>Nb</formula> (<shape>thin film</shape></material>
+	<material><formula>Nb 0.18 Re 0.82</formula></material>
+	<material><formula>Nb 0.25 Cu 0.75 )Sn 2</formula></material>
+	<material><formula>Nb 0.5 Os 0.5</formula></material>
+	<material><formula>Nb 0.75 Cu 0.25 Sn 2</formula></material>
+	<material><formula>Nb 0.76 B 2</formula></material>
+	<material><formula>Nb 0.87 Si 0.09 □ 0.04</formula></material>
+	<material><formula>Nb 0.87 Si 0.09 □ 0.04 )(N 0.87 O 0.13</formula></material>
+	<material><formula>Nb 0.87 Si 0.09 □ 0.04 )(N 0.87 O 0.13 )</formula></material>
+	<material><formula>Nb 0.987 N 0.987</formula></material>
+	<!-- <material><formula>Nb 2</formula></material> -->
+	<material><formula>Nb 2 H 2</formula> −</material>
+	<material><formula>Nb 2 O 5</formula></material>
+	<material><formula>Nb 2 O 5−x</formula></material>
+	<material><formula>Nb 2 O 5−δ</formula></material>
+	<material><formula>Nb 2 Pd 0.81 S 5</formula></material>
+<!--	<material><formula>Nb 2 Pd x S 5 6.6 15 37 5.6 Nb 2 Pd x Se 5 5.0 12.8 35 5.9 Ta 2 Pd x S 5 5.4 27.6 31 5.7 Ta 2 PdSe 5 2</formula></material>-->
+	<material><formula>Nb 2 PdS 5</formula></material>
+	<material><formula>Nb 2 PdSe 5</formula></material>
+	<!-- <material><formula>Nb 25 At%</formula></material> -->
+	<material><formula>Nb 3</formula></material>
+	<material><formula>Nb 3 Al</formula></material>
+	<material><formula>Nb 3 Al</formula>, <formula>Nb 3 Ge</formula></material>
+	<material><formula>Nb 3 Ga</formula></material>
+	<material><formula>Nb 3 Ge</formula></material>
+	<material><formula>Nb 3 Sn</formula></material>
+	<material><formula>Nb 3 Sn + 7% PrB 6</formula></material>
+	<material><formula>Nb 3 Sn 29</formula></material>
+	<material><formula>Nb 3 Sn A15</formula></material>
+	<material><formula>Nb 3 Sn X Sn</formula> (μ Sn</material>
+	<material><formula>Nb 3 Sn</formula> <shape>crystals</shape></material>
+	<material><formula>Nb 3 Sn</formula> <shape>film</shape></material>
+	<material><formula>Nb 3 Sn</formula> <shape>films</shape></material>
+    <material><formula>Nb 3 Sn</formula> on <substrate>Nb</substrate>)</material>
+	<material><formula>Nb 3 Sn</formula> <shape>thin film</shape></material>
+	<material><formula>Nb 3 Sn</formula> <shape>thin films</shape></material>
+	<material><formula>Nb 3 Sn</formula> wires, <shape>thin films</shape>, <shape>single crystals</shape></material>
+	<material><formula>Nb 3 Sn</formula>)</material>
+	<material><formula>Nb 3 Sn-based</formula></material>
+<!--	<material><formula>Nb 40 27 1.5 9 0.13 0.21 0.25 17547 25009.0 Nb3Sn 111 4.2 26</formula></material>-->
+	<!-- <material><formula>Nb 46 At%</formula></material> -->
+	<material><formula>Nb 5 N 6</formula></material>
+	<material><formula>Nb 5 N 6</formula> <fabrication>buffered</fabrication> <name>Si</name></material>
+	<material><formula>Nb 6 Sn 5</formula></material>
+	<!-- <material><formula>Nb 76 At%</formula></material> -->
+	<!-- <material><formula>Nb 85 At%</formula></material> -->
+	<!-- <material><formula>Nb 87 At%</formula></material> -->
+	<!-- <material><formula>Nb 87 At%</formula> <shape>film</shape></material> -->
+	<material><formula>Nb Al-AlO Nb x</formula></material>
+	<material><formula>Nb Al-AlO x -Al Nb</formula></material>
+	<material><formula>Nb</formula> <shape>crystal</shape></material>
+	<material><formula>Nb</formula> <shape>film</shape></material>
+	<material><formula>Nb</formula> <shape>film hydrogen</shape></material>
+	<material><formula>Nb</formula> <shape>films</shape></material>
+	<material><formula>Nb</formula> <shape>films</shape> grown on <substrate>Cu</substrate></material>
+	<material><formula>Nb</formula> <shape>films</shape> grown on <substrate>Si (100)</substrate></material>
+	<material><formula>Nb</formula> <shape>films</shape> on <formula>Al 2 O 3</formula></material>
+<!--	<material><doping>Nb</doping> from <formula>Mo</formula></material>-->
+	<material><formula>Nb</formula> <shape>thin film</shape></material>
+	<material><formula>Nb</formula> <shape>thin film</shape> grown on <substrate>Si</substrate></material>
+	<material><formula>Nb</formula> <shape>thin films</shape></material>
+	<material><formula>Nb(N 0.98 O 0.02 )</formula></material>
+	<!-- <material><name>Nb-1</name> <shape>film</shape></material> -->
+	<!-- <material><name>Nb-1</name> <shape>thin film</shape></material> -->
+	<!-- <material><name>Nb-1</name> <shape>thin film</shape> of 450</material> -->
+	<!-- <material><name>Nb-2</name> <shape>film</shape></material> -->
+	<!-- <material><name>Nb-2</name> <shape>films</shape></material> -->
+	<!-- <material><name>Nb-2</name> <shape>thin film</shape></material> -->
+	<!-- <material><name>Nb-25</name></material> -->
+	<material><name>Nb-Al</name> <shape>rod</shape></material>
+<!--	<material><name>Nb-Al-AlOx-Cu</formula></material> CHECK -->
+	<material><name>Nb-Cu</name> <shape>film</shape></material>
+	<material><name>Nb-Cu</name> <shape>films</shape></material>
+	<material><name>Nb-Cu</name> <shape>films</shape> with composition of <formula>Nb 25 At%</formula></material>
+    <material><name>Nb-Cu</name> nanocomposite film</material>
+	<!-- <material><name>Nb-NbO x -Nb 2 O 5</formula></material> -->
+	<material><name>Nb-Ni</name></material>
+	<material><name>Nb-Sn</name></material>
+	<material><name>Nb-Sn</name> (<formula>Nb 6 Sn 5</formula></material>
+	<material><name>Nb-Sn</name> bulk</material>
+	<material><name>Nb-Ti</name></material>
+<!--	<material><doping>Nb-Ti, Nb-Zr, Ti-Mo</doping></material>-->
+	<!-- <material><doping>Nb-Ti-N</doping></material> -->
+	<material><doping>Nb</doping>-and <doping>Ru</doping>-doped <formula>Mo 3 Al 2 C</formula></material>
+	<material><doping>Nb</doping>-and <doping>Ru</doping>-substituted <formula>Mo 3 Al 2 C</formula></material>
+	<material><doping>Nb</doping>-and <doping>Rusubstituted</doping> <formula>Mo 3 Al 2 C</formula></material>
+	<material><fabrication>Nb-coated</fabrication><formula> Cu</formula>)</material>
+	<material><doping>Nb</doping>-doped <formula>SrTiO 3</formula></material>
+	<material><doping>Nb</doping>-doped <formula>SrTiO3</formula></material>
+	<material><doping>Nb</doping>-doped <formula>ZrB 2</formula></material>
+    <material><formula>Nb</formula>/<substrate>Cu 0.68 Ni 0.32</substrate></material>
+    <material><formula>Nb</formula>/<substrate>MgO film</substrate></material>
+    <!-- <material><formula>Nb</formula>/<substrate>Pb/Nb</substrate></material> -->
+	<!-- <material><formula>Nb2</formula></material> -->
+	<material><formula>Nb3Sn</formula></material>
+	<material><formula>Nb3Sn 53</formula></material>
+	<material><formula>Nb3Sn, 0.4%</formula></material>
+	<material><formula>Nb3Sn</formula>, <name>BSCCO 2212</name></material>
+	<material><formula>Nb3Sn</formula>-Al2O3-Nb</material>
+	<material><formula>Nb5N6</formula></material>
+	<material><formula>NbCl 5</formula></material>
+<!--	<material><formula>NbH 2 − NbH 3 − NbH 4</formula></material>-->
+	<material><formula>NbH 4</formula></material>
+	<material><formula>NbH 5</formula></material>
+	<material><formula>NbH x</formula> (<variable>x</variable> = <value>1-5</value>)</material>
+	<material><formula>NbN</formula></material>
+    <material><formula>NbN</formula> / <substrate>Nb 2 O 5</substrate></material>
+	<material><formula>NbN</formula> <shape>film</shape></material>
+    <material><formula>NbN</formula> <shape>film</shape> on <substrate>MgO</substrate> substrates</material>
+	<material><formula>NbN</formula> <shape>films</shape></material>
+	<material><formula>NbN</formula> <shape>films</shape> 654</material>
+    <material><formula>NbN</formula> <shape>films</shape> on <substrate>MgO</substrate> substrates (squares)</material>
+<!--	<material><formula>NbN in CF 4</formula></material>-->
+	<material><formula>NbN</formula> on <substrate>MgO</substrate>, <shape>thin-film</shape> <formula>Nb</formula></material>
+	<material><formula>NbN</formula> <shape>thin film</shape></material>
+	<material><formula>NbN</formula> <shape>thin films</shape></material>
+	<!-- <material><formula>NbN x , NbC x</formula></material> -->
+	<!-- <material><formula>NbN-SBA-15</formula></material> -->
+<!--	<material><doping>NbN-based</doping> <formula>SSPDs</formula></material>-->
+	<material><formula>NbN</formula>/<substrate>Co 2 Fe 0.4 Mn 0.6</substrate></material>
+	<material><formula>NbO 2</formula></material>
+	<material><formula>NbO 2 F 2</formula></material>
+<!--	<material><formula>NbO 2 − 1508 843 −20 −40 NbO 2 + 1431 884 −37 −59 NbO 2 H</formula></material>-->
+	<material><formula>NbO 3</formula></material>
+	<material><formula>NbO x</formula> /<substrate>Nb 2 O 5</substrate></material>
+<!--	<material><formula>NbO x and Nb/ NbO x /Nb 2 O 5</formula></material>-->
+	<material><formula>NbOx</formula></material>
+	<!-- <material><formula>NbOx to Al2O3</formula></material> -->
+	<material><formula>NbSe 2</formula></material>
+	<material><formula>NbSe 2</formula> <shape>crystals</shape></material>
+	<material><formula>NbSe2</formula></material>
+	<material><formula>NbSi</formula></material>
+	<material><formula>NbSn 2</formula></material>
+	<material><formula>NbSn 3</formula></material>
+	<material><formula>NbTa</formula></material>
+	<material><formula>NbTi</formula></material>
+	<material><formula>NbTi</formula> &amp; <formula>Nb 3 Sn</formula></material>
+	<material><formula>NbTi</formula> + 5%<formula>Gd 2 O 2 S</formula></material>
+<!--	<material><formula>NbTi + 5.9% <formula>PrB 6</formula></material> CHECK-->
+	<material><formula>NbTi</formula> and <formula>Nb3Sn</formula></material>
+	<material><formula>NbTi</formula> flanges)</material>
+	<material><formula>NbTi</formula> or <formula>Nb 3 Sn</formula></material>
+	<material><formula>NbTi&apos;s</formula></material>
+<!--	<material>NbTi) = <value>0.18</value></material>-->
+	<material><formula>NbTi</formula>, <formula>Nb3Sn</formula></material>
+</materials>

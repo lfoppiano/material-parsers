@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<materials>
+	<material><formula>CaCuO 2</formula></material>
+	<material><formula>CaCuO 2</formula> (<name>CCO</name>)</material>
+	<material><formula>CaCuO 2</formula> /<substrate>BaCuO 2</substrate></material>
+	<material><formula>CaCuO 2</formula> /<substrate>SrTiO 3</substrate></material>
+	<material><formula>CaF 2</formula></material>
+    <material><formula>CaF 2</formula> , <formula>(La,Sr)(Al,Ta)O 3</formula></material>
+	<material><formula>CaF 2</formula> <shape>single crystals</shape></material>
+	<material><formula>CaF2</formula></material>
+<!--	<material><formula>CaF2 with PO2</formula></material>-->
+    <material><formula>CaF2</formula>, <formula>SrF2</formula></material>
+	<material><formula>CaF2</formula>-<fabrication>buffered</fabrication> <formula>LaAlO3</formula></material>
+	<material><formula>CaF2As2</formula>)</material>
+	<material><formula>CaFe 0.882 Co 0.118</formula></material>
+	<material><formula>CaFe 0:882 Co 0:118</formula></material>
+	<material><formula>CaFe 2 As 2</formula></material>
+	<material><formula>CaFe 2 As 2</formula> (<name>Ca122</name>)</material>
+	<material><formula>CaFe x 1-Co x AsF</formula></material>
+	<material><formula>CaFe x 1-Co x AsF</formula> <shape>single crystals</shape></material>
+	<material><formula>CaFe2As2</formula></material>
+	<material><formula>CaFe2As2</formula> (<name>Ca-122</name></material>
+	<material><formula>CaFe2As2</formula> <shape>films</shape></material>
+	<material><formula>CaFe2As2</formula> <shape>thin film</shape></material>
+	<material><formula>CaFe2As2</formula> <shape>thin films</shape></material>
+	<material><formula>CaFe2As2</formula>/<formula>Fe</formula></material>
+	<material><formula>CaFeAs 2</formula></material>
+	<material><formula>Cd 2 Re 2 O 7</formula></material>
+	<material><formula>Cd 3 As 2 19</formula></material>
+	<material><formula>Cd2Re2O7</formula></material>
+	<material><formula>Ce 3 Ir 2 Ge 2</formula></material>
+	<material><formula>Ce 3 Rh 2 Ge 2</formula></material>
+	<material><formula>CeCoIn 5</formula></material>
+	<material><formula>CeCoIn 5</formula> -<formula>YbCoIn 5</formula></material>
+	<material><formula>CeCu 2 Ge 2</formula></material>
+	<material><formula>CeFeAs(O,F)</formula></material>
+	<material><formula>CeFeAsO1-xFx</formula></material>
+	<material><formula>CeIrIn 5</formula></material>
+	<material><formula>CeIrSi 3</formula></material>
+	<material><formula>CeO 2</formula></material>
+	<material><formula>CeO 2 -</formula><name>YBCO</name></material>
+	<material><formula>CeO 2</formula> <name>YBCO</name></material>
+	<material><formula>CeO 2</formula> <fabrication>buffered</fabrication> <name>RABiTSs</name></material>
+    <material><formula>CeO 2</formula> <fabrication>buffered</fabrication> <shape>single-crystalline</shape></material>
+	<material><formula>CeO2</formula></material>
+	<material><doping>CeO2</doping> doped <name>GdBCO</name></material>
+	<material><formula>CeO2</formula>-<fabrication>buffered</fabrication> <formula>SrTiO3</formula></material>
+	<material><formula>CeOBiS 2</formula></material>
+	<material><formula>CePt 3 Si</formula></material>
+    <material><formula>CePt 3 Si</formula>, <formula>CeIrSi 3</formula></material>
+	<material><formula>CeRhSi 3</formula></material>
+	<material><formula>CeRu 2</formula></material>
+	<material><doping>Cl</doping>-doped <name>YBCO</name> <shape>film</shape></material>
+	<material><formula>Co 2 Fe 0.4 Mn 0.6</formula></material>
+	<material><formula>Co 2 FeSi film</formula></material>
+	<material><formula>Co 2 MnGe 0.75 Ga 0.25 20</formula></material>
+	<material><formula>Co 3 O 4</formula></material>
+<!--	<material><doping>Co and X ¼ Si, Ge</doping>)</material>-->
+	<material><doping>Co</doping> doped <name>PBCO</name></material>
+<!--	<material><doping>Co</doping> doped <name>PBCO</name> <shape>thin films</shape>. the (110) <name>PBCO</name> <shape>thin films</shape></material>-->
+	<material><formula>Co x Fe 1+y−x Te 0.6 Se 0.4</formula></material>
+	<material><name>Co-Ba122</name></material>
+	<material><name>Co-Ba122</name> <shape>thin film</shape></material>
+	<material><name>Co-Ba122</name> <shape>thin film</shape> (330</material>
+	<material><name>Co-Ba122</name> <shape>thin film</shape> (<variable>Δf</variable> = <value>0.96°</value>)</material>
+	<material><name>Co-Ba122</name> <shape>thin film</shape> grown on oxide</material>
+	<material><name>Co-Ba122</name> <shape>thin films</shape></material>
+	<material><name>Co-Ba122</name> <shape>thin films</shape> grown on <substrate>CaF 2</substrate></material>
+	<material><doping>Co</doping>-and <doping>P</doping>-doped <formula>Ba-122</formula></material>
+	<material><doping>Co</doping>-doped <name>122</name></material>
+	<material><doping>Co</doping>-doped <formula>Ba 0.5 K 0.5 Fe 1.95 Co 0.05 As 2</formula></material>
+	<material><doping>Co</doping>-doped <formula>Ba-122</formula></material>
+	<material><doping>Co</doping>-doped <name>Ba-122</name> (30)</material>
+    <material><doping>Co</doping>-doped <name>Ba-122</name> and <formula>Fe(Se,Te)</formula></material>
+	<material><doping>Co</doping>-doped <name>Ba-122</name> <doping>bicrystal</doping></material>
+	<material><doping>Co</doping>-doped <name>Ba-122</name> <shape>crystal</shape></material>
+	<material><doping>Co</doping>-doped <name>Ba-122</name> <shape>crystals</shape></material>
+	<material><doping>Co</doping>-doped <name>Ba-122</name> deposited on Fe-buffered <formula>MgO</formula></material>
+	<material><doping>Co</doping>-doped <name>Ba-122</name> <shape>epitaxial thin films</shape></material>
+	<material><doping>Co</doping>-doped <name>Ba-122</name> <shape>film</shape></material>
+	<material><doping>Co</doping>-doped <name>Ba-122</name> on <fabrication>SrTiO3-buffered</fabrication><substrate> LSAT</substrate></material>
+	<material><doping>Co</doping>-doped <name>Ba-122</name> <shape>single-crystal thin films</shape> on <substrate>SrTiO3-buffered LSAT</substrate></material>
+	<material><doping>Co</doping>-doped <name>Ba-122</name> <shape>thin films</shape></material>
+	<material><doping>Co</doping>-doped <name>Ba-122</name> <shape>thin films</shape> with <formula>BaZrO3</formula></material>
+	<material><doping>Co</doping>-doped Ba-122/LSAT <shape>film</shape></material>
+<!--	<material><doping>Co</doping>-doped <formula>Ba-122: 8.0 10 -6 K -1</formula> )</material>-->
+	<material><doping>Co</doping>-doped <name>Ba122</name></material>
+	<material><doping>Co</doping>-doped <formula>BaFe 2 As 2</formula></material>
+	<material><doping>Co</doping>-doped <formula>BaFe 2 As 2</formula> (<name>Ba122:Co</name>)</material>
+	<material><doping>Co</doping>-doped <formula>BaFe 2 As 2</formula> (<name>Co-Ba122</name>)</material>
+	<material><doping>Co</doping>-doped <formula>BaFe 2 As 2</formula> and <formula>FeTe x 1− Se x</formula> [40</material>
+	<material><doping>Co</doping>-doped <formula>BaFe 2 As 2</formula> <shape>thin films</shape></material>
+	<material><doping>Co</doping>-doped <formula>BaFe2As2</formula></material>
+	<material><doping>Co</doping>-doped <formula>BaFe2As2</formula> (<name>Ba-122</name>)</material>
+	<material><doping>Co</doping>-doped <formula>BaFe2As2</formula> <shape>epitaxial films</shape> grown on <substrate>(La,Sr)(Al,Ta)O3</substrate></material>
+	<material><doping>Co</doping>-doped <name>PBCO</name>, 6,7 <doping>Ga</doping>-doped <name>YBCO</name></material>
+	<material><doping>Co</doping>-doped <formula>SrFe2As2</formula></material>
+	<material><doping>Co</doping>-doped and <formula>Fe(Se,Te)</formula></material>
+	<material><doping>Co</doping>-doped and <doping>Irdoped</doping> <formula>Eu122</formula></material>
+	<material><formula>CoAs</formula></material>
+	<material><formula>CoFe 2 O 4</formula></material>
+	<material><formula>CoFe2O4</formula></material>
+	<material><formula>CoFe2O4</formula>, <formula>La0.67Sr0.33MnO3</formula> (<name>LSMO</name>), <formula>Pr0.67Sr0.33MnO3</formula> (<name>PSMO</name>)</material>
+	<material><formula>CoPt</formula></material>
+	<material><doping>Codoped</doping> <formula>Ba 0.5 K 0.5 Fe 1.95 Co 0.05 As 2</formula> (<name>BKCo</name>)</material>
+	<material><formula>Cr 1/3 NbS 2</formula></material>
+	<material><formula>Cr 2 Ge 2 Te 6</formula></material>
+	<material><formula>CrN 3 S 6</formula></material>
+	<material><formula>CrNb 3 S 6</formula></material>
+	<material><formula>Cs 3 C 60</formula></material>
+	<material><formula>Cs 6 C 60</formula></material>
+	<material><formula>CsCu 2 Cl 3</formula></material>
+	<material><formula>CsEuFe 4 As 4</formula></material>
+	<material><formula>Cu 0.07 TaSe 2</formula></material>
+	<material><formula>Cu 0.15 TaSe 2−x S x</formula></material>
+	<material><formula>Cu 2 Mg</formula></material>
+	<material><formula>Cu 2 P 2 O 7</formula></material>
+	<material><formula>Cu x Fe 1+y−x Te 0.6 Se 0.4</formula></material>
+	<material><formula>Cu x TaSe 2</formula></material>
+	<material><formula>Cu x TaSe 2</formula> (<value>0</value>  <variable>x</variable>  <value>0.12</value></material>
+	<material><formula>Cu x TaSe 2</formula> (<value>0</value>  <variable>x</variable>  <value>0.12</value>)</material>
+	<material><formula>Cu x TaSe 2</formula> samples (<value>0</value>  <variable>x</variable>  <value>0.12</value></material>
+	<material><formula>Cu x TaSe 2</formula> samples (<value>0.06</value>  <variable>x</variable>  <value>0.12</value></material>
+	<material><formula>Cu x TaSe 2</formula> with <variable>x</variable> <value>&lt; 0.06</value></material>
+	<material><name>Cu-1223</name> (figure 7</material>
+	<material><name>Cu-1234</name></material>
+<!--	<material><doping>Cu-Ba, Cu-Cu</doping>)</material>-->
+	<material><doping>Cu</doping>-doped <formula>TaSe 2</formula></material>
+	<material><doping>Cu-free</doping> <formula>Nb 3 Sn</formula></material>
+	<material><doping>Cu</doping>-<fabrication>sheathed</fabrication> <name>Sr-122</name></material>
+	<material><formula>CuBa 2 Ca 2 Cu 3 O y</formula> (<name>Cu-1223</name>)</material>
+	<material><formula>CuBa 2 Ca 3 Cu 4 O y</formula></material>
+	<material><formula>CuCO 3</formula></material>
+	<material><formula>CuMg 2</formula></material>
+	<material><formula>CuO</formula></material>
+	<!-- <material><formula>CuO 2 -Ca-TiO 2</formula></material> -->
+<!--	<material>CuO to form <name>Bi2212</name></material>-->
+	<material><fabrication>Cusheathed</fabrication> <formula>Sr 1−x K x Fe 2 As 2</formula></material>
+	<material><name>DBCO</name></material>
+	<material><name>DI-BSCCO</name></material>
+	<material>DSc <formula>Bi 2 Sr 2 CaCu 2 O 8</formula></material>
+	<material><formula>Dy 2 O 3</formula></material>
+	<material><doping>Dy</doping>-doped <name>YBCO</name></material>
+	<material><name>Dy123</name></material>
+    <material><name>Dy123</name> and <name>Er123</name></material>
+	<material><name>DyBCO</name></material>
+	<material><name>DyYBCO</name></material>
+	<material><name>EB-PVD-GdBCO</name> <shape>film</shape></material>
+	<material><fabrication>EDLT</fabrication> based on <substrate>SrTiO 3</substrate></material>
+<!--	<material><formula>EIES Ba Sr Ba Sr W</formula></material>-->
+	<material><doping>Electron-doped</doping> <formula>Ba(Fe1−xCox)2As2</formula></material>
+	<material><doping>Electron-doped</doping> <formula>Ba(Fe1−xNix)2As2</formula> <formula>Ba(Fe 1−x Ni x ) 2 As 2</formula></material>
+	<material><shape>Epitaxial</shape> <formula>Fe 1+δ Se 0.5 Te 0.5</formula> <shape>thin films</shape></material>
+	<material><formula>Er123</formula></material>
+	<material><formula>ErBa2Cu3Oy</formula></material>
+	<material><formula>ErRh 4 B 4</formula></material>
+	<material><formula>Eu -x 1 Na x Fe 2 As 2</formula></material>
+	<!-- <material><formula>Eu 0.33</formula></material> -->
+	<material><formula>Eu 2 SrBi 2 S 4 F 4</formula></material>
+	<material><formula>Eu 2 SrBi 2 S 4 F 4 (Eu 3−x Sr x Bi 2 S 4 F 4</formula></material>
+	<material><formula>Eu 3 Bi 2 S 4 F 4 (Eu 3−x Sr x Bi 2 S 4 F 4</formula></material>
+	<material><formula>Eu 3 F 4 Bi 2 S 4</formula></material>
+	<material><formula>Eu 3−x Sr x Bi 2 S 4 F 4</formula></material>
+	<material><formula>Eu 3−x Sr x Bi 2 S 4 F 4</formula> (<variable>x</variable>=<value>1</value> and <variable>x</variable>=<value>2</value>)</material>
+	<material><formula>Eu 3−x Sr x Bi 2 S 4 F 4</formula> (<variable>x</variable>=<value>1, 2</value>)</material>
+	<material><formula>Eu −x 1 K x Fe 2 As 2</formula> , <formula>Eu −x 1 Na x Fe 2 As 2</formula></material>
+	<material><formula>Eu(Fe -x 1 Co x ) 2 As 2</formula></material>
+	<material><formula>Eu(Fe -x 1 Ir x ) 2 As 2</formula></material>
+	<material><formula>Eu(Fe 0.91 Rh 0.09 ) 2 As 2</formula></material>
+	<material><formula>Eu(Fe 0.91 Rh 0.09 ) 2 As 2</formula> <shape>crystal</shape></material>
+	<material><formula>Eu(Fe 0.91 Rh 0.09 ) 2 As 2</formula> <shape>single crystal</shape></material>
+	<material><name>Eu-123</name></material>
+	<material><name>Eu122</name></material>
+	<material><name>EuBCO</name></material>
+	<material><name>EuBCO</name> <shape>film</shape></material>
+	<material><formula>EuBa 2 Cu 3 O y</formula> <shape>film</shape></material>
+	<material><formula>EuBa 2 Cu 3 O y</formula> <shape>films</shape></material>
+	<material><formula>EuBiS 2</formula></material>
+	<material><formula>EuBiS 2 F</formula></material>
+	<material><formula>EuFe 2 (As -x 1 P x ) 2</formula></material>
+	<material><formula>EuFe 2 (As 1-x P x ) 2</formula></material>
+	<material><formula>EuFe 2 As 2</formula></material>
+	<material><formula>EuFe 2 As 2</formula> (<name>Eu122</name></material>
+	<material><formula>EuFe 2 P 2</formula></material>
+	<material><formula>EuFe2As2</formula></material>
+	<material><formula>EuSr 2 Bi 2 S 4 F</formula></material>
+	<material><formula>EuSr 2 Bi 2 S 4 F 4</formula></material>
+	<material><formula>EuSr2Bi 2 S 4 F 4</formula></material>
+	<material><formula>EuY-123</formula></material>
+	<material><name>EuYBCO</name></material>
+	<material><doping>F</doping>-doped <formula>BiOBiS 2</formula></material>
+<!--	<material><formula>F2, HF, O2, and H2O</formula></material>-->
+<!--	<material><formula>FB1-650 FB2-650 FB3-650 FB1-670 FB2-670 FB3-670</formula></material>-->
+	<!-- <material><name>FB1-670</name></material> -->
+	<material>FB1-670 <formula>MgB 2</formula></material>
+	<!-- <material><name>FB2</name></material> -->
+<!--	<material><formula>FB2-650</formula></material>-->
+<!--	<material><formula>FB2-670</formula></material>-->
+<!--	<material><formula>FB3-650</formula></material>-->
+<!--	<material><formula>FB3-670</formula></material>-->
+	<material>FM <formula>La 2/3 Ca 1/3 MnO 3</formula></material>
+	<material><name>FST</name> <shape>films</shape> grown on <substrate>SrTiO 3</substrate></material>
+	<material><doping>Fdoped</doping> <formula>BiOBiS 2</formula></material>
+    <material><formula>Fe +y 1 (Te,Se)</formula></material>
+    <material><formula>Fe +y 1 (Te/Se)</formula></material>
+	<material><formula>Fe 0.72 (Se 0.47 Te 0.53</formula></material>
+	<material><formula>Fe 0.77 (Se 0.29 Te 0.71</formula></material>
+	<material><formula>Fe 0.887 Co 0.113 ) 2 As 2</formula></material>
+	<material><formula>Fe 0.89 (Se 0.29 Te 0.71</formula></material>
+	<material><formula>Fe 0.89 (Se 0.29 Te 0.71 )</formula></material>
+<!--	<material><formula>Fe 0.89 Se</formula></material>-->
+	<material><formula>Fe 0.9 Co 0.1 ) 2 As 2</formula></material>
+	<material><formula>Fe 0.9 Se</formula> <shape>crystal</shape></material>
+	<material><formula>Fe 0.91 Se</formula></material>
+	<material><formula>Fe 0.91 Se</formula>, <formula>Fe 0.8 (Se 0.45 Te 0.55</formula></material>
+	<material><formula>Fe 0.92 Se</formula>, <formula>Fe 0.72 (Se 0.47 Te 0.53</formula></material>
+	<material><formula>Fe 0.92 Se</formula>, <formula>Fe 0.83 (Se 0.47 Te 0.53</formula></material>
+	<material><formula>Fe 0.93 Co 0.07 ) 2 As 2</formula></material>
+	<material><formula>Fe 0.94 Co 0.06 ) 2 As 2</formula></material>
+	<material><formula>Fe 0.955 Co 0.045 ) 2 As 2</formula></material>
+	<material><formula>Fe 0.96 Co 0.04 ) 2 As 2</formula></material>
+	<material><formula>Fe 0.96 Te 0.59 Se 0.43</formula></material>
+	<material><formula>Fe 0.98 Se 0.67 Te , 0.33</formula></material>
+	<material><formula>Fe 0.99 (Se 0.33 Te 0.67</formula></material>
+	<material><formula>Fe 0.99 (Se 0.33 Te 0.67 )</formula> <shape>single crystal</shape></material>
+	<material><formula>Fe 0.99 (Se 0.33 Te 0.67 )</formula> <shape>single crystals</shape></material>
+	<material><formula>Fe 1 −y Se</formula> <shape>polycrystalline</shape></material>
+	<material><formula>Fe 1+y (Se,Te)</formula></material>
+	<material><formula>Fe 1+y Te 1 −x Se x</formula> (<variable>x</variable>≈<value>0.2</value>)</material>
+	<material><formula>Fe 1+y Te 1−x Se x</formula> (<variable>x</variable>≈<value>0.4</value>)</material>
+	<material><formula>Fe 1+δ Se 0.5 Te 0.5</formula></material>
+	<material><formula>Fe 1+δ Se 0.5 Te 0.5</formula> <shape>films</shape></material>
+	<material><formula>Fe 1+δ Se 0.5 Te 0.5</formula> <shape>films</shape> of series 1</material>
+	<material><formula>Fe 1+δ Se 0.5 Te 0.5</formula> <shape>films</shape> of series 2</material>
+	<material><formula>Fe 1+δ Se 0.5 Te 0.5</formula> <shape>single crystals</shape></material>
+	<material><formula>Fe 1+δ Se 0.5 Te 0.5</formula> <shape>thin film</shape></material>
+	<material><formula>Fe 1+δ Se 0.5 Te 0.5</formula> <shape>thin film</shape> of series 2</material>
+	<material><formula>Fe 1+δ Se 0.5 Te 0.5</formula> <shape>thin films</shape></material>
+	<material><formula>Fe 1+δ Se 0.5 Te 0.5</formula> <shape>thin films</shape> of series 2</material>
+	<material><formula>Fe 1+δ Se 1−x Te x</formula> <shape>single crystals</shape></material>
+	<material><formula>Fe 1.00 Te 0.66 Se 0.34</formula></material>
+	<material><formula>Fe 1.01 Se (FeSe 0.99</formula></material>
+	<material><formula>Fe 1.01 Te 0.56 Se 0.44</formula></material>
+	<material><formula>Fe 1.01 Te 0.66 Se 0.34</formula></material>
+	<material><formula>Fe 1.02 Se</formula> <shape>crystal</shape></material>
+	<material><formula>Fe 1.02 Se</formula> <shape>crystals</shape></material>
+	<material><formula>Fe 1.03 Te 0.7 Se 0.3</formula></material>
+	<material><formula>Fe 1.04 Te 0.6 Se 0.4</formula></material>
+	<material><formula>Fe 1.11 Se 0.4 Te 0.6</formula></material>
+	<material><formula>Fe 1−x Co x ) 2 As 2</formula></material>
+	<material><formula>Fe 1−x Co x ) 2 As 2</formula> (<variable>x</variable> = <value>0.075</value></material>
+	<material><formula>Fe 1−x Co x ) 2 As 2</formula> <shape>single crystals</shape></material>
+	<material><formula>Fe 1−x Co x Si</formula></material>
+	<material><formula>Fe 1−x Pt x ) 2 As 2</formula></material>
+    <material><formula>Fe 1−x Pt x ) 2 As 2 ) 5</formula> (<variable>x</variable>≈<value>0.05</value>) <shape>single crystals</shape></material>
+	<material><formula>Fe 1−x−y Co y Zn x ) 2 As 2</formula></material>
+	<material><formula>Fe 1−y (Se 1−x Te x</formula> )</material>
+	<material><formula>Fe 1−y (Se 1−x Te x )</formula> between <formula>Fe 7 Se 8</formula>`</material>
+	<material><formula>Fe 1−y (Se 1−x Te x )</formula> <shape>crystals</shape></material>
+	<material><formula>Fe 1−y (Se 1−x Te x )</formula> <shape>crystals</shape> of nominal composition <variable>x</variable> = <value>0, 0.25, 0.5, 0.75</value></material>
+	<material><formula>Fe 1−y Se</formula></material>
+	<material><formula>Fe 1−y Se</formula> <shape>crystals</shape></material>
+	<material><formula>Fe 1−y Zn y Se 0.3 Te 0.7</formula></material>
+	<material><formula>Fe 2 As 2</formula></material>
+	<material><formula>Fe 2 As 2</formula> (<name>122-type</name>) , and <formula>Fe +y 1 (Te, Se)</formula></material>
+	<!-- <material><formula>Fe 2 As 2</formula> (<name>Ba-122</name></material> -->
+	<material>Fe 2 As 2 , <formula>Ba(Fe,Ni) 2 As 2</formula> , <formula>Ba(Fe,Ru) 2 As 2</formula></material>
+	<!-- <material><formula>Fe 2 As 2 Sr 3 Sc 2 O 5</formula></material> -->
+	<!-- <material><formula>Fe 2 As 2</formula> <shape>polycrystalline powders</shape></material> -->
+	<material><formula>Fe 2 Te 3</formula></material>
+	<material><formula>Fe 2 −2x Zn 2x As 2</formula></material>
+	<material><formula>Fe 2 −x Pt x As 2 ) 5</formula> (<variable>n</variable>=<value>3, 4</value>) <shape>single crystals</shape></material>
+	<material><formula>Fe 2 −x Zn x Se 2</formula></material>
+	<material><formula>Fe 7 (Te 1-x Se x ) 8</formula></material>
+	<material><formula>Fe 7 Se 8</formula></material>
+	<material><formula>Fe 7 Se 8 (Fe 0.875 Se)</formula></material>
+	<material><formula>Fe 7 Se 8 or Fe 7 (Se/Te) 8</formula></material>
+	<material><formula>Fe x 1 Co x ) 2 As 2</formula></material>
+	<material><formula>Fe y Se x Te −x 1</formula></material>
+	<material><formula>Fe y Se −x 1 Te x</formula> at optimal <name>Se-Te ratio</name> ( ≃ <variable>x</variable> <value>0.5</value>)</material>
+	<material><formula>Fe(Se 0.4 Te 0.6 ) 0.82</formula></material>
+	<material><formula>Fe(Se 0.5 Te 0.5 )</formula></material>
+	<material><formula>Fe(Se 1−x Te x</formula></material>
+	<material><formula>Fe(Se 1−x Te x</formula> )</material>
+	<material><formula>Fe(Se, Te)</formula> <shape>thin films</shape></material>
+	<material><formula>Fe(Se,Te)</formula></material>
+	<material><formula>Fe(Se,Te)</formula> <shape>crystals</shape></material>
+	<material><formula>Fe(Se,Te)</formula> <shape>epitaxial thin films</shape></material>
+	<material><formula>Fe(Se,Te)</formula> <shape>single crystals</shape></material>
+    <material><formula>Fe(Se,Te)</formula> <shape>thin film</shape> fabricated on <substrate>Co-doped Ba-122</substrate></material>
+	<material><formula>Fe(Se,Te)</formula> <shape>thin film</shape> grown on <fabrication>Fe-buffered</fabrication><substrate> MgO</substrate></material>
+	<material><formula>Fe(Se,Te)</formula> <shape>thin films</shape></material>
+	<material><formula>Fe(Se,Te)</formula> <shape>thin films</shape> grown on <substrate>CaF 2</substrate></material>
+	<material><formula>Fe(Se,Te)</formula> <shape>thin films</shape> stays around Se : Te = 7 : 3</material>
+	<material><formula>Fe(Se,Te)</formula> <shape>thin-film</shape></material>
+	<material><formula>Fe(Se,Te)</formula>, <doping>Co</doping>-doped <formula>Ba-122</formula></material>
+	<material><formula>Fe(Te 0.4 Se 0.6 ) 1.4</formula></material>
+	<material><formula>Fe(Te,S</formula>)</material>
+	<material><formula>Fe(Te,S)</formula> <shape>single crystals</shape></material>
+    <material><formula>Fe(Te,Se)</formula></material>
+	<material><formula>Fe(Te,Se)</formula> <shape>crystals</shape></material>
+	<material><name>Fe-Ch superconductor</name> of nominal composition <formula>Fe(Se 0.4 Te 0.6 ) 0.82</formula></material>
+<!--	<material><doping>Fe-Te-Se</doping></material>-->
+	<material><doping>Fe</doping>-based material <formula>Ba(FeCo) 2 As 2</formula></material>
+	<material><doping>Fe</doping>-based superconductor of nominal composition <formula>Fe(Se 0.4 Te 0.6 ) 0.82</formula></material>
+	<material><fabrication>Fe-buffered</fabrication> <formula>MgAl2O4</formula>(001)</material>
+<!--	<material><formula>Fe-substituted 0 212 Sr</formula> ( )</material>-->
+	<material><formula>Fe0.93Co0.07)2As2</formula> <shape>single crystals</shape></material>
+	<material><formula>Fe1-xCoxSe0.5Te0.5</formula></material>
+	<material><formula>Fe1-xCoxSe0.5Te0.5</formula> (<variable>x</variable> = <value>0.0 and 0.03</value>) <shape>single crystals</shape></material>
+	<material><formula>Fe1-xCoxSe0.5Te0.5</formula> <shape>single crystals</shape></material>
+	<material><formula>Fe1.03Se0.57Te0.43</formula></material>
+	<material><formula>Fe1.04Te0.6Se0.4</formula></material>
+	<material><formula>Fe1− xCox)2As2</formula></material>
+	<material><formula>Fe1−xCox)2As2</formula></material>
+	<material><formula>Fe1−xRux)2As2</formula></material>
+	<!-- <material><formula>Fe2As2</formula></material> -->
+	<!-- <material><formula>Fe2As2</formula> (<variable>Ae</variable> = <value>alkaline-earth element</value>)</material> -->
+	<!-- <material><formula>Fe2As2</formula> <shape>films</shape></material> -->
+	<material>Fe2As2, <formula>(Sr,K)Fe2As2</formula></material>
+	<material><formula>Fe2O3</formula></material>
+	<material><formula>Fe2−xNix)As2</formula></material>
+	<material><formula>FeAs</formula></material>
+	<!-- <material><formula>FeAs 2</formula></material> -->
+	<!-- <material><formula>FeAs 4</formula></material> -->
+<!--	<material><variable>FeAs</variable> = <value>0.6:0.44:4</value></material>-->
+	<material><name>FeAs-111</name></material>
+	<material><name>FeAs-1111</name></material>
+	<material><name>FeAs-112</name></material>
+	<material><name>FeAs-122</name></material>
+	<material><name>FeAs-211</name></material>
+    <!-- <material><formula>FeAs</formula>/<substrate>FeAs 2</substrate></material> -->
+	<!-- <material><formula>FeAs4</formula></material> -->
+	<material><formula>FeB 4</formula></material>
+	<material><formula>FeCl 3</formula></material>
+	<material><formula>FeCo) 2 As 2</formula> (<shape>thin film</shape> on <substrate>CaF 2</substrate></material>
+	<material><formula>FeCo) 2 As 2 25</formula></material>
+	<material><formula>FeF3</formula></material>
+<!--	<material><formula>FeF3 with H2O (4FeF3 + 2H2O → 4FeF2 + 4HF + O2</formula></material>-->
+	<!-- <material><formula>FePn 4</formula> (<variable>Pn</variable> = <value>pnictogen</value>)</material> -->
+	<material><name>FePn-1111</name> type (<variable>Re</variable>: <value>rare earth, Pn-P or As</value>)</material>
+	<!-- <material><formula>FePn4</formula></material> -->
+	<material><formula>FeS 0.94 Se 0.06</formula> <shape>single crystals</shape></material>
+	<!-- <material><doping>FeS-eTe</doping> <shape>films</shape></material> -->
+	<!-- <material><formula>FeSCs</formula></material> -->
+<!--	<material><formula>FeSCs films of 11, 122</formula></material>-->
+	<material><formula>FeSCs</formula> <shape>thin film</shape></material>
+	<material>FeSCs: <fabrication>hole-doped</fabrication> <formula>Ba 1−x K x Fe 2 As 2</formula></material>
+	<material><formula>FeSe</formula></material>
+<!--	<material><formula>FeSe</formula> (≈<value>0.6%</value>)</material>-->
+	<material><formula>FeSe -x 1 Te x</formula></material>
+	<material><formula>FeSe 0.094</formula></material>
+	<material><formula>FeSe 0.3 Te 0.7</formula></material>
+	<material><formula>FeSe 0.33 Te 0.67</formula></material>
+	<material><formula>FeSe 0.33 Te 0.67</formula> <shape>single crystal</shape></material>
+	<material><formula>FeSe 0.33 Te 0.67</formula> <shape>single crystals</shape></material>
+	<material><formula>FeSe 0.39 Te 0.61</formula> <shape>single crystals</shape></material>
+	<material><formula>FeSe 0.39 Te 0.71</formula></material>
+	<material><formula>FeSe 0.4 Te 0.6</formula></material>
+	<material><formula>FeSe 0.45 Te 0.55</formula> <shape>crystals</shape></material>
+	<material><formula>FeSe 0.45 Te 0.55</formula> <shape>single crystals</shape></material>
+	<material><formula>FeSe 0.5 Te 0.5</formula></material>
+	<material><formula>FeSe 0.5 Te 0.5</formula> (<name>FST</name>) <shape>films</shape> grown on <substrate>CaF 2</substrate></material>
+	<material><formula>FeSe 0.5 Te 0.5</formula> (<name>FST</name>) <shape>thin films</shape> grown on <substrate>CaF 2</substrate> <shape>single-crystalline</shape></material>
+	<material><formula>FeSe 0.5 Te 0.5</formula> (<substrate>thin film IBAD</substrate> substrates)</material>
+    <material><formula>FeSe 0.5 Te 0.5</formula> , <doping>Codoped</doping> <formula>BaFe 2 As 2</formula></material>
+	<material><formula>FeSe 0.5 Te 0.5</formula> /<substrate>CaF 2</substrate> <shape>film</shape></material>
+	<material><formula>FeSe 0.5 Te 0.5</formula> <shape>film</shape></material>
+	<material><formula>FeSe 0.5 Te 0.5</formula> <shape>films</shape></material>
+    <material><formula>FeSe 0.5 Te 0.5</formula> <shape>films</shape> on <fabrication>Fe-buffered</fabrication><substrate> MgO</substrate> substrates</material>
+	<material><formula>FeSe 0.5 Te 0.5</formula> <shape>single crystal</shape></material>
+	<material><formula>FeSe 0.5 Te 0.5</formula> <shape>single crystals</shape></material>
+	<material><formula>FeSe 0.5 Te 0.5</formula> <shape>thin film</shape></material>
+	<material><formula>FeSe 0.5 Te 0.5</formula> <shape>thin film</shape> on <fabrication>Fe-buffered</fabrication><substrate> MgO</substrate></material>
+	<material><formula>FeSe 0.5 Te 0.5</formula> <shape>thin films</shape></material>
+	<material><formula>FeSe 0.5 Te 0.5</formula> <shape>thin films</shape> grown on <substrate>CaF 2</substrate></material>
+	<material><formula>FeSe 0.5 Te 0.5</formula> <shape>thin films</shape>, <formula>K x Fe 2−y Se 2</formula></material>
+	<material><formula>FeSe 0.92</formula></material>
+	<material><formula>FeSe 0.94</formula></material>
+	<material><formula>FeSe 0.94</formula> )</material>
+	<material><formula>FeSe 0.94</formula> +4</material>
+	<material><formula>FeSe 1-x</formula></material>
+	<material><formula>FeSe 1-x Te x</formula></material>
+	<material><formula>FeSe 1-x Te x</formula> )</material>
+	<material><formula>FeSe 1-x Te x</formula> or <doping>under-doped</doping> <formula>Ba-122</formula></material>
+	<material><formula>FeSe 1−x</formula></material>
+	<material><formula>FeSe 1−x</formula> (<variable>x</variable>=<value>0.04±0.02</value>) <shape>single crystals</shape></material>
+	<material><formula>FeSe 1−x Sb x</formula></material>
+	<material><formula>FeSe 1−x Te x</formula></material>
+<!--	<material><formula>FeSe 1−x Te x 11 16 [19] 4.2 Nb-Ti -10 4.2 Nb 3 Sn -18 4.2 MgB 2 -39 25 RE-Ba 2 Cu 3 O 7−x RE-123</formula></material>-->
+	<material><formula>FeSe 1−y</formula></material>
+	<material><formula>FeSe</formula> 4</material>
+	<material><formula>FeSe</formula> <fabrication>EDLT</fabrication></material>
+	<material><formula>FeSe</formula> and <formula>Fe(Se 1−x Te x )</formula></material>
+	<material><formula>FeSe</formula> and <formula>Fe(Se,Te)</formula> <shape>thin films</shape></material>
+	<material><formula>FeSe</formula> <shape>bulk</shape></material>
+	<material><formula>FeSe</formula> <shape>crystal</shape></material>
+	<material><formula>FeSe</formula> <shape>crystals</shape></material>
+	<material><formula>FeSe</formula> <shape>film</shape></material>
+	<material><formula>FeSe</formula> <shape>films</shape></material>
+	<material><formula>FeSe</formula> <shape>films</shape> (&gt;2UC)</material>
+	<material><formula>FeSe</formula> <shape>films</shape> from <substrate>STO</substrate></material>
+	<material><formula>FeSe</formula> <shape>films</shape> grown on <substrate>SrTiO 3</substrate></material>
+	<material><formula>FeSe</formula> <shape>films</shape> grown on <substrate>insulating SrTiO3</substrate></material>
+	<material><formula>FeSe</formula> <shape>films</shape> grown on <substrate>r-cut Al2O3</substrate></material>
+    <material><formula>FeSe</formula> <shape>films</shape> on <substrate>Nb-STO(001)</substrate></material>
+	<material><formula>FeSe</formula> <shape>films</shape> on <substrate>SrTiO3</substrate></material>
+	<material><formula>FeSe</formula> on <substrate>SrTiO 3</substrate></material>
+	<material><formula>FeSe</formula> <shape>single crystal</shape></material>
+	<material><formula>FeSe</formula> <shape>single crystals</shape></material>
+	<material><formula>FeSe</formula> superconducting M(H)</material>
+	<material><formula>FeSe</formula> <shape>thin film</shape></material>
+	<material><formula>FeSe</formula> <shape>thin films</shape></material>
+	<material><formula>FeSe x Te 1-x</formula></material>
+	<material><formula>FeSe x Te 1−x</formula> <shape>crystals</shape></material>
+	<material><formula>FeSe −x 1</formula></material>
+	<material><formula>FeSe −x 1 Te x 0.5</formula> 14</material>
+    <material><formula>FeSe</formula>), <name>111</name> (<formula>LiFeAs</formula>), <name>1111</name> (<formula>LaFeAsO</formula>)</material>
+<!--	<material><doping>FeSe, FeTe, FeS, Fe(S,Te) and Fe(Se,Te</doping>)</material>-->
+	<material><name>FeSe-122</name></material>
+	<material><name>FeSe-based</name> <shape>single crystals</shape></material>
+	<material><formula>FeSe</formula>/<substrate>SrTiO 3</substrate></material>
+	<material><formula>FeSe</formula>/<substrate>SrTrO 3</substrate></material>
+	<material><formula>FeSe0.5Te0.5</formula></material>
+	<material><formula>FeSe0.5Te0.5</formula> (<name>11 phase</name>) <shape>single crystals</shape></material>
+	<material><formula>FeSe0.5Te0.5</formula> <shape>crystals</shape></material>
+	<material><formula>FeSe0.5Te0.5</formula> <shape>films</shape></material>
+	<material><formula>FeSe0.5Te0.5</formula> <shape>thin films</shape></material>
+	<material><formula>FeSe0.6Te0.4</formula></material>
+	<material><formula>FeSe0.7Te0.3</formula></material>
+	<material><formula>FeSe0.7Te0.3</formula> <shape>films</shape></material>
+	<material><formula>FeSe0.94</formula></material>
+	<material><formula>FeSe1-xTex</formula></material>
+	<material><formula>FeSe1-xTex</formula> <shape>films</shape></material>
+	<material><formula>FeSe1-xTex</formula> <shape>thin films</shape></material>
+	<material><formula>FeSe1-xTex</formula> <shape>thin films</shape> on <substrate>MgO(001)</substrate> with <variable>x</variable> = <value>0, 0.1, 0.3, 0.5, 0.7, and 0.9</value></material>
+	<material><formula>FeSe2</formula></material>
+	<!-- <material><formula>FeSe4</formula></material> -->
+	<material><formula>FeSeAg</formula>)</material>
+	<!-- <material><formula>FeSeAg0</formula></material> -->
+	<material><formula>FeSeAg0 2</formula></material>
+<!--	<material><formula>FeSeAg0 7.9 −4.5 8.6 −3.9 8.4 22.7 39.1 0.82 FeSeAg4 9.2 −5</formula></material>-->
+<!--	<material><formula>FeSeAg0 to 0.48-0.57</formula></material>-->
+	<material><formula>FeSeAg10</formula></material>
+	<material><formula>FeSeAg10</formula>)</material>
+	<material><formula>FeSeAg4</formula></material>
+	<material><formula>FeSeAg6</formula></material>
+<!--	<material><formula>FeSeAg6 9.2 −5.07 9.5 −4.35 9.2 27.7 42.8 0.92 FeSeAg8 9.1 −5</formula></material>-->
+	<material><formula>FeSeAg6</formula>)</material>
+	<material><formula>FeSeAg8</formula></material>
+	<material><formula>FeSeTe</formula> <shape>films</shape></material>
+	<material><formula>FeSeTe</formula> <shape>thin film</shape></material>
+	<material><formula>FeSeTe</formula> <shape>thin films</shape></material>
+	<material><formula>FeSeTe</formula>)</material>
+	<material><formula>FeSn 2</formula></material>
+	<material><formula>FeTe</formula></material>
+	<material><formula>FeTe 0.4 Se 0.6</formula></material>
+	<material><formula>FeTe 0.5 Se 0.5</formula></material>
+	<material><formula>FeTe 0.5 Se 0.5</formula> <shape>thin film</shape></material>
+	<material><formula>FeTe 0.5 Se 0.5</formula> <shape>thin films</shape></material>
+	<material><formula>FeTe 0.5 Se 0.5</formula> <shape>thin films</shape> grown on <substrate>LAO</substrate></material>
+	<material><formula>FeTe 0.5 Se 0.5</formula> <shape>thin films</shape> grown on <substrate>LaAlO 3</substrate></material>
+	<material><formula>FeTe 0.6 Se 0.4</formula></material>
+	<material><formula>FeTe 0.6 Se 0.4</formula> <shape>single crystal</shape></material>
+	<material><formula>FeTe 0.6 Se 0.4</formula> <shape>single crystals</shape></material>
+	<material><formula>FeTe 0.60 Se 0.40</formula></material>
+	<material><formula>FeTe 0.61 Se 0.37</formula></material>
+	<material><formula>FeTe 0.61 Se 0.39</formula></material>
+	<material><formula>FeTe 0.61 Se 0.39</formula> <shape>crystals</shape></material>
+	<material><formula>FeTe 0.65 Se 0.35</formula></material>
+	<material><formula>FeTe 0.65 Se 0.35</formula> <shape>crystals</shape></material>
+	<material><formula>FeTe 0.65 Se 0.35</formula> <shape>single crystals</shape></material>
+	<material><formula>FeTe 0.7 Se 0.3</formula></material>
+	<material><formula>FeTe 0.8 S 0.2</formula></material>
+	<material><formula>FeTe 0.8 Se 0.2</formula></material>
+	<material><formula>FeTe 0.8 Se 0.2</formula> , <formula>FeTe 0.7 Se 0.3</formula></material>
+	<material><formula>FeTe 0.82 -FeTe , 0.95</formula></material>
+	<material><formula>FeTe 0.9 S 0.1</formula></material>
+	<material><formula>FeTe 0.9 Se 0.1</formula></material>
+	<material><formula>FeTe 0.9 Se 0.1</formula> , <formula>FeTe 0.8 Se 0.2</formula></material>
+	<material><formula>FeTe 0.9 Se 0.1</formula> <shape>films</shape></material>
+	<material><formula>FeTe 0.9 Se 0.1</formula> <shape>single crystal</shape></material>
+	<material><formula>FeTe 1 −x Se x</formula></material>
+	<material><formula>FeTe 1 −x Se x</formula> <shape>films</shape></material>
+	<material><formula>FeTe 1-x Se x</formula></material>
+	<material><formula>FeTe 1−x Se x</formula></material>
+	<material><formula>FeTe 1−x Se x</formula> (<value>0.1 ⩽</value> <variable>x</variable> <value>⩽ 0.4</value>)</material>
+	<material><formula>FeTe 1−x Se x</formula> /<substrate>STO</substrate></material>
+	<material><formula>FeTe 1−x Se x</formula> [99</material>
+	<material><formula>FeTe 1−x Se x</formula> <shape>films</shape></material>
+	<material><formula>FeTe 1−x Se x</formula> <shape>films</shape> (<variable>x</variable>=<value>0.1, 0.3, 0.5, 0.6</value>)</material>
+	<material><formula>FeTe 2</formula></material>
+	<material><formula>FeTe</formula> <shape>films</shape></material>
+	<material><formula>FeTe x 1 Se x</formula> (<value>0.1 ⩽</value> <variable>x</variable> <value>⩽ 0.4</value>) <shape>single crystals</shape></material>
+	<material><formula>FeTe x 1-Se x</formula> [ 29</material>
+	<material><formula>FeTe x 1− Se x</formula></material>
+	<material><formula>FeTe −x 1 Se x</formula></material>
+	<material><formula>FeTe −x 1 Se x</formula> (<value>0.1 ⩽</value> <variable>x</variable> <value>⩽ 0.4</value>) <shape>single crystals</shape></material>
+	<material><formula>FeTe −x 1 Se x</formula> (<variable>x</variable> = <value>0.1, 0.2, 0.3, 0.4</value>)</material>
+	<material><formula>FeTe −x 1 Se x</formula> (<variable>x</variable> = <value>0.1, 0.2, 0.3, 0.4</value>) <shape>single crystals</shape></material>
+	<material><formula>FeTe −x 1 Se x</formula> <shape>single crystal</shape></material>
+	<material><formula>FeTe −x 1 Se x</formula> <shape>single crystals</shape></material>
+	<material><formula>FeTe0.8S0.2</formula></material>
+	<material><formula>FeTe1.4</formula>)</material>
+	<material><name>GBCO</name></material>
+	<material><name>GBCO</name> <shape>films</shape></material>
+	<material><doping>Ga</doping>-doped <name>PBCO</name> (Refs. 9-12)</material>
+	<material><formula>GaAs</formula></material>
+	<material><formula>GaAs</formula> <shape>films</shape></material>
+	<material><formula>GaAs(110)</formula></material>
+<!--	<material><doping>GaAs-based</doping> waveguides</material>-->
+	<material><formula>GaAs</formula>/<substrate>AlGaAs 2</substrate></material>
+	<material><formula>GaCl 4</formula></material>
+	<material><formula>GaV 4 S 8</formula></material>
+	<material><formula>GaV 4 S 8</formula> <shape>crystals</shape></material>
+	<material><formula>Gd</formula></material>
+	<material><formula>Gd 2 BaCuO 5</formula></material>
+	<material><formula>Gd 2 O 2 S</formula></material>
+	<material><formula>Gd 2 O 3</formula></material>
+<!--	<material><formula>Gd 2 O 3</formula> +BaCuO 2 →Gd 2 BaCuO 5</material>-->
+	<material><formula>Gd 2 TaO 7</formula></material>
+	<material><formula>Gd 3 Ga 5 O 12</formula></material>
+	<material><formula>Gd 3 TaO 7</formula></material>
+	<material><formula>Gd 5 Si 2 Ge 2</formula></material>
+	<material><formula>Gd 5 ͑Si</formula></material>
+	<material><formula>Gd 5 ͑Si 2 Ge 2</formula></material>
+<!--	<material><doping>Gd, Nd, Sm, etc.</doping>)</material>-->
+	<material><name>Gd-123</name></material>
+	<material><name>Gd-Ba-Cu-O</name></material>
+	<material><name>Gd-Ba-Cu-O</name> (<name>GdBCO</name>)</material>
+	<material><name>Gd-Ba-Cu-O</name> and <name>Y-Ba-Cu-O</name></material>
+	<material><name>Gd-Ba-Cu-O</name> <fabrication>bulk</fabrication></material>
+	<material><formula>Gd2Ba4CuWOy</formula></material>
+	<material><formula>Gd2O3</formula></material>
+	<material><formula>Gd3TaO7</formula></material>
+<!--	<material><formula>Gd@C 82</formula></material>-->
+	<material><name>GdBCO</name></material>
+	<material><name>GdBCO</name> &amp; <name>YBCO</name></material>
+	<material><name>GdBCO</name> (black)</material>
+	<material><name>GdBCO</name> CCs</material>
+	<material><name>GdBCO</name> <formula>Hf</formula></material>
+	<material><name>GdBCO</name> and (300)<name>GdBCO</name>)</material>
+	<material><name>GdBCO</name> and <name>SmBCO</name>)</material>
+	<material><name>GdBCO</name> bulk</material>
+	<material><name>GdBCO</name> bulk with <formula>CeO2</formula></material>
+	<material><name>GdBCO</name> containing 1wt% <doping>CeO2 (GdBCO+CeO2</doping></material>
+	<material><name>GdBCO crystal</name></material>
+	<material><name>GdBCO</name> <doping>crystal grain</doping> and <name>Gd-211</name></material>
+	<material><name>GdBCO</name> <shape>crystal grain</shape> in <name>GdBCO+CeO2</name></material>
+	<material><name>GdBCO</name> <shape>crystal grain</shape> in <doping>undoped</doping> <name>GdBCO</name></material>
+	<material><name>GdBCO</name> <shape>film</shape></material>
+	<material><name>GdBCO</name> <shape>films</shape></material>
+	<material><name>GdBCO</name> <shape>films</shape> doped with 6</material>
+	<material><name>GdBCO</name> matrix (<fabrication>Nanoparticle/Gd123</fabrication></material>
+	<material><name>GdBCO</name> pristine <shape>films</shape></material>
+	<material><name>GdBCO</name> <shape>thin films</shape></material>
+	<material><name>GdBCO</name>+12</material>
+	<material><name>GdBCO</name><doping>+12% BHO</doping></material>
+	<material><name>GdBCO</name>+<doping>12%BHO</doping></material>
+	<material><name>GdBCO</name>+<doping>12%BHO</doping> <shape>film</shape></material>
+	<material><name>GdBCO</name>+<doping>12%BHO</doping> <shape>films</shape></material>
+	<material><name>GdBCO</name>+<doping>12%BHO</doping> <shape>nanocomposite films</shape></material>
+    <material><name>GdBCO</name>+<doping>CeO2</doping></material>
+	<material><name>GdBCO</name>-<doping>Ag</doping></material>
+	<material><name>GdBCO</name>-<doping>Ag</doping> <fabrication>bulk</fabrication></material>
+	<material><name>GdBCO</name>-<doping>Ag</doping> <shape>single grain</shape></material>
+	<material><name>GdBCO-BHO</name></material>
+	<material><name>GdBCO-BHO</name> <shape>nanocomposite films</shape></material>
+	<material><name>GdBCO-Gd 2 O 3</name></material>
+	<material><name>GdBCO-LF</name></material>
+	<material><name>GdBCO-LF</name> <shape>film</shape></material>
+	<material><name>GdBCO-LF</name> <shape>films</shape></material>
+	<!-- <material><formula>GdBCO-LF+ 20 mol% Gd 2 O 3</formula></material> -->
+	<!-- <material><formula>GdBCO-LF+20 mol% Gd 2 O 3</formula></material> -->
+	<!-- <material><formula>GdBCO-LF+20 mol% Gd 2 O 3</formula> <shape>films</shape></material> -->
+	<material><name>GdBCO-TFA</name></material>
+	<material><name>GdBCO/Ag</name></material>
+	<material><name>GdBCO</name>/<substrate>CeO2</substrate></material>
+	<material><name>GdBCO</name>/<substrate>ISD-MgO</substrate> <shape>films</shape></material>
+	<material><formula>GdBa 2 Cu 3 O 7</formula></material>
+	<material><formula>GdBa 2 Cu 3 O 7</formula> (<name>GdBCO</name>)</material>
+	<material><formula>GdBa 2 Cu 3 O 7-x -BaHfO 3</formula> (<name>GdBCO-BHO</name>)</material>
+	<material><formula>GdBa 2 Cu 3 O 7-x -BaHfO 3</formula> <shape>nanocomposite films</shape></material>
+	<material><formula>GdBa 2 Cu 3 O 7-δ</formula></material>
+	<material><formula>GdBa 2 Cu 3 O 7-δ</formula> (<name>Gd-123</name></material>
+	<material><formula>GdBa 2 Cu 3 O 7−x</formula> (<name>GdBCO</name>)</material>
+	<material><formula>GdBa 2 Cu 3 O 7−δ</formula> (<name>GdBCO</name>)</material>
+	<material><formula>GdBa 2 Cu 3 O 7−δ -Ag</formula> (<name>GdBCO-Ag</name>)</material>
+	<material><formula>GdBa 2 Cu 3 O 7−δ /Gd 2 O 3</formula></material>
+	<material><formula>GdBa 2 Cu 3 O x</formula></material>
+	<material><formula>GdBa 2 Cu 3 O y</formula> <shape>thin films</shape></material>
+	<material><name>GdEu-123</name></material>
+	<material><name>GdEu-123</name> <shape>film</shape></material>
+	<material><name>GdEu-123</name> <shape>films</shape></material>
+	<material><name>GdEuBCO</name></material>
+	<material><name>GdEuBCO</name> <shape>film</shape></material>
+	<material><name>GdEuBCO</name> <shape>films</shape></material>
+	<material><formula>GdFe 0.17 Sn 2</formula></material>
+	<!-- <material><formula>GdSm</formula>)</material> -->
+	<material><name>GdSmBCO</name></material>
+	<material><name>GdYBCO</name></material>
+	<material><name>GdYBCO</name> CCs</material>
+	<material><name>GdYBCO</name><shape> film</shape></material>
+	<material><name>GdYBCO-CC</name>)</material>
+	<material><name>GdYb-123</name></material>
+	<material><name>GdYbBCO</name></material>
+	<material><name>GdYbBCO</name><shape> film</shape></material>
+	<material><name>GdYbBCO</name> <shape>films</shape></material>
+	<!-- <material><formula>Ge(111</formula>)</material> -->
+	<!-- <material><formula>Ge2)12</formula></material> -->
+	<material><formula>GeO 2</formula></material>
+<!--	<material><formula>Gi</formula>&gt;<value>0.01</value>)</material>-->
+	<material><formula>H 2 S</formula></material>
+	<material><formula>H 2 S</formula> <name>hydride</name></material>
+	<material><formula>H 2 S</formula> into <formula>H 3 S</formula></material>
+	<material><formula>H 3 S</formula></material>
+	<material><formula>HB-MgB 4</formula></material>
+	<material><formula>HB-MgB 4</formula> <formula>LB-MgB 4</formula></material>
+	<material><name>HP Sr-122</name></material>
+	<material><formula>Hf 3 N 2</formula></material>
+	<material><doping>Hf</doping>-doped <name>YBCO</name> <shape>film</shape></material>
+	<material><formula>HfN x</formula> <value>with 0.90ഛ</value> <variable>x</variable> <value>ഛ 1.32</value></material>
+	<material><formula>HfN x</formula> with <variable>x</variable> between <value>0.80 and 1.38</value></material>
+    <material><formula>HfN x</formula> with <variable>x</variable> ജ <value>1.38</value></material>
+	<material><formula>HfO2</formula></material>
+	<material><name>Hg-1223</name></material>
+	<material><name>Hg1212</name> and <name>Tl1212</name></material>
+	<material><formula>HgBa 2 Ca 2 Cu 3 O 8+δ</formula></material>
+	<material><formula>HgBa 2 Ca 2 Cu 3 O 8</formula>þd )</material>
+	<material><formula>HgBa 2 Ca 2 Cu 3 O y</formula></material>
+	<material><formula>HgBa 2 Ca 4 Cu 5 O y</formula></material>
+	<material><formula>HgBa 2 CaCu 2 O 6</formula></material>
+	<material><formula>HgBa 2 CaCu 2 O 6</formula> (<name>Hg1212</name>)</material>
+	<material><formula>HgBa 2 CaCu 2 O 6+␦</formula> ͑<name>HgBCCO͒</name> <shape>films</shape></material>
+	<material><formula>HgBa 2 CuO 4</formula></material>
+	<material><name>HgRe1212</name> (<variable>g</variable> = <value>30</value>)</material>
+    <material><name>HgRe1223</name>, and <name>Bi2223</name></material>
+	<material><formula>Ho 2 NiMnO 6</formula></material>
+	<material><name>HoBCO</name></material>
+	<material><formula>HoCu 2</formula> , <formula>PrB 6</formula></material>
+	<material><formula>HoMo 6 S 8</formula></material>
+	<material><doping>Hole-doped</doping> <formula>Ba1−xKxFe2As2</formula></material>
+<!--	<material><formula>Hz, 777 Hz, 3333 Hz, 7777 Hz</formula></material>-->
+	<material>Im3m<formula> H 3 S</formula></material>
+<!--	<material><formula>In</formula></material>-->
+    <material><formula>In</formula> <shape>monolayers</shape> on <substrate>Si(111)</substrate></material>
+	<material><formula>In</formula> on <substrate>Si</substrate></material>
+	<material><formula>In</formula> on <substrate>Si (111)</substrate></material>
+	<material><doping>Ir</doping>-doped <name>YBCO</name> <shape>films</shape></material>
+	<material><formula>IrSe 2</formula> , <formula>Cu 1-x Zn x Ir 2 S 4</formula></material>
+<!--	<material><formula>Jc of Co-doped Ba-122</formula></material>-->
+	<material>Jc of <doping>P</doping>-doped <formula>BaFe2As2</formula></material>
+	<material><formula>K 0.4 Ba 0.6 Fe 2 As 2</formula></material>
+	<material><formula>K 0.78 Fe 1.70 Se 2</formula></material>
+	<material><formula>K 0.78 Fe 1.70 Se 2</formula> <shape>single crystal</shape></material>
+	<material><formula>K 0.78 Fe 1.70 Se 2</formula> <shape>single crystals</shape></material>
+	<material><formula>K 0.8 Fe 1.6 Se 2</formula></material>
+	<material><formula>K 0.8 Fe 1.6+x Se 2</formula></material>
+	<material><formula>K 0.8 Fe 2 Se 2</formula></material>
+	<material><formula>K 0.8 Fe 2 Se 2</formula> <shape>single crystals</shape></material>
+	<material><formula>K 0.8 Fe 2−y Se 2</formula></material>
+	<material><formula>K 0.8 Fe 2−y −x Zn x Se 2</formula></material>
+	<material><formula>K 0.8 Fe 2−y−x M x Se 2</formula></material>
+	<material><formula>K 0.8 Fe 2−y−x Zn x Se 2</formula></material>
+	<material><formula>K 0.8 Fe 2−y−x Zn x Se 2</formula> (<variable>x</variable>=<value>0 and 0.005</value></material>
+	<material><formula>K 0.8 Fe 2−y−x Zn x Se 2</formula> <shape>single crystals</shape> with <variable>x</variable>=<value>0-0.023</value></material>
+	<material><formula>K 1−x Fe 2−y Se 2</formula></material>
+	<material><formula>K 1−δ Fe 2−y Se 2</formula></material>
+	<material><formula>K 1−δ Fe 2−y Se 2</formula> )</material>
+	<material><formula>K 2 CO 3</formula></material>
+	<material><formula>K 2 Fe 4 Se 5</formula></material>
+	<material><formula>K 2 NiF 4</formula></material>
+<!--	<material><formula>K Bi 2 Sr 2 CaCu 2 O 8−x Bi-2212 85 20 Bi 2 Sr 2 Ca 2 Cu 3 O 10−x Bi-2223 110</formula></material>-->
+	<material><formula>K Fe Se x 2 2</formula></material>
+	<material><doping>K</doping> doped <formula>Ba1-xKxFe2As2</formula> <shape>films</shape></material>
+	<material><doping>K</doping> doped <name>Ba122</name> <shape>single crystal</shape></material>
+	<material><doping>K</doping> doped <name>Bi-2212</name></material>
+	<material><doping>K</doping> doped <name>Bi-2212</name> bulks with <variable>x</variable> = <value>0, 0.05, 0.10 and 0.15</value></material>
+	<material><formula>K x Fe -y 2 Se 2</formula></material>
+	<material><formula>K x Fe -y 2 Se 2</formula> (ThCr 2 Si 2</material>
+	<material><formula>K x Fe -y 2 Se 2</formula> <shape>single crystal</shape></material>
+	<material><formula>K x Fe -y 2 Se 2</formula> <shape>single crystals</shape></material>
+	<material><formula>K x Fe 2 Se 2</formula></material>
+	<material><formula>K x Fe 2 Se 2</formula> <shape>films</shape></material>
+	<material><formula>K x Fe 2-y Se 2</formula></material>
+<!--	<material><formula>K x Fe 2−y (S</formula></material>-->
+	<material><formula>K x Fe 2−y Se 2</formula></material>
+	<material><formula>K x Fe y Se 2</formula></material>
+<!--	<material><formula>K)Fe 2 As 2</formula></material>-->
+	<material><name>K-Ba122</name></material>
+	<material><doping>K</doping>-doped <name>AE122</name></material>
+	<material><doping>K</doping>-doped <name>Ba-122</name></material>
+	<material><doping>K</doping>-doped <name>Ba-122</name> <shape>crystal</shape></material>
+	<material><doping>K</doping>-doped <name>Ba-122</name> <shape>crystals</shape></material>
+	<material><doping>K</doping>-doped <name>Ba-122</name> <shape>single crystal</shape></material>
+	<material><doping>K</doping>-doped <name>Ba122</name></material>
+	<material><doping>K</doping>-doped <formula>BaFe 2 As 2</formula></material>
+	<material><doping>K</doping>-doped <formula>BaFe 2 As 2</formula> <name>(Ba-122) pnictide</name></material>
+	<material><doping>K</doping>-doped <shape>crystal</shape>)</material>
+	<material><formula>K2CrO4</formula></material>
+	<material><formula>KClO 4</formula></material>
+	<material><name>KEPCO</name></material>
+</materials>

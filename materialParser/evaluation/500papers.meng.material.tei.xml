@@ -1,0 +1,202 @@
+<!-- line from 201 to 400 -->
+<materials>
+    <material><formula>Ag 2 Se</formula></material>
+    <material><formula>Ag 2 Se</formula> <shape>crystals</shape></material>
+    <material><formula>Ag 2 Te</formula></material>
+    <!-- <material><formula>Ag 2+δ</formula></material> -->
+    <!-- <material><formula>Ag 5%</formula></material> -->
+    <material><doping>Ag</doping> doped <formula>SmBCO</formula></material>
+    <material><doping>Ag-5at% and 7.5</doping></material>
+    <material><doping>Ag</doping>-<name>YBCO</name></material>
+    <material><fabrication>Ag-alloy clad</fabrication> <name>Bi-2212</name></material>
+    <material><doping>Ag-containing</doping> <name>GdBCO</name></material>
+    <material><doping>Ag</doping>-doped</material>
+    <material><doping>Ag</doping> -doped<formula>FeSe</formula></material>
+    <material><doping>Ag</doping>-doped <formula>FeSe 0.94</formula></material>
+    <material><doping>Ag</doping>-doped <formula>PbTe</formula></material>
+    <material><doping>Ag</doping>-doped <shape>polycrystalline</shape> <formula>FeSe 0.94</formula></material>
+    <material><doping>Ag-sheathed</doping> <formula>Bi 2 Sr 2 Ca 2 Cu 3 O x</formula> (<name>Bi2223</name></material>
+    <material><doping>Ag-sheathed</doping> <fabrication>multifilamentary</fabrication> <name>Bi2212</name></material>
+    <material><doping>Ag</doping>/<name>Bi2212</name></material>
+    <material><doping>Ag</doping>- doped <formula>FeSe 0.94</formula></material>
+    <material><formula>Al</formula></material>
+    <material><formula>Al 2 O 3</formula></material>
+    <material><formula>Al 2 O 3</formula> )</material>
+    <material><formula>Al 2 O 3 19</formula></material>
+    <material><substrate>Al 2 O 3</substrate> substrate 5</material>
+        <!-- <material><formula>Al Ca, Ti 50-500 B2 98.5 0.9 -Si, Al, Ca 20-300 B3 99.0 1.7 1.0 Si</formula></material> -->
+    <material><formula>Al</formula> <shape>films</shape> grown on <substrate>SiO 2 /Si</substrate> ͑a͒</material>
+    <material><formula>Al</formula> <shape>films</shape> on <substrate>SiO 2 / Si</substrate></material>
+    <material><formula>Al</formula> <shape>thin films</shape></material>
+    <material><formula>Al</formula> <shape>thin-films</shape></material>
+    <!-- <material><formula>Al x O y</formula> ͑OH͒ z</material> -->
+    <material>Al-4 V −0.30 <doping>Cu-2wt%</doping>Be −0.61 <name>Bi-2212</name> a−b −0.29 <name>Bi-2212</name></material>
+        <material><formula>Al-Al 2 O 3</formula></material>
+        <!-- <material><doping>Al-AlOx-Nb</doping></material> -->
+        <!-- <material><formula>Al/ Al 2 O 3</formula></material> -->
+    <material><formula>Al2O3</formula></material>
+    <material><formula>Al2O3</formula>)</material>
+    <material><formula>Al2O3</formula>, <formula>Si</formula> and <formula>Au</formula>)</material>
+    <material><formula>AlB 2</formula></material>
+    <material><formula>AlB 2</formula> )</material>
+    <material><formula>AlGaAs</formula>/<formula>GaAs</formula></material>
+    <material><formula>AlPO 4 -5</formula> zeolite</material>
+    <material><doping>Ar-1% O 2</doping> using novel <shape>thin film</shape> <name>Nd-123</name>rialerial>Ar-5% H 2</material>
+    <material>As 1-x P x ) 2 <formula>Ba 1-x K x Fe 2 As 2</formula> <formula>Ba (Fe 1-x Co x ) 2 As 2</formula></material>
+<!--    <material>As 1−x P x ) 2</material>-->
+    <material>As 1−x P x ) 2 , <formula>Ba(Fe 1−x Ru x ) 2 As 2</formula></material>
+    <material>As for <formula>Sc Rh Sn 5 6 18</formula></material>
+    <material><doping>As</doping>-doped <name>Si(111)</name></material>
+    <material><doping>As</doping>-doped <shape>crystals</shape>)</material>
+    <material><doping>As-prepared</doping> <formula>BaCuO 2</formula> (7.7%)</material>
+    <material><doping>As</doping>doped <name>Si(111)</name></material>
+    <material><doping>As</doping>doped <name>Si(111)</name> <shape>crystal</shape></material>
+    <material><formula>Au 0.7 In 0.3</formula> <shape>films</shape></material>
+    <material>Au 4 5.4 <formula>Ba(Fe 0.93 Co 0.07 ) 2 As 2</formula> [18] 800 MeV Xe 2 2.7 <formula>Ba(Fe 0.92 Co 0.08 ) 2 As 2</formula></material>
+    <material><fabrication>Au-irradiated</fabrication> <formula>Ba(Fe 0.93 Co 0.07 ) 2 As 2</formula></material>
+    <material><formula>AuCu 3</formula></material>
+    <material><formula>AuCu3</formula></material>
+    <material><formula>AuCu3</formula>)</material>
+    <material><formula>AuPd</formula></material>
+    <material><formula>AxFe2-ySe2</formula> (<variable>A</variable> = <value>K, Cs, (Tl,Rb)</value></material>
+        <!-- <material><formula>B 1</formula></material> -->
+        <!-- <material><formula>B 2</formula></material> -->
+    <material><formula>B 2 H 6</formula></material>
+    <material><formula>B 2 O 3</formula></material>
+        <!-- <material><formula>B c2</formula></material> -->
+        <!-- <material><formula>B s</formula></material> -->
+        <!-- <material><formula>B s0</formula></material> -->
+        <!-- <material><name>B sultan</name></material> -->
+        <!-- <material><formula>B1</formula></material> -->
+        <!-- <material><formula>B1HA750</formula></material> -->
+        <!-- <material><formula>B1M30HA750</formula></material> -->
+        <!-- <material><formula>B2</formula></material> -->
+        <!-- <material><formula>B2, B3</formula></material> -->
+    <material><formula>B2H6</formula></material>
+        <!-- <material><formula>B2HA750</formula></material> -->
+        <!-- <material><formula>B2M30HA750</formula></material> -->
+        <!-- <material><formula>B3</formula></material> -->
+        <!-- <material><formula>B5</formula></material> -->
+    <material><name>BCO</name></material>
+<!--    <material><name>BCO</name> 400 Cu-O (Y,Dy) 2 O 3 15-55 34±3 <name>(Y,Dy)BCO</name> 550 Cu-O (Y,Dy) 2 O 3 25-55 37±3 <name>(Y,Dy)BCO</name> 700 Cu-O (Y,Dy) 2 O 3</material>-->
+    <material><name>BCO</name> block</material>
+    <material><name>BCO</name>  blockthickness (m=2 <formula>BaCuO 2+x</formula> unit cells)</material>
+    <material><name>BCO</name> <shape>thin films</shape></material>
+    <material><name>BCO/CCO</name></material>
+    <material><name>BCYCB</name></material>
+    <material><doping>BHO</doping>-<name>SmBCO</name></material>
+    <material><doping>BHO</doping>-doped <name>SmBCO</name> <shape>film</shape></material>
+    <material><doping>BHO</doping>-doped <name>SmBCO</name> <shape>films</shape></material>
+    <material><doping>BHO</doping>-doped <name>SmBCO superconducting</name> <shape>films</shape></material>
+    <material><doping>BHO</doping>-doped <name>YBCO</name></material>
+    <material><doping>BHO</doping>-doped <name>YBCO</name> <shape>films</shape></material>
+    <material><name>BISCCO</name></material>
+    <material><doping>BMO</doping> doped <formula>REBa2Cu3Oy</formula></material>
+    <material><name>BSCCO</name></material>
+    <material><name>BSCCO</name> (<formula>Bi 2 Sr 2 Ca n Cu n+1 O 6+2n</formula></material>
+    <material><name>BSCCO 2212</name> 0.8@4</material>
+    <material><name>BSCCO 2223</name></material>
+    <material><name>BSCCO</name> base <shape>crystals</shape></material>
+    <material><name>BSCCO</name> <shape>crystal</shape></material>
+    <material><name>BSCCO</name> <shape>film</shape> (<name>BF-3</name>)</material>
+    <material><name>BSCCO</name> <shape>single crystal</shape></material>
+    <material><name>BSCCO</name> <shape>tape</shape>)</material>
+    <material><name>BSCCO</name>)</material>
+    <material><name>BSCCO-2223</name></material>
+    <material><doping>BSNO</doping>-<name>SmBCO</name></material>
+    <material><doping>BSNO</doping>-<name>SmBCO</name> and <doping>BHO</doping>-<name>SmBCO</name></material>
+    <material><doping>BSNO</doping>-doped <name>SmBCO</name> <shape>film</shape></material>
+    <material><doping>BSO</doping>doped <name>YBCO</name> <shape>film</shape></material>
+    <material><name>BSSCO</name></material>
+    <material><doping>BYNTO</doping>-doped <name>YBCO</name></material>
+    <material><doping>BYNTO</doping>-doped <name>YBCO</name> <shape>film</shape></material>
+    <material><doping>BYNTO</doping>-doped <name>YBCO</name> <shape>films</shape></material>
+    <material><doping>BZO</doping>-<doping>Co</doping>-<name>Ba122</name></material>
+    <material><doping>BZO</doping>-<doping>Co</doping>-<name>Ba122</name> <shape>thin film</shape> (<variable>Δf</variable> = <value>0.50°</value>)</material>
+    <material><doping>BZO</doping>-<doping>Co</doping>-<name>Ba122</name> <shape>thin films</shape> grown on <substrate>CaF 2</substrate></material>
+    <material><doping>BZO</doping>-doped <name>REBCO</name> <shape>films</shape></material>
+    <material><doping>BZO</doping>-doped <name>YBCO</name></material>
+    <material><doping>BZO</doping>-doped <name>YBCO</name> <shape>film</shape> (2 mthick)</material>
+    <material><formula>Ba (NH 3 )Fe 2 Se 2</formula></material>
+    <material><formula>Ba 0.5 Fe 2 Se 2</formula></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 1.94 Zn 0.06 As 2</formula></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 1.95 Co 0.05 As 2</formula></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 1.95 Zn 0.05 As 2</formula></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 1.95 Zn 0.05 As 2</formula> <shape>single crystals</shape></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 2 As 2</formula></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 2 As 2</formula> , <formula>Ba 0.5 K 0.5 Fe 1.95 Zn 0.05 As 2</formula></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 2 −2x M 2x As 2</formula> (<variable>M</variable>=<value>Mn, Ru, Co, Ni, Cu and Zn</value>) <shape>single crystals</shape></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 2 −2x M 2x As 2</formula> <shape>single crystals</shape></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 2 −2x Zn 2x As 2</formula></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 2-2x M 2x As 2</formula> <shape>single crystals</shape></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 2-2x Zn 2x As 2</formula></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 2−2x M 2x As 2</formula></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 2−2x M 2x As 2</formula> doped</material>
+    <material><formula>Ba 0.5 K 0.5 Fe 2−2x Zn 2x As 2</formula></material>
+    <material><formula>Ba 0.5 K 0.5 Fe 2−2x Zn 2x As 2</formula> microbridges BaK-Zn-2)</material>
+    <material><formula>Ba 0.5 K 0.5 Fe 2−x M x As 2</formula> <shape>polycrystals</shape></material>
+    <material><formula>Ba 0.6 K 0.4 Fe 2 As 2</formula></material>
+    <material><formula>Ba 0.6 K 0.4 Fe 2 As 2</formula> <shape>polycrystals</shape></material>
+    <material><formula>Ba 0.6 K 0.4 Fe 2 As 2.1</formula></material>
+    <material><formula>Ba 0.72 K 0.28 Fe 2 As 2</formula> <shape>single crystal</shape> (<variable>α</variable>=<value>0.09 and 0.13</value></material>
+    <material><formula>Ba 0.75 K 0.25 Fe 2 As 2</formula> <shape>single crystal</shape></material>
+    <material><formula>Ba 0.77 K 0.23 Fe 2 As 2</formula></material>
+    <material><formula>Ba 0.9 Nd 0.1 CuO 2+x</formula></material>
+    <material><formula>Ba 1 −x K x Fe 2 As 2</formula></material>
+    <material><formula>Ba 1-x K x Fe 2 As 2</formula></material>
+    <material><formula>Ba 1-x K x Fe 2 As 2</formula> <shape>crystals</shape></material>
+    <material><formula>Ba 1−x K x )Fe 2 As 2</formula></material>
+    <material><formula>Ba 1−x K x )Fe 2 As 2</formula> <shape>single crystals</shape></material>
+    <material><formula>Ba 1−x K x Fe 2 As 2</formula></material>
+    <material><formula>Ba 1−x K x Fe 2 As 2</formula> (<name>K-Ba122</name>)</material>
+    <material><formula>Ba 1−x K x Fe 2 As 2</formula> (<variable>x</variable>=<value>0.19, 0.26, and 0.34</value></material>
+    <material><formula>Ba 1−x K x Fe 2 As 2</formula> <shape>single crystals</shape></material>
+    <material><formula>Ba 1−x K x Fe 2 As 2</formula> with <variable>x</variable>=<value>1</value></material>
+    <material><formula>Ba 1−x KxFe 2 As 2</formula> <shape>single crystals</shape></material>
+    <material><formula>Ba 1−x Na x )Fe 2 As 2</formula> 0.40 34.2 3.887</material>
+    <material><formula>Ba 1−x Rb x Fe 2 As 2</formula></material>
+    <material><formula>Ba 1−y K y Fe 2−2x M 2x As 2</formula></material>
+    <material><formula>Ba 2 (Nb,Y)O 6</formula></material>
+    <material><formula>Ba 2 Ca 2 Cu 3 O 7</formula></material>
+    <material><formula>Ba 2 Cu 3 O 4 Cl 2</formula></material>
+    <material><formula>Ba 2 Cu 3 O 7</formula></material>
+    <material><formula>Ba 2 Cu 3 O 7-x</formula> (<name>REBCO</name>)</material>
+    <material><formula>Ba 2 Cu 3 O 7-δ</formula> <name>(RE)BCO</name>, <varible>RE</varible>=<value>Y, Nd, Sm, Gd, Dy</value>, etc) <shape>thin films</shape></material>
+    <material><formula>Ba 2 Cu 3 O 7−x</formula> (<name>GdYBCO</name>)</material>
+    <material><formula>Ba 2 Cu 3 O 7−δ</formula> (<name>RE-123</name></material>
+    <material><formula>Ba 2 Cu 3 O x</formula> (<name>REBCO</name>)</material>
+    <material><formula>Ba 2 CuO 3</formula> (400) <formula>Ba 2 CuO 3</formula> (600) <formula>Y 2 Cu 2 O 5</formula> (400)</material>
+    <material><formula>Ba 2 SmNbO 6</formula></material>
+    <material><formula>Ba 2 Y(Nb 0.5 Ta 0.5 )O 6</formula></material>
+    <material><formula>Ba 2 YNbO 6</formula></material>
+    <material><formula>Ba 2 YTaO 6</formula></material>
+    <material><formula>Ba 3 Cu 5 O 8</formula></material>
+    <material><formula>Ba 3 Cu 5 O 8</formula> (<doping>Y-035</doping>)</material>
+    <material><formula>Ba 3 Cu 5 O y</formula> &apos;<name>Y-035</name></material>
+    <material><formula>Ba 3 YFe 2 O 7.5</formula></material>
+    <material><formula>Ba 3 YFeMnO 9−δ</formula></material>
+    <material><formula>Ba 3 YMnFeO 9−δ</formula></material>
+    <material><formula>Ba 4 Cu 5 O 8</formula></material>
+    <material><formula>Ba 8 Si 46</formula></material>
+    <material><formula>Ba 8-x Sr x Si 46</formula></material>
+        <!-- <material><formula>Ba NH Fe Se</formula></material> -->
+        <!-- <material><formula>Ba NH Fe Se</formula> ( )</material> -->
+        <!-- <material><doping>Ba NH Fe Se panel</doping>)</material> -->
+    <material><formula>Ba NH Fe Se x 3 2 2</formula></material>
+    <material><formula>Ba x (NH 3 ) y Fe 2 Se 2</formula></material>
+    <material><formula>Ba x 1− K x Fe 2 As 2</formula></material>
+    <material><formula>Ba x Fe 2 Se 2 122</formula></material>
+    <material><formula>Ba x K 1-x Fe 2 As 2</formula></material>
+    <material><formula>Ba x K 1−x )Fe 2 As 2</formula></material>
+    <material><formula>Ba x K 1−x Fe 2 As 2</formula> <shape>single crystals</shape></material>
+    <material><formula>Ba −x 1 K x Fe 2 As 2</formula></material>
+    <material><formula>Ba −x 1 K x Fe 2 As 2</formula> <shape>single crystals</shape></material>
+    <material><formula>Ba −x 1 Rb x Fe 2 As 2</formula></material>
+    <material><formula>Ba −x 1 Rb x Fe 2 As 2</formula> (<variable>x</variable> = <value>0.3, 0.35, 0.4</value></material>
+    <material><formula>Ba −x 1 Rb x Fe 2 As 2</formula> (<variable>x</variable> = <value>0.3, 0.35, 0.4</value>)</material>
+    <material><formula>Ba(Fe 0.76 Ru 0.24 ) 2 As 2</formula></material>
+    <material><formula>Ba(Fe 0.9 Co 0.1 ) 2 As 2</formula></material>
+    <material><formula>Ba(Fe 0.92 Co 0.08 ) 2 As 2</formula></material>
+    <material><formula>Ba(Fe 0.925 Co 0.075 ) 2 As 2</formula></material>
+    <material><formula>Ba(Fe 0.926 Co 0.074 ) 2 As 2</formula></material>
+</materials>

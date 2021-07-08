@@ -182,12 +182,12 @@ class MaterialParserCRF(BaseRecogniser):
         from delft.sequenceLabelling import Sequence
         from delft.sequenceLabelling.models import BidLSTM_CRF
 
-        self.model = Sequence("material", BidLSTM_CRF.name)
+        self.model = Sequence("material-BidLSTM_CRF", BidLSTM_CRF.name)
         self.model.load(dir_path="./models")
 
     @staticmethod
     def get_description():
-        return "test the MaterialParser with BidLSTM+CRF"
+        return "test the MaterialParser with BidLSTM_CRF"
 
     @staticmethod
     def get_name():

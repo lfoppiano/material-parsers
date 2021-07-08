@@ -1,5 +1,5 @@
 {
-    "embedding-lmdb-path": "data/db",
+    "embedding-lmdb-path": "/Users/lfoppiano/development/projects/delft/data/db",
     "embeddings": [
         {
             "name": "glove-840B",

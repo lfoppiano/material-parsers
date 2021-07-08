@@ -39,7 +39,7 @@ class MaterialParserMod():
         from delft.sequenceLabelling import Sequence
         from delft.sequenceLabelling.models import BidLSTM_CRF
 
-        self.model = Sequence("material", BidLSTM_CRF.name)
+        self.model = Sequence("material-gloves", BidLSTM_CRF.name)
         self.model.load(dir_path="./models")
 
         self.mp = MaterialParser(pubchem_lookup=False, verbose=True)

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<materials>
+    <material><name>sulfur</name></material>
+    <material><name>sulfur deuteride</name></material>
+    <material><name>sulfur hydride</name></material>
+    <material><name>sulfur hydride</name> 27</material>
+    <material><name>sulfur hydrides</name></material>
+    <!--	<material><formula>t r Si1 r Si2 r Si3 r Si4 r Si5 r Si6 r Si8</formula></material>-->
+    <material><name>tetramethylammonium hydroxide</name> on <substrate>niobium nitride</substrate> <shape>thin films</shape></material>
+    <material><shape>thin</shape> <name>Bi2212</name></material>
+    <material><shape>thin</shape> <formula>Nb 3 Sn</formula></material>
+    <material><shape>thin</shape> <formula>YBa Cu O 2 3 7</formula></material>
+    <material><shape>thin film</shape> <name>Ba-122</name></material>
+    <material><shape>thin film</shape> <name>Nb 252</name></material>
+    <material><shape>thin film</shape> of <name>Bi-2212</name></material>
+    <material><shape>thin films</shape> of <doping>Co-doped</doping> <formula>BaFe 2 As 2</formula></material>
+    <material><shape>thin films</shape> of <formula>Nb, Ba(FeCo) 2 As 2</formula></material>
+    <material><shape>thin films</shape> on Si(111)</material>
+    <material><shape>thin-film</shape></material>
+    <material><shape>thin-film method</shape></material>
+    <material><doping>thin-film</doping> samples of <formula>SrRuO 3</formula></material>
+    <material><doping>twinned</doping> <name>RE123</name></material>
+    <material>typical <name>Bi-2212</name></material>
+    <material><shape>ultrathin</shape> <formula>Bi 2 Sr 2 CaCu 2 O 8+x</formula> <shape>single crystals</shape></material>
+    <material><shape>ultrathin films</shape> of <formula>Pb(111)</formula></material>
+    <material><doping>under-doped</doping> <name>Ba-122</name></material>
+    <material><doping>under-doped</doping> <name>Ba-122</name>crystal</material>
+    <material><doping>under-doped</doping><shape> single crystal</shape> of <formula>Ba(Fe 1−x Ru x ) 2 As 2</formula> (<variable>x</variable> = <value>0.24</value>)</material>
+    <material><doping>underdoped</doping> <formula>(Ba 1−x K x )Fe 2 As 2</formula></material>
+    <material><doping>underdoped</doping> <formula>Ba(Fe1− xCox)2As2</formula></material>
+    <material><doping>underdoped</doping> <name>Bi-2212</name></material>
+    <material><doping>underdoped</doping> <name>Bi-2212</name> <shape>bulk single crystals</shape></material>
+    <material><doping>underdoped</doping> <name>LSCO</name></material>
+    <material><doping>underdoped</doping> <formula>YBa 2 Cu 3 O 6+x</formula></material>
+    <material><doping>undoped</doping> <name>Ba-122</name> <shape>thin films</shape></material>
+    <material><doping>undoped</doping> <formula>BiOBiS 2</formula></material>
+    <material><doping>undoped</doping> <name>GdBCO</name></material>
+    <material><doping>undoped</doping> <name>YBCO</name></material>
+    <material><doping>undoped</doping> <name>YBCO</name> <shape>film</shape> ()</material>
+    <material><doping>undoped</doping> <name>YBCO</name> <shape>film</shape> (red)</material>
+    <material>unreacted <name>Bi2212</name>crystals</material>
+    <material><variable>x</variable> (<value>0.00968, 0.0087 and 0.01005</value></material>
+    <material><variable>x</variable> <value>0.06</value></material>
+    <material><variable>x</variable> <value>0.3</value></material>
+    <!-- <material><formula>x 1− Co x ) 2 As 2</formula></material> -->
+    <!-- <material><formula>x 1− K x Fe 2 As 2</formula></material> -->
+    <material><variable>x</variable> <value>&lt; 0.05</value></material>
+    <material><variable>x</variable> <value>&lt; 0.07</value></material>
+    <material><variable>x</variable> <value>&lt; 0.4</value></material>
+    <material><variable>x</variable> <value>&lt; 0.55</value></material>
+    <material><variable>x</variable> <value>&lt; 0.6</value></material>
+    <material><variable>x</variable> <value>&lt; 0.8</value></material>
+    <material><variable>x</variable> &lt; <variable>x</variable> <value>0</value></material>
+    <material><variable>x</variable> = <value>0</value></material>
+    <material><variable>x</variable> = <value>0 4.212(2) 4.212</value></material>
+    <material><variable>x</variable> = <value>0 5.34 6.100 38 × 10 −9</value> <variable>x</variable> = <value>0.01 7</value></material>
+    <material><variable>x</variable> = <value>0, 0.02, and 0.05</value></material>
+    <material><variable>x</variable> = <value>0, 0.05, 0.10, and 0.15</value></material>
+    <material><variable>x</variable> = <value>0, 0.05, 0.10, and 0.15</value>)</material>
+    <material><variable>x</variable> = <value>0, 0.05, and 0.10</value></material>
+    <material><variable>x</variable> = <value>0, 0.16, 0.24</value></material>
+    <material><variable>x</variable> = <value>0, 0.17 and 0.27</value></material>
+    <material><variable>x</variable> = <value>0, 0.25, 0.5, 0.75</value></material>
+    <material><variable>x</variable> = <value>0</value>, <variable>x</variable> = <value>0.17</value></material>
+    <material><variable>x</variable> = <value>0-0.1</value></material>
+    <material><variable>x</variable> = <value>0-0.80</value></material>
+    <material><variable>x</variable> = <value>0.0</value></material>
+    <material><variable>x</variable> = <value>0.0-0.35</value></material>
+    <material><variable>x</variable> = <value>0.00</value></material>
+    <material><variable>x</variable> = <value>0.00, 0.02, 0.04 and 0.07</value></material>
+    <material><variable>x</variable> = <value>0.00, 0.02, 0.04, 0.06, 0.07, 0.08, 0.1 and 0.12</value></material>
+    <material><variable>x</variable> = <value>0.01</value></material>
+    <material><variable>x</variable> = <value>0.01, 0.02, 0.03 and 0.04</value></material>
+    <material><variable>x</variable> = <value>0.01, 0.02, 0.03, 0.04 and 0.05</value>)</material>
+    <material><variable>x</variable> = <value>0.02</value></material>
+    <material><variable>x</variable> = <value>0.02 and 0.04</value></material>
+    <material><variable>x</variable> = <value>0.02, 0.04, 0.07 and 0.10</value></material>
+    <material><variable>x</variable> = <value>0.03</value></material>
+    <material><variable>x</variable> = <value>0.04</value></material>
+    <material><variable>x</variable> = <value>0.04</value>)</material>
+    <material><variable>x</variable> = <value>0.05</value></material>
+    <material><variable>x</variable> = <value>0.05 and 0.10</value></material>
+    <material><variable>x</variable> = <value>0.05 and 0.15</value></material>
+    <material><variable>x</variable> = <value>0.05 and 0.5</value></material>
+    <material><variable>x</variable> = <value>0.05, 0.07, 0.12, and 0.14</value>; ͑b͒ <variable>x</variable> = <value>0.2, 0.3, 0.4, and 0.5</value></material>
+    <material><variable>x</variable> = <value>0.05, 0.075, 0.09, and 0.10</value></material>
+    <material><variable>x</variable> = <value>0.05, 0.1 and 0.2</value></material>
+    <material><variable>x</variable> = <value>0.05, 0.1 and 0.2</value>)</material>
+    <material><variable>x</variable> = <value>0.05, 0.15, 0.2, 0.3, 0.4, and 0.5</value></material>
+    <material><variable>x</variable> = <value>0.05, and 0.10</value></material>
+    <material><variable>x</variable> = <value>0.05-0.3</value></material>
+    <material><variable>x</variable> = <value>0.06</value></material>
+    <material><variable>x</variable> = <value>0.06, 0.08, 0.10 and 0.12</value></material>
+    <material><variable>x</variable> = <value>0.06, 0.08, 0.10, 0.12</value></material>
+    <material><variable>x</variable> = <value>0.07</value></material>
+    <material><variable>x</variable> = <value>0.07 17</value></material>
+    <material><variable>x</variable> = <value>0.07 and 0.10</value></material>
+    <material><variable>x</variable> = <value>0.07</value>)</material>
+    <material><variable>x</variable> = <value>0.08</value></material>
+    <material><variable>x</variable> = <value>0.08</value>, ͑b͒ <variable>x</variable> = <value>0.85</value>, ͑c͒ <variable>x</variable> = <value>0.09</value>, ͑d͒ <variable>x</variable> = <value>1.00</value></material>
+    <material><variable>x</variable> = <value>0.1</value></material>
+    <material><variable>x</variable> = <value>0.1 25</value></material>
+    <material><variable>x</variable> = <value>0.1 and 0.3</value></material>
+    <material><variable>x</variable> = <value>0.10</value></material>
+    <material><variable>x</variable> = <value>0.12</value></material>
+    <material><variable>x</variable> = <value>0.122</value></material>
+    <material><variable>x</variable> = <value>0.135 ~ 0.27</value></material>
+    <material><variable>x</variable> = <value>0.14</value></material>
+    <material><variable>x</variable> = <value>0.14 and 0.20</value></material>
+    <material><variable>x</variable> = <value>0.144</value></material>
+    <material><variable>x</variable> = <value>0.15</value></material>
+    <material><variable>x</variable> = <value>0.15</value>)</material>
+    <material><variable>x</variable> = <value>0.17</value></material>
+    <material><variable>x</variable> = <value>0.19</value></material>
+    <material><variable>x</variable> = <value>0.19</value>)</material>
+    <material><variable>x</variable> = <value>0.2</value></material>
+    <material><variable>x</variable> = <value>0.2 43</value></material>
+    <material><variable>x</variable> = <value>0.2 and 0.3</value></material>
+    <material><variable>x</variable> = <value>0.2</value> in <formula>SmFeAsO1-xFx</formula></material>
+    <material><variable>x</variable> = <value>0.2</value>)</material>
+    <material><variable>x</variable> = <value>0.2-0.4</value></material>
+    <material><variable>x</variable> = <value>0.20</value></material>
+    <material><variable>x</variable> = <value>0.20 and 0.25</value> <formula>Mo -x 1 Re x</formula></material>
+    <material><variable>x</variable> = <value>0.20</value>)</material>
+    <material><variable>x</variable> = <value>0.22</value></material>
+    <material><variable>x</variable> = <value>0.24</value></material>
+    <material><variable>x</variable> = <value>0.25</value></material>
+    <material><variable>x</variable> = <value>0.25 4</value></material>
+    <material><variable>x</variable> = <value>0.25 and 0.33</value></material>
+    <material><variable>x</variable> = <value>0.26</value></material>
+    <material><variable>x</variable> = <value>0.27</value></material>
+    <material><variable>x</variable> = <value>0.28</value></material>
+    <material><variable>x</variable> = <value>0.3</value></material>
+    <material><variable>x</variable> = <value>0.3 and 0.4</value>)</material>
+    <material><variable>x</variable> = <value>0.3-0.4</value></material>
+    <material><variable>x</variable> = <value>0.30</value></material>
+    <material><variable>x</variable> = <value>0.30 and 0.33</value></material>
+    <material><variable>x</variable> = <value>0.30-0.55</value></material>
+    <material><variable>x</variable> = <value>0.335</value></material>
+    <material><variable>x</variable> = <value>0.34</value></material>
+    <material><variable>x</variable> = <value>0.35</value></material>
+    <material><variable>x</variable> = <value>0.35 -0.4</value>)</material>
+    <material><variable>x</variable> = <value>0.4</value></material>
+    <material><variable>x</variable> = <value>0.4</value> <name>Bi-2201</name></material>
+    <material><variable>x</variable> = <value>0.4</value> <shape>films</shape></material>
+    <material><variable>x</variable> = <value>0.42</value></material>
+    <material><variable>x</variable> = <value>0.465</value></material>
+    <material><variable>x</variable> = <value>0.5</value></material>
+    <material><variable>x</variable> = <value>0.5 found</value> in <formula>REO −x 1 F x BiS 2</formula></material>
+    <material><variable>x</variable> = <value>0.50</value></material>
+    <material><variable>x</variable> = <value>0.55</value></material>
+    <material><variable>x</variable> = <value>0.55</value>)</material>
+    <material><variable>x</variable> = <value>0.55-0.80</value></material>
+    <material><variable>x</variable> = <value>0.6</value></material>
+    <material><variable>x</variable> = <value>0.60, 0.40, and 0.0</value></material>
+    <material><variable>x</variable> = <value>0.62-0.66</value>)</material>
+    <material><variable>x</variable> = <value>0.7 -0.9</value></material>
+    <material><variable>x</variable> = <value>0.70</value></material>
+    <material><variable>x</variable> = <value>0.75</value></material>
+    <material><variable>x</variable> = <value>0.75 and 0.80</value></material>
+    <material><variable>x</variable> = <value>0.8</value></material>
+    <material><variable>x</variable> = <value>0.80</value></material>
+    <material><variable>x</variable> = <value>0.80 to 0.4517</value> nm with <variable>x</variable> = <value>1.20</value></material>
+    <material><variable>x</variable> = <value>0.80, 0.85, 0.90</value></material>
+    <material><variable>x</variable> = <value>0.80, 0.90</value></material>
+    <material><variable>x</variable> = <value>0.80</value>, ͑b͒ <variable>x</variable> = <value>0.85</value>, ͑c͒ <variable>x</variable> = <value>0.90</value></material>
+    <material><variable>x</variable> = <value>0.85 and 0.4507</value></material>
+    <material><variable>x</variable> = <value>0.9 to 1.05</value></material>
+    <material><variable>x</variable> = <value>0.90</value></material>
+    <material><variable>x</variable> = <value>0.90 and 0.95</value></material>
+    <material><variable>x</variable> = <value>0.95</value></material>
+    <material><variable>x</variable> = <value>1-5</value>, <variable>y</variable> = <value>1-4</value></material>
+    <material><variable>x</variable> = <value>1.0</value></material>
+    <material><variable>x</variable> = <value>1.12</value></material>
+    <material><variable>x</variable> = <value>1.20</value></material>
+    <material><variable>x</variable> = <value>1.38</value></material>
+    <material><variable>x</variable> = <value>1.50</value></material>
+    <material><variable>x</variable> = <value>2.5</value></material>
+    <material><variable>x</variable> = <value>6.85</value></material>
+    <material><variable>x</variable> = <value>6.96</value></material>
+    <material><variable>x</variable> = <value>7, to ≈ 1.12</value></material>
+    <material><variable>x</variable> = <value>L 2</value></material>
+    <material><variable>x</variable> =<value>2/3</value></material>
+    <material><variable>x</variable> <value>&gt; 0.06</value></material>
+    <material><variable>x</variable> <value>&gt; 0.15</value></material>
+    <material><variable>x</variable> <value>&gt; 0.2</value></material>
+    <material><variable>x</variable> <value>&gt; 0.75</value></material>
+    <material><variable>x</variable> <value>&gt; 0.8</value></material>
+    <!--	<material><formula>x Ca x Ba 2-x La x Cu 3 O y</formula></material>-->
+    <!--	<material><variable>x</variable> <formula>CoMnO 6</formula></material>-->
+    <!--	<material><formula>x La x Cu 3 O y</formula></material>-->
+    <!--	<material><variable>x</variable> <value>S</value></material>-->
+    <!--	<material><formula>x Sr x MnO 3</formula></material>-->
+    <material><variable>x c1</variable> = <value>0.05</value></material>
+    <material><variable>x</variable> d <value>0 &lt; &lt;</value></material>
+    <material><variable>x</variable> of <formula>Mn 4-x Gd x N</formula></material>
+    <!-- <material><formula>x x 1 2</formula></material> -->
+    <!-- <material><variable>x</variable> x 1 = and x x 2 = )</material> -->
+    <!--	<material><formula>x x x 2</formula> ( )</material>-->
+    <!--	<material><formula>x x x 2 2 2 22 2 4 2 2</formula></material>-->
+    <!--	<material><formula>x x x 4 4 2 4 2 222 2 4 2</formula></material>-->
+    <material><variable>x</variable> <value>~ 0.45</value></material>
+    <material><variable>x</variable> <value>¼ 0.27</value></material>
+    <material><variable>x</variable> <value>¼ 0.27 and 0.31</value></material>
+    <material><variable>x</variable> <value>¼ 0.27 and 0.31</value>)</material>
+    <material><variable>x</variable> <value>¼ 0.27</value>)</material>
+    <material><variable>x</variable> <value>¼ 0.31</value></material>
+    <material><variable>x</variable> ¼ <value>0.31</value> (d Nb ¼ 20</material>
+    <material><variable>x</variable> <value>¼ 0.31</value>)</material>
+    <material><variable>x</variable> <value>¼ 0.38</value></material>
+    <material><variable>x</variable> <value>¼ 0.38</value>)</material>
+    <material><variable>x</variable> <value>¼ 0.39</value></material>
+    <material><variable>x</variable> <value>¼ 0.4</value></material>
+    <material><variable>x</variable> ¼ <value>0:27 and 0:31</value>)</material>
+<!--    <material><variable>x</variable> <value>¼ 1/4</value>, T <variable>x</variable> <formula>MX 2</value></material> CHECK -->
+    <material><variable>x</variable> ⌫ = <value>1.8</value>°with <variable>x</variable> = <value>0.80</value></material>
+    <material><variable>x</variable> Ͻ <value>0.18</value></material>
+    <material><variable>x</variable> Ͻ <value>0.2</value></material>
+    <material><variable>x</variable> Ͻ <value>1</value></material>
+    <material><variable>x</variable> Ͻ <value>1 and</value> <variable>x</variable> Ͼ <value>1</value></material>
+    <material><variable>x</variable> Ͼ <value>1</value></material>
+    <material><variable>x</variable> ഛ <value>0.18</value></material>
+    <material><variable>x</variable> ഛ <value>0.19</value></material>
+    <material><variable>x</variable> ഛ <value>0.5</value></material>
+    <material><variable>x</variable> ജ <value>1.2</value></material>
+    <material><variable>x</variable> ജ <value>1.38</value></material>
+    <material><variable>x</variable> ജ <value>1.6</value></material>
+    <material><variable>x</variable> <value>∼ 0.24</value></material>
+    <material><variable>x</variable> <value>∼ 0.5</value></material>
+    <material><variable>x</variable> <value>∼ 0.7</value></material>
+    <material><variable>x</variable> <value>∼0.8</value></material>
+    <material><variable>x</variable> <value>≈ 0.15</value>)</material>
+    <material><variable>x</variable> <value>≈ 0.5 found</value> in <formula>REO −x 1 F x BiS 2</formula></material>
+    <material><variable>x</variable> <value>≤ 0.15</value></material>
+    <material><variable>x</variable> <value>≤ 0.4</value></material>
+    <material><variable>x</variable> <value>≥ 0.8</value></material>
+    <material><variable>x</variable> <value>⩽ 0.25</value></material>
+    <material><variable>x</variable> <value>⩽ 0.40</value></material>
+    <material><variable>x</variable> <value>⩽ 0.42</value></material>
+    <material><variable>x</variable> <value>⩾ 0.3</value></material>
+    <material><variable>x</variable>  <value>0.12</value></material>
+    <material><variable>x</variable> <value>0.05</value></material>
+    <!-- <material><doping>x)-SmBCO</doping></material> -->
+    <material><variable>x</variable>)-<name>SmBCO</name> <shape>films</shape> (<variable>x</variable>=<value>5.2~10.5</value></material>
+    <material><variable>x</variable><value>, of 0.05, 0.1, 0.2, 0.3 and 0.4</value></material>
+    <material><variable>x</variable>-(R = 0.999</material>
+    <material><variable>x</variable>=<value>0.01</value></material>
+    <material><variable>x</variable>=<value>0.01</value>)</material>
+    <material><variable>x</variable>=<value>0.01</value>) <shape>crystals</shape></material>
+    <material><variable>x</variable>=<value>0.01, 0.03 and 0.07</value></material>
+    <material><variable>x</variable>=<value>0.01, 0.03, and 0.07</value></material>
+    <material><variable>x</variable>=<value>0.01, 0.03, and 0.07</value> <shape>single crystals</shape></material>
+    <material><variable>x</variable>=<value>0.03</value></material>
+    <material><variable>x</variable>=<value>0.03</value>)</material>
+    <material><variable>x</variable>=<value>0.03, 0.05</value></material>
+    <material><variable>x</variable>=<value>0.03, 0.05, and 0.07</value>) <shape>single crystals</shape></material>
+    <material><variable>x</variable>=<value>0.05</value></material>
+    <material><variable>x</variable>=<value>0.05, 0.07</value>)</material>
+    <material><variable>x</variable>=<value>0.05, 0.07</value>) <shape>crystals</shape></material>
+    <material><variable>x</variable>=<value>0.07</value></material>
+    <material><variable>x</variable>=<value>0.07</value>)</material>
+    <material><variable>xr</variable> = <value>0.8</value></material>
+    <material><variable>x</variable>=<value>0 and 0.005</value></material>
+    <material><variable>x</variable>=<value>0 and 0.02</value></material>
+    <material><variable>x</variable>=<value>0 and 0.05</value></material>
+    <material><variable>x</variable>=<value>0, 0.02, 0.05 and 0.1</value></material>
+    <material><variable>x</variable>=<value>0.02</value></material>
+    <material><variable>x</variable>=<value>0.02 and 0.05</value></material>
+    <material><variable>x</variable>=<value>0.02, 0.05, 0.1 and 0.2</value></material>
+    <material><variable>x</variable>=<value>0.05</value></material>
+    <material><variable>x</variable>=<value>0.08, 0.10, 0.14, 0.16</value></material>
+    <material><variable>x</variable>=<value>0.19</value></material>
+    <material><variable>x</variable>=<value>0.22-0.42</value></material>
+    <material><variable>x</variable>=<value>0.24 and 0.32</value></material>
+    <material><variable>x</variable>=<value>0.37 and 0.39</value></material>
+    <material><value>x∼0.35, 0.37 and 0.39</value></material>
+    <material><variable>y</variable> = <value>0.282</value></material>
+    <material><variable>y</variable> = <value>0.292</value></material>
+    <material><name>zirconium-hydride</name></material>
+    <material>~0.5 for <formula>Y x Lu -x 1 Ni 2 B 2 C</formula></material>
+    <material><variable>µ</variable> = <value>1/7</value></material>
+    <material><formula>͑B34</formula>͒ with 4-</material>
+    <material>Δ 11</material>
+    <material>Δρ 0 ) for <shape>single crystals</shape> <name>BaK-Zn</name> (<formula>Ba 0.5 K 0.5 Fe 2−2x Zn 2x As 2</formula></material>
+    <material><formula>β-Fe(Se 1−x Te x</formula> )</material>
+    <material><variable>γ</variable> = <value>− 0.42</value></material>
+    <!--	<material><formula>γ H c2</formula></material>-->
+    <material><value>∼0.09, 0.20, 0.33 and 0.43</value></material>
+    <material>→<formula>RE 1 Ba 2 Cu 3 O 6.5</formula> (<name>RE-123</name></material>
+</materials>
