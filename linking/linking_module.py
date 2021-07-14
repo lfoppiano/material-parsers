@@ -76,40 +76,41 @@ class SpacyPipeline:
 
         doc.ents = entities
         # print("Entities: " + str(doc.ents))
-        for span in entities:
-            # Iterate over all spans and merge them into one token. This is done
-            # after setting the entities – otherwise, it would cause mismatched
-            # indices!
-            span.merge()
-            for token in span:
-                token._.id = span._.id
-                token._.bounding_boxes = span._.bounding_boxes
-                token._.formattedText = span._.formattedText
-                token._.links = span._.links
-                token._.linkable = span._.linkable
-        self.nlp.tagger(doc)
-        self.nlp.parser(doc)
-        ## Merge entities and phrase nouns, but only when they are not overlapping,
-        # to avoid loosing the entity type information
-        phrases_ents = self.extract_phrases_ents(doc)
-        # print(phrases_ents)
-        for span in phrases_ents:
-            # print("Span " + str(span))
-            overlapping = False
-            for ent in entities:
-                # print(ent)
-                if (
-                    (span.start <= ent.start <= span.end) or
-                    (span.start <= ent.end >= span.end) or
-                    (span.start >= ent.start and span.end <= ent.end) or
-                    (span.start <= ent.start and span.end >= ent.end)
-                ):
-                    overlapping = True
-                    break
+        with doc.retokenize() as retokenizer:
+            for span in entities:
+                # Iterate over all spans and merge them into one token. This is done
+                # after setting the entities – otherwise, it would cause mismatched
+                # indices!
+                retokenizer.merge(span)
+                for token in span:
+                    token._.id = span._.id
+                    token._.bounding_boxes = span._.bounding_boxes
+                    token._.formattedText = span._.formattedText
+                    token._.links = span._.links
+                    token._.linkable = span._.linkable
+            self.nlp.get_pipe("tagger")(doc)
+            self.nlp.get_pipe("parser")(doc)
+            ## Merge entities and phrase nouns, but only when they are not overlapping,
+            # to avoid loosing the entity type information
+            phrases_ents = self.extract_phrases_ents(doc)
+            # print(phrases_ents)
+            for span in phrases_ents:
+                # print("Span " + str(span))
+                overlapping = False
+                for ent in entities:
+                    # print(ent)
+                    if (
+                        (span.start <= ent.start <= span.end) or
+                        (span.start <= ent.end >= span.end) or
+                        (span.start >= ent.start and span.end <= ent.end) or
+                        (span.start <= ent.start and span.end >= ent.end)
+                    ):
+                        overlapping = True
+                        break
 
-            # Entities and phrase noun are not overlapping
-            if not overlapping:
-                span.merge()
+                # Entities and phrase noun are not overlapping
+                if not overlapping:
+                    retokenizer.merge(span)
         # self.nlp.tagger(doc)
         # self.nlp.parser(doc)
 
