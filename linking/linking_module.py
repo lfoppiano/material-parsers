@@ -302,59 +302,31 @@ class RuleBasedLinker(SpacyPipeline):
     def process(self, text_, spans_, tokens_):
         ## Convert tokens from GROBID tokenisation
         words, spaces, spans_remapped = self.convert_to_spacy(tokens_, spans_)
-        # print(spans_remapped)
-
-        ## Sentence segmentation
-        # boundaries = get_sentence_boundaries(words, spaces)
-        boundaries = self.get_sentence_boundaries(words, spaces)
 
         output_data = []
 
-        cumulatedIndex = 0
-        cumulatedOffset = 0
-        for index, boundary in enumerate(boundaries):
-            words_boundary = words[boundary[0]: boundary[1]]
-            spaces_boundary = spaces[boundary[0]: boundary[1]]
-            text = ''.join(
-                [words_boundary[i] + (' ' if spaces_boundary[i] else '') for i in range(0, len(words_boundary))])
+        # material
+        destination_entities = list(filter(lambda w: w['type'] in [self.destination], spans_remapped))
+        # tcValue
+        source_entities = list(filter(lambda w: w['type'] in [self.source], spans_remapped))
 
-            spans_boundary = []
+        ## POST-PROCESS Material names
+        # materials = post_process(materials)
 
-            for s in spans_remapped:
-                if s['tokenStart'] >= boundary[0] and s['tokenEnd'] <= boundary[1]:
-                    copied_span = s
-                    copied_span['tokenStart'] = s['tokenStart'] - cumulatedIndex
-                    copied_span['tokenEnd'] = s['tokenEnd'] - cumulatedIndex
-                    copied_span['offsetStart'] = s['offsetStart'] - cumulatedOffset
-                    copied_span['offsetEnd'] = s['offsetEnd'] - cumulatedOffset
+        if len(destination_entities) > 0 and len(source_entities) > 0:
+            data_return = self.process_sentence(words, spaces, spans_remapped)
 
-                    spans_boundary.append(copied_span)
-
-            cumulatedIndex += len(words_boundary)
-            cumulatedOffset += len(text)
-
-            # material
-            destination_entities = list(filter(lambda w: w['type'] in [self.destination], spans_boundary))
-            # tcValue
-            source_entities = list(filter(lambda w: w['type'] in [self.source], spans_boundary))
-
-            ## POST-PROCESS Material names
-            # materials = post_process(materials)
-
-            if len(destination_entities) > 0 and len(source_entities) > 0:
-                data_return = self.process_sentence(words_boundary, spaces_boundary, spans_boundary)
-
-                if len(data_return) > 0:
-                    output_data.append(data_return)
-            else:
-                data_return = {
-                    "spans": [entity for entity in
-                              filter(lambda w: w['type'] in entities_classes(), spans_boundary)],
-                    "text": ''.join(
-                        [words_boundary[i] + (' ' if spaces_boundary[i] else '') for i in
-                         range(0, len(words_boundary))])
-                }
+            if len(data_return) > 0:
                 output_data.append(data_return)
+        else:
+            data_return = {
+                "spans": [entity for entity in
+                          filter(lambda w: w['type'] in entities_classes(), spans_remapped)],
+                "text": ''.join(
+                    [words[i] + (' ' if spaces[i] else '') for i in
+                     range(0, len(words))])
+            }
+            output_data.append(data_return)
 
         return output_data
 
