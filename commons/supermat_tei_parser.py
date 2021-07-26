@@ -40,18 +40,7 @@ def process_file(input_document):
     #     print(doc)
     soup = BeautifulSoup(doc, 'xml')
 
-    children = []
-    for child in soup.tei.children:
-        if child.name == 'teiHeader':
-            children.append(child.find_all("title"))
-            children.extend([subchild.find_all("p") for subchild in child.find_all("abstract")])
-            children.append(child.find_all("ab", {"type": "keywords"}))
-        elif child.name == 'text':
-            children.append(
-                [subsubchild for subchild in child.find_all("body") for subsubchild in subchild.children if
-                 type(subsubchild) is Tag])
-
-    print(str(children))
+    children = get_children_list(soup, verbose=False)
 
     off_token = 0
     tsvText = ''
@@ -191,3 +180,22 @@ def process_file(input_document):
         v[7] = v[7].replace('link_location', '_')
 
     return paragraphs, dic_token
+
+
+def get_children_list(soup, verbose=False):
+
+    children = []
+
+    for child in soup.tei.children:
+        if child.name == 'teiHeader':
+            pass
+            children.append(child.find_all("title"))
+            children.extend([subchild.find_all("s") for subchild in child.find_all("abstract")])
+            children.extend([subchild.find_all("s") for subchild in child.find_all("ab", {"type": "keywords"})])
+        elif child.name == 'text':
+            children.extend([subchild.find_all("s") for subchild in child.find_all("body")])
+
+    if verbose:
+        print(str(children))
+
+    return children

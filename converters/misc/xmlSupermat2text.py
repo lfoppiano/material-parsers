@@ -6,25 +6,7 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-
-def getSection(pTag):
-    if pTag.name == 'p':
-        section = pTag.parent.name
-    elif pTag.name == 'ab':
-        if 'type' in pTag.attrs:
-            type = pTag.attrs['type']
-            if type == 'keywords':
-                section = "keywords"
-            elif type == 'figureCaption':
-                section = 'figureCaption'
-            elif type == 'tableCaption':
-                section = 'tableCaption'
-    elif pTag.name == 'title':
-        section = 'title'
-    else:
-        raise Exception("Something wrong")
-
-    return section
+from supermat_tei_parser import get_children_list
 
 
 def get_paragraphs(finput):
@@ -37,15 +19,7 @@ def get_paragraphs(finput):
     #     print(doc)
     soup = BeautifulSoup(doc, 'xml')
 
-    children = []
-    for child in soup.tei.children:
-        if child.name == 'teiHeader':
-            children.append(child.find_all("title"))
-            children.extend([subchild.find_all("p") for subchild in child.find_all("abstract")])
-            children.append(child.find_all("ab", {"type": "keywords"}))
-        elif child.name == 'text':
-            children.append([subsubchild for subchild in child.find_all("body") for subsubchild in subchild.children if
-                             type(subsubchild) is Tag])
+    children = get_children_list(soup)
 
     paragraphs = []
 
