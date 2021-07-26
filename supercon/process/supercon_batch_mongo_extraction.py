@@ -10,6 +10,7 @@ from multiprocessing import Manager
 from pathlib import Path
 
 import gridfs
+import pymongo
 from pymongo import MongoClient
 from tqdm import tqdm
 
@@ -52,33 +53,31 @@ class MongoSuperconProcessor:
         self.verbose = verbose
         config_json = open(config_path).read()
         self.config = json.loads(config_json)
+
         if verbose:
             print("Configuration: ", self.config)
         self.grobid_client = grobid_client_generic()
         self.grobid_client.set_config(self.config, ping=True)
-        if verbose:
-            print("Checking indexes")
-            self.ensure_indexes()
 
         if verbose:
             print("Init completed.")
 
-    def ensure_indexes(self, db_name=None):
+    def ensure_indexes(self, db_name):
         connection = connect_mongo(config=self.config)
         db = connection[db_name]
 
-        db.document.createIndex({"hash": 1, "timestamp": 1})
-        db.document.createIndex({"hash": 1})
-        db.document.createIndex({"type": 1})
-        db.document.createIndex({"timestamp": 1})
+        db.document.create_index([("hash", pymongo.ASCENDING), ("timestamp", pymongo.ASCENDING)])
+        db.document.create_index("hash")
+        db.document.create_index("type")
+        db.document.create_index("timestamp")
 
-        db.tabular.createIndex({"type": 1})
-        db.tabular.createIndex({"hash": 1, "timestamp": 1, "type": 1})
-        db.tabular.createIndex({"hash": 1, "timestamp": 1})
-        db.tabular.createIndex({"hash": 1})
+        db.tabular.create_index("type")
+        db.tabular.create_index([("hash", pymongo.ASCENDING), ("timestamp", pymongo.ASCENDING), ("type", pymongo.ASCENDING)])
+        db.tabular.create_index([("hash", pymongo.ASCENDING), ("timestamp", pymongo.ASCENDING)])
+        db.tabular.create_index("hash")
 
-        db.binary.files.createIndex({"filename": 1, "uploadDate": 1})
-        db.binary.files.createIndex({"hash": 1})
+        db.binary.files.create_index([("filename", pymongo.ASCENDING), ("uploadDate", pymongo.ASCENDING)])
+        db.binary.files.create_index("hash")
 
     def write_mongo_status(self, db_name, service):
         '''Write the status of the document being processed'''
@@ -183,6 +182,10 @@ class MongoSuperconProcessor:
         if self.verbose:
             print("Database:", self.db_name)
 
+        if verbose:
+            print("Ensuring indexes...")
+        self.ensure_indexes(self.db_name)
+
         num_threads_process = num_threads
         num_threads_store = math.ceil(num_threads / 2) if num_threads > 1 else 1
         self.queue_input = self.m.Queue(maxsize=num_threads_process)
@@ -233,7 +236,9 @@ if __name__ == '__main__':
                         required=False,
                         default=None)
     parser.add_argument("--verbose",
-                        help="Print all log information", action="store_true", required=False, default=False)
+                        help="Print all log information",
+                        action="store_true",
+                        required=False, default=False)
 
     args = parser.parse_args()
 
