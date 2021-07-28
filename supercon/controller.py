@@ -159,10 +159,10 @@ def get_tabular(type='automatic', publisher=None, year=None, start=None, length=
 
         for entry in tabular_collection.find(query):
             del entry['_id']
-            entry['section'] = entry['section'][1:-1] if 'section' in entry and entry['section'] is not None else ''
-            entry['subsection'] = entry['subsection'][1:-1] if 'subsection' in entry and entry[
+            entry['section'] = entry['section'] if 'section' in entry and entry['section'] is not None else ''
+            entry['subsection'] = entry['subsection'] if 'subsection' in entry and entry[
                 'subsection'] is not None else ''
-            entry['title'] = entry['title'][1:-1] if 'title' in entry and entry[
+            entry['title'] = entry['title'] if 'title' in entry and entry[
                 'title'] is not None else ''
             entry['doc_url'] = url_for('supercon.get_document', hash=entry['hash'])
             entries.append(entry)
