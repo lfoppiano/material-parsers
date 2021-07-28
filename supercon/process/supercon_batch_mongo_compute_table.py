@@ -60,7 +60,7 @@ class MongoTabularProcessor(MongoSuperconProcessor):
                     ag_e['hash'] = hash
                     ag_e['timestamp'] = timestamp
                     ag_e['type'] = 'automatic'
-                    for item in ['doi', 'authors', 'publisher', 'journal', 'year']:
+                    for item in ['title', 'doi', 'authors', 'publisher', 'journal', 'year']:
                         ag_e[item] = biblio_data[item] if item in biblio_data else ""
 
                 # We remove the previous version of the same data
