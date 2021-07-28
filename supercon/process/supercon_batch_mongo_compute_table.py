@@ -151,7 +151,7 @@ if __name__ == '__main__':
     parser.add_argument("--database", "-db",
                         help="Set the database name which is normally read from the configuration file", type=str,
                         required=False)
-    parser.add_argument("--force", "-f", help="Re-process all the records and replace existing one. ", default=False)
+    parser.add_argument("--force", "-f", help="Re-process all the records and replace existing one. ", action="store_true", default=False)
     parser.add_argument("--verbose",
                         help="Print all log information", action="store_true", required=False, default=False)
 
