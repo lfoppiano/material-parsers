@@ -1,18 +1,17 @@
-# transform tei to csv for classification
+import argparse
 import json
 import os
 import re
-import sys
 from html import escape
 from pathlib import Path
-from sys import argv
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 from data_model import to_dict_span, to_dict_token
 from grobid_client_generic import grobid_client_generic
 from grobid_tokenizer import tokenizeSimple
-from linking_module import RuleBasedLinker
+from linking_module import RuleBasedLinker, CriticalTemperatureClassifier
+from supermat_tei_parser import get_children_list
 
 
 def tokenise(string):
@@ -30,12 +29,7 @@ def read_evaluation_file(finput):
     #     print(doc)
     soup = BeautifulSoup(doc, 'xml')
 
-    ## Find the root node in the xml tree
-    root = None
-    for child in soup.tei.children:
-        if child.name == 'text':
-            root = child
-
+    children_tag = get_children_list(soup, verbose=False)
     # list containing text and the dictionary with all the annotations
     paragraphs = []
 
@@ -45,90 +39,90 @@ def read_evaluation_file(finput):
 
     # indicate for each id the related object
     spans_ids = {}
+    for child_tag in children_tag:
+        for sentence in child_tag:
+            sentence_text = ''
+            tokens = []
+            spans = []
+            off_token = 0
 
-    for i, pTag in enumerate(root('p')):
-        paragraph_text = ''
-        tokens = []
-        spans = []
-        off_token = 0
+            # contains the relations within the same paragraph
+            rel_paragraph_ptrs_to = {}
+            rel_paragraph_ptrs_from = {}
+            spans_paragraph_ids = {}
 
-        # contains the relations within the same paragraph
-        rel_paragraph_ptrs_to = {}
-        rel_paragraph_ptrs_from = {}
-        spans_paragraph_ids = {}
+            for item in sentence.contents:
+                if type(item) == NavigableString:
+                    sentence_text += str(item)
+                    local_tokens, off_token = tokenize_chunk(item.string, off_token)
+                    tokens.extend(local_tokens)
 
-        for item in pTag.contents:
-            if type(item) == NavigableString:
-                paragraph_text += str(item)
-                local_tokens, off_token = tokenize_chunk(item.string, off_token)
-                tokens.extend(local_tokens)
+                elif type(item) is Tag:
+                    sentence_text += str(item.text)
+                    entity_class = '<' + str(item.attrs['type']) + '>'
 
-            elif type(item) is Tag:
-                paragraph_text += item.text
-                entity_class = '<' + item.name + '>'
+                    token_start = len(tokens)
+                    local_tokens, off_token = tokenize_chunk(item.text, off_token)
+                    tokens.extend(local_tokens)
+                    token_end = token_start + len(local_tokens)
 
-                token_start = len(tokens)
-                local_tokens, off_token = tokenize_chunk(item.text, off_token)
-                tokens.extend(local_tokens)
-                token_end = token_start + len(local_tokens)
+                    id = None
+                    if 'xml:id' in item.attrs:
+                        id = item.attrs['xml:id']
 
-                id = None
-                if 'id' in item.attrs:
-                    id = item.attrs['id']
+                    span = to_dict_span(item.text, entity_class, id, offsetStart=local_tokens[0]['offset'],
+                                        offsetEnd=local_tokens[0]['offset'] + len(item.text), tokenStart=token_start,
+                                        tokenEnd=token_end)
 
-                span = to_dict_span(item.string, entity_class, id, offsetStart=local_tokens[0]['offset'],
-                                    offsetEnd=local_tokens[0]['offset'] + len(paragraph_text), tokenStart=token_start,
-                                    tokenEnd=token_end)
+                    if id not in spans_ids:
+                        spans_ids[span['id']] = entity_class
+                        spans_paragraph_ids[span['id']] = entity_class
 
-                if id not in spans_ids:
-                    spans_ids[span['id']] = entity_class
-                    spans_paragraph_ids[span['id']] = entity_class
+                    if 'corresp' in item.attrs:
+                        ptr_raw = item.attrs['corresp']
 
-                if 'ptr' in item.attrs:
-                    ptr_raw = item.attrs['ptr']
+                        splits = ptr_raw.split(',')
+                        for ptr in splits:
+                            ptr_clean = ptr.replace('#', '')
 
-                    splits = ptr_raw.split(',')
-                    for ptr in splits:
-                        ptr_clean = ptr.replace('#', '')
+                            if ptr_clean not in rel_ptrs_to:
+                                rel_ptrs_to[ptr_clean] = {span['id']: entity_class}
+                            else:
+                                rel_ptrs_to[ptr_clean][span['id']] = entity_class
 
-                        if ptr_clean not in rel_ptrs_to:
-                            rel_ptrs_to[ptr_clean] = {span['id']: entity_class}
+                            if ptr_clean not in rel_paragraph_ptrs_to:
+                                rel_paragraph_ptrs_to[ptr_clean] = {span['id']: entity_class}
+                            else:
+                                rel_paragraph_ptrs_to[ptr_clean][span['id']] = entity_class
+
+                            # if span['id'] not in rel_ptrs_from:
+                            #     rel_ptrs_from[span['id']] = [[ptr_clean, entity_class]]
+                    spans.append(span)
+
+            off_token += 1  # return
+
+            for ptr_to, sources in rel_paragraph_ptrs_to.items():
+                for source_id, source_type in sources.items():
+                    if ptr_to in spans_paragraph_ids:
+                        other_type = spans_ids[ptr_to]
+                        if source_id not in rel_paragraph_ptrs_from:
+                            rel_paragraph_ptrs_from[source_id] = {ptr_to: other_type}
                         else:
-                            rel_ptrs_to[ptr_clean][span['id']] = entity_class
+                            rel_paragraph_ptrs_from[source_id][ptr_to] = other_type
+                    # else:
+                    # print("The link is pointing outside the current paragraph, therefore is going to be ignored. ")
 
-                        if ptr_clean not in rel_paragraph_ptrs_to:
-                            rel_paragraph_ptrs_to[ptr_clean] = {span['id']: entity_class}
-                        else:
-                            rel_paragraph_ptrs_to[ptr_clean][span['id']] = entity_class
+            paragraph = {'text': sentence_text, 'spans': spans, 'tokens': tokens,
+                         'rel_ptrs_from': rel_paragraph_ptrs_from, 'rel_ptrs_to': rel_paragraph_ptrs_to}
+            paragraphs.append(paragraph)
 
-                        # if span['id'] not in rel_ptrs_from:
-                        #     rel_ptrs_from[span['id']] = [[ptr_clean, entity_class]]
-                spans.append(span)
-
-        off_token += 1  # return
-
-        for ptr_to, sources in rel_paragraph_ptrs_to.items():
-            for source_id, source_type in sources.items():
-                if ptr_to in spans_paragraph_ids:
-                    other_type = spans_ids[ptr_to]
-                    if source_id not in rel_paragraph_ptrs_from:
-                        rel_paragraph_ptrs_from[source_id] = {ptr_to: other_type}
-                    else:
-                        rel_paragraph_ptrs_from[source_id][ptr_to] = other_type
+        # Populating the inverted map
+        for ptr_to, sources in rel_ptrs_to.items():
+            for other_id, other_type in sources.items():
+                if other_id not in rel_ptrs_from:
+                    rel_ptrs_from[other_id] = {ptr_to: other_type}
                 else:
-                    print("The link is pointing outside the current paragraph, therefore is going to be ignored. ")
-
-        paragraph = {'text': paragraph_text, 'spans': spans, 'tokens': tokens,
-                     'rel_ptrs_from': rel_paragraph_ptrs_from, 'rel_ptrs_to': rel_paragraph_ptrs_to}
-        paragraphs.append(paragraph)
-
-    # Populating the inverted map
-    for ptr_to, sources in rel_ptrs_to.items():
-        for other_id, other_type in sources.items():
-            if other_id not in rel_ptrs_from:
-                rel_ptrs_from[other_id] = {ptr_to: other_type}
-            else:
-                rel_ptrs_from[other_id][ptr_to] = other_type
+                    rel_ptrs_from[other_id][ptr_to] = other_type
 
     return paragraphs, rel_ptrs_from, rel_ptrs_to
 
@@ -154,7 +148,7 @@ def extract_links(paragraphs, rel_ptrs_from, rel_ptrs_to):
     pass
 
 
-def extract_links_same_paragraphs(paragraphs):
+def extract_links_same_sentence(paragraphs):
     """
         This method will ignore the links that are going outside the current paragraph
     """
@@ -173,63 +167,84 @@ def extract_links_same_paragraphs(paragraphs):
     return global_links
 
 
-def run_linking_crf(paragraphs):
-    predicted_links = []
-    for paragraph in paragraphs:
-        output_text = ""
-        offset = 0
-        if len([span for span in (paragraph['spans'] if 'spans' in paragraph else []) if
-                span['type'] == "<material>"]) == 0 or len(
-            [span for span in (paragraph['spans'] if 'spans' in paragraph else []) if
-             span['type'] == "<tcValue>"]) == 0:
-            continue
+class GeneralEvaluator:
+    pass
 
-        for span in paragraph['spans'] if 'spans' in paragraph else []:
-            output_text += escape(paragraph['text'][offset: span['offsetStart']])
-            offset = span['offsetStart']
-            output_text += span['type'].replace(">", " id='" + str(span['id']) + "'>")
-            if span['text'].endswith(" "):
-                output_text += escape(span['text'][0:-1]) + span['type'].replace("<", "</") + " "
+
+class CrfLinkerEvaluation(GeneralEvaluator):
+
+    def __init__(self):
+        self.grobid_superconductors_client = grobid_client_generic(config_path='./config.json', ping=True)
+
+    def run_linking(self, paragraphs):
+        predicted_links = []
+
+        for paragraph in paragraphs:
+            output_text = ""
+            offset = 0
+            if len([span for span in (paragraph['spans'] if 'spans' in paragraph else []) if
+                    span['type'] == "<material>"]) == 0 or len(
+                [span for span in (paragraph['spans'] if 'spans' in paragraph else []) if
+                 span['type'] == "<tcValue>"]) == 0:
+                continue
+
+            for span in paragraph['spans'] if 'spans' in paragraph else []:
+                output_text += escape(paragraph['text'][offset: span['offsetStart']])
+                offset = span['offsetStart']
+                output_text += span['type'].replace(">", " id='" + str(span['id']) + "'>")
+                if span['text'].endswith(" "):
+                    output_text += escape(span['text'][0:-1]) + span['type'].replace("<", "</") + " "
+                else:
+                    output_text += escape(span['text']) + span['type'].replace("<", "</")
+
+                offset += len(span['text'])
+
+            output_text += escape(paragraph['text'][offset:])
+
+            output = json.loads(self.grobid_superconductors_client.process_text(output_text, 'linker'))
+
+            predicted_links.extend(extract_predicted_links(output[0]))
+
+        return predicted_links
+
+
+class RuleBasedLinkerEvaluation(GeneralEvaluator):
+    def __init__(self):
+        self.tc_classifier = CriticalTemperatureClassifier()
+        self.rb_linker = RuleBasedLinker()
+
+    def run_linking(self, paragraphs):
+
+        predicted_links = []
+
+        for sentence in paragraphs:
+            sentence_marked = self.tc_classifier.mark_temperatures_paragraph(sentence)
+            for marked_spans in sentence_marked['spans'] if 'spans' in sentence_marked else []:
+                if marked_spans['type'] == '<material>' or marked_spans['linkable']:
+                    for s_ in filter(lambda s: str(s['id']) == marked_spans['id'], sentence['spans']):
+                        s_['linkable'] = True
+
+            output_paragraph = self.rb_linker.process_paragraph(sentence)
+
+            if len(output_paragraph) == 1:
+                merged_paragraph = output_paragraph[0]
+            elif len(output_paragraph) > 1:
+                # Merge the sentences in a single paragraph, to have consistency in evaluation
+                merged_paragraph = {
+                    "text": "",
+                    "spans": [],
+                    "tokens": []
+                }
+                for sentence in output_paragraph:
+                    merged_paragraph['text'] += sentence['text']
+                    merged_paragraph['spans'].extend(sentence['spans'])
+                    # merged_paragraph['tokens'].extend(sentence['tokens'])
             else:
-                output_text += escape(span['text']) + span['type'].replace("<", "</")
+                break
 
-            offset += len(span['text'])
+            predicted_links.extend(extract_predicted_links(merged_paragraph))
 
-        output_text += escape(paragraph['text'][offset:])
-
-        output = json.loads(grobid_client_generic().process_text(output_text, 'linker'))
-
-        predicted_links.extend(extract_predicted_links(output[0]))
-
-    return predicted_links
-
-
-def run_linking_rule_based(paragraphs):
-    target = RuleBasedLinker()
-    predicted_links = []
-
-    for paragraph in paragraphs:
-        output_paragraph = target.process_paragraph(paragraph)
-
-        if len(output_paragraph) == 1:
-            merged_paragraph = output_paragraph[0]
-        elif len(output_paragraph) > 1:
-            # Merge the sentences in a single paragraph, to have consistency in evaluation
-            merged_paragraph = {
-                "text": "",
-                "spans": [],
-                "tokens": []
-            }
-            for sentence in output_paragraph:
-                merged_paragraph['text'] += sentence['text']
-                merged_paragraph['spans'].extend(sentence['spans'])
-                # merged_paragraph['tokens'].extend(sentence['tokens'])
-        else:
-            break
-
-        predicted_links.extend(extract_predicted_links(merged_paragraph))
-
-    return predicted_links
+        return predicted_links
 
 
 def extract_predicted_links(paragraph):
@@ -256,7 +271,8 @@ def compute_metrics(expected_links, predicted_links, link_type=None):
     if link_type:
         output['labels'][link_type] = compute_metrics_by_type(expected_links, predicted_links, link_type)
     else:
-        for link_type in [RuleBasedLinker.MATERIAL_TC_TYPE, RuleBasedLinker.TC_PRESSURE_TYPE, RuleBasedLinker.TC_ME_METHOD_TYPE]:
+        for link_type in [RuleBasedLinker.MATERIAL_TC_TYPE, RuleBasedLinker.TC_PRESSURE_TYPE,
+                          RuleBasedLinker.TC_ME_METHOD_TYPE]:
             output['labels'][link_type] = compute_metrics_by_type(expected_links, predicted_links, link_type)
 
     return output
@@ -329,7 +345,7 @@ def get_report(evaluation, digits=2, include_avgs=[]):
     :param include_avgs: the average to include in the report, default: 'micro'
     :return:
     """
-    name_width = max([len(e) for e in evaluation.keys()])
+    name_width = max([len(e) for e in evaluation['labels'].keys()]) if 'labels' in evaluation else 0
 
     last_line_heading = {
         'micro': 'all (micro avg.)',
@@ -342,18 +358,19 @@ def get_report(evaluation, digits=2, include_avgs=[]):
     report = head_fmt.format(u'', *headers, width=width)
     report += u'\n\n'
 
-    row_fmt = u'{:>{width}s} ' + u' {:>9.{digits}f}' * 3 + u' {:>9}\n'
+    row_fmt = u'{:>{width}s} ' + u' {:>9.{digits}f}' * 3 + u' {:>9.{digits}f}\n'
 
-    block = evaluation['labels']
-    labels = sorted(block.keys())
+    if 'labels' in evaluation:
+        block = evaluation['labels']
+        labels = sorted(block.keys())
 
-    for label in labels:
-        p = block[label]['precision']
-        r = block[label]['recall']
-        f1 = block[label]['f1']
-        s = block[label]['support']
+        for label in labels:
+            p = block[label]['precision']
+            r = block[label]['recall']
+            f1 = block[label]['f1']
+            s = block[label]['support']
 
-        report += row_fmt.format(*[label, p, r, f1, s], width=width, digits=digits)
+            report += row_fmt.format(*[label, p, r, f1, s], width=width, digits=digits)
 
     report += u'\n'
     for average in include_avgs:
@@ -369,31 +386,29 @@ def get_report(evaluation, digits=2, include_avgs=[]):
 
 
 if __name__ == '__main__':
-    if len(argv) != 2:
-        print("Invalid parameters. Usage: python linking_evaluation.py")
-        sys.exit(-1)
+    parser = argparse.ArgumentParser(
+        description="Linking evaluation")
 
-    input = argv[1]
+    parser.add_argument("--input", help="Input file or directory", required=True, type=Path)
+    parser.add_argument("--method", help="Select the algorithm to evaluate", choices=["crf", "rule-based", "all"],
+                        required=False, type=str, default="all")
+    parser.add_argument("--task", help="Which task to evaluate",
+                        choices=["material-tc", "tc-pressure", "tc-me_method", "all"],
+                        type=str, default="all")
 
-    file_count = 0
-    avg_macro_precision_rb = 0
-    avg_macro_recall_rb = 0
-    avg_macro_f1_rb = 0
-    avg_support_rb = 0
+    args = parser.parse_args()
+    input = args.input
+    methods = ["crf", "rule-based"] if args.method == "all" else [args.method]
+    task = args.task
 
-    avg_num_correct_rb = 0
-    avg_num_wrong_rb = 0
-    count_num_expected_rb = 0
+    methods_map = {
+        'crf': CrfLinkerEvaluation(),
+        'rule-based': RuleBasedLinkerEvaluation()
+    }
 
-    avg_macro_precision_crf = 0
-    avg_macro_recall_crf = 0
-    avg_macro_f1_crf = 0
-    avg_support_crf = 0
-
-    avg_num_correct_crf = 0
-    avg_num_wrong_crf = 0
-    count_num_expected_crf = 0
-
+    expected_links_map = {}
+    files_map = {}
+    metrics_map = {}
 
     if os.path.isdir(input):
         for root, dirs, files in os.walk(input):
@@ -403,103 +418,124 @@ if __name__ == '__main__':
                 abs_path = os.path.join(root, file_)
                 print("Processing: " + str(abs_path))
                 paragraphs, rel_ptrs_from, rel_ptrs_to = read_evaluation_file(str(abs_path))
-                expected_links = extract_links_same_paragraphs(paragraphs)
+                expected_links = extract_links_same_sentence(paragraphs)
 
-                print("Using rule-based")
-                predicted_links_rb = run_linking_rule_based(paragraphs)
+                expected_links_map[abs_path] = expected_links
+                files_map[abs_path] = {
+                    'paragraphs': paragraphs,
+                    'relations_from': rel_ptrs_from,
+                    'relations_to': rel_ptrs_to
+                }
+
+        file_count = len(files_map.keys())
+
+        for method in methods:
+            metrics_map[method] = {
+                'avg_counters': {
+                    'avg_num_correct': 0,
+                    'avg_num_wrong': 0,
+                    'count_num_expected': 0
+                },
+                'avg_metrics': {
+                    'avg_macro_precision': 0,
+                    'avg_macro_recall': 0,
+                    'avg_macro_f1': 0,
+                    'avg_support': 0
+                },
+                'files': []
+            }
+
+            for path in files_map.keys():
+                impl = methods_map.get(method)
+
+                expected_links = expected_links_map[path]
+                predicted_links = impl.run_linking(files_map[path]['paragraphs'])
 
                 ## MICRO AVERAGE
-                counters_by_type_rb = compute_counters_by_type(expected_links, predicted_links_rb, RuleBasedLinker.MATERIAL_TC_TYPE)
-                avg_num_correct_rb += counters_by_type_rb['num_correct']
-                avg_num_wrong_rb += counters_by_type_rb['num_wrong']
-                count_num_expected_rb += counters_by_type_rb['num_expected']
+                counters_by_type = compute_counters_by_type(expected_links, predicted_links,
+                                                            RuleBasedLinker.MATERIAL_TC_TYPE)
+                metrics_map[method]['avg_counters']['avg_num_correct'] += counters_by_type['num_correct']
+                metrics_map[method]['avg_counters']['avg_num_wrong'] += counters_by_type['num_wrong']
+                metrics_map[method]['avg_counters']['count_num_expected'] += counters_by_type['num_expected']
 
                 ## MACRO AVERAGE
-                metrics_by_type_rb = compute_metrics_by_type(expected_links, predicted_links_rb, RuleBasedLinker.MATERIAL_TC_TYPE)
-                print(get_report({"labels": {RuleBasedLinker.MATERIAL_TC_TYPE: metrics_by_type_rb}}))
+                metrics_by_type = compute_metrics_by_type(expected_links, predicted_links,
+                                                          RuleBasedLinker.MATERIAL_TC_TYPE)
+                # print(get_report({"labels": {RuleBasedLinker.MATERIAL_TC_TYPE: metrics_by_type_rb}}))
 
-                avg_macro_precision_rb += metrics_by_type_rb['precision']
-                avg_macro_recall_rb += metrics_by_type_rb['recall']
-                avg_macro_f1_rb += metrics_by_type_rb['f1']
-                avg_support_rb += metrics_by_type_rb['support']
+                metrics_map[method]['avg_metrics']['avg_macro_precision'] += metrics_by_type['precision']
+                metrics_map[method]['avg_metrics']['avg_macro_recall'] += metrics_by_type['recall']
+                metrics_map[method]['avg_metrics']['avg_macro_f1'] += metrics_by_type['f1']
+                metrics_map[method]['avg_metrics']['avg_support'] += metrics_by_type['support']
 
-                print("Using CRF")
-                predicted_links_crf = run_linking_crf(paragraphs)
+                metrics_map[method]['files'].append(
+                    {'counters': counters_by_type, 'metrics': metrics_by_type, 'predicted': predicted_links})
 
-                ## MICRO AVERAGE
-                counters_by_type_crf = compute_counters_by_type(expected_links, predicted_links_crf, RuleBasedLinker.MATERIAL_TC_TYPE)
-                avg_num_correct_crf += counters_by_type_crf['num_correct']
-                avg_num_wrong_crf += counters_by_type_crf['num_wrong']
-                count_num_expected_crf += counters_by_type_crf['num_expected']
+            # Compute average metrics
+            metrics_map[method]['avg_metrics']['avg_support'] = metrics_map[method]['avg_metrics'][
+                                                                    'avg_support'] / file_count if file_count > 0 else 0
 
-                ## MACRO AVERAGE
-                metrics_by_type_crf = compute_metrics_by_type(expected_links, predicted_links_crf, RuleBasedLinker.MATERIAL_TC_TYPE)
-                print(get_report({"labels": {RuleBasedLinker.MATERIAL_TC_TYPE: metrics_by_type_crf}}))
+            # Macro average
+            metrics_map[method]['avg_metrics']['avg_macro_precision'] = metrics_map[method]['avg_metrics'][
+                                                                            'avg_macro_precision'] / file_count if file_count > 0 else 0
+            metrics_map[method]['avg_metrics']['avg_macro_recall'] = metrics_map[method]['avg_metrics'][
+                                                                         'avg_macro_recall'] / file_count if file_count > 0 else 0
+            metrics_map[method]['avg_metrics']['avg_macro_f1'] = metrics_map[method]['avg_metrics'][
+                                                                     'avg_macro_f1'] / file_count if file_count > 0 else 0
 
-                avg_macro_precision_crf += metrics_by_type_crf['precision']
-                avg_macro_recall_crf += metrics_by_type_crf['recall']
-                avg_macro_f1_crf += metrics_by_type_crf['f1']
-                avg_support_crf += metrics_by_type_crf['support']
+            # Micro average
+            metrics_map[method]['avg_metrics']['avg_micro_precision'] = metrics_map[method]['avg_counters'][
+                                                                            'avg_num_correct'] / (
+                                                                            metrics_map[method]['avg_counters'][
+                                                                                'avg_num_correct'] +
+                                                                            metrics_map[method]['avg_counters'][
+                                                                                'avg_num_wrong']) if \
+                metrics_map[method]['avg_counters']['avg_num_correct'] + metrics_map[method]['avg_counters'][
+                    'avg_num_wrong'] > 0 else 0
+            metrics_map[method]['avg_metrics']['avg_micro_recall'] = metrics_map[method]['avg_counters'][
+                                                                         'avg_num_correct'] / \
+                                                                     metrics_map[method]['avg_counters'][
+                                                                         'count_num_expected'] if \
+                metrics_map[method]['avg_counters']['count_num_expected'] > 0 else 0
+            metrics_map[method]['avg_metrics']['avg_micro_f1'] = 2 * (
+                metrics_map[method]['avg_metrics']['avg_micro_precision'] * metrics_map[method]['avg_metrics'][
+                'avg_micro_recall']) / (
+                                                                     metrics_map[method]['avg_metrics'][
+                                                                         'avg_micro_precision'] +
+                                                                     metrics_map[method]['avg_metrics'][
+                                                                         'avg_micro_recall']) if \
+                metrics_map[method]['avg_metrics']['avg_micro_precision'] + metrics_map[method]['avg_metrics'][
+                    'avg_micro_recall'] > 0 else 0
 
-                file_count += 1
+            report_data = {
+                "labels": {
+                    RuleBasedLinker.MATERIAL_TC_TYPE + " macro avg.": {
+                        "precision": metrics_map[method]['avg_metrics']['avg_macro_precision'],
+                        "recall": metrics_map[method]['avg_metrics']['avg_macro_recall'],
+                        "f1": metrics_map[method]['avg_metrics']['avg_macro_f1'],
+                        "support": metrics_map[method]['avg_metrics']['avg_support']
+                    },
+                    RuleBasedLinker.MATERIAL_TC_TYPE + " micro avg.": {
+                        "precision": metrics_map[method]['avg_metrics']['avg_micro_precision'],
+                        "recall": metrics_map[method]['avg_metrics']['avg_micro_recall'],
+                        "f1": metrics_map[method]['avg_metrics']['avg_micro_f1'],
+                        "support": metrics_map[method]['avg_metrics']['avg_support']
+                    }
+                }
+            }
 
-        print("Rule-based")
-        avg_support_rb = avg_support_rb / file_count if file_count > 0 else 0
-
-        print("Macro average Rules-based")
-        avg_macro_precision_rb = avg_macro_precision_rb / file_count if file_count > 0 else 0
-        avg_macro_recall_rb = avg_macro_recall_rb / file_count if file_count > 0 else 0
-        avg_macro_f1_rb = avg_macro_f1_rb / file_count if file_count > 0 else 0
-
-        print(get_report({"labels": {
-            RuleBasedLinker.MATERIAL_TC_TYPE: {"precision": avg_macro_precision_rb, "recall": avg_macro_recall_rb, "f1": avg_macro_f1_rb,
-                               "support": avg_support_rb}}}))
-
-        print("Micro average Rules-based")
-        avg_micro_precision_rb = avg_num_correct_rb / (
-            avg_num_correct_rb + avg_num_wrong_rb) if avg_num_correct_rb + avg_num_wrong_rb > 0 else 0
-        avg_micro_recall_rb = avg_num_correct_rb / count_num_expected_rb if count_num_expected_rb > 0 else 0
-        avg_micro_f1_rb = 2 * (avg_micro_precision_rb * avg_micro_recall_rb) / (
-            avg_micro_precision_rb + avg_micro_recall_rb) if avg_micro_precision_rb + avg_micro_recall_rb > 0 else 0
-        print(get_report({"labels": {
-            RuleBasedLinker.MATERIAL_TC_TYPE: {"precision": avg_micro_precision_rb, "recall": avg_micro_recall_rb, "f1": avg_micro_f1_rb,
-                               "support": avg_support_rb}}}))
-
-        print("CRF")
-        avg_support_crf = avg_support_crf / file_count if file_count > 0 else 0
-
-        print("Macro average CRF")
-        avg_macro_precision_crf = avg_macro_precision_crf / file_count if file_count > 0 else 0
-        avg_macro_recall_crf = avg_macro_recall_crf / file_count if file_count > 0 else 0
-        avg_macro_f1_crf = avg_macro_f1_crf / file_count if file_count > 0 else 0
-
-        print(get_report({"labels": {
-            MATERIAL_TC_TYPE: {"precision": avg_macro_precision_crf, "recall": avg_macro_recall_crf,
-                               "f1": avg_macro_f1_crf,
-                               "support": avg_support_crf}}}))
-
-        print("Micro average CRF")
-        avg_micro_precision_crf = avg_num_correct_crf / (
-            avg_num_correct_crf + avg_num_wrong_crf) if avg_num_correct_crf + avg_num_wrong_crf > 0 else 0
-        avg_micro_recall_crf = avg_num_correct_crf / count_num_expected_crf if count_num_expected_crf > 0 else 0
-        avg_micro_f1_crf = 2 * (avg_micro_precision_crf * avg_micro_recall_crf) / (
-            avg_micro_precision_crf + avg_micro_recall_crf) if avg_micro_precision_crf + avg_micro_recall_crf > 0 else 0
-        print(get_report({"labels": {
-            RuleBasedLinker.MATERIAL_TC_TYPE: {"precision": avg_micro_precision_crf, "recall": avg_micro_recall_crf,
-                               "f1": avg_micro_f1_crf,
-                               "support": avg_support_crf}}}))
-
+            print(method)
+            print(get_report(report_data, include_avgs=[]))
 
     elif os.path.isfile(input):
         input_path = Path(input)
         paragraphs, rel_ptrs_from, rel_ptrs_to = read_evaluation_file(str(input_path))
-        expected_links = extract_links_same_paragraphs(paragraphs)
-        predicted_links_rb = run_linking_rule_based(paragraphs)
-        metrics_by_type_rb = compute_metrics_by_type(expected_links, predicted_links_rb, RuleBasedLinker.MATERIAL_TC_TYPE)
-        print("== Rule based ==")
-        print(get_report({"labels": {RuleBasedLinker.MATERIAL_TC_TYPE: metrics_by_type_rb}}))
+        expected_links = extract_links_same_sentence(paragraphs)
+        for method in methods:
+            file_count = 0
+            impl = methods_map.get(method)
+            predicted_links = impl.run_linking(paragraphs)
+            metrics_by_type = compute_metrics_by_type(expected_links, predicted_links, RuleBasedLinker.MATERIAL_TC_TYPE)
 
-        predicted_links_crf = run_linking_crf(paragraphs)
-        metrics_by_type_crf = compute_metrics_by_type(expected_links, predicted_links_crf, RuleBasedLinker.MATERIAL_TC_TYPE)
-        print("== CRF based ==")
-        print(get_report({"labels": {RuleBasedLinker.MATERIAL_TC_TYPE: metrics_by_type_crf}}))
+        print(method)
+        print(get_report({"labels": {RuleBasedLinker.MATERIAL_TC_TYPE: metrics_by_type}}))

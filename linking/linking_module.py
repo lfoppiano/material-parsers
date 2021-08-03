@@ -214,17 +214,18 @@ class SpacyPipeline:
                                 outputSpaces.append(True)
                                 skip = True
                             else:
-                                if tokens[index + 1]['text'] and tokens[index + 1]['text'].isalpha():
-                                    outputTokens[-1] = outputTokens[-1] + tokens[index + 1]['text']
-                                    if tokens[index + 1]['text'] == ' ':
-                                        outputSpaces.append(True)
-                                        skip = True
-                                    else:
-                                        outputSpaces.append(False)
-                                        skip = True
-
-                                else:
-                                    outputSpaces.append(False)
+                                # if tokens[index + 1]['text'] and tokens[index + 1]['text'].isalpha():
+                                #     outputTokens[-1] = outputTokens[-1] + tokens[index + 1]['text']
+                                #     if tokens[index + 1]['text'] == ' ':
+                                #         outputSpaces.append(True)
+                                #         skip = True
+                                #     else:
+                                #         outputSpaces.append(False)
+                                #         skip = True
+                                #
+                                # else:
+                                #     outputSpaces.append(False)
+                                outputSpaces.append(False)
                         else:
                             outputSpaces.append(False)
                     else:
@@ -250,6 +251,11 @@ class SpacyPipeline:
 
             newIndexOffset += 1
 
+        if inside and not len(outputSpans) == len(spans):
+            span['tokenEnd'] = newIndexOffset
+            outputSpans.append(span)
+            inside = False
+
         if not len(outputTokens) == len(outputSpaces):
             print("Something wrong in the final length check! len(outputTokens) = " + str(
                 len(outputTokens)) + ", len(outputSpaces) = " + str(len(outputSpaces)))
@@ -257,6 +263,21 @@ class SpacyPipeline:
         if len(spans) > 0 and not len(outputSpans) == len(spans):
             print("Something wrong in spans: len(outputSpans) = " + str(len(outputSpans)) + ", len(spans) = " + str(
                 len(spans)))
+
+        reconstructed_tokens = []
+        reconstructed_index = 0
+        for x in range(0, len(outputTokens)):
+            reconstructed_tokens.append(outputTokens[x])
+            if tokens[reconstructed_index]['text'] != reconstructed_tokens[reconstructed_index]:
+                print("Mismatch between", tokens[reconstructed_index]['text'], "and",
+                      reconstructed_tokens[reconstructed_index])
+            reconstructed_index += 1
+
+            if outputSpaces[x]:
+                reconstructed_tokens.append(" ")
+                if tokens[reconstructed_index]['text'] != " ":
+                    print("Mismatch space, got instead", tokens[reconstructed_index]['text'])
+                reconstructed_index += 1
 
         return outputTokens, outputSpaces, outputSpans
 
@@ -521,9 +542,9 @@ class CriticalTemperatureClassifier(SpacyPipeline):
         return extracted_entities
 
     def mark_temperatures_paragraph(self, paragraph):
-        text_ = paragraph['text']
-        spans_ = paragraph['spans']
-        tokens_ = paragraph['tokens']
+        text_ = copy.deepcopy(paragraph['text'])
+        spans_ = copy.deepcopy(paragraph['spans'])
+        tokens_ = copy.deepcopy(paragraph['tokens'])
 
         return self.mark_temperatures(text_, tokens_, spans_)
 

@@ -37,13 +37,11 @@ def process_file(input_document):
     mod_tags = re.finditer(r'(</\w+>) ', doc)
     for mod in mod_tags:
         doc = doc.replace(mod.group(), ' ' + mod.group(1))
-    #     print(doc)
     soup = BeautifulSoup(doc, 'xml')
 
     children = get_children_list(soup, verbose=False)
 
     off_token = 0
-    tsvText = ''
     dic_token = {}
     ient = 1
 

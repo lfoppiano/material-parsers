@@ -57,7 +57,7 @@ def to_dict_token(text="", offset=-1):
 def to_dict_span(text, type, id=None, offsetStart=-1, offsetEnd=-1, tokenStart=-1, tokenEnd=-1):
     converted_span = {
         "id": id,
-        "text": text,
+        "text": str(text),
         "formattedText": "",
         "type": type,
         "offsetStart": offsetStart,
