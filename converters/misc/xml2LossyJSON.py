@@ -10,7 +10,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 from grobid_tokenizer import tokenizeSimple
-from supermat_tei_parser import getSection
+from supermat_tei_parser import get_section, get_children_list
 
 
 def tokenise(string):
@@ -39,15 +39,7 @@ def process_file(finput):
         doc = doc.replace(mod.group(), ' ' + mod.group(1))
     soup = BeautifulSoup(doc, 'xml')
 
-    children = []
-    for child in soup.tei.children:
-        if child.name == 'teiHeader':
-            children.append(child.find_all("title"))
-            children.extend([subchild.find_all("p") for subchild in child.find_all("abstract")])
-            children.append(child.find_all("ab", {"type": "keywords"}))
-        elif child.name == 'text':
-            children.append([subsubchild for subchild in child.find_all("body") for subsubchild in subchild.children if
-                             type(subsubchild) is Tag])
+    children = get_children_list(soup)
 
     off_token = 0
     ient = 1
@@ -70,7 +62,10 @@ def process_file(finput):
             paragraph = OrderedDict()
             j = 0
             offset = 0
-            section = getSection(pTag)
+            section = get_section(pTag)
+            if not section:
+                section = get_section(pTag.parent)
+
             paragraph['section'] = section
             paragraph_text = ''
             paragraph['text'] = paragraph_text

@@ -9,7 +9,7 @@ def tokenise(string):
     return tokenizeSimple(string)
 
 
-def getSection(pTag):
+def get_section(pTag):
     section = None
     if pTag.name == 'p':
         section = pTag.parent.name
@@ -24,8 +24,6 @@ def getSection(pTag):
                 section = 'tableCaption'
     elif pTag.name == 'title':
         section = 'title'
-    else:
-        raise Exception("Something wrong")
 
     return section
 
@@ -54,7 +52,9 @@ def process_file(input_document):
     for child in children:
         for pTag in child:
             j = 0
-            section = getSection(pTag)
+            section = get_section(pTag)
+            if not section:
+                section = get_section(pTag.parent)
             paragraphText = ''
             for item in pTag.contents:
                 if type(item) == NavigableString:

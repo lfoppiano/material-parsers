@@ -6,7 +6,7 @@ from pathlib import Path
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description="Extract superconductor materials and properties in CSV/TSV/JSON")
+        description="Extract superconductor materials and properties in JSON")
 
     parser.add_argument("--input", help="Input file or directory", type=Path, required=True)
     parser.add_argument("--output", help="Output directory", type=Path, required=True)
