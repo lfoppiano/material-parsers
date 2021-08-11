@@ -19,7 +19,7 @@ here = path.abspath(path.dirname(__file__))
 
 setup(
     name='linking',
-    version='0.0.1',
+    version='0.0.2',
     description='Linking Module',
     url='https://github.com/lfoppiano/grobid-superconductors-web',
     author='Luca Foppiano',
