@@ -36,8 +36,11 @@ def entities_classes():
 
 
 class SpacyPipeline:
-    def __init__(self):
-        self.nlp = spacy.load("en_core_web_sm", disable=['ner', "textcat", "lemmatizer", "tokenizer"])
+    def __init__(self, spacy_nlp_library= None):
+        if spacy_nlp_library is not None:
+            self.nlp = spacy_nlp_library
+        else:
+            self.nlp = spacy.load("en_core_web_sm", disable=['ner', "textcat", "lemmatizer", "tokenizer"])
 
     def filter_spans(self, spans):
         # Filter a sequence of spans so they don't contain overlaps
@@ -290,8 +293,8 @@ class SpacyPipeline:
 
 
 class RuleBasedLinker(SpacyPipeline):
-    def __init__(self, source="<tcValue>", destination="<material>", ):
-        super(RuleBasedLinker, self).__init__()
+    def __init__(self, source="<tcValue>", destination="<material>", spacy_nlp=None):
+        super(RuleBasedLinker, self).__init__(spacy_nlp)
         self.source = source
         self.destination = destination
 
@@ -425,8 +428,8 @@ class RuleBasedLinker(SpacyPipeline):
 
 
 class CriticalTemperatureClassifier(SpacyPipeline):
-    def __init__(self):
-        super(CriticalTemperatureClassifier, self).__init__()
+    def __init__(self, spacy_nlp=None):
+        super(CriticalTemperatureClassifier, self).__init__(spacy_nlp)
 
     def process_doc(self, doc):
         temps = list(filter(lambda w: w.ent_type_ in ['<temperature>', '<tcvalue>', '<tcValue>'], doc))
@@ -550,4 +553,4 @@ class CriticalTemperatureClassifier(SpacyPipeline):
 
     def mark_temperatures_paragraph_json(self, paragraph_json):
         paragraph = json.loads(paragraph_json)
-        return json.dumps([self.mark_temperatures_paragraph(paragraph)])
+        return json.dumps(self.mark_temperatures_paragraph(paragraph))

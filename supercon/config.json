@@ -12,9 +12,9 @@
     }
   },
   "mongo": {
-    "server__": "falcon.nims.go.jp:27017",
-    "server": "localhost:27017",
-    "database": "supercon_dev_biblio"
+    "server": "falcon.nims.go.jp:27017",
+    "server__": "localhost:27017",
+    "database": "supercon_dev_3"
   },
   "backend": {
     "server": "http://localhost:5000",
