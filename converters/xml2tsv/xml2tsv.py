@@ -7,6 +7,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 from grobid_tokenizer import tokenizeSimple
+from supermat_tei_parser import get_children_list
 
 
 def tokenise(string):
@@ -62,15 +63,7 @@ def processFile(finput, foutput):
     print('#T_SP=webanno.custom.Supercon|extra_tag|supercon_tag', file=fw)
     print('#T_RL=webanno.custom.Supercon_link|relationships|BT_webanno.custom.Supercon\n\n', file=fw)
 
-    children = []
-    for child in soup.tei.children:
-        if child.name == 'teiHeader':
-            children.append(child.find_all("title"))
-            children.extend([subchild.find_all("p") for subchild in child.find_all("abstract")])
-            children.append(child.find_all("ab", {"type": "keywords"}))
-        elif child.name == 'text':
-            children.append([subsubchild for subchild in child.find_all("body") for subsubchild in subchild.children if
-                             type(subsubchild) is Tag])
+    children = get_children_list(soup)
 
     print(str(children))
 
