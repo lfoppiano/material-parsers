@@ -37,7 +37,7 @@ def prepare_doc(input, input_spans):
 
 def get_tokens_and_spans(input, input_spans):
     input_tokens, offsets = tokenize(input)
-    tokens = [{"text": input_tokens[idx], "offsetStart": offsets[idx][0], "offsetEnd": offsets[idx][1]} for idx in
+    tokens = [{"text": input_tokens[idx], "offset_start": offsets[idx][0], "offset_end": offsets[idx][1]} for idx in
               range(0, len(input_tokens))]
     spans = calculate_spans(input, input_spans, tokens=tokens)
 
@@ -62,8 +62,8 @@ def calculate_spans(input, spans, tokens=None):
             calculated_span = {
                 "id": index,
                 "text": input[span_start_offset:span_end_offset],
-                "offsetStart": span_start_offset,
-                "offsetEnd": span_end_offset,
+                "offset_start": span_start_offset,
+                "offset_end": span_end_offset,
                 "type": span[1],
                 "boundingBoxes": [],
                 "formattedText": "",
@@ -72,11 +72,11 @@ def calculate_spans(input, spans, tokens=None):
             last_span_offset = span_end_offset
             if tokens is not None:
                 indexes = [index for index, token in enumerate(tokens) if
-                           token['offsetStart'] >= calculated_span['offsetStart'] and token['offsetEnd'] <=
-                           calculated_span['offsetEnd']]
+                           token['offset_start'] >= calculated_span['offset_start'] and token['offset_end'] <=
+                           calculated_span['offset_end']]
 
-            calculated_span['tokenStart'] = indexes[0]
-            calculated_span['tokenEnd'] = indexes[-1] + 1
+            calculated_span['token_start'] = indexes[0]
+            calculated_span['token_end'] = indexes[-1] + 1
             calculated_spans.append(calculated_span)
 
     return calculated_spans

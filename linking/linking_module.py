@@ -64,7 +64,7 @@ class SpacyPipeline:
         ## Loading GROBID entities in the spaCY document
         entities = []
         for s in spans:
-            span = Span(doc=doc, start=s['tokenStart'], end=s['tokenEnd'], label=s['type'])
+            span = Span(doc=doc, start=s['token_start'], end=s['token_end'], label=s['type'])
             span._.set('id', str(s['id']))
             if 'boundingBoxes' in s:
                 span._.set('bounding_boxes', s['boundingBoxes'])
@@ -169,24 +169,24 @@ class SpacyPipeline:
 
         for index, s in enumerate(tokens):
             if len(spans) > 0:
-                if index == span['tokenStart']:
-                    span['tokenStart'] = newIndexOffset
+                if index == span['token_start']:
+                    span['token_start'] = newIndexOffset
                     inside = True
-                elif index == span['tokenEnd']:
-                    span['tokenEnd'] = newIndexOffset
+                elif index == span['token_end']:
+                    span['token_end'] = newIndexOffset
                     outputSpans.append(span)
                     inside = False
                     if entityOffset + 1 < len(spans):
                         entityOffset += 1
                         span = spans[entityOffset]
-                        if index == span['tokenStart']:
-                            span['tokenStart'] = newIndexOffset
+                        if index == span['token_start']:
+                            span['token_start'] = newIndexOffset
                             inside = True
                     # else:
                     #     print("finish entities")
                 elif index + 1 == len(tokens) and inside:
                     ## I'm at the last token and haven't closed the entity
-                    span['tokenEnd'] = newIndexOffset
+                    span['token_end'] = newIndexOffset
                     outputSpans.append(span)
                     inside = False
 
@@ -255,7 +255,7 @@ class SpacyPipeline:
             newIndexOffset += 1
 
         if inside and not len(outputSpans) == len(spans):
-            span['tokenEnd'] = newIndexOffset
+            span['token_end'] = newIndexOffset
             outputSpans.append(span)
             inside = False
 

@@ -36,10 +36,9 @@ class Service(object):
             'tcValue-me_method': '<me_method>'
         }
 
-
     def info(self):
-        returnText = "Python utilities wrapper as a micro-service."
-        return returnText
+        info_json = {"name": "Linking module", "version": "0.2.0"}
+        return info_json
 
     def classify_tc(self):
         input_raw = request.forms.get("input")
@@ -81,13 +80,14 @@ class Service(object):
                 spans_map[s['id']] = s
 
             for span in paragraph_input['spans'] if 'spans' in paragraph_input else []:
-                if span['id'] in spans_map:
+                if 'id' in span and span['id'] in spans_map:
                     span['linkable'] = spans_map[span['id']]['linkable']
 
         processed_linked_map = {}
         for link_type in link_types_as_list:
             if not skip_classification:
-                for span in filter(lambda w: w['type'] == self.label_link[link_type], paragraph_input['spans'] if 'spans' in paragraph_input else []):
+                for span in filter(lambda w: w['type'] == self.label_link[link_type],
+                                   paragraph_input['spans'] if 'spans' in paragraph_input else []):
                     span['linkable'] = True
 
             processed_linked_map[link_type] = self.linker_map[link_type].process_paragraph(paragraph_input)
@@ -106,7 +106,7 @@ class Service(object):
                             spans_map[span_processed['id']] = non_crf_links
 
             for span in paragraph_input['spans'] if 'spans' in paragraph_input else []:
-                if span['id'] in spans_map:
+                if 'id' in span and span['id'] in spans_map:
                     if 'links' in span:
                         span['links'].extend(spans_map[span['id']])
                     else:

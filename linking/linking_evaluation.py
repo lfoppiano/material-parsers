@@ -70,9 +70,9 @@ def read_evaluation_file(finput):
                     if 'xml:id' in item.attrs:
                         id = item.attrs['xml:id']
 
-                    span = to_dict_span(item.text, entity_class, id, offsetStart=local_tokens[0]['offset'],
-                                        offsetEnd=local_tokens[0]['offset'] + len(item.text), tokenStart=token_start,
-                                        tokenEnd=token_end)
+                    span = to_dict_span(item.text, entity_class, id, offset_start=local_tokens[0]['offset'],
+                                        offset_end=local_tokens[0]['offset'] + len(item.text), token_start=token_start,
+                                        token_end=token_end)
 
                     if id not in spans_ids:
                         spans_ids[span['id']] = entity_class
@@ -189,8 +189,8 @@ class CrfLinkerEvaluation(GeneralEvaluator):
                 continue
 
             for span in paragraph['spans'] if 'spans' in paragraph else []:
-                output_text += escape(paragraph['text'][offset: span['offsetStart']])
-                offset = span['offsetStart']
+                output_text += escape(paragraph['text'][offset: span['offset_start']])
+                offset = span['offset_start']
                 output_text += span['type'].replace(">", " id='" + str(span['id']) + "'>")
                 if span['text'].endswith(" "):
                     output_text += escape(span['text'][0:-1]) + span['type'].replace("<", "</") + " "
