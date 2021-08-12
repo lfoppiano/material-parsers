@@ -2,7 +2,33 @@ import argparse
 import json
 import os
 import sys
+import uuid
 from pathlib import Path
+
+from data_model import to_dict_token
+from src.materialparserwrapper.linking.data_model import to_dict_span
+from supermat_tei_parser import tokenise
+
+
+def generate_tokens(text, spans):
+    off_token = 0
+    token_list = tokenise(text)
+    tokens = []
+    updated_spans = []
+    for token in token_list:
+        token_as_json = to_dict_token(token, off_token)
+        off_token += len(token)
+        tokens.append(token_as_json)
+
+    for span in spans:
+        span_tokens = list(filter(lambda t: span['offset_start'] <= t['offset'] < span['offset_end'], tokens))
+        new_span = to_dict_span(span['text'], span['type'], span['id'], span['offset_start'], span['offset_end'],
+                                tokens.index(span_tokens[0]), tokens.index(span_tokens[-1]))
+
+        updated_spans.append(new_span)
+
+    return tokens, updated_spans
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -64,11 +90,18 @@ if __name__ == '__main__':
 
             paragraphs_with_spans = list(filter(lambda p: 'spans' in p, paragraphs))
             for para in paragraphs_with_spans:
+
                 for span in para['spans']:
                     if 'links' in span:
                         del span['links']
                     if 'boundingBoxes' in span:
                         del span['boundingBoxes']
+                    if 'id' not in span:
+                        span['id'] = uuid.uuid4().hex
+
+                tokens, spans = generate_tokens(para['text'], para['spans'])
+                para['spans'] = spans
+                para['tokens'] = tokens
 
             with open(output_file_path, 'w') as fo:
                 json.dump(paragraphs_with_spans, fo)

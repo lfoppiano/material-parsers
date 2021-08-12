@@ -2,7 +2,6 @@ import json
 import os
 import random
 
-import pydevd_pycharm
 from locust import HttpUser, task, between, tag
 
 
@@ -23,7 +22,7 @@ class QuickstartUser(HttpUser):
 
         headers = {"Accept": "application/json"}
         files = {"input": json.dumps(paragraph)}
-        self.client.post(url="/process/tc", data=files, headers=headers, name="process/tc")
+        self.client.post(url="/classify/tc", data=files, headers=headers, name="/classify/tc")
 
     @tag('process_links')
     @task
@@ -33,7 +32,7 @@ class QuickstartUser(HttpUser):
 
         headers = {"Accept": "application/json"}
         files = {"input": json.dumps(paragraph)}
-        self.client.post(url="/process/links", data=files, headers=headers, name="process/links")
+        self.client.post(url="/process/link/single", data=files, headers=headers, name="/process/link/single")
 
 
     def on_start(self):
