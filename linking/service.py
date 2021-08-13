@@ -66,10 +66,15 @@ class Service(object):
         skip_classification = request.forms.get("skip_classification") if request.forms.get(
             "skip_classification") is not None else False
 
+        if skip_classification.lower() == 'true':
+            skip_classification = True
+        else:
+            skip_classification = False
+
         if paragraph_input is None or 'spans' not in paragraph_input or 'tokens' not in paragraph_input or 'text' not in paragraph_input:
             abort(400)
 
-        if not skip_classification or skip_classification.lower() == "false":
+        if not skip_classification:
             marked_tc_paragraph = self.temperature_classifier.mark_temperatures_paragraph(paragraph_input)
 
             spans_map = {}
