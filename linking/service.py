@@ -1,3 +1,4 @@
+import asyncio
 import json
 
 import bottle
@@ -66,14 +67,42 @@ class Service(object):
         skip_classification = request.forms.get("skip_classification") if request.forms.get(
             "skip_classification") is not None else "False"
 
+        result = self.process_single_sentence(paragraph_input, link_types_as_list, skip_classification)
+
+        return json.dumps(result)
+
+    # def process_link_bulk(self):
+    #     input_raw = request.forms.get("inputs")
+    #     sentences_input = None
+    #     try:
+    #         sentences_input = json.loads(input_raw)
+    #     except:
+    #         abort(400)
+    #
+    #     link_types_as_list = json.loads(request.forms.get("types")) if request.forms.get(
+    #         "types") is not None else self.linker_map.keys()
+    #     skip_classification = request.forms.get("skip_classification") if request.forms.get(
+    #         "skip_classification") is not None else "False"
+    #
+    #     result = []
+    #     for sentence_input in sentences_input:
+    #         result.append(self.process_single_sentence(sentence_input, link_types_as_list, skip_classification))
+    #
+    #     return json.dumps(result)
+
+    # async def worker(self, queue):
+    #     while True:
+    #         sentence_input, link_types_as_list, skip_classification = await queue.get()
+    #
+    #         result = self.process_single_sentence(sentence_input, link_types_as_list, skip_classification)
+
+    async def process_single_sentence(self, paragraph_input, link_types_as_list, skip_classification):
         if skip_classification.lower() == 'true':
             skip_classification = True
         else:
             skip_classification = False
-
         if paragraph_input is None or 'spans' not in paragraph_input or 'tokens' not in paragraph_input or 'text' not in paragraph_input:
             abort(400)
-
         if not skip_classification:
             marked_tc_paragraph = self.temperature_classifier.mark_temperatures_paragraph(paragraph_input)
 
@@ -87,7 +116,6 @@ class Service(object):
             for span in paragraph_input['spans'] if 'spans' in paragraph_input else []:
                 if 'id' in span and span['id'] in spans_map:
                     span['linkable'] = spans_map[span['id']]['linkable']
-
         processed_linked_map = {}
         for link_type in link_types_as_list:
             if not skip_classification:
@@ -96,7 +124,6 @@ class Service(object):
                     span['linkable'] = True
 
             processed_linked_map[link_type] = self.linker_map[link_type].process_paragraph(paragraph_input)
-
         for link_type in link_types_as_list:
             processed_linked = processed_linked_map[link_type]
 
@@ -117,69 +144,59 @@ class Service(object):
                     else:
                         span['links'] = spans_map[span['id']]
 
-        return json.dumps(paragraph_input)
 
-    def process_link_bulk(self):
-        input_raws = request.forms.get("input")
-        link_type = request.forms.get("type")
 
-        paragraph_input = json.loads(input_raws)
-
-        processed_linked = self.linker_map[link_type].process_paragraph(paragraph_input)
-
-        return json.dumps(processed_linked)
-
-    def create_links(self):
-        input_raw = request.forms.get("input")
-
-        if input_raw is None:
-            abort(400)
-
-        paragraph_input = json.loads(input_raw)
-
-        material_tc_linked = self.linker_material_tcValue.process_paragraph(paragraph_input)
-        tc_pressure_linked = self.linker_tcValue_pressure.process_paragraph(paragraph_input)
-
-        spans_map = {}
-        for paragraphs in tc_pressure_linked:
-            spans = paragraphs['spans'] if 'spans' in paragraphs else []
-            for span in spans:
-                if 'links' in span:
-                    non_crf_links = list(filter(lambda w: w['type'] != "crf", span['links']))
-
-                    if len(non_crf_links) > 0:
-                        span['links'] = non_crf_links
-                        spans_map[span['id']] = span
-
-        # for span in paragraphs['spans'] if 'spans' in paragraphs else []:
-        #     if 'links' in span and len(span['links']) > 0:
-        #         links = span['links']
-        #         if span['id'] in spans_map:
-        #             spans_map[span['id']].extend(list(filter(lambda w: w['type'] != "crf", links)))
-        #         else:
-        #             spans_map[span['id']] = list(filter(lambda w: w['type'] != "crf", links))
-        # span['id'] in spans_map and 'links' in spans_map[span['id']]
-
-        for paragraphs in material_tc_linked:
-            for span in paragraphs['spans'] if 'spans' in paragraphs else []:
-                if span['id'] in spans_map and 'links' in spans_map[span['id']]:
-                    links_list = spans_map[span['id']]['links']
-                    if 'links' in span:
-                        span['links'].extend(links_list)
-                    else:
-                        span['links'] = links_list
-
-        # for paragraphs in material_tc_linked:
-        #     for span in paragraphs['spans'] if 'spans' in paragraphs else []:
-        #         if span['id'] in spans_map:
-        #             if 'links' in span:
-        #                 span['links'].extend(spans_map[span['id']])
-        #             else:
-        #                 span['links'] = spans_map[span['id']]
-        # for paragraphs in material_tc_linked:
-        #     material_tc_linked['relationships'].extends(tc_pressure_linked['relationships'])
-
-        return json.dumps(material_tc_linked)
+    # def create_links(self):
+    #     input_raw = request.forms.get("input")
+    #
+    #     if input_raw is None:
+    #         abort(400)
+    #
+    #     paragraph_input = json.loads(input_raw)
+    #
+    #     material_tc_linked = self.linker_material_tcValue.process_paragraph(paragraph_input)
+    #     tc_pressure_linked = self.linker_tcValue_pressure.process_paragraph(paragraph_input)
+    #
+    #     spans_map = {}
+    #     for paragraphs in tc_pressure_linked:
+    #         spans = paragraphs['spans'] if 'spans' in paragraphs else []
+    #         for span in spans:
+    #             if 'links' in span:
+    #                 non_crf_links = list(filter(lambda w: w['type'] != "crf", span['links']))
+    #
+    #                 if len(non_crf_links) > 0:
+    #                     span['links'] = non_crf_links
+    #                     spans_map[span['id']] = span
+    #
+    #     # for span in paragraphs['spans'] if 'spans' in paragraphs else []:
+    #     #     if 'links' in span and len(span['links']) > 0:
+    #     #         links = span['links']
+    #     #         if span['id'] in spans_map:
+    #     #             spans_map[span['id']].extend(list(filter(lambda w: w['type'] != "crf", links)))
+    #     #         else:
+    #     #             spans_map[span['id']] = list(filter(lambda w: w['type'] != "crf", links))
+    #     # span['id'] in spans_map and 'links' in spans_map[span['id']]
+    #
+    #     for paragraphs in material_tc_linked:
+    #         for span in paragraphs['spans'] if 'spans' in paragraphs else []:
+    #             if span['id'] in spans_map and 'links' in spans_map[span['id']]:
+    #                 links_list = spans_map[span['id']]['links']
+    #                 if 'links' in span:
+    #                     span['links'].extend(links_list)
+    #                 else:
+    #                     span['links'] = links_list
+    #
+    #     # for paragraphs in material_tc_linked:
+    #     #     for span in paragraphs['spans'] if 'spans' in paragraphs else []:
+    #     #         if span['id'] in spans_map:
+    #     #             if 'links' in span:
+    #     #                 span['links'].extend(spans_map[span['id']])
+    #     #             else:
+    #     #                 span['links'] = spans_map[span['id']]
+    #     # for paragraphs in material_tc_linked:
+    #     #     material_tc_linked['relationships'].extends(tc_pressure_linked['relationships'])
+    #
+    #     return json.dumps(material_tc_linked)
 
     def classify_formula(self):
         formula_raw = request.forms.get("input")
