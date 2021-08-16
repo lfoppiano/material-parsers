@@ -3,9 +3,10 @@ import os
 import random
 
 from locust import HttpUser, task, between, tag
+from locust.contrib.fasthttp import FastHttpUser
 
 
-class QuickstartUser(HttpUser):
+class QuickstartUser(FastHttpUser):
     wait_time = between(5, 9)
 
     paragraphs = []
