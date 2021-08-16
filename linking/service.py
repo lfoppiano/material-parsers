@@ -64,7 +64,7 @@ class Service(object):
         link_types_as_list = json.loads(request.forms.get("types")) if request.forms.get(
             "types") is not None else self.linker_map.keys()
         skip_classification = request.forms.get("skip_classification") if request.forms.get(
-            "skip_classification") is not None else False
+            "skip_classification") is not None else "False"
 
         if skip_classification.lower() == 'true':
             skip_classification = True
