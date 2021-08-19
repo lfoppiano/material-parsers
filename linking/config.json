@@ -1,10 +1,11 @@
 {
   "grobid": {
+    "server__": "http://falcon.nims.go.jp",
     "server": "http://localhost:8072",
-    "prefix": "/service",
+    "prefix": "",
     "url_mapping": {
-      "linker": "/linker/link",
-      "ping": ""
+      "linker": "/service/linker/link",
+      "ping": "/"
     }
   },
   "batch_size": 1000,
