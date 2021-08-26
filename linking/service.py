@@ -1,4 +1,3 @@
-import asyncio
 import json
 
 import bottle
@@ -47,18 +46,36 @@ class Service(object):
         if input_raw is None:
             abort(400)
 
-        return self.temperature_classifier.mark_temperatures_paragraph_json(input_raw)
-
-    def process_link_single(self):
-        '''
-        Process links from the input data using the type of link extractor that are provider, as a json list in the
-        parameter 'types'.
-        skip_classification = True will skip the classification of the linkable entities
-        '''
-        input_raw = request.forms.get("input")
-        paragraph_input = None
         try:
-            paragraph_input = json.loads(input_raw)
+            passages_input = json.loads(input_raw)
+        except:
+            abort(400)
+
+        single = False
+        if type(passages_input) is dict:
+            single = True
+            passages_input = [passages_input]
+
+
+        result = []
+        for passage in passages_input:
+            result.append(self.temperature_classifier.mark_temperatures_paragraph(passage))
+
+        if single:
+            result = result[0]
+
+        return json.dumps(result)
+
+    def process_link(self):
+        """
+            Process links from the input data using the type of link extractor that are provider, as a json list in the
+            parameter 'types'.
+            skip_classification = True will skip the classification of the linkable entities
+        """
+        input_raw = request.forms.get("input")
+        passages_input = None
+        try:
+            passages_input = json.loads(input_raw)
         except:
             abort(400)
 
@@ -67,42 +84,28 @@ class Service(object):
         skip_classification = request.forms.get("skip_classification") if request.forms.get(
             "skip_classification") is not None else "False"
 
-        result = self.process_single_sentence(paragraph_input, link_types_as_list, skip_classification)
+        result = []
+        single = False
+        if type(passages_input) is dict:
+            single = True
+            passages_input = [passages_input]
+
+        for sentence_input in passages_input:
+            result.append(self.process_single_sentence(sentence_input, link_types_as_list, skip_classification))
+
+        if single:
+            result = result[0]
 
         return json.dumps(result)
 
-    # def process_link_bulk(self):
-    #     input_raw = request.forms.get("inputs")
-    #     sentences_input = None
-    #     try:
-    #         sentences_input = json.loads(input_raw)
-    #     except:
-    #         abort(400)
-    #
-    #     link_types_as_list = json.loads(request.forms.get("types")) if request.forms.get(
-    #         "types") is not None else self.linker_map.keys()
-    #     skip_classification = request.forms.get("skip_classification") if request.forms.get(
-    #         "skip_classification") is not None else "False"
-    #
-    #     result = []
-    #     for sentence_input in sentences_input:
-    #         result.append(self.process_single_sentence(sentence_input, link_types_as_list, skip_classification))
-    #
-    #     return json.dumps(result)
-
-    # async def worker(self, queue):
-    #     while True:
-    #         sentence_input, link_types_as_list, skip_classification = await queue.get()
-    #
-    #         result = self.process_single_sentence(sentence_input, link_types_as_list, skip_classification)
-
-    async def process_single_sentence(self, paragraph_input, link_types_as_list, skip_classification):
+    def process_single_sentence(self, paragraph_input, link_types_as_list, skip_classification):
         if skip_classification.lower() == 'true':
             skip_classification = True
         else:
             skip_classification = False
         if paragraph_input is None or 'spans' not in paragraph_input or 'tokens' not in paragraph_input or 'text' not in paragraph_input:
             abort(400)
+
         if not skip_classification:
             marked_tc_paragraph = self.temperature_classifier.mark_temperatures_paragraph(paragraph_input)
 
@@ -116,6 +119,7 @@ class Service(object):
             for span in paragraph_input['spans'] if 'spans' in paragraph_input else []:
                 if 'id' in span and span['id'] in spans_map:
                     span['linkable'] = spans_map[span['id']]['linkable']
+
         processed_linked_map = {}
         for link_type in link_types_as_list:
             if not skip_classification:
@@ -124,6 +128,7 @@ class Service(object):
                     span['linkable'] = True
 
             processed_linked_map[link_type] = self.linker_map[link_type].process_paragraph(paragraph_input)
+
         for link_type in link_types_as_list:
             processed_linked = processed_linked_map[link_type]
 
@@ -144,7 +149,7 @@ class Service(object):
                     else:
                         span['links'] = spans_map[span['id']]
 
-
+        return paragraph_input
 
     # def create_links(self):
     #     input_raw = request.forms.get("input")
@@ -199,18 +204,35 @@ class Service(object):
     #     return json.dumps(material_tc_linked)
 
     def classify_formula(self):
-        formula_raw = request.forms.get("input")
-        classes = MaterialParserWrapper().formula_to_classes(formula_raw)
+        raw = request.forms.get("input")
 
-        return json.dumps(list(classes.keys()))
+        if raw is None:
+            abort(400)
 
-    def process(self):
-        input_raw = request.forms.get("input")
-        input_json = json.loads(input_raw)
-        paragraph_with_marked_tc = self.temperature_classifier.mark_temperatures_paragraph(input_json)
-        material_tc_linked = self.linker_material_tcValue.process_paragraph_json(paragraph_with_marked_tc)
+        single = False
+        if type(raw) is dict:
+            single = True
+            formulas_raw = [raw]
+        else:
+            formulas_raw = raw
 
-        return self.linker_tcValue_pressure.process_paragraph_json(material_tc_linked)
+        result = []
+        for formula in formulas_raw:
+            classes = MaterialParserWrapper().formula_to_classes(formula)
+            result.append(list(classes.keys()))
+
+        if single:
+            result = result[0]
+
+        return json.dumps(result)
+
+    # def process(self):
+    #     input_raw = request.forms.get("input")
+    #     input_json = json.loads(input_raw)
+    #     paragraph_with_marked_tc = self.temperature_classifier.mark_temperatures_paragraph(input_json)
+    #     material_tc_linked = self.linker_material_tcValue.process_paragraph_json(paragraph_with_marked_tc)
+    #
+    #     return self.linker_tcValue_pressure.process_paragraph_json(material_tc_linked)
 
 
 @plac.annotations(
@@ -220,8 +242,7 @@ class Service(object):
 def init(host='0.0.0.0', port='8080'):
     app = Service()
 
-    bottle.route('/process/link/single', method="POST")(app.process_link_single)
-    # bottle.route('/process/link/bulk', method="POST")(app.process_link_bulk)
+    bottle.route('/process/link', method="POST")(app.process_link)
     bottle.route('/classify/tc', method="POST")(app.classify_tc)
     bottle.route('/classify/formula', method="POST")(app.classify_formula)
     bottle.route('/info')(app.info)

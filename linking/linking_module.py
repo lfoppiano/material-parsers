@@ -36,7 +36,7 @@ def entities_classes():
 
 
 class SpacyPipeline:
-    def __init__(self, spacy_nlp_library= None):
+    def __init__(self, spacy_nlp_library=None):
         if spacy_nlp_library is not None:
             self.nlp = spacy_nlp_library
         else:
@@ -347,8 +347,7 @@ class RuleBasedLinker(SpacyPipeline):
                 "spans": [entity for entity in
                           filter(lambda w: w['type'] in entities_classes(), spans_remapped)],
                 "text": ''.join(
-                    [words[i] + (' ' if spaces[i] else '') for i in
-                     range(0, len(words))])
+                    [words[i] + (' ' if spaces[i] else '') for i in range(0, len(words))])
             }
             output_data.append(data_return)
 
