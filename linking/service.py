@@ -221,7 +221,7 @@ def init(host='0.0.0.0', port='8080'):
     app = Service()
 
     bottle.route('/process/link/single', method="POST")(app.process_link_single)
-    bottle.route('/process/link/bulk', method="POST")(app.process_link_bulk)
+    # bottle.route('/process/link/bulk', method="POST")(app.process_link_bulk)
     bottle.route('/classify/tc', method="POST")(app.classify_tc)
     bottle.route('/classify/formula', method="POST")(app.classify_formula)
     bottle.route('/info')(app.info)
