@@ -1,4 +1,5 @@
 import json
+from json import JSONDecodeError
 
 import bottle
 import plac
@@ -103,8 +104,12 @@ class Service(object):
             skip_classification = True
         else:
             skip_classification = False
-        if paragraph_input is None or 'spans' not in paragraph_input or 'tokens' not in paragraph_input or 'text' not in paragraph_input:
+
+        if paragraph_input is None or 'tokens' not in paragraph_input or 'text' not in paragraph_input:
             abort(400)
+
+        if 'spans' not in paragraph_input:
+            paragraph_input['spans'] = []
 
         if not skip_classification:
             marked_tc_paragraph = self.temperature_classifier.mark_temperatures_paragraph(paragraph_input)
@@ -209,22 +214,28 @@ class Service(object):
         if raw is None:
             abort(400)
 
-        single = False
-        if type(raw) is dict:
-            single = True
-            formulas_raw = [raw]
-        else:
-            formulas_raw = raw
+        # raw_parsed = None
+        # try:
+        #     raw_parsed = json.loads(raw)
+        # except JSONDecodeError as e:
+        #     abort(400, e)
 
-        result = []
-        for formula in formulas_raw:
-            classes = MaterialParserWrapper().formula_to_classes(formula)
-            result.append(list(classes.keys()))
+        # single = False
+        # if type(raw_parsed) is dict:
+        #     single = True
+        #     formulas_raw = [raw_parsed]
+        # else:
+        #     formulas_raw = raw_parsed
 
-        if single:
-            result = result[0]
+        # result = []
+        # for formula in formulas_raw:
+        classes = MaterialParserWrapper().formula_to_classes(raw)
+        # result.append(list(classes.keys()))
 
-        return json.dumps(result)
+        # if single:
+        #     result = result[0]
+
+        return json.dumps(list(classes.keys()))
 
     # def process(self):
     #     input_raw = request.forms.get("input")
