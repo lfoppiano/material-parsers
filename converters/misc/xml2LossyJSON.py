@@ -1,6 +1,5 @@
 # transform XML Tei to TSV for WebAnno
 import argparse
-import hashlib
 import json
 import os
 import re
@@ -51,7 +50,7 @@ def process_file(finput):
 
     output_document = OrderedDict()
     output_document['lang'] = 'en'
-    output_document['level'] = 'paragraph'
+    output_document['level'] = 'sentences'
     output_document['paragraphs'] = paragraphs
 
     linked_entity_registry = {}
@@ -101,7 +100,7 @@ def process_file(finput):
                         raise Exception("RS without type is invalid. Stopping")
 
                     entity_class = item.attrs['type']
-                    span['type'] = entity_class
+                    span['type'] = '<' + entity_class + '>'
 
                     if len(item.attrs) > 0:
                         ## multiple entities can point ot the same one, so "corresp" value can be duplicated
@@ -117,13 +116,13 @@ def process_file(finput):
                                 span['id'] = get_hash(id_str)
                                 if (span['id']) not in dic_source_relationships:
                                     dic_source_relationships[span['id']] = [item.attrs['corresp'].replace('#', ''),
-                                                                              ient,
-                                                                              entity_class]
+                                                                            ient,
+                                                                            entity_class]
                             else:
                                 if (span['id']) not in dic_source_relationships:
                                     dic_source_relationships[span['id']] = [item.attrs['corresp'].replace('#', ''),
-                                                                              ient,
-                                                                              entity_class]
+                                                                            ient,
+                                                                            entity_class]
 
                             allow_duplicates = True
 
