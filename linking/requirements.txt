@@ -13,14 +13,14 @@ cymem==2.0.5
 decorator==4.4.2
 Flask==2.0.1
 future==0.18.2
--e git+https://github.com/lfoppiano/grobid-superconductors-tools.git@81c813200daba020edaafbfa42c6ee2218083a9b#egg=grobid_superconductors_python_commons&subdirectory=commons
+-e git+https://github.com/lfoppiano/grobid-superconductors-tools.git@e5862f642193e5fe2c07a3baf859b9cf743a73c5#egg=grobid_superconductors_python_commons&subdirectory=commons
 idna==2.10
 importlib-metadata==4.0.1
 itsdangerous==2.0.1
 Jinja2==3.0.1
 kiwisolver==1.3.1
 MarkupSafe==2.0.1
--e git+https://github.com/lfoppiano/grobid-superconductors-tools.git@81c813200daba020edaafbfa42c6ee2218083a9b#egg=materialParserWrapper&subdirectory=materialParser
+-e git+https://github.com/lfoppiano/grobid-superconductors-tools.git@e5862f642193e5fe2c07a3baf859b9cf743a73c5#egg=materialParserWrapper&subdirectory=materialParser
 Materials-Parser @ git+https://github.com/lfoppiano/MaterialParser.git@88e86d6eae91caf763bbdfb21d4bda62fa6e938f
 matplotlib==3.4.1
 monty==2021.3.3
