@@ -6,7 +6,7 @@ ENV LANG C.UTF-8
 RUN apt-get update && \
     apt-get -y --no-install-recommends install \
     git \
-    python3.7 python3.7-venv python3.7-dev python3.7-distutil build-essential gcc\
+    python3-venv build-essential gcc\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
