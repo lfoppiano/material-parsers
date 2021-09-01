@@ -57,7 +57,6 @@ class Service(object):
             single = True
             passages_input = [passages_input]
 
-
         result = []
         for passage in passages_input:
             result.append(self.temperature_classifier.mark_temperatures_paragraph(passage))
@@ -111,12 +110,17 @@ class Service(object):
         if 'spans' not in paragraph_input:
             paragraph_input['spans'] = []
 
+        if len(paragraph_input['spans']) == 0:
+            return paragraph_input
+
         if not skip_classification:
             marked_tc_paragraph = self.temperature_classifier.mark_temperatures_paragraph(paragraph_input)
+            if 'spans' not in marked_tc_paragraph or len(marked_tc_paragraph['spans']) == 0:
+                return paragraph_input
 
             spans_map = {}
             spans_processed = marked_tc_paragraph['spans'] if 'spans' in marked_tc_paragraph else []
-            tc_spans = list(filter(lambda w: w['type'] == "<tcValue>", spans_processed))
+            tc_spans = list(filter(lambda w: w['type'] in ["<tcValue>", "tcValue"], spans_processed))
 
             for s in tc_spans:
                 spans_map[s['id']] = s

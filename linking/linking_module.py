@@ -431,8 +431,12 @@ class CriticalTemperatureClassifier(SpacyPipeline):
         super(CriticalTemperatureClassifier, self).__init__(spacy_nlp)
 
     def process_doc(self, doc):
-        temps = list(filter(lambda w: w.ent_type_ in ['<temperature>', '<tcvalue>', '<tcValue>'], doc))
-        tc_expressions = list(filter(lambda w: w.ent_type_ in ['<tc>'], doc))
+        temps = list(filter(lambda w: w.ent_type_ in ['temperature', 'tcvalue', 'tcValue', '<temperature>', '<tcvalue>', '<tcValue>'], doc))
+
+        if len(temps) == 0:
+            return doc
+
+        tc_expressions = list(filter(lambda w: w.ent_type_ in ['<tc>', 'tc'], doc))
 
         tc_expressions_standard = ["T c", "Tc", "tc", "t c"]
 
