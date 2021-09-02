@@ -210,21 +210,30 @@ if __name__ == '__main__':
     recursive = args.recursive
 
     if os.path.isdir(input):
-        path_list = []
+        input_path_list = []
+        output_path_list = []
 
         if recursive:
             for root, dirs, files in os.walk(input):
-                for file_ in files:
-                    if not file_.lower().endswith(".xml"):
-                        continue
+                for dir in dirs:
+                    abs_path_dir = os.path.join(root, dir)
+                    output_path = abs_path_dir.replace(str(input), str(output))
+                    if not os.path.exists(output_path):
+                        os.makedirs(output_path)
 
-                    abs_path = os.path.join(root, file_)
-                    path_list.append(abs_path)
+                    for file_ in files:
+                        if not file_.lower().endswith(".xml"):
+                            continue
+
+                        abs_path = os.path.join(root, file_)
+                        input_path_list.append(abs_path)
+                        output_path_list.append(os.path.join(output_path, file_.replace(".xml", ".json")))
 
         else:
-            path_list = Path(input).glob('*.tei.xml')
+            input_path_list = list(Path(input).glob('*.tei.xml'))
+            output_path_list = [str(input_path).replace(str(input), str(output)).replace(".xml", ".json") for input_path in input_path_list]
 
-        for path in path_list:
+        for path in input_path_list:
             print("Processing: ", path)
             output_filename = Path(path).stem
             output_filename = output_filename.replace(".tei", "")
