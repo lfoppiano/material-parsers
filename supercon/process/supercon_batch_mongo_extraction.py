@@ -72,7 +72,8 @@ class MongoSuperconProcessor:
         db.document.create_index("timestamp")
 
         db.tabular.create_index("type")
-        db.tabular.create_index([("hash", pymongo.ASCENDING), ("timestamp", pymongo.ASCENDING), ("type", pymongo.ASCENDING)])
+        db.tabular.create_index(
+            [("hash", pymongo.ASCENDING), ("timestamp", pymongo.ASCENDING), ("type", pymongo.ASCENDING)])
         db.tabular.create_index([("hash", pymongo.ASCENDING), ("timestamp", pymongo.ASCENDING)])
         db.tabular.create_index("hash")
 
