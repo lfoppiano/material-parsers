@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 
 import numpy as np
-from gensim.models import LdaModel, EnsembleLda, LdaMulticore
+from gensim.models import LdaModel, EnsembleLda
 from gensim.parsing import strip_non_alphanum, strip_punctuation, remove_stopwords, strip_multiple_whitespaces
 from gensim.parsing.preprocessing import split_on_space, strip_numeric
 
@@ -47,12 +47,6 @@ if __name__ == '__main__':
     dictionary = Dictionary()
     if recursive:
         for root, dirs, files in os.walk(input):
-            for dir in dirs:
-                abs_path_dir = os.path.join(root, dir)
-                output_path = abs_path_dir.replace(str(input), str(output))
-                if not os.path.exists(output_path):
-                    os.makedirs(output_path)
-
             for file_ in files:
                 if not file_.lower().endswith(".txt"):
                     continue
@@ -102,7 +96,7 @@ if __name__ == '__main__':
     distance_workers = ensemble_workers
 
     num_topics = 99
-    passes = int(num_topics/10*2)
+    passes = int(num_topics / 10 * 2)
 
     ensemble = EnsembleLda(
         corpus=corpus,
