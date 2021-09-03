@@ -1,3 +1,5 @@
+import json
+import os
 from pathlib import Path
 from keybert import KeyBERT
 import argparse
@@ -35,11 +37,11 @@ if __name__ == '__main__':
 
                     abs_path = os.path.join(root, file_)
                     input_path_list.append(abs_path)
-                    output_path_list.append(os.path.join(output_path, file_))
+                    output_path_list.append(os.path.join(output_path, file_.replace(".txt", ".json")))
 
     else:
         input_path_list = list(Path(input).glob('*.txt'))
-        output_path_list = [str(input_path).replace(str(input), str(output)) for input_path in
+        output_path_list = [str(input_path).replace(str(input), str(output)).replace(".txt", ".json") for input_path in
                             input_path_list]
 
     kw_model = KeyBERT()
@@ -48,8 +50,6 @@ if __name__ == '__main__':
         print("Processing: ", path)
         with open(path, 'r') as fin:
             doc_as_text = " ".join([line.strip() for line in fin])
-            keywords = kw_model.extract_keywords(doc_as_text, keyphrase_ngram_range=(1, 1), stop_words=[], use_mmr=False, use_maxsum=False, nr_candidates=20, top_n=5)
-
+            keywords = kw_model.extract_keywords(doc_as_text, keyphrase_ngram_range=(1, 1), stop_words=[], use_mmr=False, use_maxsum=False, nr_candidates=100, top_n=10)
             with open(output_path_list[idx], 'w') as fp:
-                for keyword in keywords:
-                    fp.write(keyword + "\n")
+                json.dump(keywords, fp)
