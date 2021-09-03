@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 
 import numpy as np
-from gensim.models import LdaModel, EnsembleLda
+from gensim.models import LdaModel, EnsembleLda, LdaMulticore
 from gensim.parsing import strip_non_alphanum, strip_punctuation, remove_stopwords, strip_multiple_whitespaces
 from gensim.parsing.preprocessing import split_on_space, strip_numeric
 
@@ -96,13 +96,13 @@ if __name__ == '__main__':
 
     topic_model_class = LdaModel
 
-    ensemble_workers = 16
+    ensemble_workers = 20
     num_models = ensemble_workers * 2
 
-    distance_workers = 70
+    distance_workers = ensemble_workers
 
     num_topics = 99
-    passes = int(num_topics/10)
+    passes = int(num_topics/10*2)
 
     ensemble = EnsembleLda(
         corpus=corpus,
