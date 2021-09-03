@@ -31,13 +31,15 @@ if __name__ == '__main__':
                 if not os.path.exists(output_path):
                     os.makedirs(output_path)
 
-                for file_ in files:
-                    if not file_.lower().endswith(".txt"):
-                        continue
+            for file_ in files:
+                if not file_.lower().endswith(".txt"):
+                    continue
 
-                    abs_path = os.path.join(root, file_)
-                    input_path_list.append(abs_path)
-                    output_path_list.append(os.path.join(output_path, file_.replace(".txt", ".json")))
+                abs_path = os.path.join(root, file_)
+                input_path_list.append(abs_path)
+
+                output_path = abs_path.replace(str(input), str(output)).replace(".txt", ".json")
+                output_path_list.append(output_path)
 
     else:
         input_path_list = list(Path(input).glob('*.txt'))
