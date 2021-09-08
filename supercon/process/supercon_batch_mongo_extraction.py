@@ -70,6 +70,9 @@ class MongoSuperconProcessor:
         db.document.create_index("hash")
         db.document.create_index("type")
         db.document.create_index("timestamp")
+        db.document.create_index("biblio.year")
+        db.document.create_index("biblio.journal")
+        db.document.create_index("biblio.publisher")
 
         db.tabular.create_index("type")
         db.tabular.create_index(
