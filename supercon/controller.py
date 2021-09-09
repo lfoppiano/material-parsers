@@ -18,7 +18,7 @@ with open('./config.json', 'r') as fp:
 
 @bp.route('/version')
 def version():
-    return '0.0.1'
+    return '1.0'
 
 
 @bp.route('/')
