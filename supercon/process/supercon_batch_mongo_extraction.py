@@ -80,6 +80,8 @@ class MongoSuperconProcessor:
         db.tabular.create_index([("hash", pymongo.ASCENDING), ("timestamp", pymongo.ASCENDING)])
         db.tabular.create_index("hash")
 
+        db.binary.chunks([("files_id", pymongo.ASCENDING), ("n", pymongo.ASCENDING)])
+
         db.binary.files.create_index([("filename", pymongo.ASCENDING), ("uploadDate", pymongo.ASCENDING)])
         db.binary.files.create_index("hash")
 
