@@ -1,5 +1,5 @@
 import json
-from json import JSONDecodeError
+from pathlib import Path
 
 import bottle
 import plac
@@ -36,6 +36,8 @@ class Service(object):
             'tcValue-pressure': '<pressure>',
             'tcValue-me_method': '<me_method>'
         }
+
+        self.space_group_nlp = None
 
     def info(self):
         info_json = {"name": "Linking module", "version": "0.2.0"}
@@ -250,16 +252,38 @@ class Service(object):
     #     return self.linker_tcValue_pressure.process_paragraph_json(material_tc_linked)
 
 
+    def process_space_group_text(self):
+        text = request.forms.get("text")
+        text_doc = self.space_group_nlp(text.lower())
+        text_doc_original = self.space_group_nlp(text)
+        entities = [
+            {"text": str(text_doc_original[ent.start:ent.end]), "type": ent.label_, "offsetStart": ent.start_char,
+             "offsetEnd": ent.end_char, "id": ent.ent_id_} for ent in text_doc.ents]
+
+        return json.dumps(entities)
+
+
 @plac.annotations(
     host=("Hostname where to run the service", "option", "host", str),
     port=("Port where to run the service", "option", "port", str),
+    space_groups_patterns=("Directory containing configuration and patterns for the EntityRuler", "option", 
+                           "space_groups_patterns", Path)
 )
-def init(host='0.0.0.0', port='8080'):
+def init(host='0.0.0.0', port='8080', space_groups_patterns=None):
     app = Service()
 
     bottle.route('/process/link', method="POST")(app.process_link)
     bottle.route('/classify/tc', method="POST")(app.classify_tc)
     bottle.route('/classify/formula', method="POST")(app.classify_formula)
+
+    if space_groups_patterns:
+        print("Loading space group patterns...")
+        space_group_nlp = spacy.load("en_core_web_sm", disable=["parser", "textcat", "ner"])
+        ruler = space_group_nlp.add_pipe("entity_ruler")
+        ruler.from_disk(space_groups_patterns)
+        app.space_group_nlp = space_group_nlp
+        bottle.route('/process/spacegroup/text', method="POST")(app.process_space_group_text)
+
     bottle.route('/info')(app.info)
     bottle.debug(False)
     run(host=host, port=port, debug=True)

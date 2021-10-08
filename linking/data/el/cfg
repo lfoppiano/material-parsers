@@ -1,0 +1,5 @@
+{
+  "overwrite":false,
+  "phrase_matcher_attr":"LOWER",
+  "ent_id_sep":"||"
+}
