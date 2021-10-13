@@ -9,7 +9,9 @@ Last tested with: v3.1.0
 from __future__ import unicode_literals, print_function
 
 import json
+import re
 import time
+from itertools import permutations
 from pathlib import Path
 
 import plac
@@ -111,8 +113,8 @@ def main(model, input_file, name, output_dir=None):
     print("Loaded model '%s'" % model)
 
     processing_map = {
-        "space-groups": JSONReader(nlp),
-        "crystal-structure": JSONReader(nlp)
+        "space-groups": SpaceGroupsReader(nlp),
+        "crystal-structure": CrystalStructureReader(nlp)
     }
 
     if name not in processing_map:
@@ -126,7 +128,6 @@ def main(model, input_file, name, output_dir=None):
             " cf. https://spacy.io/usage/models#languages."
         )
 
-
     reader = processing_map.get(name)
 
     print("Loading patterns for", name)
@@ -135,7 +136,8 @@ def main(model, input_file, name, output_dir=None):
     # Reading the CSV file
     patterns = reader.read_file(input_file)
 
-    patterns_with_labels = [{'label': name, 'pattern': pattern['pattern']} for pattern in patterns]
+    patterns_with_labels = [{'label': name if 'label' not in pattern else pattern['label'], 'pattern': pattern['pattern']} for pattern in
+                            patterns]
     print("Finished creating patterns. Elapsed:", time.time() - start_time, " patterns:", len(patterns_with_labels))
 
     # Creating the entity ruler
@@ -153,7 +155,7 @@ def main(model, input_file, name, output_dir=None):
         if not output_dir.exists():
             output_dir.mkdir()
 
-        entity_ruler_path = output_dir / "el"
+        entity_ruler_path = output_dir
         entity_ruler.to_disk(entity_ruler_path)
         print()
         print("Saved entity ruler to", entity_ruler_path)
@@ -166,11 +168,11 @@ class BaseReader:
         self.pattern_set = set()
 
 
-class JSONReader(BaseReader):
-    entity_name = "JSON Reader"
+class CrystalStructureReader(BaseReader):
+    entity_name = "CrystalStructureReader"
+    regex_elements = re.compile(r'([A-Za-z]{1,2})([0-9.]{0,3})')
 
     def read_file(self, input_file: Path):
-        """Read input file - this is the main method of the class that returns a list of extracted patterns"""
         patterns = []
 
         data = []
@@ -180,26 +182,125 @@ class JSONReader(BaseReader):
         if not data:
             return patterns
 
+        compounds = []
         for item in data:
-            # text = self.nlp(item)
-            items = [item]
-            tmp_items = []
-            if '_' in item:
-                tmp_items.append(item.replace("_", " "))
-                tmp_items.append(item.replace("_", ""))
+            name = item['name'] if 'name' in item else ''
+            type = item['type'] if 'type' in item else None
+            if not name:
+                print("Name is empty or None, skipping it. ")
+                continue
 
-            if '/' in item:
-                for tmp_item in tmp_items.copy():
-                    tmp_items.append(tmp_item.replace("/", " /"))
-                    tmp_items.append(tmp_item.replace("/", " / "))
-                    tmp_items.append(tmp_item.replace("/", "/ "))
+            if "(" in name:
+                pass
+            elif "[" in name:
+                pass
+            else:
+                local_compound = []
+                ## Split by space then extract compounds
+                split = name.split(" ")
+                for element in split:
+                    match = self.regex_elements.match(element)
+                    if match.group():
+                        local_compound.append((match.group(1), match.group(2)))
+                compounds.append(local_compound)
 
-            items.extend(tmp_items)
-            patterns_created = [{"pattern": str(item)} for item in items]
+            patterns_created = []
+            for c in compounds:
+                tmp_patterns = []
+                for perm in permutations(c):
+
+                    ## without spaces
+                    pattern = ""
+                    for ele in perm:
+                        pattern += ele[0] + ele[1]
+                    tmp_patterns.append({"pattern": pattern})
+
+                    ## with spaces between any element (including atom charge)
+                    pattern = ""
+                    first = True
+                    for ele in perm:
+                        if first:
+                            first = False
+                        else:
+                            pattern += " "
+                        if ele[1]:
+                            pattern += ele[0] + " " + ele[1]
+                        else:
+                            pattern += ele[0]
+                    tmp_patterns.append({"pattern": pattern})
+
+                    ## with spaces between any element 
+                    pattern = ""
+                    first = True
+                    for ele in perm:
+                        if first:
+                            first = False
+                        else:
+                            pattern += " "
+                        if ele[1]:
+                            pattern += ele[0] + ele[1]
+                        else:
+                            pattern += ele[0]
+                    tmp_patterns.append({"pattern": pattern})
+                    tmp_patterns.append({"pattern": pattern + "-type"})
+                    tmp_patterns.append({"pattern": pattern + "- type"})
+                    tmp_patterns.append({"pattern": pattern + " - type"})
+                    tmp_patterns.append({"pattern": pattern + " -type"})
+                patterns_created.extend(tmp_patterns)
+
             for pattern_created in patterns_created:
                 if 'pattern' in pattern_created and str(pattern_created['pattern']) not in self.pattern_set:
                     patterns.append(pattern_created)
                     self.pattern_set.add(str(pattern_created['pattern']))
+
+        return patterns
+
+
+class SpaceGroupsReader(BaseReader):
+    entity_name = "SpaceGroup Reader"
+
+    def read_file(self, input_file: Path):
+        patterns = []
+        structure_types = set()
+
+        data = []
+        with open(input_file, 'r') as file:
+            data = json.load(file)
+
+        if not data:
+            return patterns
+
+        for item in data:
+            name = item['name'] if 'name' in item else ''
+            type = item['type'] if 'type' in item else None
+            if type:
+                structure_types.add(type)
+
+            if not name:
+                print("Name is empty or None, skipping it. ")
+                continue
+
+            items = [{'name': name, 'type': type}]
+            tmp_items = []
+            if '_' in name:
+                tmp_items.append({'name': name.replace("_", " "), 'type': type})
+                tmp_items.append({'name': name.replace("_", ""), 'type': type})
+
+            if '/' in name:
+                for tmp_item in tmp_items.copy():
+                    tmp_items.append({'name': tmp_item['name'].replace("/", " /"), 'type': tmp_item['type']})
+                    tmp_items.append({'name': tmp_item['name'].replace("/", " / "), 'type': tmp_item['type']})
+                    tmp_items.append({'name': tmp_item['name'].replace("/", "/ "), 'type': tmp_item['type']})
+
+            items.extend(tmp_items)
+            patterns_created = [{"pattern": str(item['name']), "type": str(item['type'])} for item in items]
+            for pattern_created in patterns_created:
+                if 'pattern' in pattern_created and str(pattern_created['pattern']) not in self.pattern_set:
+                    patterns.append(pattern_created)
+                    self.pattern_set.add(str(pattern_created['pattern']))
+
+            for structure_type in structure_types:
+                patterns.append({"pattern": str(structure_type), "label": "unit-cell-type"})
 
         return patterns
 

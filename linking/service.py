@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 
 import bottle
@@ -6,7 +7,9 @@ import plac
 import spacy
 from bottle import request, run
 from flask import abort
+from spacy.tokens import Doc
 
+from json_entity_ruler_reader import process_paragraph
 from linking_module import RuleBasedLinker, CriticalTemperatureClassifier
 from materialParserWrapper import MaterialParserWrapper
 
@@ -37,7 +40,7 @@ class Service(object):
             'tcValue-me_method': '<me_method>'
         }
 
-        self.space_group_nlp = None
+        self.ner = None
 
     def info(self):
         info_json = {"name": "Linking module", "version": "0.2.0"}
@@ -252,37 +255,121 @@ class Service(object):
     #     return self.linker_tcValue_pressure.process_paragraph_json(material_tc_linked)
 
 
-    def process_space_group_text(self):
-        text = request.forms.get("text")
-        text_doc = self.space_group_nlp(text.lower())
-        text_doc_original = self.space_group_nlp(text)
-        entities = [
-            {"text": str(text_doc_original[ent.start:ent.end]), "type": ent.label_, "offsetStart": ent.start_char,
-             "offsetEnd": ent.end_char, "id": ent.ent_id_} for ent in text_doc.ents]
+    def process_structure_text(self):
+        input_raw = request.forms.get("input")
+        
+        if input_raw is None:
+            abort(400)
+        
+        passages_input = None
+        try:
+            passages_input = json.loads(input_raw)
+        except:
+            abort(400)
+        
+        output = []
+        for text in passages_input: 
+            text_doc = self.ner(text.lower())
+            text_doc_original = self.ner(text)
+            entities = [
+                {"text": str(text_doc_original[ent.start:ent.end]), "label": ent.label_, "start": ent.start_char,
+                 "end": ent.end_char, "type": ent.ent_id_} for ent in text_doc.ents]
+            
+            output.append(entities)
 
-        return json.dumps(entities)
+        return json.dumps(output)
 
+    
+    # def process_space_group_tokens(self):
+    #     """Process tokens from the REST API: used for processing data from the PDFs"""
+    #     input_raw = request.forms.get("input")
+    #     input_json = json.loads(input_raw)
+    # 
+    #     text_original = input_json['text'] if 'text' in input_json else ''
+    #     tokens_original = input_json['tokens'] \
+    #         if 'tokens' in input_json else []
+    # 
+    #     entities = self.deal_with_tokens(tokens_original)
+    # 
+    #     return json.dumps(entities)
+    # 
+    # def deal_with_tokens(self, tokens_original):
+    #     words, spaces = process_paragraph(tokens_original)
+    # 
+    #     words_lower = [w.lower() for w in words]
+    #     text_doc = Doc(self.space_group_nlp.vocab, words=words_lower, spaces=spaces)
+    #     text_doc_original = Doc(self.space_group_nlp.vocab, words=words, spaces=spaces)
+    # 
+    #     for name, proc in self.space_group_nlp.pipeline:  # iterate over components in order
+    #         text_doc = proc(text_doc)
+    # 
+    #     entities = [{
+    #         "text": str(text_doc_original[ent.start:ent.end]),
+    #         "type": ent.label_,
+    #         "offsetStart": ent.start_char,
+    #         "offsetEnd": ent.end_char,
+    #         "tokenStart": ent.start,
+    #         "tokenEnd": ent.end} for ent in text_doc.ents]
+    # 
+    #     new_entities = []
+    #     # Need to adjust the index tokens to be based on the initial token list which includes spaces.
+    #     for idx, entity in enumerate(entities):
+    #         spaces_before = spaces[0:entity['tokenStart']].count(True)
+    #         spaces_in_entity = spaces[entity['tokenStart']:entity['tokenEnd']].count(True)
+    #         if entity['tokenEnd'] - entity['tokenStart'] == spaces_in_entity:
+    #             spaces_in_entity -= 1
+    #         elif spaces[entity['tokenEnd'] - 1]:
+    #             spaces_in_entity -= 1
+    # 
+    #         new_entity = copy.copy(entity)
+    #         new_entity['tokenStart'] += spaces_before
+    #         new_entity['tokenEnd'] += spaces_before + spaces_in_entity
+    # 
+    #         entity['tokenStart'] + spaces_before + spaces[entity['tokenStart']:entity['tokenEnd']].count(True) + spaces[
+    #                                                                                                              81:240].count(
+    #             True) + len(words[81:240])
+    #         entity['tokenEnd'] + spaces_before + spaces[entity['tokenStart']:entity['tokenEnd']].count(True) + spaces[
+    #                                                                                                            81:240].count(
+    #             True) + len(words[81:240])
+    # 
+    #         new_entities.append(new_entity)
+    #         tokens = "".join([x['text'] for x in tokens_original[new_entity['tokenStart']:new_entity['tokenEnd']]])
+    #         if entity['text'] != tokens:
+    #             print("Error entity:", new_entity['text'], ", tokens:'", tokens, "'")
+    # 
+    #     return new_entities
 
 @plac.annotations(
     host=("Hostname where to run the service", "option", "host", str),
     port=("Port where to run the service", "option", "port", str),
-    space_groups_patterns=("Directory containing configuration and patterns for the EntityRuler", "option", 
-                           "space_groups_patterns", Path)
+    config=("Configuration file", "option", "config", str)
 )
-def init(host='0.0.0.0', port='8080', space_groups_patterns=None):
+def init(host='0.0.0.0', port='8080', config="config.json"):
     app = Service()
 
     bottle.route('/process/link', method="POST")(app.process_link)
     bottle.route('/classify/tc', method="POST")(app.classify_tc)
     bottle.route('/classify/formula', method="POST")(app.classify_formula)
 
-    if space_groups_patterns:
-        print("Loading space group patterns...")
-        space_group_nlp = spacy.load("en_core_web_sm", disable=["parser", "textcat", "ner"])
-        ruler = space_group_nlp.add_pipe("entity_ruler")
-        ruler.from_disk(space_groups_patterns)
-        app.space_group_nlp = space_group_nlp
-        bottle.route('/process/spacegroup/text', method="POST")(app.process_space_group_text)
+    if config and os.path.exists(config):
+        
+        print("Loading configuration...")
+        configuration = {}
+        with open(config, 'r') as fp:
+            configuration = json.load(fp)
+
+        ner = spacy.load("en_core_web_sm", disable=["parser", "textcat", "ner"])
+
+        entity_ruler = ner.add_pipe("entity_ruler")
+        print("Loading space groups patterns...")
+        entity_ruler.from_disk(configuration['space-groups'])
+        print("Loading crystal structure patterns...")
+        entity_ruler.from_disk(configuration['crystal-structure'])
+
+        bottle.route('/process/structure/text', method="POST")(app.process_structure_text)
+        app.ner = ner
+    else: 
+        print("No space groups patterns... ignoring... ")
 
     bottle.route('/info')(app.info)
     bottle.debug(False)

@@ -1,0 +1,3141 @@
+{"label":"crystal-structure","pattern":"NaCl"}
+{"label":"crystal-structure","pattern":"Na Cl"}
+{"label":"crystal-structure","pattern":"Na Cl-type"}
+{"label":"crystal-structure","pattern":"Na Cl- type"}
+{"label":"crystal-structure","pattern":"Na Cl - type"}
+{"label":"crystal-structure","pattern":"Na Cl -type"}
+{"label":"crystal-structure","pattern":"ClNa"}
+{"label":"crystal-structure","pattern":"Cl Na"}
+{"label":"crystal-structure","pattern":"Cl Na-type"}
+{"label":"crystal-structure","pattern":"Cl Na- type"}
+{"label":"crystal-structure","pattern":"Cl Na - type"}
+{"label":"crystal-structure","pattern":"Cl Na -type"}
+{"label":"crystal-structure","pattern":"GdFeO3"}
+{"label":"crystal-structure","pattern":"Gd Fe O 3"}
+{"label":"crystal-structure","pattern":"Gd Fe O3"}
+{"label":"crystal-structure","pattern":"Gd Fe O3-type"}
+{"label":"crystal-structure","pattern":"Gd Fe O3- type"}
+{"label":"crystal-structure","pattern":"Gd Fe O3 - type"}
+{"label":"crystal-structure","pattern":"Gd Fe O3 -type"}
+{"label":"crystal-structure","pattern":"GdO3Fe"}
+{"label":"crystal-structure","pattern":"Gd O 3 Fe"}
+{"label":"crystal-structure","pattern":"Gd O3 Fe"}
+{"label":"crystal-structure","pattern":"Gd O3 Fe-type"}
+{"label":"crystal-structure","pattern":"Gd O3 Fe- type"}
+{"label":"crystal-structure","pattern":"Gd O3 Fe - type"}
+{"label":"crystal-structure","pattern":"Gd O3 Fe -type"}
+{"label":"crystal-structure","pattern":"FeGdO3"}
+{"label":"crystal-structure","pattern":"Fe Gd O 3"}
+{"label":"crystal-structure","pattern":"Fe Gd O3"}
+{"label":"crystal-structure","pattern":"Fe Gd O3-type"}
+{"label":"crystal-structure","pattern":"Fe Gd O3- type"}
+{"label":"crystal-structure","pattern":"Fe Gd O3 - type"}
+{"label":"crystal-structure","pattern":"Fe Gd O3 -type"}
+{"label":"crystal-structure","pattern":"FeO3Gd"}
+{"label":"crystal-structure","pattern":"Fe O 3 Gd"}
+{"label":"crystal-structure","pattern":"Fe O3 Gd"}
+{"label":"crystal-structure","pattern":"Fe O3 Gd-type"}
+{"label":"crystal-structure","pattern":"Fe O3 Gd- type"}
+{"label":"crystal-structure","pattern":"Fe O3 Gd - type"}
+{"label":"crystal-structure","pattern":"Fe O3 Gd -type"}
+{"label":"crystal-structure","pattern":"O3GdFe"}
+{"label":"crystal-structure","pattern":"O 3 Gd Fe"}
+{"label":"crystal-structure","pattern":"O3 Gd Fe"}
+{"label":"crystal-structure","pattern":"O3 Gd Fe-type"}
+{"label":"crystal-structure","pattern":"O3 Gd Fe- type"}
+{"label":"crystal-structure","pattern":"O3 Gd Fe - type"}
+{"label":"crystal-structure","pattern":"O3 Gd Fe -type"}
+{"label":"crystal-structure","pattern":"O3FeGd"}
+{"label":"crystal-structure","pattern":"O 3 Fe Gd"}
+{"label":"crystal-structure","pattern":"O3 Fe Gd"}
+{"label":"crystal-structure","pattern":"O3 Fe Gd-type"}
+{"label":"crystal-structure","pattern":"O3 Fe Gd- type"}
+{"label":"crystal-structure","pattern":"O3 Fe Gd - type"}
+{"label":"crystal-structure","pattern":"O3 Fe Gd -type"}
+{"label":"crystal-structure","pattern":"MgAl2O4"}
+{"label":"crystal-structure","pattern":"Mg Al 2 O 4"}
+{"label":"crystal-structure","pattern":"Mg Al2 O4"}
+{"label":"crystal-structure","pattern":"Mg Al2 O4-type"}
+{"label":"crystal-structure","pattern":"Mg Al2 O4- type"}
+{"label":"crystal-structure","pattern":"Mg Al2 O4 - type"}
+{"label":"crystal-structure","pattern":"Mg Al2 O4 -type"}
+{"label":"crystal-structure","pattern":"MgO4Al2"}
+{"label":"crystal-structure","pattern":"Mg O 4 Al 2"}
+{"label":"crystal-structure","pattern":"Mg O4 Al2"}
+{"label":"crystal-structure","pattern":"Mg O4 Al2-type"}
+{"label":"crystal-structure","pattern":"Mg O4 Al2- type"}
+{"label":"crystal-structure","pattern":"Mg O4 Al2 - type"}
+{"label":"crystal-structure","pattern":"Mg O4 Al2 -type"}
+{"label":"crystal-structure","pattern":"Al2MgO4"}
+{"label":"crystal-structure","pattern":"Al 2 Mg O 4"}
+{"label":"crystal-structure","pattern":"Al2 Mg O4"}
+{"label":"crystal-structure","pattern":"Al2 Mg O4-type"}
+{"label":"crystal-structure","pattern":"Al2 Mg O4- type"}
+{"label":"crystal-structure","pattern":"Al2 Mg O4 - type"}
+{"label":"crystal-structure","pattern":"Al2 Mg O4 -type"}
+{"label":"crystal-structure","pattern":"Al2O4Mg"}
+{"label":"crystal-structure","pattern":"Al 2 O 4 Mg"}
+{"label":"crystal-structure","pattern":"Al2 O4 Mg"}
+{"label":"crystal-structure","pattern":"Al2 O4 Mg-type"}
+{"label":"crystal-structure","pattern":"Al2 O4 Mg- type"}
+{"label":"crystal-structure","pattern":"Al2 O4 Mg - type"}
+{"label":"crystal-structure","pattern":"Al2 O4 Mg -type"}
+{"label":"crystal-structure","pattern":"O4MgAl2"}
+{"label":"crystal-structure","pattern":"O 4 Mg Al 2"}
+{"label":"crystal-structure","pattern":"O4 Mg Al2"}
+{"label":"crystal-structure","pattern":"O4 Mg Al2-type"}
+{"label":"crystal-structure","pattern":"O4 Mg Al2- type"}
+{"label":"crystal-structure","pattern":"O4 Mg Al2 - type"}
+{"label":"crystal-structure","pattern":"O4 Mg Al2 -type"}
+{"label":"crystal-structure","pattern":"O4Al2Mg"}
+{"label":"crystal-structure","pattern":"O 4 Al 2 Mg"}
+{"label":"crystal-structure","pattern":"O4 Al2 Mg"}
+{"label":"crystal-structure","pattern":"O4 Al2 Mg-type"}
+{"label":"crystal-structure","pattern":"O4 Al2 Mg- type"}
+{"label":"crystal-structure","pattern":"O4 Al2 Mg - type"}
+{"label":"crystal-structure","pattern":"O4 Al2 Mg -type"}
+{"label":"crystal-structure","pattern":"CaTiO3"}
+{"label":"crystal-structure","pattern":"Ca Ti O 3"}
+{"label":"crystal-structure","pattern":"Ca Ti O3"}
+{"label":"crystal-structure","pattern":"Ca Ti O3-type"}
+{"label":"crystal-structure","pattern":"Ca Ti O3- type"}
+{"label":"crystal-structure","pattern":"Ca Ti O3 - type"}
+{"label":"crystal-structure","pattern":"Ca Ti O3 -type"}
+{"label":"crystal-structure","pattern":"CaO3Ti"}
+{"label":"crystal-structure","pattern":"Ca O 3 Ti"}
+{"label":"crystal-structure","pattern":"Ca O3 Ti"}
+{"label":"crystal-structure","pattern":"Ca O3 Ti-type"}
+{"label":"crystal-structure","pattern":"Ca O3 Ti- type"}
+{"label":"crystal-structure","pattern":"Ca O3 Ti - type"}
+{"label":"crystal-structure","pattern":"Ca O3 Ti -type"}
+{"label":"crystal-structure","pattern":"TiCaO3"}
+{"label":"crystal-structure","pattern":"Ti Ca O 3"}
+{"label":"crystal-structure","pattern":"Ti Ca O3"}
+{"label":"crystal-structure","pattern":"Ti Ca O3-type"}
+{"label":"crystal-structure","pattern":"Ti Ca O3- type"}
+{"label":"crystal-structure","pattern":"Ti Ca O3 - type"}
+{"label":"crystal-structure","pattern":"Ti Ca O3 -type"}
+{"label":"crystal-structure","pattern":"TiO3Ca"}
+{"label":"crystal-structure","pattern":"Ti O 3 Ca"}
+{"label":"crystal-structure","pattern":"Ti O3 Ca"}
+{"label":"crystal-structure","pattern":"Ti O3 Ca-type"}
+{"label":"crystal-structure","pattern":"Ti O3 Ca- type"}
+{"label":"crystal-structure","pattern":"Ti O3 Ca - type"}
+{"label":"crystal-structure","pattern":"Ti O3 Ca -type"}
+{"label":"crystal-structure","pattern":"O3CaTi"}
+{"label":"crystal-structure","pattern":"O 3 Ca Ti"}
+{"label":"crystal-structure","pattern":"O3 Ca Ti"}
+{"label":"crystal-structure","pattern":"O3 Ca Ti-type"}
+{"label":"crystal-structure","pattern":"O3 Ca Ti- type"}
+{"label":"crystal-structure","pattern":"O3 Ca Ti - type"}
+{"label":"crystal-structure","pattern":"O3 Ca Ti -type"}
+{"label":"crystal-structure","pattern":"O3TiCa"}
+{"label":"crystal-structure","pattern":"O 3 Ti Ca"}
+{"label":"crystal-structure","pattern":"O3 Ti Ca"}
+{"label":"crystal-structure","pattern":"O3 Ti Ca-type"}
+{"label":"crystal-structure","pattern":"O3 Ti Ca- type"}
+{"label":"crystal-structure","pattern":"O3 Ti Ca - type"}
+{"label":"crystal-structure","pattern":"O3 Ti Ca -type"}
+{"label":"crystal-structure","pattern":"MgCu2"}
+{"label":"crystal-structure","pattern":"Mg Cu 2"}
+{"label":"crystal-structure","pattern":"Mg Cu2"}
+{"label":"crystal-structure","pattern":"Mg Cu2-type"}
+{"label":"crystal-structure","pattern":"Mg Cu2- type"}
+{"label":"crystal-structure","pattern":"Mg Cu2 - type"}
+{"label":"crystal-structure","pattern":"Mg Cu2 -type"}
+{"label":"crystal-structure","pattern":"Cu2Mg"}
+{"label":"crystal-structure","pattern":"Cu 2 Mg"}
+{"label":"crystal-structure","pattern":"Cu2 Mg"}
+{"label":"crystal-structure","pattern":"Cu2 Mg-type"}
+{"label":"crystal-structure","pattern":"Cu2 Mg- type"}
+{"label":"crystal-structure","pattern":"Cu2 Mg - type"}
+{"label":"crystal-structure","pattern":"Cu2 Mg -type"}
+{"label":"crystal-structure","pattern":"Cu"}
+{"label":"crystal-structure","pattern":"Cu-type"}
+{"label":"crystal-structure","pattern":"Cu- type"}
+{"label":"crystal-structure","pattern":"Cu - type"}
+{"label":"crystal-structure","pattern":"Cu -type"}
+{"label":"crystal-structure","pattern":"Zn"}
+{"label":"crystal-structure","pattern":"Zn-type"}
+{"label":"crystal-structure","pattern":"Zn- type"}
+{"label":"crystal-structure","pattern":"Zn - type"}
+{"label":"crystal-structure","pattern":"Zn -type"}
+{"label":"crystal-structure","pattern":"Ba2Cu3YO7"}
+{"label":"crystal-structure","pattern":"Ba 2 Cu 3 Y O 7"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 Y O7"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 Y O7-type"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 Y O7- type"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 Y O7 - type"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 Y O7 -type"}
+{"label":"crystal-structure","pattern":"Ba2Cu3O7Y"}
+{"label":"crystal-structure","pattern":"Ba 2 Cu 3 O 7 Y"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 O7 Y"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 O7 Y-type"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 O7 Y- type"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 O7 Y - type"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 O7 Y -type"}
+{"label":"crystal-structure","pattern":"Ba2YCu3O7"}
+{"label":"crystal-structure","pattern":"Ba 2 Y Cu 3 O 7"}
+{"label":"crystal-structure","pattern":"Ba2 Y Cu3 O7"}
+{"label":"crystal-structure","pattern":"Ba2 Y Cu3 O7-type"}
+{"label":"crystal-structure","pattern":"Ba2 Y Cu3 O7- type"}
+{"label":"crystal-structure","pattern":"Ba2 Y Cu3 O7 - type"}
+{"label":"crystal-structure","pattern":"Ba2 Y Cu3 O7 -type"}
+{"label":"crystal-structure","pattern":"Ba2YO7Cu3"}
+{"label":"crystal-structure","pattern":"Ba 2 Y O 7 Cu 3"}
+{"label":"crystal-structure","pattern":"Ba2 Y O7 Cu3"}
+{"label":"crystal-structure","pattern":"Ba2 Y O7 Cu3-type"}
+{"label":"crystal-structure","pattern":"Ba2 Y O7 Cu3- type"}
+{"label":"crystal-structure","pattern":"Ba2 Y O7 Cu3 - type"}
+{"label":"crystal-structure","pattern":"Ba2 Y O7 Cu3 -type"}
+{"label":"crystal-structure","pattern":"Ba2O7Cu3Y"}
+{"label":"crystal-structure","pattern":"Ba 2 O 7 Cu 3 Y"}
+{"label":"crystal-structure","pattern":"Ba2 O7 Cu3 Y"}
+{"label":"crystal-structure","pattern":"Ba2 O7 Cu3 Y-type"}
+{"label":"crystal-structure","pattern":"Ba2 O7 Cu3 Y- type"}
+{"label":"crystal-structure","pattern":"Ba2 O7 Cu3 Y - type"}
+{"label":"crystal-structure","pattern":"Ba2 O7 Cu3 Y -type"}
+{"label":"crystal-structure","pattern":"Ba2O7YCu3"}
+{"label":"crystal-structure","pattern":"Ba 2 O 7 Y Cu 3"}
+{"label":"crystal-structure","pattern":"Ba2 O7 Y Cu3"}
+{"label":"crystal-structure","pattern":"Ba2 O7 Y Cu3-type"}
+{"label":"crystal-structure","pattern":"Ba2 O7 Y Cu3- type"}
+{"label":"crystal-structure","pattern":"Ba2 O7 Y Cu3 - type"}
+{"label":"crystal-structure","pattern":"Ba2 O7 Y Cu3 -type"}
+{"label":"crystal-structure","pattern":"Cu3Ba2YO7"}
+{"label":"crystal-structure","pattern":"Cu 3 Ba 2 Y O 7"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 Y O7"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 Y O7-type"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 Y O7- type"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 Y O7 - type"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 Y O7 -type"}
+{"label":"crystal-structure","pattern":"Cu3Ba2O7Y"}
+{"label":"crystal-structure","pattern":"Cu 3 Ba 2 O 7 Y"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 O7 Y"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 O7 Y-type"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 O7 Y- type"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 O7 Y - type"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 O7 Y -type"}
+{"label":"crystal-structure","pattern":"Cu3YBa2O7"}
+{"label":"crystal-structure","pattern":"Cu 3 Y Ba 2 O 7"}
+{"label":"crystal-structure","pattern":"Cu3 Y Ba2 O7"}
+{"label":"crystal-structure","pattern":"Cu3 Y Ba2 O7-type"}
+{"label":"crystal-structure","pattern":"Cu3 Y Ba2 O7- type"}
+{"label":"crystal-structure","pattern":"Cu3 Y Ba2 O7 - type"}
+{"label":"crystal-structure","pattern":"Cu3 Y Ba2 O7 -type"}
+{"label":"crystal-structure","pattern":"Cu3YO7Ba2"}
+{"label":"crystal-structure","pattern":"Cu 3 Y O 7 Ba 2"}
+{"label":"crystal-structure","pattern":"Cu3 Y O7 Ba2"}
+{"label":"crystal-structure","pattern":"Cu3 Y O7 Ba2-type"}
+{"label":"crystal-structure","pattern":"Cu3 Y O7 Ba2- type"}
+{"label":"crystal-structure","pattern":"Cu3 Y O7 Ba2 - type"}
+{"label":"crystal-structure","pattern":"Cu3 Y O7 Ba2 -type"}
+{"label":"crystal-structure","pattern":"Cu3O7Ba2Y"}
+{"label":"crystal-structure","pattern":"Cu 3 O 7 Ba 2 Y"}
+{"label":"crystal-structure","pattern":"Cu3 O7 Ba2 Y"}
+{"label":"crystal-structure","pattern":"Cu3 O7 Ba2 Y-type"}
+{"label":"crystal-structure","pattern":"Cu3 O7 Ba2 Y- type"}
+{"label":"crystal-structure","pattern":"Cu3 O7 Ba2 Y - type"}
+{"label":"crystal-structure","pattern":"Cu3 O7 Ba2 Y -type"}
+{"label":"crystal-structure","pattern":"Cu3O7YBa2"}
+{"label":"crystal-structure","pattern":"Cu 3 O 7 Y Ba 2"}
+{"label":"crystal-structure","pattern":"Cu3 O7 Y Ba2"}
+{"label":"crystal-structure","pattern":"Cu3 O7 Y Ba2-type"}
+{"label":"crystal-structure","pattern":"Cu3 O7 Y Ba2- type"}
+{"label":"crystal-structure","pattern":"Cu3 O7 Y Ba2 - type"}
+{"label":"crystal-structure","pattern":"Cu3 O7 Y Ba2 -type"}
+{"label":"crystal-structure","pattern":"YBa2Cu3O7"}
+{"label":"crystal-structure","pattern":"Y Ba 2 Cu 3 O 7"}
+{"label":"crystal-structure","pattern":"Y Ba2 Cu3 O7"}
+{"label":"crystal-structure","pattern":"Y Ba2 Cu3 O7-type"}
+{"label":"crystal-structure","pattern":"Y Ba2 Cu3 O7- type"}
+{"label":"crystal-structure","pattern":"Y Ba2 Cu3 O7 - type"}
+{"label":"crystal-structure","pattern":"Y Ba2 Cu3 O7 -type"}
+{"label":"crystal-structure","pattern":"YBa2O7Cu3"}
+{"label":"crystal-structure","pattern":"Y Ba 2 O 7 Cu 3"}
+{"label":"crystal-structure","pattern":"Y Ba2 O7 Cu3"}
+{"label":"crystal-structure","pattern":"Y Ba2 O7 Cu3-type"}
+{"label":"crystal-structure","pattern":"Y Ba2 O7 Cu3- type"}
+{"label":"crystal-structure","pattern":"Y Ba2 O7 Cu3 - type"}
+{"label":"crystal-structure","pattern":"Y Ba2 O7 Cu3 -type"}
+{"label":"crystal-structure","pattern":"YCu3Ba2O7"}
+{"label":"crystal-structure","pattern":"Y Cu 3 Ba 2 O 7"}
+{"label":"crystal-structure","pattern":"Y Cu3 Ba2 O7"}
+{"label":"crystal-structure","pattern":"Y Cu3 Ba2 O7-type"}
+{"label":"crystal-structure","pattern":"Y Cu3 Ba2 O7- type"}
+{"label":"crystal-structure","pattern":"Y Cu3 Ba2 O7 - type"}
+{"label":"crystal-structure","pattern":"Y Cu3 Ba2 O7 -type"}
+{"label":"crystal-structure","pattern":"YCu3O7Ba2"}
+{"label":"crystal-structure","pattern":"Y Cu 3 O 7 Ba 2"}
+{"label":"crystal-structure","pattern":"Y Cu3 O7 Ba2"}
+{"label":"crystal-structure","pattern":"Y Cu3 O7 Ba2-type"}
+{"label":"crystal-structure","pattern":"Y Cu3 O7 Ba2- type"}
+{"label":"crystal-structure","pattern":"Y Cu3 O7 Ba2 - type"}
+{"label":"crystal-structure","pattern":"Y Cu3 O7 Ba2 -type"}
+{"label":"crystal-structure","pattern":"YO7Ba2Cu3"}
+{"label":"crystal-structure","pattern":"Y O 7 Ba 2 Cu 3"}
+{"label":"crystal-structure","pattern":"Y O7 Ba2 Cu3"}
+{"label":"crystal-structure","pattern":"Y O7 Ba2 Cu3-type"}
+{"label":"crystal-structure","pattern":"Y O7 Ba2 Cu3- type"}
+{"label":"crystal-structure","pattern":"Y O7 Ba2 Cu3 - type"}
+{"label":"crystal-structure","pattern":"Y O7 Ba2 Cu3 -type"}
+{"label":"crystal-structure","pattern":"YO7Cu3Ba2"}
+{"label":"crystal-structure","pattern":"Y O 7 Cu 3 Ba 2"}
+{"label":"crystal-structure","pattern":"Y O7 Cu3 Ba2"}
+{"label":"crystal-structure","pattern":"Y O7 Cu3 Ba2-type"}
+{"label":"crystal-structure","pattern":"Y O7 Cu3 Ba2- type"}
+{"label":"crystal-structure","pattern":"Y O7 Cu3 Ba2 - type"}
+{"label":"crystal-structure","pattern":"Y O7 Cu3 Ba2 -type"}
+{"label":"crystal-structure","pattern":"O7Ba2Cu3Y"}
+{"label":"crystal-structure","pattern":"O 7 Ba 2 Cu 3 Y"}
+{"label":"crystal-structure","pattern":"O7 Ba2 Cu3 Y"}
+{"label":"crystal-structure","pattern":"O7 Ba2 Cu3 Y-type"}
+{"label":"crystal-structure","pattern":"O7 Ba2 Cu3 Y- type"}
+{"label":"crystal-structure","pattern":"O7 Ba2 Cu3 Y - type"}
+{"label":"crystal-structure","pattern":"O7 Ba2 Cu3 Y -type"}
+{"label":"crystal-structure","pattern":"O7Ba2YCu3"}
+{"label":"crystal-structure","pattern":"O 7 Ba 2 Y Cu 3"}
+{"label":"crystal-structure","pattern":"O7 Ba2 Y Cu3"}
+{"label":"crystal-structure","pattern":"O7 Ba2 Y Cu3-type"}
+{"label":"crystal-structure","pattern":"O7 Ba2 Y Cu3- type"}
+{"label":"crystal-structure","pattern":"O7 Ba2 Y Cu3 - type"}
+{"label":"crystal-structure","pattern":"O7 Ba2 Y Cu3 -type"}
+{"label":"crystal-structure","pattern":"O7Cu3Ba2Y"}
+{"label":"crystal-structure","pattern":"O 7 Cu 3 Ba 2 Y"}
+{"label":"crystal-structure","pattern":"O7 Cu3 Ba2 Y"}
+{"label":"crystal-structure","pattern":"O7 Cu3 Ba2 Y-type"}
+{"label":"crystal-structure","pattern":"O7 Cu3 Ba2 Y- type"}
+{"label":"crystal-structure","pattern":"O7 Cu3 Ba2 Y - type"}
+{"label":"crystal-structure","pattern":"O7 Cu3 Ba2 Y -type"}
+{"label":"crystal-structure","pattern":"O7Cu3YBa2"}
+{"label":"crystal-structure","pattern":"O 7 Cu 3 Y Ba 2"}
+{"label":"crystal-structure","pattern":"O7 Cu3 Y Ba2"}
+{"label":"crystal-structure","pattern":"O7 Cu3 Y Ba2-type"}
+{"label":"crystal-structure","pattern":"O7 Cu3 Y Ba2- type"}
+{"label":"crystal-structure","pattern":"O7 Cu3 Y Ba2 - type"}
+{"label":"crystal-structure","pattern":"O7 Cu3 Y Ba2 -type"}
+{"label":"crystal-structure","pattern":"O7YBa2Cu3"}
+{"label":"crystal-structure","pattern":"O 7 Y Ba 2 Cu 3"}
+{"label":"crystal-structure","pattern":"O7 Y Ba2 Cu3"}
+{"label":"crystal-structure","pattern":"O7 Y Ba2 Cu3-type"}
+{"label":"crystal-structure","pattern":"O7 Y Ba2 Cu3- type"}
+{"label":"crystal-structure","pattern":"O7 Y Ba2 Cu3 - type"}
+{"label":"crystal-structure","pattern":"O7 Y Ba2 Cu3 -type"}
+{"label":"crystal-structure","pattern":"O7YCu3Ba2"}
+{"label":"crystal-structure","pattern":"O 7 Y Cu 3 Ba 2"}
+{"label":"crystal-structure","pattern":"O7 Y Cu3 Ba2"}
+{"label":"crystal-structure","pattern":"O7 Y Cu3 Ba2-type"}
+{"label":"crystal-structure","pattern":"O7 Y Cu3 Ba2- type"}
+{"label":"crystal-structure","pattern":"O7 Y Cu3 Ba2 - type"}
+{"label":"crystal-structure","pattern":"O7 Y Cu3 Ba2 -type"}
+{"label":"crystal-structure","pattern":"W"}
+{"label":"crystal-structure","pattern":"W-type"}
+{"label":"crystal-structure","pattern":"W- type"}
+{"label":"crystal-structure","pattern":"W - type"}
+{"label":"crystal-structure","pattern":"W -type"}
+{"label":"crystal-structure","pattern":"LaAlO3"}
+{"label":"crystal-structure","pattern":"La Al O 3"}
+{"label":"crystal-structure","pattern":"La Al O3"}
+{"label":"crystal-structure","pattern":"La Al O3-type"}
+{"label":"crystal-structure","pattern":"La Al O3- type"}
+{"label":"crystal-structure","pattern":"La Al O3 - type"}
+{"label":"crystal-structure","pattern":"La Al O3 -type"}
+{"label":"crystal-structure","pattern":"LaO3Al"}
+{"label":"crystal-structure","pattern":"La O 3 Al"}
+{"label":"crystal-structure","pattern":"La O3 Al"}
+{"label":"crystal-structure","pattern":"La O3 Al-type"}
+{"label":"crystal-structure","pattern":"La O3 Al- type"}
+{"label":"crystal-structure","pattern":"La O3 Al - type"}
+{"label":"crystal-structure","pattern":"La O3 Al -type"}
+{"label":"crystal-structure","pattern":"AlLaO3"}
+{"label":"crystal-structure","pattern":"Al La O 3"}
+{"label":"crystal-structure","pattern":"Al La O3"}
+{"label":"crystal-structure","pattern":"Al La O3-type"}
+{"label":"crystal-structure","pattern":"Al La O3- type"}
+{"label":"crystal-structure","pattern":"Al La O3 - type"}
+{"label":"crystal-structure","pattern":"Al La O3 -type"}
+{"label":"crystal-structure","pattern":"AlO3La"}
+{"label":"crystal-structure","pattern":"Al O 3 La"}
+{"label":"crystal-structure","pattern":"Al O3 La"}
+{"label":"crystal-structure","pattern":"Al O3 La-type"}
+{"label":"crystal-structure","pattern":"Al O3 La- type"}
+{"label":"crystal-structure","pattern":"Al O3 La - type"}
+{"label":"crystal-structure","pattern":"Al O3 La -type"}
+{"label":"crystal-structure","pattern":"O3LaAl"}
+{"label":"crystal-structure","pattern":"O 3 La Al"}
+{"label":"crystal-structure","pattern":"O3 La Al"}
+{"label":"crystal-structure","pattern":"O3 La Al-type"}
+{"label":"crystal-structure","pattern":"O3 La Al- type"}
+{"label":"crystal-structure","pattern":"O3 La Al - type"}
+{"label":"crystal-structure","pattern":"O3 La Al -type"}
+{"label":"crystal-structure","pattern":"O3AlLa"}
+{"label":"crystal-structure","pattern":"O 3 Al La"}
+{"label":"crystal-structure","pattern":"O3 Al La"}
+{"label":"crystal-structure","pattern":"O3 Al La-type"}
+{"label":"crystal-structure","pattern":"O3 Al La- type"}
+{"label":"crystal-structure","pattern":"O3 Al La - type"}
+{"label":"crystal-structure","pattern":"O3 Al La -type"}
+{"label":"crystal-structure","pattern":"CsCl"}
+{"label":"crystal-structure","pattern":"Cs Cl"}
+{"label":"crystal-structure","pattern":"Cs Cl-type"}
+{"label":"crystal-structure","pattern":"Cs Cl- type"}
+{"label":"crystal-structure","pattern":"Cs Cl - type"}
+{"label":"crystal-structure","pattern":"Cs Cl -type"}
+{"label":"crystal-structure","pattern":"ClCs"}
+{"label":"crystal-structure","pattern":"Cl Cs"}
+{"label":"crystal-structure","pattern":"Cl Cs-type"}
+{"label":"crystal-structure","pattern":"Cl Cs- type"}
+{"label":"crystal-structure","pattern":"Cl Cs - type"}
+{"label":"crystal-structure","pattern":"Cl Cs -type"}
+{"label":"crystal-structure","pattern":"Ca2Nb2O7"}
+{"label":"crystal-structure","pattern":"Ca 2 Nb 2 O 7"}
+{"label":"crystal-structure","pattern":"Ca2 Nb2 O7"}
+{"label":"crystal-structure","pattern":"Ca2 Nb2 O7-type"}
+{"label":"crystal-structure","pattern":"Ca2 Nb2 O7- type"}
+{"label":"crystal-structure","pattern":"Ca2 Nb2 O7 - type"}
+{"label":"crystal-structure","pattern":"Ca2 Nb2 O7 -type"}
+{"label":"crystal-structure","pattern":"Ca2O7Nb2"}
+{"label":"crystal-structure","pattern":"Ca 2 O 7 Nb 2"}
+{"label":"crystal-structure","pattern":"Ca2 O7 Nb2"}
+{"label":"crystal-structure","pattern":"Ca2 O7 Nb2-type"}
+{"label":"crystal-structure","pattern":"Ca2 O7 Nb2- type"}
+{"label":"crystal-structure","pattern":"Ca2 O7 Nb2 - type"}
+{"label":"crystal-structure","pattern":"Ca2 O7 Nb2 -type"}
+{"label":"crystal-structure","pattern":"Nb2Ca2O7"}
+{"label":"crystal-structure","pattern":"Nb 2 Ca 2 O 7"}
+{"label":"crystal-structure","pattern":"Nb2 Ca2 O7"}
+{"label":"crystal-structure","pattern":"Nb2 Ca2 O7-type"}
+{"label":"crystal-structure","pattern":"Nb2 Ca2 O7- type"}
+{"label":"crystal-structure","pattern":"Nb2 Ca2 O7 - type"}
+{"label":"crystal-structure","pattern":"Nb2 Ca2 O7 -type"}
+{"label":"crystal-structure","pattern":"Nb2O7Ca2"}
+{"label":"crystal-structure","pattern":"Nb 2 O 7 Ca 2"}
+{"label":"crystal-structure","pattern":"Nb2 O7 Ca2"}
+{"label":"crystal-structure","pattern":"Nb2 O7 Ca2-type"}
+{"label":"crystal-structure","pattern":"Nb2 O7 Ca2- type"}
+{"label":"crystal-structure","pattern":"Nb2 O7 Ca2 - type"}
+{"label":"crystal-structure","pattern":"Nb2 O7 Ca2 -type"}
+{"label":"crystal-structure","pattern":"O7Ca2Nb2"}
+{"label":"crystal-structure","pattern":"O 7 Ca 2 Nb 2"}
+{"label":"crystal-structure","pattern":"O7 Ca2 Nb2"}
+{"label":"crystal-structure","pattern":"O7 Ca2 Nb2-type"}
+{"label":"crystal-structure","pattern":"O7 Ca2 Nb2- type"}
+{"label":"crystal-structure","pattern":"O7 Ca2 Nb2 - type"}
+{"label":"crystal-structure","pattern":"O7 Ca2 Nb2 -type"}
+{"label":"crystal-structure","pattern":"O7Nb2Ca2"}
+{"label":"crystal-structure","pattern":"O 7 Nb 2 Ca 2"}
+{"label":"crystal-structure","pattern":"O7 Nb2 Ca2"}
+{"label":"crystal-structure","pattern":"O7 Nb2 Ca2-type"}
+{"label":"crystal-structure","pattern":"O7 Nb2 Ca2- type"}
+{"label":"crystal-structure","pattern":"O7 Nb2 Ca2 - type"}
+{"label":"crystal-structure","pattern":"O7 Nb2 Ca2 -type"}
+{"label":"crystal-structure","pattern":"Cu3Au"}
+{"label":"crystal-structure","pattern":"Cu 3 Au"}
+{"label":"crystal-structure","pattern":"Cu3 Au"}
+{"label":"crystal-structure","pattern":"Cu3 Au-type"}
+{"label":"crystal-structure","pattern":"Cu3 Au- type"}
+{"label":"crystal-structure","pattern":"Cu3 Au - type"}
+{"label":"crystal-structure","pattern":"Cu3 Au -type"}
+{"label":"crystal-structure","pattern":"AuCu3"}
+{"label":"crystal-structure","pattern":"Au Cu 3"}
+{"label":"crystal-structure","pattern":"Au Cu3"}
+{"label":"crystal-structure","pattern":"Au Cu3-type"}
+{"label":"crystal-structure","pattern":"Au Cu3- type"}
+{"label":"crystal-structure","pattern":"Au Cu3 - type"}
+{"label":"crystal-structure","pattern":"Au Cu3 -type"}
+{"label":"crystal-structure","pattern":"Mg"}
+{"label":"crystal-structure","pattern":"Mg-type"}
+{"label":"crystal-structure","pattern":"Mg- type"}
+{"label":"crystal-structure","pattern":"Mg - type"}
+{"label":"crystal-structure","pattern":"Mg -type"}
+{"label":"crystal-structure","pattern":"Cu2MnAl"}
+{"label":"crystal-structure","pattern":"Cu 2 Mn Al"}
+{"label":"crystal-structure","pattern":"Cu2 Mn Al"}
+{"label":"crystal-structure","pattern":"Cu2 Mn Al-type"}
+{"label":"crystal-structure","pattern":"Cu2 Mn Al- type"}
+{"label":"crystal-structure","pattern":"Cu2 Mn Al - type"}
+{"label":"crystal-structure","pattern":"Cu2 Mn Al -type"}
+{"label":"crystal-structure","pattern":"Cu2AlMn"}
+{"label":"crystal-structure","pattern":"Cu 2 Al Mn"}
+{"label":"crystal-structure","pattern":"Cu2 Al Mn"}
+{"label":"crystal-structure","pattern":"Cu2 Al Mn-type"}
+{"label":"crystal-structure","pattern":"Cu2 Al Mn- type"}
+{"label":"crystal-structure","pattern":"Cu2 Al Mn - type"}
+{"label":"crystal-structure","pattern":"Cu2 Al Mn -type"}
+{"label":"crystal-structure","pattern":"MnCu2Al"}
+{"label":"crystal-structure","pattern":"Mn Cu 2 Al"}
+{"label":"crystal-structure","pattern":"Mn Cu2 Al"}
+{"label":"crystal-structure","pattern":"Mn Cu2 Al-type"}
+{"label":"crystal-structure","pattern":"Mn Cu2 Al- type"}
+{"label":"crystal-structure","pattern":"Mn Cu2 Al - type"}
+{"label":"crystal-structure","pattern":"Mn Cu2 Al -type"}
+{"label":"crystal-structure","pattern":"MnAlCu2"}
+{"label":"crystal-structure","pattern":"Mn Al Cu 2"}
+{"label":"crystal-structure","pattern":"Mn Al Cu2"}
+{"label":"crystal-structure","pattern":"Mn Al Cu2-type"}
+{"label":"crystal-structure","pattern":"Mn Al Cu2- type"}
+{"label":"crystal-structure","pattern":"Mn Al Cu2 - type"}
+{"label":"crystal-structure","pattern":"Mn Al Cu2 -type"}
+{"label":"crystal-structure","pattern":"AlCu2Mn"}
+{"label":"crystal-structure","pattern":"Al Cu 2 Mn"}
+{"label":"crystal-structure","pattern":"Al Cu2 Mn"}
+{"label":"crystal-structure","pattern":"Al Cu2 Mn-type"}
+{"label":"crystal-structure","pattern":"Al Cu2 Mn- type"}
+{"label":"crystal-structure","pattern":"Al Cu2 Mn - type"}
+{"label":"crystal-structure","pattern":"Al Cu2 Mn -type"}
+{"label":"crystal-structure","pattern":"AlMnCu2"}
+{"label":"crystal-structure","pattern":"Al Mn Cu 2"}
+{"label":"crystal-structure","pattern":"Al Mn Cu2"}
+{"label":"crystal-structure","pattern":"Al Mn Cu2-type"}
+{"label":"crystal-structure","pattern":"Al Mn Cu2- type"}
+{"label":"crystal-structure","pattern":"Al Mn Cu2 - type"}
+{"label":"crystal-structure","pattern":"Al Mn Cu2 -type"}
+{"label":"crystal-structure","pattern":"BaTiO3"}
+{"label":"crystal-structure","pattern":"Ba Ti O 3"}
+{"label":"crystal-structure","pattern":"Ba Ti O3"}
+{"label":"crystal-structure","pattern":"Ba Ti O3-type"}
+{"label":"crystal-structure","pattern":"Ba Ti O3- type"}
+{"label":"crystal-structure","pattern":"Ba Ti O3 - type"}
+{"label":"crystal-structure","pattern":"Ba Ti O3 -type"}
+{"label":"crystal-structure","pattern":"BaO3Ti"}
+{"label":"crystal-structure","pattern":"Ba O 3 Ti"}
+{"label":"crystal-structure","pattern":"Ba O3 Ti"}
+{"label":"crystal-structure","pattern":"Ba O3 Ti-type"}
+{"label":"crystal-structure","pattern":"Ba O3 Ti- type"}
+{"label":"crystal-structure","pattern":"Ba O3 Ti - type"}
+{"label":"crystal-structure","pattern":"Ba O3 Ti -type"}
+{"label":"crystal-structure","pattern":"TiBaO3"}
+{"label":"crystal-structure","pattern":"Ti Ba O 3"}
+{"label":"crystal-structure","pattern":"Ti Ba O3"}
+{"label":"crystal-structure","pattern":"Ti Ba O3-type"}
+{"label":"crystal-structure","pattern":"Ti Ba O3- type"}
+{"label":"crystal-structure","pattern":"Ti Ba O3 - type"}
+{"label":"crystal-structure","pattern":"Ti Ba O3 -type"}
+{"label":"crystal-structure","pattern":"TiO3Ba"}
+{"label":"crystal-structure","pattern":"Ti O 3 Ba"}
+{"label":"crystal-structure","pattern":"Ti O3 Ba"}
+{"label":"crystal-structure","pattern":"Ti O3 Ba-type"}
+{"label":"crystal-structure","pattern":"Ti O3 Ba- type"}
+{"label":"crystal-structure","pattern":"Ti O3 Ba - type"}
+{"label":"crystal-structure","pattern":"Ti O3 Ba -type"}
+{"label":"crystal-structure","pattern":"O3BaTi"}
+{"label":"crystal-structure","pattern":"O 3 Ba Ti"}
+{"label":"crystal-structure","pattern":"O3 Ba Ti"}
+{"label":"crystal-structure","pattern":"O3 Ba Ti-type"}
+{"label":"crystal-structure","pattern":"O3 Ba Ti- type"}
+{"label":"crystal-structure","pattern":"O3 Ba Ti - type"}
+{"label":"crystal-structure","pattern":"O3 Ba Ti -type"}
+{"label":"crystal-structure","pattern":"O3TiBa"}
+{"label":"crystal-structure","pattern":"O 3 Ti Ba"}
+{"label":"crystal-structure","pattern":"O3 Ti Ba"}
+{"label":"crystal-structure","pattern":"O3 Ti Ba-type"}
+{"label":"crystal-structure","pattern":"O3 Ti Ba- type"}
+{"label":"crystal-structure","pattern":"O3 Ti Ba - type"}
+{"label":"crystal-structure","pattern":"O3 Ti Ba -type"}
+{"label":"crystal-structure","pattern":"K2NiF4"}
+{"label":"crystal-structure","pattern":"K 2 Ni F 4"}
+{"label":"crystal-structure","pattern":"K2 Ni F4"}
+{"label":"crystal-structure","pattern":"K2 Ni F4-type"}
+{"label":"crystal-structure","pattern":"K2 Ni F4- type"}
+{"label":"crystal-structure","pattern":"K2 Ni F4 - type"}
+{"label":"crystal-structure","pattern":"K2 Ni F4 -type"}
+{"label":"crystal-structure","pattern":"K2F4Ni"}
+{"label":"crystal-structure","pattern":"K 2 F 4 Ni"}
+{"label":"crystal-structure","pattern":"K2 F4 Ni"}
+{"label":"crystal-structure","pattern":"K2 F4 Ni-type"}
+{"label":"crystal-structure","pattern":"K2 F4 Ni- type"}
+{"label":"crystal-structure","pattern":"K2 F4 Ni - type"}
+{"label":"crystal-structure","pattern":"K2 F4 Ni -type"}
+{"label":"crystal-structure","pattern":"NiK2F4"}
+{"label":"crystal-structure","pattern":"Ni K 2 F 4"}
+{"label":"crystal-structure","pattern":"Ni K2 F4"}
+{"label":"crystal-structure","pattern":"Ni K2 F4-type"}
+{"label":"crystal-structure","pattern":"Ni K2 F4- type"}
+{"label":"crystal-structure","pattern":"Ni K2 F4 - type"}
+{"label":"crystal-structure","pattern":"Ni K2 F4 -type"}
+{"label":"crystal-structure","pattern":"NiF4K2"}
+{"label":"crystal-structure","pattern":"Ni F 4 K 2"}
+{"label":"crystal-structure","pattern":"Ni F4 K2"}
+{"label":"crystal-structure","pattern":"Ni F4 K2-type"}
+{"label":"crystal-structure","pattern":"Ni F4 K2- type"}
+{"label":"crystal-structure","pattern":"Ni F4 K2 - type"}
+{"label":"crystal-structure","pattern":"Ni F4 K2 -type"}
+{"label":"crystal-structure","pattern":"F4K2Ni"}
+{"label":"crystal-structure","pattern":"F 4 K 2 Ni"}
+{"label":"crystal-structure","pattern":"F4 K2 Ni"}
+{"label":"crystal-structure","pattern":"F4 K2 Ni-type"}
+{"label":"crystal-structure","pattern":"F4 K2 Ni- type"}
+{"label":"crystal-structure","pattern":"F4 K2 Ni - type"}
+{"label":"crystal-structure","pattern":"F4 K2 Ni -type"}
+{"label":"crystal-structure","pattern":"F4NiK2"}
+{"label":"crystal-structure","pattern":"F 4 Ni K 2"}
+{"label":"crystal-structure","pattern":"F4 Ni K2"}
+{"label":"crystal-structure","pattern":"F4 Ni K2-type"}
+{"label":"crystal-structure","pattern":"F4 Ni K2- type"}
+{"label":"crystal-structure","pattern":"F4 Ni K2 - type"}
+{"label":"crystal-structure","pattern":"F4 Ni K2 -type"}
+{"label":"crystal-structure","pattern":"NaFeO2"}
+{"label":"crystal-structure","pattern":"Na Fe O 2"}
+{"label":"crystal-structure","pattern":"Na Fe O2"}
+{"label":"crystal-structure","pattern":"Na Fe O2-type"}
+{"label":"crystal-structure","pattern":"Na Fe O2- type"}
+{"label":"crystal-structure","pattern":"Na Fe O2 - type"}
+{"label":"crystal-structure","pattern":"Na Fe O2 -type"}
+{"label":"crystal-structure","pattern":"NaO2Fe"}
+{"label":"crystal-structure","pattern":"Na O 2 Fe"}
+{"label":"crystal-structure","pattern":"Na O2 Fe"}
+{"label":"crystal-structure","pattern":"Na O2 Fe-type"}
+{"label":"crystal-structure","pattern":"Na O2 Fe- type"}
+{"label":"crystal-structure","pattern":"Na O2 Fe - type"}
+{"label":"crystal-structure","pattern":"Na O2 Fe -type"}
+{"label":"crystal-structure","pattern":"FeNaO2"}
+{"label":"crystal-structure","pattern":"Fe Na O 2"}
+{"label":"crystal-structure","pattern":"Fe Na O2"}
+{"label":"crystal-structure","pattern":"Fe Na O2-type"}
+{"label":"crystal-structure","pattern":"Fe Na O2- type"}
+{"label":"crystal-structure","pattern":"Fe Na O2 - type"}
+{"label":"crystal-structure","pattern":"Fe Na O2 -type"}
+{"label":"crystal-structure","pattern":"FeO2Na"}
+{"label":"crystal-structure","pattern":"Fe O 2 Na"}
+{"label":"crystal-structure","pattern":"Fe O2 Na"}
+{"label":"crystal-structure","pattern":"Fe O2 Na-type"}
+{"label":"crystal-structure","pattern":"Fe O2 Na- type"}
+{"label":"crystal-structure","pattern":"Fe O2 Na - type"}
+{"label":"crystal-structure","pattern":"Fe O2 Na -type"}
+{"label":"crystal-structure","pattern":"O2NaFe"}
+{"label":"crystal-structure","pattern":"O 2 Na Fe"}
+{"label":"crystal-structure","pattern":"O2 Na Fe"}
+{"label":"crystal-structure","pattern":"O2 Na Fe-type"}
+{"label":"crystal-structure","pattern":"O2 Na Fe- type"}
+{"label":"crystal-structure","pattern":"O2 Na Fe - type"}
+{"label":"crystal-structure","pattern":"O2 Na Fe -type"}
+{"label":"crystal-structure","pattern":"O2FeNa"}
+{"label":"crystal-structure","pattern":"O 2 Fe Na"}
+{"label":"crystal-structure","pattern":"O2 Fe Na"}
+{"label":"crystal-structure","pattern":"O2 Fe Na-type"}
+{"label":"crystal-structure","pattern":"O2 Fe Na- type"}
+{"label":"crystal-structure","pattern":"O2 Fe Na - type"}
+{"label":"crystal-structure","pattern":"O2 Fe Na -type"}
+{"label":"crystal-structure","pattern":"CaCu5"}
+{"label":"crystal-structure","pattern":"Ca Cu 5"}
+{"label":"crystal-structure","pattern":"Ca Cu5"}
+{"label":"crystal-structure","pattern":"Ca Cu5-type"}
+{"label":"crystal-structure","pattern":"Ca Cu5- type"}
+{"label":"crystal-structure","pattern":"Ca Cu5 - type"}
+{"label":"crystal-structure","pattern":"Ca Cu5 -type"}
+{"label":"crystal-structure","pattern":"Cu5Ca"}
+{"label":"crystal-structure","pattern":"Cu 5 Ca"}
+{"label":"crystal-structure","pattern":"Cu5 Ca"}
+{"label":"crystal-structure","pattern":"Cu5 Ca-type"}
+{"label":"crystal-structure","pattern":"Cu5 Ca- type"}
+{"label":"crystal-structure","pattern":"Cu5 Ca - type"}
+{"label":"crystal-structure","pattern":"Cu5 Ca -type"}
+{"label":"crystal-structure","pattern":"TiNiSi"}
+{"label":"crystal-structure","pattern":"Ti Ni Si"}
+{"label":"crystal-structure","pattern":"Ti Ni Si-type"}
+{"label":"crystal-structure","pattern":"Ti Ni Si- type"}
+{"label":"crystal-structure","pattern":"Ti Ni Si - type"}
+{"label":"crystal-structure","pattern":"Ti Ni Si -type"}
+{"label":"crystal-structure","pattern":"TiSiNi"}
+{"label":"crystal-structure","pattern":"Ti Si Ni"}
+{"label":"crystal-structure","pattern":"Ti Si Ni-type"}
+{"label":"crystal-structure","pattern":"Ti Si Ni- type"}
+{"label":"crystal-structure","pattern":"Ti Si Ni - type"}
+{"label":"crystal-structure","pattern":"Ti Si Ni -type"}
+{"label":"crystal-structure","pattern":"NiTiSi"}
+{"label":"crystal-structure","pattern":"Ni Ti Si"}
+{"label":"crystal-structure","pattern":"Ni Ti Si-type"}
+{"label":"crystal-structure","pattern":"Ni Ti Si- type"}
+{"label":"crystal-structure","pattern":"Ni Ti Si - type"}
+{"label":"crystal-structure","pattern":"Ni Ti Si -type"}
+{"label":"crystal-structure","pattern":"NiSiTi"}
+{"label":"crystal-structure","pattern":"Ni Si Ti"}
+{"label":"crystal-structure","pattern":"Ni Si Ti-type"}
+{"label":"crystal-structure","pattern":"Ni Si Ti- type"}
+{"label":"crystal-structure","pattern":"Ni Si Ti - type"}
+{"label":"crystal-structure","pattern":"Ni Si Ti -type"}
+{"label":"crystal-structure","pattern":"SiTiNi"}
+{"label":"crystal-structure","pattern":"Si Ti Ni"}
+{"label":"crystal-structure","pattern":"Si Ti Ni-type"}
+{"label":"crystal-structure","pattern":"Si Ti Ni- type"}
+{"label":"crystal-structure","pattern":"Si Ti Ni - type"}
+{"label":"crystal-structure","pattern":"Si Ti Ni -type"}
+{"label":"crystal-structure","pattern":"SiNiTi"}
+{"label":"crystal-structure","pattern":"Si Ni Ti"}
+{"label":"crystal-structure","pattern":"Si Ni Ti-type"}
+{"label":"crystal-structure","pattern":"Si Ni Ti- type"}
+{"label":"crystal-structure","pattern":"Si Ni Ti - type"}
+{"label":"crystal-structure","pattern":"Si Ni Ti -type"}
+{"label":"crystal-structure","pattern":"AlB2"}
+{"label":"crystal-structure","pattern":"Al B 2"}
+{"label":"crystal-structure","pattern":"Al B2"}
+{"label":"crystal-structure","pattern":"Al B2-type"}
+{"label":"crystal-structure","pattern":"Al B2- type"}
+{"label":"crystal-structure","pattern":"Al B2 - type"}
+{"label":"crystal-structure","pattern":"Al B2 -type"}
+{"label":"crystal-structure","pattern":"B2Al"}
+{"label":"crystal-structure","pattern":"B 2 Al"}
+{"label":"crystal-structure","pattern":"B2 Al"}
+{"label":"crystal-structure","pattern":"B2 Al-type"}
+{"label":"crystal-structure","pattern":"B2 Al- type"}
+{"label":"crystal-structure","pattern":"B2 Al - type"}
+{"label":"crystal-structure","pattern":"B2 Al -type"}
+{"label":"crystal-structure","pattern":"MgZn2"}
+{"label":"crystal-structure","pattern":"Mg Zn 2"}
+{"label":"crystal-structure","pattern":"Mg Zn2"}
+{"label":"crystal-structure","pattern":"Mg Zn2-type"}
+{"label":"crystal-structure","pattern":"Mg Zn2- type"}
+{"label":"crystal-structure","pattern":"Mg Zn2 - type"}
+{"label":"crystal-structure","pattern":"Mg Zn2 -type"}
+{"label":"crystal-structure","pattern":"Zn2Mg"}
+{"label":"crystal-structure","pattern":"Zn 2 Mg"}
+{"label":"crystal-structure","pattern":"Zn2 Mg"}
+{"label":"crystal-structure","pattern":"Zn2 Mg-type"}
+{"label":"crystal-structure","pattern":"Zn2 Mg- type"}
+{"label":"crystal-structure","pattern":"Zn2 Mg - type"}
+{"label":"crystal-structure","pattern":"Zn2 Mg -type"}
+{"label":"crystal-structure","pattern":"Ba2CaWO6"}
+{"label":"crystal-structure","pattern":"Ba 2 Ca W O 6"}
+{"label":"crystal-structure","pattern":"Ba2 Ca W O6"}
+{"label":"crystal-structure","pattern":"Ba2 Ca W O6-type"}
+{"label":"crystal-structure","pattern":"Ba2 Ca W O6- type"}
+{"label":"crystal-structure","pattern":"Ba2 Ca W O6 - type"}
+{"label":"crystal-structure","pattern":"Ba2 Ca W O6 -type"}
+{"label":"crystal-structure","pattern":"Ba2CaO6W"}
+{"label":"crystal-structure","pattern":"Ba 2 Ca O 6 W"}
+{"label":"crystal-structure","pattern":"Ba2 Ca O6 W"}
+{"label":"crystal-structure","pattern":"Ba2 Ca O6 W-type"}
+{"label":"crystal-structure","pattern":"Ba2 Ca O6 W- type"}
+{"label":"crystal-structure","pattern":"Ba2 Ca O6 W - type"}
+{"label":"crystal-structure","pattern":"Ba2 Ca O6 W -type"}
+{"label":"crystal-structure","pattern":"Ba2WCaO6"}
+{"label":"crystal-structure","pattern":"Ba 2 W Ca O 6"}
+{"label":"crystal-structure","pattern":"Ba2 W Ca O6"}
+{"label":"crystal-structure","pattern":"Ba2 W Ca O6-type"}
+{"label":"crystal-structure","pattern":"Ba2 W Ca O6- type"}
+{"label":"crystal-structure","pattern":"Ba2 W Ca O6 - type"}
+{"label":"crystal-structure","pattern":"Ba2 W Ca O6 -type"}
+{"label":"crystal-structure","pattern":"Ba2WO6Ca"}
+{"label":"crystal-structure","pattern":"Ba 2 W O 6 Ca"}
+{"label":"crystal-structure","pattern":"Ba2 W O6 Ca"}
+{"label":"crystal-structure","pattern":"Ba2 W O6 Ca-type"}
+{"label":"crystal-structure","pattern":"Ba2 W O6 Ca- type"}
+{"label":"crystal-structure","pattern":"Ba2 W O6 Ca - type"}
+{"label":"crystal-structure","pattern":"Ba2 W O6 Ca -type"}
+{"label":"crystal-structure","pattern":"Ba2O6CaW"}
+{"label":"crystal-structure","pattern":"Ba 2 O 6 Ca W"}
+{"label":"crystal-structure","pattern":"Ba2 O6 Ca W"}
+{"label":"crystal-structure","pattern":"Ba2 O6 Ca W-type"}
+{"label":"crystal-structure","pattern":"Ba2 O6 Ca W- type"}
+{"label":"crystal-structure","pattern":"Ba2 O6 Ca W - type"}
+{"label":"crystal-structure","pattern":"Ba2 O6 Ca W -type"}
+{"label":"crystal-structure","pattern":"Ba2O6WCa"}
+{"label":"crystal-structure","pattern":"Ba 2 O 6 W Ca"}
+{"label":"crystal-structure","pattern":"Ba2 O6 W Ca"}
+{"label":"crystal-structure","pattern":"Ba2 O6 W Ca-type"}
+{"label":"crystal-structure","pattern":"Ba2 O6 W Ca- type"}
+{"label":"crystal-structure","pattern":"Ba2 O6 W Ca - type"}
+{"label":"crystal-structure","pattern":"Ba2 O6 W Ca -type"}
+{"label":"crystal-structure","pattern":"CaBa2WO6"}
+{"label":"crystal-structure","pattern":"Ca Ba 2 W O 6"}
+{"label":"crystal-structure","pattern":"Ca Ba2 W O6"}
+{"label":"crystal-structure","pattern":"Ca Ba2 W O6-type"}
+{"label":"crystal-structure","pattern":"Ca Ba2 W O6- type"}
+{"label":"crystal-structure","pattern":"Ca Ba2 W O6 - type"}
+{"label":"crystal-structure","pattern":"Ca Ba2 W O6 -type"}
+{"label":"crystal-structure","pattern":"CaBa2O6W"}
+{"label":"crystal-structure","pattern":"Ca Ba 2 O 6 W"}
+{"label":"crystal-structure","pattern":"Ca Ba2 O6 W"}
+{"label":"crystal-structure","pattern":"Ca Ba2 O6 W-type"}
+{"label":"crystal-structure","pattern":"Ca Ba2 O6 W- type"}
+{"label":"crystal-structure","pattern":"Ca Ba2 O6 W - type"}
+{"label":"crystal-structure","pattern":"Ca Ba2 O6 W -type"}
+{"label":"crystal-structure","pattern":"CaWBa2O6"}
+{"label":"crystal-structure","pattern":"Ca W Ba 2 O 6"}
+{"label":"crystal-structure","pattern":"Ca W Ba2 O6"}
+{"label":"crystal-structure","pattern":"Ca W Ba2 O6-type"}
+{"label":"crystal-structure","pattern":"Ca W Ba2 O6- type"}
+{"label":"crystal-structure","pattern":"Ca W Ba2 O6 - type"}
+{"label":"crystal-structure","pattern":"Ca W Ba2 O6 -type"}
+{"label":"crystal-structure","pattern":"CaWO6Ba2"}
+{"label":"crystal-structure","pattern":"Ca W O 6 Ba 2"}
+{"label":"crystal-structure","pattern":"Ca W O6 Ba2"}
+{"label":"crystal-structure","pattern":"Ca W O6 Ba2-type"}
+{"label":"crystal-structure","pattern":"Ca W O6 Ba2- type"}
+{"label":"crystal-structure","pattern":"Ca W O6 Ba2 - type"}
+{"label":"crystal-structure","pattern":"Ca W O6 Ba2 -type"}
+{"label":"crystal-structure","pattern":"CaO6Ba2W"}
+{"label":"crystal-structure","pattern":"Ca O 6 Ba 2 W"}
+{"label":"crystal-structure","pattern":"Ca O6 Ba2 W"}
+{"label":"crystal-structure","pattern":"Ca O6 Ba2 W-type"}
+{"label":"crystal-structure","pattern":"Ca O6 Ba2 W- type"}
+{"label":"crystal-structure","pattern":"Ca O6 Ba2 W - type"}
+{"label":"crystal-structure","pattern":"Ca O6 Ba2 W -type"}
+{"label":"crystal-structure","pattern":"CaO6WBa2"}
+{"label":"crystal-structure","pattern":"Ca O 6 W Ba 2"}
+{"label":"crystal-structure","pattern":"Ca O6 W Ba2"}
+{"label":"crystal-structure","pattern":"Ca O6 W Ba2-type"}
+{"label":"crystal-structure","pattern":"Ca O6 W Ba2- type"}
+{"label":"crystal-structure","pattern":"Ca O6 W Ba2 - type"}
+{"label":"crystal-structure","pattern":"Ca O6 W Ba2 -type"}
+{"label":"crystal-structure","pattern":"WBa2CaO6"}
+{"label":"crystal-structure","pattern":"W Ba 2 Ca O 6"}
+{"label":"crystal-structure","pattern":"W Ba2 Ca O6"}
+{"label":"crystal-structure","pattern":"W Ba2 Ca O6-type"}
+{"label":"crystal-structure","pattern":"W Ba2 Ca O6- type"}
+{"label":"crystal-structure","pattern":"W Ba2 Ca O6 - type"}
+{"label":"crystal-structure","pattern":"W Ba2 Ca O6 -type"}
+{"label":"crystal-structure","pattern":"WBa2O6Ca"}
+{"label":"crystal-structure","pattern":"W Ba 2 O 6 Ca"}
+{"label":"crystal-structure","pattern":"W Ba2 O6 Ca"}
+{"label":"crystal-structure","pattern":"W Ba2 O6 Ca-type"}
+{"label":"crystal-structure","pattern":"W Ba2 O6 Ca- type"}
+{"label":"crystal-structure","pattern":"W Ba2 O6 Ca - type"}
+{"label":"crystal-structure","pattern":"W Ba2 O6 Ca -type"}
+{"label":"crystal-structure","pattern":"WCaBa2O6"}
+{"label":"crystal-structure","pattern":"W Ca Ba 2 O 6"}
+{"label":"crystal-structure","pattern":"W Ca Ba2 O6"}
+{"label":"crystal-structure","pattern":"W Ca Ba2 O6-type"}
+{"label":"crystal-structure","pattern":"W Ca Ba2 O6- type"}
+{"label":"crystal-structure","pattern":"W Ca Ba2 O6 - type"}
+{"label":"crystal-structure","pattern":"W Ca Ba2 O6 -type"}
+{"label":"crystal-structure","pattern":"WCaO6Ba2"}
+{"label":"crystal-structure","pattern":"W Ca O 6 Ba 2"}
+{"label":"crystal-structure","pattern":"W Ca O6 Ba2"}
+{"label":"crystal-structure","pattern":"W Ca O6 Ba2-type"}
+{"label":"crystal-structure","pattern":"W Ca O6 Ba2- type"}
+{"label":"crystal-structure","pattern":"W Ca O6 Ba2 - type"}
+{"label":"crystal-structure","pattern":"W Ca O6 Ba2 -type"}
+{"label":"crystal-structure","pattern":"WO6Ba2Ca"}
+{"label":"crystal-structure","pattern":"W O 6 Ba 2 Ca"}
+{"label":"crystal-structure","pattern":"W O6 Ba2 Ca"}
+{"label":"crystal-structure","pattern":"W O6 Ba2 Ca-type"}
+{"label":"crystal-structure","pattern":"W O6 Ba2 Ca- type"}
+{"label":"crystal-structure","pattern":"W O6 Ba2 Ca - type"}
+{"label":"crystal-structure","pattern":"W O6 Ba2 Ca -type"}
+{"label":"crystal-structure","pattern":"WO6CaBa2"}
+{"label":"crystal-structure","pattern":"W O 6 Ca Ba 2"}
+{"label":"crystal-structure","pattern":"W O6 Ca Ba2"}
+{"label":"crystal-structure","pattern":"W O6 Ca Ba2-type"}
+{"label":"crystal-structure","pattern":"W O6 Ca Ba2- type"}
+{"label":"crystal-structure","pattern":"W O6 Ca Ba2 - type"}
+{"label":"crystal-structure","pattern":"W O6 Ca Ba2 -type"}
+{"label":"crystal-structure","pattern":"O6Ba2CaW"}
+{"label":"crystal-structure","pattern":"O 6 Ba 2 Ca W"}
+{"label":"crystal-structure","pattern":"O6 Ba2 Ca W"}
+{"label":"crystal-structure","pattern":"O6 Ba2 Ca W-type"}
+{"label":"crystal-structure","pattern":"O6 Ba2 Ca W- type"}
+{"label":"crystal-structure","pattern":"O6 Ba2 Ca W - type"}
+{"label":"crystal-structure","pattern":"O6 Ba2 Ca W -type"}
+{"label":"crystal-structure","pattern":"O6Ba2WCa"}
+{"label":"crystal-structure","pattern":"O 6 Ba 2 W Ca"}
+{"label":"crystal-structure","pattern":"O6 Ba2 W Ca"}
+{"label":"crystal-structure","pattern":"O6 Ba2 W Ca-type"}
+{"label":"crystal-structure","pattern":"O6 Ba2 W Ca- type"}
+{"label":"crystal-structure","pattern":"O6 Ba2 W Ca - type"}
+{"label":"crystal-structure","pattern":"O6 Ba2 W Ca -type"}
+{"label":"crystal-structure","pattern":"O6CaBa2W"}
+{"label":"crystal-structure","pattern":"O 6 Ca Ba 2 W"}
+{"label":"crystal-structure","pattern":"O6 Ca Ba2 W"}
+{"label":"crystal-structure","pattern":"O6 Ca Ba2 W-type"}
+{"label":"crystal-structure","pattern":"O6 Ca Ba2 W- type"}
+{"label":"crystal-structure","pattern":"O6 Ca Ba2 W - type"}
+{"label":"crystal-structure","pattern":"O6 Ca Ba2 W -type"}
+{"label":"crystal-structure","pattern":"O6CaWBa2"}
+{"label":"crystal-structure","pattern":"O 6 Ca W Ba 2"}
+{"label":"crystal-structure","pattern":"O6 Ca W Ba2"}
+{"label":"crystal-structure","pattern":"O6 Ca W Ba2-type"}
+{"label":"crystal-structure","pattern":"O6 Ca W Ba2- type"}
+{"label":"crystal-structure","pattern":"O6 Ca W Ba2 - type"}
+{"label":"crystal-structure","pattern":"O6 Ca W Ba2 -type"}
+{"label":"crystal-structure","pattern":"O6WBa2Ca"}
+{"label":"crystal-structure","pattern":"O 6 W Ba 2 Ca"}
+{"label":"crystal-structure","pattern":"O6 W Ba2 Ca"}
+{"label":"crystal-structure","pattern":"O6 W Ba2 Ca-type"}
+{"label":"crystal-structure","pattern":"O6 W Ba2 Ca- type"}
+{"label":"crystal-structure","pattern":"O6 W Ba2 Ca - type"}
+{"label":"crystal-structure","pattern":"O6 W Ba2 Ca -type"}
+{"label":"crystal-structure","pattern":"O6WCaBa2"}
+{"label":"crystal-structure","pattern":"O 6 W Ca Ba 2"}
+{"label":"crystal-structure","pattern":"O6 W Ca Ba2"}
+{"label":"crystal-structure","pattern":"O6 W Ca Ba2-type"}
+{"label":"crystal-structure","pattern":"O6 W Ca Ba2- type"}
+{"label":"crystal-structure","pattern":"O6 W Ca Ba2 - type"}
+{"label":"crystal-structure","pattern":"O6 W Ca Ba2 -type"}
+{"label":"crystal-structure","pattern":"ZrNiAl"}
+{"label":"crystal-structure","pattern":"Zr Ni Al"}
+{"label":"crystal-structure","pattern":"Zr Ni Al-type"}
+{"label":"crystal-structure","pattern":"Zr Ni Al- type"}
+{"label":"crystal-structure","pattern":"Zr Ni Al - type"}
+{"label":"crystal-structure","pattern":"Zr Ni Al -type"}
+{"label":"crystal-structure","pattern":"ZrAlNi"}
+{"label":"crystal-structure","pattern":"Zr Al Ni"}
+{"label":"crystal-structure","pattern":"Zr Al Ni-type"}
+{"label":"crystal-structure","pattern":"Zr Al Ni- type"}
+{"label":"crystal-structure","pattern":"Zr Al Ni - type"}
+{"label":"crystal-structure","pattern":"Zr Al Ni -type"}
+{"label":"crystal-structure","pattern":"NiZrAl"}
+{"label":"crystal-structure","pattern":"Ni Zr Al"}
+{"label":"crystal-structure","pattern":"Ni Zr Al-type"}
+{"label":"crystal-structure","pattern":"Ni Zr Al- type"}
+{"label":"crystal-structure","pattern":"Ni Zr Al - type"}
+{"label":"crystal-structure","pattern":"Ni Zr Al -type"}
+{"label":"crystal-structure","pattern":"NiAlZr"}
+{"label":"crystal-structure","pattern":"Ni Al Zr"}
+{"label":"crystal-structure","pattern":"Ni Al Zr-type"}
+{"label":"crystal-structure","pattern":"Ni Al Zr- type"}
+{"label":"crystal-structure","pattern":"Ni Al Zr - type"}
+{"label":"crystal-structure","pattern":"Ni Al Zr -type"}
+{"label":"crystal-structure","pattern":"AlZrNi"}
+{"label":"crystal-structure","pattern":"Al Zr Ni"}
+{"label":"crystal-structure","pattern":"Al Zr Ni-type"}
+{"label":"crystal-structure","pattern":"Al Zr Ni- type"}
+{"label":"crystal-structure","pattern":"Al Zr Ni - type"}
+{"label":"crystal-structure","pattern":"Al Zr Ni -type"}
+{"label":"crystal-structure","pattern":"AlNiZr"}
+{"label":"crystal-structure","pattern":"Al Ni Zr"}
+{"label":"crystal-structure","pattern":"Al Ni Zr-type"}
+{"label":"crystal-structure","pattern":"Al Ni Zr- type"}
+{"label":"crystal-structure","pattern":"Al Ni Zr - type"}
+{"label":"crystal-structure","pattern":"Al Ni Zr -type"}
+{"label":"crystal-structure","pattern":"TiO2"}
+{"label":"crystal-structure","pattern":"Ti O 2"}
+{"label":"crystal-structure","pattern":"Ti O2"}
+{"label":"crystal-structure","pattern":"Ti O2-type"}
+{"label":"crystal-structure","pattern":"Ti O2- type"}
+{"label":"crystal-structure","pattern":"Ti O2 - type"}
+{"label":"crystal-structure","pattern":"Ti O2 -type"}
+{"label":"crystal-structure","pattern":"O2Ti"}
+{"label":"crystal-structure","pattern":"O 2 Ti"}
+{"label":"crystal-structure","pattern":"O2 Ti"}
+{"label":"crystal-structure","pattern":"O2 Ti-type"}
+{"label":"crystal-structure","pattern":"O2 Ti- type"}
+{"label":"crystal-structure","pattern":"O2 Ti - type"}
+{"label":"crystal-structure","pattern":"O2 Ti -type"}
+{"label":"crystal-structure","pattern":"ThMn12"}
+{"label":"crystal-structure","pattern":"Th Mn 12"}
+{"label":"crystal-structure","pattern":"Th Mn12"}
+{"label":"crystal-structure","pattern":"Th Mn12-type"}
+{"label":"crystal-structure","pattern":"Th Mn12- type"}
+{"label":"crystal-structure","pattern":"Th Mn12 - type"}
+{"label":"crystal-structure","pattern":"Th Mn12 -type"}
+{"label":"crystal-structure","pattern":"Mn12Th"}
+{"label":"crystal-structure","pattern":"Mn 12 Th"}
+{"label":"crystal-structure","pattern":"Mn12 Th"}
+{"label":"crystal-structure","pattern":"Mn12 Th-type"}
+{"label":"crystal-structure","pattern":"Mn12 Th- type"}
+{"label":"crystal-structure","pattern":"Mn12 Th - type"}
+{"label":"crystal-structure","pattern":"Mn12 Th -type"}
+{"label":"crystal-structure","pattern":"Nd2Fe14B"}
+{"label":"crystal-structure","pattern":"Nd 2 Fe 14 B"}
+{"label":"crystal-structure","pattern":"Nd2 Fe14 B"}
+{"label":"crystal-structure","pattern":"Nd2 Fe14 B-type"}
+{"label":"crystal-structure","pattern":"Nd2 Fe14 B- type"}
+{"label":"crystal-structure","pattern":"Nd2 Fe14 B - type"}
+{"label":"crystal-structure","pattern":"Nd2 Fe14 B -type"}
+{"label":"crystal-structure","pattern":"Nd2BFe14"}
+{"label":"crystal-structure","pattern":"Nd 2 B Fe 14"}
+{"label":"crystal-structure","pattern":"Nd2 B Fe14"}
+{"label":"crystal-structure","pattern":"Nd2 B Fe14-type"}
+{"label":"crystal-structure","pattern":"Nd2 B Fe14- type"}
+{"label":"crystal-structure","pattern":"Nd2 B Fe14 - type"}
+{"label":"crystal-structure","pattern":"Nd2 B Fe14 -type"}
+{"label":"crystal-structure","pattern":"Fe14Nd2B"}
+{"label":"crystal-structure","pattern":"Fe 14 Nd 2 B"}
+{"label":"crystal-structure","pattern":"Fe14 Nd2 B"}
+{"label":"crystal-structure","pattern":"Fe14 Nd2 B-type"}
+{"label":"crystal-structure","pattern":"Fe14 Nd2 B- type"}
+{"label":"crystal-structure","pattern":"Fe14 Nd2 B - type"}
+{"label":"crystal-structure","pattern":"Fe14 Nd2 B -type"}
+{"label":"crystal-structure","pattern":"Fe14BNd2"}
+{"label":"crystal-structure","pattern":"Fe 14 B Nd 2"}
+{"label":"crystal-structure","pattern":"Fe14 B Nd2"}
+{"label":"crystal-structure","pattern":"Fe14 B Nd2-type"}
+{"label":"crystal-structure","pattern":"Fe14 B Nd2- type"}
+{"label":"crystal-structure","pattern":"Fe14 B Nd2 - type"}
+{"label":"crystal-structure","pattern":"Fe14 B Nd2 -type"}
+{"label":"crystal-structure","pattern":"BNd2Fe14"}
+{"label":"crystal-structure","pattern":"B Nd 2 Fe 14"}
+{"label":"crystal-structure","pattern":"B Nd2 Fe14"}
+{"label":"crystal-structure","pattern":"B Nd2 Fe14-type"}
+{"label":"crystal-structure","pattern":"B Nd2 Fe14- type"}
+{"label":"crystal-structure","pattern":"B Nd2 Fe14 - type"}
+{"label":"crystal-structure","pattern":"B Nd2 Fe14 -type"}
+{"label":"crystal-structure","pattern":"BFe14Nd2"}
+{"label":"crystal-structure","pattern":"B Fe 14 Nd 2"}
+{"label":"crystal-structure","pattern":"B Fe14 Nd2"}
+{"label":"crystal-structure","pattern":"B Fe14 Nd2-type"}
+{"label":"crystal-structure","pattern":"B Fe14 Nd2- type"}
+{"label":"crystal-structure","pattern":"B Fe14 Nd2 - type"}
+{"label":"crystal-structure","pattern":"B Fe14 Nd2 -type"}
+{"label":"crystal-structure","pattern":"CaWO4"}
+{"label":"crystal-structure","pattern":"Ca WO 4"}
+{"label":"crystal-structure","pattern":"Ca WO4"}
+{"label":"crystal-structure","pattern":"Ca WO4-type"}
+{"label":"crystal-structure","pattern":"Ca WO4- type"}
+{"label":"crystal-structure","pattern":"Ca WO4 - type"}
+{"label":"crystal-structure","pattern":"Ca WO4 -type"}
+{"label":"crystal-structure","pattern":"WO4Ca"}
+{"label":"crystal-structure","pattern":"WO 4 Ca"}
+{"label":"crystal-structure","pattern":"WO4 Ca"}
+{"label":"crystal-structure","pattern":"WO4 Ca-type"}
+{"label":"crystal-structure","pattern":"WO4 Ca- type"}
+{"label":"crystal-structure","pattern":"WO4 Ca - type"}
+{"label":"crystal-structure","pattern":"WO4 Ca -type"}
+{"label":"crystal-structure","pattern":"Zn17Th2"}
+{"label":"crystal-structure","pattern":"Zn 17 Th 2"}
+{"label":"crystal-structure","pattern":"Zn17 Th2"}
+{"label":"crystal-structure","pattern":"Zn17 Th2-type"}
+{"label":"crystal-structure","pattern":"Zn17 Th2- type"}
+{"label":"crystal-structure","pattern":"Zn17 Th2 - type"}
+{"label":"crystal-structure","pattern":"Zn17 Th2 -type"}
+{"label":"crystal-structure","pattern":"Th2Zn17"}
+{"label":"crystal-structure","pattern":"Th 2 Zn 17"}
+{"label":"crystal-structure","pattern":"Th2 Zn17"}
+{"label":"crystal-structure","pattern":"Th2 Zn17-type"}
+{"label":"crystal-structure","pattern":"Th2 Zn17- type"}
+{"label":"crystal-structure","pattern":"Th2 Zn17 - type"}
+{"label":"crystal-structure","pattern":"Th2 Zn17 -type"}
+{"label":"crystal-structure","pattern":"CuFeS2"}
+{"label":"crystal-structure","pattern":"Cu Fe S 2"}
+{"label":"crystal-structure","pattern":"Cu Fe S2"}
+{"label":"crystal-structure","pattern":"Cu Fe S2-type"}
+{"label":"crystal-structure","pattern":"Cu Fe S2- type"}
+{"label":"crystal-structure","pattern":"Cu Fe S2 - type"}
+{"label":"crystal-structure","pattern":"Cu Fe S2 -type"}
+{"label":"crystal-structure","pattern":"CuS2Fe"}
+{"label":"crystal-structure","pattern":"Cu S 2 Fe"}
+{"label":"crystal-structure","pattern":"Cu S2 Fe"}
+{"label":"crystal-structure","pattern":"Cu S2 Fe-type"}
+{"label":"crystal-structure","pattern":"Cu S2 Fe- type"}
+{"label":"crystal-structure","pattern":"Cu S2 Fe - type"}
+{"label":"crystal-structure","pattern":"Cu S2 Fe -type"}
+{"label":"crystal-structure","pattern":"FeCuS2"}
+{"label":"crystal-structure","pattern":"Fe Cu S 2"}
+{"label":"crystal-structure","pattern":"Fe Cu S2"}
+{"label":"crystal-structure","pattern":"Fe Cu S2-type"}
+{"label":"crystal-structure","pattern":"Fe Cu S2- type"}
+{"label":"crystal-structure","pattern":"Fe Cu S2 - type"}
+{"label":"crystal-structure","pattern":"Fe Cu S2 -type"}
+{"label":"crystal-structure","pattern":"FeS2Cu"}
+{"label":"crystal-structure","pattern":"Fe S 2 Cu"}
+{"label":"crystal-structure","pattern":"Fe S2 Cu"}
+{"label":"crystal-structure","pattern":"Fe S2 Cu-type"}
+{"label":"crystal-structure","pattern":"Fe S2 Cu- type"}
+{"label":"crystal-structure","pattern":"Fe S2 Cu - type"}
+{"label":"crystal-structure","pattern":"Fe S2 Cu -type"}
+{"label":"crystal-structure","pattern":"S2CuFe"}
+{"label":"crystal-structure","pattern":"S 2 Cu Fe"}
+{"label":"crystal-structure","pattern":"S2 Cu Fe"}
+{"label":"crystal-structure","pattern":"S2 Cu Fe-type"}
+{"label":"crystal-structure","pattern":"S2 Cu Fe- type"}
+{"label":"crystal-structure","pattern":"S2 Cu Fe - type"}
+{"label":"crystal-structure","pattern":"S2 Cu Fe -type"}
+{"label":"crystal-structure","pattern":"S2FeCu"}
+{"label":"crystal-structure","pattern":"S 2 Fe Cu"}
+{"label":"crystal-structure","pattern":"S2 Fe Cu"}
+{"label":"crystal-structure","pattern":"S2 Fe Cu-type"}
+{"label":"crystal-structure","pattern":"S2 Fe Cu- type"}
+{"label":"crystal-structure","pattern":"S2 Fe Cu - type"}
+{"label":"crystal-structure","pattern":"S2 Fe Cu -type"}
+{"label":"crystal-structure","pattern":"LiNbO3"}
+{"label":"crystal-structure","pattern":"Li Nb O 3"}
+{"label":"crystal-structure","pattern":"Li Nb O3"}
+{"label":"crystal-structure","pattern":"Li Nb O3-type"}
+{"label":"crystal-structure","pattern":"Li Nb O3- type"}
+{"label":"crystal-structure","pattern":"Li Nb O3 - type"}
+{"label":"crystal-structure","pattern":"Li Nb O3 -type"}
+{"label":"crystal-structure","pattern":"LiO3Nb"}
+{"label":"crystal-structure","pattern":"Li O 3 Nb"}
+{"label":"crystal-structure","pattern":"Li O3 Nb"}
+{"label":"crystal-structure","pattern":"Li O3 Nb-type"}
+{"label":"crystal-structure","pattern":"Li O3 Nb- type"}
+{"label":"crystal-structure","pattern":"Li O3 Nb - type"}
+{"label":"crystal-structure","pattern":"Li O3 Nb -type"}
+{"label":"crystal-structure","pattern":"NbLiO3"}
+{"label":"crystal-structure","pattern":"Nb Li O 3"}
+{"label":"crystal-structure","pattern":"Nb Li O3"}
+{"label":"crystal-structure","pattern":"Nb Li O3-type"}
+{"label":"crystal-structure","pattern":"Nb Li O3- type"}
+{"label":"crystal-structure","pattern":"Nb Li O3 - type"}
+{"label":"crystal-structure","pattern":"Nb Li O3 -type"}
+{"label":"crystal-structure","pattern":"NbO3Li"}
+{"label":"crystal-structure","pattern":"Nb O 3 Li"}
+{"label":"crystal-structure","pattern":"Nb O3 Li"}
+{"label":"crystal-structure","pattern":"Nb O3 Li-type"}
+{"label":"crystal-structure","pattern":"Nb O3 Li- type"}
+{"label":"crystal-structure","pattern":"Nb O3 Li - type"}
+{"label":"crystal-structure","pattern":"Nb O3 Li -type"}
+{"label":"crystal-structure","pattern":"O3LiNb"}
+{"label":"crystal-structure","pattern":"O 3 Li Nb"}
+{"label":"crystal-structure","pattern":"O3 Li Nb"}
+{"label":"crystal-structure","pattern":"O3 Li Nb-type"}
+{"label":"crystal-structure","pattern":"O3 Li Nb- type"}
+{"label":"crystal-structure","pattern":"O3 Li Nb - type"}
+{"label":"crystal-structure","pattern":"O3 Li Nb -type"}
+{"label":"crystal-structure","pattern":"O3NbLi"}
+{"label":"crystal-structure","pattern":"O 3 Nb Li"}
+{"label":"crystal-structure","pattern":"O3 Nb Li"}
+{"label":"crystal-structure","pattern":"O3 Nb Li-type"}
+{"label":"crystal-structure","pattern":"O3 Nb Li- type"}
+{"label":"crystal-structure","pattern":"O3 Nb Li - type"}
+{"label":"crystal-structure","pattern":"O3 Nb Li -type"}
+{"label":"crystal-structure","pattern":"CuZrSiAs"}
+{"label":"crystal-structure","pattern":"Cu Zr Si As"}
+{"label":"crystal-structure","pattern":"Cu Zr Si As-type"}
+{"label":"crystal-structure","pattern":"Cu Zr Si As- type"}
+{"label":"crystal-structure","pattern":"Cu Zr Si As - type"}
+{"label":"crystal-structure","pattern":"Cu Zr Si As -type"}
+{"label":"crystal-structure","pattern":"CuZrAsSi"}
+{"label":"crystal-structure","pattern":"Cu Zr As Si"}
+{"label":"crystal-structure","pattern":"Cu Zr As Si-type"}
+{"label":"crystal-structure","pattern":"Cu Zr As Si- type"}
+{"label":"crystal-structure","pattern":"Cu Zr As Si - type"}
+{"label":"crystal-structure","pattern":"Cu Zr As Si -type"}
+{"label":"crystal-structure","pattern":"CuSiZrAs"}
+{"label":"crystal-structure","pattern":"Cu Si Zr As"}
+{"label":"crystal-structure","pattern":"Cu Si Zr As-type"}
+{"label":"crystal-structure","pattern":"Cu Si Zr As- type"}
+{"label":"crystal-structure","pattern":"Cu Si Zr As - type"}
+{"label":"crystal-structure","pattern":"Cu Si Zr As -type"}
+{"label":"crystal-structure","pattern":"CuSiAsZr"}
+{"label":"crystal-structure","pattern":"Cu Si As Zr"}
+{"label":"crystal-structure","pattern":"Cu Si As Zr-type"}
+{"label":"crystal-structure","pattern":"Cu Si As Zr- type"}
+{"label":"crystal-structure","pattern":"Cu Si As Zr - type"}
+{"label":"crystal-structure","pattern":"Cu Si As Zr -type"}
+{"label":"crystal-structure","pattern":"CuAsZrSi"}
+{"label":"crystal-structure","pattern":"Cu As Zr Si"}
+{"label":"crystal-structure","pattern":"Cu As Zr Si-type"}
+{"label":"crystal-structure","pattern":"Cu As Zr Si- type"}
+{"label":"crystal-structure","pattern":"Cu As Zr Si - type"}
+{"label":"crystal-structure","pattern":"Cu As Zr Si -type"}
+{"label":"crystal-structure","pattern":"CuAsSiZr"}
+{"label":"crystal-structure","pattern":"Cu As Si Zr"}
+{"label":"crystal-structure","pattern":"Cu As Si Zr-type"}
+{"label":"crystal-structure","pattern":"Cu As Si Zr- type"}
+{"label":"crystal-structure","pattern":"Cu As Si Zr - type"}
+{"label":"crystal-structure","pattern":"Cu As Si Zr -type"}
+{"label":"crystal-structure","pattern":"ZrCuSiAs"}
+{"label":"crystal-structure","pattern":"Zr Cu Si As"}
+{"label":"crystal-structure","pattern":"Zr Cu Si As-type"}
+{"label":"crystal-structure","pattern":"Zr Cu Si As- type"}
+{"label":"crystal-structure","pattern":"Zr Cu Si As - type"}
+{"label":"crystal-structure","pattern":"Zr Cu Si As -type"}
+{"label":"crystal-structure","pattern":"ZrCuAsSi"}
+{"label":"crystal-structure","pattern":"Zr Cu As Si"}
+{"label":"crystal-structure","pattern":"Zr Cu As Si-type"}
+{"label":"crystal-structure","pattern":"Zr Cu As Si- type"}
+{"label":"crystal-structure","pattern":"Zr Cu As Si - type"}
+{"label":"crystal-structure","pattern":"Zr Cu As Si -type"}
+{"label":"crystal-structure","pattern":"ZrSiCuAs"}
+{"label":"crystal-structure","pattern":"Zr Si Cu As"}
+{"label":"crystal-structure","pattern":"Zr Si Cu As-type"}
+{"label":"crystal-structure","pattern":"Zr Si Cu As- type"}
+{"label":"crystal-structure","pattern":"Zr Si Cu As - type"}
+{"label":"crystal-structure","pattern":"Zr Si Cu As -type"}
+{"label":"crystal-structure","pattern":"ZrSiAsCu"}
+{"label":"crystal-structure","pattern":"Zr Si As Cu"}
+{"label":"crystal-structure","pattern":"Zr Si As Cu-type"}
+{"label":"crystal-structure","pattern":"Zr Si As Cu- type"}
+{"label":"crystal-structure","pattern":"Zr Si As Cu - type"}
+{"label":"crystal-structure","pattern":"Zr Si As Cu -type"}
+{"label":"crystal-structure","pattern":"ZrAsCuSi"}
+{"label":"crystal-structure","pattern":"Zr As Cu Si"}
+{"label":"crystal-structure","pattern":"Zr As Cu Si-type"}
+{"label":"crystal-structure","pattern":"Zr As Cu Si- type"}
+{"label":"crystal-structure","pattern":"Zr As Cu Si - type"}
+{"label":"crystal-structure","pattern":"Zr As Cu Si -type"}
+{"label":"crystal-structure","pattern":"ZrAsSiCu"}
+{"label":"crystal-structure","pattern":"Zr As Si Cu"}
+{"label":"crystal-structure","pattern":"Zr As Si Cu-type"}
+{"label":"crystal-structure","pattern":"Zr As Si Cu- type"}
+{"label":"crystal-structure","pattern":"Zr As Si Cu - type"}
+{"label":"crystal-structure","pattern":"Zr As Si Cu -type"}
+{"label":"crystal-structure","pattern":"SiCuZrAs"}
+{"label":"crystal-structure","pattern":"Si Cu Zr As"}
+{"label":"crystal-structure","pattern":"Si Cu Zr As-type"}
+{"label":"crystal-structure","pattern":"Si Cu Zr As- type"}
+{"label":"crystal-structure","pattern":"Si Cu Zr As - type"}
+{"label":"crystal-structure","pattern":"Si Cu Zr As -type"}
+{"label":"crystal-structure","pattern":"SiCuAsZr"}
+{"label":"crystal-structure","pattern":"Si Cu As Zr"}
+{"label":"crystal-structure","pattern":"Si Cu As Zr-type"}
+{"label":"crystal-structure","pattern":"Si Cu As Zr- type"}
+{"label":"crystal-structure","pattern":"Si Cu As Zr - type"}
+{"label":"crystal-structure","pattern":"Si Cu As Zr -type"}
+{"label":"crystal-structure","pattern":"SiZrCuAs"}
+{"label":"crystal-structure","pattern":"Si Zr Cu As"}
+{"label":"crystal-structure","pattern":"Si Zr Cu As-type"}
+{"label":"crystal-structure","pattern":"Si Zr Cu As- type"}
+{"label":"crystal-structure","pattern":"Si Zr Cu As - type"}
+{"label":"crystal-structure","pattern":"Si Zr Cu As -type"}
+{"label":"crystal-structure","pattern":"SiZrAsCu"}
+{"label":"crystal-structure","pattern":"Si Zr As Cu"}
+{"label":"crystal-structure","pattern":"Si Zr As Cu-type"}
+{"label":"crystal-structure","pattern":"Si Zr As Cu- type"}
+{"label":"crystal-structure","pattern":"Si Zr As Cu - type"}
+{"label":"crystal-structure","pattern":"Si Zr As Cu -type"}
+{"label":"crystal-structure","pattern":"SiAsCuZr"}
+{"label":"crystal-structure","pattern":"Si As Cu Zr"}
+{"label":"crystal-structure","pattern":"Si As Cu Zr-type"}
+{"label":"crystal-structure","pattern":"Si As Cu Zr- type"}
+{"label":"crystal-structure","pattern":"Si As Cu Zr - type"}
+{"label":"crystal-structure","pattern":"Si As Cu Zr -type"}
+{"label":"crystal-structure","pattern":"SiAsZrCu"}
+{"label":"crystal-structure","pattern":"Si As Zr Cu"}
+{"label":"crystal-structure","pattern":"Si As Zr Cu-type"}
+{"label":"crystal-structure","pattern":"Si As Zr Cu- type"}
+{"label":"crystal-structure","pattern":"Si As Zr Cu - type"}
+{"label":"crystal-structure","pattern":"Si As Zr Cu -type"}
+{"label":"crystal-structure","pattern":"AsCuZrSi"}
+{"label":"crystal-structure","pattern":"As Cu Zr Si"}
+{"label":"crystal-structure","pattern":"As Cu Zr Si-type"}
+{"label":"crystal-structure","pattern":"As Cu Zr Si- type"}
+{"label":"crystal-structure","pattern":"As Cu Zr Si - type"}
+{"label":"crystal-structure","pattern":"As Cu Zr Si -type"}
+{"label":"crystal-structure","pattern":"AsCuSiZr"}
+{"label":"crystal-structure","pattern":"As Cu Si Zr"}
+{"label":"crystal-structure","pattern":"As Cu Si Zr-type"}
+{"label":"crystal-structure","pattern":"As Cu Si Zr- type"}
+{"label":"crystal-structure","pattern":"As Cu Si Zr - type"}
+{"label":"crystal-structure","pattern":"As Cu Si Zr -type"}
+{"label":"crystal-structure","pattern":"AsZrCuSi"}
+{"label":"crystal-structure","pattern":"As Zr Cu Si"}
+{"label":"crystal-structure","pattern":"As Zr Cu Si-type"}
+{"label":"crystal-structure","pattern":"As Zr Cu Si- type"}
+{"label":"crystal-structure","pattern":"As Zr Cu Si - type"}
+{"label":"crystal-structure","pattern":"As Zr Cu Si -type"}
+{"label":"crystal-structure","pattern":"AsZrSiCu"}
+{"label":"crystal-structure","pattern":"As Zr Si Cu"}
+{"label":"crystal-structure","pattern":"As Zr Si Cu-type"}
+{"label":"crystal-structure","pattern":"As Zr Si Cu- type"}
+{"label":"crystal-structure","pattern":"As Zr Si Cu - type"}
+{"label":"crystal-structure","pattern":"As Zr Si Cu -type"}
+{"label":"crystal-structure","pattern":"AsSiCuZr"}
+{"label":"crystal-structure","pattern":"As Si Cu Zr"}
+{"label":"crystal-structure","pattern":"As Si Cu Zr-type"}
+{"label":"crystal-structure","pattern":"As Si Cu Zr- type"}
+{"label":"crystal-structure","pattern":"As Si Cu Zr - type"}
+{"label":"crystal-structure","pattern":"As Si Cu Zr -type"}
+{"label":"crystal-structure","pattern":"AsSiZrCu"}
+{"label":"crystal-structure","pattern":"As Si Zr Cu"}
+{"label":"crystal-structure","pattern":"As Si Zr Cu-type"}
+{"label":"crystal-structure","pattern":"As Si Zr Cu- type"}
+{"label":"crystal-structure","pattern":"As Si Zr Cu - type"}
+{"label":"crystal-structure","pattern":"As Si Zr Cu -type"}
+{"label":"crystal-structure","pattern":"Th3P4"}
+{"label":"crystal-structure","pattern":"Th 3 P 4"}
+{"label":"crystal-structure","pattern":"Th3 P4"}
+{"label":"crystal-structure","pattern":"Th3 P4-type"}
+{"label":"crystal-structure","pattern":"Th3 P4- type"}
+{"label":"crystal-structure","pattern":"Th3 P4 - type"}
+{"label":"crystal-structure","pattern":"Th3 P4 -type"}
+{"label":"crystal-structure","pattern":"P4Th3"}
+{"label":"crystal-structure","pattern":"P 4 Th 3"}
+{"label":"crystal-structure","pattern":"P4 Th3"}
+{"label":"crystal-structure","pattern":"P4 Th3-type"}
+{"label":"crystal-structure","pattern":"P4 Th3- type"}
+{"label":"crystal-structure","pattern":"P4 Th3 - type"}
+{"label":"crystal-structure","pattern":"P4 Th3 -type"}
+{"label":"crystal-structure","pattern":"NiAs"}
+{"label":"crystal-structure","pattern":"Ni As"}
+{"label":"crystal-structure","pattern":"Ni As-type"}
+{"label":"crystal-structure","pattern":"Ni As- type"}
+{"label":"crystal-structure","pattern":"Ni As - type"}
+{"label":"crystal-structure","pattern":"Ni As -type"}
+{"label":"crystal-structure","pattern":"AsNi"}
+{"label":"crystal-structure","pattern":"As Ni"}
+{"label":"crystal-structure","pattern":"As Ni-type"}
+{"label":"crystal-structure","pattern":"As Ni- type"}
+{"label":"crystal-structure","pattern":"As Ni - type"}
+{"label":"crystal-structure","pattern":"As Ni -type"}
+{"label":"crystal-structure","pattern":"Cr3Si"}
+{"label":"crystal-structure","pattern":"Cr 3 Si"}
+{"label":"crystal-structure","pattern":"Cr3 Si"}
+{"label":"crystal-structure","pattern":"Cr3 Si-type"}
+{"label":"crystal-structure","pattern":"Cr3 Si- type"}
+{"label":"crystal-structure","pattern":"Cr3 Si - type"}
+{"label":"crystal-structure","pattern":"Cr3 Si -type"}
+{"label":"crystal-structure","pattern":"SiCr3"}
+{"label":"crystal-structure","pattern":"Si Cr 3"}
+{"label":"crystal-structure","pattern":"Si Cr3"}
+{"label":"crystal-structure","pattern":"Si Cr3-type"}
+{"label":"crystal-structure","pattern":"Si Cr3- type"}
+{"label":"crystal-structure","pattern":"Si Cr3 - type"}
+{"label":"crystal-structure","pattern":"Si Cr3 -type"}
+{"label":"crystal-structure","pattern":"Ba2Cu3YO6.3"}
+{"label":"crystal-structure","pattern":"Ba 2 Cu 3 Y O 6.3"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 Y O6.3"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 Y O6.3-type"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 Y O6.3- type"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 Y O6.3 - type"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 Y O6.3 -type"}
+{"label":"crystal-structure","pattern":"Ba2Cu3O6.3Y"}
+{"label":"crystal-structure","pattern":"Ba 2 Cu 3 O 6.3 Y"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 O6.3 Y"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 O6.3 Y-type"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 O6.3 Y- type"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 O6.3 Y - type"}
+{"label":"crystal-structure","pattern":"Ba2 Cu3 O6.3 Y -type"}
+{"label":"crystal-structure","pattern":"Ba2YCu3O6.3"}
+{"label":"crystal-structure","pattern":"Ba 2 Y Cu 3 O 6.3"}
+{"label":"crystal-structure","pattern":"Ba2 Y Cu3 O6.3"}
+{"label":"crystal-structure","pattern":"Ba2 Y Cu3 O6.3-type"}
+{"label":"crystal-structure","pattern":"Ba2 Y Cu3 O6.3- type"}
+{"label":"crystal-structure","pattern":"Ba2 Y Cu3 O6.3 - type"}
+{"label":"crystal-structure","pattern":"Ba2 Y Cu3 O6.3 -type"}
+{"label":"crystal-structure","pattern":"Ba2YO6.3Cu3"}
+{"label":"crystal-structure","pattern":"Ba 2 Y O 6.3 Cu 3"}
+{"label":"crystal-structure","pattern":"Ba2 Y O6.3 Cu3"}
+{"label":"crystal-structure","pattern":"Ba2 Y O6.3 Cu3-type"}
+{"label":"crystal-structure","pattern":"Ba2 Y O6.3 Cu3- type"}
+{"label":"crystal-structure","pattern":"Ba2 Y O6.3 Cu3 - type"}
+{"label":"crystal-structure","pattern":"Ba2 Y O6.3 Cu3 -type"}
+{"label":"crystal-structure","pattern":"Ba2O6.3Cu3Y"}
+{"label":"crystal-structure","pattern":"Ba 2 O 6.3 Cu 3 Y"}
+{"label":"crystal-structure","pattern":"Ba2 O6.3 Cu3 Y"}
+{"label":"crystal-structure","pattern":"Ba2 O6.3 Cu3 Y-type"}
+{"label":"crystal-structure","pattern":"Ba2 O6.3 Cu3 Y- type"}
+{"label":"crystal-structure","pattern":"Ba2 O6.3 Cu3 Y - type"}
+{"label":"crystal-structure","pattern":"Ba2 O6.3 Cu3 Y -type"}
+{"label":"crystal-structure","pattern":"Ba2O6.3YCu3"}
+{"label":"crystal-structure","pattern":"Ba 2 O 6.3 Y Cu 3"}
+{"label":"crystal-structure","pattern":"Ba2 O6.3 Y Cu3"}
+{"label":"crystal-structure","pattern":"Ba2 O6.3 Y Cu3-type"}
+{"label":"crystal-structure","pattern":"Ba2 O6.3 Y Cu3- type"}
+{"label":"crystal-structure","pattern":"Ba2 O6.3 Y Cu3 - type"}
+{"label":"crystal-structure","pattern":"Ba2 O6.3 Y Cu3 -type"}
+{"label":"crystal-structure","pattern":"Cu3Ba2YO6.3"}
+{"label":"crystal-structure","pattern":"Cu 3 Ba 2 Y O 6.3"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 Y O6.3"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 Y O6.3-type"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 Y O6.3- type"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 Y O6.3 - type"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 Y O6.3 -type"}
+{"label":"crystal-structure","pattern":"Cu3Ba2O6.3Y"}
+{"label":"crystal-structure","pattern":"Cu 3 Ba 2 O 6.3 Y"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 O6.3 Y"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 O6.3 Y-type"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 O6.3 Y- type"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 O6.3 Y - type"}
+{"label":"crystal-structure","pattern":"Cu3 Ba2 O6.3 Y -type"}
+{"label":"crystal-structure","pattern":"Cu3YBa2O6.3"}
+{"label":"crystal-structure","pattern":"Cu 3 Y Ba 2 O 6.3"}
+{"label":"crystal-structure","pattern":"Cu3 Y Ba2 O6.3"}
+{"label":"crystal-structure","pattern":"Cu3 Y Ba2 O6.3-type"}
+{"label":"crystal-structure","pattern":"Cu3 Y Ba2 O6.3- type"}
+{"label":"crystal-structure","pattern":"Cu3 Y Ba2 O6.3 - type"}
+{"label":"crystal-structure","pattern":"Cu3 Y Ba2 O6.3 -type"}
+{"label":"crystal-structure","pattern":"Cu3YO6.3Ba2"}
+{"label":"crystal-structure","pattern":"Cu 3 Y O 6.3 Ba 2"}
+{"label":"crystal-structure","pattern":"Cu3 Y O6.3 Ba2"}
+{"label":"crystal-structure","pattern":"Cu3 Y O6.3 Ba2-type"}
+{"label":"crystal-structure","pattern":"Cu3 Y O6.3 Ba2- type"}
+{"label":"crystal-structure","pattern":"Cu3 Y O6.3 Ba2 - type"}
+{"label":"crystal-structure","pattern":"Cu3 Y O6.3 Ba2 -type"}
+{"label":"crystal-structure","pattern":"Cu3O6.3Ba2Y"}
+{"label":"crystal-structure","pattern":"Cu 3 O 6.3 Ba 2 Y"}
+{"label":"crystal-structure","pattern":"Cu3 O6.3 Ba2 Y"}
+{"label":"crystal-structure","pattern":"Cu3 O6.3 Ba2 Y-type"}
+{"label":"crystal-structure","pattern":"Cu3 O6.3 Ba2 Y- type"}
+{"label":"crystal-structure","pattern":"Cu3 O6.3 Ba2 Y - type"}
+{"label":"crystal-structure","pattern":"Cu3 O6.3 Ba2 Y -type"}
+{"label":"crystal-structure","pattern":"Cu3O6.3YBa2"}
+{"label":"crystal-structure","pattern":"Cu 3 O 6.3 Y Ba 2"}
+{"label":"crystal-structure","pattern":"Cu3 O6.3 Y Ba2"}
+{"label":"crystal-structure","pattern":"Cu3 O6.3 Y Ba2-type"}
+{"label":"crystal-structure","pattern":"Cu3 O6.3 Y Ba2- type"}
+{"label":"crystal-structure","pattern":"Cu3 O6.3 Y Ba2 - type"}
+{"label":"crystal-structure","pattern":"Cu3 O6.3 Y Ba2 -type"}
+{"label":"crystal-structure","pattern":"YBa2Cu3O6.3"}
+{"label":"crystal-structure","pattern":"Y Ba 2 Cu 3 O 6.3"}
+{"label":"crystal-structure","pattern":"Y Ba2 Cu3 O6.3"}
+{"label":"crystal-structure","pattern":"Y Ba2 Cu3 O6.3-type"}
+{"label":"crystal-structure","pattern":"Y Ba2 Cu3 O6.3- type"}
+{"label":"crystal-structure","pattern":"Y Ba2 Cu3 O6.3 - type"}
+{"label":"crystal-structure","pattern":"Y Ba2 Cu3 O6.3 -type"}
+{"label":"crystal-structure","pattern":"YBa2O6.3Cu3"}
+{"label":"crystal-structure","pattern":"Y Ba 2 O 6.3 Cu 3"}
+{"label":"crystal-structure","pattern":"Y Ba2 O6.3 Cu3"}
+{"label":"crystal-structure","pattern":"Y Ba2 O6.3 Cu3-type"}
+{"label":"crystal-structure","pattern":"Y Ba2 O6.3 Cu3- type"}
+{"label":"crystal-structure","pattern":"Y Ba2 O6.3 Cu3 - type"}
+{"label":"crystal-structure","pattern":"Y Ba2 O6.3 Cu3 -type"}
+{"label":"crystal-structure","pattern":"YCu3Ba2O6.3"}
+{"label":"crystal-structure","pattern":"Y Cu 3 Ba 2 O 6.3"}
+{"label":"crystal-structure","pattern":"Y Cu3 Ba2 O6.3"}
+{"label":"crystal-structure","pattern":"Y Cu3 Ba2 O6.3-type"}
+{"label":"crystal-structure","pattern":"Y Cu3 Ba2 O6.3- type"}
+{"label":"crystal-structure","pattern":"Y Cu3 Ba2 O6.3 - type"}
+{"label":"crystal-structure","pattern":"Y Cu3 Ba2 O6.3 -type"}
+{"label":"crystal-structure","pattern":"YCu3O6.3Ba2"}
+{"label":"crystal-structure","pattern":"Y Cu 3 O 6.3 Ba 2"}
+{"label":"crystal-structure","pattern":"Y Cu3 O6.3 Ba2"}
+{"label":"crystal-structure","pattern":"Y Cu3 O6.3 Ba2-type"}
+{"label":"crystal-structure","pattern":"Y Cu3 O6.3 Ba2- type"}
+{"label":"crystal-structure","pattern":"Y Cu3 O6.3 Ba2 - type"}
+{"label":"crystal-structure","pattern":"Y Cu3 O6.3 Ba2 -type"}
+{"label":"crystal-structure","pattern":"YO6.3Ba2Cu3"}
+{"label":"crystal-structure","pattern":"Y O 6.3 Ba 2 Cu 3"}
+{"label":"crystal-structure","pattern":"Y O6.3 Ba2 Cu3"}
+{"label":"crystal-structure","pattern":"Y O6.3 Ba2 Cu3-type"}
+{"label":"crystal-structure","pattern":"Y O6.3 Ba2 Cu3- type"}
+{"label":"crystal-structure","pattern":"Y O6.3 Ba2 Cu3 - type"}
+{"label":"crystal-structure","pattern":"Y O6.3 Ba2 Cu3 -type"}
+{"label":"crystal-structure","pattern":"YO6.3Cu3Ba2"}
+{"label":"crystal-structure","pattern":"Y O 6.3 Cu 3 Ba 2"}
+{"label":"crystal-structure","pattern":"Y O6.3 Cu3 Ba2"}
+{"label":"crystal-structure","pattern":"Y O6.3 Cu3 Ba2-type"}
+{"label":"crystal-structure","pattern":"Y O6.3 Cu3 Ba2- type"}
+{"label":"crystal-structure","pattern":"Y O6.3 Cu3 Ba2 - type"}
+{"label":"crystal-structure","pattern":"Y O6.3 Cu3 Ba2 -type"}
+{"label":"crystal-structure","pattern":"O6.3Ba2Cu3Y"}
+{"label":"crystal-structure","pattern":"O 6.3 Ba 2 Cu 3 Y"}
+{"label":"crystal-structure","pattern":"O6.3 Ba2 Cu3 Y"}
+{"label":"crystal-structure","pattern":"O6.3 Ba2 Cu3 Y-type"}
+{"label":"crystal-structure","pattern":"O6.3 Ba2 Cu3 Y- type"}
+{"label":"crystal-structure","pattern":"O6.3 Ba2 Cu3 Y - type"}
+{"label":"crystal-structure","pattern":"O6.3 Ba2 Cu3 Y -type"}
+{"label":"crystal-structure","pattern":"O6.3Ba2YCu3"}
+{"label":"crystal-structure","pattern":"O 6.3 Ba 2 Y Cu 3"}
+{"label":"crystal-structure","pattern":"O6.3 Ba2 Y Cu3"}
+{"label":"crystal-structure","pattern":"O6.3 Ba2 Y Cu3-type"}
+{"label":"crystal-structure","pattern":"O6.3 Ba2 Y Cu3- type"}
+{"label":"crystal-structure","pattern":"O6.3 Ba2 Y Cu3 - type"}
+{"label":"crystal-structure","pattern":"O6.3 Ba2 Y Cu3 -type"}
+{"label":"crystal-structure","pattern":"O6.3Cu3Ba2Y"}
+{"label":"crystal-structure","pattern":"O 6.3 Cu 3 Ba 2 Y"}
+{"label":"crystal-structure","pattern":"O6.3 Cu3 Ba2 Y"}
+{"label":"crystal-structure","pattern":"O6.3 Cu3 Ba2 Y-type"}
+{"label":"crystal-structure","pattern":"O6.3 Cu3 Ba2 Y- type"}
+{"label":"crystal-structure","pattern":"O6.3 Cu3 Ba2 Y - type"}
+{"label":"crystal-structure","pattern":"O6.3 Cu3 Ba2 Y -type"}
+{"label":"crystal-structure","pattern":"O6.3Cu3YBa2"}
+{"label":"crystal-structure","pattern":"O 6.3 Cu 3 Y Ba 2"}
+{"label":"crystal-structure","pattern":"O6.3 Cu3 Y Ba2"}
+{"label":"crystal-structure","pattern":"O6.3 Cu3 Y Ba2-type"}
+{"label":"crystal-structure","pattern":"O6.3 Cu3 Y Ba2- type"}
+{"label":"crystal-structure","pattern":"O6.3 Cu3 Y Ba2 - type"}
+{"label":"crystal-structure","pattern":"O6.3 Cu3 Y Ba2 -type"}
+{"label":"crystal-structure","pattern":"O6.3YBa2Cu3"}
+{"label":"crystal-structure","pattern":"O 6.3 Y Ba 2 Cu 3"}
+{"label":"crystal-structure","pattern":"O6.3 Y Ba2 Cu3"}
+{"label":"crystal-structure","pattern":"O6.3 Y Ba2 Cu3-type"}
+{"label":"crystal-structure","pattern":"O6.3 Y Ba2 Cu3- type"}
+{"label":"crystal-structure","pattern":"O6.3 Y Ba2 Cu3 - type"}
+{"label":"crystal-structure","pattern":"O6.3 Y Ba2 Cu3 -type"}
+{"label":"crystal-structure","pattern":"O6.3YCu3Ba2"}
+{"label":"crystal-structure","pattern":"O 6.3 Y Cu 3 Ba 2"}
+{"label":"crystal-structure","pattern":"O6.3 Y Cu3 Ba2"}
+{"label":"crystal-structure","pattern":"O6.3 Y Cu3 Ba2-type"}
+{"label":"crystal-structure","pattern":"O6.3 Y Cu3 Ba2- type"}
+{"label":"crystal-structure","pattern":"O6.3 Y Cu3 Ba2 - type"}
+{"label":"crystal-structure","pattern":"O6.3 Y Cu3 Ba2 -type"}
+{"label":"crystal-structure","pattern":"TlI"}
+{"label":"crystal-structure","pattern":"T lI"}
+{"label":"crystal-structure","pattern":"T lI-type"}
+{"label":"crystal-structure","pattern":"T lI- type"}
+{"label":"crystal-structure","pattern":"T lI - type"}
+{"label":"crystal-structure","pattern":"T lI -type"}
+{"label":"crystal-structure","pattern":"lIT"}
+{"label":"crystal-structure","pattern":"lI T"}
+{"label":"crystal-structure","pattern":"lI T-type"}
+{"label":"crystal-structure","pattern":"lI T- type"}
+{"label":"crystal-structure","pattern":"lI T - type"}
+{"label":"crystal-structure","pattern":"lI T -type"}
+{"label":"crystal-structure","pattern":"Mn5Si3"}
+{"label":"crystal-structure","pattern":"Mn 5 Si 3"}
+{"label":"crystal-structure","pattern":"Mn5 Si3"}
+{"label":"crystal-structure","pattern":"Mn5 Si3-type"}
+{"label":"crystal-structure","pattern":"Mn5 Si3- type"}
+{"label":"crystal-structure","pattern":"Mn5 Si3 - type"}
+{"label":"crystal-structure","pattern":"Mn5 Si3 -type"}
+{"label":"crystal-structure","pattern":"Si3Mn5"}
+{"label":"crystal-structure","pattern":"Si 3 Mn 5"}
+{"label":"crystal-structure","pattern":"Si3 Mn5"}
+{"label":"crystal-structure","pattern":"Si3 Mn5-type"}
+{"label":"crystal-structure","pattern":"Si3 Mn5- type"}
+{"label":"crystal-structure","pattern":"Si3 Mn5 - type"}
+{"label":"crystal-structure","pattern":"Si3 Mn5 -type"}
+{"label":"crystal-structure","pattern":"PbClF"}
+{"label":"crystal-structure","pattern":"Pb Cl F"}
+{"label":"crystal-structure","pattern":"Pb Cl F-type"}
+{"label":"crystal-structure","pattern":"Pb Cl F- type"}
+{"label":"crystal-structure","pattern":"Pb Cl F - type"}
+{"label":"crystal-structure","pattern":"Pb Cl F -type"}
+{"label":"crystal-structure","pattern":"PbFCl"}
+{"label":"crystal-structure","pattern":"Pb F Cl"}
+{"label":"crystal-structure","pattern":"Pb F Cl-type"}
+{"label":"crystal-structure","pattern":"Pb F Cl- type"}
+{"label":"crystal-structure","pattern":"Pb F Cl - type"}
+{"label":"crystal-structure","pattern":"Pb F Cl -type"}
+{"label":"crystal-structure","pattern":"ClPbF"}
+{"label":"crystal-structure","pattern":"Cl Pb F"}
+{"label":"crystal-structure","pattern":"Cl Pb F-type"}
+{"label":"crystal-structure","pattern":"Cl Pb F- type"}
+{"label":"crystal-structure","pattern":"Cl Pb F - type"}
+{"label":"crystal-structure","pattern":"Cl Pb F -type"}
+{"label":"crystal-structure","pattern":"ClFPb"}
+{"label":"crystal-structure","pattern":"Cl F Pb"}
+{"label":"crystal-structure","pattern":"Cl F Pb-type"}
+{"label":"crystal-structure","pattern":"Cl F Pb- type"}
+{"label":"crystal-structure","pattern":"Cl F Pb - type"}
+{"label":"crystal-structure","pattern":"Cl F Pb -type"}
+{"label":"crystal-structure","pattern":"FPbCl"}
+{"label":"crystal-structure","pattern":"F Pb Cl"}
+{"label":"crystal-structure","pattern":"F Pb Cl-type"}
+{"label":"crystal-structure","pattern":"F Pb Cl- type"}
+{"label":"crystal-structure","pattern":"F Pb Cl - type"}
+{"label":"crystal-structure","pattern":"F Pb Cl -type"}
+{"label":"crystal-structure","pattern":"FClPb"}
+{"label":"crystal-structure","pattern":"F Cl Pb"}
+{"label":"crystal-structure","pattern":"F Cl Pb-type"}
+{"label":"crystal-structure","pattern":"F Cl Pb- type"}
+{"label":"crystal-structure","pattern":"F Cl Pb - type"}
+{"label":"crystal-structure","pattern":"F Cl Pb -type"}
+{"label":"crystal-structure","pattern":"CdI2"}
+{"label":"crystal-structure","pattern":"Cd I 2"}
+{"label":"crystal-structure","pattern":"Cd I2"}
+{"label":"crystal-structure","pattern":"Cd I2-type"}
+{"label":"crystal-structure","pattern":"Cd I2- type"}
+{"label":"crystal-structure","pattern":"Cd I2 - type"}
+{"label":"crystal-structure","pattern":"Cd I2 -type"}
+{"label":"crystal-structure","pattern":"I2Cd"}
+{"label":"crystal-structure","pattern":"I 2 Cd"}
+{"label":"crystal-structure","pattern":"I2 Cd"}
+{"label":"crystal-structure","pattern":"I2 Cd-type"}
+{"label":"crystal-structure","pattern":"I2 Cd- type"}
+{"label":"crystal-structure","pattern":"I2 Cd - type"}
+{"label":"crystal-structure","pattern":"I2 Cd -type"}
+{"label":"crystal-structure","pattern":"Th2Ni17"}
+{"label":"crystal-structure","pattern":"Th 2 Ni 17"}
+{"label":"crystal-structure","pattern":"Th2 Ni17"}
+{"label":"crystal-structure","pattern":"Th2 Ni17-type"}
+{"label":"crystal-structure","pattern":"Th2 Ni17- type"}
+{"label":"crystal-structure","pattern":"Th2 Ni17 - type"}
+{"label":"crystal-structure","pattern":"Th2 Ni17 -type"}
+{"label":"crystal-structure","pattern":"Ni17Th2"}
+{"label":"crystal-structure","pattern":"Ni 17 Th 2"}
+{"label":"crystal-structure","pattern":"Ni17 Th2"}
+{"label":"crystal-structure","pattern":"Ni17 Th2-type"}
+{"label":"crystal-structure","pattern":"Ni17 Th2- type"}
+{"label":"crystal-structure","pattern":"Ni17 Th2 - type"}
+{"label":"crystal-structure","pattern":"Ni17 Th2 -type"}
+{"label":"crystal-structure","pattern":"MgAgAs"}
+{"label":"crystal-structure","pattern":"Mg Ag As"}
+{"label":"crystal-structure","pattern":"Mg Ag As-type"}
+{"label":"crystal-structure","pattern":"Mg Ag As- type"}
+{"label":"crystal-structure","pattern":"Mg Ag As - type"}
+{"label":"crystal-structure","pattern":"Mg Ag As -type"}
+{"label":"crystal-structure","pattern":"MgAsAg"}
+{"label":"crystal-structure","pattern":"Mg As Ag"}
+{"label":"crystal-structure","pattern":"Mg As Ag-type"}
+{"label":"crystal-structure","pattern":"Mg As Ag- type"}
+{"label":"crystal-structure","pattern":"Mg As Ag - type"}
+{"label":"crystal-structure","pattern":"Mg As Ag -type"}
+{"label":"crystal-structure","pattern":"AgMgAs"}
+{"label":"crystal-structure","pattern":"Ag Mg As"}
+{"label":"crystal-structure","pattern":"Ag Mg As-type"}
+{"label":"crystal-structure","pattern":"Ag Mg As- type"}
+{"label":"crystal-structure","pattern":"Ag Mg As - type"}
+{"label":"crystal-structure","pattern":"Ag Mg As -type"}
+{"label":"crystal-structure","pattern":"AgAsMg"}
+{"label":"crystal-structure","pattern":"Ag As Mg"}
+{"label":"crystal-structure","pattern":"Ag As Mg-type"}
+{"label":"crystal-structure","pattern":"Ag As Mg- type"}
+{"label":"crystal-structure","pattern":"Ag As Mg - type"}
+{"label":"crystal-structure","pattern":"Ag As Mg -type"}
+{"label":"crystal-structure","pattern":"AsMgAg"}
+{"label":"crystal-structure","pattern":"As Mg Ag"}
+{"label":"crystal-structure","pattern":"As Mg Ag-type"}
+{"label":"crystal-structure","pattern":"As Mg Ag- type"}
+{"label":"crystal-structure","pattern":"As Mg Ag - type"}
+{"label":"crystal-structure","pattern":"As Mg Ag -type"}
+{"label":"crystal-structure","pattern":"AsAgMg"}
+{"label":"crystal-structure","pattern":"As Ag Mg"}
+{"label":"crystal-structure","pattern":"As Ag Mg-type"}
+{"label":"crystal-structure","pattern":"As Ag Mg- type"}
+{"label":"crystal-structure","pattern":"As Ag Mg - type"}
+{"label":"crystal-structure","pattern":"As Ag Mg -type"}
+{"label":"crystal-structure","pattern":"Y3Al5O12"}
+{"label":"crystal-structure","pattern":"Y 3 Al 5 O 12"}
+{"label":"crystal-structure","pattern":"Y3 Al5 O12"}
+{"label":"crystal-structure","pattern":"Y3 Al5 O12-type"}
+{"label":"crystal-structure","pattern":"Y3 Al5 O12- type"}
+{"label":"crystal-structure","pattern":"Y3 Al5 O12 - type"}
+{"label":"crystal-structure","pattern":"Y3 Al5 O12 -type"}
+{"label":"crystal-structure","pattern":"Y3O12Al5"}
+{"label":"crystal-structure","pattern":"Y 3 O 12 Al 5"}
+{"label":"crystal-structure","pattern":"Y3 O12 Al5"}
+{"label":"crystal-structure","pattern":"Y3 O12 Al5-type"}
+{"label":"crystal-structure","pattern":"Y3 O12 Al5- type"}
+{"label":"crystal-structure","pattern":"Y3 O12 Al5 - type"}
+{"label":"crystal-structure","pattern":"Y3 O12 Al5 -type"}
+{"label":"crystal-structure","pattern":"Al5Y3O12"}
+{"label":"crystal-structure","pattern":"Al 5 Y 3 O 12"}
+{"label":"crystal-structure","pattern":"Al5 Y3 O12"}
+{"label":"crystal-structure","pattern":"Al5 Y3 O12-type"}
+{"label":"crystal-structure","pattern":"Al5 Y3 O12- type"}
+{"label":"crystal-structure","pattern":"Al5 Y3 O12 - type"}
+{"label":"crystal-structure","pattern":"Al5 Y3 O12 -type"}
+{"label":"crystal-structure","pattern":"Al5O12Y3"}
+{"label":"crystal-structure","pattern":"Al 5 O 12 Y 3"}
+{"label":"crystal-structure","pattern":"Al5 O12 Y3"}
+{"label":"crystal-structure","pattern":"Al5 O12 Y3-type"}
+{"label":"crystal-structure","pattern":"Al5 O12 Y3- type"}
+{"label":"crystal-structure","pattern":"Al5 O12 Y3 - type"}
+{"label":"crystal-structure","pattern":"Al5 O12 Y3 -type"}
+{"label":"crystal-structure","pattern":"O12Y3Al5"}
+{"label":"crystal-structure","pattern":"O 12 Y 3 Al 5"}
+{"label":"crystal-structure","pattern":"O12 Y3 Al5"}
+{"label":"crystal-structure","pattern":"O12 Y3 Al5-type"}
+{"label":"crystal-structure","pattern":"O12 Y3 Al5- type"}
+{"label":"crystal-structure","pattern":"O12 Y3 Al5 - type"}
+{"label":"crystal-structure","pattern":"O12 Y3 Al5 -type"}
+{"label":"crystal-structure","pattern":"O12Al5Y3"}
+{"label":"crystal-structure","pattern":"O 12 Al 5 Y 3"}
+{"label":"crystal-structure","pattern":"O12 Al5 Y3"}
+{"label":"crystal-structure","pattern":"O12 Al5 Y3-type"}
+{"label":"crystal-structure","pattern":"O12 Al5 Y3- type"}
+{"label":"crystal-structure","pattern":"O12 Al5 Y3 - type"}
+{"label":"crystal-structure","pattern":"O12 Al5 Y3 -type"}
+{"label":"crystal-structure","pattern":"LaFe4P12"}
+{"label":"crystal-structure","pattern":"La Fe 4 P 12"}
+{"label":"crystal-structure","pattern":"La Fe4 P12"}
+{"label":"crystal-structure","pattern":"La Fe4 P12-type"}
+{"label":"crystal-structure","pattern":"La Fe4 P12- type"}
+{"label":"crystal-structure","pattern":"La Fe4 P12 - type"}
+{"label":"crystal-structure","pattern":"La Fe4 P12 -type"}
+{"label":"crystal-structure","pattern":"LaP12Fe4"}
+{"label":"crystal-structure","pattern":"La P 12 Fe 4"}
+{"label":"crystal-structure","pattern":"La P12 Fe4"}
+{"label":"crystal-structure","pattern":"La P12 Fe4-type"}
+{"label":"crystal-structure","pattern":"La P12 Fe4- type"}
+{"label":"crystal-structure","pattern":"La P12 Fe4 - type"}
+{"label":"crystal-structure","pattern":"La P12 Fe4 -type"}
+{"label":"crystal-structure","pattern":"Fe4LaP12"}
+{"label":"crystal-structure","pattern":"Fe 4 La P 12"}
+{"label":"crystal-structure","pattern":"Fe4 La P12"}
+{"label":"crystal-structure","pattern":"Fe4 La P12-type"}
+{"label":"crystal-structure","pattern":"Fe4 La P12- type"}
+{"label":"crystal-structure","pattern":"Fe4 La P12 - type"}
+{"label":"crystal-structure","pattern":"Fe4 La P12 -type"}
+{"label":"crystal-structure","pattern":"Fe4P12La"}
+{"label":"crystal-structure","pattern":"Fe 4 P 12 La"}
+{"label":"crystal-structure","pattern":"Fe4 P12 La"}
+{"label":"crystal-structure","pattern":"Fe4 P12 La-type"}
+{"label":"crystal-structure","pattern":"Fe4 P12 La- type"}
+{"label":"crystal-structure","pattern":"Fe4 P12 La - type"}
+{"label":"crystal-structure","pattern":"Fe4 P12 La -type"}
+{"label":"crystal-structure","pattern":"P12LaFe4"}
+{"label":"crystal-structure","pattern":"P 12 La Fe 4"}
+{"label":"crystal-structure","pattern":"P12 La Fe4"}
+{"label":"crystal-structure","pattern":"P12 La Fe4-type"}
+{"label":"crystal-structure","pattern":"P12 La Fe4- type"}
+{"label":"crystal-structure","pattern":"P12 La Fe4 - type"}
+{"label":"crystal-structure","pattern":"P12 La Fe4 -type"}
+{"label":"crystal-structure","pattern":"P12Fe4La"}
+{"label":"crystal-structure","pattern":"P 12 Fe 4 La"}
+{"label":"crystal-structure","pattern":"P12 Fe4 La"}
+{"label":"crystal-structure","pattern":"P12 Fe4 La-type"}
+{"label":"crystal-structure","pattern":"P12 Fe4 La- type"}
+{"label":"crystal-structure","pattern":"P12 Fe4 La - type"}
+{"label":"crystal-structure","pattern":"P12 Fe4 La -type"}
+{"label":"crystal-structure","pattern":"CuLa2O4"}
+{"label":"crystal-structure","pattern":"Cu La 2 O 4"}
+{"label":"crystal-structure","pattern":"Cu La2 O4"}
+{"label":"crystal-structure","pattern":"Cu La2 O4-type"}
+{"label":"crystal-structure","pattern":"Cu La2 O4- type"}
+{"label":"crystal-structure","pattern":"Cu La2 O4 - type"}
+{"label":"crystal-structure","pattern":"Cu La2 O4 -type"}
+{"label":"crystal-structure","pattern":"CuO4La2"}
+{"label":"crystal-structure","pattern":"Cu O 4 La 2"}
+{"label":"crystal-structure","pattern":"Cu O4 La2"}
+{"label":"crystal-structure","pattern":"Cu O4 La2-type"}
+{"label":"crystal-structure","pattern":"Cu O4 La2- type"}
+{"label":"crystal-structure","pattern":"Cu O4 La2 - type"}
+{"label":"crystal-structure","pattern":"Cu O4 La2 -type"}
+{"label":"crystal-structure","pattern":"La2CuO4"}
+{"label":"crystal-structure","pattern":"La 2 Cu O 4"}
+{"label":"crystal-structure","pattern":"La2 Cu O4"}
+{"label":"crystal-structure","pattern":"La2 Cu O4-type"}
+{"label":"crystal-structure","pattern":"La2 Cu O4- type"}
+{"label":"crystal-structure","pattern":"La2 Cu O4 - type"}
+{"label":"crystal-structure","pattern":"La2 Cu O4 -type"}
+{"label":"crystal-structure","pattern":"La2O4Cu"}
+{"label":"crystal-structure","pattern":"La 2 O 4 Cu"}
+{"label":"crystal-structure","pattern":"La2 O4 Cu"}
+{"label":"crystal-structure","pattern":"La2 O4 Cu-type"}
+{"label":"crystal-structure","pattern":"La2 O4 Cu- type"}
+{"label":"crystal-structure","pattern":"La2 O4 Cu - type"}
+{"label":"crystal-structure","pattern":"La2 O4 Cu -type"}
+{"label":"crystal-structure","pattern":"O4CuLa2"}
+{"label":"crystal-structure","pattern":"O 4 Cu La 2"}
+{"label":"crystal-structure","pattern":"O4 Cu La2"}
+{"label":"crystal-structure","pattern":"O4 Cu La2-type"}
+{"label":"crystal-structure","pattern":"O4 Cu La2- type"}
+{"label":"crystal-structure","pattern":"O4 Cu La2 - type"}
+{"label":"crystal-structure","pattern":"O4 Cu La2 -type"}
+{"label":"crystal-structure","pattern":"O4La2Cu"}
+{"label":"crystal-structure","pattern":"O 4 La 2 Cu"}
+{"label":"crystal-structure","pattern":"O4 La2 Cu"}
+{"label":"crystal-structure","pattern":"O4 La2 Cu-type"}
+{"label":"crystal-structure","pattern":"O4 La2 Cu- type"}
+{"label":"crystal-structure","pattern":"O4 La2 Cu - type"}
+{"label":"crystal-structure","pattern":"O4 La2 Cu -type"}
+{"label":"crystal-structure","pattern":"FeS2"}
+{"label":"crystal-structure","pattern":"Fe S 2"}
+{"label":"crystal-structure","pattern":"Fe S2"}
+{"label":"crystal-structure","pattern":"Fe S2-type"}
+{"label":"crystal-structure","pattern":"Fe S2- type"}
+{"label":"crystal-structure","pattern":"Fe S2 - type"}
+{"label":"crystal-structure","pattern":"Fe S2 -type"}
+{"label":"crystal-structure","pattern":"S2Fe"}
+{"label":"crystal-structure","pattern":"S 2 Fe"}
+{"label":"crystal-structure","pattern":"S2 Fe"}
+{"label":"crystal-structure","pattern":"S2 Fe-type"}
+{"label":"crystal-structure","pattern":"S2 Fe- type"}
+{"label":"crystal-structure","pattern":"S2 Fe - type"}
+{"label":"crystal-structure","pattern":"S2 Fe -type"}
+{"label":"crystal-structure","pattern":"Al2O3"}
+{"label":"crystal-structure","pattern":"Al 2 O 3"}
+{"label":"crystal-structure","pattern":"Al2 O3"}
+{"label":"crystal-structure","pattern":"Al2 O3-type"}
+{"label":"crystal-structure","pattern":"Al2 O3- type"}
+{"label":"crystal-structure","pattern":"Al2 O3 - type"}
+{"label":"crystal-structure","pattern":"Al2 O3 -type"}
+{"label":"crystal-structure","pattern":"O3Al2"}
+{"label":"crystal-structure","pattern":"O 3 Al 2"}
+{"label":"crystal-structure","pattern":"O3 Al2"}
+{"label":"crystal-structure","pattern":"O3 Al2-type"}
+{"label":"crystal-structure","pattern":"O3 Al2- type"}
+{"label":"crystal-structure","pattern":"O3 Al2 - type"}
+{"label":"crystal-structure","pattern":"O3 Al2 -type"}
+{"label":"crystal-structure","pattern":"CeNiSi2"}
+{"label":"crystal-structure","pattern":"Ce Ni Si 2"}
+{"label":"crystal-structure","pattern":"Ce Ni Si2"}
+{"label":"crystal-structure","pattern":"Ce Ni Si2-type"}
+{"label":"crystal-structure","pattern":"Ce Ni Si2- type"}
+{"label":"crystal-structure","pattern":"Ce Ni Si2 - type"}
+{"label":"crystal-structure","pattern":"Ce Ni Si2 -type"}
+{"label":"crystal-structure","pattern":"CeSi2Ni"}
+{"label":"crystal-structure","pattern":"Ce Si 2 Ni"}
+{"label":"crystal-structure","pattern":"Ce Si2 Ni"}
+{"label":"crystal-structure","pattern":"Ce Si2 Ni-type"}
+{"label":"crystal-structure","pattern":"Ce Si2 Ni- type"}
+{"label":"crystal-structure","pattern":"Ce Si2 Ni - type"}
+{"label":"crystal-structure","pattern":"Ce Si2 Ni -type"}
+{"label":"crystal-structure","pattern":"NiCeSi2"}
+{"label":"crystal-structure","pattern":"Ni Ce Si 2"}
+{"label":"crystal-structure","pattern":"Ni Ce Si2"}
+{"label":"crystal-structure","pattern":"Ni Ce Si2-type"}
+{"label":"crystal-structure","pattern":"Ni Ce Si2- type"}
+{"label":"crystal-structure","pattern":"Ni Ce Si2 - type"}
+{"label":"crystal-structure","pattern":"Ni Ce Si2 -type"}
+{"label":"crystal-structure","pattern":"NiSi2Ce"}
+{"label":"crystal-structure","pattern":"Ni Si 2 Ce"}
+{"label":"crystal-structure","pattern":"Ni Si2 Ce"}
+{"label":"crystal-structure","pattern":"Ni Si2 Ce-type"}
+{"label":"crystal-structure","pattern":"Ni Si2 Ce- type"}
+{"label":"crystal-structure","pattern":"Ni Si2 Ce - type"}
+{"label":"crystal-structure","pattern":"Ni Si2 Ce -type"}
+{"label":"crystal-structure","pattern":"Si2CeNi"}
+{"label":"crystal-structure","pattern":"Si 2 Ce Ni"}
+{"label":"crystal-structure","pattern":"Si2 Ce Ni"}
+{"label":"crystal-structure","pattern":"Si2 Ce Ni-type"}
+{"label":"crystal-structure","pattern":"Si2 Ce Ni- type"}
+{"label":"crystal-structure","pattern":"Si2 Ce Ni - type"}
+{"label":"crystal-structure","pattern":"Si2 Ce Ni -type"}
+{"label":"crystal-structure","pattern":"Si2NiCe"}
+{"label":"crystal-structure","pattern":"Si 2 Ni Ce"}
+{"label":"crystal-structure","pattern":"Si2 Ni Ce"}
+{"label":"crystal-structure","pattern":"Si2 Ni Ce-type"}
+{"label":"crystal-structure","pattern":"Si2 Ni Ce- type"}
+{"label":"crystal-structure","pattern":"Si2 Ni Ce - type"}
+{"label":"crystal-structure","pattern":"Si2 Ni Ce -type"}
+{"label":"crystal-structure","pattern":"CaB6"}
+{"label":"crystal-structure","pattern":"Ca B 6"}
+{"label":"crystal-structure","pattern":"Ca B6"}
+{"label":"crystal-structure","pattern":"Ca B6-type"}
+{"label":"crystal-structure","pattern":"Ca B6- type"}
+{"label":"crystal-structure","pattern":"Ca B6 - type"}
+{"label":"crystal-structure","pattern":"Ca B6 -type"}
+{"label":"crystal-structure","pattern":"B6Ca"}
+{"label":"crystal-structure","pattern":"B 6 Ca"}
+{"label":"crystal-structure","pattern":"B6 Ca"}
+{"label":"crystal-structure","pattern":"B6 Ca-type"}
+{"label":"crystal-structure","pattern":"B6 Ca- type"}
+{"label":"crystal-structure","pattern":"B6 Ca - type"}
+{"label":"crystal-structure","pattern":"B6 Ca -type"}
+{"label":"crystal-structure","pattern":"Mo2FeB2"}
+{"label":"crystal-structure","pattern":"Mo 2 Fe B 2"}
+{"label":"crystal-structure","pattern":"Mo2 Fe B2"}
+{"label":"crystal-structure","pattern":"Mo2 Fe B2-type"}
+{"label":"crystal-structure","pattern":"Mo2 Fe B2- type"}
+{"label":"crystal-structure","pattern":"Mo2 Fe B2 - type"}
+{"label":"crystal-structure","pattern":"Mo2 Fe B2 -type"}
+{"label":"crystal-structure","pattern":"Mo2B2Fe"}
+{"label":"crystal-structure","pattern":"Mo 2 B 2 Fe"}
+{"label":"crystal-structure","pattern":"Mo2 B2 Fe"}
+{"label":"crystal-structure","pattern":"Mo2 B2 Fe-type"}
+{"label":"crystal-structure","pattern":"Mo2 B2 Fe- type"}
+{"label":"crystal-structure","pattern":"Mo2 B2 Fe - type"}
+{"label":"crystal-structure","pattern":"Mo2 B2 Fe -type"}
+{"label":"crystal-structure","pattern":"FeMo2B2"}
+{"label":"crystal-structure","pattern":"Fe Mo 2 B 2"}
+{"label":"crystal-structure","pattern":"Fe Mo2 B2"}
+{"label":"crystal-structure","pattern":"Fe Mo2 B2-type"}
+{"label":"crystal-structure","pattern":"Fe Mo2 B2- type"}
+{"label":"crystal-structure","pattern":"Fe Mo2 B2 - type"}
+{"label":"crystal-structure","pattern":"Fe Mo2 B2 -type"}
+{"label":"crystal-structure","pattern":"FeB2Mo2"}
+{"label":"crystal-structure","pattern":"Fe B 2 Mo 2"}
+{"label":"crystal-structure","pattern":"Fe B2 Mo2"}
+{"label":"crystal-structure","pattern":"Fe B2 Mo2-type"}
+{"label":"crystal-structure","pattern":"Fe B2 Mo2- type"}
+{"label":"crystal-structure","pattern":"Fe B2 Mo2 - type"}
+{"label":"crystal-structure","pattern":"Fe B2 Mo2 -type"}
+{"label":"crystal-structure","pattern":"B2Mo2Fe"}
+{"label":"crystal-structure","pattern":"B 2 Mo 2 Fe"}
+{"label":"crystal-structure","pattern":"B2 Mo2 Fe"}
+{"label":"crystal-structure","pattern":"B2 Mo2 Fe-type"}
+{"label":"crystal-structure","pattern":"B2 Mo2 Fe- type"}
+{"label":"crystal-structure","pattern":"B2 Mo2 Fe - type"}
+{"label":"crystal-structure","pattern":"B2 Mo2 Fe -type"}
+{"label":"crystal-structure","pattern":"B2FeMo2"}
+{"label":"crystal-structure","pattern":"B 2 Fe Mo 2"}
+{"label":"crystal-structure","pattern":"B2 Fe Mo2"}
+{"label":"crystal-structure","pattern":"B2 Fe Mo2-type"}
+{"label":"crystal-structure","pattern":"B2 Fe Mo2- type"}
+{"label":"crystal-structure","pattern":"B2 Fe Mo2 - type"}
+{"label":"crystal-structure","pattern":"B2 Fe Mo2 -type"}
+{"label":"crystal-structure","pattern":"Sr2WNiO6"}
+{"label":"crystal-structure","pattern":"Sr 2 W Ni O 6"}
+{"label":"crystal-structure","pattern":"Sr2 W Ni O6"}
+{"label":"crystal-structure","pattern":"Sr2 W Ni O6-type"}
+{"label":"crystal-structure","pattern":"Sr2 W Ni O6- type"}
+{"label":"crystal-structure","pattern":"Sr2 W Ni O6 - type"}
+{"label":"crystal-structure","pattern":"Sr2 W Ni O6 -type"}
+{"label":"crystal-structure","pattern":"Sr2WO6Ni"}
+{"label":"crystal-structure","pattern":"Sr 2 W O 6 Ni"}
+{"label":"crystal-structure","pattern":"Sr2 W O6 Ni"}
+{"label":"crystal-structure","pattern":"Sr2 W O6 Ni-type"}
+{"label":"crystal-structure","pattern":"Sr2 W O6 Ni- type"}
+{"label":"crystal-structure","pattern":"Sr2 W O6 Ni - type"}
+{"label":"crystal-structure","pattern":"Sr2 W O6 Ni -type"}
+{"label":"crystal-structure","pattern":"Sr2NiWO6"}
+{"label":"crystal-structure","pattern":"Sr 2 Ni W O 6"}
+{"label":"crystal-structure","pattern":"Sr2 Ni W O6"}
+{"label":"crystal-structure","pattern":"Sr2 Ni W O6-type"}
+{"label":"crystal-structure","pattern":"Sr2 Ni W O6- type"}
+{"label":"crystal-structure","pattern":"Sr2 Ni W O6 - type"}
+{"label":"crystal-structure","pattern":"Sr2 Ni W O6 -type"}
+{"label":"crystal-structure","pattern":"Sr2NiO6W"}
+{"label":"crystal-structure","pattern":"Sr 2 Ni O 6 W"}
+{"label":"crystal-structure","pattern":"Sr2 Ni O6 W"}
+{"label":"crystal-structure","pattern":"Sr2 Ni O6 W-type"}
+{"label":"crystal-structure","pattern":"Sr2 Ni O6 W- type"}
+{"label":"crystal-structure","pattern":"Sr2 Ni O6 W - type"}
+{"label":"crystal-structure","pattern":"Sr2 Ni O6 W -type"}
+{"label":"crystal-structure","pattern":"Sr2O6WNi"}
+{"label":"crystal-structure","pattern":"Sr 2 O 6 W Ni"}
+{"label":"crystal-structure","pattern":"Sr2 O6 W Ni"}
+{"label":"crystal-structure","pattern":"Sr2 O6 W Ni-type"}
+{"label":"crystal-structure","pattern":"Sr2 O6 W Ni- type"}
+{"label":"crystal-structure","pattern":"Sr2 O6 W Ni - type"}
+{"label":"crystal-structure","pattern":"Sr2 O6 W Ni -type"}
+{"label":"crystal-structure","pattern":"Sr2O6NiW"}
+{"label":"crystal-structure","pattern":"Sr 2 O 6 Ni W"}
+{"label":"crystal-structure","pattern":"Sr2 O6 Ni W"}
+{"label":"crystal-structure","pattern":"Sr2 O6 Ni W-type"}
+{"label":"crystal-structure","pattern":"Sr2 O6 Ni W- type"}
+{"label":"crystal-structure","pattern":"Sr2 O6 Ni W - type"}
+{"label":"crystal-structure","pattern":"Sr2 O6 Ni W -type"}
+{"label":"crystal-structure","pattern":"WSr2NiO6"}
+{"label":"crystal-structure","pattern":"W Sr 2 Ni O 6"}
+{"label":"crystal-structure","pattern":"W Sr2 Ni O6"}
+{"label":"crystal-structure","pattern":"W Sr2 Ni O6-type"}
+{"label":"crystal-structure","pattern":"W Sr2 Ni O6- type"}
+{"label":"crystal-structure","pattern":"W Sr2 Ni O6 - type"}
+{"label":"crystal-structure","pattern":"W Sr2 Ni O6 -type"}
+{"label":"crystal-structure","pattern":"WSr2O6Ni"}
+{"label":"crystal-structure","pattern":"W Sr 2 O 6 Ni"}
+{"label":"crystal-structure","pattern":"W Sr2 O6 Ni"}
+{"label":"crystal-structure","pattern":"W Sr2 O6 Ni-type"}
+{"label":"crystal-structure","pattern":"W Sr2 O6 Ni- type"}
+{"label":"crystal-structure","pattern":"W Sr2 O6 Ni - type"}
+{"label":"crystal-structure","pattern":"W Sr2 O6 Ni -type"}
+{"label":"crystal-structure","pattern":"WNiSr2O6"}
+{"label":"crystal-structure","pattern":"W Ni Sr 2 O 6"}
+{"label":"crystal-structure","pattern":"W Ni Sr2 O6"}
+{"label":"crystal-structure","pattern":"W Ni Sr2 O6-type"}
+{"label":"crystal-structure","pattern":"W Ni Sr2 O6- type"}
+{"label":"crystal-structure","pattern":"W Ni Sr2 O6 - type"}
+{"label":"crystal-structure","pattern":"W Ni Sr2 O6 -type"}
+{"label":"crystal-structure","pattern":"WNiO6Sr2"}
+{"label":"crystal-structure","pattern":"W Ni O 6 Sr 2"}
+{"label":"crystal-structure","pattern":"W Ni O6 Sr2"}
+{"label":"crystal-structure","pattern":"W Ni O6 Sr2-type"}
+{"label":"crystal-structure","pattern":"W Ni O6 Sr2- type"}
+{"label":"crystal-structure","pattern":"W Ni O6 Sr2 - type"}
+{"label":"crystal-structure","pattern":"W Ni O6 Sr2 -type"}
+{"label":"crystal-structure","pattern":"WO6Sr2Ni"}
+{"label":"crystal-structure","pattern":"W O 6 Sr 2 Ni"}
+{"label":"crystal-structure","pattern":"W O6 Sr2 Ni"}
+{"label":"crystal-structure","pattern":"W O6 Sr2 Ni-type"}
+{"label":"crystal-structure","pattern":"W O6 Sr2 Ni- type"}
+{"label":"crystal-structure","pattern":"W O6 Sr2 Ni - type"}
+{"label":"crystal-structure","pattern":"W O6 Sr2 Ni -type"}
+{"label":"crystal-structure","pattern":"WO6NiSr2"}
+{"label":"crystal-structure","pattern":"W O 6 Ni Sr 2"}
+{"label":"crystal-structure","pattern":"W O6 Ni Sr2"}
+{"label":"crystal-structure","pattern":"W O6 Ni Sr2-type"}
+{"label":"crystal-structure","pattern":"W O6 Ni Sr2- type"}
+{"label":"crystal-structure","pattern":"W O6 Ni Sr2 - type"}
+{"label":"crystal-structure","pattern":"W O6 Ni Sr2 -type"}
+{"label":"crystal-structure","pattern":"NiSr2WO6"}
+{"label":"crystal-structure","pattern":"Ni Sr 2 W O 6"}
+{"label":"crystal-structure","pattern":"Ni Sr2 W O6"}
+{"label":"crystal-structure","pattern":"Ni Sr2 W O6-type"}
+{"label":"crystal-structure","pattern":"Ni Sr2 W O6- type"}
+{"label":"crystal-structure","pattern":"Ni Sr2 W O6 - type"}
+{"label":"crystal-structure","pattern":"Ni Sr2 W O6 -type"}
+{"label":"crystal-structure","pattern":"NiSr2O6W"}
+{"label":"crystal-structure","pattern":"Ni Sr 2 O 6 W"}
+{"label":"crystal-structure","pattern":"Ni Sr2 O6 W"}
+{"label":"crystal-structure","pattern":"Ni Sr2 O6 W-type"}
+{"label":"crystal-structure","pattern":"Ni Sr2 O6 W- type"}
+{"label":"crystal-structure","pattern":"Ni Sr2 O6 W - type"}
+{"label":"crystal-structure","pattern":"Ni Sr2 O6 W -type"}
+{"label":"crystal-structure","pattern":"NiWSr2O6"}
+{"label":"crystal-structure","pattern":"Ni W Sr 2 O 6"}
+{"label":"crystal-structure","pattern":"Ni W Sr2 O6"}
+{"label":"crystal-structure","pattern":"Ni W Sr2 O6-type"}
+{"label":"crystal-structure","pattern":"Ni W Sr2 O6- type"}
+{"label":"crystal-structure","pattern":"Ni W Sr2 O6 - type"}
+{"label":"crystal-structure","pattern":"Ni W Sr2 O6 -type"}
+{"label":"crystal-structure","pattern":"NiWO6Sr2"}
+{"label":"crystal-structure","pattern":"Ni W O 6 Sr 2"}
+{"label":"crystal-structure","pattern":"Ni W O6 Sr2"}
+{"label":"crystal-structure","pattern":"Ni W O6 Sr2-type"}
+{"label":"crystal-structure","pattern":"Ni W O6 Sr2- type"}
+{"label":"crystal-structure","pattern":"Ni W O6 Sr2 - type"}
+{"label":"crystal-structure","pattern":"Ni W O6 Sr2 -type"}
+{"label":"crystal-structure","pattern":"NiO6Sr2W"}
+{"label":"crystal-structure","pattern":"Ni O 6 Sr 2 W"}
+{"label":"crystal-structure","pattern":"Ni O6 Sr2 W"}
+{"label":"crystal-structure","pattern":"Ni O6 Sr2 W-type"}
+{"label":"crystal-structure","pattern":"Ni O6 Sr2 W- type"}
+{"label":"crystal-structure","pattern":"Ni O6 Sr2 W - type"}
+{"label":"crystal-structure","pattern":"Ni O6 Sr2 W -type"}
+{"label":"crystal-structure","pattern":"NiO6WSr2"}
+{"label":"crystal-structure","pattern":"Ni O 6 W Sr 2"}
+{"label":"crystal-structure","pattern":"Ni O6 W Sr2"}
+{"label":"crystal-structure","pattern":"Ni O6 W Sr2-type"}
+{"label":"crystal-structure","pattern":"Ni O6 W Sr2- type"}
+{"label":"crystal-structure","pattern":"Ni O6 W Sr2 - type"}
+{"label":"crystal-structure","pattern":"Ni O6 W Sr2 -type"}
+{"label":"crystal-structure","pattern":"O6Sr2WNi"}
+{"label":"crystal-structure","pattern":"O 6 Sr 2 W Ni"}
+{"label":"crystal-structure","pattern":"O6 Sr2 W Ni"}
+{"label":"crystal-structure","pattern":"O6 Sr2 W Ni-type"}
+{"label":"crystal-structure","pattern":"O6 Sr2 W Ni- type"}
+{"label":"crystal-structure","pattern":"O6 Sr2 W Ni - type"}
+{"label":"crystal-structure","pattern":"O6 Sr2 W Ni -type"}
+{"label":"crystal-structure","pattern":"O6Sr2NiW"}
+{"label":"crystal-structure","pattern":"O 6 Sr 2 Ni W"}
+{"label":"crystal-structure","pattern":"O6 Sr2 Ni W"}
+{"label":"crystal-structure","pattern":"O6 Sr2 Ni W-type"}
+{"label":"crystal-structure","pattern":"O6 Sr2 Ni W- type"}
+{"label":"crystal-structure","pattern":"O6 Sr2 Ni W - type"}
+{"label":"crystal-structure","pattern":"O6 Sr2 Ni W -type"}
+{"label":"crystal-structure","pattern":"O6WSr2Ni"}
+{"label":"crystal-structure","pattern":"O 6 W Sr 2 Ni"}
+{"label":"crystal-structure","pattern":"O6 W Sr2 Ni"}
+{"label":"crystal-structure","pattern":"O6 W Sr2 Ni-type"}
+{"label":"crystal-structure","pattern":"O6 W Sr2 Ni- type"}
+{"label":"crystal-structure","pattern":"O6 W Sr2 Ni - type"}
+{"label":"crystal-structure","pattern":"O6 W Sr2 Ni -type"}
+{"label":"crystal-structure","pattern":"O6WNiSr2"}
+{"label":"crystal-structure","pattern":"O 6 W Ni Sr 2"}
+{"label":"crystal-structure","pattern":"O6 W Ni Sr2"}
+{"label":"crystal-structure","pattern":"O6 W Ni Sr2-type"}
+{"label":"crystal-structure","pattern":"O6 W Ni Sr2- type"}
+{"label":"crystal-structure","pattern":"O6 W Ni Sr2 - type"}
+{"label":"crystal-structure","pattern":"O6 W Ni Sr2 -type"}
+{"label":"crystal-structure","pattern":"O6NiSr2W"}
+{"label":"crystal-structure","pattern":"O 6 Ni Sr 2 W"}
+{"label":"crystal-structure","pattern":"O6 Ni Sr2 W"}
+{"label":"crystal-structure","pattern":"O6 Ni Sr2 W-type"}
+{"label":"crystal-structure","pattern":"O6 Ni Sr2 W- type"}
+{"label":"crystal-structure","pattern":"O6 Ni Sr2 W - type"}
+{"label":"crystal-structure","pattern":"O6 Ni Sr2 W -type"}
+{"label":"crystal-structure","pattern":"O6NiWSr2"}
+{"label":"crystal-structure","pattern":"O 6 Ni W Sr 2"}
+{"label":"crystal-structure","pattern":"O6 Ni W Sr2"}
+{"label":"crystal-structure","pattern":"O6 Ni W Sr2-type"}
+{"label":"crystal-structure","pattern":"O6 Ni W Sr2- type"}
+{"label":"crystal-structure","pattern":"O6 Ni W Sr2 - type"}
+{"label":"crystal-structure","pattern":"O6 Ni W Sr2 -type"}
+{"label":"crystal-structure","pattern":"CuNd2O4"}
+{"label":"crystal-structure","pattern":"Cu Nd 2 O 4"}
+{"label":"crystal-structure","pattern":"Cu Nd2 O4"}
+{"label":"crystal-structure","pattern":"Cu Nd2 O4-type"}
+{"label":"crystal-structure","pattern":"Cu Nd2 O4- type"}
+{"label":"crystal-structure","pattern":"Cu Nd2 O4 - type"}
+{"label":"crystal-structure","pattern":"Cu Nd2 O4 -type"}
+{"label":"crystal-structure","pattern":"CuO4Nd2"}
+{"label":"crystal-structure","pattern":"Cu O 4 Nd 2"}
+{"label":"crystal-structure","pattern":"Cu O4 Nd2"}
+{"label":"crystal-structure","pattern":"Cu O4 Nd2-type"}
+{"label":"crystal-structure","pattern":"Cu O4 Nd2- type"}
+{"label":"crystal-structure","pattern":"Cu O4 Nd2 - type"}
+{"label":"crystal-structure","pattern":"Cu O4 Nd2 -type"}
+{"label":"crystal-structure","pattern":"Nd2CuO4"}
+{"label":"crystal-structure","pattern":"Nd 2 Cu O 4"}
+{"label":"crystal-structure","pattern":"Nd2 Cu O4"}
+{"label":"crystal-structure","pattern":"Nd2 Cu O4-type"}
+{"label":"crystal-structure","pattern":"Nd2 Cu O4- type"}
+{"label":"crystal-structure","pattern":"Nd2 Cu O4 - type"}
+{"label":"crystal-structure","pattern":"Nd2 Cu O4 -type"}
+{"label":"crystal-structure","pattern":"Nd2O4Cu"}
+{"label":"crystal-structure","pattern":"Nd 2 O 4 Cu"}
+{"label":"crystal-structure","pattern":"Nd2 O4 Cu"}
+{"label":"crystal-structure","pattern":"Nd2 O4 Cu-type"}
+{"label":"crystal-structure","pattern":"Nd2 O4 Cu- type"}
+{"label":"crystal-structure","pattern":"Nd2 O4 Cu - type"}
+{"label":"crystal-structure","pattern":"Nd2 O4 Cu -type"}
+{"label":"crystal-structure","pattern":"O4CuNd2"}
+{"label":"crystal-structure","pattern":"O 4 Cu Nd 2"}
+{"label":"crystal-structure","pattern":"O4 Cu Nd2"}
+{"label":"crystal-structure","pattern":"O4 Cu Nd2-type"}
+{"label":"crystal-structure","pattern":"O4 Cu Nd2- type"}
+{"label":"crystal-structure","pattern":"O4 Cu Nd2 - type"}
+{"label":"crystal-structure","pattern":"O4 Cu Nd2 -type"}
+{"label":"crystal-structure","pattern":"O4Nd2Cu"}
+{"label":"crystal-structure","pattern":"O 4 Nd 2 Cu"}
+{"label":"crystal-structure","pattern":"O4 Nd2 Cu"}
+{"label":"crystal-structure","pattern":"O4 Nd2 Cu-type"}
+{"label":"crystal-structure","pattern":"O4 Nd2 Cu- type"}
+{"label":"crystal-structure","pattern":"O4 Nd2 Cu - type"}
+{"label":"crystal-structure","pattern":"O4 Nd2 Cu -type"}
+{"label":"crystal-structure","pattern":"Ce2SO2"}
+{"label":"crystal-structure","pattern":"Ce 2 S O 2"}
+{"label":"crystal-structure","pattern":"Ce2 S O2"}
+{"label":"crystal-structure","pattern":"Ce2 S O2-type"}
+{"label":"crystal-structure","pattern":"Ce2 S O2- type"}
+{"label":"crystal-structure","pattern":"Ce2 S O2 - type"}
+{"label":"crystal-structure","pattern":"Ce2 S O2 -type"}
+{"label":"crystal-structure","pattern":"Ce2O2S"}
+{"label":"crystal-structure","pattern":"Ce 2 O 2 S"}
+{"label":"crystal-structure","pattern":"Ce2 O2 S"}
+{"label":"crystal-structure","pattern":"Ce2 O2 S-type"}
+{"label":"crystal-structure","pattern":"Ce2 O2 S- type"}
+{"label":"crystal-structure","pattern":"Ce2 O2 S - type"}
+{"label":"crystal-structure","pattern":"Ce2 O2 S -type"}
+{"label":"crystal-structure","pattern":"SCe2O2"}
+{"label":"crystal-structure","pattern":"S Ce 2 O 2"}
+{"label":"crystal-structure","pattern":"S Ce2 O2"}
+{"label":"crystal-structure","pattern":"S Ce2 O2-type"}
+{"label":"crystal-structure","pattern":"S Ce2 O2- type"}
+{"label":"crystal-structure","pattern":"S Ce2 O2 - type"}
+{"label":"crystal-structure","pattern":"S Ce2 O2 -type"}
+{"label":"crystal-structure","pattern":"SO2Ce2"}
+{"label":"crystal-structure","pattern":"S O 2 Ce 2"}
+{"label":"crystal-structure","pattern":"S O2 Ce2"}
+{"label":"crystal-structure","pattern":"S O2 Ce2-type"}
+{"label":"crystal-structure","pattern":"S O2 Ce2- type"}
+{"label":"crystal-structure","pattern":"S O2 Ce2 - type"}
+{"label":"crystal-structure","pattern":"S O2 Ce2 -type"}
+{"label":"crystal-structure","pattern":"O2Ce2S"}
+{"label":"crystal-structure","pattern":"O 2 Ce 2 S"}
+{"label":"crystal-structure","pattern":"O2 Ce2 S"}
+{"label":"crystal-structure","pattern":"O2 Ce2 S-type"}
+{"label":"crystal-structure","pattern":"O2 Ce2 S- type"}
+{"label":"crystal-structure","pattern":"O2 Ce2 S - type"}
+{"label":"crystal-structure","pattern":"O2 Ce2 S -type"}
+{"label":"crystal-structure","pattern":"O2SCe2"}
+{"label":"crystal-structure","pattern":"O 2 S Ce 2"}
+{"label":"crystal-structure","pattern":"O2 S Ce2"}
+{"label":"crystal-structure","pattern":"O2 S Ce2-type"}
+{"label":"crystal-structure","pattern":"O2 S Ce2- type"}
+{"label":"crystal-structure","pattern":"O2 S Ce2 - type"}
+{"label":"crystal-structure","pattern":"O2 S Ce2 -type"}
+{"label":"crystal-structure","pattern":"FeAs"}
+{"label":"crystal-structure","pattern":"Fe As"}
+{"label":"crystal-structure","pattern":"Fe As-type"}
+{"label":"crystal-structure","pattern":"Fe As- type"}
+{"label":"crystal-structure","pattern":"Fe As - type"}
+{"label":"crystal-structure","pattern":"Fe As -type"}
+{"label":"crystal-structure","pattern":"AsFe"}
+{"label":"crystal-structure","pattern":"As Fe"}
+{"label":"crystal-structure","pattern":"As Fe-type"}
+{"label":"crystal-structure","pattern":"As Fe- type"}
+{"label":"crystal-structure","pattern":"As Fe - type"}
+{"label":"crystal-structure","pattern":"As Fe -type"}
+{"label":"crystal-structure","pattern":"SiO2"}
+{"label":"crystal-structure","pattern":"Si O 2"}
+{"label":"crystal-structure","pattern":"Si O2"}
+{"label":"crystal-structure","pattern":"Si O2-type"}
+{"label":"crystal-structure","pattern":"Si O2- type"}
+{"label":"crystal-structure","pattern":"Si O2 - type"}
+{"label":"crystal-structure","pattern":"Si O2 -type"}
+{"label":"crystal-structure","pattern":"O2Si"}
+{"label":"crystal-structure","pattern":"O 2 Si"}
+{"label":"crystal-structure","pattern":"O2 Si"}
+{"label":"crystal-structure","pattern":"O2 Si-type"}
+{"label":"crystal-structure","pattern":"O2 Si- type"}
+{"label":"crystal-structure","pattern":"O2 Si - type"}
+{"label":"crystal-structure","pattern":"O2 Si -type"}
+{"label":"crystal-structure","pattern":"CaMgSi2O6"}
+{"label":"crystal-structure","pattern":"Ca Mg Si 2 O 6"}
+{"label":"crystal-structure","pattern":"Ca Mg Si2 O6"}
+{"label":"crystal-structure","pattern":"Ca Mg Si2 O6-type"}
+{"label":"crystal-structure","pattern":"Ca Mg Si2 O6- type"}
+{"label":"crystal-structure","pattern":"Ca Mg Si2 O6 - type"}
+{"label":"crystal-structure","pattern":"Ca Mg Si2 O6 -type"}
+{"label":"crystal-structure","pattern":"CaMgO6Si2"}
+{"label":"crystal-structure","pattern":"Ca Mg O 6 Si 2"}
+{"label":"crystal-structure","pattern":"Ca Mg O6 Si2"}
+{"label":"crystal-structure","pattern":"Ca Mg O6 Si2-type"}
+{"label":"crystal-structure","pattern":"Ca Mg O6 Si2- type"}
+{"label":"crystal-structure","pattern":"Ca Mg O6 Si2 - type"}
+{"label":"crystal-structure","pattern":"Ca Mg O6 Si2 -type"}
+{"label":"crystal-structure","pattern":"CaSi2MgO6"}
+{"label":"crystal-structure","pattern":"Ca Si 2 Mg O 6"}
+{"label":"crystal-structure","pattern":"Ca Si2 Mg O6"}
+{"label":"crystal-structure","pattern":"Ca Si2 Mg O6-type"}
+{"label":"crystal-structure","pattern":"Ca Si2 Mg O6- type"}
+{"label":"crystal-structure","pattern":"Ca Si2 Mg O6 - type"}
+{"label":"crystal-structure","pattern":"Ca Si2 Mg O6 -type"}
+{"label":"crystal-structure","pattern":"CaSi2O6Mg"}
+{"label":"crystal-structure","pattern":"Ca Si 2 O 6 Mg"}
+{"label":"crystal-structure","pattern":"Ca Si2 O6 Mg"}
+{"label":"crystal-structure","pattern":"Ca Si2 O6 Mg-type"}
+{"label":"crystal-structure","pattern":"Ca Si2 O6 Mg- type"}
+{"label":"crystal-structure","pattern":"Ca Si2 O6 Mg - type"}
+{"label":"crystal-structure","pattern":"Ca Si2 O6 Mg -type"}
+{"label":"crystal-structure","pattern":"CaO6MgSi2"}
+{"label":"crystal-structure","pattern":"Ca O 6 Mg Si 2"}
+{"label":"crystal-structure","pattern":"Ca O6 Mg Si2"}
+{"label":"crystal-structure","pattern":"Ca O6 Mg Si2-type"}
+{"label":"crystal-structure","pattern":"Ca O6 Mg Si2- type"}
+{"label":"crystal-structure","pattern":"Ca O6 Mg Si2 - type"}
+{"label":"crystal-structure","pattern":"Ca O6 Mg Si2 -type"}
+{"label":"crystal-structure","pattern":"CaO6Si2Mg"}
+{"label":"crystal-structure","pattern":"Ca O 6 Si 2 Mg"}
+{"label":"crystal-structure","pattern":"Ca O6 Si2 Mg"}
+{"label":"crystal-structure","pattern":"Ca O6 Si2 Mg-type"}
+{"label":"crystal-structure","pattern":"Ca O6 Si2 Mg- type"}
+{"label":"crystal-structure","pattern":"Ca O6 Si2 Mg - type"}
+{"label":"crystal-structure","pattern":"Ca O6 Si2 Mg -type"}
+{"label":"crystal-structure","pattern":"MgCaSi2O6"}
+{"label":"crystal-structure","pattern":"Mg Ca Si 2 O 6"}
+{"label":"crystal-structure","pattern":"Mg Ca Si2 O6"}
+{"label":"crystal-structure","pattern":"Mg Ca Si2 O6-type"}
+{"label":"crystal-structure","pattern":"Mg Ca Si2 O6- type"}
+{"label":"crystal-structure","pattern":"Mg Ca Si2 O6 - type"}
+{"label":"crystal-structure","pattern":"Mg Ca Si2 O6 -type"}
+{"label":"crystal-structure","pattern":"MgCaO6Si2"}
+{"label":"crystal-structure","pattern":"Mg Ca O 6 Si 2"}
+{"label":"crystal-structure","pattern":"Mg Ca O6 Si2"}
+{"label":"crystal-structure","pattern":"Mg Ca O6 Si2-type"}
+{"label":"crystal-structure","pattern":"Mg Ca O6 Si2- type"}
+{"label":"crystal-structure","pattern":"Mg Ca O6 Si2 - type"}
+{"label":"crystal-structure","pattern":"Mg Ca O6 Si2 -type"}
+{"label":"crystal-structure","pattern":"MgSi2CaO6"}
+{"label":"crystal-structure","pattern":"Mg Si 2 Ca O 6"}
+{"label":"crystal-structure","pattern":"Mg Si2 Ca O6"}
+{"label":"crystal-structure","pattern":"Mg Si2 Ca O6-type"}
+{"label":"crystal-structure","pattern":"Mg Si2 Ca O6- type"}
+{"label":"crystal-structure","pattern":"Mg Si2 Ca O6 - type"}
+{"label":"crystal-structure","pattern":"Mg Si2 Ca O6 -type"}
+{"label":"crystal-structure","pattern":"MgSi2O6Ca"}
+{"label":"crystal-structure","pattern":"Mg Si 2 O 6 Ca"}
+{"label":"crystal-structure","pattern":"Mg Si2 O6 Ca"}
+{"label":"crystal-structure","pattern":"Mg Si2 O6 Ca-type"}
+{"label":"crystal-structure","pattern":"Mg Si2 O6 Ca- type"}
+{"label":"crystal-structure","pattern":"Mg Si2 O6 Ca - type"}
+{"label":"crystal-structure","pattern":"Mg Si2 O6 Ca -type"}
+{"label":"crystal-structure","pattern":"MgO6CaSi2"}
+{"label":"crystal-structure","pattern":"Mg O 6 Ca Si 2"}
+{"label":"crystal-structure","pattern":"Mg O6 Ca Si2"}
+{"label":"crystal-structure","pattern":"Mg O6 Ca Si2-type"}
+{"label":"crystal-structure","pattern":"Mg O6 Ca Si2- type"}
+{"label":"crystal-structure","pattern":"Mg O6 Ca Si2 - type"}
+{"label":"crystal-structure","pattern":"Mg O6 Ca Si2 -type"}
+{"label":"crystal-structure","pattern":"MgO6Si2Ca"}
+{"label":"crystal-structure","pattern":"Mg O 6 Si 2 Ca"}
+{"label":"crystal-structure","pattern":"Mg O6 Si2 Ca"}
+{"label":"crystal-structure","pattern":"Mg O6 Si2 Ca-type"}
+{"label":"crystal-structure","pattern":"Mg O6 Si2 Ca- type"}
+{"label":"crystal-structure","pattern":"Mg O6 Si2 Ca - type"}
+{"label":"crystal-structure","pattern":"Mg O6 Si2 Ca -type"}
+{"label":"crystal-structure","pattern":"Si2CaMgO6"}
+{"label":"crystal-structure","pattern":"Si 2 Ca Mg O 6"}
+{"label":"crystal-structure","pattern":"Si2 Ca Mg O6"}
+{"label":"crystal-structure","pattern":"Si2 Ca Mg O6-type"}
+{"label":"crystal-structure","pattern":"Si2 Ca Mg O6- type"}
+{"label":"crystal-structure","pattern":"Si2 Ca Mg O6 - type"}
+{"label":"crystal-structure","pattern":"Si2 Ca Mg O6 -type"}
+{"label":"crystal-structure","pattern":"Si2CaO6Mg"}
+{"label":"crystal-structure","pattern":"Si 2 Ca O 6 Mg"}
+{"label":"crystal-structure","pattern":"Si2 Ca O6 Mg"}
+{"label":"crystal-structure","pattern":"Si2 Ca O6 Mg-type"}
+{"label":"crystal-structure","pattern":"Si2 Ca O6 Mg- type"}
+{"label":"crystal-structure","pattern":"Si2 Ca O6 Mg - type"}
+{"label":"crystal-structure","pattern":"Si2 Ca O6 Mg -type"}
+{"label":"crystal-structure","pattern":"Si2MgCaO6"}
+{"label":"crystal-structure","pattern":"Si 2 Mg Ca O 6"}
+{"label":"crystal-structure","pattern":"Si2 Mg Ca O6"}
+{"label":"crystal-structure","pattern":"Si2 Mg Ca O6-type"}
+{"label":"crystal-structure","pattern":"Si2 Mg Ca O6- type"}
+{"label":"crystal-structure","pattern":"Si2 Mg Ca O6 - type"}
+{"label":"crystal-structure","pattern":"Si2 Mg Ca O6 -type"}
+{"label":"crystal-structure","pattern":"Si2MgO6Ca"}
+{"label":"crystal-structure","pattern":"Si 2 Mg O 6 Ca"}
+{"label":"crystal-structure","pattern":"Si2 Mg O6 Ca"}
+{"label":"crystal-structure","pattern":"Si2 Mg O6 Ca-type"}
+{"label":"crystal-structure","pattern":"Si2 Mg O6 Ca- type"}
+{"label":"crystal-structure","pattern":"Si2 Mg O6 Ca - type"}
+{"label":"crystal-structure","pattern":"Si2 Mg O6 Ca -type"}
+{"label":"crystal-structure","pattern":"Si2O6CaMg"}
+{"label":"crystal-structure","pattern":"Si 2 O 6 Ca Mg"}
+{"label":"crystal-structure","pattern":"Si2 O6 Ca Mg"}
+{"label":"crystal-structure","pattern":"Si2 O6 Ca Mg-type"}
+{"label":"crystal-structure","pattern":"Si2 O6 Ca Mg- type"}
+{"label":"crystal-structure","pattern":"Si2 O6 Ca Mg - type"}
+{"label":"crystal-structure","pattern":"Si2 O6 Ca Mg -type"}
+{"label":"crystal-structure","pattern":"Si2O6MgCa"}
+{"label":"crystal-structure","pattern":"Si 2 O 6 Mg Ca"}
+{"label":"crystal-structure","pattern":"Si2 O6 Mg Ca"}
+{"label":"crystal-structure","pattern":"Si2 O6 Mg Ca-type"}
+{"label":"crystal-structure","pattern":"Si2 O6 Mg Ca- type"}
+{"label":"crystal-structure","pattern":"Si2 O6 Mg Ca - type"}
+{"label":"crystal-structure","pattern":"Si2 O6 Mg Ca -type"}
+{"label":"crystal-structure","pattern":"O6CaMgSi2"}
+{"label":"crystal-structure","pattern":"O 6 Ca Mg Si 2"}
+{"label":"crystal-structure","pattern":"O6 Ca Mg Si2"}
+{"label":"crystal-structure","pattern":"O6 Ca Mg Si2-type"}
+{"label":"crystal-structure","pattern":"O6 Ca Mg Si2- type"}
+{"label":"crystal-structure","pattern":"O6 Ca Mg Si2 - type"}
+{"label":"crystal-structure","pattern":"O6 Ca Mg Si2 -type"}
+{"label":"crystal-structure","pattern":"O6CaSi2Mg"}
+{"label":"crystal-structure","pattern":"O 6 Ca Si 2 Mg"}
+{"label":"crystal-structure","pattern":"O6 Ca Si2 Mg"}
+{"label":"crystal-structure","pattern":"O6 Ca Si2 Mg-type"}
+{"label":"crystal-structure","pattern":"O6 Ca Si2 Mg- type"}
+{"label":"crystal-structure","pattern":"O6 Ca Si2 Mg - type"}
+{"label":"crystal-structure","pattern":"O6 Ca Si2 Mg -type"}
+{"label":"crystal-structure","pattern":"O6MgCaSi2"}
+{"label":"crystal-structure","pattern":"O 6 Mg Ca Si 2"}
+{"label":"crystal-structure","pattern":"O6 Mg Ca Si2"}
+{"label":"crystal-structure","pattern":"O6 Mg Ca Si2-type"}
+{"label":"crystal-structure","pattern":"O6 Mg Ca Si2- type"}
+{"label":"crystal-structure","pattern":"O6 Mg Ca Si2 - type"}
+{"label":"crystal-structure","pattern":"O6 Mg Ca Si2 -type"}
+{"label":"crystal-structure","pattern":"O6MgSi2Ca"}
+{"label":"crystal-structure","pattern":"O 6 Mg Si 2 Ca"}
+{"label":"crystal-structure","pattern":"O6 Mg Si2 Ca"}
+{"label":"crystal-structure","pattern":"O6 Mg Si2 Ca-type"}
+{"label":"crystal-structure","pattern":"O6 Mg Si2 Ca- type"}
+{"label":"crystal-structure","pattern":"O6 Mg Si2 Ca - type"}
+{"label":"crystal-structure","pattern":"O6 Mg Si2 Ca -type"}
+{"label":"crystal-structure","pattern":"O6Si2CaMg"}
+{"label":"crystal-structure","pattern":"O 6 Si 2 Ca Mg"}
+{"label":"crystal-structure","pattern":"O6 Si2 Ca Mg"}
+{"label":"crystal-structure","pattern":"O6 Si2 Ca Mg-type"}
+{"label":"crystal-structure","pattern":"O6 Si2 Ca Mg- type"}
+{"label":"crystal-structure","pattern":"O6 Si2 Ca Mg - type"}
+{"label":"crystal-structure","pattern":"O6 Si2 Ca Mg -type"}
+{"label":"crystal-structure","pattern":"O6Si2MgCa"}
+{"label":"crystal-structure","pattern":"O 6 Si 2 Mg Ca"}
+{"label":"crystal-structure","pattern":"O6 Si2 Mg Ca"}
+{"label":"crystal-structure","pattern":"O6 Si2 Mg Ca-type"}
+{"label":"crystal-structure","pattern":"O6 Si2 Mg Ca- type"}
+{"label":"crystal-structure","pattern":"O6 Si2 Mg Ca - type"}
+{"label":"crystal-structure","pattern":"O6 Si2 Mg Ca -type"}
+{"label":"crystal-structure","pattern":"K2PtCl6"}
+{"label":"crystal-structure","pattern":"K 2 Pt Cl 6"}
+{"label":"crystal-structure","pattern":"K2 Pt Cl6"}
+{"label":"crystal-structure","pattern":"K2 Pt Cl6-type"}
+{"label":"crystal-structure","pattern":"K2 Pt Cl6- type"}
+{"label":"crystal-structure","pattern":"K2 Pt Cl6 - type"}
+{"label":"crystal-structure","pattern":"K2 Pt Cl6 -type"}
+{"label":"crystal-structure","pattern":"K2Cl6Pt"}
+{"label":"crystal-structure","pattern":"K 2 Cl 6 Pt"}
+{"label":"crystal-structure","pattern":"K2 Cl6 Pt"}
+{"label":"crystal-structure","pattern":"K2 Cl6 Pt-type"}
+{"label":"crystal-structure","pattern":"K2 Cl6 Pt- type"}
+{"label":"crystal-structure","pattern":"K2 Cl6 Pt - type"}
+{"label":"crystal-structure","pattern":"K2 Cl6 Pt -type"}
+{"label":"crystal-structure","pattern":"PtK2Cl6"}
+{"label":"crystal-structure","pattern":"Pt K 2 Cl 6"}
+{"label":"crystal-structure","pattern":"Pt K2 Cl6"}
+{"label":"crystal-structure","pattern":"Pt K2 Cl6-type"}
+{"label":"crystal-structure","pattern":"Pt K2 Cl6- type"}
+{"label":"crystal-structure","pattern":"Pt K2 Cl6 - type"}
+{"label":"crystal-structure","pattern":"Pt K2 Cl6 -type"}
+{"label":"crystal-structure","pattern":"PtCl6K2"}
+{"label":"crystal-structure","pattern":"Pt Cl 6 K 2"}
+{"label":"crystal-structure","pattern":"Pt Cl6 K2"}
+{"label":"crystal-structure","pattern":"Pt Cl6 K2-type"}
+{"label":"crystal-structure","pattern":"Pt Cl6 K2- type"}
+{"label":"crystal-structure","pattern":"Pt Cl6 K2 - type"}
+{"label":"crystal-structure","pattern":"Pt Cl6 K2 -type"}
+{"label":"crystal-structure","pattern":"Cl6K2Pt"}
+{"label":"crystal-structure","pattern":"Cl 6 K 2 Pt"}
+{"label":"crystal-structure","pattern":"Cl6 K2 Pt"}
+{"label":"crystal-structure","pattern":"Cl6 K2 Pt-type"}
+{"label":"crystal-structure","pattern":"Cl6 K2 Pt- type"}
+{"label":"crystal-structure","pattern":"Cl6 K2 Pt - type"}
+{"label":"crystal-structure","pattern":"Cl6 K2 Pt -type"}
+{"label":"crystal-structure","pattern":"Cl6PtK2"}
+{"label":"crystal-structure","pattern":"Cl 6 Pt K 2"}
+{"label":"crystal-structure","pattern":"Cl6 Pt K2"}
+{"label":"crystal-structure","pattern":"Cl6 Pt K2-type"}
+{"label":"crystal-structure","pattern":"Cl6 Pt K2- type"}
+{"label":"crystal-structure","pattern":"Cl6 Pt K2 - type"}
+{"label":"crystal-structure","pattern":"Cl6 Pt K2 -type"}
+{"label":"crystal-structure","pattern":"Pr2Mn17C1.7"}
+{"label":"crystal-structure","pattern":"Pr 2 Mn 17 C 1.7"}
+{"label":"crystal-structure","pattern":"Pr2 Mn17 C1.7"}
+{"label":"crystal-structure","pattern":"Pr2 Mn17 C1.7-type"}
+{"label":"crystal-structure","pattern":"Pr2 Mn17 C1.7- type"}
+{"label":"crystal-structure","pattern":"Pr2 Mn17 C1.7 - type"}
+{"label":"crystal-structure","pattern":"Pr2 Mn17 C1.7 -type"}
+{"label":"crystal-structure","pattern":"Pr2C1.7Mn17"}
+{"label":"crystal-structure","pattern":"Pr 2 C 1.7 Mn 17"}
+{"label":"crystal-structure","pattern":"Pr2 C1.7 Mn17"}
+{"label":"crystal-structure","pattern":"Pr2 C1.7 Mn17-type"}
+{"label":"crystal-structure","pattern":"Pr2 C1.7 Mn17- type"}
+{"label":"crystal-structure","pattern":"Pr2 C1.7 Mn17 - type"}
+{"label":"crystal-structure","pattern":"Pr2 C1.7 Mn17 -type"}
+{"label":"crystal-structure","pattern":"Mn17Pr2C1.7"}
+{"label":"crystal-structure","pattern":"Mn 17 Pr 2 C 1.7"}
+{"label":"crystal-structure","pattern":"Mn17 Pr2 C1.7"}
+{"label":"crystal-structure","pattern":"Mn17 Pr2 C1.7-type"}
+{"label":"crystal-structure","pattern":"Mn17 Pr2 C1.7- type"}
+{"label":"crystal-structure","pattern":"Mn17 Pr2 C1.7 - type"}
+{"label":"crystal-structure","pattern":"Mn17 Pr2 C1.7 -type"}
+{"label":"crystal-structure","pattern":"Mn17C1.7Pr2"}
+{"label":"crystal-structure","pattern":"Mn 17 C 1.7 Pr 2"}
+{"label":"crystal-structure","pattern":"Mn17 C1.7 Pr2"}
+{"label":"crystal-structure","pattern":"Mn17 C1.7 Pr2-type"}
+{"label":"crystal-structure","pattern":"Mn17 C1.7 Pr2- type"}
+{"label":"crystal-structure","pattern":"Mn17 C1.7 Pr2 - type"}
+{"label":"crystal-structure","pattern":"Mn17 C1.7 Pr2 -type"}
+{"label":"crystal-structure","pattern":"C1.7Pr2Mn17"}
+{"label":"crystal-structure","pattern":"C 1.7 Pr 2 Mn 17"}
+{"label":"crystal-structure","pattern":"C1.7 Pr2 Mn17"}
+{"label":"crystal-structure","pattern":"C1.7 Pr2 Mn17-type"}
+{"label":"crystal-structure","pattern":"C1.7 Pr2 Mn17- type"}
+{"label":"crystal-structure","pattern":"C1.7 Pr2 Mn17 - type"}
+{"label":"crystal-structure","pattern":"C1.7 Pr2 Mn17 -type"}
+{"label":"crystal-structure","pattern":"C1.7Mn17Pr2"}
+{"label":"crystal-structure","pattern":"C 1.7 Mn 17 Pr 2"}
+{"label":"crystal-structure","pattern":"C1.7 Mn17 Pr2"}
+{"label":"crystal-structure","pattern":"C1.7 Mn17 Pr2-type"}
+{"label":"crystal-structure","pattern":"C1.7 Mn17 Pr2- type"}
+{"label":"crystal-structure","pattern":"C1.7 Mn17 Pr2 - type"}
+{"label":"crystal-structure","pattern":"C1.7 Mn17 Pr2 -type"}
+{"label":"crystal-structure","pattern":"PuNi3"}
+{"label":"crystal-structure","pattern":"Pu Ni 3"}
+{"label":"crystal-structure","pattern":"Pu Ni3"}
+{"label":"crystal-structure","pattern":"Pu Ni3-type"}
+{"label":"crystal-structure","pattern":"Pu Ni3- type"}
+{"label":"crystal-structure","pattern":"Pu Ni3 - type"}
+{"label":"crystal-structure","pattern":"Pu Ni3 -type"}
+{"label":"crystal-structure","pattern":"Ni3Pu"}
+{"label":"crystal-structure","pattern":"Ni 3 Pu"}
+{"label":"crystal-structure","pattern":"Ni3 Pu"}
+{"label":"crystal-structure","pattern":"Ni3 Pu-type"}
+{"label":"crystal-structure","pattern":"Ni3 Pu- type"}
+{"label":"crystal-structure","pattern":"Ni3 Pu - type"}
+{"label":"crystal-structure","pattern":"Ni3 Pu -type"}
+{"label":"crystal-structure","pattern":"SrZrO3"}
+{"label":"crystal-structure","pattern":"Sr Zr O 3"}
+{"label":"crystal-structure","pattern":"Sr Zr O3"}
+{"label":"crystal-structure","pattern":"Sr Zr O3-type"}
+{"label":"crystal-structure","pattern":"Sr Zr O3- type"}
+{"label":"crystal-structure","pattern":"Sr Zr O3 - type"}
+{"label":"crystal-structure","pattern":"Sr Zr O3 -type"}
+{"label":"crystal-structure","pattern":"SrO3Zr"}
+{"label":"crystal-structure","pattern":"Sr O 3 Zr"}
+{"label":"crystal-structure","pattern":"Sr O3 Zr"}
+{"label":"crystal-structure","pattern":"Sr O3 Zr-type"}
+{"label":"crystal-structure","pattern":"Sr O3 Zr- type"}
+{"label":"crystal-structure","pattern":"Sr O3 Zr - type"}
+{"label":"crystal-structure","pattern":"Sr O3 Zr -type"}
+{"label":"crystal-structure","pattern":"ZrSrO3"}
+{"label":"crystal-structure","pattern":"Zr Sr O 3"}
+{"label":"crystal-structure","pattern":"Zr Sr O3"}
+{"label":"crystal-structure","pattern":"Zr Sr O3-type"}
+{"label":"crystal-structure","pattern":"Zr Sr O3- type"}
+{"label":"crystal-structure","pattern":"Zr Sr O3 - type"}
+{"label":"crystal-structure","pattern":"Zr Sr O3 -type"}
+{"label":"crystal-structure","pattern":"ZrO3Sr"}
+{"label":"crystal-structure","pattern":"Zr O 3 Sr"}
+{"label":"crystal-structure","pattern":"Zr O3 Sr"}
+{"label":"crystal-structure","pattern":"Zr O3 Sr-type"}
+{"label":"crystal-structure","pattern":"Zr O3 Sr- type"}
+{"label":"crystal-structure","pattern":"Zr O3 Sr - type"}
+{"label":"crystal-structure","pattern":"Zr O3 Sr -type"}
+{"label":"crystal-structure","pattern":"O3SrZr"}
+{"label":"crystal-structure","pattern":"O 3 Sr Zr"}
+{"label":"crystal-structure","pattern":"O3 Sr Zr"}
+{"label":"crystal-structure","pattern":"O3 Sr Zr-type"}
+{"label":"crystal-structure","pattern":"O3 Sr Zr- type"}
+{"label":"crystal-structure","pattern":"O3 Sr Zr - type"}
+{"label":"crystal-structure","pattern":"O3 Sr Zr -type"}
+{"label":"crystal-structure","pattern":"O3ZrSr"}
+{"label":"crystal-structure","pattern":"O 3 Zr Sr"}
+{"label":"crystal-structure","pattern":"O3 Zr Sr"}
+{"label":"crystal-structure","pattern":"O3 Zr Sr-type"}
+{"label":"crystal-structure","pattern":"O3 Zr Sr- type"}
+{"label":"crystal-structure","pattern":"O3 Zr Sr - type"}
+{"label":"crystal-structure","pattern":"O3 Zr Sr -type"}
+{"label":"crystal-structure","pattern":"KHg2"}
+{"label":"crystal-structure","pattern":"K Hg 2"}
+{"label":"crystal-structure","pattern":"K Hg2"}
+{"label":"crystal-structure","pattern":"K Hg2-type"}
+{"label":"crystal-structure","pattern":"K Hg2- type"}
+{"label":"crystal-structure","pattern":"K Hg2 - type"}
+{"label":"crystal-structure","pattern":"K Hg2 -type"}
+{"label":"crystal-structure","pattern":"Hg2K"}
+{"label":"crystal-structure","pattern":"Hg 2 K"}
+{"label":"crystal-structure","pattern":"Hg2 K"}
+{"label":"crystal-structure","pattern":"Hg2 K-type"}
+{"label":"crystal-structure","pattern":"Hg2 K- type"}
+{"label":"crystal-structure","pattern":"Hg2 K - type"}
+{"label":"crystal-structure","pattern":"Hg2 K -type"}
+{"label":"crystal-structure","pattern":"Fe3O4"}
+{"label":"crystal-structure","pattern":"Fe 3 O 4"}
+{"label":"crystal-structure","pattern":"Fe3 O4"}
+{"label":"crystal-structure","pattern":"Fe3 O4-type"}
+{"label":"crystal-structure","pattern":"Fe3 O4- type"}
+{"label":"crystal-structure","pattern":"Fe3 O4 - type"}
+{"label":"crystal-structure","pattern":"Fe3 O4 -type"}
+{"label":"crystal-structure","pattern":"O4Fe3"}
+{"label":"crystal-structure","pattern":"O 4 Fe 3"}
+{"label":"crystal-structure","pattern":"O4 Fe3"}
+{"label":"crystal-structure","pattern":"O4 Fe3-type"}
+{"label":"crystal-structure","pattern":"O4 Fe3- type"}
+{"label":"crystal-structure","pattern":"O4 Fe3 - type"}
+{"label":"crystal-structure","pattern":"O4 Fe3 -type"}
+{"label":"crystal-structure","pattern":"Fe"}
+{"label":"crystal-structure","pattern":"Fe-type"}
+{"label":"crystal-structure","pattern":"Fe- type"}
+{"label":"crystal-structure","pattern":"Fe - type"}
+{"label":"crystal-structure","pattern":"Fe -type"}
+{"label":"crystal-structure","pattern":"Cu2TlSe2"}
+{"label":"crystal-structure","pattern":"Cu 2 Tl Se 2"}
+{"label":"crystal-structure","pattern":"Cu2 Tl Se2"}
+{"label":"crystal-structure","pattern":"Cu2 Tl Se2-type"}
+{"label":"crystal-structure","pattern":"Cu2 Tl Se2- type"}
+{"label":"crystal-structure","pattern":"Cu2 Tl Se2 - type"}
+{"label":"crystal-structure","pattern":"Cu2 Tl Se2 -type"}
+{"label":"crystal-structure","pattern":"Cu2Se2Tl"}
+{"label":"crystal-structure","pattern":"Cu 2 Se 2 Tl"}
+{"label":"crystal-structure","pattern":"Cu2 Se2 Tl"}
+{"label":"crystal-structure","pattern":"Cu2 Se2 Tl-type"}
+{"label":"crystal-structure","pattern":"Cu2 Se2 Tl- type"}
+{"label":"crystal-structure","pattern":"Cu2 Se2 Tl - type"}
+{"label":"crystal-structure","pattern":"Cu2 Se2 Tl -type"}
+{"label":"crystal-structure","pattern":"TlCu2Se2"}
+{"label":"crystal-structure","pattern":"Tl Cu 2 Se 2"}
+{"label":"crystal-structure","pattern":"Tl Cu2 Se2"}
+{"label":"crystal-structure","pattern":"Tl Cu2 Se2-type"}
+{"label":"crystal-structure","pattern":"Tl Cu2 Se2- type"}
+{"label":"crystal-structure","pattern":"Tl Cu2 Se2 - type"}
+{"label":"crystal-structure","pattern":"Tl Cu2 Se2 -type"}
+{"label":"crystal-structure","pattern":"TlSe2Cu2"}
+{"label":"crystal-structure","pattern":"Tl Se 2 Cu 2"}
+{"label":"crystal-structure","pattern":"Tl Se2 Cu2"}
+{"label":"crystal-structure","pattern":"Tl Se2 Cu2-type"}
+{"label":"crystal-structure","pattern":"Tl Se2 Cu2- type"}
+{"label":"crystal-structure","pattern":"Tl Se2 Cu2 - type"}
+{"label":"crystal-structure","pattern":"Tl Se2 Cu2 -type"}
+{"label":"crystal-structure","pattern":"Se2Cu2Tl"}
+{"label":"crystal-structure","pattern":"Se 2 Cu 2 Tl"}
+{"label":"crystal-structure","pattern":"Se2 Cu2 Tl"}
+{"label":"crystal-structure","pattern":"Se2 Cu2 Tl-type"}
+{"label":"crystal-structure","pattern":"Se2 Cu2 Tl- type"}
+{"label":"crystal-structure","pattern":"Se2 Cu2 Tl - type"}
+{"label":"crystal-structure","pattern":"Se2 Cu2 Tl -type"}
+{"label":"crystal-structure","pattern":"Se2TlCu2"}
+{"label":"crystal-structure","pattern":"Se 2 Tl Cu 2"}
+{"label":"crystal-structure","pattern":"Se2 Tl Cu2"}
+{"label":"crystal-structure","pattern":"Se2 Tl Cu2-type"}
+{"label":"crystal-structure","pattern":"Se2 Tl Cu2- type"}
+{"label":"crystal-structure","pattern":"Se2 Tl Cu2 - type"}
+{"label":"crystal-structure","pattern":"Se2 Tl Cu2 -type"}
+{"label":"crystal-structure","pattern":"Na4Si23"}
+{"label":"crystal-structure","pattern":"Na 4 Si 23"}
+{"label":"crystal-structure","pattern":"Na4 Si23"}
+{"label":"crystal-structure","pattern":"Na4 Si23-type"}
+{"label":"crystal-structure","pattern":"Na4 Si23- type"}
+{"label":"crystal-structure","pattern":"Na4 Si23 - type"}
+{"label":"crystal-structure","pattern":"Na4 Si23 -type"}
+{"label":"crystal-structure","pattern":"Si23Na4"}
+{"label":"crystal-structure","pattern":"Si 23 Na 4"}
+{"label":"crystal-structure","pattern":"Si23 Na4"}
+{"label":"crystal-structure","pattern":"Si23 Na4-type"}
+{"label":"crystal-structure","pattern":"Si23 Na4- type"}
+{"label":"crystal-structure","pattern":"Si23 Na4 - type"}
+{"label":"crystal-structure","pattern":"Si23 Na4 -type"}
+{"label":"crystal-structure","pattern":"MgFe6Ge6"}
+{"label":"crystal-structure","pattern":"Mg Fe 6 Ge 6"}
+{"label":"crystal-structure","pattern":"Mg Fe6 Ge6"}
+{"label":"crystal-structure","pattern":"Mg Fe6 Ge6-type"}
+{"label":"crystal-structure","pattern":"Mg Fe6 Ge6- type"}
+{"label":"crystal-structure","pattern":"Mg Fe6 Ge6 - type"}
+{"label":"crystal-structure","pattern":"Mg Fe6 Ge6 -type"}
+{"label":"crystal-structure","pattern":"MgGe6Fe6"}
+{"label":"crystal-structure","pattern":"Mg Ge 6 Fe 6"}
+{"label":"crystal-structure","pattern":"Mg Ge6 Fe6"}
+{"label":"crystal-structure","pattern":"Mg Ge6 Fe6-type"}
+{"label":"crystal-structure","pattern":"Mg Ge6 Fe6- type"}
+{"label":"crystal-structure","pattern":"Mg Ge6 Fe6 - type"}
+{"label":"crystal-structure","pattern":"Mg Ge6 Fe6 -type"}
+{"label":"crystal-structure","pattern":"Fe6MgGe6"}
+{"label":"crystal-structure","pattern":"Fe 6 Mg Ge 6"}
+{"label":"crystal-structure","pattern":"Fe6 Mg Ge6"}
+{"label":"crystal-structure","pattern":"Fe6 Mg Ge6-type"}
+{"label":"crystal-structure","pattern":"Fe6 Mg Ge6- type"}
+{"label":"crystal-structure","pattern":"Fe6 Mg Ge6 - type"}
+{"label":"crystal-structure","pattern":"Fe6 Mg Ge6 -type"}
+{"label":"crystal-structure","pattern":"Fe6Ge6Mg"}
+{"label":"crystal-structure","pattern":"Fe 6 Ge 6 Mg"}
+{"label":"crystal-structure","pattern":"Fe6 Ge6 Mg"}
+{"label":"crystal-structure","pattern":"Fe6 Ge6 Mg-type"}
+{"label":"crystal-structure","pattern":"Fe6 Ge6 Mg- type"}
+{"label":"crystal-structure","pattern":"Fe6 Ge6 Mg - type"}
+{"label":"crystal-structure","pattern":"Fe6 Ge6 Mg -type"}
+{"label":"crystal-structure","pattern":"Ge6MgFe6"}
+{"label":"crystal-structure","pattern":"Ge 6 Mg Fe 6"}
+{"label":"crystal-structure","pattern":"Ge6 Mg Fe6"}
+{"label":"crystal-structure","pattern":"Ge6 Mg Fe6-type"}
+{"label":"crystal-structure","pattern":"Ge6 Mg Fe6- type"}
+{"label":"crystal-structure","pattern":"Ge6 Mg Fe6 - type"}
+{"label":"crystal-structure","pattern":"Ge6 Mg Fe6 -type"}
+{"label":"crystal-structure","pattern":"Ge6Fe6Mg"}
+{"label":"crystal-structure","pattern":"Ge 6 Fe 6 Mg"}
+{"label":"crystal-structure","pattern":"Ge6 Fe6 Mg"}
+{"label":"crystal-structure","pattern":"Ge6 Fe6 Mg-type"}
+{"label":"crystal-structure","pattern":"Ge6 Fe6 Mg- type"}
+{"label":"crystal-structure","pattern":"Ge6 Fe6 Mg - type"}
+{"label":"crystal-structure","pattern":"Ge6 Fe6 Mg -type"}
+{"label":"crystal-structure","pattern":"Sr3Ti2O7"}
+{"label":"crystal-structure","pattern":"Sr 3 Ti 2 O 7"}
+{"label":"crystal-structure","pattern":"Sr3 Ti2 O7"}
+{"label":"crystal-structure","pattern":"Sr3 Ti2 O7-type"}
+{"label":"crystal-structure","pattern":"Sr3 Ti2 O7- type"}
+{"label":"crystal-structure","pattern":"Sr3 Ti2 O7 - type"}
+{"label":"crystal-structure","pattern":"Sr3 Ti2 O7 -type"}
+{"label":"crystal-structure","pattern":"Sr3O7Ti2"}
+{"label":"crystal-structure","pattern":"Sr 3 O 7 Ti 2"}
+{"label":"crystal-structure","pattern":"Sr3 O7 Ti2"}
+{"label":"crystal-structure","pattern":"Sr3 O7 Ti2-type"}
+{"label":"crystal-structure","pattern":"Sr3 O7 Ti2- type"}
+{"label":"crystal-structure","pattern":"Sr3 O7 Ti2 - type"}
+{"label":"crystal-structure","pattern":"Sr3 O7 Ti2 -type"}
+{"label":"crystal-structure","pattern":"Ti2Sr3O7"}
+{"label":"crystal-structure","pattern":"Ti 2 Sr 3 O 7"}
+{"label":"crystal-structure","pattern":"Ti2 Sr3 O7"}
+{"label":"crystal-structure","pattern":"Ti2 Sr3 O7-type"}
+{"label":"crystal-structure","pattern":"Ti2 Sr3 O7- type"}
+{"label":"crystal-structure","pattern":"Ti2 Sr3 O7 - type"}
+{"label":"crystal-structure","pattern":"Ti2 Sr3 O7 -type"}
+{"label":"crystal-structure","pattern":"Ti2O7Sr3"}
+{"label":"crystal-structure","pattern":"Ti 2 O 7 Sr 3"}
+{"label":"crystal-structure","pattern":"Ti2 O7 Sr3"}
+{"label":"crystal-structure","pattern":"Ti2 O7 Sr3-type"}
+{"label":"crystal-structure","pattern":"Ti2 O7 Sr3- type"}
+{"label":"crystal-structure","pattern":"Ti2 O7 Sr3 - type"}
+{"label":"crystal-structure","pattern":"Ti2 O7 Sr3 -type"}
+{"label":"crystal-structure","pattern":"O7Sr3Ti2"}
+{"label":"crystal-structure","pattern":"O 7 Sr 3 Ti 2"}
+{"label":"crystal-structure","pattern":"O7 Sr3 Ti2"}
+{"label":"crystal-structure","pattern":"O7 Sr3 Ti2-type"}
+{"label":"crystal-structure","pattern":"O7 Sr3 Ti2- type"}
+{"label":"crystal-structure","pattern":"O7 Sr3 Ti2 - type"}
+{"label":"crystal-structure","pattern":"O7 Sr3 Ti2 -type"}
+{"label":"crystal-structure","pattern":"O7Ti2Sr3"}
+{"label":"crystal-structure","pattern":"O 7 Ti 2 Sr 3"}
+{"label":"crystal-structure","pattern":"O7 Ti2 Sr3"}
+{"label":"crystal-structure","pattern":"O7 Ti2 Sr3-type"}
+{"label":"crystal-structure","pattern":"O7 Ti2 Sr3- type"}
+{"label":"crystal-structure","pattern":"O7 Ti2 Sr3 - type"}
+{"label":"crystal-structure","pattern":"O7 Ti2 Sr3 -type"}
+{"label":"crystal-structure","pattern":"Mg3"}
+{"label":"crystal-structure","pattern":"Mg 3"}
+{"label":"crystal-structure","pattern":"Mg3-type"}
+{"label":"crystal-structure","pattern":"Mg3- type"}
+{"label":"crystal-structure","pattern":"Mg3 - type"}
+{"label":"crystal-structure","pattern":"Mg3 -type"}
+{"label":"crystal-structure","pattern":"Fe3C"}
+{"label":"crystal-structure","pattern":"Fe 3 C"}
+{"label":"crystal-structure","pattern":"Fe3 C"}
+{"label":"crystal-structure","pattern":"Fe3 C-type"}
+{"label":"crystal-structure","pattern":"Fe3 C- type"}
+{"label":"crystal-structure","pattern":"Fe3 C - type"}
+{"label":"crystal-structure","pattern":"Fe3 C -type"}
+{"label":"crystal-structure","pattern":"CFe3"}
+{"label":"crystal-structure","pattern":"C Fe 3"}
+{"label":"crystal-structure","pattern":"C Fe3"}
+{"label":"crystal-structure","pattern":"C Fe3-type"}
+{"label":"crystal-structure","pattern":"C Fe3- type"}
+{"label":"crystal-structure","pattern":"C Fe3 - type"}
+{"label":"crystal-structure","pattern":"C Fe3 -type"}
+{"label":"crystal-structure","pattern":"Co1.7Ge"}
+{"label":"crystal-structure","pattern":"Co 1.7 Ge"}
+{"label":"crystal-structure","pattern":"Co1.7 Ge"}
+{"label":"crystal-structure","pattern":"Co1.7 Ge-type"}
+{"label":"crystal-structure","pattern":"Co1.7 Ge- type"}
+{"label":"crystal-structure","pattern":"Co1.7 Ge - type"}
+{"label":"crystal-structure","pattern":"Co1.7 Ge -type"}
+{"label":"crystal-structure","pattern":"GeCo1.7"}
+{"label":"crystal-structure","pattern":"Ge Co 1.7"}
+{"label":"crystal-structure","pattern":"Ge Co1.7"}
+{"label":"crystal-structure","pattern":"Ge Co1.7-type"}
+{"label":"crystal-structure","pattern":"Ge Co1.7- type"}
+{"label":"crystal-structure","pattern":"Ge Co1.7 - type"}
+{"label":"crystal-structure","pattern":"Ge Co1.7 -type"}
+{"label":"crystal-structure","pattern":"BiF3"}
+{"label":"crystal-structure","pattern":"Bi F 3"}
+{"label":"crystal-structure","pattern":"Bi F3"}
+{"label":"crystal-structure","pattern":"Bi F3-type"}
+{"label":"crystal-structure","pattern":"Bi F3- type"}
+{"label":"crystal-structure","pattern":"Bi F3 - type"}
+{"label":"crystal-structure","pattern":"Bi F3 -type"}
+{"label":"crystal-structure","pattern":"F3Bi"}
+{"label":"crystal-structure","pattern":"F 3 Bi"}
+{"label":"crystal-structure","pattern":"F3 Bi"}
+{"label":"crystal-structure","pattern":"F3 Bi-type"}
+{"label":"crystal-structure","pattern":"F3 Bi- type"}
+{"label":"crystal-structure","pattern":"F3 Bi - type"}
+{"label":"crystal-structure","pattern":"F3 Bi -type"}
+{"label":"crystal-structure","pattern":"NaZn13"}
+{"label":"crystal-structure","pattern":"Na Zn 13"}
+{"label":"crystal-structure","pattern":"Na Zn13"}
+{"label":"crystal-structure","pattern":"Na Zn13-type"}
+{"label":"crystal-structure","pattern":"Na Zn13- type"}
+{"label":"crystal-structure","pattern":"Na Zn13 - type"}
+{"label":"crystal-structure","pattern":"Na Zn13 -type"}
+{"label":"crystal-structure","pattern":"Zn13Na"}
+{"label":"crystal-structure","pattern":"Zn 13 Na"}
+{"label":"crystal-structure","pattern":"Zn13 Na"}
+{"label":"crystal-structure","pattern":"Zn13 Na-type"}
+{"label":"crystal-structure","pattern":"Zn13 Na- type"}
+{"label":"crystal-structure","pattern":"Zn13 Na - type"}
+{"label":"crystal-structure","pattern":"Zn13 Na -type"}
+{"label":"crystal-structure","pattern":"CeMn4Al8"}
+{"label":"crystal-structure","pattern":"Ce Mn 4 Al 8"}
+{"label":"crystal-structure","pattern":"Ce Mn4 Al8"}
+{"label":"crystal-structure","pattern":"Ce Mn4 Al8-type"}
+{"label":"crystal-structure","pattern":"Ce Mn4 Al8- type"}
+{"label":"crystal-structure","pattern":"Ce Mn4 Al8 - type"}
+{"label":"crystal-structure","pattern":"Ce Mn4 Al8 -type"}
+{"label":"crystal-structure","pattern":"CeAl8Mn4"}
+{"label":"crystal-structure","pattern":"Ce Al 8 Mn 4"}
+{"label":"crystal-structure","pattern":"Ce Al8 Mn4"}
+{"label":"crystal-structure","pattern":"Ce Al8 Mn4-type"}
+{"label":"crystal-structure","pattern":"Ce Al8 Mn4- type"}
+{"label":"crystal-structure","pattern":"Ce Al8 Mn4 - type"}
+{"label":"crystal-structure","pattern":"Ce Al8 Mn4 -type"}
+{"label":"crystal-structure","pattern":"Mn4CeAl8"}
+{"label":"crystal-structure","pattern":"Mn 4 Ce Al 8"}
+{"label":"crystal-structure","pattern":"Mn4 Ce Al8"}
+{"label":"crystal-structure","pattern":"Mn4 Ce Al8-type"}
+{"label":"crystal-structure","pattern":"Mn4 Ce Al8- type"}
+{"label":"crystal-structure","pattern":"Mn4 Ce Al8 - type"}
+{"label":"crystal-structure","pattern":"Mn4 Ce Al8 -type"}
+{"label":"crystal-structure","pattern":"Mn4Al8Ce"}
+{"label":"crystal-structure","pattern":"Mn 4 Al 8 Ce"}
+{"label":"crystal-structure","pattern":"Mn4 Al8 Ce"}
+{"label":"crystal-structure","pattern":"Mn4 Al8 Ce-type"}
+{"label":"crystal-structure","pattern":"Mn4 Al8 Ce- type"}
+{"label":"crystal-structure","pattern":"Mn4 Al8 Ce - type"}
+{"label":"crystal-structure","pattern":"Mn4 Al8 Ce -type"}
+{"label":"crystal-structure","pattern":"Al8CeMn4"}
+{"label":"crystal-structure","pattern":"Al 8 Ce Mn 4"}
+{"label":"crystal-structure","pattern":"Al8 Ce Mn4"}
+{"label":"crystal-structure","pattern":"Al8 Ce Mn4-type"}
+{"label":"crystal-structure","pattern":"Al8 Ce Mn4- type"}
+{"label":"crystal-structure","pattern":"Al8 Ce Mn4 - type"}
+{"label":"crystal-structure","pattern":"Al8 Ce Mn4 -type"}
+{"label":"crystal-structure","pattern":"Al8Mn4Ce"}
+{"label":"crystal-structure","pattern":"Al 8 Mn 4 Ce"}
+{"label":"crystal-structure","pattern":"Al8 Mn4 Ce"}
+{"label":"crystal-structure","pattern":"Al8 Mn4 Ce-type"}
+{"label":"crystal-structure","pattern":"Al8 Mn4 Ce- type"}
+{"label":"crystal-structure","pattern":"Al8 Mn4 Ce - type"}
+{"label":"crystal-structure","pattern":"Al8 Mn4 Ce -type"}
+{"label":"crystal-structure","pattern":"ThSi2"}
+{"label":"crystal-structure","pattern":"Th Si 2"}
+{"label":"crystal-structure","pattern":"Th Si2"}
+{"label":"crystal-structure","pattern":"Th Si2-type"}
+{"label":"crystal-structure","pattern":"Th Si2- type"}
+{"label":"crystal-structure","pattern":"Th Si2 - type"}
+{"label":"crystal-structure","pattern":"Th Si2 -type"}
+{"label":"crystal-structure","pattern":"Si2Th"}
+{"label":"crystal-structure","pattern":"Si 2 Th"}
+{"label":"crystal-structure","pattern":"Si2 Th"}
+{"label":"crystal-structure","pattern":"Si2 Th-type"}
+{"label":"crystal-structure","pattern":"Si2 Th- type"}
+{"label":"crystal-structure","pattern":"Si2 Th - type"}
+{"label":"crystal-structure","pattern":"Si2 Th -type"}
+{"label":"crystal-structure","pattern":"ReO3"}
+{"label":"crystal-structure","pattern":"Re O 3"}
+{"label":"crystal-structure","pattern":"Re O3"}
+{"label":"crystal-structure","pattern":"Re O3-type"}
+{"label":"crystal-structure","pattern":"Re O3- type"}
+{"label":"crystal-structure","pattern":"Re O3 - type"}
+{"label":"crystal-structure","pattern":"Re O3 -type"}
+{"label":"crystal-structure","pattern":"O3Re"}
+{"label":"crystal-structure","pattern":"O 3 Re"}
+{"label":"crystal-structure","pattern":"O3 Re"}
+{"label":"crystal-structure","pattern":"O3 Re-type"}
+{"label":"crystal-structure","pattern":"O3 Re- type"}
+{"label":"crystal-structure","pattern":"O3 Re - type"}
+{"label":"crystal-structure","pattern":"O3 Re -type"}
+{"label":"crystal-structure","pattern":"CuAl2"}
+{"label":"crystal-structure","pattern":"Cu Al 2"}
+{"label":"crystal-structure","pattern":"Cu Al2"}
+{"label":"crystal-structure","pattern":"Cu Al2-type"}
+{"label":"crystal-structure","pattern":"Cu Al2- type"}
+{"label":"crystal-structure","pattern":"Cu Al2 - type"}
+{"label":"crystal-structure","pattern":"Cu Al2 -type"}
+{"label":"crystal-structure","pattern":"Al2Cu"}
+{"label":"crystal-structure","pattern":"Al 2 Cu"}
+{"label":"crystal-structure","pattern":"Al2 Cu"}
+{"label":"crystal-structure","pattern":"Al2 Cu-type"}
+{"label":"crystal-structure","pattern":"Al2 Cu- type"}
+{"label":"crystal-structure","pattern":"Al2 Cu - type"}
+{"label":"crystal-structure","pattern":"Al2 Cu -type"}
+{"label":"crystal-structure","pattern":"CaBe2Ge2"}
+{"label":"crystal-structure","pattern":"Ca Be 2 Ge 2"}
+{"label":"crystal-structure","pattern":"Ca Be2 Ge2"}
+{"label":"crystal-structure","pattern":"Ca Be2 Ge2-type"}
+{"label":"crystal-structure","pattern":"Ca Be2 Ge2- type"}
+{"label":"crystal-structure","pattern":"Ca Be2 Ge2 - type"}
+{"label":"crystal-structure","pattern":"Ca Be2 Ge2 -type"}
+{"label":"crystal-structure","pattern":"CaGe2Be2"}
+{"label":"crystal-structure","pattern":"Ca Ge 2 Be 2"}
+{"label":"crystal-structure","pattern":"Ca Ge2 Be2"}
+{"label":"crystal-structure","pattern":"Ca Ge2 Be2-type"}
+{"label":"crystal-structure","pattern":"Ca Ge2 Be2- type"}
+{"label":"crystal-structure","pattern":"Ca Ge2 Be2 - type"}
+{"label":"crystal-structure","pattern":"Ca Ge2 Be2 -type"}
+{"label":"crystal-structure","pattern":"Be2CaGe2"}
+{"label":"crystal-structure","pattern":"Be 2 Ca Ge 2"}
+{"label":"crystal-structure","pattern":"Be2 Ca Ge2"}
+{"label":"crystal-structure","pattern":"Be2 Ca Ge2-type"}
+{"label":"crystal-structure","pattern":"Be2 Ca Ge2- type"}
+{"label":"crystal-structure","pattern":"Be2 Ca Ge2 - type"}
+{"label":"crystal-structure","pattern":"Be2 Ca Ge2 -type"}
+{"label":"crystal-structure","pattern":"Be2Ge2Ca"}
+{"label":"crystal-structure","pattern":"Be 2 Ge 2 Ca"}
+{"label":"crystal-structure","pattern":"Be2 Ge2 Ca"}
+{"label":"crystal-structure","pattern":"Be2 Ge2 Ca-type"}
+{"label":"crystal-structure","pattern":"Be2 Ge2 Ca- type"}
+{"label":"crystal-structure","pattern":"Be2 Ge2 Ca - type"}
+{"label":"crystal-structure","pattern":"Be2 Ge2 Ca -type"}
+{"label":"crystal-structure","pattern":"Ge2CaBe2"}
+{"label":"crystal-structure","pattern":"Ge 2 Ca Be 2"}
+{"label":"crystal-structure","pattern":"Ge2 Ca Be2"}
+{"label":"crystal-structure","pattern":"Ge2 Ca Be2-type"}
+{"label":"crystal-structure","pattern":"Ge2 Ca Be2- type"}
+{"label":"crystal-structure","pattern":"Ge2 Ca Be2 - type"}
+{"label":"crystal-structure","pattern":"Ge2 Ca Be2 -type"}
+{"label":"crystal-structure","pattern":"Ge2Be2Ca"}
+{"label":"crystal-structure","pattern":"Ge 2 Be 2 Ca"}
+{"label":"crystal-structure","pattern":"Ge2 Be2 Ca"}
+{"label":"crystal-structure","pattern":"Ge2 Be2 Ca-type"}
+{"label":"crystal-structure","pattern":"Ge2 Be2 Ca- type"}
+{"label":"crystal-structure","pattern":"Ge2 Be2 Ca - type"}
+{"label":"crystal-structure","pattern":"Ge2 Be2 Ca -type"}
+{"label":"crystal-structure","pattern":"CaV2O4"}
+{"label":"crystal-structure","pattern":"Ca V 2 O 4"}
+{"label":"crystal-structure","pattern":"Ca V2 O4"}
+{"label":"crystal-structure","pattern":"Ca V2 O4-type"}
+{"label":"crystal-structure","pattern":"Ca V2 O4- type"}
+{"label":"crystal-structure","pattern":"Ca V2 O4 - type"}
+{"label":"crystal-structure","pattern":"Ca V2 O4 -type"}
+{"label":"crystal-structure","pattern":"CaO4V2"}
+{"label":"crystal-structure","pattern":"Ca O 4 V 2"}
+{"label":"crystal-structure","pattern":"Ca O4 V2"}
+{"label":"crystal-structure","pattern":"Ca O4 V2-type"}
+{"label":"crystal-structure","pattern":"Ca O4 V2- type"}
+{"label":"crystal-structure","pattern":"Ca O4 V2 - type"}
+{"label":"crystal-structure","pattern":"Ca O4 V2 -type"}
+{"label":"crystal-structure","pattern":"V2CaO4"}
+{"label":"crystal-structure","pattern":"V 2 Ca O 4"}
+{"label":"crystal-structure","pattern":"V2 Ca O4"}
+{"label":"crystal-structure","pattern":"V2 Ca O4-type"}
+{"label":"crystal-structure","pattern":"V2 Ca O4- type"}
+{"label":"crystal-structure","pattern":"V2 Ca O4 - type"}
+{"label":"crystal-structure","pattern":"V2 Ca O4 -type"}
+{"label":"crystal-structure","pattern":"V2O4Ca"}
+{"label":"crystal-structure","pattern":"V 2 O 4 Ca"}
+{"label":"crystal-structure","pattern":"V2 O4 Ca"}
+{"label":"crystal-structure","pattern":"V2 O4 Ca-type"}
+{"label":"crystal-structure","pattern":"V2 O4 Ca- type"}
+{"label":"crystal-structure","pattern":"V2 O4 Ca - type"}
+{"label":"crystal-structure","pattern":"V2 O4 Ca -type"}
+{"label":"crystal-structure","pattern":"O4CaV2"}
+{"label":"crystal-structure","pattern":"O 4 Ca V 2"}
+{"label":"crystal-structure","pattern":"O4 Ca V2"}
+{"label":"crystal-structure","pattern":"O4 Ca V2-type"}
+{"label":"crystal-structure","pattern":"O4 Ca V2- type"}
+{"label":"crystal-structure","pattern":"O4 Ca V2 - type"}
+{"label":"crystal-structure","pattern":"O4 Ca V2 -type"}
+{"label":"crystal-structure","pattern":"O4V2Ca"}
+{"label":"crystal-structure","pattern":"O 4 V 2 Ca"}
+{"label":"crystal-structure","pattern":"O4 V2 Ca"}
+{"label":"crystal-structure","pattern":"O4 V2 Ca-type"}
+{"label":"crystal-structure","pattern":"O4 V2 Ca- type"}
+{"label":"crystal-structure","pattern":"O4 V2 Ca - type"}
+{"label":"crystal-structure","pattern":"O4 V2 Ca -type"}
+{"label":"crystal-structure","pattern":"MgCu4Sn"}
+{"label":"crystal-structure","pattern":"Mg Cu 4 Sn"}
+{"label":"crystal-structure","pattern":"Mg Cu4 Sn"}
+{"label":"crystal-structure","pattern":"Mg Cu4 Sn-type"}
+{"label":"crystal-structure","pattern":"Mg Cu4 Sn- type"}
+{"label":"crystal-structure","pattern":"Mg Cu4 Sn - type"}
+{"label":"crystal-structure","pattern":"Mg Cu4 Sn -type"}
+{"label":"crystal-structure","pattern":"MgSnCu4"}
+{"label":"crystal-structure","pattern":"Mg Sn Cu 4"}
+{"label":"crystal-structure","pattern":"Mg Sn Cu4"}
+{"label":"crystal-structure","pattern":"Mg Sn Cu4-type"}
+{"label":"crystal-structure","pattern":"Mg Sn Cu4- type"}
+{"label":"crystal-structure","pattern":"Mg Sn Cu4 - type"}
+{"label":"crystal-structure","pattern":"Mg Sn Cu4 -type"}
+{"label":"crystal-structure","pattern":"Cu4MgSn"}
+{"label":"crystal-structure","pattern":"Cu 4 Mg Sn"}
+{"label":"crystal-structure","pattern":"Cu4 Mg Sn"}
+{"label":"crystal-structure","pattern":"Cu4 Mg Sn-type"}
+{"label":"crystal-structure","pattern":"Cu4 Mg Sn- type"}
+{"label":"crystal-structure","pattern":"Cu4 Mg Sn - type"}
+{"label":"crystal-structure","pattern":"Cu4 Mg Sn -type"}
+{"label":"crystal-structure","pattern":"Cu4SnMg"}
+{"label":"crystal-structure","pattern":"Cu 4 Sn Mg"}
+{"label":"crystal-structure","pattern":"Cu4 Sn Mg"}
+{"label":"crystal-structure","pattern":"Cu4 Sn Mg-type"}
+{"label":"crystal-structure","pattern":"Cu4 Sn Mg- type"}
+{"label":"crystal-structure","pattern":"Cu4 Sn Mg - type"}
+{"label":"crystal-structure","pattern":"Cu4 Sn Mg -type"}
+{"label":"crystal-structure","pattern":"SnMgCu4"}
+{"label":"crystal-structure","pattern":"Sn Mg Cu 4"}
+{"label":"crystal-structure","pattern":"Sn Mg Cu4"}
+{"label":"crystal-structure","pattern":"Sn Mg Cu4-type"}
+{"label":"crystal-structure","pattern":"Sn Mg Cu4- type"}
+{"label":"crystal-structure","pattern":"Sn Mg Cu4 - type"}
+{"label":"crystal-structure","pattern":"Sn Mg Cu4 -type"}
+{"label":"crystal-structure","pattern":"SnCu4Mg"}
+{"label":"crystal-structure","pattern":"Sn Cu 4 Mg"}
+{"label":"crystal-structure","pattern":"Sn Cu4 Mg"}
+{"label":"crystal-structure","pattern":"Sn Cu4 Mg-type"}
+{"label":"crystal-structure","pattern":"Sn Cu4 Mg- type"}
+{"label":"crystal-structure","pattern":"Sn Cu4 Mg - type"}
+{"label":"crystal-structure","pattern":"Sn Cu4 Mg -type"}
+{"label":"crystal-structure","pattern":"ZrO2"}
+{"label":"crystal-structure","pattern":"Zr O 2"}
+{"label":"crystal-structure","pattern":"Zr O2"}
+{"label":"crystal-structure","pattern":"Zr O2-type"}
+{"label":"crystal-structure","pattern":"Zr O2- type"}
+{"label":"crystal-structure","pattern":"Zr O2 - type"}
+{"label":"crystal-structure","pattern":"Zr O2 -type"}
+{"label":"crystal-structure","pattern":"O2Zr"}
+{"label":"crystal-structure","pattern":"O 2 Zr"}
+{"label":"crystal-structure","pattern":"O2 Zr"}
+{"label":"crystal-structure","pattern":"O2 Zr-type"}
+{"label":"crystal-structure","pattern":"O2 Zr- type"}
+{"label":"crystal-structure","pattern":"O2 Zr - type"}
+{"label":"crystal-structure","pattern":"O2 Zr -type"}
+{"label":"crystal-structure","pattern":"CaCu3Mn4O12"}
+{"label":"crystal-structure","pattern":"Ca Cu 3 Mn 4 O 12"}
+{"label":"crystal-structure","pattern":"Ca Cu3 Mn4 O12"}
+{"label":"crystal-structure","pattern":"Ca Cu3 Mn4 O12-type"}
+{"label":"crystal-structure","pattern":"Ca Cu3 Mn4 O12- type"}
+{"label":"crystal-structure","pattern":"Ca Cu3 Mn4 O12 - type"}
+{"label":"crystal-structure","pattern":"Ca Cu3 Mn4 O12 -type"}
+{"label":"crystal-structure","pattern":"CaCu3O12Mn4"}
+{"label":"crystal-structure","pattern":"Ca Cu 3 O 12 Mn 4"}
+{"label":"crystal-structure","pattern":"Ca Cu3 O12 Mn4"}
+{"label":"crystal-structure","pattern":"Ca Cu3 O12 Mn4-type"}
+{"label":"crystal-structure","pattern":"Ca Cu3 O12 Mn4- type"}
+{"label":"crystal-structure","pattern":"Ca Cu3 O12 Mn4 - type"}
+{"label":"crystal-structure","pattern":"Ca Cu3 O12 Mn4 -type"}
+{"label":"crystal-structure","pattern":"CaMn4Cu3O12"}
+{"label":"crystal-structure","pattern":"Ca Mn 4 Cu 3 O 12"}
+{"label":"crystal-structure","pattern":"Ca Mn4 Cu3 O12"}
+{"label":"crystal-structure","pattern":"Ca Mn4 Cu3 O12-type"}
+{"label":"crystal-structure","pattern":"Ca Mn4 Cu3 O12- type"}
+{"label":"crystal-structure","pattern":"Ca Mn4 Cu3 O12 - type"}
+{"label":"crystal-structure","pattern":"Ca Mn4 Cu3 O12 -type"}
+{"label":"crystal-structure","pattern":"CaMn4O12Cu3"}
+{"label":"crystal-structure","pattern":"Ca Mn 4 O 12 Cu 3"}
+{"label":"crystal-structure","pattern":"Ca Mn4 O12 Cu3"}
+{"label":"crystal-structure","pattern":"Ca Mn4 O12 Cu3-type"}
+{"label":"crystal-structure","pattern":"Ca Mn4 O12 Cu3- type"}
+{"label":"crystal-structure","pattern":"Ca Mn4 O12 Cu3 - type"}
+{"label":"crystal-structure","pattern":"Ca Mn4 O12 Cu3 -type"}
+{"label":"crystal-structure","pattern":"CaO12Cu3Mn4"}
+{"label":"crystal-structure","pattern":"Ca O 12 Cu 3 Mn 4"}
+{"label":"crystal-structure","pattern":"Ca O12 Cu3 Mn4"}
+{"label":"crystal-structure","pattern":"Ca O12 Cu3 Mn4-type"}
+{"label":"crystal-structure","pattern":"Ca O12 Cu3 Mn4- type"}
+{"label":"crystal-structure","pattern":"Ca O12 Cu3 Mn4 - type"}
+{"label":"crystal-structure","pattern":"Ca O12 Cu3 Mn4 -type"}
+{"label":"crystal-structure","pattern":"CaO12Mn4Cu3"}
+{"label":"crystal-structure","pattern":"Ca O 12 Mn 4 Cu 3"}
+{"label":"crystal-structure","pattern":"Ca O12 Mn4 Cu3"}
+{"label":"crystal-structure","pattern":"Ca O12 Mn4 Cu3-type"}
+{"label":"crystal-structure","pattern":"Ca O12 Mn4 Cu3- type"}
+{"label":"crystal-structure","pattern":"Ca O12 Mn4 Cu3 - type"}
+{"label":"crystal-structure","pattern":"Ca O12 Mn4 Cu3 -type"}
+{"label":"crystal-structure","pattern":"Cu3CaMn4O12"}
+{"label":"crystal-structure","pattern":"Cu 3 Ca Mn 4 O 12"}
+{"label":"crystal-structure","pattern":"Cu3 Ca Mn4 O12"}
+{"label":"crystal-structure","pattern":"Cu3 Ca Mn4 O12-type"}
+{"label":"crystal-structure","pattern":"Cu3 Ca Mn4 O12- type"}
+{"label":"crystal-structure","pattern":"Cu3 Ca Mn4 O12 - type"}
+{"label":"crystal-structure","pattern":"Cu3 Ca Mn4 O12 -type"}
+{"label":"crystal-structure","pattern":"Cu3CaO12Mn4"}
+{"label":"crystal-structure","pattern":"Cu 3 Ca O 12 Mn 4"}
+{"label":"crystal-structure","pattern":"Cu3 Ca O12 Mn4"}
+{"label":"crystal-structure","pattern":"Cu3 Ca O12 Mn4-type"}
+{"label":"crystal-structure","pattern":"Cu3 Ca O12 Mn4- type"}
+{"label":"crystal-structure","pattern":"Cu3 Ca O12 Mn4 - type"}
+{"label":"crystal-structure","pattern":"Cu3 Ca O12 Mn4 -type"}
+{"label":"crystal-structure","pattern":"Cu3Mn4CaO12"}
+{"label":"crystal-structure","pattern":"Cu 3 Mn 4 Ca O 12"}
+{"label":"crystal-structure","pattern":"Cu3 Mn4 Ca O12"}
+{"label":"crystal-structure","pattern":"Cu3 Mn4 Ca O12-type"}
+{"label":"crystal-structure","pattern":"Cu3 Mn4 Ca O12- type"}
+{"label":"crystal-structure","pattern":"Cu3 Mn4 Ca O12 - type"}
+{"label":"crystal-structure","pattern":"Cu3 Mn4 Ca O12 -type"}
+{"label":"crystal-structure","pattern":"Cu3Mn4O12Ca"}
+{"label":"crystal-structure","pattern":"Cu 3 Mn 4 O 12 Ca"}
+{"label":"crystal-structure","pattern":"Cu3 Mn4 O12 Ca"}
+{"label":"crystal-structure","pattern":"Cu3 Mn4 O12 Ca-type"}
+{"label":"crystal-structure","pattern":"Cu3 Mn4 O12 Ca- type"}
+{"label":"crystal-structure","pattern":"Cu3 Mn4 O12 Ca - type"}
+{"label":"crystal-structure","pattern":"Cu3 Mn4 O12 Ca -type"}
+{"label":"crystal-structure","pattern":"Cu3O12CaMn4"}
+{"label":"crystal-structure","pattern":"Cu 3 O 12 Ca Mn 4"}
+{"label":"crystal-structure","pattern":"Cu3 O12 Ca Mn4"}
+{"label":"crystal-structure","pattern":"Cu3 O12 Ca Mn4-type"}
+{"label":"crystal-structure","pattern":"Cu3 O12 Ca Mn4- type"}
+{"label":"crystal-structure","pattern":"Cu3 O12 Ca Mn4 - type"}
+{"label":"crystal-structure","pattern":"Cu3 O12 Ca Mn4 -type"}
+{"label":"crystal-structure","pattern":"Cu3O12Mn4Ca"}
+{"label":"crystal-structure","pattern":"Cu 3 O 12 Mn 4 Ca"}
+{"label":"crystal-structure","pattern":"Cu3 O12 Mn4 Ca"}
+{"label":"crystal-structure","pattern":"Cu3 O12 Mn4 Ca-type"}
+{"label":"crystal-structure","pattern":"Cu3 O12 Mn4 Ca- type"}
+{"label":"crystal-structure","pattern":"Cu3 O12 Mn4 Ca - type"}
+{"label":"crystal-structure","pattern":"Cu3 O12 Mn4 Ca -type"}
+{"label":"crystal-structure","pattern":"Mn4CaCu3O12"}
+{"label":"crystal-structure","pattern":"Mn 4 Ca Cu 3 O 12"}
+{"label":"crystal-structure","pattern":"Mn4 Ca Cu3 O12"}
+{"label":"crystal-structure","pattern":"Mn4 Ca Cu3 O12-type"}
+{"label":"crystal-structure","pattern":"Mn4 Ca Cu3 O12- type"}
+{"label":"crystal-structure","pattern":"Mn4 Ca Cu3 O12 - type"}
+{"label":"crystal-structure","pattern":"Mn4 Ca Cu3 O12 -type"}
+{"label":"crystal-structure","pattern":"Mn4CaO12Cu3"}
+{"label":"crystal-structure","pattern":"Mn 4 Ca O 12 Cu 3"}
+{"label":"crystal-structure","pattern":"Mn4 Ca O12 Cu3"}
+{"label":"crystal-structure","pattern":"Mn4 Ca O12 Cu3-type"}
+{"label":"crystal-structure","pattern":"Mn4 Ca O12 Cu3- type"}
+{"label":"crystal-structure","pattern":"Mn4 Ca O12 Cu3 - type"}
+{"label":"crystal-structure","pattern":"Mn4 Ca O12 Cu3 -type"}
+{"label":"crystal-structure","pattern":"Mn4Cu3CaO12"}
+{"label":"crystal-structure","pattern":"Mn 4 Cu 3 Ca O 12"}
+{"label":"crystal-structure","pattern":"Mn4 Cu3 Ca O12"}
+{"label":"crystal-structure","pattern":"Mn4 Cu3 Ca O12-type"}
+{"label":"crystal-structure","pattern":"Mn4 Cu3 Ca O12- type"}
+{"label":"crystal-structure","pattern":"Mn4 Cu3 Ca O12 - type"}
+{"label":"crystal-structure","pattern":"Mn4 Cu3 Ca O12 -type"}
+{"label":"crystal-structure","pattern":"Mn4Cu3O12Ca"}
+{"label":"crystal-structure","pattern":"Mn 4 Cu 3 O 12 Ca"}
+{"label":"crystal-structure","pattern":"Mn4 Cu3 O12 Ca"}
+{"label":"crystal-structure","pattern":"Mn4 Cu3 O12 Ca-type"}
+{"label":"crystal-structure","pattern":"Mn4 Cu3 O12 Ca- type"}
+{"label":"crystal-structure","pattern":"Mn4 Cu3 O12 Ca - type"}
+{"label":"crystal-structure","pattern":"Mn4 Cu3 O12 Ca -type"}
+{"label":"crystal-structure","pattern":"Mn4O12CaCu3"}
+{"label":"crystal-structure","pattern":"Mn 4 O 12 Ca Cu 3"}
+{"label":"crystal-structure","pattern":"Mn4 O12 Ca Cu3"}
+{"label":"crystal-structure","pattern":"Mn4 O12 Ca Cu3-type"}
+{"label":"crystal-structure","pattern":"Mn4 O12 Ca Cu3- type"}
+{"label":"crystal-structure","pattern":"Mn4 O12 Ca Cu3 - type"}
+{"label":"crystal-structure","pattern":"Mn4 O12 Ca Cu3 -type"}
+{"label":"crystal-structure","pattern":"Mn4O12Cu3Ca"}
+{"label":"crystal-structure","pattern":"Mn 4 O 12 Cu 3 Ca"}
+{"label":"crystal-structure","pattern":"Mn4 O12 Cu3 Ca"}
+{"label":"crystal-structure","pattern":"Mn4 O12 Cu3 Ca-type"}
+{"label":"crystal-structure","pattern":"Mn4 O12 Cu3 Ca- type"}
+{"label":"crystal-structure","pattern":"Mn4 O12 Cu3 Ca - type"}
+{"label":"crystal-structure","pattern":"Mn4 O12 Cu3 Ca -type"}
+{"label":"crystal-structure","pattern":"O12CaCu3Mn4"}
+{"label":"crystal-structure","pattern":"O 12 Ca Cu 3 Mn 4"}
+{"label":"crystal-structure","pattern":"O12 Ca Cu3 Mn4"}
+{"label":"crystal-structure","pattern":"O12 Ca Cu3 Mn4-type"}
+{"label":"crystal-structure","pattern":"O12 Ca Cu3 Mn4- type"}
+{"label":"crystal-structure","pattern":"O12 Ca Cu3 Mn4 - type"}
+{"label":"crystal-structure","pattern":"O12 Ca Cu3 Mn4 -type"}
+{"label":"crystal-structure","pattern":"O12CaMn4Cu3"}
+{"label":"crystal-structure","pattern":"O 12 Ca Mn 4 Cu 3"}
+{"label":"crystal-structure","pattern":"O12 Ca Mn4 Cu3"}
+{"label":"crystal-structure","pattern":"O12 Ca Mn4 Cu3-type"}
+{"label":"crystal-structure","pattern":"O12 Ca Mn4 Cu3- type"}
+{"label":"crystal-structure","pattern":"O12 Ca Mn4 Cu3 - type"}
+{"label":"crystal-structure","pattern":"O12 Ca Mn4 Cu3 -type"}
+{"label":"crystal-structure","pattern":"O12Cu3CaMn4"}
+{"label":"crystal-structure","pattern":"O 12 Cu 3 Ca Mn 4"}
+{"label":"crystal-structure","pattern":"O12 Cu3 Ca Mn4"}
+{"label":"crystal-structure","pattern":"O12 Cu3 Ca Mn4-type"}
+{"label":"crystal-structure","pattern":"O12 Cu3 Ca Mn4- type"}
+{"label":"crystal-structure","pattern":"O12 Cu3 Ca Mn4 - type"}
+{"label":"crystal-structure","pattern":"O12 Cu3 Ca Mn4 -type"}
+{"label":"crystal-structure","pattern":"O12Cu3Mn4Ca"}
+{"label":"crystal-structure","pattern":"O 12 Cu 3 Mn 4 Ca"}
+{"label":"crystal-structure","pattern":"O12 Cu3 Mn4 Ca"}
+{"label":"crystal-structure","pattern":"O12 Cu3 Mn4 Ca-type"}
+{"label":"crystal-structure","pattern":"O12 Cu3 Mn4 Ca- type"}
+{"label":"crystal-structure","pattern":"O12 Cu3 Mn4 Ca - type"}
+{"label":"crystal-structure","pattern":"O12 Cu3 Mn4 Ca -type"}
+{"label":"crystal-structure","pattern":"O12Mn4CaCu3"}
+{"label":"crystal-structure","pattern":"O 12 Mn 4 Ca Cu 3"}
+{"label":"crystal-structure","pattern":"O12 Mn4 Ca Cu3"}
+{"label":"crystal-structure","pattern":"O12 Mn4 Ca Cu3-type"}
+{"label":"crystal-structure","pattern":"O12 Mn4 Ca Cu3- type"}
+{"label":"crystal-structure","pattern":"O12 Mn4 Ca Cu3 - type"}
+{"label":"crystal-structure","pattern":"O12 Mn4 Ca Cu3 -type"}
+{"label":"crystal-structure","pattern":"O12Mn4Cu3Ca"}
+{"label":"crystal-structure","pattern":"O 12 Mn 4 Cu 3 Ca"}
+{"label":"crystal-structure","pattern":"O12 Mn4 Cu3 Ca"}
+{"label":"crystal-structure","pattern":"O12 Mn4 Cu3 Ca-type"}
+{"label":"crystal-structure","pattern":"O12 Mn4 Cu3 Ca- type"}
+{"label":"crystal-structure","pattern":"O12 Mn4 Cu3 Ca - type"}
+{"label":"crystal-structure","pattern":"O12 Mn4 Cu3 Ca -type"}
+{"label":"crystal-structure","pattern":"CuHfSi2"}
+{"label":"crystal-structure","pattern":"Cu Hf Si 2"}
+{"label":"crystal-structure","pattern":"Cu Hf Si2"}
+{"label":"crystal-structure","pattern":"Cu Hf Si2-type"}
+{"label":"crystal-structure","pattern":"Cu Hf Si2- type"}
+{"label":"crystal-structure","pattern":"Cu Hf Si2 - type"}
+{"label":"crystal-structure","pattern":"Cu Hf Si2 -type"}
+{"label":"crystal-structure","pattern":"CuSi2Hf"}
+{"label":"crystal-structure","pattern":"Cu Si 2 Hf"}
+{"label":"crystal-structure","pattern":"Cu Si2 Hf"}
+{"label":"crystal-structure","pattern":"Cu Si2 Hf-type"}
+{"label":"crystal-structure","pattern":"Cu Si2 Hf- type"}
+{"label":"crystal-structure","pattern":"Cu Si2 Hf - type"}
+{"label":"crystal-structure","pattern":"Cu Si2 Hf -type"}
+{"label":"crystal-structure","pattern":"HfCuSi2"}
+{"label":"crystal-structure","pattern":"Hf Cu Si 2"}
+{"label":"crystal-structure","pattern":"Hf Cu Si2"}
+{"label":"crystal-structure","pattern":"Hf Cu Si2-type"}
+{"label":"crystal-structure","pattern":"Hf Cu Si2- type"}
+{"label":"crystal-structure","pattern":"Hf Cu Si2 - type"}
+{"label":"crystal-structure","pattern":"Hf Cu Si2 -type"}
+{"label":"crystal-structure","pattern":"HfSi2Cu"}
+{"label":"crystal-structure","pattern":"Hf Si 2 Cu"}
+{"label":"crystal-structure","pattern":"Hf Si2 Cu"}
+{"label":"crystal-structure","pattern":"Hf Si2 Cu-type"}
+{"label":"crystal-structure","pattern":"Hf Si2 Cu- type"}
+{"label":"crystal-structure","pattern":"Hf Si2 Cu - type"}
+{"label":"crystal-structure","pattern":"Hf Si2 Cu -type"}
+{"label":"crystal-structure","pattern":"Si2CuHf"}
+{"label":"crystal-structure","pattern":"Si 2 Cu Hf"}
+{"label":"crystal-structure","pattern":"Si2 Cu Hf"}
+{"label":"crystal-structure","pattern":"Si2 Cu Hf-type"}
+{"label":"crystal-structure","pattern":"Si2 Cu Hf- type"}
+{"label":"crystal-structure","pattern":"Si2 Cu Hf - type"}
+{"label":"crystal-structure","pattern":"Si2 Cu Hf -type"}
+{"label":"crystal-structure","pattern":"Si2HfCu"}
+{"label":"crystal-structure","pattern":"Si 2 Hf Cu"}
+{"label":"crystal-structure","pattern":"Si2 Hf Cu"}
+{"label":"crystal-structure","pattern":"Si2 Hf Cu-type"}
+{"label":"crystal-structure","pattern":"Si2 Hf Cu- type"}
+{"label":"crystal-structure","pattern":"Si2 Hf Cu - type"}
+{"label":"crystal-structure","pattern":"Si2 Hf Cu -type"}
+{"label":"crystal-structure","pattern":"CuAu"}
+{"label":"crystal-structure","pattern":"Cu Au"}
+{"label":"crystal-structure","pattern":"Cu Au-type"}
+{"label":"crystal-structure","pattern":"Cu Au- type"}
+{"label":"crystal-structure","pattern":"Cu Au - type"}
+{"label":"crystal-structure","pattern":"Cu Au -type"}
+{"label":"crystal-structure","pattern":"AuCu"}
+{"label":"crystal-structure","pattern":"Au Cu"}
+{"label":"crystal-structure","pattern":"Au Cu-type"}
+{"label":"crystal-structure","pattern":"Au Cu- type"}
+{"label":"crystal-structure","pattern":"Au Cu - type"}
+{"label":"crystal-structure","pattern":"Au Cu -type"}
+{"label":"crystal-structure","pattern":"CaC2"}
+{"label":"crystal-structure","pattern":"Ca C 2"}
+{"label":"crystal-structure","pattern":"Ca C2"}
+{"label":"crystal-structure","pattern":"Ca C2-type"}
+{"label":"crystal-structure","pattern":"Ca C2- type"}
+{"label":"crystal-structure","pattern":"Ca C2 - type"}
+{"label":"crystal-structure","pattern":"Ca C2 -type"}
+{"label":"crystal-structure","pattern":"C2Ca"}
+{"label":"crystal-structure","pattern":"C 2 Ca"}
+{"label":"crystal-structure","pattern":"C2 Ca"}
+{"label":"crystal-structure","pattern":"C2 Ca-type"}
+{"label":"crystal-structure","pattern":"C2 Ca- type"}
+{"label":"crystal-structure","pattern":"C2 Ca - type"}
+{"label":"crystal-structure","pattern":"C2 Ca -type"}
+{"label":"crystal-structure","pattern":"FeSi"}
+{"label":"crystal-structure","pattern":"Fe Si"}
+{"label":"crystal-structure","pattern":"Fe Si-type"}
+{"label":"crystal-structure","pattern":"Fe Si- type"}
+{"label":"crystal-structure","pattern":"Fe Si - type"}
+{"label":"crystal-structure","pattern":"Fe Si -type"}
+{"label":"crystal-structure","pattern":"SiFe"}
+{"label":"crystal-structure","pattern":"Si Fe"}
+{"label":"crystal-structure","pattern":"Si Fe-type"}
+{"label":"crystal-structure","pattern":"Si Fe- type"}
+{"label":"crystal-structure","pattern":"Si Fe - type"}
+{"label":"crystal-structure","pattern":"Si Fe -type"}
+{"label":"crystal-structure","pattern":"BeZrSi"}
+{"label":"crystal-structure","pattern":"Be Zr Si"}
+{"label":"crystal-structure","pattern":"Be Zr Si-type"}
+{"label":"crystal-structure","pattern":"Be Zr Si- type"}
+{"label":"crystal-structure","pattern":"Be Zr Si - type"}
+{"label":"crystal-structure","pattern":"Be Zr Si -type"}
+{"label":"crystal-structure","pattern":"BeSiZr"}
+{"label":"crystal-structure","pattern":"Be Si Zr"}
+{"label":"crystal-structure","pattern":"Be Si Zr-type"}
+{"label":"crystal-structure","pattern":"Be Si Zr- type"}
+{"label":"crystal-structure","pattern":"Be Si Zr - type"}
+{"label":"crystal-structure","pattern":"Be Si Zr -type"}
+{"label":"crystal-structure","pattern":"ZrBeSi"}
+{"label":"crystal-structure","pattern":"Zr Be Si"}
+{"label":"crystal-structure","pattern":"Zr Be Si-type"}
+{"label":"crystal-structure","pattern":"Zr Be Si- type"}
+{"label":"crystal-structure","pattern":"Zr Be Si - type"}
+{"label":"crystal-structure","pattern":"Zr Be Si -type"}
+{"label":"crystal-structure","pattern":"ZrSiBe"}
+{"label":"crystal-structure","pattern":"Zr Si Be"}
+{"label":"crystal-structure","pattern":"Zr Si Be-type"}
+{"label":"crystal-structure","pattern":"Zr Si Be- type"}
+{"label":"crystal-structure","pattern":"Zr Si Be - type"}
+{"label":"crystal-structure","pattern":"Zr Si Be -type"}
+{"label":"crystal-structure","pattern":"SiBeZr"}
+{"label":"crystal-structure","pattern":"Si Be Zr"}
+{"label":"crystal-structure","pattern":"Si Be Zr-type"}
+{"label":"crystal-structure","pattern":"Si Be Zr- type"}
+{"label":"crystal-structure","pattern":"Si Be Zr - type"}
+{"label":"crystal-structure","pattern":"Si Be Zr -type"}
+{"label":"crystal-structure","pattern":"SiZrBe"}
+{"label":"crystal-structure","pattern":"Si Zr Be"}
+{"label":"crystal-structure","pattern":"Si Zr Be-type"}
+{"label":"crystal-structure","pattern":"Si Zr Be- type"}
+{"label":"crystal-structure","pattern":"Si Zr Be - type"}
+{"label":"crystal-structure","pattern":"Si Zr Be -type"}

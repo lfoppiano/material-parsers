@@ -1,14 +1,7 @@
 {
-  "grobid": {
-    "server__": "http://falcon.nims.go.jp",
-    "server": "http://localhost:8072",
-    "prefix": "",
-    "url_mapping": {
-      "linker": "/service/linker/link",
-      "ping": "/"
-    }
-  },
-  "batch_size": 1000,
-  "sleep_time": 5,
-  "coordinates": null
+  "space-groups": "data/space-groups",
+  "crystal-structure": "data/space-groups",
+  "port": 8090,
+  "host": "localhost"
 }
+
