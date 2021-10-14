@@ -213,7 +213,11 @@ class CrystalStructureReader(BaseReader):
                     pattern = ""
                     for ele in perm:
                         pattern += ele[0] + ele[1]
-                    tmp_patterns.append({"pattern": pattern})
+                    # tmp_patterns.append({"pattern": pattern})
+                    tmp_patterns.append({"pattern": pattern + "-type"})
+                    tmp_patterns.append({"pattern": pattern + "- type"})
+                    tmp_patterns.append({"pattern": pattern + " - type"})
+                    tmp_patterns.append({"pattern": pattern + " -type"})
 
                     ## with spaces between any element (including atom charge)
                     pattern = ""
@@ -227,7 +231,11 @@ class CrystalStructureReader(BaseReader):
                             pattern += ele[0] + " " + ele[1]
                         else:
                             pattern += ele[0]
-                    tmp_patterns.append({"pattern": pattern})
+                    # tmp_patterns.append({"pattern": pattern})
+                    tmp_patterns.append({"pattern": pattern + "-type"})
+                    tmp_patterns.append({"pattern": pattern + "- type"})
+                    tmp_patterns.append({"pattern": pattern + " - type"})
+                    tmp_patterns.append({"pattern": pattern + " -type"})
 
                     ## with spaces between any element 
                     pattern = ""
@@ -241,7 +249,7 @@ class CrystalStructureReader(BaseReader):
                             pattern += ele[0] + ele[1]
                         else:
                             pattern += ele[0]
-                    tmp_patterns.append({"pattern": pattern})
+                    # tmp_patterns.append({"pattern": pattern})
                     tmp_patterns.append({"pattern": pattern + "-type"})
                     tmp_patterns.append({"pattern": pattern + "- type"})
                     tmp_patterns.append({"pattern": pattern + " - type"})

@@ -1,19 +1,22 @@
 import json
 import os
-from pathlib import Path
 
 import bottle
 import plac
 import spacy
 from bottle import request, run
 from flask import abort
-from spacy.tokens import Doc
+from spacy import Language
+from spacy.pipeline import EntityRuler
 
-from json_entity_ruler_reader import process_paragraph
 from linking_module import RuleBasedLinker, CriticalTemperatureClassifier
 from materialParserWrapper import MaterialParserWrapper
 
 bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024 * 1024
+
+@Language.factory("my_component")
+def create_my_component(nlp, name):
+    return EntityRuler(nlp)
 
 
 class Service(object):
@@ -254,32 +257,30 @@ class Service(object):
     #
     #     return self.linker_tcValue_pressure.process_paragraph_json(material_tc_linked)
 
-
     def process_structure_text(self):
         input_raw = request.forms.get("input")
-        
+
         if input_raw is None:
             abort(400)
-        
+
         passages_input = None
         try:
             passages_input = json.loads(input_raw)
         except:
             abort(400)
-        
+
         output = []
-        for text in passages_input: 
+        for text in passages_input:
             text_doc = self.ner(text.lower())
             text_doc_original = self.ner(text)
             entities = [
                 {"text": str(text_doc_original[ent.start:ent.end]), "label": ent.label_, "start": ent.start_char,
                  "end": ent.end_char, "type": ent.ent_id_} for ent in text_doc.ents]
-            
+
             output.append(entities)
 
         return json.dumps(output)
 
-    
     # def process_space_group_tokens(self):
     #     """Process tokens from the REST API: used for processing data from the PDFs"""
     #     input_raw = request.forms.get("input")
@@ -352,7 +353,7 @@ def init(host='0.0.0.0', port='8080', config="config.json"):
     bottle.route('/classify/formula', method="POST")(app.classify_formula)
 
     if config and os.path.exists(config):
-        
+
         print("Loading configuration...")
         configuration = {}
         with open(config, 'r') as fp:
@@ -360,15 +361,17 @@ def init(host='0.0.0.0', port='8080', config="config.json"):
 
         ner = spacy.load("en_core_web_sm", disable=["parser", "textcat", "ner"])
 
-        entity_ruler = ner.add_pipe("entity_ruler")
         print("Loading space groups patterns...")
+        entity_ruler = ner.add_pipe("entity_ruler")
         entity_ruler.from_disk(configuration['space-groups'])
+
         print("Loading crystal structure patterns...")
-        entity_ruler.from_disk(configuration['crystal-structure'])
+        er_crystal_structure = ner.add_pipe("my_component")
+        er_crystal_structure.from_disk(configuration['crystal-structure'])
 
         bottle.route('/process/structure/text', method="POST")(app.process_structure_text)
         app.ner = ner
-    else: 
+    else:
         print("No space groups patterns... ignoring... ")
 
     bottle.route('/info')(app.info)
