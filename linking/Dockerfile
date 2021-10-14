@@ -28,4 +28,4 @@ RUN python3 -m spacy download en_core_web_sm
 
 EXPOSE 8080
 
-CMD ["python3", "/opt/linking/service.py"]
+CMD ["python3", "/opt/linking/service.py", "-config config.json"]
