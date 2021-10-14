@@ -2,7 +2,6 @@ FROM python:3.7.11-slim-buster
 
 ENV LANG C.UTF-8
 
-# install JRE 8, python and other dependencies
 RUN apt-get update && \
     apt-get -y --no-install-recommends install \
     git \
