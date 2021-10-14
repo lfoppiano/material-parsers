@@ -14,7 +14,6 @@ Span.set_extension('links', default=[], force=True)
 Span.set_extension('linkable', default=False, force=True)
 Span.set_extension('bounding_boxes', default=[], force=True)
 Span.set_extension('formattedText', default="", force=True)
-Span.set_extension('type', default="", force=True)
 
 Token.set_extension('id', default=None, force=True)
 Token.set_extension('links', default=[], force=True)

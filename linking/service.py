@@ -14,6 +14,7 @@ from materialParserWrapper import MaterialParserWrapper
 
 bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024 * 1024
 
+
 @Language.factory("my_component")
 def create_my_component(nlp, name):
     return EntityRuler(nlp)
@@ -30,17 +31,26 @@ class Service(object):
         self.linker_tcValue_me_method = RuleBasedLinker(source="<tcValue>", destination="<me_method>",
                                                         spacy_nlp=spacy_nlp)
 
+        self.linker_material_crystal_structure = RuleBasedLinker(source="<material>", destination="<crystal-structure>",
+                                                        spacy_nlp=spacy_nlp)
+        self.linker_material_space_groups = RuleBasedLinker(source="<material>", destination="<space-groups>",
+                                                        spacy_nlp=spacy_nlp)
+
         self.temperature_classifier = CriticalTemperatureClassifier()
         self.linker_map = {
             'material-tcValue': self.linker_material_tcValue,
             'tcValue-pressure': self.linker_tcValue_pressure,
-            'tcValue-me_method': self.linker_tcValue_me_method
+            'tcValue-me_method': self.linker_tcValue_me_method,
+            'material-crystal_structure': self.linker_material_crystal_structure,
+            'material-space_groups': self.linker_material_space_groups
         }
 
         self.label_link = {
             'material-tcValue': '<material>',
             'tcValue-pressure': '<pressure>',
-            'tcValue-me_method': '<me_method>'
+            'tcValue-me_method': '<me_method>',
+            'material-crystal_structure': '<material>',
+            'material-space_groups': '<material>'
         }
 
         self.ner = None
@@ -274,7 +284,8 @@ class Service(object):
             text_doc = self.ner(text.lower())
             text_doc_original = self.ner(text)
             entities = [
-                {"text": str(text_doc_original[ent.start:ent.end]), "label": ent.label_, "start": ent.start_char,
+                {"text": str(text_doc_original[ent.start:ent.end]), "label": "<" + ent.label_ + ">",
+                 "start": ent.start_char,
                  "end": ent.end_char, "type": ent.ent_id_} for ent in text_doc.ents]
 
             output.append(entities)
@@ -339,6 +350,7 @@ class Service(object):
     #             print("Error entity:", new_entity['text'], ", tokens:'", tokens, "'")
     # 
     #     return new_entities
+
 
 @plac.annotations(
     host=("Hostname where to run the service", "option", "host", str),

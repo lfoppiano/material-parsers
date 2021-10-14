@@ -5202,3 +5202,219 @@
 {"label":"crystal-structure","pattern":"Si Zr Be- type"}
 {"label":"crystal-structure","pattern":"Si Zr Be - type"}
 {"label":"crystal-structure","pattern":"Si Zr Be -type"}
+{"label":"crystal-structure","pattern":"Pu2C3-type"}
+{"label":"crystal-structure","pattern":"Pu2C3- type"}
+{"label":"crystal-structure","pattern":"Pu2C3 - type"}
+{"label":"crystal-structure","pattern":"Pu2C3 -type"}
+{"label":"crystal-structure","pattern":"Pu 2 C 3-type"}
+{"label":"crystal-structure","pattern":"Pu 2 C 3- type"}
+{"label":"crystal-structure","pattern":"Pu 2 C 3 - type"}
+{"label":"crystal-structure","pattern":"Pu 2 C 3 -type"}
+{"label":"crystal-structure","pattern":"Pu2 C3-type"}
+{"label":"crystal-structure","pattern":"Pu2 C3- type"}
+{"label":"crystal-structure","pattern":"Pu2 C3 - type"}
+{"label":"crystal-structure","pattern":"Pu2 C3 -type"}
+{"label":"crystal-structure","pattern":"C3Pu2-type"}
+{"label":"crystal-structure","pattern":"C3Pu2- type"}
+{"label":"crystal-structure","pattern":"C3Pu2 - type"}
+{"label":"crystal-structure","pattern":"C3Pu2 -type"}
+{"label":"crystal-structure","pattern":"C 3 Pu 2-type"}
+{"label":"crystal-structure","pattern":"C 3 Pu 2- type"}
+{"label":"crystal-structure","pattern":"C 3 Pu 2 - type"}
+{"label":"crystal-structure","pattern":"C 3 Pu 2 -type"}
+{"label":"crystal-structure","pattern":"C3 Pu2-type"}
+{"label":"crystal-structure","pattern":"C3 Pu2- type"}
+{"label":"crystal-structure","pattern":"C3 Pu2 - type"}
+{"label":"crystal-structure","pattern":"C3 Pu2 -type"}
+{"label":"crystal-structure","pattern":"NdOZnP-type"}
+{"label":"crystal-structure","pattern":"NdOZnP- type"}
+{"label":"crystal-structure","pattern":"NdOZnP - type"}
+{"label":"crystal-structure","pattern":"NdOZnP -type"}
+{"label":"crystal-structure","pattern":"Nd O Zn P-type"}
+{"label":"crystal-structure","pattern":"Nd O Zn P- type"}
+{"label":"crystal-structure","pattern":"Nd O Zn P - type"}
+{"label":"crystal-structure","pattern":"Nd O Zn P -type"}
+{"label":"crystal-structure","pattern":"NdOPZn-type"}
+{"label":"crystal-structure","pattern":"NdOPZn- type"}
+{"label":"crystal-structure","pattern":"NdOPZn - type"}
+{"label":"crystal-structure","pattern":"NdOPZn -type"}
+{"label":"crystal-structure","pattern":"Nd O P Zn-type"}
+{"label":"crystal-structure","pattern":"Nd O P Zn- type"}
+{"label":"crystal-structure","pattern":"Nd O P Zn - type"}
+{"label":"crystal-structure","pattern":"Nd O P Zn -type"}
+{"label":"crystal-structure","pattern":"NdZnOP-type"}
+{"label":"crystal-structure","pattern":"NdZnOP- type"}
+{"label":"crystal-structure","pattern":"NdZnOP - type"}
+{"label":"crystal-structure","pattern":"NdZnOP -type"}
+{"label":"crystal-structure","pattern":"Nd Zn O P-type"}
+{"label":"crystal-structure","pattern":"Nd Zn O P- type"}
+{"label":"crystal-structure","pattern":"Nd Zn O P - type"}
+{"label":"crystal-structure","pattern":"Nd Zn O P -type"}
+{"label":"crystal-structure","pattern":"NdZnPO-type"}
+{"label":"crystal-structure","pattern":"NdZnPO- type"}
+{"label":"crystal-structure","pattern":"NdZnPO - type"}
+{"label":"crystal-structure","pattern":"NdZnPO -type"}
+{"label":"crystal-structure","pattern":"Nd Zn P O-type"}
+{"label":"crystal-structure","pattern":"Nd Zn P O- type"}
+{"label":"crystal-structure","pattern":"Nd Zn P O - type"}
+{"label":"crystal-structure","pattern":"Nd Zn P O -type"}
+{"label":"crystal-structure","pattern":"NdPOZn-type"}
+{"label":"crystal-structure","pattern":"NdPOZn- type"}
+{"label":"crystal-structure","pattern":"NdPOZn - type"}
+{"label":"crystal-structure","pattern":"NdPOZn -type"}
+{"label":"crystal-structure","pattern":"Nd P O Zn-type"}
+{"label":"crystal-structure","pattern":"Nd P O Zn- type"}
+{"label":"crystal-structure","pattern":"Nd P O Zn - type"}
+{"label":"crystal-structure","pattern":"Nd P O Zn -type"}
+{"label":"crystal-structure","pattern":"NdPZnO-type"}
+{"label":"crystal-structure","pattern":"NdPZnO- type"}
+{"label":"crystal-structure","pattern":"NdPZnO - type"}
+{"label":"crystal-structure","pattern":"NdPZnO -type"}
+{"label":"crystal-structure","pattern":"Nd P Zn O-type"}
+{"label":"crystal-structure","pattern":"Nd P Zn O- type"}
+{"label":"crystal-structure","pattern":"Nd P Zn O - type"}
+{"label":"crystal-structure","pattern":"Nd P Zn O -type"}
+{"label":"crystal-structure","pattern":"ONdZnP-type"}
+{"label":"crystal-structure","pattern":"ONdZnP- type"}
+{"label":"crystal-structure","pattern":"ONdZnP - type"}
+{"label":"crystal-structure","pattern":"ONdZnP -type"}
+{"label":"crystal-structure","pattern":"O Nd Zn P-type"}
+{"label":"crystal-structure","pattern":"O Nd Zn P- type"}
+{"label":"crystal-structure","pattern":"O Nd Zn P - type"}
+{"label":"crystal-structure","pattern":"O Nd Zn P -type"}
+{"label":"crystal-structure","pattern":"ONdPZn-type"}
+{"label":"crystal-structure","pattern":"ONdPZn- type"}
+{"label":"crystal-structure","pattern":"ONdPZn - type"}
+{"label":"crystal-structure","pattern":"ONdPZn -type"}
+{"label":"crystal-structure","pattern":"O Nd P Zn-type"}
+{"label":"crystal-structure","pattern":"O Nd P Zn- type"}
+{"label":"crystal-structure","pattern":"O Nd P Zn - type"}
+{"label":"crystal-structure","pattern":"O Nd P Zn -type"}
+{"label":"crystal-structure","pattern":"OZnNdP-type"}
+{"label":"crystal-structure","pattern":"OZnNdP- type"}
+{"label":"crystal-structure","pattern":"OZnNdP - type"}
+{"label":"crystal-structure","pattern":"OZnNdP -type"}
+{"label":"crystal-structure","pattern":"O Zn Nd P-type"}
+{"label":"crystal-structure","pattern":"O Zn Nd P- type"}
+{"label":"crystal-structure","pattern":"O Zn Nd P - type"}
+{"label":"crystal-structure","pattern":"O Zn Nd P -type"}
+{"label":"crystal-structure","pattern":"OZnPNd-type"}
+{"label":"crystal-structure","pattern":"OZnPNd- type"}
+{"label":"crystal-structure","pattern":"OZnPNd - type"}
+{"label":"crystal-structure","pattern":"OZnPNd -type"}
+{"label":"crystal-structure","pattern":"O Zn P Nd-type"}
+{"label":"crystal-structure","pattern":"O Zn P Nd- type"}
+{"label":"crystal-structure","pattern":"O Zn P Nd - type"}
+{"label":"crystal-structure","pattern":"O Zn P Nd -type"}
+{"label":"crystal-structure","pattern":"OPNdZn-type"}
+{"label":"crystal-structure","pattern":"OPNdZn- type"}
+{"label":"crystal-structure","pattern":"OPNdZn - type"}
+{"label":"crystal-structure","pattern":"OPNdZn -type"}
+{"label":"crystal-structure","pattern":"O P Nd Zn-type"}
+{"label":"crystal-structure","pattern":"O P Nd Zn- type"}
+{"label":"crystal-structure","pattern":"O P Nd Zn - type"}
+{"label":"crystal-structure","pattern":"O P Nd Zn -type"}
+{"label":"crystal-structure","pattern":"OPZnNd-type"}
+{"label":"crystal-structure","pattern":"OPZnNd- type"}
+{"label":"crystal-structure","pattern":"OPZnNd - type"}
+{"label":"crystal-structure","pattern":"OPZnNd -type"}
+{"label":"crystal-structure","pattern":"O P Zn Nd-type"}
+{"label":"crystal-structure","pattern":"O P Zn Nd- type"}
+{"label":"crystal-structure","pattern":"O P Zn Nd - type"}
+{"label":"crystal-structure","pattern":"O P Zn Nd -type"}
+{"label":"crystal-structure","pattern":"ZnNdOP-type"}
+{"label":"crystal-structure","pattern":"ZnNdOP- type"}
+{"label":"crystal-structure","pattern":"ZnNdOP - type"}
+{"label":"crystal-structure","pattern":"ZnNdOP -type"}
+{"label":"crystal-structure","pattern":"Zn Nd O P-type"}
+{"label":"crystal-structure","pattern":"Zn Nd O P- type"}
+{"label":"crystal-structure","pattern":"Zn Nd O P - type"}
+{"label":"crystal-structure","pattern":"Zn Nd O P -type"}
+{"label":"crystal-structure","pattern":"ZnNdPO-type"}
+{"label":"crystal-structure","pattern":"ZnNdPO- type"}
+{"label":"crystal-structure","pattern":"ZnNdPO - type"}
+{"label":"crystal-structure","pattern":"ZnNdPO -type"}
+{"label":"crystal-structure","pattern":"Zn Nd P O-type"}
+{"label":"crystal-structure","pattern":"Zn Nd P O- type"}
+{"label":"crystal-structure","pattern":"Zn Nd P O - type"}
+{"label":"crystal-structure","pattern":"Zn Nd P O -type"}
+{"label":"crystal-structure","pattern":"ZnONdP-type"}
+{"label":"crystal-structure","pattern":"ZnONdP- type"}
+{"label":"crystal-structure","pattern":"ZnONdP - type"}
+{"label":"crystal-structure","pattern":"ZnONdP -type"}
+{"label":"crystal-structure","pattern":"Zn O Nd P-type"}
+{"label":"crystal-structure","pattern":"Zn O Nd P- type"}
+{"label":"crystal-structure","pattern":"Zn O Nd P - type"}
+{"label":"crystal-structure","pattern":"Zn O Nd P -type"}
+{"label":"crystal-structure","pattern":"ZnOPNd-type"}
+{"label":"crystal-structure","pattern":"ZnOPNd- type"}
+{"label":"crystal-structure","pattern":"ZnOPNd - type"}
+{"label":"crystal-structure","pattern":"ZnOPNd -type"}
+{"label":"crystal-structure","pattern":"Zn O P Nd-type"}
+{"label":"crystal-structure","pattern":"Zn O P Nd- type"}
+{"label":"crystal-structure","pattern":"Zn O P Nd - type"}
+{"label":"crystal-structure","pattern":"Zn O P Nd -type"}
+{"label":"crystal-structure","pattern":"ZnPNdO-type"}
+{"label":"crystal-structure","pattern":"ZnPNdO- type"}
+{"label":"crystal-structure","pattern":"ZnPNdO - type"}
+{"label":"crystal-structure","pattern":"ZnPNdO -type"}
+{"label":"crystal-structure","pattern":"Zn P Nd O-type"}
+{"label":"crystal-structure","pattern":"Zn P Nd O- type"}
+{"label":"crystal-structure","pattern":"Zn P Nd O - type"}
+{"label":"crystal-structure","pattern":"Zn P Nd O -type"}
+{"label":"crystal-structure","pattern":"ZnPONd-type"}
+{"label":"crystal-structure","pattern":"ZnPONd- type"}
+{"label":"crystal-structure","pattern":"ZnPONd - type"}
+{"label":"crystal-structure","pattern":"ZnPONd -type"}
+{"label":"crystal-structure","pattern":"Zn P O Nd-type"}
+{"label":"crystal-structure","pattern":"Zn P O Nd- type"}
+{"label":"crystal-structure","pattern":"Zn P O Nd - type"}
+{"label":"crystal-structure","pattern":"Zn P O Nd -type"}
+{"label":"crystal-structure","pattern":"PNdOZn-type"}
+{"label":"crystal-structure","pattern":"PNdOZn- type"}
+{"label":"crystal-structure","pattern":"PNdOZn - type"}
+{"label":"crystal-structure","pattern":"PNdOZn -type"}
+{"label":"crystal-structure","pattern":"P Nd O Zn-type"}
+{"label":"crystal-structure","pattern":"P Nd O Zn- type"}
+{"label":"crystal-structure","pattern":"P Nd O Zn - type"}
+{"label":"crystal-structure","pattern":"P Nd O Zn -type"}
+{"label":"crystal-structure","pattern":"PNdZnO-type"}
+{"label":"crystal-structure","pattern":"PNdZnO- type"}
+{"label":"crystal-structure","pattern":"PNdZnO - type"}
+{"label":"crystal-structure","pattern":"PNdZnO -type"}
+{"label":"crystal-structure","pattern":"P Nd Zn O-type"}
+{"label":"crystal-structure","pattern":"P Nd Zn O- type"}
+{"label":"crystal-structure","pattern":"P Nd Zn O - type"}
+{"label":"crystal-structure","pattern":"P Nd Zn O -type"}
+{"label":"crystal-structure","pattern":"PONdZn-type"}
+{"label":"crystal-structure","pattern":"PONdZn- type"}
+{"label":"crystal-structure","pattern":"PONdZn - type"}
+{"label":"crystal-structure","pattern":"PONdZn -type"}
+{"label":"crystal-structure","pattern":"P O Nd Zn-type"}
+{"label":"crystal-structure","pattern":"P O Nd Zn- type"}
+{"label":"crystal-structure","pattern":"P O Nd Zn - type"}
+{"label":"crystal-structure","pattern":"P O Nd Zn -type"}
+{"label":"crystal-structure","pattern":"POZnNd-type"}
+{"label":"crystal-structure","pattern":"POZnNd- type"}
+{"label":"crystal-structure","pattern":"POZnNd - type"}
+{"label":"crystal-structure","pattern":"POZnNd -type"}
+{"label":"crystal-structure","pattern":"P O Zn Nd-type"}
+{"label":"crystal-structure","pattern":"P O Zn Nd- type"}
+{"label":"crystal-structure","pattern":"P O Zn Nd - type"}
+{"label":"crystal-structure","pattern":"P O Zn Nd -type"}
+{"label":"crystal-structure","pattern":"PZnNdO-type"}
+{"label":"crystal-structure","pattern":"PZnNdO- type"}
+{"label":"crystal-structure","pattern":"PZnNdO - type"}
+{"label":"crystal-structure","pattern":"PZnNdO -type"}
+{"label":"crystal-structure","pattern":"P Zn Nd O-type"}
+{"label":"crystal-structure","pattern":"P Zn Nd O- type"}
+{"label":"crystal-structure","pattern":"P Zn Nd O - type"}
+{"label":"crystal-structure","pattern":"P Zn Nd O -type"}
+{"label":"crystal-structure","pattern":"PZnONd-type"}
+{"label":"crystal-structure","pattern":"PZnONd- type"}
+{"label":"crystal-structure","pattern":"PZnONd - type"}
+{"label":"crystal-structure","pattern":"PZnONd -type"}
+{"label":"crystal-structure","pattern":"P Zn O Nd-type"}
+{"label":"crystal-structure","pattern":"P Zn O Nd- type"}
+{"label":"crystal-structure","pattern":"P Zn O Nd - type"}
+{"label":"crystal-structure","pattern":"P Zn O Nd -type"}

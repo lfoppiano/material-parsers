@@ -96,5 +96,7 @@
   {"id": "96","name":"La4.67 [ Si O4 ]3 O"},
   {"id": "98","name":"( Mn0.5 Fe0.5 )2 O3"},
   {"id": "99","name":"Ca ( Ca0.5 Nd0.5 )2 Nb O6"},
-  {"id": "100","name":"Y ( Ti0.25 Fe0.75 )4 Fe8 N0.5"}
+  {"id": "100","name":"Y ( Ti0.25 Fe0.75 )4 Fe8 N0.5"},
+  {"id": "101","name":"Pu2 C3"},
+  {"id": "102","name":"Nd O Zn P"}
 ]
