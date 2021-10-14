@@ -10,13 +10,16 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 
-RUN mkdir -p /opt/linking/venv
+RUN mkdir -p /opt/linking/venv && mkdir -p /opt/linking/data/crystal-structure && mkdir  -p /opt/linking/data/space-groups
 
 WORKDIR /opt/linking
 
 COPY requirements.txt .
 COPY config.json .
 COPY *.py .
+
+COPY data/space-groups/* /opt/linking/data/space-groups
+COPY data/crystal-structure/* /opt/linking/data/crystal-structure
 
 ENV VIRTUAL_ENV=/opt/linking/venv
 RUN python3 -m venv $VIRTUAL_ENV
@@ -28,4 +31,4 @@ RUN python3 -m spacy download en_core_web_sm
 
 EXPOSE 8080
 
-CMD ["python3", "/opt/linking/service.py", "-config config.json"]
+CMD ["python3", "/opt/linking/service.py", "--config", "config.json"]
