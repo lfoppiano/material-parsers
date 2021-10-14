@@ -2,35 +2,35 @@ from operator import itemgetter
 
 
 class ResolutionResolver(object):
-    def link_spans(self, material, tcValue, linkingType):
+    def link_spans(self, entity1, entity2, linkingType):
         # material.ent_type_ = '<material-tc>'
-        material_links = material._.links
+        entity1_links = entity1._.links
         relationship_link = {
-            'targetId': tcValue._.id,
-            'targetText': tcValue.text,
-            'targetType': tcValue.ent_type_,
+            'targetId': entity2._.id,
+            'targetText': entity2.text,
+            'targetType': entity2.ent_type_,
             'type': linkingType
         }
-        if relationship_link in material_links:
+        if relationship_link in entity1_links:
             print("Link already added. Skipping. Link: " + str(relationship_link))
         else:
-            material_links.append(relationship_link)
-            material._.set('links', material_links)
+            entity1_links.append(relationship_link)
+            entity1._.set('links', entity1_links)
 
-        tcValue_links = tcValue._.links
+        entity2_links = entity2._.links
         relationship_link = {
-            'targetId': material._.id,
-            'targetText': material.text,
-            'targetType': material.ent_type_,
+            'targetId': entity1._.id,
+            'targetText': entity1.text,
+            'targetType': entity1.ent_type_,
             'type': linkingType
         }
-        if relationship_link in tcValue_links:
+        if relationship_link in entity2_links:
             print("Link already added. Skipping. Link: " + str(relationship_link))
         else:
-            tcValue_links.append(relationship_link)
-            tcValue._.set('links', tcValue_links)
+            entity2_links.append(relationship_link)
+            entity2._.set('links', entity2_links)
 
-        return material, tcValue
+        return entity1, entity2
 
 
 class SimpleResolutionResolver(ResolutionResolver):

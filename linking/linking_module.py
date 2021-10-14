@@ -301,6 +301,8 @@ class RuleBasedLinker(SpacyPipeline):
     MATERIAL_TC_TYPE = "<material-tc>"
     TC_PRESSURE_TYPE = "<tc-pressure>"
     TC_ME_METHOD_TYPE = "<tc-me_method>"
+    MATERIAL_SPACE_GROUPS = "<material-space_groups>"
+    MATERIAL_CRYSTAL_STRUCTURE = "<material-crystal_structure>"
 
     @staticmethod
     def collect_relationships(relationships, type):
@@ -308,18 +310,18 @@ class RuleBasedLinker(SpacyPipeline):
 
     @staticmethod
     def get_link_type(type1, type2):
-        if type1 == "<material>" and type2 == "<tcValue>":
+        if (type2 == "<material>" and type1 == "<tcValue>") or (type1 == "<material>" and type2 == "<tcValue>"):
             return RuleBasedLinker.MATERIAL_TC_TYPE
-        elif type2 == "<material>" and type1 == "<tcValue>":
-            return RuleBasedLinker.MATERIAL_TC_TYPE
-        elif type1 == "<pressure>" and type2 == "<tcValue>":
+        elif (type1 == "<pressure>" and type2 == "<tcValue>") or (type2 == "<pressure>" and type1 == "<tcValue>"):
             return RuleBasedLinker.TC_PRESSURE_TYPE
-        elif type2 == "<pressure>" and type1 == "<tcValue>":
-            return RuleBasedLinker.TC_PRESSURE_TYPE
-        elif type1 == "<me_method>" and type2 == "<tcValue>":
+        elif (type1 == "<me_method>" and type2 == "<tcValue>") or (type2 == "<me_method>" and type1 == "<tcValue>"):
             return RuleBasedLinker.TC_ME_METHOD_TYPE
-        elif type2 == "<me_method>" and type1 == "<tcValue>":
-            return RuleBasedLinker.TC_ME_METHOD_TYPE
+        elif (type1 == "<material>" and type2 == "<space-groups>") or (
+            type2 == "<material>" and type1 == "<space-groups>"):
+            return RuleBasedLinker.MATERIAL_SPACE_GROUPS
+        elif (type1 == "<material>" and type2 == "<crystal-structure>") or (
+            type2 == "<material>" and type1 == "<crystal-structure>"):
+            return RuleBasedLinker.MATERIAL_CRYSTAL_STRUCTURE
         else:
             raise Exception("The provided type are invalid. " + type1 + ", " + type2)
 
@@ -377,18 +379,13 @@ class RuleBasedLinker(SpacyPipeline):
         # output_path = Path(str(filename) + ".svg")
         # output_path.open("w", encoding="utf-8").write(svg)
 
-        # extracted_entities['tokens'] = words
-
-        ### TC VALUES CLASSIFICATION
-
-        # self.markCriticalTemperature(doc)
-
         ### RELATIONSHIP EXTRACTION
         extracted_entities['relationships'] = []
 
-        destination_entities = [entity for entity in filter(lambda w: w.ent_type_ in [self.destination], doc)]
+        destination_entities = [entity for entity in filter(lambda w: w.ent_type_ in [self.destination] and w._.linkable is True, doc)]
+
         source_entities = [entity for entity in
-                           filter(lambda w: w.ent_type_ in [self.source] and w._.linkable is True, doc)]
+                               filter(lambda w: w.ent_type_ in [self.source] and w._.linkable is True, doc)]
 
         ## 1 simple approach (when only one temperature and one material)
         resolver = SimpleResolutionResolver()
@@ -431,7 +428,9 @@ class CriticalTemperatureClassifier(SpacyPipeline):
         super(CriticalTemperatureClassifier, self).__init__(spacy_nlp)
 
     def process_doc(self, doc):
-        temps = list(filter(lambda w: w.ent_type_ in ['temperature', 'tcvalue', 'tcValue', '<temperature>', '<tcvalue>', '<tcValue>'], doc))
+        temps = list(filter(
+            lambda w: w.ent_type_ in ['temperature', 'tcvalue', 'tcValue', '<temperature>', '<tcvalue>', '<tcValue>'],
+            doc))
 
         if len(temps) == 0:
             return doc
