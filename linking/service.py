@@ -15,11 +15,6 @@ from materialParserWrapper import MaterialParserWrapper
 bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024 * 1024
 
 
-@Language.factory("my_component")
-def create_my_component(nlp, name):
-    return EntityRuler(nlp)
-
-
 class Service(object):
 
     def __init__(self):
@@ -374,12 +369,12 @@ def init(host='0.0.0.0', port='8080', config="config.json"):
         ner = spacy.load("en_core_web_sm", disable=["parser", "textcat", "ner"])
 
         print("Loading space groups patterns...")
-        entity_ruler = ner.add_pipe("entity_ruler")
-        entity_ruler.from_disk(configuration['space-groups'])
+        entity_ruler_space_groups = ner.add_pipe("entity_ruler", "entity_ruler_space_groups")
+        entity_ruler_space_groups.from_disk(configuration['space-groups'])
 
         print("Loading crystal structure patterns...")
-        er_crystal_structure = ner.add_pipe("my_component")
-        er_crystal_structure.from_disk(configuration['crystal-structure'])
+        entity_ruler_crystal_structure = ner.add_pipe("entity_ruler", "crystal_structure")
+        entity_ruler_crystal_structure.from_disk(configuration['crystal-structure'])
 
         bottle.route('/process/structure/text', method="POST")(app.process_structure_text)
         app.ner = ner
