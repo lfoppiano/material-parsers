@@ -3,9 +3,9 @@ from tempfile import NamedTemporaryFile
 
 import gridfs
 from flask import Flask, render_template, request, Response, Blueprint, url_for
-
 from grobid_client_generic import grobid_client_generic
 from linking_module import RuleBasedLinker
+
 from process.supercon_batch_mongo_extraction import connect_mongo
 from process.utils import json_serial
 
@@ -81,22 +81,42 @@ def process_pdf():
 
     return result_json
 
+
 @bp.route("/stats", methods=["GET"])
 def get_stats():
     connection = connect_mongo(config=config)
     db_supercon_dev = connection[db_name]
     tabular_collection = db_supercon_dev.get_collection("tabular")
 
-    pipeline_group_by_publisher = [{"$match": {"type": "automatic"}}, {"$group": {"_id": "$publisher", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}]
+    pipeline_group_by_publisher = [
+        {"$match": {"type": "automatic"}},
+        {"$group": {"_id": "$publisher", "count": {"$sum": 1}}, "hashes": {"$addToSet": "$hash"}},
+        {"$project": {"_id": 1, "hashes": 1, "count_records": 1, "count_docs": {"$size": "$hashes"}}},
+        {"$project": {"hashes": 0}},
+        {"$sort": {"count": -1}}
+    ]
     by_publisher = tabular_collection.aggregate(pipeline_group_by_publisher)
 
-    pipeline_group_by_year = [{"$match": {"type": "automatic"}}, {"$group": {"_id": "$year", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}]
+    pipeline_group_by_year = [
+        {"$match": {"type": "automatic"}},
+        {"$group": {"_id": "$year", "count_records": {"$sum": 1}, "hashes": {"$addToSet": "$hash"}}},
+        {"$project": {"_id": 1, "hashes": 1, "count_records": 1, "count_docs": {"$size": "$hashes"}}},
+        {"$project": {"hashes": 0}},
+        {"$sort": {"count_records": -1}}
+    ]
     by_year = tabular_collection.aggregate(pipeline_group_by_year)
 
-    pipeline_group_by_journal = [{"$match": {"type": "automatic"}}, {"$group": {"_id": "$journal", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}]
+    pipeline_group_by_journal = [
+        {"$match": {"type": "automatic"}},
+        {"$group": {"_id": "$journal", "count_records": {"$sum": 1}, "hashes": {"$addToSet": "$hash"}}},
+        {"$project": {"_id": 1, "hashes": 1, "count_records": 1, "count_docs": {"$size": "$hashes"}}},
+        {"$project": {"hashes": 0}},
+        {"$sort": {"count_records": -1}}
+    ]
     by_journal = tabular_collection.aggregate(pipeline_group_by_journal)
 
     return render_template("stats.html", by_publisher=by_publisher, by_year=by_year, by_journal=by_journal)
+
 
 @bp.route("/tabular", methods=["GET"])
 def get_tabular_from_form_data():
