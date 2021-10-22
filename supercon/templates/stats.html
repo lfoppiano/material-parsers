@@ -65,7 +65,7 @@
             <div class="col">
                 <ul>
                     {% for year in by_journal %}
-                        <li><strong>{{ year._id }}</strong>: {{ year.count }}</li>
+                        <li><strong>{{ year._id }}</strong>: {{ year.count_records }}</li>
                     {% endfor %}
                 </ul>
             </div>
@@ -73,7 +73,7 @@
             <div class="col">
                 <ul>
                     {% for year in by_publisher %}
-                        <li><strong>{{ year._id }}</strong>: {{ year.count }}</li>
+                        <li><strong>{{ year._id }}</strong>: {{ year.count_records }}</li>
                     {% endfor %}
                 </ul>
             </div>
@@ -82,11 +82,12 @@
             <div class="col">
                 <ul>
                     {% for year in by_year %}
-                        <li><strong>{{ year._id }}</strong>: {{ year.count }}</li>
+                        <li><strong>{{ year._id }}</strong>: {{ year.count_records }}</li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
+        The values indicate the number of documents containing at least one link. 
 
 
         <div id="divRestI">
