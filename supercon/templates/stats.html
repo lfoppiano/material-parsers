@@ -60,20 +60,19 @@
         <div class="page-header">
             <h1><span style="color:#333;">Supercon<sup>2</sup> stats</span></h1>
         </div>
-
         <div class="row">
             <div class="col">
                 <ul>
-                    {% for year in by_journal %}
-                        <li><strong>{{ year._id }}</strong>: {{ year.count_records }}</li>
+                    {% for journal in by_journal %}
+                        <li><strong>{{ journal._id }}</strong>: {{ journal.count_docs }} documents ({{ journal.count_records }} records)</li>
                     {% endfor %}
                 </ul>
             </div>
 
             <div class="col">
                 <ul>
-                    {% for year in by_publisher %}
-                        <li><strong>{{ year._id }}</strong>: {{ year.count_records }}</li>
+                    {% for publisher in by_publisher %}
+                        <li><strong>{{ publisher._id }}</strong>: {{ publisher.count_docs }} documents ({{ publisher.count_records }} records)</li>
                     {% endfor %}
                 </ul>
             </div>
@@ -82,12 +81,12 @@
             <div class="col">
                 <ul>
                     {% for year in by_year %}
-                        <li><strong>{{ year._id }}</strong>: {{ year.count_records }}</li>
+                        <li><strong>{{ year._id }}</strong>: {{ year.count_docs }} documents ({{ year.count_records }} records)</li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
-        The values indicate the number of documents containing at least one link. 
+        
 
 
         <div id="divRestI">
