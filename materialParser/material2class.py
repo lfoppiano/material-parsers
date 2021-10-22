@@ -232,5 +232,3 @@ class Material2Tags(ClassResolver):
                 output[tag] = []
 
         return output
-
-

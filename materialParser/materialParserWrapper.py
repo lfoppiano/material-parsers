@@ -18,7 +18,7 @@ class MaterialParserWrapper:
     def decompose_formula(self, formula):
         structured_formula = {}
         try:
-            structured_formula = self.mp.parse(formula)
+            structured_formula = self.mp.split_formula_into_compounds(formula)
         except SympifyError as e:
             print("Error when parsing formula: ", str(e))
 
