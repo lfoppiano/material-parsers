@@ -53,7 +53,7 @@ class Service(object):
         self.material_parser_wrapper = MaterialParserWrapper()
 
     def info(self):
-        info_json = {"name": "Linking module", "version": "0.2.0"}
+        info_json = {"name": "Linking module", "version": "1.2"}
         return info_json
 
     def classify_tc(self):
