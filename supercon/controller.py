@@ -90,10 +90,10 @@ def get_stats():
 
     pipeline_group_by_publisher = [
         {"$match": {"type": "automatic"}},
-        {"$group": {"_id": "$publisher", "count": {"$sum": 1}}, "hashes": {"$addToSet": "$hash"}},
+        {"$group": {"_id": "$publisher", "count_records": {"$sum": 1}, "hashes": {"$addToSet": "$hash"}}},
         {"$project": {"_id": 1, "hashes": 1, "count_records": 1, "count_docs": {"$size": "$hashes"}}},
         {"$project": {"hashes": 0}},
-        {"$sort": {"count": -1}}
+        {"$sort": {"count_docs": -1}}
     ]
     by_publisher = tabular_collection.aggregate(pipeline_group_by_publisher)
 
@@ -102,7 +102,7 @@ def get_stats():
         {"$group": {"_id": "$year", "count_records": {"$sum": 1}, "hashes": {"$addToSet": "$hash"}}},
         {"$project": {"_id": 1, "hashes": 1, "count_records": 1, "count_docs": {"$size": "$hashes"}}},
         {"$project": {"hashes": 0}},
-        {"$sort": {"count_records": -1}}
+        {"$sort": {"count_docs": -1}}
     ]
     by_year = tabular_collection.aggregate(pipeline_group_by_year)
 
@@ -111,7 +111,7 @@ def get_stats():
         {"$group": {"_id": "$journal", "count_records": {"$sum": 1}, "hashes": {"$addToSet": "$hash"}}},
         {"$project": {"_id": 1, "hashes": 1, "count_records": 1, "count_docs": {"$size": "$hashes"}}},
         {"$project": {"hashes": 0}},
-        {"$sort": {"count_records": -1}}
+        {"$sort": {"count_docs": -1}}
     ]
     by_journal = tabular_collection.aggregate(pipeline_group_by_journal)
 
