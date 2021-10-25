@@ -1,11 +1,12 @@
 import re
 
 import pymatgen as pg
-
-
 ## This map define the rules for selecting the classes.
 # and_compunds is satisfied if ALL of the contained compounds are present
 # or_compounds is satisfied if ANY of the contained compound is present
+from material_parser.material_parser import MaterialParser
+from sympy import SympifyError
+
 
 class ClassResolver:
     """
@@ -82,6 +83,9 @@ class Material2Class(ClassResolver):
 
 
 class Material2Tags(ClassResolver):
+    def __init__(self):
+        self.mp = MaterialParser()
+
     material2class_first_level = [
         {"and_compounds": ["O", "Cu"], "name": "Cuprates"},
         {"and_compounds": ["Fe", "P"], "name": "Iron-pnictides"},
@@ -155,8 +159,21 @@ class Material2Tags(ClassResolver):
                 dc = pg.Composition(material_formula_with_replacements, strict=False).as_dict().keys()
             except Exception as ce:
                 print("Exception when parsing " + str(material_formula_with_replacements) + ". Error: " + str(ce))
-                # We give up... skipping this record
-                return output_tags
+                try:
+                    compounds = self.mp.formula2composition(material_formula_with_replacements)
+                    if compounds is not None and 'elements' in compounds:
+                        dc = compounds['elements'].keys()
+                    else:
+                        return output_tags
+
+                except Exception as ee:
+                    # We give up... skipping this record
+                    print("Exception when parsing ", material_formula_with_replacements, ". Error: ", ee)
+                    return output_tags
+                except SympifyError as eee:
+                    # We give up... skipping this record
+                    print("Exception when parsing ", material_formula_with_replacements, ". Error: ", eee)
+                    return output_tags
 
         input_formula = list(dc)
         # print(" Input Formula: " + str(input_formula))
