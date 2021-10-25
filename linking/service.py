@@ -49,6 +49,8 @@ class Service(object):
         }
 
         self.ner = None
+        
+        self.material_parser_wrapper = MaterialParserWrapper()
 
     def info(self):
         info_json = {"name": "Linking module", "version": "0.2.0"}
@@ -112,6 +114,7 @@ class Service(object):
         return json.dumps(result)
 
     def process_single_sentence(self, paragraph_input, link_types_as_list, skip_classification):
+        """Link entities in a single sentence"""
         if skip_classification.lower() == 'true':
             skip_classification = True
         else:
@@ -172,95 +175,47 @@ class Service(object):
                         span['links'] = spans_map[span['id']]
 
         return paragraph_input
+    
+    def material_name_to_formula(self):
+        raw = request.forms.get("input")
 
-    # def create_links(self):
-    #     input_raw = request.forms.get("input")
-    #
-    #     if input_raw is None:
-    #         abort(400)
-    #
-    #     paragraph_input = json.loads(input_raw)
-    #
-    #     material_tc_linked = self.linker_material_tcValue.process_paragraph(paragraph_input)
-    #     tc_pressure_linked = self.linker_tcValue_pressure.process_paragraph(paragraph_input)
-    #
-    #     spans_map = {}
-    #     for paragraphs in tc_pressure_linked:
-    #         spans = paragraphs['spans'] if 'spans' in paragraphs else []
-    #         for span in spans:
-    #             if 'links' in span:
-    #                 non_crf_links = list(filter(lambda w: w['type'] != "crf", span['links']))
-    #
-    #                 if len(non_crf_links) > 0:
-    #                     span['links'] = non_crf_links
-    #                     spans_map[span['id']] = span
-    #
-    #     # for span in paragraphs['spans'] if 'spans' in paragraphs else []:
-    #     #     if 'links' in span and len(span['links']) > 0:
-    #     #         links = span['links']
-    #     #         if span['id'] in spans_map:
-    #     #             spans_map[span['id']].extend(list(filter(lambda w: w['type'] != "crf", links)))
-    #     #         else:
-    #     #             spans_map[span['id']] = list(filter(lambda w: w['type'] != "crf", links))
-    #     # span['id'] in spans_map and 'links' in spans_map[span['id']]
-    #
-    #     for paragraphs in material_tc_linked:
-    #         for span in paragraphs['spans'] if 'spans' in paragraphs else []:
-    #             if span['id'] in spans_map and 'links' in spans_map[span['id']]:
-    #                 links_list = spans_map[span['id']]['links']
-    #                 if 'links' in span:
-    #                     span['links'].extend(links_list)
-    #                 else:
-    #                     span['links'] = links_list
-    #
-    #     # for paragraphs in material_tc_linked:
-    #     #     for span in paragraphs['spans'] if 'spans' in paragraphs else []:
-    #     #         if span['id'] in spans_map:
-    #     #             if 'links' in span:
-    #     #                 span['links'].extend(spans_map[span['id']])
-    #     #             else:
-    #     #                 span['links'] = spans_map[span['id']]
-    #     # for paragraphs in material_tc_linked:
-    #     #     material_tc_linked['relationships'].extends(tc_pressure_linked['relationships'])
-    #
-    #     return json.dumps(material_tc_linked)
+        if raw is None:
+            abort(400)
 
+        formula = self.material_parser_wrapper.name_to_formula(raw)
+
+        return json.dumps(formula)
+
+    def decompose_material_formula(self):
+        raw = request.forms.get("input")
+
+        if raw is None:
+            abort(400)
+
+        decomposed_formula = self.material_parser_wrapper.decompose_formula(raw)
+
+        return json.dumps(decomposed_formula)
+
+    def formula_to_composition(self):
+        raw = request.forms.get("input")
+
+        if raw is None:
+            abort(400)
+
+        composition = self.material_parser_wrapper.formula_to_composition(raw)
+
+        return json.dumps(composition)
+    
+    
     def classify_formula(self):
         raw = request.forms.get("input")
 
         if raw is None:
             abort(400)
 
-        # raw_parsed = None
-        # try:
-        #     raw_parsed = json.loads(raw)
-        # except JSONDecodeError as e:
-        #     abort(400, e)
-
-        # single = False
-        # if type(raw_parsed) is dict:
-        #     single = True
-        #     formulas_raw = [raw_parsed]
-        # else:
-        #     formulas_raw = raw_parsed
-
-        # result = []
-        # for formula in formulas_raw:
-        classes = MaterialParserWrapper().formula_to_classes(raw)
-        # result.append(list(classes.keys()))
-
-        # if single:
-        #     result = result[0]
+        classes = self.material_parser_wrapper.formula_to_classes(raw)
 
         return json.dumps(list(classes.keys()))
-
-    # def process(self):
-    #     input_raw = request.forms.get("input")
-    #     input_json = json.loads(input_raw)
-    #     paragraph_with_marked_tc = self.temperature_classifier.mark_temperatures_paragraph(input_json)
-    #     material_tc_linked = self.linker_material_tcValue.process_paragraph_json(paragraph_with_marked_tc)
-    #
-    #     return self.linker_tcValue_pressure.process_paragraph_json(material_tc_linked)
 
     def process_structure_text(self):
         input_raw = request.forms.get("input")
@@ -287,65 +242,6 @@ class Service(object):
 
         return json.dumps(output)
 
-    # def process_space_group_tokens(self):
-    #     """Process tokens from the REST API: used for processing data from the PDFs"""
-    #     input_raw = request.forms.get("input")
-    #     input_json = json.loads(input_raw)
-    # 
-    #     text_original = input_json['text'] if 'text' in input_json else ''
-    #     tokens_original = input_json['tokens'] \
-    #         if 'tokens' in input_json else []
-    # 
-    #     entities = self.deal_with_tokens(tokens_original)
-    # 
-    #     return json.dumps(entities)
-    # 
-    # def deal_with_tokens(self, tokens_original):
-    #     words, spaces = process_paragraph(tokens_original)
-    # 
-    #     words_lower = [w.lower() for w in words]
-    #     text_doc = Doc(self.space_group_nlp.vocab, words=words_lower, spaces=spaces)
-    #     text_doc_original = Doc(self.space_group_nlp.vocab, words=words, spaces=spaces)
-    # 
-    #     for name, proc in self.space_group_nlp.pipeline:  # iterate over components in order
-    #         text_doc = proc(text_doc)
-    # 
-    #     entities = [{
-    #         "text": str(text_doc_original[ent.start:ent.end]),
-    #         "type": ent.label_,
-    #         "offsetStart": ent.start_char,
-    #         "offsetEnd": ent.end_char,
-    #         "tokenStart": ent.start,
-    #         "tokenEnd": ent.end} for ent in text_doc.ents]
-    # 
-    #     new_entities = []
-    #     # Need to adjust the index tokens to be based on the initial token list which includes spaces.
-    #     for idx, entity in enumerate(entities):
-    #         spaces_before = spaces[0:entity['tokenStart']].count(True)
-    #         spaces_in_entity = spaces[entity['tokenStart']:entity['tokenEnd']].count(True)
-    #         if entity['tokenEnd'] - entity['tokenStart'] == spaces_in_entity:
-    #             spaces_in_entity -= 1
-    #         elif spaces[entity['tokenEnd'] - 1]:
-    #             spaces_in_entity -= 1
-    # 
-    #         new_entity = copy.copy(entity)
-    #         new_entity['tokenStart'] += spaces_before
-    #         new_entity['tokenEnd'] += spaces_before + spaces_in_entity
-    # 
-    #         entity['tokenStart'] + spaces_before + spaces[entity['tokenStart']:entity['tokenEnd']].count(True) + spaces[
-    #                                                                                                              81:240].count(
-    #             True) + len(words[81:240])
-    #         entity['tokenEnd'] + spaces_before + spaces[entity['tokenStart']:entity['tokenEnd']].count(True) + spaces[
-    #                                                                                                            81:240].count(
-    #             True) + len(words[81:240])
-    # 
-    #         new_entities.append(new_entity)
-    #         tokens = "".join([x['text'] for x in tokens_original[new_entity['tokenStart']:new_entity['tokenEnd']]])
-    #         if entity['text'] != tokens:
-    #             print("Error entity:", new_entity['text'], ", tokens:'", tokens, "'")
-    # 
-    #     return new_entities
-
 
 @plac.annotations(
     host=("Hostname where to run the service", "option", "host", str),
@@ -356,6 +252,10 @@ def init(host='0.0.0.0', port='8080', config="config.json"):
     app = Service()
 
     bottle.route('/process/link', method="POST")(app.process_link)
+    bottle.route('/decompose/formula', method="POST")(app.decompose_material_formula)
+    bottle.route('/convert/name/formula', method="POST")(app.material_name_to_formula)
+    bottle.route('/convert/formula/composition', method="POST")(app.formula_to_composition)
+    
     bottle.route('/classify/tc', method="POST")(app.classify_tc)
     bottle.route('/classify/formula', method="POST")(app.classify_formula)
 
