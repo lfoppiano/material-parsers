@@ -4,7 +4,6 @@ import pymatgen as pg
 ## This map define the rules for selecting the classes.
 # and_compunds is satisfied if ALL of the contained compounds are present
 # or_compounds is satisfied if ANY of the contained compound is present
-from material_parser.material_parser import MaterialParser
 from sympy import SympifyError
 
 
@@ -13,6 +12,57 @@ class ClassResolver:
     This is the superclass of an object that is able to resolve the class from a raw material name, which has,
     potentially a relevant amount of garbage in it.
     """
+
+    verbose = False
+
+    def __init__(self, materialParser=None, verbose=False):
+        self.mp = materialParser
+        self.verbose = verbose
+
+    def decompose_formula(self, formula):
+
+        decomposed_formula = []
+
+        try:
+            dc = pg.Composition(formula, strict=False).as_dict().keys()
+        except Exception as ce:
+            if self.verbose:
+                print("Exception when parsing " + str(formula) + ". Error: " + str(ce))
+            # Trying with some tricks
+            material_formula_with_replacements = re.sub(r'[+-][ZXYzxy]', '', formula)
+            try:
+                if self.verbose:
+                    print("Trying to parse " + str(material_formula_with_replacements))
+                dc = pg.Composition(material_formula_with_replacements, strict=False).as_dict().keys()
+            except Exception as ce:
+                if self.verbose:
+                    print("Exception when parsing " + str(material_formula_with_replacements) + ". Error: " + str(ce))
+                if self.mp is None:
+                    return decomposed_formula
+
+                try:
+                    if self.verbose:
+                        print("Trying to parse using the Material Parser" + str(material_formula_with_replacements))
+                    compounds = self.mp.formula2composition(material_formula_with_replacements)
+                    if compounds is not None and 'elements' in compounds:
+                        dc = compounds['elements'].keys()
+                    else:
+                        return decomposed_formula
+
+                except Exception as ee:
+                    # We give up... skipping this record
+                    if self.verbose:
+                        print("Exception when parsing ", material_formula_with_replacements, ". Error: ", ee)
+                    return decomposed_formula
+                except SympifyError as eee:
+                    # We give up... skipping this record
+                    if self.verbose:
+                        print("Exception when parsing ", material_formula_with_replacements, ". Error: ", eee)
+                    return decomposed_formula
+
+        # print(" Input Formula: " + str())
+        decomposed_formula = list(dc)
+        return decomposed_formula
 
 
 class Material2Class(ClassResolver):
@@ -35,24 +85,12 @@ class Material2Class(ClassResolver):
         # alloys---> that does not satisfy none of above
     ]
 
+    verbose = False
+
     def get_class(self, formula):
         output = ''
 
-        try:
-            dc = pg.Composition(formula, strict=False).as_dict().keys()
-        except Exception as ce:
-            print("Exception when parsing " + str(formula) + ". Error: " + str(ce))
-            # Trying with some tricks
-            c_with_replacements = re.sub(r'[+-][ZXYzxy]', '', formula)
-            try:
-                print("Trying to parse " + str(c_with_replacements))
-                dc = pg.Composition(c_with_replacements, strict=False).as_dict().keys()
-            except Exception as ce:
-                print("Exception when parsing " + str(c_with_replacements) + ". Error: " + str(ce))
-                # We give up... skipping this record
-                return output
-
-        input_formula = list(dc)
+        input_formula = self.decompose_formula(formula)
 
         # print(" Input Formula: " + str(input_formula))
 
@@ -83,9 +121,6 @@ class Material2Class(ClassResolver):
 
 
 class Material2Tags(ClassResolver):
-    def __init__(self):
-        self.mp = MaterialParser()
-
     material2class_first_level = [
         {"and_compounds": ["O", "Cu"], "name": "Cuprates"},
         {"and_compounds": ["Fe", "P"], "name": "Iron-pnictides"},
@@ -148,35 +183,7 @@ class Material2Tags(ClassResolver):
     def assign_tags(self, formula, composition_map):
         output_tags = []
 
-        try:
-            dc = pg.Composition(formula, strict=False).as_dict().keys()
-        except Exception as ce:
-            print("Exception when parsing " + str(formula) + ". Error: " + str(ce))
-            # Trying with some tricks
-            material_formula_with_replacements = re.sub(r'[+-][ZXYzxy]', '', formula)
-            try:
-                print("Trying to parse " + str(material_formula_with_replacements))
-                dc = pg.Composition(material_formula_with_replacements, strict=False).as_dict().keys()
-            except Exception as ce:
-                print("Exception when parsing " + str(material_formula_with_replacements) + ". Error: " + str(ce))
-                try:
-                    compounds = self.mp.formula2composition(material_formula_with_replacements)
-                    if compounds is not None and 'elements' in compounds:
-                        dc = compounds['elements'].keys()
-                    else:
-                        return output_tags
-
-                except Exception as ee:
-                    # We give up... skipping this record
-                    print("Exception when parsing ", material_formula_with_replacements, ". Error: ", ee)
-                    return output_tags
-                except SympifyError as eee:
-                    # We give up... skipping this record
-                    print("Exception when parsing ", material_formula_with_replacements, ". Error: ", eee)
-                    return output_tags
-
-        input_formula = list(dc)
-        # print(" Input Formula: " + str(input_formula))
+        input_formula = self.decompose_formula(formula)
 
         if type(composition_map) == list:
             for composition in composition_map:
