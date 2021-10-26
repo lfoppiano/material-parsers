@@ -8,20 +8,19 @@ certifi==2020.12.5
 chardet==4.0.0
 charset-normalizer==2.0.4
 click==7.1.2
-cycler==0.10.0
 cymem==2.0.5
 decorator==4.4.2
 Flask==2.0.1
 future==0.18.2
--e git+https://github.com/lfoppiano/grobid-superconductors-tools.git@e5862f642193e5fe2c07a3baf859b9cf743a73c5#egg=grobid_superconductors_python_commons&subdirectory=commons
+-e git+https://github.com/lfoppiano/grobid-superconductors-tools.git@de099a1e4bbd692c29c25cde0006ade20d1878b9#egg=grobid_superconductors_python_commons&subdirectory=commons
 idna==2.10
 importlib-metadata==4.0.1
 itsdangerous==2.0.1
 Jinja2==3.0.1
 kiwisolver==1.3.1
 MarkupSafe==2.0.1
--e git+https://github.com/lfoppiano/grobid-superconductors-tools.git@e5862f642193e5fe2c07a3baf859b9cf743a73c5#egg=materialParserWrapper&subdirectory=materialParser
-Materials-Parser @ git+https://github.com/lfoppiano/MaterialParser.git@88e86d6eae91caf763bbdfb21d4bda62fa6e938f
+-e git+https://github.com/lfoppiano/grobid-superconductors-tools.git@de099a1e4bbd692c29c25cde0006ade20d1878b9#egg=materialParserWrapper&subdirectory=materialParser
+-e git+https://github.com/lfoppiano/MaterialParser.git@88e86d6eae91caf763bbdfb21d4bda62fa6e938f#egg=Materials-Parser
 matplotlib==3.4.1
 monty==2021.3.3
 mpmath==1.2.1
@@ -62,7 +61,6 @@ tqdm==4.60.0
 typer==0.3.2
 typing-extensions==3.10.0.0
 uncertainties==3.1.5
-urllib3==1.26.5
 wasabi==0.8.2
 Werkzeug==2.0.1
 zipp==3.4.1
