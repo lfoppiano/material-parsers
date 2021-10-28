@@ -185,14 +185,21 @@ class Service(object):
             return 'Required a parameter "input" as form-data.'
         try:
             formula = self.material_parser_wrapper.name_to_formula(raw)
-            if ('name' in formula and formula['name'] == "") and ('formula' in formula and formula['formula'] == ""):
-                response.status = 404
-                return "Could not find the formula corresponding to " + str(raw)
+            if self.is_response_empty(formula):
+                lemmatized_name = ''.join([token.lemma_ + token.whitespace_ for token in self.ner(raw)])
+
+                formula = self.material_parser_wrapper.name_to_formula(lemmatized_name)
+                if self.is_response_empty(formula):
+                    response.status = 404
+                    return "Could not find the formula corresponding to " + str(lemmatized_name)
         except ValueError as ve:
             response.status = 400
             return 'The parser was not able to process the provided input: ' + str(ve)
 
         return json.dumps(formula)
+
+    def is_response_empty(self, formula):
+        return ('name' in formula and formula['name'] == "") and ('formula' in formula and formula['formula'] == "")
 
     def formula_to_composition(self):
         raw = request.forms.get("input")
