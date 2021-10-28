@@ -37,7 +37,9 @@ class MaterialParserWrapper:
         try:
             output = self.material_parser.parse(formula)
         except SympifyError as e:
-            print("Error when parsing formula: ", str(e))
+            raise ValueError(e)
+        except ValueError as ve:
+            output = self.material_parser.parse(formula.replace(" ", ""))
 
         if output.composition:
             composition_ = output.composition[0]
@@ -50,7 +52,9 @@ class MaterialParserWrapper:
         try:
             output = self.material_parser.parse(name)
         except SympifyError as e:
-            print("Error when parsing formula: ", str(e))
+            raise ValueError(e)
+        except ValueError as ve:
+            output = self.material_parser.parse(name.replace(" ", ""))
 
         if output.composition:
             composition_ = output.composition[0]

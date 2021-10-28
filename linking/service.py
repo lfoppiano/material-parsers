@@ -46,7 +46,7 @@ class Service(object):
         }
 
         self.ner = None
-        
+
         self.material_parser_wrapper = MaterialParserWrapper()
 
     def info(self):
@@ -183,8 +183,14 @@ class Service(object):
         if raw is None:
             response.status = 400
             return 'Required a parameter "input" as form-data.'
-
-        formula = self.material_parser_wrapper.name_to_formula(raw)
+        try:
+            formula = self.material_parser_wrapper.name_to_formula(raw)
+            if ('name' in formula and formula['name'] == "") and ('formula' in formula and formula['formula'] == ""):
+                response.status = 404
+                return "Could not find the formula corresponding to " + str(raw)
+        except ValueError as ve:
+            response.status = 400
+            return 'The parser was not able to process the provided input: ' + str(ve)
 
         return json.dumps(formula)
 
@@ -195,7 +201,11 @@ class Service(object):
             response.status = 400
             return 'Required a parameter "input" as form-data.'
 
-        composition = self.material_parser_wrapper.formula_to_composition(raw)
+        try:
+            composition = self.material_parser_wrapper.formula_to_composition(raw)
+        except ValueError as ve:
+            response.status = 400
+            return 'The parser was not able to process the provided input: ' + str(ve)
 
         return json.dumps(composition)
 
