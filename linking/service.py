@@ -4,13 +4,10 @@ import os
 import bottle
 import plac
 import spacy
-from bottle import request, run
-from flask import abort
-from spacy import Language
-from spacy.pipeline import EntityRuler
+from bottle import request, response, run
+from materialParserWrapper import MaterialParserWrapper
 
 from linking_module import RuleBasedLinker, CriticalTemperatureClassifier
-from materialParserWrapper import MaterialParserWrapper
 
 bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024 * 1024
 
@@ -27,9 +24,9 @@ class Service(object):
                                                         spacy_nlp=spacy_nlp)
 
         self.linker_material_crystal_structure = RuleBasedLinker(source="<material>", destination="<crystal-structure>",
-                                                        spacy_nlp=spacy_nlp)
+                                                                 spacy_nlp=spacy_nlp)
         self.linker_material_space_groups = RuleBasedLinker(source="<material>", destination="<space-groups>",
-                                                        spacy_nlp=spacy_nlp)
+                                                            spacy_nlp=spacy_nlp)
 
         self.temperature_classifier = CriticalTemperatureClassifier()
         self.linker_map = {
@@ -60,12 +57,14 @@ class Service(object):
         input_raw = request.forms.get("input")
 
         if input_raw is None:
-            abort(400)
+            response.status = 400
+            return 'Required a parameter "input" as form-data.'
 
         try:
             passages_input = json.loads(input_raw)
         except:
-            abort(400)
+            response.status = 400
+            return 'Invalid JSON file provided in input.'
 
         single = False
         if type(passages_input) is dict:
@@ -92,7 +91,8 @@ class Service(object):
         try:
             passages_input = json.loads(input_raw)
         except:
-            abort(400)
+            response.status = 400
+            return 'Invalid JSON file provided in input.'
 
         link_types_as_list = json.loads(request.forms.get("types")) if request.forms.get(
             "types") is not None else self.linker_map.keys()
@@ -121,7 +121,8 @@ class Service(object):
             skip_classification = False
 
         if paragraph_input is None or 'tokens' not in paragraph_input or 'text' not in paragraph_input:
-            abort(400)
+            response.status = 400
+            return 'Missing paragraphs, tokens or text.'
 
         if 'spans' not in paragraph_input:
             paragraph_input['spans'] = []
@@ -175,43 +176,35 @@ class Service(object):
                         span['links'] = spans_map[span['id']]
 
         return paragraph_input
-    
-    def material_name_to_formula(self):
+
+    def name_to_formula(self):
         raw = request.forms.get("input")
 
         if raw is None:
-            abort(400)
+            response.status = 400
+            return 'Required a parameter "input" as form-data.'
 
         formula = self.material_parser_wrapper.name_to_formula(raw)
 
         return json.dumps(formula)
 
-    def decompose_material_formula(self):
-        raw = request.forms.get("input")
-
-        if raw is None:
-            abort(400)
-
-        decomposed_formula = self.material_parser_wrapper.decompose_formula(raw)
-
-        return json.dumps(decomposed_formula)
-
     def formula_to_composition(self):
         raw = request.forms.get("input")
 
         if raw is None:
-            abort(400)
+            response.status = 400
+            return 'Required a parameter "input" as form-data.'
 
         composition = self.material_parser_wrapper.formula_to_composition(raw)
 
         return json.dumps(composition)
-    
-    
+
     def classify_formula(self):
         raw = request.forms.get("input")
 
         if raw is None:
-            abort(400)
+            response.status = 400
+            return 'Required a parameter "input" as form-data.'
 
         classes = self.material_parser_wrapper.formula_to_classes(raw)
 
@@ -221,13 +214,15 @@ class Service(object):
         input_raw = request.forms.get("input")
 
         if input_raw is None:
-            abort(400)
+            bottle.response.status = 400
+            return 'Required a parameter "input" as form-data.'
 
         passages_input = None
         try:
             passages_input = json.loads(input_raw)
         except:
-            abort(400)
+            bottle.response.status = 400
+            return 'Invalid JSON file provided in input.'
 
         output = []
         for text in passages_input:
@@ -252,10 +247,10 @@ def init(host='0.0.0.0', port='8080', config="config.json"):
     app = Service()
 
     bottle.route('/process/link', method="POST")(app.process_link)
-    bottle.route('/decompose/formula', method="POST")(app.decompose_material_formula)
-    bottle.route('/convert/name/formula', method="POST")(app.material_name_to_formula)
+
+    bottle.route('/convert/name/formula', method="POST")(app.name_to_formula)
     bottle.route('/convert/formula/composition', method="POST")(app.formula_to_composition)
-    
+
     bottle.route('/classify/tc', method="POST")(app.classify_tc)
     bottle.route('/classify/formula', method="POST")(app.classify_formula)
 
