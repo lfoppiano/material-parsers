@@ -212,7 +212,10 @@ class Service(object):
             composition = self.material_parser_wrapper.formula_to_composition(raw)
         except ValueError as ve:
             response.status = 400
-            return 'The parser was not able to process the provided input: ' + str(ve)
+            return 'The parser was not able to process the provided input: ValueError ' + str(ve)
+        except KeyError as ke:
+            response.status = 400
+            return 'The parser was not able to process the provided input: KeyError ' + str(ke)
 
         return json.dumps(composition)
 
