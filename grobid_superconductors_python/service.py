@@ -5,9 +5,7 @@ import bottle
 import plac
 import spacy
 from bottle import request, response, run
-from materialParserWrapper import MaterialParserWrapper
 
-from linking_module import RuleBasedLinker, CriticalTemperatureClassifier
 
 bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024 * 1024
 
