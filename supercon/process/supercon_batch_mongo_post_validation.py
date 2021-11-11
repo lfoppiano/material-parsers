@@ -8,6 +8,7 @@ from pathlib import Path
 
 from tqdm import tqdm
 
+from supercon.process.supercon_batch_mongo_compute_table import MongoTabularProcessor
 from supercon_batch_mongo_extraction import connect_mongo, MongoSuperconProcessor
 from utils import json_serial
 

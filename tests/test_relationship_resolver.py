@@ -366,7 +366,7 @@ class TestVicinityResolutionResolver:
         assert previous is not None
         assert previous.text == "1.6 K"
 
-        all_entities = list(filter(lambda w: w.ent_type_ is not "", doc))
+        all_entities = list(filter(lambda w: w.ent_type_ != "", doc))
 
         previous = target.find_previous_entity(materials[1], all_entities)
 
@@ -405,7 +405,7 @@ class TestVicinityResolutionResolver:
         assert following is not None
         assert following.text == "4.1 K"
 
-        all_entities = list(filter(lambda w: w.ent_type_ is not "", doc))
+        all_entities = list(filter(lambda w: w.ent_type_ != "", doc))
 
         following = target.find_following_entity(materials[2], all_entities)
 
