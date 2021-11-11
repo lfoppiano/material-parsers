@@ -10,7 +10,7 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 
-RUN mkdir -p /opt/service/venv && mkdir -p /opt/service/structure_identifier/data/crystal-structure && mkdir  -p /opt/service/structure_identifier/data/space-groups
+RUN mkdir -p /opt/service/venv && mkdir -p /opt/service/resources/data/crystal-structure && mkdir  -p /opt/service/resources/data/space-groups
 
 WORKDIR /opt/service
 
@@ -18,8 +18,8 @@ COPY requirements.txt .
 COPY config.json .
 COPY *.py .
 
-COPY structure_identifier/data/space-groups/* /opt/service/structure_identifier/data/space-groups
-COPY structure_identifier/data/crystal-structure/* /opt/service/structure_identifier/data/crystal-structure
+COPY resources/data/space-groups/* /opt/service/resources/data/space-groups
+COPY resources/data/crystal-structure/* /opt/service/resources/data/crystal-structure
 
 ENV VIRTUAL_ENV=/opt/service/venv
 RUN python3 -m venv $VIRTUAL_ENV
