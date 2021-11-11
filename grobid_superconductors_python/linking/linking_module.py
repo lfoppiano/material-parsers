@@ -6,8 +6,9 @@ from blingfire import text_to_sentences
 from spacy.tokens import Span, Doc
 from spacy.tokens.token import Token
 
-from data_model import span_to_dict
-from relationships_resolver import SimpleResolutionResolver, VicinityResolutionResolver
+from grobid_superconductors_python.linking.data_model import span_to_dict
+from grobid_superconductors_python.linking.relationships_resolver import SimpleResolutionResolver, \
+    VicinityResolutionResolver
 
 Span.set_extension('id', default=None, force=True)
 Span.set_extension('links', default=[], force=True)

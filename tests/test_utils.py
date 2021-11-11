@@ -1,9 +1,8 @@
 import logging
 from functools import wraps
 
-from grobid_tokenizer import tokenize
-# derived from https://github.com/elifesciences/sciencebeam-trainer-delft/tree/develop/tests
-from linking_module import RuleBasedLinker, SpacyPipeline
+from grobid_superconductors_python.commons.grobid_tokenizer import tokenize
+from grobid_superconductors_python.linking.linking_module import SpacyPipeline
 
 LOGGER = logging.getLogger(__name__)
 

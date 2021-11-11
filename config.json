@@ -1,0 +1,7 @@
+{
+  "space-groups": "resources/data/space-groups",
+  "crystal-structure": "resources/data/crystal-structure",
+  "port": 8090,
+  "host": "localhost"
+}
+

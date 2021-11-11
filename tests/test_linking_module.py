@@ -1,6 +1,7 @@
 import logging
 
-from linking_module import RuleBasedLinker, CriticalTemperatureClassifier, SpacyPipeline
+from grobid_superconductors_python.linking.linking_module import CriticalTemperatureClassifier, RuleBasedLinker, \
+    SpacyPipeline
 from test_utils import prepare_doc, get_tokens, get_tokens_and_spans
 
 LOGGER = logging.getLogger(__name__)
@@ -290,7 +291,6 @@ class TestUtilitiesMethods:
         spans = [{'id': 3183758168641928847, 'text': 'T c ', 'type': '<tc>', 'offset_start': 13, 'offset_end': 17, 'token_start': 1, 'token_end': 2, 'boundingBoxes': [], 'links': [], 'linkable': False}, {'id': 2850964293203602307, 'text': '30', 'type': '<tcValue>', 'offset_start': 24, 'offset_end': 26, 'token_start': 4, 'token_end': 4, 'boundingBoxes': [], 'links': [], 'linkable': False}, {'id': -7289024069834629803, 'text': '37.7', 'type': '<tcValue>', 'offset_start': 28, 'offset_end': 32, 'token_start': 5, 'token_end': 7, 'boundingBoxes': [], 'links': [], 'linkable': False}, {'id': 414589195323464845, 'text': '36', 'type': '<tcValue>', 'offset_start': 34, 'offset_end': 36, 'token_start': 7, 'token_end': 8, 'boundingBoxes': [], 'links': [], 'linkable': False}, {'id': -6841720698725589771, 'text': '27.5 ', 'type': '<tcValue>', 'offset_start': 38, 'offset_end': 43, 'token_start': 9, 'token_end': 11, 'boundingBoxes': [], 'links': [], 'linkable': False}, {'id': -7747294031880326267, 'text': '20.3 ', 'type': '<tcValue>', 'offset_start': 47, 'offset_end': 52, 'token_start': 12, 'token_end': 14, 'boundingBoxes': [], 'links': [], 'linkable': False}, {'id': 'x14', 'text': 'x = 0.10', 'type': '<material>', 'offset_start': 58, 'offset_end': 66, 'token_start': 15, 'token_end': 19, 'boundingBoxes': [], 'links': [], 'linkable': True}, {'id': 'x15', 'text': '0.15', 'type': '<material>', 'offset_start': 68, 'offset_end': 72, 'token_start': 19, 'token_end': 22, 'boundingBoxes': [], 'links': [], 'linkable': True}, {'id': 'x16', 'text': '0.20', 'type': '<material>', 'offset_start': 74, 'offset_end': 78, 'token_start': 22, 'token_end': 24, 'boundingBoxes': [], 'links': [], 'linkable': True}, {'id': 'x17', 'text': '0.22 ', 'type': '<material>', 'offset_start': 80, 'offset_end': 85, 'token_start': 24, 'token_end': 26, 'boundingBoxes': [], 'links': [], 'linkable': True}, {'id': 'x18', 'text': '0.24', 'type': '<material>', 'offset_start': 89, 'offset_end': 93, 'token_start': 26, 'token_end': 29, 'boundingBoxes': [], 'links': [], 'linkable': True}]
         outputTokens, outputSpaces, outputSpans = SpacyPipeline.convert_to_spacy(tokens, spans)
 
-        print("bao")
         for span in outputSpans:
             assert "".join(outputTokens[span['token_start']:span['token_end']]) == span['text']
             assert text[span['offset_start']:span['offset_end']] == span['text']

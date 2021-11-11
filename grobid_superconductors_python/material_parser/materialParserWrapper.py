@@ -7,7 +7,7 @@ from text2chem.preprocessing_tools.mixture_processing import MixtureProcessing
 from text2chem.preprocessing_tools.phase_processing import PhaseProcessing
 from text2chem.regex_parser import RegExParser
 
-from material2class import Material2Class, Material2Tags
+from grobid_superconductors_python.material_parser.material2class import Material2Class, Material2Tags
 
 
 class MaterialParserWrapper:
