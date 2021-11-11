@@ -2,7 +2,7 @@ import re
 
 from bs4 import BeautifulSoup, Tag, NavigableString
 
-from grobid_tokenizer import tokenizeSimple
+from .grobid_tokenizer import tokenizeSimple
 
 
 def tokenise(string):

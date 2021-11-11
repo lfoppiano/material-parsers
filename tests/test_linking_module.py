@@ -2,7 +2,7 @@ import logging
 
 from grobid_superconductors_python.linking.linking_module import CriticalTemperatureClassifier, RuleBasedLinker, \
     SpacyPipeline
-from test_utils import prepare_doc, get_tokens, get_tokens_and_spans
+from tests.test_utils import get_tokens, get_tokens_and_spans, prepare_doc
 
 LOGGER = logging.getLogger(__name__)
 

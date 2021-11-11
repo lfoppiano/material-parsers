@@ -7,11 +7,11 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from data_model import to_dict_span, to_dict_token
-from grobid_client_generic import grobid_client_generic
-from grobid_tokenizer import tokenizeSimple
-from linking_module import RuleBasedLinker, CriticalTemperatureClassifier
-from supermat_tei_parser import get_children_list
+from grobid_superconductors_python.commons.grobid_client_generic import grobid_client_generic
+from grobid_superconductors_python.commons.grobid_tokenizer import tokenizeSimple
+from grobid_superconductors_python.commons.supermat_tei_parser import get_children_list
+from grobid_superconductors_python.linking.data_model import to_dict_token, to_dict_span
+from grobid_superconductors_python.linking.linking_module import RuleBasedLinker, CriticalTemperatureClassifier
 
 
 def tokenise(string):
