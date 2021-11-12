@@ -156,6 +156,10 @@ class SpacyPipeline:
 
     @staticmethod
     def convert_to_spacy(tokens, spans):
+        """
+        Converts the list of tokens and spans into Spacy made Tokens, Spaces and Spans that can be used to 
+        build the Spacy document.
+        """
         outputTokens = []
         outputSpaces = []
         outputSpans = []
@@ -226,7 +230,7 @@ class SpacyPipeline:
                                 #     else:
                                 #         outputSpaces.append(False)
                                 #         skip = True
-                                #
+                                # 
                                 # else:
                                 #     outputSpaces.append(False)
                                 outputSpaces.append(False)
@@ -383,10 +387,11 @@ class RuleBasedLinker(SpacyPipeline):
         ### RELATIONSHIP EXTRACTION
         extracted_entities['relationships'] = []
 
-        destination_entities = [entity for entity in filter(lambda w: w.ent_type_ in [self.destination] and w._.linkable is True, doc)]
+        destination_entities = [entity for entity in
+                                filter(lambda w: w.ent_type_ in [self.destination] and w._.linkable is True, doc)]
 
         source_entities = [entity for entity in
-                               filter(lambda w: w.ent_type_ in [self.source] and w._.linkable is True, doc)]
+                           filter(lambda w: w.ent_type_ in [self.source] and w._.linkable is True, doc)]
 
         ## 1 simple approach (when only one temperature and one material)
         resolver = SimpleResolutionResolver()
