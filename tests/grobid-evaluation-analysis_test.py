@@ -138,59 +138,59 @@ def test_extract_error_cases_1():
     assert sequence[6][0] == "the"
 
 
-def test_count_discrepancies_near_annotations():
-    cases = [
-        [
-            '<l3>',
-            [
-                ['a', '<other>', '<other>'],
-                ['b<=>', 'I-<l3>', 'I-<l3>'],
-                ['c<=>', '<l3>', 'I-<l2>'],
-                ['d<+>', '<other>', '<l2>'],
-                ['e', '<other>', '<other>'],
-                ['f', '<other>', '<other>'],
-                ['g', '<other>', '<other>']
-            ]
-        ]
-    ]
+# def test_count_discrepancies_near_annotations():
+#     cases = [
+#         [
+#             '<l3>',
+#             [
+#                 ['a', '<other>', '<other>'],
+#                 ['b<=>', 'I-<l3>', 'I-<l3>'],
+#                 ['c<+>', '<l3>', 'I-<l2>'],
+#                 ['d<+>', '<other>', '<l2>'],
+#                 ['e', '<other>', '<other>'],
+#                 ['f', '<other>', '<other>'],
+#                 ['g', '<other>', '<other>']
+#             ]
+#         ]
+#     ]
+# 
+#     discrepancies = count_discrepancies(cases)
+# 
+#     print(discrepancies)
+#     assert len(discrepancies.keys()) == 1
+#     label_discrepancy = discrepancies['<l3>']
+#     assert len(label_discrepancy['<+>']) == 1
+#     assert label_discrepancy['<+>']['d'] == 1
 
-    discrepancies = count_discrepancies(cases)
 
-    print(discrepancies)
-    assert len(discrepancies.keys()) == 1
-    label_discrepancy = discrepancies['<l3>']
-    assert len(label_discrepancy['<+>']) == 1
-    assert label_discrepancy['<+>']['d'] == 1
-
-
-def test_count_discrepancies_near_annotations_real_case():
-    cases = [
-        [
-            '<valueAtomic>',
-            [
-                ['on', '<other>', '<other>'],
-                ['October<=>', 'I-<valueAtomic>', 'I-<valueAtomic>'],
-                ['19<=>', '<valueAtomic>', '<valueAtomic>'],
-                [',<=>', '<valueAtomic>', '<valueAtomic>'],
-                ['2014<=>', '<valueAtomic>', '<valueAtomic>'],
-                ['at<-r>', '<valueAtomic>', '<other>'],
-                ['approximately<-r>', '<valueAtomic>', '<other>'],
-                ['18<-p>', '<valueAtomic>', 'I-<valueAtomic>'],
-                [':<=>', '<valueAtomic>', '<valueAtomic>'],
-                ['29<=>', '<valueAtomic>', '<valueAtomic>'],
-                ['UT<=>', '<valueAtomic>', '<valueAtomic>'],
-                [',', '<other>', '<other>'],
-                ['reaching', '<other>', '<other>']
-            ]
-        ]
-    ]
-
-    discrepancies = count_discrepancies(cases)
-
-    assert len(discrepancies.keys()) == 1       # labels
-    label_discrepancy = discrepancies['<valueAtomic>']
-    assert len(label_discrepancy['<-r>']) == 2
-    assert len(label_discrepancy['<-p>']) == 1
-    assert label_discrepancy['<-r>']['at'] == 1
-    assert label_discrepancy['<-r>']['approximately'] == 1
-    assert label_discrepancy['<-p>']['18'] == 1
+# def test_count_discrepancies_near_annotations_real_case():
+#     cases = [
+#         [
+#             '<valueAtomic>',
+#             [
+#                 ['on', '<other>', '<other>'],
+#                 ['October<=>', 'I-<valueAtomic>', 'I-<valueAtomic>'],
+#                 ['19<=>', '<valueAtomic>', '<valueAtomic>'],
+#                 [',<=>', '<valueAtomic>', '<valueAtomic>'],
+#                 ['2014<=>', '<valueAtomic>', '<valueAtomic>'],
+#                 ['at<-r>', '<valueAtomic>', '<other>'],
+#                 ['approximately<-r>', '<valueAtomic>', '<other>'],
+#                 ['18<-p>', '<valueAtomic>', 'I-<valueAtomic>'],
+#                 [':<=>', '<valueAtomic>', '<valueAtomic>'],
+#                 ['29<=>', '<valueAtomic>', '<valueAtomic>'],
+#                 ['UT<=>', '<valueAtomic>', '<valueAtomic>'],
+#                 [',', '<other>', '<other>'],
+#                 ['reaching', '<other>', '<other>']
+#             ]
+#         ]
+#     ]
+# 
+#     discrepancies = count_discrepancies(cases)
+# 
+#     assert len(discrepancies.keys()) == 1       # labels
+#     label_discrepancy = discrepancies['<valueAtomic>']
+#     assert len(label_discrepancy['<-r>']) == 2
+#     assert len(label_discrepancy['<-p>']) == 1
+#     assert label_discrepancy['<-r>']['at'] == 1
+#     assert label_discrepancy['<-r>']['approximately'] == 1
+#     assert label_discrepancy['<-p>']['18'] == 1
