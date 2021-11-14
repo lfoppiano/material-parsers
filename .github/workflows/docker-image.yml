@@ -1,10 +1,10 @@
 name: Docker Image CI
 
-on:
-  push:
-    branches: [ feature/refactor-structure ]
-  pull_request:
-    branches: [ master ]
+on: 
+  workflow_run:
+    workflows: ["Python CI"]
+    types:
+      - completed
 
 jobs:
 
@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build ./grobid_superconductors_python --file ./grobid_superconductors_python/Dockerfile --tag grobid-superconductors-tools:latest
+      run: docker build . --file Dockerfile --tag grobid-superconductors-tools:latest
