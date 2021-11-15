@@ -23,7 +23,7 @@ class MongoTabularProcessor(MongoSuperconProcessor):
     def prepare_document(self, document):
         del document['pages']
         del document['_id']
-        for para in document['paragraphs'] if 'paragraphs' in document else []:
+        for para in document['passages'] if 'passages' in document else []:
             for span in para['spans'] if 'spans' in para else []:
                 if 'boundingBoxes' in span:
                     del span['boundingBoxes']
@@ -98,7 +98,7 @@ class MongoTabularProcessor(MongoSuperconProcessor):
                     continue
 
             document = document_collection.find_one({"hash": item['_id'], "timestamp": item['lastDate']})
-            if 'paragraphs' not in document:
+            if 'passages' not in document:
                 continue
             self.queue_input.put((document, item['_id'], item['lastDate']))
 
