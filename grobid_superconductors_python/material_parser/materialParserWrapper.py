@@ -33,17 +33,20 @@ class MaterialParserWrapper:
         return self.material2tags.get_classes(formula)
 
     def formula_to_composition(self, formula):
+        """We parse something that should be a formula, therefore we might consider to replace additional characters, 
+                remove spaces and so on..."""
         structured_formula = {}
+        formula_without_spaces = formula.replace(" ", "")
+        output = None
         try:
-            output = self.material_parser.parse(formula.replace(" ", ""))
+            output = self.material_parser.parse(formula_without_spaces)
         except SympifyError as e:
             raise ValueError(e)
         except ValueError as ve:
-            raise ValueError("After removing the space, the error stays... " + str(ve))
+            output = self.material_parser.parse(formula_without_spaces.replace("−", "-"))
 
-        if output.composition:
-            composition_ = output.composition[0]
-            structured_formula['composition'] = composition_.elements
+        if output is not None and output.composition:
+            structured_formula['composition'] = output.composition[0].elements
 
         return structured_formula
 
@@ -57,8 +60,7 @@ class MaterialParserWrapper:
             output = self.material_parser.parse(name.replace(" ", ""))
 
         if output.composition:
-            composition_ = output.composition[0]
-            output_formula['composition'] = composition_.elements
+            output_formula['composition'] = output.composition[0].elements
 
         output_formula['name'] = output.material_name
         output_formula['formula'] = output.material_formula
