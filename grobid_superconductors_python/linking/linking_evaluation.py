@@ -7,11 +7,11 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from ..commons.grobid_client_generic import grobid_client_generic
-from ..commons.grobid_tokenizer import tokenizeSimple
-from ..commons.supermat_tei_parser import get_children_list
-from data_model import to_dict_token, to_dict_span
-from linking_module import RuleBasedLinker, CriticalTemperatureClassifier
+from linking.data_model import to_dict_span, to_dict_token
+from commons.grobid_client_generic import grobid_client_generic
+from commons.grobid_tokenizer import tokenizeSimple
+from commons.supermat_tei_parser import get_children_list
+from linking.linking_module import RuleBasedLinker, CriticalTemperatureClassifier
 
 
 def tokenise(string):
