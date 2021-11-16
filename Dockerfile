@@ -32,8 +32,8 @@ RUN python3 -m spacy download en_core_web_sm
 
 
 # Copy code 
-COPY grobid_superconductors_python /opt/service/grobid_superconductors_python
+COPY grobid_superconductors /opt/service/grobid_superconductors
 
 EXPOSE 8080
 
-CMD ["python3", "/opt/service/grobid_superconductors_python/service.py", "--config", "resources/config.json"]
+CMD ["python3", "/opt/service/grobid_superconductors/service.py", "--config", "resources/config.json"]

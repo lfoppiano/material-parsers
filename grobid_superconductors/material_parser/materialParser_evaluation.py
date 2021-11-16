@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 
 import requests
+
 from material_data_commons import read_material_data
 
 os.environ['NO_PROXY'] = "nims.go.jp"
@@ -211,6 +212,7 @@ class MaterialParserCRF(BaseRecogniser):
 
         return predicted
 
+
 class ChemDataExtraction(BaseRecogniser):
     url = 'http://falcon.nims.go.jp/cde/process'
 
@@ -266,7 +268,8 @@ if __name__ == '__main__':
 
     parser.add_argument("--input", help="Input file or directory in pseudo-XML", required=True, type=Path)
     parser.add_argument("--log-errors", help="Log mismatches", required=False, action="store_true", default=False)
-    parser.add_argument("--experiment", help="Run single experiment", required=False, choices=BaseRecogniser.get_implementation_names() + ['all'],
+    parser.add_argument("--experiment", help="Run single experiment", required=False,
+                        choices=BaseRecogniser.get_implementation_names() + ['all'],
                         type=str, default="all")
 
     args = parser.parse_args()
