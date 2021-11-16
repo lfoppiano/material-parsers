@@ -11,20 +11,14 @@ RUN apt-get update && \
 
 
 RUN mkdir -p /opt/service/venv && \
-    mkdir -p /opt/service/resources/data/crystal-structure && \
-    mkdir -p /opt/service/resources/data/space-groups && \
-    mkdir -p /opt/service/resources/config
+    mkdir -p /opt/service/resources   
 
 WORKDIR /opt/service
 
 # Copy resources 
 COPY requirements.txt .
 COPY resources/config.json resources
-COPY resources/data /opt/service/resourcesdoc
-
-# Copy code 
-COPY grobid_superconductors_python /opt/service
-
+COPY resources/data /opt/service/resources/data
 
 
 ENV VIRTUAL_ENV=/opt/service/venv
@@ -35,6 +29,11 @@ RUN python3 -m pip install pip --upgrade
 RUN python3 -m pip install -r ./requirements.txt
 RUN python3 -m spacy download en_core_web_sm
 
+
+
+# Copy code 
+COPY grobid_superconductors_python /opt/service/grobid_superconductors_python
+
 EXPOSE 8080
 
-CMD ["python3", "/opt/service/service.py", "--config", "config.json"]
+CMD ["python3", "/opt/service/grobid_superconductors_python/service.py", "--config", "resources/config.json"]
