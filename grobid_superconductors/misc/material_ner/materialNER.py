@@ -1,4 +1,3 @@
-import json
 import os
 
 
@@ -57,7 +56,6 @@ class MaterialNER():
         #         'synthesis_method': synthesis_method,
         #         'characterization_method': characterization_method,
         #     }
-
 
 # if __name__ == '__main__':
 #     pass

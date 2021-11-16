@@ -1,8 +1,9 @@
+import argparse
 import json
 import os
 from pathlib import Path
+
 from keybert import KeyBERT
-import argparse
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -23,7 +24,7 @@ if __name__ == '__main__':
     input_path_list = []
     output_path_list = []
 
-    if recursive:   
+    if recursive:
         for root, dirs, files in os.walk(input):
             for dir in dirs:
                 abs_path_dir = os.path.join(root, dir)
@@ -47,11 +48,12 @@ if __name__ == '__main__':
                             input_path_list]
 
     kw_model = KeyBERT()
-    
+
     for idx, path in enumerate(input_path_list):
         print("Processing: ", path)
         with open(path, 'r') as fin:
             doc_as_text = " ".join([line.strip() for line in fin])
-            keywords = kw_model.extract_keywords(doc_as_text, keyphrase_ngram_range=(1, 1), stop_words=[], use_mmr=False, use_maxsum=False, nr_candidates=100, top_n=10)
+            keywords = kw_model.extract_keywords(doc_as_text, keyphrase_ngram_range=(1, 1), stop_words=[],
+                                                 use_mmr=False, use_maxsum=False, nr_candidates=100, top_n=10)
             with open(output_path_list[idx], 'w') as fp:
                 json.dump(keywords, fp)

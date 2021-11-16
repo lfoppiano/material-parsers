@@ -1,5 +1,5 @@
-from grobid_superconductors_python.commons.grobid_evaluation_analysis import append_tokens_before, append_tokens_after, \
-    extract_error_cases, count_discrepancies
+from  grobid_superconductors.commons.grobid_evaluation_analysis import append_tokens_before, append_tokens_after, \
+    extract_error_cases
 
 
 def test_append_tokens_before():

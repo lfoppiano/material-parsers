@@ -1,5 +1,7 @@
-from bs4 import Tag, BeautifulSoup
 import os
+
+from bs4 import Tag, BeautifulSoup
+
 
 def read_material_data(path):
     """
