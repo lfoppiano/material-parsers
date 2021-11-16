@@ -30,7 +30,7 @@ def token_to_dict(token):
     return converted_token
 
 
-def to_dict_link(target_id, target_text, target_type, type= None):
+def to_dict_link(target_id, target_text, target_type, type=None):
     link = {
         "targetId": target_id,
         "targetText": target_text,
@@ -78,7 +78,8 @@ def to_dict_span(text, type, id=None, offset_start=-1, offset_end=-1, token_star
 
 
 def compute_id(span):
-    output = [span['text'], span['type'], span['offset_start'], span['offset_end'], span['token_start'], span['token_end'],
+    output = [span['text'], span['type'], span['offset_start'], span['offset_end'], span['token_start'],
+              span['token_end'],
               span['source']]
 
     output = [str(o) for o in output]
