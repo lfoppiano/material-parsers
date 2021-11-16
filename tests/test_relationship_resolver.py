@@ -2,7 +2,7 @@ import logging
 
 from grobid_superconductors_python.linking.relationships_resolver import SimpleResolutionResolver, \
     VicinityResolutionResolver
-from tests.test_utils import prepare_doc
+from tests.utils import prepare_doc
 
 LOGGER = logging.getLogger(__name__)
 
