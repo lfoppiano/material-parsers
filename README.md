@@ -1,8 +1,5 @@
 # Grobid-superconductors Tools
 
- - [Supercuration](./supercuration) (Superconductors Curation) is an interface based on [Grobid Superconductor](https://github.com/lfoppiano/grobid-superconductors) 
-which allows extraction and visualisation of material and properties from Superconductors-related papers.
-
  - [Converters](./converters) TSV to/from Grobid XML files conversion
  
  - [Linking](./linking) module: A rule based python algorithm to link entities 
