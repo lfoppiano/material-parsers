@@ -5,7 +5,7 @@ name: Python CI
 
 on:
   push:
-    branches: [ feature/refactor-structure ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
