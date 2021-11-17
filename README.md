@@ -1,4 +1,8 @@
+[![Python CI](https://github.com/lfoppiano/grobid-superconductors-tools/actions/workflows/python-app.yml/badge.svg)](https://github.com/lfoppiano/grobid-superconductors-tools/actions/workflows/python-app.yml)
+
+
 # Grobid-superconductors Tools
+
 
  - [Converters](./converters) TSV to/from Grobid XML files conversion
  
