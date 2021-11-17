@@ -1,23 +1,17 @@
-name: Docker Image CI
-
-#on: 
-#  workflow_run:
-#    workflows: ["Python CI"]
-#    types:
-#      - completed
+name: Docker Image CI falcon
 
 on:
-  push:
+  workflow_run:
+    workflows: [ "Python CI" ]
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-    
-jobs:
+    types:
+      - completed
 
+jobs:
   build:
     runs-on: self-hosted
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag lfoppiano/grobid-superconductors-tools:latest
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag lfoppiano/grobid-superconductors-tools:latest
