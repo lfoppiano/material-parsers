@@ -1,8 +1,8 @@
+import argparse
 import json
 import os
 
 import bottle
-import plac
 import spacy
 from bottle import request, response, run
 
@@ -258,11 +258,6 @@ class Service(object):
         return json.dumps(output)
 
 
-@plac.annotations(
-    host=("Hostname where to run the service", "option", "host", str),
-    port=("Port where to run the service", "option", "port", str),
-    config=("Configuration file", "option", "config", str)
-)
 def init(host='0.0.0.0', port='8080', config="config.json"):
     app = Service()
 
@@ -299,7 +294,3 @@ def init(host='0.0.0.0', port='8080', config="config.json"):
     bottle.route('/info')(app.info)
     bottle.debug(False)
     run(host=host, port=port, debug=True)
-
-
-if __name__ == "__main__":
-    plac.call(init)

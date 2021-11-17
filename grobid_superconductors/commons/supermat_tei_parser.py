@@ -109,7 +109,7 @@ def process_file(input_document):
                         link_name = 'link_name'
                         link_location = 'link_location'
 
-                    entity_class = entity_class.replace("_", "\_")
+                    entity_class = entity_class.replace("_", "\\_")
 
                     for token in token_list:
                         s = off_token
@@ -181,7 +181,6 @@ def process_file(input_document):
 
 
 def get_children_list(soup, verbose=False):
-
     children = []
 
     for child in soup.tei.children:

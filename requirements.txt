@@ -4,5 +4,4 @@ bottle
 -e git+https://github.com/CederGroupHub/text2chem.git#egg=text2chem
 spacy==3.1.0
 pymatgen==2021.3.3
-plac
 pytest

@@ -18,10 +18,10 @@ here = path.abspath(path.dirname(__file__))
 
 
 setup(
-    name='linking',
+    name='grobid-superconductors-tools',
     version='1.2',
-    description='Linking Module',
-    url='https://github.com/lfoppiano/grobid-superconductors-web',
+    description='Grobid superconductors python support tools',
+    url='https://github.com/lfoppiano/grobid-superconductors-tools',
     author='Luca Foppiano',
     author_email='FOPPIANO.Luca@nims.go.jp',
     license='Apache 2.0',
