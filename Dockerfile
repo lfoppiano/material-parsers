@@ -36,7 +36,7 @@ RUN rm -rf ./.git
 
 # Copy code 
 COPY grobid_superconductors /opt/service/grobid_superconductors
-COPY __main__.py /opt/service
+#COPY __main__.py /opt/service
 
 EXPOSE 8080
 
