@@ -50,11 +50,12 @@ class Service(object):
 
         self.material_parser_wrapper = MaterialParserWrapper()
 
-    def version(self):
+    def get_version(self):
         if self.version is None:
             try:
                 with open("resources/version.txt", 'r') as fv:
-                    self.version = fv.readline() if self.version != "" else "unknown"
+                    file_version = fv.readline()
+                self.version = file_version if file_version != "" else "unknown"
             except:
                 self.version = "unknown"
 
@@ -277,7 +278,7 @@ def init(host='0.0.0.0', port='8080', config="config.json"):
     bottle.route('/classify/tc', method="POST")(app.classify_tc)
     bottle.route('/classify/formula', method="POST")(app.classify_formula)
 
-    bottle.route('/version', method="GET")(app.version)
+    bottle.route('/version', method="GET")(app.get_version)
 
     if config and os.path.exists(config):
 
@@ -301,5 +302,5 @@ def init(host='0.0.0.0', port='8080', config="config.json"):
     else:
         print("No space groups patterns... ignoring... ")
 
-    bottle.debug(False)
+    bottle.debug(True)
     run(host=host, port=port, debug=True)
