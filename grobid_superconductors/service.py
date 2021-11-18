@@ -55,7 +55,7 @@ class Service(object):
             try:
                 with open("resources/version.txt", 'r') as fv:
                     file_version = fv.readline()
-                self.version = file_version if file_version != "" else "unknown"
+                self.version = file_version.strip() if file_version != "" and file_version is not None else "unknown"
             except:
                 self.version = "unknown"
 
