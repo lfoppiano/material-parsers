@@ -29,7 +29,10 @@ RUN python3 -m pip install pip --upgrade
 RUN python3 -m pip install -r ./requirements.txt
 RUN python3 -m spacy download en_core_web_sm
 
-
+# extract version 
+COPY .git ./.git
+RUN git rev-parse --short HEAD > /opt/service/resources/version.txt
+RUN rm -rf ./.git
 
 # Copy code 
 COPY grobid_superconductors /opt/service/grobid_superconductors
@@ -37,4 +40,4 @@ COPY __main__.py /opt/service
 
 EXPOSE 8080
 
-CMD ["python3", "/opt/service", "--config", "resources/config.json"]
+CMD ["python3", "-m grobid_superconductors", "--config", "resources/config.json"]

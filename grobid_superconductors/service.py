@@ -1,4 +1,3 @@
-import argparse
 import json
 import os
 
@@ -47,10 +46,19 @@ class Service(object):
 
         self.ner = None
 
+        self.version = None
+
         self.material_parser_wrapper = MaterialParserWrapper()
 
-    def info(self):
-        info_json = {"name": "Linking module", "version": "1.2"}
+    def version(self):
+        if self.version is None:
+            try:
+                with open("resources/version.txt", 'r') as fv:
+                    self.version = fv.readline() if self.version != "" else "unknown"
+            except:
+                self.version = "unknown"
+
+        info_json = {"name": "grobid-superconductors-tools", "version": self.version}
         return info_json
 
     def classify_tc(self):
@@ -269,6 +277,8 @@ def init(host='0.0.0.0', port='8080', config="config.json"):
     bottle.route('/classify/tc', method="POST")(app.classify_tc)
     bottle.route('/classify/formula', method="POST")(app.classify_formula)
 
+    bottle.route('/version', method="GET")(app.version)
+
     if config and os.path.exists(config):
 
         print("Loading configuration...")
@@ -291,6 +301,5 @@ def init(host='0.0.0.0', port='8080', config="config.json"):
     else:
         print("No space groups patterns... ignoring... ")
 
-    bottle.route('/info')(app.info)
     bottle.debug(False)
     run(host=host, port=port, debug=True)
