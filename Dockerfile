@@ -40,4 +40,4 @@ COPY grobid_superconductors /opt/service/grobid_superconductors
 
 EXPOSE 8080
 
-CMD ["python3", "-m grobid_superconductors", "--config", "resources/config.json"]
+CMD ["python3", "-m", "grobid_superconductors", "--config", "resources/config.json"]
