@@ -1,3 +1,0 @@
-export NO_PROXY="*.local,*.nims.go.jp,localhost,127.0.0.1"
-export HTTPS_PROXY=http://wwwout.nims.go.jp:8888
-export HTTP_PROXY=http://wwwout.nims.go.jp:8888
