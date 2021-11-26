@@ -443,7 +443,7 @@ class CriticalTemperatureClassifier(SpacyPipeline):
 
         tc_expressions = list(filter(lambda w: w.ent_type_ in ['<tc>', 'tc'], doc))
 
-        tc_expressions_standard = ["T c", "Tc", "tc", "t c"]
+        tc_expressions_standard = ["superconductivity"]
 
         non_tc_expressions_before = ["T N", "TN", "t n", "tn", "Curie", "curie", "Neel", "neel", "at T ", "at T =",
                                      "at T=",
@@ -480,7 +480,7 @@ class CriticalTemperatureClassifier(SpacyPipeline):
 
                 ## search for nonTC espressions after the temperature
                 for non_tc in non_tc_expressions_after:
-                    if temp.i + 1 < len(doc) and doc[temp.i + 1].text == non_tc:
+                    if temp.i + 1 < len(doc) and str.lower(doc[temp.i + 1].text) == non_tc:
                         marked_as_non_tc.append(temp)
                         break
 
@@ -488,8 +488,8 @@ class CriticalTemperatureClassifier(SpacyPipeline):
                     continue
 
                 for non_tc in non_tc_expressions_before:
-                    if temp.i - len(non_tc.split(" ")) > 0 and doc[
-                                                               temp.i - len(non_tc.split(" ")):temp.i].text == non_tc:
+                    if temp.i - len(non_tc.split(" ")) >= 0 and str.lower(doc[
+                                                               temp.i - len(non_tc.split(" ")):temp.i].text) == non_tc:
                         marked_as_non_tc.append(temp)
                         break
 
@@ -499,13 +499,13 @@ class CriticalTemperatureClassifier(SpacyPipeline):
                 ## search for tc espressions just before the temperature
 
                 for tc in tc_expressions_before:
-                    if temp.i - len(tc.split(" ")) > 0 and doc[temp.i - len(tc.split(" ")):temp.i].text == tc:
+                    if temp.i - len(tc.split(" ")) >= 0 and str.lower(doc[temp.i - len(tc.split(" ")):temp.i].text) == tc:
                         marked_as_tc.append(temp)
                         # temp.ent_type_ = "temperature-tc"
                         break
 
-                    if temp.i - len(tc.split(" ")) - 1 > 0 and doc[
-                                                               temp.i - len(tc.split(" ")) - 1:temp.i - 1].text == tc:
+                    if temp.i - len(tc.split(" ")) - 1 >= 0 and str.lower(doc[
+                                                               temp.i - len(tc.split(" ")) - 1:temp.i - 1].text) == tc:
                         marked_as_tc.append(temp)
                         # temp.ent_type_ = "temperature-tc"
                         break
