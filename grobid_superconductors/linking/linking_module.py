@@ -443,16 +443,17 @@ class CriticalTemperatureClassifier(SpacyPipeline):
 
         tc_expressions = list(filter(lambda w: w.ent_type_ in ['<tc>', 'tc'], doc))
 
-        tc_expressions_standard = ["superconductivity"]
-
+        # This is case sensitive 
         non_tc_expressions_before = ["T N", "TN", "t n", "tn", "Curie", "curie", "Neel", "neel", "at T ", "at T =",
                                      "at T=",
                                      "is suppressed at ", "ΔT c", "ΔTc", "Δ T c", "T =", "T=", "T = ", "T= "]
-
+        # This is case insensitive 
         tc_expressions_before = ["superconducts at", "superconductive at around",
                                  "superconducts around", "superconductivity at",
                                  "superconductivity around", "exibits superconductivity at",
                                  "T c =", "Tc ="]
+        
+        # This is case insensitive
         non_tc_expressions_after = ['higher', 'lower']
 
         marked_as_tc = []
@@ -488,8 +489,8 @@ class CriticalTemperatureClassifier(SpacyPipeline):
                     continue
 
                 for non_tc in non_tc_expressions_before:
-                    if temp.i - len(non_tc.split(" ")) >= 0 and str.lower(doc[
-                                                               temp.i - len(non_tc.split(" ")):temp.i].text) == non_tc:
+                    if temp.i - len(non_tc.split(" ")) >= 0 and doc[
+                                                               temp.i - len(non_tc.split(" ")):temp.i].text == non_tc:
                         marked_as_non_tc.append(temp)
                         break
 
