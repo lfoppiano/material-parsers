@@ -33,7 +33,7 @@ def decode(response):
 def entities_classes():
     return ['<material>', '<class>', '<temperature>', '<tc>',
             '<tcValue>', '<tcvalue>', '<pressure>', '<me_method>',
-            '<material-tc>', '<temperature-tc>']
+            '<material-tc>', '<temperature-tc>', '<crystal-structure>', '<space-groups>']
 
 
 class SpacyPipeline:
