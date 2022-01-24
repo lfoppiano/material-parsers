@@ -1,6 +1,6 @@
 import logging
 
-from  grobid_superconductors.linking.linking_module import CriticalTemperatureClassifier, RuleBasedLinker, \
+from grobid_superconductors.linking.linking_module import CriticalTemperatureClassifier, RuleBasedLinker, \
     SpacyPipeline
 from tests.utils import get_tokens, get_tokens_and_spans, prepare_doc
 
@@ -110,6 +110,19 @@ class TestCriticalTemperatureClassifier:
 
         assert len(tcValues) == 1
         assert tcValues[0].text == "30K"
+
+    def test_markCriticalTemperature_simple_5(self):
+        input = "Perturbative linear-response calculations predict that the phase P 2 1 / m is a superconductor with T c of 27–34 K for HBr at 160 GPa and 9–14 K for HCl at 280 GPa."
+
+        spans = [("T c", "<tc>"), ("27–34 K", "<tcValue>"), ("HBr", "<material>"), ("160 GPa", "<pressure>"),
+                 ("9–14 K", "<tcValue>"), ("HCl", "<material>"), ("280 GPa", "<pressure>")]
+
+        target = CriticalTemperatureClassifier()
+        doc = prepare_doc(input, spans)
+        doc2 = target.process_doc(doc)
+
+        tcValues = [entity for entity in filter(lambda w: w.ent_type_ in ['<tcValue>'] and w._.linkable is True, doc2)]
+        assert len(tcValues) == 1
 
     def test_markCriticalTemperature_1(self):
         input = "We also plot in values of U 0 obtained from flux-creep in a BaFe 2−x Ni x As 2 crystal with " \
