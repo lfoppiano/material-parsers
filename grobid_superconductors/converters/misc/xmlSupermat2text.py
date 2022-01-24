@@ -6,7 +6,7 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from supermat_tei_parser import get_children_list
+from grobid_superconductors.commons.supermat_tei_parser import get_children_list
 
 
 def get_paragraphs(finput):
