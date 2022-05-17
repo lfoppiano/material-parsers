@@ -63,6 +63,7 @@ class MaterialParserWrapper:
             output_formula['composition'] = output.composition[0].elements
 
         output_formula['name'] = output.material_name
-        output_formula['formula'] = output.material_formula
+        if str(output.material_formula) != str(name) + "" + str(name):
+            output_formula['formula'] = output.material_formula
 
         return output_formula
