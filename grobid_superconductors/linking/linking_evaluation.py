@@ -413,10 +413,10 @@ if __name__ == '__main__':
         description="Linking evaluation")
 
     parser.add_argument("--input", help="Input file or directory", required=True, type=Path)
-    parser.add_argument("--method", help="Select the algorithm to evaluate", choices=[CRF_ALGO, RB_ALGO],
+    parser.add_argument("--method", help="Select the algorithm to evaluate", choices=[CRF_ALGO, RB_ALGO, "all"],
                         required=True, type=str)
     parser.add_argument("--task", help="Which task to evaluate",
-                        choices=[MATERIAL_TC_LINK_NAME, TC_PRESSURE_LINK_NAME, TC_ME_METHOD_LINK_NAME],
+                        choices=[MATERIAL_TC_LINK_NAME, TC_PRESSURE_LINK_NAME, TC_ME_METHOD_LINK_NAME, "all"],
                         type=str, required=True)
     parser.add_argument("--grobid-config", help="Grobid superconductors YAML configuration", type=str, required=False)
 
@@ -424,6 +424,7 @@ if __name__ == '__main__':
     input = args.input
     methods = [CRF_ALGO, RB_ALGO] if args.method == "all" else [args.method]
     task = args.task
+    tasks = [MATERIAL_TC_LINK_NAME, TC_PRESSURE_LINK_NAME, TC_ME_METHOD_LINK_NAME] if task == "all" else [task]
     grobid_config = args.grobid_config
 
     tasks_map = {
@@ -437,7 +438,7 @@ if __name__ == '__main__':
         'rule-based': RuleBasedLinkerEvaluation(tasks_map[task][0], tasks_map[task][1])
     }
 
-    if args.method == CRF_ALGO:
+    if CRF_ALGO in methods:
         methods_map[CRF_ALGO] = CrfLinkerEvaluation(grobid_config, tasks_map[task][2])
 
     expected_links_map = {}
@@ -505,7 +506,7 @@ if __name__ == '__main__':
 
             # Compute average metrics
             metrics_map[method]['avg_metrics']['avg_support'] = metrics_map[method]['avg_metrics'][
-                                                                    'avg_support'] / file_count if file_count > 0 else 0
+                                                                    'avg_support']
 
             # Macro average
             metrics_map[method]['avg_metrics']['avg_macro_precision'] = metrics_map[method]['avg_metrics'][
