@@ -303,9 +303,9 @@ class RuleBasedLinker(SpacyPipeline):
         self.source = source
         self.destination = destination
 
-    MATERIAL_TC_TYPE = "<material-tc>"
-    TC_PRESSURE_TYPE = "<tc-pressure>"
-    TC_ME_METHOD_TYPE = "<tc-me_method>"
+    MATERIAL_TC_TYPE = "<material-tcValue>"
+    TC_PRESSURE_TYPE = "<tcValue-pressure>"
+    TC_ME_METHOD_TYPE = "<tcValue-me_method>"
     MATERIAL_SPACE_GROUPS = "<material-space_groups>"
     MATERIAL_CRYSTAL_STRUCTURE = "<material-crystal_structure>"
 

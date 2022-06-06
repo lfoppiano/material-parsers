@@ -5,13 +5,22 @@ import re
 from html import escape
 from pathlib import Path
 
-from bs4 import BeautifulSoup, NavigableString, Tag
+from bs4 import BeautifulSoup, Tag, NavigableString
+from tqdm import tqdm
 
-from grobid_superconductors.commons.grobid_client_generic import grobid_client_generic
+from grobid_superconductors.commons.grobid_client_generic import GrobidClientGeneric
 from grobid_superconductors.commons.grobid_tokenizer import tokenizeSimple
 from grobid_superconductors.commons.supermat_tei_parser import get_children_list
 from grobid_superconductors.linking.data_model import to_dict_span, to_dict_token
 from grobid_superconductors.linking.linking_module import RuleBasedLinker, CriticalTemperatureClassifier
+
+# these are duplicated with constants in RuleBasedLinker because these are easier for command line
+MATERIAL_TC_LINK_NAME = "material-tc"
+TC_PRESSURE_LINK_NAME = "tc-pressure"
+TC_ME_METHOD_LINK_NAME = "tc-me_method"
+
+CRF_ALGO = "crf"
+RB_ALGO = "rule-based"
 
 
 def tokenise(string):
@@ -173,8 +182,9 @@ class GeneralEvaluator:
 
 class CrfLinkerEvaluation(GeneralEvaluator):
 
-    def __init__(self):
-        self.grobid_superconductors_client = grobid_client_generic(config_path='./config.json', ping=True)
+    def __init__(self, config_path, linker_type):
+        self.grobid_superconductors_client = GrobidClientGeneric(config_path=config_path, ping=True)
+        self.linker_type = linker_type[1:-1]
 
     def run_linking(self, paragraphs):
         predicted_links = []
@@ -201,7 +211,8 @@ class CrfLinkerEvaluation(GeneralEvaluator):
 
             output_text += escape(paragraph['text'][offset:])
 
-            output = json.loads(self.grobid_superconductors_client.process_text(output_text, 'linker'))
+            output = json.loads(
+                self.grobid_superconductors_client.process({"text": output_text, "type": self.linker_type}, 'linker'))
 
             predicted_links.extend(extract_predicted_links(output[0]))
 
@@ -209,23 +220,35 @@ class CrfLinkerEvaluation(GeneralEvaluator):
 
 
 class RuleBasedLinkerEvaluation(GeneralEvaluator):
-    def __init__(self):
-        self.tc_classifier = CriticalTemperatureClassifier()
-        self.rb_linker = RuleBasedLinker()
+    def __init__(self, source, destination):
+        self.source = source
+        self.destination = destination
 
-    def run_linking(self, paragraphs):
+        self.rb_linker = RuleBasedLinker(source, destination)
+        self.tc_classifier = None
 
+        self.entities_types = [self.source, self.destination]
+
+        if self.source == "<tcValue>" or self.destination == "<tcValue>":
+            self.tc_classifier = CriticalTemperatureClassifier()
+            self.entities_types.remove("<tcValue>")
+
+    def run_linking(self, sentences):
         predicted_links = []
 
-        for sentence in paragraphs:
-            sentence_marked = self.tc_classifier.mark_temperatures_paragraph(sentence)
+        for sentence in sentences:
+            sentence_marked = sentence
+            if self.tc_classifier is not None:
+                sentence_marked = self.tc_classifier.mark_temperatures_paragraph(sentence)
+
             for marked_spans in sentence_marked['spans'] if 'spans' in sentence_marked else []:
-                if marked_spans['type'] == '<material>' or marked_spans['linkable']:
+                if marked_spans['type'] in self.entities_types or marked_spans['linkable']:
                     for s_ in filter(lambda s: str(s['id']) == marked_spans['id'], sentence['spans']):
                         s_['linkable'] = True
 
             output_paragraph = self.rb_linker.process_paragraph(sentence)
 
+            # TODO: understand this
             if len(output_paragraph) == 1:
                 merged_paragraph = output_paragraph[0]
             elif len(output_paragraph) > 1:
@@ -247,9 +270,9 @@ class RuleBasedLinkerEvaluation(GeneralEvaluator):
         return predicted_links
 
 
-def extract_predicted_links(paragraph):
+def extract_predicted_links(sentence):
     predicted_links = []
-    for span in paragraph['spans'] if 'spans' in paragraph else []:
+    for span in sentence['spans'] if 'spans' in sentence else []:
         for link in span['links'] if 'links' in span else []:
             targetId = link['targetId']
             targetType = link['targetType']
@@ -257,7 +280,7 @@ def extract_predicted_links(paragraph):
             sourceId = span['id']
             sourceType = span['type']
 
-            targets_in_paragraph = [span_['id'] for span_ in paragraph['spans'] if
+            targets_in_paragraph = [span_['id'] for span_ in sentence['spans'] if
                                     str(span_['id']) == str(targetId)]
             link_type = RuleBasedLinker.get_link_type(sourceType, targetType)
             if len(targets_in_paragraph) > 0 and (targetId, sourceId, link_type) not in predicted_links:
@@ -390,21 +413,32 @@ if __name__ == '__main__':
         description="Linking evaluation")
 
     parser.add_argument("--input", help="Input file or directory", required=True, type=Path)
-    parser.add_argument("--method", help="Select the algorithm to evaluate", choices=["crf", "rule-based", "all"],
-                        required=False, type=str, default="all")
+    parser.add_argument("--method", help="Select the algorithm to evaluate", choices=[CRF_ALGO, RB_ALGO],
+                        required=True, type=str)
     parser.add_argument("--task", help="Which task to evaluate",
-                        choices=["material-tc", "tc-pressure", "tc-me_method", "all"],
-                        type=str, default="all")
+                        choices=[MATERIAL_TC_LINK_NAME, TC_PRESSURE_LINK_NAME, TC_ME_METHOD_LINK_NAME],
+                        type=str, required=True)
+    parser.add_argument("--grobid-config", help="Grobid superconductors YAML configuration", type=str, required=False)
 
     args = parser.parse_args()
     input = args.input
-    methods = ["crf", "rule-based"] if args.method == "all" else [args.method]
+    methods = [CRF_ALGO, RB_ALGO] if args.method == "all" else [args.method]
     task = args.task
+    grobid_config = args.grobid_config
+
+    tasks_map = {
+        # Source, destination
+        MATERIAL_TC_LINK_NAME: ("<tcValue>", "<material>", RuleBasedLinker.MATERIAL_TC_TYPE),
+        TC_PRESSURE_LINK_NAME: ("<pressure>", "<tcValue>", RuleBasedLinker.TC_PRESSURE_TYPE),
+        TC_ME_METHOD_LINK_NAME: ("<tcValue>", "<me_method>", RuleBasedLinker.TC_ME_METHOD_TYPE),
+    }
 
     methods_map = {
-        'crf': CrfLinkerEvaluation(),
-        'rule-based': RuleBasedLinkerEvaluation()
+        'rule-based': RuleBasedLinkerEvaluation(tasks_map[task][0], tasks_map[task][1])
     }
+
+    if args.method == CRF_ALGO:
+        methods_map[CRF_ALGO] = CrfLinkerEvaluation(grobid_config, tasks_map[task][2])
 
     expected_links_map = {}
     files_map = {}
@@ -416,7 +450,7 @@ if __name__ == '__main__':
                 if not file_.lower().endswith(".xml"):
                     continue
                 abs_path = os.path.join(root, file_)
-                print("Processing: " + str(abs_path))
+                # print("Processing: " + str(abs_path))
                 paragraphs, rel_ptrs_from, rel_ptrs_to = read_evaluation_file(str(abs_path))
                 expected_links = extract_links_same_sentence(paragraphs)
 
@@ -445,22 +479,20 @@ if __name__ == '__main__':
                 'files': []
             }
 
-            for path in files_map.keys():
+            for path in tqdm(files_map.keys()):
                 impl = methods_map.get(method)
 
                 expected_links = expected_links_map[path]
                 predicted_links = impl.run_linking(files_map[path]['paragraphs'])
 
                 ## MICRO AVERAGE
-                counters_by_type = compute_counters_by_type(expected_links, predicted_links,
-                                                            RuleBasedLinker.MATERIAL_TC_TYPE)
+                counters_by_type = compute_counters_by_type(expected_links, predicted_links, tasks_map[task][2])
                 metrics_map[method]['avg_counters']['avg_num_correct'] += counters_by_type['num_correct']
                 metrics_map[method]['avg_counters']['avg_num_wrong'] += counters_by_type['num_wrong']
                 metrics_map[method]['avg_counters']['count_num_expected'] += counters_by_type['num_expected']
 
                 ## MACRO AVERAGE
-                metrics_by_type = compute_metrics_by_type(expected_links, predicted_links,
-                                                          RuleBasedLinker.MATERIAL_TC_TYPE)
+                metrics_by_type = compute_metrics_by_type(expected_links, predicted_links, tasks_map[task][2])
                 # print(get_report({"labels": {RuleBasedLinker.MATERIAL_TC_TYPE: metrics_by_type_rb}}))
 
                 metrics_map[method]['avg_metrics']['avg_macro_precision'] += metrics_by_type['precision']
@@ -509,13 +541,13 @@ if __name__ == '__main__':
 
             report_data = {
                 "labels": {
-                    RuleBasedLinker.MATERIAL_TC_TYPE + " macro avg.": {
+                    tasks_map[task][2] + " macro avg.": {
                         "precision": metrics_map[method]['avg_metrics']['avg_macro_precision'],
                         "recall": metrics_map[method]['avg_metrics']['avg_macro_recall'],
                         "f1": metrics_map[method]['avg_metrics']['avg_macro_f1'],
                         "support": metrics_map[method]['avg_metrics']['avg_support']
                     },
-                    RuleBasedLinker.MATERIAL_TC_TYPE + " micro avg.": {
+                    tasks_map[task][2] + " micro avg.": {
                         "precision": metrics_map[method]['avg_metrics']['avg_micro_precision'],
                         "recall": metrics_map[method]['avg_metrics']['avg_micro_recall'],
                         "f1": metrics_map[method]['avg_metrics']['avg_micro_f1'],
@@ -525,7 +557,7 @@ if __name__ == '__main__':
             }
 
             print(method)
-            print(get_report(report_data, include_avgs=[]))
+            print(get_report(report_data, digits=4, include_avgs=[]))
 
     elif os.path.isfile(input):
         input_path = Path(input)
@@ -535,7 +567,7 @@ if __name__ == '__main__':
             file_count = 0
             impl = methods_map.get(method)
             predicted_links = impl.run_linking(paragraphs)
-            metrics_by_type = compute_metrics_by_type(expected_links, predicted_links, RuleBasedLinker.MATERIAL_TC_TYPE)
+            metrics_by_type = compute_metrics_by_type(expected_links, predicted_links, tasks_map[task][2])
 
-        print(method)
-        print(get_report({"labels": {RuleBasedLinker.MATERIAL_TC_TYPE: metrics_by_type}}))
+            print(method)
+            print(get_report({"labels": {tasks_map[task][2]: metrics_by_type}}))

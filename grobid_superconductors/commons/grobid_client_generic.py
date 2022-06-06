@@ -1,36 +1,66 @@
 import json
-import time
 import os
+import time
 
 import requests
+import yaml
 
-from .client import ApiClient
+from grobid_superconductors.commons import ApiClient
 
 '''
 This client is a generic client for any Grobid application and sub-modules.
-At the moment, it supports only single document processing.    
+At the moment, it supports only single document processing.
 
 Source: https://github.com/kermitt2/grobid-client-python 
 '''
-class grobid_client_generic(ApiClient):
 
+
+class GrobidClientGeneric(ApiClient):
 
     def __init__(self, config_path=None, ping=False):
         self.config = None
-        if config_path:
-            self._load_config_from_file(path=config_path, ping=ping)
+        if config_path is not None:
+            self.config = self.load_yaml_config_from_file(path=config_path)
+            super().__init__(self.config['grobid']['server'])
+
+            if ping:
+                result = self.ping_grobid()
+                if not result:
+                    raise Exception("Grobid is down.")
+
         os.environ['NO_PROXY'] = "nims.go.jp"
 
-    def _load_config_from_file(self, path='./config.json', ping=False):
+    @staticmethod
+    def load_json_config_from_file(self, path='./config.json', ping=False):
         """
-        Load the json configuration 
+        Load the json configuration
         """
-        config_json = open(path).read()
-        self.config = json.loads(config_json)
+        config = {}
+        with open(path, 'r') as fp:
+            config = json.load(fp)
+
         if ping:
             result = self.ping_grobid()
             if not result:
                 raise Exception("Grobid is down.")
+
+        return config
+
+    def load_yaml_config_from_file(self, path='./config.yaml'):
+        """
+        Load the YAML configuration
+        """
+        config = {}
+        try:
+            with open(path, 'r') as the_file:
+                raw_configuration = the_file.read()
+
+            config = yaml.safe_load(raw_configuration)
+        except Exception as e:
+            print("Configuration could not be loaded: ", str(e))
+            exit(1)
+
+        return config
 
     def set_config(self, config, ping=False):
         self.config = config
@@ -39,8 +69,8 @@ class grobid_client_generic(ApiClient):
                 result = self.ping_grobid()
                 if not result:
                     raise Exception("Grobid is down.")
-            except Exception:
-                raise Exception("Grobid is down")
+            except Exception as e:
+                raise Exception("Grobid is down or other problems were encountered. ", e)
 
     def ping_grobid(self):
         # test if the server is up and running...
@@ -58,7 +88,7 @@ class grobid_client_generic(ApiClient):
 
     def get_grobid_url(self, action):
         grobid_config = self.config['grobid']
-        base_url = grobid_config['server'] + grobid_config['prefix']
+        base_url = grobid_config['server']
         action_url = base_url + grobid_config['url_mapping'][action]
 
         return action_url
@@ -86,10 +116,30 @@ class grobid_client_generic(ApiClient):
         else:
             return res.text
 
+    def process(self, form_data: dict, method_name='superconductors', params={}, headers={"Accept": "application/json"}):
+
+        the_url = self.get_grobid_url(method_name)
+
+        res, status = self.post(
+            url=the_url,
+            files=form_data,
+            data=params,
+            headers=headers
+        )
+
+        if status == 503:
+            time.sleep(self.config['sleep_time'])
+            return self.process_text(input, method_name, params, headers)
+        elif status != 200:
+            print('Processing failed with error ' + str(status))
+        else:
+            return res.text
+
     def process_pdf_batch(self, pdf_files, params={}):
         pass
 
-    def process_pdf(self, pdf_file, method_name, params={}, headers={"Accept": "application/json"}):
+    def process_pdf(self, pdf_file, method_name, params={}, headers={"Accept": "application/json"}, verbose=False,
+                    retry=None):
 
         files = {
             'input': (
@@ -116,19 +166,36 @@ class grobid_client_generic(ApiClient):
             headers=headers
         )
 
-        if status == 503:
-            time.sleep(self.config['sleep_time'])
-            return self.process_pdf(pdf_file, method_name, params, headers)
+        if status == 503 or status == 429:
+            if retry is None:
+                retry = self.config['max_retry'] - 1
+            else:
+                if retry - 1 == 0:
+                    if verbose:
+                        print("re-try exhausted. Aborting request")
+                    return None, status
+                else:
+                    retry -= 1
+
+            sleep_time = self.config['sleep_time']
+            if verbose:
+                print("Server is saturated, waiting", sleep_time, "seconds and trying again. ")
+            time.sleep(sleep_time)
+            return self.process_pdf(pdf_file, method_name, params, headers, verbose=verbose, retry=retry)
         elif status != 200:
-            # print('Processing failed with error ', status)
-            return None, status
+            desc = None
+            if res.content:
+                c = json.loads(res.text)
+                desc = c['description'] if 'description' in c else None
+            return desc, status
         elif status == 204:
             # print('No content returned. Moving on. ')
             return None, status
         else:
             return res.text, status
 
-    def process_json(self, text, method_name="processJson", params={}, headers={"Accept": "application/json"}, verbose=False):
+    def process_json(self, text, method_name="processJson", params={}, headers={"Accept": "application/json"},
+                     verbose=False):
         files = {
             'input': (
                 None,
