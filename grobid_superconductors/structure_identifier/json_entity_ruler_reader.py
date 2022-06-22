@@ -308,7 +308,7 @@ class SpaceGroupsReader(BaseReader):
                     self.pattern_set.add(str(pattern_created['pattern']))
 
             for structure_type in structure_types:
-                patterns.append({"pattern": str(structure_type), "label": "unit-cell-type"})
+                patterns.append({"pattern": str(structure_type), "label": "lattice-type"})
 
         return patterns
 
