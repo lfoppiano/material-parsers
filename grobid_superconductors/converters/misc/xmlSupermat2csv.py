@@ -6,7 +6,7 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
 
-from grobid_tokenizer import tokenizeAndFilterSimple
+from grobid_superconductors.commons.grobid_tokenizer import tokenizeAndFilterSimple
 
 
 def write_on_file(fw, filename, sentenceText, dic_token):
