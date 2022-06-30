@@ -53,7 +53,7 @@ def build_annotation_map(document_list):
     return annotation_map_sorted
 
 
-def create_holdout_sets(document_list, ratio=0.2, nb_strata=5):
+def create_holdout_sets(document_list, ratio=0.2, nb_strata=6):
     annotation_map = build_annotation_map(document_list)
 
     # build the strata from annotation counts
