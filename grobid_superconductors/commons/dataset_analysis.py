@@ -166,7 +166,7 @@ def aggregate(entities_statistics, threshold, skip=['tcValue', 'pressure'], only
 
         distribution = entities_statistics[tag]["content_distribution"]
 
-        content_list = sorted(distribution.keys())
+        content_list = sorted(distribution.entities_list())
         # hash_list = []
         # for content in content_list:
         #     hash_value = content.lower().replace(" ", "")
@@ -300,6 +300,23 @@ def run_analysis(input):
     return output_data
 
 
+def compute_out_domain(analysis_evaluation, analysis_corpus):
+    in_domain = {}
+    out_domain = {}
+    for label in entities_list:
+        in_domain[label] = []
+        out_domain[label] = []
+        label_distribution_evaluation = analysis_evaluation['entities_statistics'][label]['content_distribution']
+        label_distribution_corpus = analysis_corpus['entities_statistics'][label]['content_distribution']
+        for entity_value in label_distribution_evaluation.keys():
+            if entity_value in label_distribution_corpus.keys():
+                in_domain[label].append((entity_value, label_distribution_evaluation[entity_value]))
+            else:
+                out_domain[label].append((entity_value, label_distribution_evaluation[entity_value]))
+
+    return out_domain, in_domain
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Perform analysis on the corpus and holdout set. ")
@@ -341,32 +358,30 @@ if __name__ == "__main__":
     markdown_table += "\n\n\n"
 
     ## Labels analysis
-    markdown_table += "| set " + "|" + "|".join(analysis_corpus['entities_statistics'].keys()) + "|" + "\n"
-    markdown_table += (1 + len(analysis_corpus['entities_statistics'].keys())) * "|---  " + "|" + "\n"
+    entities_list = analysis_corpus['entities_statistics'].keys()
+    markdown_table += "| set " + "|" + "|".join(entities_list) + "|" + "\n"
+    markdown_table += (1 + len(entities_list)) * "|---  " + "|" + "\n"
     markdown_table += "| training " + "|" + "|".join([str(analysis_corpus['entities_statistics'][x]['count']) for x in
-                                                      analysis_corpus['entities_statistics'].keys()]) + "|" + "\n"
+                                                      entities_list]) + "|" + "\n"
     markdown_table += "| holdout " + "|" + "|".join(
         [str(analysis_evaluation['entities_statistics'][x]['count']) for x in
-         analysis_evaluation['entities_statistics'].keys()]) + "|" + "\n"
+         entities_list]) + "|" + "\n"
     markdown_table += "| ratio " + "|" + "|".join(["{:.2f}%".format(
         analysis_evaluation['entities_statistics'][x]['count'] / analysis_corpus['entities_statistics'][x][
-            'count'] * 100) for x in analysis_corpus['entities_statistics'].keys()]) + "|" + "\n"
+            'count'] * 100) for x in entities_list]) + "|" + "\n"
 
-    print(markdown_table)
+    markdown_table += "\n\n\n"
 
     ## Out of domain analsysis
-    in_domain = {}
-    out_domain = {}
-    for label in analysis_corpus['entities_statistics'].keys():
-        in_domain[label] = []
-        out_domain[label] = []
-        label_distribution_evaluation = analysis_evaluation['entities_statistics'][label]['content_distribution']
-        for entity_value in label_distribution_evaluation.keys():
-            label_distribution_corpus = analysis_corpus['entities_statistics'][label]['content_distribution']
-            if entity_value in label_distribution_corpus.keys():
-                in_domain[label].append((entity_value, label_distribution_evaluation[entity_value]))
-            else:
-                out_domain[label].append((entity_value, label_distribution_evaluation[entity_value]))
+    markdown_table += "Out of domain" + "\n"
+    markdown_table += "| label | # in domain | # in domain uniques | # out domain | # out domain unique |" + "\n"
+    markdown_table += 5 * "|---  " + "|" + "\n"
 
-        print(label, ": ", len(in_domain[label]), " (total: ", sum(e[1] for e in in_domain[label]), ") in domain", ", ",
-              len(out_domain[label]), " (total: ", sum(e[1] for e in out_domain[label]), ") out domain")
+    out_domain, in_domain = compute_out_domain(analysis_evaluation, analysis_corpus)
+
+    for label in entities_list:
+        markdown_table += "|" + label + "|" + str(sum(e[1] for e in in_domain[label])) + "|" + str(
+            len(in_domain[label])) + "|" + str(sum(e[1] for e in out_domain[label])) + "|" + str(
+            len(out_domain[label])) + "|\n"
+
+    print(markdown_table)
