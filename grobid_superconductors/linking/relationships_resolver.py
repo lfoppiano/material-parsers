@@ -115,7 +115,7 @@ class VicinityResolutionResolver(ResolutionResolver):
 
                         tc = min(tc_of_this_material, key=tc_of_this_material.get)
                         if material not in assigned and tc not in assigned:
-                            relationships.append(self.link_spans(material, tc, 'vicinity'))
+                            relationships.append(self.link_spans(material, tc, 'distance'))
                             assigned.append(material)
                             assigned.append(tc)
                 else:
@@ -124,7 +124,7 @@ class VicinityResolutionResolver(ResolutionResolver):
                                                tc_material_mapping[tc].items() if material_ not in assigned}
                         material = min(material_of_this_tc, key=material_of_this_tc.get)
                         if material not in assigned and tc not in assigned:
-                            relationships.append(self.link_spans(material, tc, 'vicinity'))
+                            relationships.append(self.link_spans(material, tc, 'distance'))
                             assigned.append(material)
                             assigned.append(tc)
 

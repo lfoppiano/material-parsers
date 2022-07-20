@@ -369,6 +369,16 @@ if __name__ == "__main__":
     markdown_table += "| ratio " + "|" + "|".join(["{:.2f}%".format(
         analysis_evaluation['entities_statistics'][x]['count'] / analysis_corpus['entities_statistics'][x][
             'count'] * 100) for x in entities_list]) + "|" + "\n"
+    markdown_table += "| --- | " + "\n"
+    markdown_table += "| training unique " + "|" + "|".join(
+        [str(len(analysis_corpus['entities_statistics'][x]['content_distribution'].keys())) for x in
+         entities_list]) + "|" + "\n"
+    markdown_table += "| holdout unique " + "|" + "|".join(
+        [str(len(analysis_evaluation['entities_statistics'][x]['content_distribution'].keys())) for x in
+         entities_list]) + "|" + "\n"
+    markdown_table += "| ratio uniq" + "|" + "|".join(["{:.2f}%".format(
+        len(analysis_evaluation['entities_statistics'][x]['content_distribution'].keys()) / len(analysis_corpus['entities_statistics'][x][
+            'content_distribution'].keys()) * 100) for x in entities_list]) + "|" + "\n"
 
     markdown_table += "\n\n\n"
 
