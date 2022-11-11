@@ -42,3 +42,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag lfoppiano/grobid-superconductors-tools:latest
+      - name: Cleanup older than 24h images and containers
+        run: docker system prune --filter "until=24h" --force

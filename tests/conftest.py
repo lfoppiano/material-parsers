@@ -3,8 +3,8 @@ from pathlib import Path
 from unittest.mock import MagicMock
 
 import pytest
-from py._path.local import LocalPath
-
+# Change for python 3.10
+from _pytest._py.path import LocalPath
 # derived from https://github.com/elifesciences/sciencebeam-trainer-delft/tree/develop/tests
 
 LOGGER = logging.getLogger(__name__)
@@ -21,16 +21,16 @@ def _backport_assert_called(mock: MagicMock):
     assert mock.called
 
 
-# @pytest.fixture(scope='session', autouse=True)
-# def patch_magicmock():
-#     try:
-#         MagicMock.assert_called
-#     except AttributeError:
-#         MagicMock.assert_called = _backport_assert_called
-# 
-# 
-# @pytest.fixture
-# def temp_dir(tmpdir: LocalPath):
-#     # convert to standard Path
-#     return Path(str(tmpdir))
+@pytest.fixture(scope='session', autouse=True)
+def patch_magicmock():
+    try:
+        MagicMock.assert_called
+    except AttributeError:
+        MagicMock.assert_called = _backport_assert_called
+
+
+@pytest.fixture
+def temp_dir(tmpdir: LocalPath):
+    # convert to standard Path
+    return Path(str(tmpdir))
 
