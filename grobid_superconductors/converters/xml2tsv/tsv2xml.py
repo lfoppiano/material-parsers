@@ -6,9 +6,85 @@ from html import escape
 from pathlib import Path
 
 from bs4 import BeautifulSoup
+from webanno_tsv import webanno_tsv_read_file
 
 
-def processFile(file):
+def process_file_new(file):
+    doc = webanno_tsv_read_file(file)
+    output = {'paragraphs': [], 'rel_source_dest': [], 'rel_dest_source': []}
+
+    spans_ = []
+    tokens_ = []
+    current_paragraph = {'text': "", 'spans': [], 'tokens': [], 'section': 'body'}
+
+    for sentence in doc.sentences:
+        tokens = doc.sentence_tokens(sentence)
+
+        previous_token_end = 0
+        addition = 0
+        for token in tokens:
+            # if previous_token_end > 0 and previous_token_end != token.start:
+            #     tokens_.append(
+            #         {
+            #             'start': previous_token_end,
+            #             'end': token.start,
+            #             'text': " ",
+            #             'id': ""
+            #         }
+            #     )
+            #     addition += 1
+
+            tokens_.append(
+                {
+                    'start': token.start,
+                    'end': token.end,
+                    'text': token.text,
+                    'id': token.idx
+                }
+            )
+            previous_token_end = token.end
+
+        for annotation in doc.match_annotations(sentence=sentence, layer='webanno.custom.Xml'):
+            pass
+
+        for annotation in doc.match_annotations(sentence=sentence, layer='webanno.custom.Materials'):
+            annotation_tokens = annotation.tokens
+            start_offset = annotation_tokens[0].start
+            end_offset = annotation_tokens[-1].end
+
+            start_index = annotation_tokens[0].idx
+            end_index = annotation_tokens[-1].idx
+
+            label = annotation.label
+            text = annotation.text
+
+            current_span = {
+                'start': start_offset,
+                'end': end_offset,
+                'token_start': start_index,
+                'token_end': end_index,
+                'label': label,
+                'text': text,
+                'tagIndex': annotation.label_id,
+                'relationships': []
+            }
+
+            spans_.append(current_span)
+
+        current_paragraph['text'] = sentence.text
+        current_paragraph['spans'] = spans_
+        current_paragraph['tokens'] = tokens_
+        current_paragraph['section'] = "body"
+        output['paragraphs'].append(current_paragraph)
+
+        spans_ = []
+        tokens_ = []
+        current_paragraph = {'text': "", 'spans': [], 'tokens': [], 'section': 'body'}
+
+    return output
+
+
+def process_file(file):
     output = {'paragraphs': [], 'rel_source_dest': [], 'rel_dest_source': []}
 
     spans = []
@@ -91,10 +167,10 @@ def processFile(file):
                 tokenPositionStart = position.split("-")[0]
                 tokenPositionEnd = position.split("-")[1]
 
-                if tokenPreviousPositionEnd != tokenPositionStart and tokenPreviousPositionEnd != '-1':  ## Add space in the middle #fingercrossed
-                    tokens.append(
-                        {'start': tokenPreviousPositionEnd, 'end': tokenPositionStart, 'text': " ", 'id': tokenId})
-                    tokenId = tokenId + 1
+                # if tokenPreviousPositionEnd != tokenPositionStart and tokenPreviousPositionEnd != '-1':  ## Add space in the middle #fingercrossed
+                #     tokens.append(
+                #         {'start': tokenPreviousPositionEnd, 'end': tokenPositionStart, 'text': " ", 'id': tokenId})
+                #     tokenId = tokenId + 1
 
                 text = line_split[2]
                 tokens.append({'start': tokenPositionStart, 'end': tokenPositionEnd, 'text': text, 'id': tokenId})
@@ -265,6 +341,7 @@ def writeOutput(datas, output):
     paragraphs = []
     rel_dest_source = datas['rel_dest_source']
     rel_source_dest = datas['rel_source_dest']
+    previous_token_end = 0
     for data in datas['paragraphs']:
         tokens = data['tokens']
         spans = data['spans']
@@ -273,8 +350,16 @@ def writeOutput(datas, output):
         paragraph = ''
 
         spanIdx = 0
+        first = True
 
         for i, token in enumerate(tokens):
+            id = token['id']
+            if not first and previous_token_end > 0 and previous_token_end != token['start']:
+                paragraph += " "
+                previous_token_end += 1
+
+            first = False
+
             if spanIdx < len(spans):
                 span = spans[spanIdx]
                 span_token_start = span['token_start']
@@ -284,12 +369,14 @@ def writeOutput(datas, output):
                 span = None
 
             if span is not None:
-                if i < span_token_start:
+                if id < span_token_start:
                     paragraph += escape(token['text'])
+
+                    previous_token_end = token['end']
                     continue
-                    # paragraph += token['text']
-                elif span_token_start <= i <= span_token_end:
-                    if i == span_token_start:
+
+                elif span_token_start <= id <= span_token_end:
+                    if id == span_token_start:
                         tagLabel = '<rs type="' + span_label + '">'
                         pointers = ''
                         identifier = ''
@@ -311,7 +398,7 @@ def writeOutput(datas, output):
 
                         paragraph += tagLabel
                     paragraph += escape(token['text'])
-                    if i == span_token_end:
+                    if id == span_token_end:
                         # paragraph += token['text']
                         paragraph += '</rs>'
                         spanIdx += 1
@@ -319,6 +406,7 @@ def writeOutput(datas, output):
             else:
                 paragraph += escape(token['text'])
 
+            previous_token_end = token['end']
         paragraphs.append((section, paragraph))
 
     with open(output, 'w') as fo:
@@ -408,11 +496,11 @@ if __name__ == '__main__':
 
         for input_path, output_path in path_list:
             print("Processing: ", input_path)
-            data = processFile(input_path)
+            data = process_file_new(input_path)
             writeOutput(data, output_path)
 
     elif os.path.isfile(input):
         input_path = Path(input)
-        data = processFile(input_path)
+        data = process_file_new(input_path)
         output_filename = input_path.stem
         writeOutput(data, os.path.join(output, str(output_filename) + ".tei.xml"))
