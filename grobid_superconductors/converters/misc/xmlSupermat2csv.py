@@ -7,6 +7,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, Tag
 
 from grobid_superconductors.commons.grobid_tokenizer import tokenizeAndFilterSimple
+from grobid_superconductors.commons.supermat_tei_parser import get_children_list, get_relationship_name
 
 
 def write_on_file(fw, filename, sentenceText, dic_token):
@@ -19,7 +20,7 @@ def tokenise(string):
     return tokenizeAndFilterSimple(string)
 
 
-def processFile(finput):
+def process_file(finput, use_paragraphs=False):
     with open(finput, encoding='utf-8') as fp:
         doc = fp.read()
 
@@ -29,15 +30,7 @@ def processFile(finput):
     #     print(doc)
     soup = BeautifulSoup(doc, 'xml')
 
-    children = []
-    for child in soup.tei.children:
-        if child.name == 'teiHeader':
-            children.append(child.find_all("title"))
-            children.extend([subchild.find_all("p") for subchild in child.find_all("abstract")])
-            children.append(child.find_all("ab", {"type": "keywords"}))
-        elif child.name == 'text':
-            children.append([subsubchild for subchild in child.find_all("body") for subsubchild in subchild.children if
-                             type(subsubchild) is Tag])
+    children = get_children_list(soup, use_paragraphs=use_paragraphs)
 
     dic_dest_relationships = {}
     dic_source_relationships = {}
@@ -154,25 +147,6 @@ def processFile(finput):
     return output
 
 
-def get_relationship_name(source_label, destination_label):
-    relationship_name = ""
-    if str.lower(source_label) == 'tcvalue':
-        if destination_label == 'material':
-            relationship_name = 'tcValue-material'
-        elif destination_label == 'me_method':
-            relationship_name = 'me_method-tcValue'
-        else:
-            raise Exception("Something is wrong in the links. "
-                            "The link between " + source_label + " and " + destination_label + " is invalid. ")
-    elif str.lower(source_label) == 'pressure':
-        if str.lower(destination_label) == 'tcvalue':
-            relationship_name = 'tcValue-pressure'
-    else:
-        raise Exception("Something is wrong in the links. "
-                        "The link between " + source_label + " and " + destination_label + " is invalid. ")
-
-    return relationship_name
-
 
 def writeOutput(data, output_path, format):
     delimiter = '\t' if format == 'tsv' else ','
@@ -195,6 +169,7 @@ if __name__ == '__main__':
                         help="Output format.")
     parser.add_argument("--filter", default='all', choices=['all', 'oa', 'non-oa'],
                         help='Extract data from a certain type of licenced documents')
+    parser.add_argument("--use-paragraphs", action="store_true", default=False, help="Use paragraphs instead of sentences.")
 
     args = parser.parse_args()
 
@@ -203,6 +178,7 @@ if __name__ == '__main__':
     recursive = args.recursive
     format = args.format
     filter = args.filter
+    use_paragraphs = args.use_paragraphs
 
     if os.path.isdir(input):
         path_list = []
@@ -229,7 +205,7 @@ if __name__ == '__main__':
         data = []
         for path in path_list:
             print("Processing: ", path)
-            file_data = processFile(path)
+            file_data = process_file(path, use_paragraphs=use_paragraphs)
             for r in file_data:
                 r['filename'] = Path(path).name
             data.extend(file_data)
@@ -244,7 +220,7 @@ if __name__ == '__main__':
 
     elif os.path.isfile(input):
         input_path = Path(input)
-        data = processFile(input_path)
+        data = process_file(input_path, use_paragraphs=use_paragraphs)
         output_filename = input_path.stem
 
         writeOutput(data, os.path.join(output, str(output_filename) + "." + format), format)

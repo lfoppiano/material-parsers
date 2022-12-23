@@ -7,10 +7,8 @@ import os
 from collections import OrderedDict
 from pathlib import Path
 
-from blingfire import text_to_sentences
-from grobid_tokenizer import tokenizeAndFilterSimple
-
-from misc.xml2LossyJSON import process_file, get_hash
+from grobid_superconductors.commons.grobid_tokenizer import tokenizeAndFilterSimple
+from grobid_superconductors.converters.misc.xml2LossyJSON import process_file
 
 
 def write_on_file(fw, row):
@@ -141,6 +139,8 @@ def from_paragraphs_to_sentences(document_object):
     new_document_object['lang'] = document_object['lang']
     new_document_object['paragraphs'] = []
 
+    from blingfire import text_to_sentences
+
     # split in sentences
     for paragraph in document_object['paragraphs']:
         paragraph_text = paragraph['text']
@@ -175,35 +175,45 @@ def from_paragraphs_to_sentences(document_object):
     return new_document_object
 
 
-def extract_tabular_information(document):
+def extract_tabular_information(document, use_paragraphs=False):
     # csv_output = [["id", "sentence", "entity1", "entity2", "linked"]]
     csv_output = [["id", "sentence", "linked"]]
     for paragraph in document['paragraphs']:
-        for sentence in paragraph['sentences']:
-            if len(sentence['spans']) == 0:
+        if use_paragraphs:
+            if len(paragraph['spans']) == 0:
                 continue
 
-            linked_spans = list(filter(lambda s: 'links' in s, sentence['spans']))
-
-            if len(linked_spans) > 0 and len(sentence['spans']) > 1:
-                for i in range(0, len(sentence['spans'])):
-                    for j in range(i + 1, len(sentence['spans'])):
-                        if i == j:
-                            continue
-                        entity1 = sentence['spans'][i]
-                        entity2 = sentence['spans'][j]
-                        if 'links' in entity1:
-                            linked = len(list(filter(lambda e: 'id' in entity2 and e['targetId'] == entity2['id'],
-                                                     entity1['links']))) > 0
-                        else:
-                            linked = False
-
-                        linked = 0 if not linked else 1
-
-                        # csv_output.append([get_hash(sentence['text']), sentence['text'], entity1['text'], entity2['text'], linked])
-                        csv_output.append([hashlib.md5(sentence['text'].encode('utf-8')).hexdigest(), sentence['text'], linked])
+            write_csv(paragraph, csv_output)
+        else:
+            for sentence in paragraph['sentences']:
+                if len(sentence['spans']) == 0:
+                    continue
+                write_csv(sentence, csv_output)
 
     return csv_output
+
+
+def write_csv(item, csv_output):
+    linked_spans = list(filter(lambda s: 'links' in s, item['spans']))
+
+    if len(linked_spans) > 0 and len(item['spans']) > 1:
+        for i in range(0, len(item['spans'])):
+            for j in range(i + 1, len(item['spans'])):
+                if i == j:
+                    continue
+                entity1 = item['spans'][i]
+                entity2 = item['spans'][j]
+                if 'links' in entity1:
+                    linked = len(list(filter(lambda e: 'id' in entity2 and e['targetId'] == entity2['id'],
+                                             entity1['links']))) > 0
+                else:
+                    linked = False
+
+                linked = 0 if not linked else 1
+
+                # csv_output.append([get_hash(sentence['text']), sentence['text'], entity1['text'], entity2['text'], linked])
+                csv_output.append(
+                    [hashlib.md5(item['text'].encode('utf-8')).hexdigest(), item['text'], linked])
 
 
 def write_output(data, path, format, append=False):
@@ -230,6 +240,7 @@ if __name__ == '__main__':
                         help="Process input directory recursively. If input is a file, this parameter is ignored.")
     parser.add_argument("--format", default='csv', choices=['tsv', 'csv'],
                         help="Output format.")
+    parser.add_argument("--use-paragraphs", action="store_true", default=False, help="Use paragraphs instead of sentences.")
 
     args = parser.parse_args()
 
@@ -237,6 +248,7 @@ if __name__ == '__main__':
     output = args.output
     recursive = args.recursive
     format = args.format
+    use_paragraphs = args.use_paragraphs
 
     if os.path.isdir(input):
         path_list = []
@@ -256,9 +268,13 @@ if __name__ == '__main__':
         first = True
         for path in path_list:
             print("Processing: ", path)
-            pre_document = process_file(path)
-            document = from_paragraphs_to_sentences(pre_document)
-            csv_output = extract_tabular_information(document)
+            pre_document = process_file(path, use_paragraphs=use_paragraphs)
+            if not use_paragraphs:
+                document = from_paragraphs_to_sentences(pre_document)
+            else:
+                document = pre_document
+
+            csv_output = extract_tabular_information(document, use_paragraphs=use_paragraphs)
 
             if not os.path.isdir(str(output)):
                 ## If the output is a file, I stream to it
@@ -281,7 +297,7 @@ if __name__ == '__main__':
 
     elif os.path.isfile(input):
         input_path = Path(input)
-        pre_document = process_file(input_path)
+        pre_document = process_file(input_path, use_paragraphs=use_paragraphs)
         document = from_paragraphs_to_sentences(pre_document)
         output_filename = input_path.stem.replace(".tei", "") + "." + format
         output_path = os.path.join(output, output_filename)

@@ -1,9 +1,10 @@
 import re
+from collections import OrderedDict
+from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag, NavigableString
 
 from .grobid_tokenizer import tokenizeSimple
-
 
 def tokenise(string):
     return tokenizeSimple(string)
@@ -28,7 +29,7 @@ def get_section(pTag):
     return section
 
 
-def process_file(input_document):
+def process_file(input_document, use_paragraphs=False):
     with open(input_document, encoding='utf-8') as fp:
         doc = fp.read()
 
@@ -37,7 +38,7 @@ def process_file(input_document):
         doc = doc.replace(mod.group(), ' ' + mod.group(1))
     soup = BeautifulSoup(doc, 'xml')
 
-    children = get_children_list(soup, verbose=False)
+    children = get_children_list(soup, verbose=False, use_paragraphs=use_paragraphs)
 
     off_token = 0
     dic_token = {}
@@ -144,21 +145,7 @@ def process_file(input_document):
             destination_entity_id = destination_item[2]
             destination_type = destination_item[3]
 
-            if str.lower(label) == 'tcvalue':
-                if destination_type == 'material':
-                    relationship_name = 'tcValue-material'
-                elif str.lower(destination_type) == 'me_method':
-                    relationship_name = 'tcValue-me_method'
-                else:
-                    raise Exception("Something is wrong in the links. "
-                                    "The origin label " + str(label) + ", or the destination " + str(
-                        destination_type) + " is not recognised. ")
-            elif str.lower(label) == 'pressure':
-                relationship_name = 'tcValue-pressure'
-            else:
-                raise Exception("Something is wrong in the links. "
-                                "The origin label " + str(label) + ", or the destination " + str(
-                    destination_type) + " is not recognised. ")
+            relationship_name = get_relationship_name(label, destination_type)
 
             dict_coordinates = (destination_paragraph_tsv, destination_token_tsv)
 
@@ -180,19 +167,169 @@ def process_file(input_document):
     return paragraphs, dic_token
 
 
-def get_children_list(soup, verbose=False):
+def process_file_to_json(finput, use_paragraphs=False):
+    with open(finput, encoding='utf-8') as fp:
+        doc = fp.read()
+
+    mod_tags = re.finditer(r'(</\w+>) ', doc)
+    for mod in mod_tags:
+        doc = doc.replace(mod.group(), ' ' + mod.group(1))
+    soup = BeautifulSoup(doc, 'xml')
+
+    children = get_children_list(soup, use_paragraphs=use_paragraphs)
+
+    token_offset_sentence = 0
+    ient = 1
+
+    # list containing text and the dictionary with all the annotations
+    sentences = []
+    ner = []
+    relations = []
+
+    output_document = OrderedDict()
+    output_document['doc_key'] = Path(str(finput)).name
+    output_document['dataset'] = 'SuperMat'
+    output_document['sentences'] = sentences
+    output_document['ner'] = ner
+    output_document['relations'] = relations
+
+
+    i = 0
+    for child in children:
+        for pTag in child:
+            j = 0
+            text_sentence = ''
+            tokens_sentence = []
+            ner_sentence = []
+            relations_sentence = []
+            dic_dest_relationships = {}
+            dic_source_relationships = {}
+            linked_entity_registry = {}
+
+            for item in pTag.contents:
+                if type(item) == NavigableString:
+                    local_text = str(item)
+                    text_sentence += local_text
+
+                    token_list = tokenise(item.string)
+                    if len(token_list) > 0 and token_list[0] == ' ':  # remove space after tags
+                        del token_list[0]
+
+                    tokens_sentence.extend(token_list)
+                    token_offset_sentence += len(token_list)
+
+                elif type(item) is Tag and item.name == 'rs':
+                    local_text = item.text
+                    text_sentence += local_text
+                    if 'type' not in item.attrs:
+                        raise Exception("RS without type is invalid. Stopping")
+                    label = item.attrs['type']
+                    token_list = tokenise(local_text)
+                    tokens_sentence.extend(token_list)
+
+                    ner_entity = [token_offset_sentence, token_offset_sentence + len(token_list) - 1, label]
+                    ner_sentence.append(ner_entity)
+
+                    if len(item.attrs) > 0:
+                        ## multiple entities can point ot the same one, so "corresp" value can be duplicated
+                        allow_duplicates = False
+                        span_id = None
+                        if 'xml:id' in item.attrs:
+                            span_id = item['xml:id']
+                            if item.attrs['xml:id'] not in dic_dest_relationships:
+                                dic_dest_relationships[item.attrs['xml:id']] = [i + 1, j + 1, ient, label]
+
+                        if 'corresp' in item.attrs:
+                            if span_id is None or span_id == "":
+                                id_str = str(i + 1) + "," + str(j + 1)
+                                span_id = get_hash(id_str)
+                                if span_id not in dic_source_relationships:
+                                    dic_source_relationships[span_id] = [item.attrs['corresp'].replace('#', ''),
+                                                                         ient,
+                                                                         label]
+                            else:
+                                if span_id not in dic_source_relationships:
+                                    dic_source_relationships[span_id] = [item.attrs['corresp'].replace('#', ''),
+                                                                         ient,
+                                                                         label]
+
+                            allow_duplicates = True
+
+                        if span_id is not None:
+                            if span_id not in linked_entity_registry.keys():
+                                linked_entity_registry[span_id] = ner_entity
+                            else:
+                                if not allow_duplicates:
+                                    print("The same key exists... something's wrong: ", span_id)
+
+                    token_offset_sentence += len(token_list)
+
+                    j += 1
+
+                ient += 1  # entity No.
+
+            # token_offset_sentence += 1  # return
+
+            sentences.append(tokens_sentence)
+            ner.append(ner_sentence)
+            i += 1
+
+            for id__ in dic_source_relationships:
+                destination_xml_id = dic_source_relationships[id__][0]
+
+                for des in destination_xml_id.split(","):
+                    dict_coordinates = get_hash(id__)
+                    if des in linked_entity_registry:
+                        span_destination = linked_entity_registry[des]
+                        span_source = linked_entity_registry[dict_coordinates]
+
+                        relations_sentence.append(
+                            [span_destination[0], span_destination[1], span_source[0], span_source[1],
+                             get_relationship_name(span_source[2], span_destination[2])])
+
+            relations.append(relations_sentence)
+
+    return output_document
+
+
+def get_children_list(soup, use_paragraphs=False, verbose=False):
     children = []
 
+    child_name = "p" if use_paragraphs else "s"
     for child in soup.tei.children:
         if child.name == 'teiHeader':
             pass
             children.append(child.find_all("title"))
-            children.extend([subchild.find_all("s") for subchild in child.find_all("abstract")])
-            children.extend([subchild.find_all("s") for subchild in child.find_all("ab", {"type": "keywords"})])
+            children.extend([subchild.find_all(child_name) for subchild in child.find_all("abstract")])
+            children.extend([subchild.find_all(child_name) for subchild in child.find_all("ab", {"type": "keywords"})])
         elif child.name == 'text':
-            children.extend([subchild.find_all("s") for subchild in child.find_all("body")])
+            children.extend([subchild.find_all(child_name) for subchild in child.find_all("body")])
 
     if verbose:
         print(str(children))
 
     return children
+
+def get_relationship_name(source_label, destination_label):
+    relationship_name = ""
+    if str.lower(source_label) == 'tcvalue':
+        if destination_label == 'material':
+            relationship_name = 'tcValue-material'
+        elif destination_label == 'me_method':
+            relationship_name = 'me_method-tcValue'
+        else:
+            raise Exception("Something is wrong in the links. "
+                            "The link between " + source_label + " and " + destination_label + " is invalid. ")
+    elif str.lower(source_label) == 'pressure':
+        if str.lower(destination_label) == 'tcvalue':
+            relationship_name = 'tcValue-pressure'
+    else:
+        raise Exception("Something is wrong in the links. "
+                        "The link between " + source_label + " and " + destination_label + " is invalid. ")
+
+    return relationship_name
+
+
+def get_hash(dict_coordinates_str):
+    return dict_coordinates_str
+    # return hashlib.md5(dict_coordinates_str.encode('utf-8')).hexdigest()
