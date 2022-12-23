@@ -345,6 +345,9 @@ def writeOutput(datas, output):
     for data in datas['paragraphs']:
         tokens = data['tokens']
         spans = data['spans']
+
+        spans = prune_spans(spans)
+
         text = data['text']
         section = data['section']
         paragraph = ''
@@ -432,6 +435,19 @@ def writeOutput(datas, output):
 
         fo.write(str(soup))
         fo.flush()
+
+
+def prune_spans(spans):
+    to_remove = []
+    for i in range(len(spans) - 1):
+        if spans[i]['start'] == spans[i + 1]['start'] and spans[i]['end'] == spans[i + 1]['end']:
+            to_remove.append(i + 1)
+            spans[i]['label'] += "," + spans[i + 1]['label']
+    if len(to_remove) > 0:
+        for idx in sorted(to_remove, reverse=True):
+            spans.pop(idx)
+
+    return spans
 
 
 if __name__ == '__main__':
