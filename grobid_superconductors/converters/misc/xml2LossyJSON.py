@@ -9,7 +9,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 from grobid_superconductors.commons.grobid_tokenizer import tokenizeSimple
-from grobid_superconductors.commons.supermat_tei_parser import get_children_list, get_section
+from grobid_superconductors.commons.supermat_tei_parser import get_children_list, get_section, get_hash
 
 
 def tokenise(string):
@@ -29,7 +29,7 @@ def write_on_file(fw, paragraphText, dic_token, i, item_length):
         print('', file=fw)
 
 
-def process_file(finput):
+def process_file(finput, use_paragraphs=False):
     with open(finput, encoding='utf-8') as fp:
         doc = fp.read()
 
@@ -38,7 +38,7 @@ def process_file(finput):
         doc = doc.replace(mod.group(), ' ' + mod.group(1))
     soup = BeautifulSoup(doc, 'xml')
 
-    children = get_children_list(soup)
+    children = get_children_list(soup, use_paragraphs=use_paragraphs)
 
     off_token = 0
     ient = 1
@@ -50,7 +50,7 @@ def process_file(finput):
 
     output_document = OrderedDict()
     output_document['lang'] = 'en'
-    output_document['level'] = 'sentences'
+    output_document['level'] = 'sentences' if not use_paragraphs else 'paragraphs'
     output_document['paragraphs'] = paragraphs
 
     linked_entity_registry = {}
@@ -187,12 +187,6 @@ def process_file(finput):
 
     return output_document
 
-
-def get_hash(dict_coordinates_str):
-    return dict_coordinates_str
-    # return hashlib.md5(dict_coordinates_str.encode('utf-8')).hexdigest()
-
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Converter from XML (Grobid training data based on TEI) to lossy JSON (CORD-19) format")
@@ -203,11 +197,14 @@ if __name__ == '__main__':
     parser.add_argument("--recursive", action="store_true", default=False,
                         help="Process input directory recursively. If input is a file, this parameter is ignored. ")
 
+    parser.add_argument("--use-paragraphs", action="store_true", default=False, help="Use paragraphs instead of sentences.")
+
     args = parser.parse_args()
 
     input = args.input
     output = args.output
     recursive = args.recursive
+    use_paragraphs = args.use_paragraphs
 
     if os.path.isdir(input):
         input_path_list = []
@@ -244,13 +241,13 @@ if __name__ == '__main__':
             else:
                 output_path = os.path.join(parent_dir, output_filename + ".json")
 
-            output_document = process_file(str(path))
+            output_document = process_file(str(path), use_paragraphs)
             with open(output_path, 'w') as fp:
                 json.dump(output_document, fp)
 
     elif os.path.isfile(input):
         input_path = Path(input)
         output_filename = input_path.stem + ".json"
-        output_document = process_file(input_path)
+        output_document = process_file(input_path, use_paragraphs)
         with open(output_filename, 'w') as fp:
             json.dump(output_document, fp)
