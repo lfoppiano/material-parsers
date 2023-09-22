@@ -3,6 +3,15 @@
 
 # Grobid-superconductors material name tools
 
+Syster project of [grobid-superconductors](https://github.com/lfoppiano/grobid-superconductors) containing a webservice that interfaces with the python libraries (e.g. Spacy). 
+
+The service provides the following functionalities: 
+ - Material name convertion to formula (e.g. Oxigen -> O, Hydrogen -> H): `/convert/name/formula`
+ - Material name formula decomposition (e.g. La x Fe 1-x O7-> {La: x, Fe: 1-x, O: 7}):  `/convert/formula/composition`
+ - Material class (in superconductors domain) calculation using a rule-base table (e.g. "La Cu Fe" -> Cuprates): `/classify/formula`
+ - Tc classification (Tc, not-Tc): `/classify/tc`
+ - Relation extraction given a sentence and two entities: `/process/link`
+
 ## Usage
 
 ### Convert material name to formula
