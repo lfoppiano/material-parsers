@@ -41,10 +41,34 @@ output:
 ```
 {"composition": {"Ca": "1", "Br": "2-x"}}
 ```
+## References
+
+If you use our work, and write about it, please cite [our paper](https://hal.inria.fr/hal-03776658):
+```bibtex
+	@article{doi:10.1080/27660400.2022.2153633,
+		author = {Luca Foppiano and Pedro Baptista Castro and Pedro Ortiz Suarez and Kensei Terashima and Yoshihiko Takano and Masashi Ishii},
+		title = {Automatic extraction of materials and properties from superconductors scientific literature},
+		journal = {Science and Technology of Advanced Materials: Methods},
+		volume = {3},
+		number = {1},
+		pages = {2153633},
+		year  = {2023},
+		publisher = {Taylor & Francis},
+		doi = {10.1080/27660400.2022.2153633},
+		URL = { 
+			https://doi.org/10.1080/27660400.2022.2153633
+		},
+		eprint = { 
+		https://doi.org/10.1080/27660400.2022.2153633
+		}
+	}
+```
+
+
 
 ## Overview of the repository
 
- - [Converters](./converters) TSV to/from Grobid XML files conversion
+ - [Converters](grobid_superconductors/converters) TSV to/from Grobid XML files conversion
  
  - [Linking](./linking) module: A rule based python algorithm to link entities 
  
