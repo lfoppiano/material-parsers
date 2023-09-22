@@ -6,11 +6,11 @@
 Syster project of [grobid-superconductors](https://github.com/lfoppiano/grobid-superconductors) containing a webservice that interfaces with the python libraries (e.g. Spacy). 
 
 The service provides the following functionalities: 
- - Material name convertion to formula (e.g. Oxigen -> O, Hydrogen -> H): `/convert/name/formula`
- - Material name formula decomposition (e.g. La x Fe 1-x O7-> {La: x, Fe: 1-x, O: 7}):  `/convert/formula/composition`
- - Material class (in superconductors domain) calculation using a rule-base table (e.g. "La Cu Fe" -> Cuprates): `/classify/formula`
- - Tc classification (Tc, not-Tc): `/classify/tc`
- - Relation extraction given a sentence and two entities: `/process/link`
+ - [Convert material name to formula](#convert-material-name-to-formula) (e.g. Oxigen -> O, Hydrogen -> H): `/convert/name/formula`
+ - [Decompose formula into structured dict of elements](#decompose-formula-into-structured-dict-of-elements) (e.g. La x Fe 1-x O7-> {La: x, Fe: 1-x, O: 7}):  `/convert/formula/composition`
+ - Classify material in classes (from the superconductors domain) using a rule-base table (e.g. "La Cu Fe" -> Cuprates): `/classify/formula`
+ - Tc classification (Tc, not-Tc): `/classify/tc` **for information please open an issue**
+ - Relation extraction given a sentence and two entities: `/process/link` **for information please open an issue**
 
 ## Usage
 
@@ -27,7 +27,7 @@ output:
 {"composition": {"H": "1"}, "name": "Hydrogen", "formula": "H"}
 ```
 
-### Decompose formula 
+### Decompose formula in a structured dict of elements
 
 Example: 
 ```
@@ -41,6 +41,20 @@ output:
 ```
 {"composition": {"Ca": "1", "Br": "2-x"}}
 ```
+
+### Classify materials in classes
+
+Example: 
+```
+curl --location 'https://lfoppiano-grobid-superconductors-tools.hf.space/classify/formula' \
+--form 'input="(Mo 0.96 Zr 0.04 ) 0.85 B x "'
+```
+
+output: 
+```
+['Alloys']
+```
+
 ## References
 
 If you use our work, and write about it, please cite [our paper](https://hal.inria.fr/hal-03776658):
