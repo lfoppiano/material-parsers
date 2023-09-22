@@ -1,8 +1,39 @@
 [![Python CI](https://github.com/lfoppiano/grobid-superconductors-tools/actions/workflows/python-app.yml/badge.svg)](https://github.com/lfoppiano/grobid-superconductors-tools/actions/workflows/python-app.yml)
 
 
-# Grobid-superconductors Tools
+# Grobid-superconductors material name tools
 
+## Usage
+
+### Convert material name to formula
+
+```
+curl --location 'https://lfoppiano-grobid-superconductors-tools.hf.space/convert/name/formula' \
+--form 'input="Hydrogen"'
+```
+
+output: 
+
+```
+{"composition": {"H": "1"}, "name": "Hydrogen", "formula": "H"}
+```
+
+### Decompose formula 
+
+Example: 
+```
+curl --location 'https://lfoppiano-grobid-superconductors-tools.hf.space/convert/formula/composition' \
+
+--form 'input="CaBr2-x"'
+```
+
+output:  
+
+```
+{"composition": {"Ca": "1", "Br": "2-x"}}
+```
+
+## Overview of the repository
 
  - [Converters](./converters) TSV to/from Grobid XML files conversion
  
