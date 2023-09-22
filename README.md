@@ -14,6 +14,9 @@ The service provides the following functionalities:
 
 ## Usage
 
+The service is deployed on huggingface spaces, and [can be used right away](https://lfoppiano-grobid-superconductors-tools.hf.space/version). 
+For installing the service in your own environment see below. 
+
 ### Convert material name to formula
 
 ```
@@ -53,6 +56,12 @@ curl --location 'https://lfoppiano-grobid-superconductors-tools.hf.space/classif
 output: 
 ```
 ['Alloys']
+```
+
+## Installing in your environment 
+
+```
+docker run -it lfoppiano/grobid-superconductors-tools:2.1
 ```
 
 ## References
