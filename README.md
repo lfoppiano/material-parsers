@@ -1,19 +1,102 @@
 [![Python CI](https://github.com/lfoppiano/grobid-superconductors-tools/actions/workflows/python-app.yml/badge.svg)](https://github.com/lfoppiano/grobid-superconductors-tools/actions/workflows/python-app.yml)
 
-# Grobid-superconductors (Python) Tools
 
-This project contains tools developed in Python that are used in the [grobid-superconductors](https://github.com/lfoppiano/grobid-superconductors).
+# Grobid-superconductors material name tools
 
-The main part is composed by a lightweight service that allow to process materials names, link entities, and extract structure type from text.
+Sister project of [grobid-superconductors](https://github.com/lfoppiano/grobid-superconductors) containing a webservice that interfaces with the python libraries (e.g. Spacy). 
 
-Normally this service is available as a docker image. 
+The service provides the following functionalities: 
+ - [Convert material name to formula](#convert-material-name-to-formula) (e.g. Lead -> Pb, Hydrogen -> H): `/convert/name/formula`
+ - [Decompose formula into structured dict of elements](#decompose-formula-into-structured-dict-of-elements) (e.g. La x Fe 1-x O7-> {La: x, Fe: 1-x, O: 7}):  `/convert/formula/composition`
+ - Classify material in classes (from the superconductors domain) using a rule-base table (e.g. "La Cu Fe" -> Cuprates): `/classify/formula`
+ - Tc classification (Tc, not-Tc): `/classify/tc` **for information please open an issue**
+ - Relation extraction given a sentence and two entities: `/process/link` **for information please open an issue**
 
-## For developers
+## Usage
+
+The service is deployed on huggingface spaces, and [can be used right away](https://lfoppiano-grobid-superconductors-tools.hf.space/version). 
+For installing the service in your own environment see below. 
+
+### Convert material name to formula
+
+```
+curl --location 'https://lfoppiano-grobid-superconductors-tools.hf.space/convert/name/formula' \
+--form 'input="Hydrogen"'
+```
+
+output: 
+
+```
+{"composition": {"H": "1"}, "name": "Hydrogen", "formula": "H"}
+```
+
+### Decompose formula in a structured dict of elements
+
+Example: 
+```
+curl --location 'https://lfoppiano-grobid-superconductors-tools.hf.space/convert/formula/composition' \
+
+--form 'input="CaBr2-x"'
+```
+
+output:  
+
+```
+{"composition": {"Ca": "1", "Br": "2-x"}}
+```
+
+### Classify materials in classes
+
+Example: 
+```
+curl --location 'https://lfoppiano-grobid-superconductors-tools.hf.space/classify/formula' \
+--form 'input="(Mo 0.96 Zr 0.04 ) 0.85 B x "'
+```
+
+output: 
+```
+['Alloys']
+```
+
+## Installing in your environment 
+
+```
+docker run -it lfoppiano/grobid-superconductors-tools:2.1
+```
+
+## References
+
+If you use our work, and write about it, please cite [our paper](https://hal.inria.fr/hal-03776658):
+```bibtex
+	@article{doi:10.1080/27660400.2022.2153633,
+		author = {Luca Foppiano and Pedro Baptista Castro and Pedro Ortiz Suarez and Kensei Terashima and Yoshihiko Takano and Masashi Ishii},
+		title = {Automatic extraction of materials and properties from superconductors scientific literature},
+		journal = {Science and Technology of Advanced Materials: Methods},
+		volume = {3},
+		number = {1},
+		pages = {2153633},
+		year  = {2023},
+		publisher = {Taylor & Francis},
+		doi = {10.1080/27660400.2022.2153633},
+		URL = { 
+			https://doi.org/10.1080/27660400.2022.2153633
+		},
+		eprint = { 
+		https://doi.org/10.1080/27660400.2022.2153633
+		}
+	}
+```
+
+
+
+## Overview of the repository
+
+ - [Converters](grobid_superconductors/converters) TSV to/from Grobid XML files conversion 
+ - [Linking](grobid_superconductors/linking) module: A rule based python algorithm to link entities
+ - [Commons libraries](grobid_superconductors/commons): contains common code shared between the various component. The Grobid client was borrowed from [here](https://github.com/kermitt2/grobid-client-python), the tokenizer from [there](https://github.com/kermitt2/delft).
+
+
+
+## Developer's notes
 
 > python -m spacy download en_core_web_sm
-
-## Additional scripts and libraries:
-
- - [Converters](./converters) TSV to/from Grobid XML files conversion
- 
- - [Commons libraries](./commons): contains common code shared between the various component. The Grobid client was borrowed from [here](https://github.com/kermitt2/grobid-client-python), the tokenizer from [there](https://github.com/kermitt2/delft).
