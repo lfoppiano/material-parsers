@@ -3,10 +3,10 @@
 
 # Grobid-superconductors material name tools
 
-Syster project of [grobid-superconductors](https://github.com/lfoppiano/grobid-superconductors) containing a webservice that interfaces with the python libraries (e.g. Spacy). 
+Sister project of [grobid-superconductors](https://github.com/lfoppiano/grobid-superconductors) containing a webservice that interfaces with the python libraries (e.g. Spacy). 
 
 The service provides the following functionalities: 
- - [Convert material name to formula](#convert-material-name-to-formula) (e.g. Oxigen -> O, Hydrogen -> H): `/convert/name/formula`
+ - [Convert material name to formula](#convert-material-name-to-formula) (e.g. Lead -> Pb, Hydrogen -> H): `/convert/name/formula`
  - [Decompose formula into structured dict of elements](#decompose-formula-into-structured-dict-of-elements) (e.g. La x Fe 1-x O7-> {La: x, Fe: 1-x, O: 7}):  `/convert/formula/composition`
  - Classify material in classes (from the superconductors domain) using a rule-base table (e.g. "La Cu Fe" -> Cuprates): `/classify/formula`
  - Tc classification (Tc, not-Tc): `/classify/tc` **for information please open an issue**
@@ -91,10 +91,12 @@ If you use our work, and write about it, please cite [our paper](https://hal.inr
 
 ## Overview of the repository
 
- - [Converters](grobid_superconductors/converters) TSV to/from Grobid XML files conversion
- 
- - [Linking](./linking) module: A rule based python algorithm to link entities 
- 
- - [Commons libraries](./commons): contains common code shared between the various component. The Grobid client was borrowed from [here](https://github.com/kermitt2/grobid-client-python), the tokenizer from [there](https://github.com/kermitt2/delft).
- 
- - [Extraction process](/.process): a set of scripts for extracting and linking data from collections of PDFs. 
+ - [Converters](grobid_superconductors/converters) TSV to/from Grobid XML files conversion 
+ - [Linking](grobid_superconductors/linking) module: A rule based python algorithm to link entities
+ - [Commons libraries](grobid_superconductors/commons): contains common code shared between the various component. The Grobid client was borrowed from [here](https://github.com/kermitt2/grobid-client-python), the tokenizer from [there](https://github.com/kermitt2/delft).
+
+
+
+## Developer's notes
+
+> python -m spacy download en_core_web_sm

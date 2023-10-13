@@ -1,6 +1,6 @@
 import re
 
-import pymatgen as pg
+from pymatgen.core import Composition
 ## This map define the rules for selecting the classes.
 # and_compunds is satisfied if ALL of the contained compounds are present
 # or_compounds is satisfied if ANY of the contained compound is present
@@ -24,7 +24,7 @@ class ClassResolver:
         decomposed_formula = []
 
         try:
-            dc = pg.Composition(formula, strict=False).as_dict().keys()
+            dc = Composition(formula, strict=False).as_dict().keys()
         except Exception as ce:
             if self.verbose:
                 print("Exception when parsing " + str(formula) + ". Error: " + str(ce))
@@ -33,7 +33,7 @@ class ClassResolver:
             try:
                 if self.verbose:
                     print("Trying to parse " + str(material_formula_with_replacements))
-                dc = pg.Composition(material_formula_with_replacements, strict=False).as_dict().keys()
+                dc = Composition(material_formula_with_replacements, strict=False).as_dict().keys()
             except Exception as ce:
                 if self.verbose:
                     print("Exception when parsing " + str(material_formula_with_replacements) + ". Error: " + str(ce))
