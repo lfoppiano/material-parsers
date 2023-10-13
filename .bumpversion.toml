@@ -1,0 +1,7 @@
+[tool.bumpversion]
+current_version = "2.1"
+
+[[tool.bumpversion.files]]
+filename = "resources/version.txt"
+search = "{current_version}"
+replace = "{new_version}"
