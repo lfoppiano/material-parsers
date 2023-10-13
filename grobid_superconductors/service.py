@@ -1,5 +1,7 @@
 import json
 import os
+from ast import literal_eval
+from collections import OrderedDict
 
 import bottle
 import spacy
@@ -192,20 +194,32 @@ class Service(object):
         if raw is None:
             response.status = 400
             return 'Required a parameter "input" as form-data.'
-        try:
-            formula = self.material_parser_wrapper.name_to_formula(raw)
-            if self.is_response_empty(formula):
-                lemmatized_name = ''.join([token.lemma_ + token.whitespace_ for token in self.ner(raw)])
 
-                formula = self.material_parser_wrapper.name_to_formula(lemmatized_name)
+        input_as_list = raw.split("\n")
+        results = []
+        for raw in input_as_list:
+            try:
+                formula = self.material_parser_wrapper.name_to_formula(raw)
                 if self.is_response_empty(formula):
-                    response.status = 404
-                    return "Could not find the formula corresponding to " + str(lemmatized_name)
-        except ValueError as ve:
-            response.status = 400
-            return 'The parser was not able to process the provided input: ' + str(ve)
+                    lemmatized_name = ''.join([token.lemma_ + token.whitespace_ for token in self.ner(raw)])
 
-        return json.dumps(formula)
+                    formula = self.material_parser_wrapper.name_to_formula(lemmatized_name)
+                    if self.is_response_empty(formula):
+                        formula = {'name': raw, 'code': 404,
+                                   'message': "Could not find the formula corresponding to " + str(lemmatized_name)}
+                    else:
+                        formula['code'] = 200
+                else:
+                    formula['code'] = 200
+                results.append(formula)
+            except ValueError as ve:
+                results.append(
+                    {'code': 400, 'message': 'The parser was not able to process the provided input: ' + str(ve)})
+
+        if len(results) == 1:
+            return json.dumps(results[0])
+        else:
+            return json.dumps(results)
 
     def is_response_empty(self, formula):
         return ('name' in formula and formula['name'] == "") and ('formula' in formula and formula['formula'] == "")
@@ -217,16 +231,29 @@ class Service(object):
             response.status = 400
             return 'Required a parameter "input" as form-data.'
 
-        try:
-            composition = self.material_parser_wrapper.formula_to_composition(raw)
-        except ValueError as ve:
-            response.status = 400
-            return 'The parser was not able to process the provided input: ValueError ' + str(ve)
-        except KeyError as ke:
-            response.status = 400
-            return 'The parser was not able to process the provided input: KeyError ' + str(ke)
+        input_as_list = raw.split("\n")
+        results = []
+        for raw in input_as_list:
+            try:
+                composition = self.material_parser_wrapper.formula_to_composition(raw)
+                composition['code'] = 200 if 'composition' in composition else 404
+            except ValueError as ve:
+                composition = {
+                    'code': 400,
+                    'message': 'The parser was not able to process the provided input: ValueError ' + str(ve)
+                }
+            except KeyError as ke:
+                composition = {
+                    'code': 400,
+                    'message': 'The parser was not able to process the provided input: KeyError ' + str(ke)
+                }
 
-        return json.dumps(composition)
+            results.append(composition)
+
+        if len(results) == 1:
+            return json.dumps(results[0])
+        else:
+            return json.dumps(results)
 
     def classify_formula(self):
         raw = request.forms.get("input")
@@ -265,6 +292,14 @@ class Service(object):
             output.append(entities)
 
         return json.dumps(output)
+
+    @staticmethod
+    def get_type(input_data):
+        try:
+            return type(literal_eval(input_data))
+        except (ValueError, SyntaxError):
+            # A string, so return str
+            return str
 
 
 def init(host='0.0.0.0', port='8080', config="config.json"):

@@ -43,7 +43,7 @@ class MaterialParserWrapper:
         except SympifyError as e:
             raise ValueError(e)
         except ValueError as ve:
-            output = self.material_parser.parse(formula_without_spaces.replace("−", "-"))
+            output = self.material_parser.parse(formula_without_spaces.replace("−", "-").replace("−", "-"))
 
         if output is not None and output.composition:
             structured_formula['composition'] = output.composition[0].elements
