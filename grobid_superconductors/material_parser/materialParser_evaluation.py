@@ -56,7 +56,7 @@ class Evaluation:
         print("total: ", total)
 
 
-class BaseRecogniser:
+class BaseRecogniser():
     @staticmethod
     def get_description():
         return "Generic recognised, this method should be overloaded by the super class"
@@ -68,8 +68,7 @@ class BaseRecogniser:
     @staticmethod
     def get_implementation_names():
         return [CederMaterialParserRecogniser_extract_formula_from_string.get_name(),
-                CederMaterialParserRecogniser_parse_material_string.get_name(),
-                MaterialParserCRF_Evaluation.get_name(),
+                CederMaterialParserRecogniser_parse_material_string.get_name(), MaterialParserCRF.get_name(),
                 ChemDataExtraction.get_name()]
 
     @staticmethod
@@ -78,8 +77,8 @@ class BaseRecogniser:
             return ChemDataExtraction()
         elif name == CederMaterialParserRecogniser_extract_formula_from_string.get_name():
             return CederMaterialParserRecogniser_extract_formula_from_string()
-        elif name == MaterialParserCRF_Evaluation.get_name():
-            return MaterialParserCRF_Evaluation()
+        elif name == MaterialParserCRF.get_name():
+            return MaterialParserCRF()
         elif name == CederMaterialParserRecogniser_parse_material_string.get_name():
             return CederMaterialParserRecogniser_parse_material_string();
 
@@ -180,31 +179,13 @@ class CederMaterialParserRecogniser_extract_formula_from_string(BaseRecogniser):
 
 
 class MaterialParserCRF(BaseRecogniser):
-    def __init__(self, path=None):
+    def __init__(self):
         from delft.sequenceLabelling import Sequence
         from delft.sequenceLabelling.models import BidLSTM_CRF
 
         self.model = Sequence("material-BidLSTM_CRF", BidLSTM_CRF.name)
-        self.model.load(dir_path=path)
+        self.model.load(dir_path="./models")
 
-    def prepare_input_data(self, data):
-        NotImplementedError("This method should be overloaded")
-
-    def prepare_output_data(self, data):
-        NotImplementedError("This method should be overloaded")
-
-    def process(self, input):
-        input_prepared = self.prepare_input_data(input)
-        results = self.model.tag(input_prepared, "json")
-        predicted = self.prepare_output_data(results)
-
-        return predicted
-
-
-class MaterialParserCRF_Evaluation(MaterialParserCRF):
-
-    def __init__(self):
-        super(MaterialParserCRF_Evaluation, self).__init__("./models")
     @staticmethod
     def get_description():
         return "test the MaterialParser with BidLSTM_CRF"
@@ -221,6 +202,13 @@ class MaterialParserCRF_Evaluation(MaterialParserCRF):
         for text in data['texts']:
             predicted.append(
                 "".join([str(entity['text']) if entity['class'] == "<formula>" else "" for entity in text['entities']]))
+
+        return predicted
+
+    def process(self, input):
+        input_prepared = self.prepare_input_data(input)
+        results = self.model.tag(input_prepared, "json")
+        predicted = self.prepare_output_data(results)
 
         return predicted
 
