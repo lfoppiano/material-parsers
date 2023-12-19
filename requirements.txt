@@ -2,7 +2,7 @@ beautifulsoup4
 blingfire
 bottle
 -e git+https://github.com/CederGroupHub/text2chem.git#egg=text2chem
-spacy==3.1.0
+spacy==3.7.1
 # pymatgen==2021.3.3
 # pymatgen==2022.5.26
 pymatgen
