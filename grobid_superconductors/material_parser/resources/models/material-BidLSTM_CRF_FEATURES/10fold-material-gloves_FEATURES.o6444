@@ -1,0 +1,206 @@
+Using TensorFlow backend.
+/home/lfoppian0/anaconda3/envs/tensorflow-gpu_env/lib/python3.7/site-packages/sklearn/externals/joblib/__init__.py:15: DeprecationWarning: sklearn.externals.joblib is deprecated in 0.21 and will be removed in 0.23. Please import this functionality directly from joblib, which can be installed with: pip install joblib. If this warning is raised when loading pickled models, you may need to re-serialize those models with scikit-learn 0.21+.
+  warnings.warn(msg, category=DeprecationWarning)
+WARNING:tensorflow:From /home/lfoppian0/anaconda3/envs/tensorflow-gpu_env/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+WARNING:tensorflow:From /home/lfoppian0/anaconda3/envs/tensorflow-gpu_env/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+WARNING:tensorflow:From /home/lfoppian0/anaconda3/envs/tensorflow-gpu_env/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Loading data...
+3904 train sequences
+434 validation sequences
+483 evaluation sequences
+embedding_lmdb_path is not specified in the embeddings registry, so the embeddings will be loaded in memory...
+loading embeddings...
+path: /lustre/group/tdm/Luca/delft/data/embeddings/glove.840B.300d.txt
+embeddings loaded for 2196017 words and 300 dimensions
+
+Evaluation:
+
+------------------------ fold 0 --------------------------------------
+	f1 (micro): 96.63
+                  precision    recall  f1-score   support
+
+        <doping>     0.8148    0.7857    0.8000        28
+       <formula>     0.9861    0.9834    0.9848       362
+          <name>     0.9091    0.9231    0.9160        65
+         <shape>     0.9000    1.0000    0.9474        27
+         <value>     0.9620    0.9620    0.9620        79
+      <variable>     1.0000    0.9870    0.9935        77
+
+all (micro avg.)     0.9656    0.9671    0.9663       638
+
+
+------------------------ fold 1 --------------------------------------
+	f1 (micro): 96.80
+                  precision    recall  f1-score   support
+
+        <doping>     0.8077    0.7500    0.7778        28
+       <formula>     0.9783    0.9945    0.9863       362
+          <name>     0.9062    0.8923    0.8992        65
+         <shape>     0.9310    1.0000    0.9643        27
+         <value>     0.9747    0.9747    0.9747        79
+      <variable>     1.0000    1.0000    1.0000        77
+
+all (micro avg.)     0.9642    0.9718    0.9680       638
+
+
+------------------------ fold 2 --------------------------------------
+	f1 (micro): 96.24
+                  precision    recall  f1-score   support
+
+        <doping>     0.8400    0.7500    0.7925        28
+       <formula>     0.9781    0.9890    0.9835       362
+          <name>     0.9048    0.8769    0.8906        65
+         <shape>     0.9000    1.0000    0.9474        27
+         <value>     0.9500    0.9620    0.9560        79
+      <variable>     1.0000    0.9870    0.9935        77
+
+all (micro avg.)     0.9609    0.9639    0.9624       638
+
+
+------------------------ fold 3 --------------------------------------
+	f1 (micro): 97.26
+                  precision    recall  f1-score   support
+
+        <doping>     0.8462    0.7857    0.8148        28
+       <formula>     0.9890    0.9945    0.9917       362
+          <name>     0.9219    0.9077    0.9147        65
+         <shape>     0.9000    1.0000    0.9474        27
+         <value>     0.9625    0.9747    0.9686        79
+      <variable>     1.0000    1.0000    1.0000        77
+
+all (micro avg.)     0.9704    0.9749    0.9726       638
+
+
+------------------------ fold 4 --------------------------------------
+	f1 (micro): 97.10
+                  precision    recall  f1-score   support
+
+        <doping>     0.8148    0.7857    0.8000        28
+       <formula>     0.9836    0.9945    0.9890       362
+          <name>     0.9500    0.8769    0.9120        65
+         <shape>     0.9310    1.0000    0.9643        27
+         <value>     0.9625    0.9747    0.9686        79
+      <variable>     1.0000    1.0000    1.0000        77
+
+all (micro avg.)     0.9703    0.9718    0.9710       638
+
+
+------------------------ fold 5 --------------------------------------
+	f1 (micro): 96.95
+                  precision    recall  f1-score   support
+
+        <doping>     0.8400    0.7500    0.7925        28
+       <formula>     0.9863    0.9917    0.9890       362
+          <name>     0.9062    0.8923    0.8992        65
+         <shape>     0.9310    1.0000    0.9643        27
+         <value>     0.9625    0.9747    0.9686        79
+      <variable>     1.0000    1.0000    1.0000        77
+
+all (micro avg.)     0.9687    0.9702    0.9695       638
+
+
+------------------------ fold 6 --------------------------------------
+	f1 (micro): 97.03
+                  precision    recall  f1-score   support
+
+        <doping>     0.8462    0.7857    0.8148        28
+       <formula>     0.9917    0.9862    0.9889       362
+          <name>     0.8841    0.9385    0.9104        65
+         <shape>     0.9310    1.0000    0.9643        27
+         <value>     0.9506    0.9747    0.9625        79
+      <variable>     1.0000    1.0000    1.0000        77
+
+all (micro avg.)     0.9673    0.9734    0.9703       638
+
+
+------------------------ fold 7 --------------------------------------
+	f1 (micro): 97.42
+                  precision    recall  f1-score   support
+
+        <doping>     0.8276    0.8571    0.8421        28
+       <formula>     0.9863    0.9945    0.9904       362
+          <name>     0.9365    0.9077    0.9219        65
+         <shape>     0.9630    0.9630    0.9630        27
+         <value>     0.9747    0.9747    0.9747        79
+      <variable>     1.0000    0.9870    0.9935        77
+
+all (micro avg.)     0.9734    0.9749    0.9742       638
+
+
+------------------------ fold 8 --------------------------------------
+	f1 (micro): 96.64
+                  precision    recall  f1-score   support
+
+        <doping>     0.8148    0.7857    0.8000        28
+       <formula>     0.9862    0.9862    0.9862       362
+          <name>     0.8806    0.9077    0.8939        65
+         <shape>     0.9310    1.0000    0.9643        27
+         <value>     0.9506    0.9747    0.9625        79
+      <variable>     1.0000    1.0000    1.0000        77
+
+all (micro avg.)     0.9627    0.9702    0.9664       638
+
+
+------------------------ fold 9 --------------------------------------
+	f1 (micro): 97.03
+                  precision    recall  f1-score   support
+
+        <doping>     0.8400    0.7500    0.7925        28
+       <formula>     0.9944    0.9890    0.9917       362
+          <name>     0.8824    0.9231    0.9023        65
+         <shape>     0.9000    1.0000    0.9474        27
+         <value>     0.9625    0.9747    0.9686        79
+      <variable>     1.0000    1.0000    1.0000        77
+
+all (micro avg.)     0.9688    0.9718    0.9703       638
+
+----------------------------------------------------------------------
+
+** Worst ** model scores - run 2
+                  precision    recall  f1-score   support
+
+        <doping>     0.8400    0.7500    0.7925        28
+       <formula>     0.9781    0.9890    0.9835       362
+          <name>     0.9048    0.8769    0.8906        65
+         <shape>     0.9000    1.0000    0.9474        27
+         <value>     0.9500    0.9620    0.9560        79
+      <variable>     1.0000    0.9870    0.9935        77
+
+all (micro avg.)     0.9609    0.9639    0.9624       638
+
+
+** Best ** model scores - run 7
+                  precision    recall  f1-score   support
+
+        <doping>     0.8276    0.8571    0.8421        28
+       <formula>     0.9863    0.9945    0.9904       362
+          <name>     0.9365    0.9077    0.9219        65
+         <shape>     0.9630    0.9630    0.9630        27
+         <value>     0.9747    0.9747    0.9747        79
+      <variable>     1.0000    0.9870    0.9935        77
+
+all (micro avg.)     0.9734    0.9749    0.9742       638
+
+----------------------------------------------------------------------
+
+Average over 10 folds
+                  precision    recall  f1-score   support
+
+        <doping>     0.8292    0.7786    0.8027        28
+       <formula>     0.9860    0.9903    0.9881       362
+          <name>     0.9082    0.9046    0.9060        65
+         <shape>     0.9218    0.9963    0.9574        27
+         <value>     0.9613    0.9722    0.9667        79
+      <variable>     1.0000    0.9961    0.9980        77
+
+all (micro avg.)     0.9672    0.9710    0.9691          
+
+model config file saved
+preprocessor saved
+model saved
