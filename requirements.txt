@@ -11,3 +11,5 @@ lxml
 tqdm
 pyyaml
 -e git+https://github.com/neuged/webanno_tsv#egg=webanno_tsv
+delft
+supermat
