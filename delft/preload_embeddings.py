@@ -43,24 +43,18 @@ def preload(embeddings_name, input_path=None, registry_path=None):
         if description is not None and "url" in description and len(description["url"]) > 0:
             url = description["url"]
             download_path = embeddings.registry['embedding-download-path']
-            # if the download path does not exist, we create it
-            if not os.path.isdir(download_path):
-                try:
-                    os.mkdir(download_path)
-                except OSError:
-                    print("Creation of the download directory", download_path, "failed")
-
-            print("Downloading resource file for", embeddings_name, "...")
+            os.makedirs(download_path, exist_ok=True)
+            print("Downloading resource file for", embeddings_name, "in", download_path)
             embeddings_path = download_file(url, download_path)
-            if embeddings_path != None and os.path.isfile(embeddings_path):
-                print("Download sucessful:", embeddings_path)
+            if embeddings_path is not None and os.path.isfile(embeddings_path):
+                print("Download successful:", embeddings_path)
         else:
             print("Embeddings resource is not specified in the embeddings registry:", embeddings_name)
     else:
         embeddings_path = input_path
 
     if embeddings_path is None:
-        print("Fail to retrive embedding file for", embeddings_name)
+        print("Fail to retrieve embedding file for", embeddings_name)
 
     embedding_file = open_embedding_file(embeddings_path)
     if embedding_file is None:
@@ -70,7 +64,7 @@ def preload(embeddings_name, input_path=None, registry_path=None):
     # create and load the database in write mode
     embedding_lmdb_path = embeddings.registry["embedding-lmdb-path"]
     if not os.path.isdir(embedding_lmdb_path):
-        os.makedirs(embedding_lmdb_path)
+        os.makedirs(embedding_lmdb_path, exist_ok=True)
 
     envFilePath = os.path.join(embedding_lmdb_path, embeddings_name)
     embeddings.env = lmdb.open(envFilePath, map_size=map_size)
