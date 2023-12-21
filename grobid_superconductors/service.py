@@ -135,6 +135,7 @@ class Service(object):
 
         results = self.ml_parser.process(input_raw)
 
+        response.content_type = 'application/json'
         return results
 
         # text.replace("\r\n", "\n");
@@ -149,8 +150,9 @@ class Service(object):
 
         results = self.ml_parser.process(input_raw)
 
-        return results
-        # text.replace("\r\n", "\n");
+        response.content_type = 'application/json'
+
+        return json.dumps(results, indent=4)
 
     def process_single_sentence(self, paragraph_input, link_types_as_list, skip_classification):
         """Link entities in a single sentence"""

@@ -40,12 +40,13 @@ class MaterialParserML:
         self.material_parser_wrapper = formula_parser
 
     def process(self, input_data: Union[str, list]):
-        if type(input_data) == str:
+        if type(input_data) is str:
             input_data = [input_data]
 
         results = self.model.tag(input_data, "json")
+        parsed_results = [dict(result) for result in self.extract_results(results)]
 
-        return results
+        return parsed_results
 
     def extract_results(self, output):
         results = []
