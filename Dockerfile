@@ -19,7 +19,7 @@ WORKDIR /opt/service
 COPY requirements.txt .
 COPY resources/config.json resources
 COPY resources/data /opt/service/resources/data
-
+COPY delft /opt/service/delft
 
 ENV VIRTUAL_ENV=/opt/service/venv
 RUN python3 -m venv $VIRTUAL_ENV
