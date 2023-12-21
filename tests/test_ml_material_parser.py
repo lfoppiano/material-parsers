@@ -1,13 +1,12 @@
-from grobid_superconductors.material_parser.materialParserWrapper import MaterialParserWrapper
-from grobid_superconductors.material_parser.ml_material_parser import MaterialParserCRF, replace_variable, \
-    resolve_variables, expand_formula, generate_permutations
+from grobid_superconductors.material_parser.material_parser_formulas import MaterialParserFormulas
+from grobid_superconductors.material_parser.material_parser_ml import MaterialParserML, replace_variable, \
+    expand_formula, resolve_variables, generate_permutations
 
-
-model = MaterialParserCRF(MaterialParserWrapper())
-def test():
-    result = model.process(
-        ["j9f9j209 underdoped LaFeB07", "La Fe B 8-x with x = 0.1", "underdoped single crystal LaFeB09 (TLL222)"])
-    print(result)
+model = MaterialParserML(MaterialParserFormulas())
+# def test():
+#     result = model.process(
+#         ["j9f9j209 underdoped LaFeB07", "La Fe B 8-x with x = 0.1", "underdoped single crystal LaFeB09 (TLL222)"])
+#     print(result)
 
 
 def test_extract_results():

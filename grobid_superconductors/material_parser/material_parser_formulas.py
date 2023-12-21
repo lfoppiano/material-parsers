@@ -10,7 +10,7 @@ from text2chem.regex_parser import RegExParser
 from grobid_superconductors.material_parser.material2class import Material2Class, Material2Tags
 
 
-class MaterialParserWrapper:
+class MaterialParserFormulas:
     def __init__(self, material_parser=None):
         if not material_parser:
             material_parser = ParserPipelineBuilder() \
