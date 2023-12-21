@@ -6,7 +6,7 @@ from typing import Union
 from delft.sequenceLabelling import Sequence
 from delft.sequenceLabelling.models import BidLSTM_CRF
 
-from grobid_superconductors.material_parser.materialParserWrapper import MaterialParserWrapper
+from grobid_superconductors.material_parser.material_parser_formulas import MaterialParserFormulas
 
 REPLACEMENT_SYMBOLS_VARIABLES = [(" ͑", "")]
 REPLACEMENT_SYMBOLS_VALUES = [
@@ -29,7 +29,7 @@ PATTERN_NAMES_TO_AVOID = r"[A-Z][a-z]{1,3}[- ]*\\d{3,5}"
 
 
 class MaterialParserML:
-    def __init__(self, formula_parser: MaterialParserWrapper = None, model_path: str = "resources/data/models") -> None:
+    def __init__(self, formula_parser: MaterialParserFormulas = None, model_path: str = "resources/data/models") -> None:
         self.model = Sequence("material-BidLSTM_CRF", BidLSTM_CRF.name)
         # self.model = Sequence("material-BERT_CRF", BERT_CRF.name)
         self.model.load(dir_path=model_path)
