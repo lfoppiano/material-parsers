@@ -100,3 +100,23 @@ If you use our work, and write about it, please cite [our paper](https://hal.inr
 ## Developer's notes
 
 > python -m spacy download en_core_web_sm
+
+
+```shell
+conda install -c apple tensorflow-deps
+```
+
+```shell
+pip install -r requirements.txt 
+```
+
+```shell
+conda install scikit-learn=1.0.1
+```
+
+We need to remove tensorflow, h5py, scikit-learn from the delft dependencies in setup.py 
+
+```shell
+pip install -e ../../delft 
+```
+

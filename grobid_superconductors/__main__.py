@@ -4,7 +4,7 @@ from grobid_superconductors.service import init
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description="Grobid superconductors extended python tools service.")
+        description="Materials parsing and identification python tools service.")
 
     parser.add_argument("--host", required=False, default='0.0.0.0', help="Hostname.")
     parser.add_argument("--port", required=False, default=8080, help="Listening port.")

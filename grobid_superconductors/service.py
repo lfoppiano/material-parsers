@@ -1,7 +1,6 @@
 import json
 import os
 from ast import literal_eval
-from collections import OrderedDict
 
 import bottle
 import spacy
@@ -9,6 +8,7 @@ from bottle import request, response, run
 
 from grobid_superconductors.linking.linking_module import RuleBasedLinker, CriticalTemperatureClassifier
 from grobid_superconductors.material_parser.materialParserWrapper import MaterialParserWrapper
+from grobid_superconductors.material_parser.ml_material_parser import MaterialParserCRF
 
 bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024 * 1024
 
@@ -52,6 +52,8 @@ class Service(object):
 
         self.material_parser_wrapper = MaterialParserWrapper()
 
+        self.ml_parser = MaterialParserCRF(self.material_parser_wrapper)
+
     def get_version(self):
         if self.version is None:
             try:
@@ -61,7 +63,7 @@ class Service(object):
             except:
                 self.version = "unknown"
 
-        info_json = {"name": "grobid-superconductors-tools", "version": self.version}
+        info_json = {"name": "materials parsers and tools", "version": self.version}
         return info_json
 
     def classify_tc(self):
@@ -123,6 +125,32 @@ class Service(object):
             result = result[0]
 
         return json.dumps(result)
+
+    def process_materials(self):
+        input_raw = request.forms.get("texts")
+
+        if input_raw is None:
+            response.status = 400
+            return 'Required a parameter "texts" as form-data.'
+
+        results = self.ml_parser.process(input_raw)
+
+        return results
+
+        # text.replace("\r\n", "\n");
+        # Arrays.asList(textPreprocessed.split("\n"));
+
+    def process_material(self):
+        input_raw = request.forms.get("text")
+
+        if input_raw is None:
+            response.status = 400
+            return 'Required a parameter "text" as form-data.'
+
+        results = self.ml_parser.process(input_raw)
+
+        return results
+        # text.replace("\r\n", "\n");
 
     def process_single_sentence(self, paragraph_input, link_types_as_list, skip_classification):
         """Link entities in a single sentence"""
@@ -306,6 +334,8 @@ def init(host='0.0.0.0', port='8080', config="config.json"):
     app = Service()
 
     bottle.route('/process/link', method="POST")(app.process_link)
+    bottle.route('/process/material', method="POST")(app.process_material)
+    bottle.route('/process/materials', method="POST")(app.process_materials)
 
     bottle.route('/convert/name/formula', method="POST")(app.name_to_formula)
     bottle.route('/convert/formula/composition', method="POST")(app.formula_to_composition)

@@ -1,15 +1,24 @@
+tensorflow-metal==0.6.0
+tensorflow-macos==2.10.0
+numpy==1.22.3
+transformers==4.15.0
+
 beautifulsoup4
+lxml
+
 blingfire
-bottle
+
 -e git+https://github.com/CederGroupHub/text2chem.git#egg=text2chem
-spacy==3.7.1
+spacy==3.7.2
 # pymatgen==2021.3.3
 # pymatgen==2022.5.26
-pymatgen
+pymatgen==2023.9.25
+-e git+https://github.com/neuged/webanno_tsv#egg=webanno_tsv
+supermat
+
+
 pytest
-lxml
+
+bottle
 tqdm
 pyyaml
--e git+https://github.com/neuged/webanno_tsv#egg=webanno_tsv
-delft==0.3.4
-supermat
