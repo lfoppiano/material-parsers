@@ -2,7 +2,7 @@ from grobid_superconductors.material_parser.material_parser_formulas import Mate
 from grobid_superconductors.material_parser.material_parser_ml import MaterialParserML, replace_variable, \
     expand_formula, resolve_variables, generate_permutations
 
-model = MaterialParserML(MaterialParserFormulas())
+model = MaterialParserML(MaterialParserFormulas(), model_path=None)
 # def test():
 #     result = model.process(
 #         ["j9f9j209 underdoped LaFeB07", "La Fe B 8-x with x = 0.1", "underdoped single crystal LaFeB09 (TLL222)"])
