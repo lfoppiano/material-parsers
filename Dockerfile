@@ -28,6 +28,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN python3 -m pip install pip --upgrade
 RUN python3 -m pip install -r ./requirements.txt
 RUN python3 -m spacy download en_core_web_sm
+RUN python3 delft/preload_embeddings.py --registry delft/resources-registry.json
 
 # extract version 
 COPY .git ./.git
