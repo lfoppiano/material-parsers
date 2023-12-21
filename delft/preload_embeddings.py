@@ -14,19 +14,20 @@ Obviously it will add a few GB more to the docker image. Without pre-loading, th
 downloaded and loaded in lmdb at each run of the docker container. 
 '''
 
-import os
 import argparse
+import json
+import os
+
+import lmdb
 from delft.utilities.Embeddings import Embeddings, open_embedding_file
 from delft.utilities.Utilities import download_file
-import lmdb
-import json
 
 map_size = 100 * 1024 * 1024 * 1024
 
 
 def preload(embeddings_name, input_path=None, registry_path=None):
     resource_registry = None
-    if registry_path != None:
+    if registry_path is not None:
         with open(registry_path, 'r') as f:
             resource_registry = json.load(f)
 
@@ -34,7 +35,7 @@ def preload(embeddings_name, input_path=None, registry_path=None):
 
     description = embeddings.get_description(embeddings_name)
     if description is None:
-        print("Error: embedding name", embeddings_name, "is not registered in", path)
+        print(f"Error: embedding name {embeddings_name} is not registered in {registry_path}")
 
     if input_path is None:
         embeddings_path = None
@@ -58,7 +59,7 @@ def preload(embeddings_name, input_path=None, registry_path=None):
     else:
         embeddings_path = input_path
 
-    if embeddings_path == None:
+    if embeddings_path is None:
         print("Fail to retrive embedding file for", embeddings_name)
 
     embedding_file = open_embedding_file(embeddings_path)
