@@ -48,3 +48,26 @@ jobs:
         run: docker build . --file Dockerfile --tag lfoppiano/grobid-superconductors-tools:latest
       - name: Cleanup older than 24h images and containers
         run: docker system prune --filter "until=24h" --force
+
+
+  build-docker-public:
+    needs: [build-docker]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create more disk space
+        run: sudo rm -rf /usr/share/dotnet && sudo rm -rf /opt/ghc && sudo rm -rf "/usr/local/share/boost" && sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+      - uses: actions/checkout@v2
+      - name: Build and push
+        id: docker_build
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          image: lfoppiano/grobid-superconductors-tools
+          registry: docker.io
+#          pushImage: ${{ github.event_name != 'pull_request' }}
+          pushImage: true
+          tags: latest-develop
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
