@@ -7,7 +7,8 @@ blingfire
 spacy==3.7.2
 # pymatgen==2021.3.3
 # pymatgen==2022.5.26
-pymatgen==2023.9.25
+# pymatgen==2023.9.25 #3.9
+pymatgen==2023.8.10
 -e git+https://github.com/neuged/webanno_tsv#egg=webanno_tsv
 supermat
 
