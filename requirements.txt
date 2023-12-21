@@ -1,8 +1,3 @@
-tensorflow-metal==0.6.0
-tensorflow-macos==2.10.0
-numpy==1.22.3
-transformers==4.15.0
-
 beautifulsoup4
 lxml
 
@@ -22,3 +17,4 @@ pytest
 bottle
 tqdm
 pyyaml
+delft
