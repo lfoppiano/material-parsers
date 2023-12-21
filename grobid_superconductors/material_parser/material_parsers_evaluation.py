@@ -80,7 +80,7 @@ class BaseRecogniser:
         elif name == MaterialParserCRF.get_name():
             return MaterialParserCRF()
         elif name == CederMaterialParserRecogniser_parse_material_string.get_name():
-            return CederMaterialParserRecogniser_parse_material_string();
+            return CederMaterialParserRecogniser_parse_material_string()
 
     def prepare_input_data(self, data):
         return data
@@ -88,6 +88,39 @@ class BaseRecogniser:
     def prepare_output_data(self, data):
         return data
 
+class MaterialParserCRF(BaseRecogniser):
+    def __init__(self):
+        from delft.sequenceLabelling import Sequence
+        from delft.sequenceLabelling.models import BidLSTM_CRF
+
+        self.model = Sequence("material-BidLSTM_CRF", BidLSTM_CRF.name)
+        self.model.load(dir_path="./models")
+
+    @staticmethod
+    def get_description():
+        return "test the MaterialParser with BidLSTM_CRF"
+
+    @staticmethod
+    def get_name():
+        return "crf"
+
+    def prepare_input_data(self, data):
+        return [d['raw'] for d in data]
+
+    def prepare_output_data(self, data):
+        predicted = []
+        for text in data['texts']:
+            predicted.append(
+                "".join([str(entity['text']) if entity['class'] == "<formula>" else "" for entity in text['entities']]))
+
+        return predicted
+
+    def process(self, input):
+        input_prepared = self.prepare_input_data(input)
+        results = self.model.tag(input_prepared, "json")
+        predicted = self.prepare_output_data(results)
+
+        return predicted
 
 class CederMaterialParserRecogniser_parse_material_string(BaseRecogniser):
     def __init__(self):
