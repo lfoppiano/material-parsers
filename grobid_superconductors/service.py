@@ -7,8 +7,8 @@ import spacy
 from bottle import request, response, run
 
 from grobid_superconductors.linking.linking_module import RuleBasedLinker, CriticalTemperatureClassifier
-from grobid_superconductors.material_parser.materialParserWrapper import MaterialParserWrapper
-from grobid_superconductors.material_parser.ml_material_parser import MaterialParserCRF
+from grobid_superconductors.material_parser.material_parser_formulas import MaterialParserFormulas
+from grobid_superconductors.material_parser.material_parser_ml import MaterialParserML
 
 bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024 * 1024
 
@@ -50,9 +50,9 @@ class Service(object):
 
         self.version = None
 
-        self.material_parser_wrapper = MaterialParserWrapper()
+        self.material_parser_wrapper = MaterialParserFormulas()
 
-        self.ml_parser = MaterialParserCRF(self.material_parser_wrapper)
+        self.ml_parser = MaterialParserML(self.material_parser_wrapper)
 
     def get_version(self):
         if self.version is None:
