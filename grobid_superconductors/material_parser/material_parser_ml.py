@@ -29,10 +29,14 @@ PATTERN_NAMES_TO_AVOID = r"[A-Z][a-z]{1,3}[- ]*\\d{3,5}"
 
 
 class MaterialParserML:
-    def __init__(self, formula_parser: MaterialParserFormulas = None, model_path: str = "resources/data/models") -> None:
-        self.model = Sequence("material-BidLSTM_CRF", BidLSTM_CRF.name)
-        # self.model = Sequence("material-BERT_CRF", BERT_CRF.name)
-        self.model.load(dir_path=model_path)
+    def __init__(self,
+                 formula_parser: MaterialParserFormulas = None,
+                 model_path: Union[str, None] = "resources/data/models"
+                 ) -> None:
+        if model_path:
+            self.model = Sequence("material-BidLSTM_CRF", BidLSTM_CRF.name)
+            # self.model = Sequence("material-BERT_CRF", BERT_CRF.name)
+            self.model.load(dir_path=model_path)
         self.material_parser_wrapper = formula_parser
 
     def process(self, input_data: Union[str, list]):
