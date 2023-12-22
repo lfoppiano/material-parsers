@@ -3,50 +3,35 @@ from grobid_superconductors.material_parser.material_parser_ml import MaterialPa
     expand_formula, resolve_variables, generate_permutations, cluster_by_label
 
 
-def test():
-    model = MaterialParserML(MaterialParserFormulas())
-    result = model.process(
-        ["j9f9j209 underdoped LaFeBO7", "La Fe B 8-x with x = 0.1", "underdoped single crystal LaFeB09 (TLL222)"])
-    print(result)
+# def test():
+#     model = MaterialParserML(MaterialParserFormulas())
+#     result = model.process(
+#         ["j9f9j209 underdoped LaFeBO7", "La Fe B 8-x with x = 0.1", "underdoped single crystal LaFeB09 (TLL222)"])
+#     print(result)
 
 
 def test_extract_results():
     model = MaterialParserML(MaterialParserFormulas(), model_path=None)
-    output = {
-        'software': 'DeLFT',
-        'date': '2023-12-19T19:15:48.334995',
-        'model': 'material-BidLSTM_CRF',
-        'texts': [
-            {
-                'text': 'powderss underdoped LaFeB07',
-                'entities': [
-                    {'text': 'powderss', 'class': '<shape>', 'score': 1.0, 'beginOffset': 0, 'endOffset': 7},
-                    {'text': 'underdoped', 'class': '<doping>', 'score': 1.0, 'beginOffset': 9, 'endOffset': 18},
-                    {'text': 'LaFeBO7', 'class': '<formula>', 'score': 1.0, 'beginOffset': 20, 'endOffset': 26}
-                ]
-            },
-            {
-                'text': 'La Fe B 8-x with x = 0.1, 0.2',
-                'entities': [
-                    {'text': 'La Fe B 8-x', 'class': '<formula>', 'score': 1.0, 'beginOffset': 0, 'endOffset': 10},
-                    {'text': 'x', 'class': '<variable>', 'score': 1.0, 'beginOffset': 17, 'endOffset': 17},
-                    {'text': '0.1', 'class': '<value>', 'score': 1.0, 'beginOffset': 21, 'endOffset': 23},
-                    {'text': '0.2', 'class': '<value>', 'score': 1.0, 'beginOffset': 21, 'endOffset': 23}
-                ]
-            },
-            {
-                'text': 'underdoped single crystal LaFeB09 (TLL222)',
-                'entities': [
-                    {'text': 'underdoped', 'class': '<doping>', 'score': 1.0, 'beginOffset': 0, 'endOffset': 9},
-                    {'text': 'single crystal', 'class': '<shape>', 'score': 1.0, 'beginOffset': 11,
-                     'endOffset': 24},
-                    {'text': 'LaFeB09', 'class': '<formula>', 'score': 1.0, 'beginOffset': 26, 'endOffset': 32},
-                    {'text': 'TLL222', 'class': '<name>', 'score': 1.0, 'beginOffset': 35, 'endOffset': 40}
-                ]
-            }
+    output = [
+        [
+            {'text': 'powderss', 'class': '<shape>', 'score': 1.0, 'beginOffset': 0, 'endOffset': 7},
+            {'text': 'underdoped', 'class': '<doping>', 'score': 1.0, 'beginOffset': 9, 'endOffset': 18},
+            {'text': 'LaFeBO7', 'class': '<formula>', 'score': 1.0, 'beginOffset': 20, 'endOffset': 26}
         ],
-        'runtime': 3.248
-    }
+        [
+            {'text': 'La Fe B 8-x', 'class': '<formula>', 'score': 1.0, 'beginOffset': 0, 'endOffset': 10},
+            {'text': 'x', 'class': '<variable>', 'score': 1.0, 'beginOffset': 17, 'endOffset': 17},
+            {'text': '0.1', 'class': '<value>', 'score': 1.0, 'beginOffset': 21, 'endOffset': 23},
+            {'text': '0.2', 'class': '<value>', 'score': 1.0, 'beginOffset': 21, 'endOffset': 23}
+        ],
+        [
+            {'text': 'underdoped', 'class': '<doping>', 'score': 1.0, 'beginOffset': 0, 'endOffset': 9},
+            {'text': 'single crystal', 'class': '<shape>', 'score': 1.0, 'beginOffset': 11,
+             'endOffset': 24},
+            {'text': 'LaFeB09', 'class': '<formula>', 'score': 1.0, 'beginOffset': 26, 'endOffset': 32},
+            {'text': 'TLL222', 'class': '<name>', 'score': 1.0, 'beginOffset': 35, 'endOffset': 40}
+        ]
+    ]
 
     entities = model.extract_results(output)
 
@@ -54,7 +39,7 @@ def test_extract_results():
 
     assert entities[0]['shape'] == "powderss"
     assert entities[0]['doping'] == "underdoped"
-    assert entities[0]['formula']['raw_value'] == "LaFeB07"
+    assert entities[0]['formula']['raw_value'] == "LaFeBO7"
 
     assert entities[1]['formula']['raw_value'] == "La Fe B 8-x"
     assert entities[1]['variables'] == {'x': ['0.1', '0.2']}
@@ -280,13 +265,42 @@ def test_cluster_1():
 
 
 def test_cluster_2():
-    results = [[('under', 'B-<doping>'), ('-', 'I-<doping>'), ('doped', 'I-<doping>'), (' ', 'I-<doping>'),
-                ('La', 'B-<formula>'), (' ', 'I-<formula>'), ('x', 'I-<formula>'), (' ', 'I-<formula>'),
-                ('Fe', 'I-<formula>'), (' ', 'I-<formula>'), ('8', 'I-<formula>'), (' ', 'I-<formula>'),
-                ('O', 'I-<formula>'), ('7', 'I-<formula>'), (' ', 'I-<formula>'), ('single', 'B-<shape>'),
-                (' ', 'I-<shape>'), ('crystals', 'I-<shape>')], [('MgB', 'B-<formula>'), ('2', 'I-<formula>')],
-               [('Oxygen', 'B-<formula>')], [('Hydrogen', 'B-<name>')]]
+    results = [
+        [
+            ('under', 'B-<doping>'),
+            ('-', 'I-<doping>'),
+            ('doped', 'I-<doping>'),
+            (' ', 'I-<doping>'),
+            ('La', 'B-<formula>'),
+            (' ', 'I-<formula>'),
+            ('x', 'I-<formula>'),
+            (' ', 'I-<formula>'),
+            ('Fe', 'I-<formula>'),
+            (' ', 'I-<formula>'),
+            ('8', 'I-<formula>'),
+            (' ', 'I-<formula>'),
+            ('O', 'I-<formula>'),
+            ('7', 'I-<formula>'),
+            (' ', 'I-<formula>'),
+            ('single', 'B-<shape>'),
+            (' ', 'I-<shape>'),
+            ('crystals', 'I-<shape>')
+        ], [
+            ('MgB', 'B-<formula>'),
+            ('2', 'I-<formula>')
+        ],
+        [
+            ('Oxygen', 'B-<formula>')
+        ],
+        [
+            ('Hydrogen', 'B-<name>')
+        ]
+    ]
 
     clusters = cluster_by_label(results)
 
-    print(clusters)
+    assert len(clusters) == 4
+    assert len(clusters[0]) == 3
+    assert len(clusters[1]) == 1
+    assert len(clusters[2]) == 1
+    assert len(clusters[3]) == 1
