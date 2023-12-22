@@ -17,3 +17,5 @@ build/
 glove*
 
 **/test
+
+src
