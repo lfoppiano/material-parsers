@@ -1,5 +1,5 @@
 {
-    "model_name": "material-BidLSTM_CRF",
+    "model_name": "material-parsers-BidLSTM_CRF",
     "architecture": "BidLSTM_CRF",
     "embeddings_name": "glove-840B",
     "char_vocab_size": 123,

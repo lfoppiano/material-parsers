@@ -127,31 +127,16 @@ class Service(object):
         return json.dumps(result)
 
     def process_materials(self):
-        input_raw = request.forms.get("texts")
-
-        if input_raw is None:
-            response.status = 400
-            return 'Required a parameter "texts" as form-data.'
-
-        results = self.ml_parser.process(input_raw)
-
-        response.content_type = 'application/json'
-        return results
-
-        # text.replace("\r\n", "\n");
-        # Arrays.asList(textPreprocessed.split("\n"));
-
-    def process_material(self):
         input_raw = request.forms.get("text")
 
         if input_raw is None:
             response.status = 400
             return 'Required a parameter "text" as form-data.'
 
-        results = self.ml_parser.process(input_raw)
+        input_split = input_raw.split("\n")
+        results = self.ml_parser.process(input_split)
 
         response.content_type = 'application/json'
-
         return json.dumps(results, indent=4)
 
     def process_single_sentence(self, paragraph_input, link_types_as_list, skip_classification):
@@ -336,8 +321,7 @@ def init(host='0.0.0.0', port='8080', config="config.json"):
     app = Service()
 
     bottle.route('/process/link', method="POST")(app.process_link)
-    bottle.route('/process/material', method="POST")(app.process_material)
-    bottle.route('/process/materials', method="POST")(app.process_materials)
+    bottle.route('/process/material', method="POST")(app.process_materials)
 
     bottle.route('/convert/name/formula', method="POST")(app.name_to_formula)
     bottle.route('/convert/formula/composition', method="POST")(app.formula_to_composition)

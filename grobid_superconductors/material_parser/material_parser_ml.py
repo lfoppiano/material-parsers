@@ -6,6 +6,7 @@ from typing import Union
 from delft.sequenceLabelling import Sequence
 from delft.sequenceLabelling.models import BidLSTM_CRF
 
+from grobid_superconductors.commons.grobid_tokenizer import tokenizeSimple
 from grobid_superconductors.material_parser.material_parser_formulas import MaterialParserFormulas
 
 REPLACEMENT_SYMBOLS_VARIABLES = [(" ͑", "")]
@@ -34,7 +35,7 @@ class MaterialParserML:
                  model_path: Union[str, None] = "resources/data/models"
                  ) -> None:
         if model_path:
-            self.model = Sequence("material-BidLSTM_CRF", BidLSTM_CRF.name)
+            self.model = Sequence("material-parsers-BidLSTM_CRF", BidLSTM_CRF.name)
             # self.model = Sequence("material-BERT_CRF", BERT_CRF.name)
             self.model.load(dir_path=model_path)
         self.material_parser_wrapper = formula_parser
@@ -43,14 +44,18 @@ class MaterialParserML:
         if type(input_data) is str:
             input_data = [input_data]
 
-        results = self.model.tag(input_data, "json")
-        parsed_results = [dict(result) for result in self.extract_results(results)]
+        tokenizer_input = [tokenizeSimple(t) for t in input_data]
+        results = self.model.tag(tokenizer_input, "text")
+
+        clusters = cluster_by_label(results)
+
+        parsed_results = [dict(result) for result in self.extract_results(clusters)]
 
         return parsed_results
 
     def extract_results(self, output):
         results = []
-        for example in output['texts']:
+        for example in output:
             shapes = []
             dopings = []
             fabrications = []
@@ -59,11 +64,10 @@ class MaterialParserML:
 
             materials = []
             material = defaultdict(lambda: None, {})
-            entities = example['entities'] if 'entities' in example else []
 
             processing_variable = None
 
-            for entity in entities:
+            for entity in example:
                 label = entity['class'].replace(">", "").replace("<", "")
                 text = entity['text']
 
@@ -122,7 +126,7 @@ class MaterialParserML:
                 resolved_formulas = resolve_variables(material)
 
                 # If there are no resolved formulas (no variable), but there is a raw formula, add it
-                if not resolved_formulas and (
+                if not resolved_formulas and material['formula'] and (
                     material['formula']['raw_value'] is not None and material['formula']['raw_value'].strip()):
                     resolved_formulas.append(material['formula']['raw_value'])
 
@@ -145,19 +149,19 @@ class MaterialParserML:
 
                 # If we don't have any formula but a name, let's try to calculate the formula from the name...
                 if self.material_parser_wrapper:
-                    if (
-                        material['formula'] is None or not material['formula'][
-                        'raw_value'].strip()) and material.name and not re.match(PATTERN_NAMES_TO_AVOID,
-                                                                                 material['name'].replace("  ", " ")):
+                    if (material['formula'] is None or not material['formula'][
+                        'raw_value'].strip()) and material['name'] and not re.match(PATTERN_NAMES_TO_AVOID,
+                                                                                    material['name'].replace("  ",
+                                                                                                             " ")):
 
-                        converted_formula = self.material_parser_wrapper.name_to_formula(material.name)
+                        converted_formula = self.material_parser_wrapper.name_to_formula(material['name'])
                         formula = None
 
                         if converted_formula['formula']:
                             formula = {'raw_value': converted_formula['formula']}
                             material['formula'] = formula
 
-                        if converted_formula.composition:
+                        if converted_formula['composition']:
                             if formula is None:
                                 formula = {}
                             formula['composition'] = converted_formula['composition']
@@ -360,3 +364,38 @@ def expand_formula(formula):
         return [formula]
 
     return expanded_formulas
+
+
+def extract_label(item):
+    if type(item) is not str:
+        item = item[1]
+    if item == "O":
+        return "O"
+    return item.split('-<')[1][:-1]
+
+
+def cluster_by_label(results):
+    def is_start_of_sequence(item):
+        return item[1].startswith('B-')
+
+    groups = []
+    for result in results:
+
+        sequences = []
+        current_sequence = []
+        for idx, item in enumerate(result):
+            if item[1] == "O":
+                continue
+            if is_start_of_sequence(item):
+                if len(current_sequence) > 0:
+                    sequences.append(current_sequence)
+                    current_sequence = []
+            current_sequence.append(item)
+
+        if len(current_sequence) > 0:
+            sequences.append(current_sequence)
+
+        groups.append(
+            [{"text": str.strip("".join([seq[0] for seq in sequence])), "class": extract_label(sequence[0])} for sequence in sequences])
+
+    return groups

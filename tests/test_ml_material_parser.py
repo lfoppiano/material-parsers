@@ -1,15 +1,17 @@
 from grobid_superconductors.material_parser.material_parser_formulas import MaterialParserFormulas
 from grobid_superconductors.material_parser.material_parser_ml import MaterialParserML, replace_variable, \
-    expand_formula, resolve_variables, generate_permutations
+    expand_formula, resolve_variables, generate_permutations, cluster_by_label
 
-model = MaterialParserML(MaterialParserFormulas(), model_path=None)
-# def test():
-#     result = model.process(
-#         ["j9f9j209 underdoped LaFeB07", "La Fe B 8-x with x = 0.1", "underdoped single crystal LaFeB09 (TLL222)"])
-#     print(result)
+
+def test():
+    model = MaterialParserML(MaterialParserFormulas())
+    result = model.process(
+        ["j9f9j209 underdoped LaFeBO7", "La Fe B 8-x with x = 0.1", "underdoped single crystal LaFeB09 (TLL222)"])
+    print(result)
 
 
 def test_extract_results():
+    model = MaterialParserML(MaterialParserFormulas(), model_path=None)
     output = {
         'software': 'DeLFT',
         'date': '2023-12-19T19:15:48.334995',
@@ -20,7 +22,7 @@ def test_extract_results():
                 'entities': [
                     {'text': 'powderss', 'class': '<shape>', 'score': 1.0, 'beginOffset': 0, 'endOffset': 7},
                     {'text': 'underdoped', 'class': '<doping>', 'score': 1.0, 'beginOffset': 9, 'endOffset': 18},
-                    {'text': 'LaFeB07', 'class': '<formula>', 'score': 1.0, 'beginOffset': 20, 'endOffset': 26}
+                    {'text': 'LaFeBO7', 'class': '<formula>', 'score': 1.0, 'beginOffset': 20, 'endOffset': 26}
                 ]
             },
             {
@@ -229,3 +231,62 @@ def test_generate_permutations_2():
     assert result[1] == "Li 0.1 (NH 3 ) 0.2 Fe 2 (Te 0.1 Se 0.9 ) 2"
     assert result[2] == "Li 0.2 (NH 3 ) 0.1 Fe 2 (Te 0.1 Se 0.9 ) 2"
     assert result[3] == "Li 0.2 (NH 3 ) 0.2 Fe 2 (Te 0.1 Se 0.9 ) 2"
+
+
+def test_cluster_1():
+    results = [[
+        ('j', 'B-<formula>'),
+        ('9', 'I-<formula>'),
+        ('f', 'I-<formula>'),
+        ('9', 'B-<formula>'),
+        ('j', 'I-<formula>'),
+        ('209', 'I-<formula>'),
+        (' ', 'O'),
+        ('underdoped', 'O'),
+        (' ', 'O'),
+        ('LaFeBO', 'B-<formula>'),
+        ('7', 'I-<formula>')
+    ]]
+
+    clusters = cluster_by_label(results)
+
+    assert len(clusters) == 1
+    assert len(clusters[0]) == 3
+
+
+def test_cluster_1():
+    results = [
+        [
+            ('underdoped', 'B-<doping>'),
+            (' ', 'O'),
+            ('LaFeBO', 'B-<formula>'),
+            ('7', 'I-<formula>'),
+            (' ', 'O'),
+            ('single', 'B-<shape>'),
+            ('crystal', 'I-<shape>')
+        ],
+        [
+            ('MgB', 'B-<formula>'),
+            (' ', 'O'),
+            ('2', 'I-<formula>'),
+        ]
+    ]
+
+    clusters = cluster_by_label(results)
+
+    assert len(clusters) == 2
+    assert len(clusters[0]) == 3
+    assert len(clusters[1]) == 1
+
+
+def test_cluster_2():
+    results = [[('under', 'B-<doping>'), ('-', 'I-<doping>'), ('doped', 'I-<doping>'), (' ', 'I-<doping>'),
+                ('La', 'B-<formula>'), (' ', 'I-<formula>'), ('x', 'I-<formula>'), (' ', 'I-<formula>'),
+                ('Fe', 'I-<formula>'), (' ', 'I-<formula>'), ('8', 'I-<formula>'), (' ', 'I-<formula>'),
+                ('O', 'I-<formula>'), ('7', 'I-<formula>'), (' ', 'I-<formula>'), ('single', 'B-<shape>'),
+                (' ', 'I-<shape>'), ('crystals', 'I-<shape>')], [('MgB', 'B-<formula>'), ('2', 'I-<formula>')],
+               [('Oxygen', 'B-<formula>')], [('Hydrogen', 'B-<name>')]]
+
+    clusters = cluster_by_label(results)
+
+    print(clusters)
