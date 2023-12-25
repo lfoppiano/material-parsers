@@ -1,3 +1,5 @@
+scikit-learn==1.0.1
+
 beautifulsoup4
 lxml
 
@@ -12,11 +14,9 @@ pymatgen==2023.8.10
 -e git+https://github.com/neuged/webanno_tsv#egg=webanno_tsv
 supermat
 
-
 pytest
 
 bottle
 tqdm
 pyyaml
-scikit-learn==1.0.1
 delft==0.3.4
