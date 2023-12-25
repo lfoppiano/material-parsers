@@ -6,8 +6,8 @@ import spacy
 from spacy.tokens import Span, Doc
 from spacy.tokens.token import Token
 
-from grobid_superconductors.linking.data_model import span_to_dict
-from grobid_superconductors.linking.relationships_resolver import SimpleResolutionResolver, \
+from material_parsers.linking.data_model import span_to_dict
+from material_parsers.linking.relationships_resolver import SimpleResolutionResolver, \
     VicinityResolutionResolver
 
 Span.set_extension('id', default=None, force=True)

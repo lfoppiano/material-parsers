@@ -9,10 +9,10 @@ from bs4 import BeautifulSoup, Tag, NavigableString
 from supermat.supermat_tei_parser import get_children_list
 from tqdm import tqdm
 
-from grobid_superconductors.commons.grobid_client_generic import GrobidClientGeneric
-from grobid_superconductors.commons.grobid_tokenizer import tokenizeSimple
-from grobid_superconductors.linking.data_model import to_dict_span, to_dict_token
-from grobid_superconductors.linking.linking_module import RuleBasedLinker, CriticalTemperatureClassifier
+from material_parsers.commons.grobid_client_generic import GrobidClientGeneric
+from material_parsers.commons.grobid_tokenizer import tokenizeSimple
+from material_parsers.linking.data_model import to_dict_span, to_dict_token
+from material_parsers.linking.linking_module import RuleBasedLinker, CriticalTemperatureClassifier
 
 # these are duplicated with constants in RuleBasedLinker because these are easier for command line
 MATERIAL_TC_LINK_NAME = "material-tc"
@@ -183,7 +183,7 @@ class GeneralEvaluator:
 class CrfLinkerEvaluation(GeneralEvaluator):
 
     def __init__(self, config_path, linker_type):
-        self.grobid_superconductors_client = GrobidClientGeneric(config_path=config_path, ping=True)
+        self.material_parsers_client = GrobidClientGeneric(config_path=config_path, ping=True)
         self.linker_type = linker_type[1:-1]
 
     def run_linking(self, paragraphs):
@@ -212,7 +212,7 @@ class CrfLinkerEvaluation(GeneralEvaluator):
             output_text += escape(paragraph['text'][offset:])
 
             output = json.loads(
-                self.grobid_superconductors_client.process({"text": output_text, "type": self.linker_type}, 'linker'))
+                self.material_parsers_client.process({"text": output_text, "type": self.linker_type}, 'linker'))
 
             predicted_links.extend(extract_predicted_links(output[0]))
 

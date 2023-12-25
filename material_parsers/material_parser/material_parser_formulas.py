@@ -1,6 +1,6 @@
 from sympy import SympifyError
 
-from grobid_superconductors.commons.utils import replace_with_closest, ALLOWED_CHARS_MATERIAL_PARSER
+from material_parsers.commons.utils import replace_with_closest, ALLOWED_CHARS_MATERIAL_PARSER
 from text2chem.parser_pipeline import ParserPipelineBuilder
 from text2chem.postprocessing_tools.substitute_additives import SubstituteAdditives
 from text2chem.preprocessing_tools.additives_processing import AdditivesProcessing
@@ -9,7 +9,7 @@ from text2chem.preprocessing_tools.mixture_processing import MixtureProcessing
 from text2chem.preprocessing_tools.phase_processing import PhaseProcessing
 from text2chem.regex_parser import RegExParser
 
-from grobid_superconductors.material_parser.material2class import Material2Class, Material2Tags
+from material_parsers.material_parser.material2class import Material2Class, Material2Tags
 
 
 class MaterialParserFormulas:

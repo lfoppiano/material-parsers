@@ -9,13 +9,14 @@ The service provides the following functionalities:
 - [Convert material name to formula](#convert-material-name-to-formula) (e.g. Lead -> Pb, Hydrogen -> H): `/convert/name/formula`
 - [Decompose formula into structured dict of elements](#decompose-formula-into-structured-dict-of-elements) (e.g. La x Fe 1-x O7-> {La: x, Fe: 1-x, O: 7}):  `/convert/formula/composition`
 - Classify material in classes (from the superconductors domain) using a rule-base table (e.g. "La Cu Fe" -> Cuprates): `/classify/formula`
-- Tc classification (Tc, not-Tc): `/classify/tc` **for information please open an issue**
+- Tc's classification (Tc, not-Tc): `/classify/tc` **for information please open an issue**
 - Relation extraction given a sentence and two entities: `/process/link` **for information please open an issue**
-- Material processing using Deep Learning `/process/material`
+- Material processing using Deep Learning models and rule-based processing `/process/material`
 
 ## Usage
 
 The service is deployed on huggingface spaces, and [can be used right away](https://lfoppiano-grobid-superconductors-tools.hf.space/version). For installing the service in your own environment see below.
+
 
 ### Convert material name to formula
 
@@ -61,6 +62,38 @@ output:
 ['Alloys']
 ```
 
+### Process material
+This process includes a combination of everything listed above, after passing the material sequence through a DL model 
+
+Example:
+
+```
+curl --location 'https://lfoppiano-material-parsers.hf.space/process/material' \
+--form 'text="(Mo 0.96 Zr 0.04 ) 0.85 B x "'
+```
+
+output:
+
+```json
+[
+    {
+        "formula": {
+            "rawValue": "(Mo 0.96 Zr 0.04 ) 0.85 B x"
+        },
+        "resolvedFormulas": [
+            {
+                "rawValue": "(Mo 0.96 Zr 0.04 ) 0.85 B x",
+                "formulaComposition": {
+                    "Mo": "0.816",
+                    "Zr": "0.034",
+                    "B": "x"
+                }
+            }
+        ]
+    }
+]
+```
+
 ## Installing in your environment
 
 ```
@@ -93,9 +126,9 @@ If you use our work, and write about it, please cite [our paper](https://hal.inr
 
 ## Overview of the repository
 
-- [Converters](grobid_superconductors/converters) TSV to/from Grobid XML files conversion
-- [Linking](grobid_superconductors/linking) module: A rule based python algorithm to link entities
-- [Commons libraries](grobid_superconductors/commons): contains common code shared between the various component. The Grobid client was borrowed from [here](https://github.com/kermitt2/grobid-client-python), the tokenizer from [there](https://github.com/kermitt2/delft).
+- [Converters](material_parsers/converters) TSV to/from Grobid XML files conversion
+- [Linking](material_parsers/linking) module: A rule based python algorithm to link entities
+- [Commons libraries](material_parsers/commons): contains common code shared between the various component. The Grobid client was borrowed from [here](https://github.com/kermitt2/grobid-client-python), the tokenizer from [there](https://github.com/kermitt2/delft).
 
 ## Developer's notes
 

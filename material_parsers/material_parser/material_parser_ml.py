@@ -5,8 +5,8 @@ from typing import Union
 from delft.sequenceLabelling import Sequence
 from delft.sequenceLabelling.models import BidLSTM_CRF
 
-from grobid_superconductors.commons.grobid_tokenizer import tokenizeSimple
-from grobid_superconductors.material_parser.material_parser_formulas import MaterialParserFormulas
+from material_parsers.commons.grobid_tokenizer import tokenizeSimple
+from material_parsers.material_parser.material_parser_formulas import MaterialParserFormulas
 
 REPLACEMENT_SYMBOLS_VARIABLES = [(" ͑", "")]
 REPLACEMENT_SYMBOLS_VALUES = [

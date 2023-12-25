@@ -1,1 +1,1 @@
-from  grobid_superconductors.commons.client import ApiClient
+from  material_parsers.commons.client import ApiClient

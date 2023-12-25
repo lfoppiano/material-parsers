@@ -5,7 +5,7 @@ import time
 import requests
 import yaml
 
-from grobid_superconductors.commons import ApiClient
+from material_parsers.commons import ApiClient
 
 '''
 This client is a generic client for any Grobid application and sub-modules.

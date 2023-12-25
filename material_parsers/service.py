@@ -6,9 +6,9 @@ import bottle
 import spacy
 from bottle import request, response, run
 
-from grobid_superconductors.linking.linking_module import RuleBasedLinker, CriticalTemperatureClassifier
-from grobid_superconductors.material_parser.material_parser_formulas import MaterialParserFormulas
-from grobid_superconductors.material_parser.material_parser_ml import MaterialParserML
+from material_parsers.linking.linking_module import RuleBasedLinker, CriticalTemperatureClassifier
+from material_parsers.material_parser.material_parser_formulas import MaterialParserFormulas
+from material_parsers.material_parser.material_parser_ml import MaterialParserML
 
 bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024 * 1024
 

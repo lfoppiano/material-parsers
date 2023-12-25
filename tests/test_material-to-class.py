@@ -1,6 +1,6 @@
 import logging
 
-from  grobid_superconductors.material_parser.material2class import Material2Class
+from  material_parsers.material_parser.material2class import Material2Class
 
 LOGGER = logging.getLogger(__name__)
 

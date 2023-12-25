@@ -9,7 +9,7 @@ from blingfire import text_to_sentences
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
-from grobid_superconductors.commons.ann_parser import ANNParser
+from material_parsers.commons.ann_parser import ANNParser
 
 XML_TEMPLATE = """<tei xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>

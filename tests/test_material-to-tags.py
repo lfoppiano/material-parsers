@@ -1,4 +1,4 @@
-from  grobid_superconductors.material_parser.material2class import Material2Tags
+from  material_parsers.material_parser.material2class import Material2Tags
 
 
 class TestMaterial2Tags:

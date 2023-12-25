@@ -4,8 +4,8 @@ import json
 import os
 from pathlib import Path
 
-from grobid_superconductors.commons.grobid_tokenizer import tokenizeAndFilterSimple
-from grobid_superconductors.commons.supermat_tei_parser import process_file_to_json
+from material_parsers.commons.grobid_tokenizer import tokenizeAndFilterSimple
+from material_parsers.commons.supermat_tei_parser import process_file_to_json
 
 def tokenise(string):
     return tokenizeAndFilterSimple(string)

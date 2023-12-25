@@ -6,8 +6,8 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
 
-from grobid_superconductors.commons.grobid_tokenizer import tokenizeAndFilterSimple
-from grobid_superconductors.commons.supermat_tei_parser import get_children_list, get_relationship_name, process_file, \
+from material_parsers.commons.grobid_tokenizer import tokenizeAndFilterSimple
+from material_parsers.commons.supermat_tei_parser import get_children_list, get_relationship_name, process_file, \
     process_file_to_json
 
 

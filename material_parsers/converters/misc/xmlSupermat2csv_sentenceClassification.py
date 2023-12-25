@@ -7,8 +7,8 @@ import os
 from collections import OrderedDict
 from pathlib import Path
 
-from grobid_superconductors.commons.grobid_tokenizer import tokenizeAndFilterSimple
-from grobid_superconductors.converters.misc.xml2LossyJSON import process_file
+from material_parsers.commons.grobid_tokenizer import tokenizeAndFilterSimple
+from material_parsers.converters.misc.xml2LossyJSON import process_file
 
 
 def write_on_file(fw, row):

@@ -8,8 +8,8 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from grobid_superconductors.commons.grobid_tokenizer import tokenizeSimple
-from grobid_superconductors.commons.supermat_tei_parser import get_children_list, get_section, get_hash
+from material_parsers.commons.grobid_tokenizer import tokenizeSimple
+from material_parsers.commons.supermat_tei_parser import get_children_list, get_section, get_hash
 
 
 def tokenise(string):

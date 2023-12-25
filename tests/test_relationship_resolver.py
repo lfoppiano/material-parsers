@@ -1,6 +1,6 @@
 import logging
 
-from  grobid_superconductors.linking.relationships_resolver import SimpleResolutionResolver, \
+from  material_parsers.linking.relationships_resolver import SimpleResolutionResolver, \
     VicinityResolutionResolver
 from tests.utils import prepare_doc
 

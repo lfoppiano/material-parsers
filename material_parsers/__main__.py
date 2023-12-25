@@ -1,6 +1,6 @@
 import argparse
 
-from grobid_superconductors.service import init
+from material_parsers.service import init
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(

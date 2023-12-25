@@ -1,5 +1,5 @@
-from grobid_superconductors.material_parser.material_parser_formulas import MaterialParserFormulas
-from grobid_superconductors.material_parser.material_parser_ml import MaterialParserML, replace_variable, \
+from material_parsers.material_parser.material_parser_formulas import MaterialParserFormulas
+from material_parsers.material_parser.material_parser_ml import MaterialParserML, replace_variable, \
     expand_formula, resolve_variables, generate_permutations, cluster_by_label
 
 
@@ -37,20 +37,20 @@ def test_extract_results():
 
     assert len(entities) == 3
 
-    assert entities[0]['shape'] == "powderss"
-    assert entities[0]['doping'] == "underdoped"
-    assert entities[0]['formula']['rawValue'] == "LaFeBO7"
+    assert entities[0][0]['shape'] == "powderss"
+    assert entities[0][0]['doping'] == "underdoped"
+    assert entities[0][0]['formula']['rawValue'] == "LaFeBO7"
 
-    assert entities[1]['formula']['rawValue'] == "La Fe B 8-x"
-    assert entities[1]['variables'] == {'x': ['0.1', '0.2']}
-    assert len(entities[1]['resolvedFormulas']) == 2
-    assert entities[1]['resolvedFormulas'][0]['rawValue'] == 'La Fe B 7.9'
-    assert entities[1]['resolvedFormulas'][1]['rawValue'] == 'La Fe B 7.8'
+    assert entities[1][0]['formula']['rawValue'] == "La Fe B 8-x"
+    assert entities[1][0]['variables'] == {'x': ['0.1', '0.2']}
+    assert len(entities[1][0]['resolvedFormulas']) == 2
+    assert entities[1][0]['resolvedFormulas'][0]['rawValue'] == 'La Fe B 7.9'
+    assert entities[1][0]['resolvedFormulas'][1]['rawValue'] == 'La Fe B 7.8'
 
-    assert entities[2]['doping'] == "underdoped"
-    assert entities[2]['shape'] == 'single crystal'
-    assert entities[2]['formula']['rawValue'] == 'LaFeB09'
-    assert entities[2]['name'] == 'TLL222'
+    assert entities[2][0]['doping'] == "underdoped"
+    assert entities[2][0]['shape'] == 'single crystal'
+    assert entities[2][0]['formula']['rawValue'] == 'LaFeB09'
+    assert entities[2][0]['name'] == 'TLL222'
 
 
 def test_replace_variable():

@@ -1,8 +1,8 @@
 import logging
 from functools import wraps
 
-from  grobid_superconductors.commons.grobid_tokenizer import tokenize
-from  grobid_superconductors.linking.linking_module import SpacyPipeline
+from  material_parsers.commons.grobid_tokenizer import tokenize
+from  material_parsers.linking.linking_module import SpacyPipeline
 
 LOGGER = logging.getLogger(__name__)
 
