@@ -39,17 +39,17 @@ def test_extract_results():
 
     assert entities[0]['shape'] == "powderss"
     assert entities[0]['doping'] == "underdoped"
-    assert entities[0]['formula']['raw_value'] == "LaFeBO7"
+    assert entities[0]['formula']['rawValue'] == "LaFeBO7"
 
-    assert entities[1]['formula']['raw_value'] == "La Fe B 8-x"
+    assert entities[1]['formula']['rawValue'] == "La Fe B 8-x"
     assert entities[1]['variables'] == {'x': ['0.1', '0.2']}
-    assert len(entities[1]['resolved_formulas']) == 2
-    assert entities[1]['resolved_formulas'][0]['raw_value'] == 'La Fe B 7.9'
-    assert entities[1]['resolved_formulas'][1]['raw_value'] == 'La Fe B 7.8'
+    assert len(entities[1]['resolvedFormulas']) == 2
+    assert entities[1]['resolvedFormulas'][0]['rawValue'] == 'La Fe B 7.9'
+    assert entities[1]['resolvedFormulas'][1]['rawValue'] == 'La Fe B 7.8'
 
     assert entities[2]['doping'] == "underdoped"
     assert entities[2]['shape'] == 'single crystal'
-    assert entities[2]['formula']['raw_value'] == 'LaFeB09'
+    assert entities[2]['formula']['rawValue'] == 'LaFeB09'
     assert entities[2]['name'] == 'TLL222'
 
 
@@ -139,7 +139,7 @@ def test_expand_formula_4_variables():
 
 # Test resolveVariables method
 def test_resolve_variable_1():
-    material = {'formula': {'raw_value': "Fe1-xCuxO2"}, 'variables': {"x": ["0.1", "0.2", "0.3"]}}
+    material = {'formula': {'rawValue': "Fe1-xCuxO2"}, 'variables': {"x": ["0.1", "0.2", "0.3"]}}
     output_materials = resolve_variables(material)
     assert len(output_materials) == 3
     assert output_materials[0] == "Fe0.9Cu0.1O2"
@@ -148,7 +148,7 @@ def test_resolve_variable_1():
 
 
 def test_resolve_variable_2():
-    material = {'formula': {'raw_value': "Fe1-xCuyO2"},
+    material = {'formula': {'rawValue': "Fe1-xCuyO2"},
                 'variables': {"x": ["0.1", "0.2", "0.3"], "y": ["-1", "-0.2", "0.3", "0.5"]}}
     output_materials = resolve_variables(material)
     assert len(output_materials) == 12
@@ -167,7 +167,7 @@ def test_resolve_variable_2():
 
 
 def test_resolve_variable_3():
-    material = {'formula': {'raw_value': "Li x (NH 3 ) y Fe 2 (Te z Se 1−z ) 2"},
+    material = {'formula': {'rawValue': "Li x (NH 3 ) y Fe 2 (Te z Se 1−z ) 2"},
                 'variables': {"x": ["0.1"], "y": ["0.1"], "z": ["0.1"]}}
     output_materials = resolve_variables(material)
     assert len(output_materials) == 1
@@ -175,7 +175,7 @@ def test_resolve_variable_3():
 
 
 def test_resolve_variable_interval():
-    material = {'formula': {'raw_value': "Li x (NH 3 ) 1-x Fe 2 (Te x Se 1−x ) 2"},
+    material = {'formula': {'rawValue': "Li x (NH 3 ) 1-x Fe 2 (Te x Se 1−x ) 2"},
                 'variables': {"x": ["< 0.1", "> 0.01"]}}
     output_materials = resolve_variables(material)
     assert len(output_materials) == 2
