@@ -36,9 +36,9 @@ RUN git rev-parse --short HEAD > /opt/service/resources/version.txt
 RUN rm -rf ./.git
 
 # Copy code 
-COPY grobid_superconductors /opt/service/grobid_superconductors
+COPY material_parsers /opt/service/material_parsers
 #COPY __main__.py /opt/service
 
 EXPOSE 8080
 
-CMD ["python3", "-m", "grobid_superconductors", "--config", "resources/config.json"]
+CMD ["python3", "-m", "material_parsers", "--config", "resources/config.json"]

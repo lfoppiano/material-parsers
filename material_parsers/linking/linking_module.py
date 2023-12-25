@@ -2,7 +2,7 @@ import copy
 import json
 
 import spacy
-from blingfire import text_to_sentences
+# from blingfire import text_to_sentences
 from spacy.tokens import Span, Doc
 from spacy.tokens.token import Token
 

@@ -59,14 +59,17 @@ class MaterialParserML:
                     if i == 0:
                         item[1].replace("I-", "B-")
                     else:
-                        if example[i-1][2:] != example[i][2:]:
+                        if example[i - 1][2:] != example[i][2:]:
                             item[1] = item[1].replace("I-", "B-")
-
 
         clusters = cluster_by_label(results)
 
-        parsed_results = [{key: value for key, value in dict(result).items() if value is not None and value != ""} for
-                          result in self.extract_results(clusters)]
+        parsed_results = [
+            [
+                {key: value for key, value in dict(material).items() if value is not None and value != ""} for material in
+                materials
+            ] for materials in self.extract_results(clusters)
+        ]
 
         return parsed_results
 
@@ -122,7 +125,7 @@ class MaterialParserML:
                             }
 
                         if prefixed_values:
-                            material['variables'][processing_variable].extends(prefixed_values)
+                            material['variables'][processing_variable].extend(prefixed_values)
                             prefixed_values = []
                     else:
                         if "<" in text:
@@ -211,7 +214,7 @@ class MaterialParserML:
                             formula['formulaComposition'] = converted_formula['composition']
                             material['formula'] = formula
 
-            results.extend(materials)
+            results.append(materials)
 
         return results
 
