@@ -49,7 +49,8 @@ class MaterialParserML:
 
         clusters = cluster_by_label(results)
 
-        parsed_results = [dict(result) for result in self.extract_results(clusters)]
+        parsed_results = [{key: value for key, value in dict(result).items() if value is not None and value != ""} for
+                          result in self.extract_results(clusters)]
 
         return parsed_results
 

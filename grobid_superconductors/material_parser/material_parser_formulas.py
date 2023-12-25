@@ -1,4 +1,6 @@
 from sympy import SympifyError
+
+from grobid_superconductors.commons.utils import replace_with_closest, ALLOWED_CHARS_MATERIAL_PARSER
 from text2chem.parser_pipeline import ParserPipelineBuilder
 from text2chem.postprocessing_tools.substitute_additives import SubstituteAdditives
 from text2chem.preprocessing_tools.additives_processing import AdditivesProcessing
@@ -42,28 +44,69 @@ class MaterialParserFormulas:
             output = self.material_parser.parse(formula_without_spaces)
         except SympifyError as e:
             raise ValueError(e)
-        except ValueError as ve:
-            output = self.material_parser.parse(formula_without_spaces.replace("−", "-").replace("−", "-"))
+        except KeyError as ke:
+            clean_formula = formula_without_spaces.replace("−", "-").replace("−", "-")
+            clean_formula = replace_with_closest(clean_formula, ALLOWED_CHARS_MATERIAL_PARSER)
+            try:
+                output = self.material_parser.parse(clean_formula)
+            except SympifyError:
+                output = None
+            except KeyError:
+                output = None
+            except ValueError:
+                output = None
+        except ValueError:
+            try:
+                output = self.material_parser.parse(formula_without_spaces.replace("−", "-").replace("−", "-"))
+            except SympifyError:
+                output = None
+            except KeyError:
+                output = None
+            except ValueError:
+                output = None
 
-        if output is not None and output.composition:
+        if output and output.composition:
             structured_formula['composition'] = output.composition[0].elements
 
         return structured_formula
 
     def name_to_formula(self, name):
         output_formula = {}
+        output = None
         try:
             output = self.material_parser.parse(name)
         except SympifyError as e:
             raise ValueError(e)
-        except ValueError as ve:
-            output = self.material_parser.parse(name.replace(" ", ""))
+        except KeyError as e:
+            clean_name = name.replace("−", "-").replace("−", "-").replace(" ", "")
+            clean_name = replace_with_closest(clean_name, ALLOWED_CHARS_MATERIAL_PARSER)
+            try:
+                output = self.material_parser.parse(clean_name)
+            except SympifyError:
+                output = None
+            except KeyError:
+                output = None
+            except ValueError:
+                output = None
+        except ValueError:
+            try:
+                clean_name = name.replace("−", "-").replace("−", "-").replace(" ", "")
+                output = self.material_parser.parse(clean_name)
+            except SympifyError:
+                output = None
+            except KeyError:
+                output = None
+            except ValueError:
+                output = None
 
-        if output.composition:
-            output_formula['composition'] = output.composition[0].elements
+        if output:
+            if output.composition:
+                output_formula['composition'] = output.composition[0].elements
 
-        output_formula['name'] = output.material_name
-        if str(output.material_formula) != str(name) + "" + str(name):
-            output_formula['formula'] = output.material_formula
+            if output.material_name:
+                output_formula['name'] = output.material_name
+
+            if str(output.material_formula) != str(name) + "" + str(name):
+                output_formula['formula'] = output.material_formula
 
         return output_formula

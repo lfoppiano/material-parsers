@@ -127,11 +127,20 @@ class Service(object):
         return json.dumps(result)
 
     def process_materials(self):
-        input_raw = request.forms.get("text")
+        input_raw = request.forms.get("texts")
+        if input_raw is None:
+            input_raw = request.forms.get("text")
+        if input_raw is None:
+            input_raw = request.files.get("text")
+        if input_raw is None:
+            input_raw = request.files.get("texts")
 
         if input_raw is None:
             response.status = 400
-            return 'Required a parameter "text" as form-data.'
+            return 'Required a parameter "text" or "texts" as form-data.'
+
+        if type(input_raw) is bottle.FileUpload:
+            input_raw = input_raw.file.read().decode('utf-8')
 
         input_split = input_raw.split("\n")
         results = self.ml_parser.process(input_split)
