@@ -2,7 +2,7 @@
 
 # Material Parsers (and other tools)
 
-Sister project of [grobid-superconductors](https://github.com/lfoppiano/grobid-superconductors) containing a web service that interfaces with the python libraries (e.g. Spacy).
+Previously this project was released as `grobid-superconductors-tools`, born as aister project of [grobid-superconductors](https://github.com/lfoppiano/grobid-superconductors) containing a web service that interfaces with the python libraries (e.g. Spacy).
 
 The service provides the following functionalities:
 
@@ -132,6 +132,8 @@ If you use our work, and write about it, please cite [our paper](https://hal.inr
 
 ## Developer's notes
 
+### Set up on Apple M1 
+
 > python -m spacy download en_core_web_sm
 
 ```shell
@@ -150,5 +152,11 @@ We need to remove tensorflow, h5py, scikit-learn from the delft dependencies in 
 
 ```shell
 pip install -e ../../delft 
+```
+
+### Release 
+
+```shall
+bump-my-version bump patch|minor|major
 ```
 

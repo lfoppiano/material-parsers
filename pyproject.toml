@@ -12,10 +12,6 @@ tag_name = "v{new_version}"
 [tool.setuptools_scm]
 
 
-
-
-
-
 [project]
 name = "material-parsers"
 license = { file = "LICENSE" }
