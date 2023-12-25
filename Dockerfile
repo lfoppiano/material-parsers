@@ -1,4 +1,4 @@
-FROM python:3.10.13-slim-bullseye
+FROM python:3.9-slim-bullseye
 
 ENV LANG C.UTF-8
 
@@ -19,7 +19,7 @@ WORKDIR /opt/service
 COPY requirements.txt .
 COPY resources/config.json resources
 COPY resources/data /opt/service/resources/data
-
+COPY delft /opt/service/delft
 
 ENV VIRTUAL_ENV=/opt/service/venv
 RUN python3 -m venv $VIRTUAL_ENV
@@ -28,6 +28,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN python3 -m pip install pip --upgrade
 RUN python3 -m pip install -r ./requirements.txt
 RUN python3 -m spacy download en_core_web_sm
+RUN python3 delft/preload_embeddings.py --registry delft/resources-registry.json
 
 # extract version 
 COPY .git ./.git
@@ -35,9 +36,9 @@ RUN git rev-parse --short HEAD > /opt/service/resources/version.txt
 RUN rm -rf ./.git
 
 # Copy code 
-COPY grobid_superconductors /opt/service/grobid_superconductors
+COPY material_parsers /opt/service/material_parsers
 #COPY __main__.py /opt/service
 
 EXPOSE 8080
 
-CMD ["python3", "-m", "grobid_superconductors", "--config", "resources/config.json"]
+CMD ["python3", "-m", "material_parsers", "--config", "resources/config.json"]

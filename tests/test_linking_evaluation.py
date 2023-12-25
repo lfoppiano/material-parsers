@@ -1,7 +1,7 @@
 import logging
 
-from  grobid_superconductors.linking.linking_evaluation import compute_metrics_by_type, tokenize_chunk
-from  grobid_superconductors.linking.linking_module import RuleBasedLinker
+from material_parsers.linking.linking_evaluation import compute_metrics_by_type, tokenize_chunk
+from material_parsers.linking.linking_module import RuleBasedLinker
 
 LOGGER = logging.getLogger(__name__)
 

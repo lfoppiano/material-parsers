@@ -1,0 +1,24 @@
+{
+    "embedding-lmdb-path": "resources/data/embeddings/db",
+    "embedding-download-path": "resources/data/embeddings/download",
+    "embeddings": [
+        {
+            "name": "glove-840B",
+            "path": "/Users/lfoppiano/development/projects/embeddings/pre-trained-embeddings/glove/glove.840B.300d.txt",
+            "type": "glove",
+            "format": "vec",
+            "lang": "en",
+            "item": "word",
+            "url": "http://nlp.stanford.edu/data/wordvecs/glove.840B.300d.zip"
+        }
+    ],
+    "transformers": [
+        {
+            "name": "allenai/scibert_scivocab_cased/dir",
+            "model_dir": "/Users/lfoppiano/development/projects/embeddings/pre-trained-embeddings/scibert/scibert_scivocab_cased_hf",
+            "lang": "en"
+        }
+    ],
+    "embeddings-contextualized": [
+    ]
+}

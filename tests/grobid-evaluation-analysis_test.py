@@ -1,4 +1,4 @@
-from  grobid_superconductors.commons.grobid_evaluation_analysis import append_tokens_before, append_tokens_after, \
+from  material_parsers.commons.grobid_evaluation_analysis import append_tokens_before, append_tokens_after, \
     extract_error_cases
 
 

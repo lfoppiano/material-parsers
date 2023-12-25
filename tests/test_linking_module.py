@@ -1,6 +1,6 @@
 import logging
 
-from grobid_superconductors.linking.linking_module import CriticalTemperatureClassifier, RuleBasedLinker, \
+from material_parsers.linking.linking_module import CriticalTemperatureClassifier, RuleBasedLinker, \
     SpacyPipeline
 from tests.utils import get_tokens, get_tokens_and_spans, prepare_doc
 
