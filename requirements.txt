@@ -18,4 +18,5 @@ pytest
 bottle
 tqdm
 pyyaml
-delft
+scikit-learn==1.0.1
+delft==0.3.4
