@@ -326,7 +326,7 @@ class Service(object):
             return str
 
 
-def init(host='0.0.0.0', port='8080', config="config.json"):
+def init(host='0.0.0.0', port='8080', config="config.json", development=False):
     app = Service()
 
     bottle.route('/process/link', method="POST")(app.process_link)
@@ -363,4 +363,4 @@ def init(host='0.0.0.0', port='8080', config="config.json"):
         print("No space groups patterns... ignoring... ")
 
     bottle.debug(True)
-    run(host=host, port=port, debug=True)
+    run(host=host, port=port, debug=True, reloader=development)
