@@ -1,4 +1,3 @@
-import copy
 import re
 from collections import defaultdict
 from typing import Union
@@ -14,7 +13,8 @@ REPLACEMENT_SYMBOLS_VALUES = [
     (" ͑", ""),
     ("¼", ""),
     ("et al", ""),
-    ("etc\\.?", "")
+    ("etc\\.?", ""),
+    ("≃", "=")
 ]
 
 REPLACEMENT_SYMBOLS = [
@@ -27,6 +27,10 @@ REPLACEMENT_SYMBOLS = [
 ENGLISH_ALPHABETH = "xyzabcdefghijklmnopqrstuvw"
 
 PATTERN_NAMES_TO_AVOID = r"[A-Z][a-z]{1,3}[- ]*\\d{3,5}"
+
+REPLACEMENT_FORMULA = [
+    ()
+]
 
 
 class MaterialParserML:
@@ -46,6 +50,18 @@ class MaterialParserML:
 
         tokenizer_input = [tokenizeSimple(t) for t in input_data]
         results = self.model.tag(tokenizer_input, "text")
+        if len(input_data) == 1 and len(results) > 1:
+            results = results[:-1]
+
+        for example in results:
+            for i, item in enumerate(example):
+                if item[1].startswith('I'):
+                    if i == 0:
+                        item[1].replace("I-", "B-")
+                    else:
+                        if example[i-1][2:] != example[i][2:]:
+                            item[1] = item[1].replace("I-", "B-")
+
 
         clusters = cluster_by_label(results)
 
@@ -67,6 +83,7 @@ class MaterialParserML:
             material = defaultdict(lambda: None, {})
 
             processing_variable = None
+            other_properties = False
 
             for entity in example:
                 label = entity['class'].replace(">", "").replace("<", "")
@@ -74,27 +91,35 @@ class MaterialParserML:
 
                 if label == 'doping':
                     dopings.append(text)
+                    other_properties = True
                 elif label == 'fabrication':
                     fabrications.append(text)
+                    other_properties = True
                 elif label == 'shape':
                     shapes.append(text)
+                    other_properties = True
                 elif label == 'substrate':
                     substrates.append(text)
+                    other_properties = True
                 elif label == 'variable':
                     variable = post_process_variable(text)
+                    other_properties = True
                     if processing_variable:
-                        if variable != processing_variable:
+                        if variable != processing_variable and str.strip(variable) != "":
                             processing_variable = variable
                     else:
                         processing_variable = variable
 
                 elif label == 'value':
+                    other_properties = True
                     if processing_variable:
                         values = extract_and_filter_variable_values(text)
                         if 'variables' in material and processing_variable in material['variables']:
                             material['variables'][processing_variable].extend(values)
                         else:
-                            material['variables'] = {processing_variable: values}
+                            material['variables'] = {
+                                processing_variable: values
+                            }
 
                         if prefixed_values:
                             material['variables'][processing_variable].extends(prefixed_values)
@@ -102,34 +127,43 @@ class MaterialParserML:
                     else:
                         if "<" in text:
                             prefixed_values.append(text)
+                        elif "=" in text:
+                            split = text.split("=")
+                            processing_variable = split[0]
+                            prefixed_values.append(split[1])
                         else:
-                            print("Got a value but the processing variable is empty. Value: " + text)
+                            print(f"Got a value but the processing variable is empty. Value: {text}, {example}")
+
 
                 elif label in material:
                     materials.append(material)
-                    material = {label: text}
+                    material = defaultdict(lambda: None, {label: text})
                 else:
                     material[label] = text
 
             if len(material.keys()) > 0:
+                if len(fabrications) > 0:
+                    material['fabrication'] = " ".join(fabrications)
                 materials.append(material)
-            else:
-                print("Ponyo")
+            elif len(material.keys()) == 0 and not other_properties:
+                print(f"Empty material in example {example}")
+                results.append({})
+                continue
 
             materials = process_property(materials, 'doping', dopings)
             materials = process_property(materials, 'substrate', substrates)
             materials = process_property(materials, 'shape', shapes)
 
             for material in materials:
-                if material['formula']:
-                    material['formula'] = {'raw_value': material['formula']}
+                if 'formula' in material and material['formula']:
+                    material['formula'] = {'rawValue': material['formula']}
 
                 resolved_formulas = resolve_variables(material)
 
                 # If there are no resolved formulas (no variable), but there is a raw formula, add it
-                if not resolved_formulas and material['formula'] and (
-                    material['formula']['raw_value'] is not None and material['formula']['raw_value'].strip()):
-                    resolved_formulas.append(material['formula']['raw_value'])
+                if not resolved_formulas and 'formula' in material and material['formula'] and (
+                    material['formula']['rawValue'] is not None and material['formula']['rawValue'].strip()):
+                    resolved_formulas.append(material['formula']['rawValue'])
 
                 # Expand formulas of type (A, B)blabla
                 if resolved_formulas:
@@ -137,35 +171,44 @@ class MaterialParserML:
                     for f in resolved_formulas:
                         for exp_f in expand_formula(f):
                             new_f = {
-                                "raw_value": exp_f,
+                                "rawValue": exp_f,
                             }
                             if self.material_parser_wrapper:
-                                compo = self.material_parser_wrapper.formula_to_composition(exp_f)
-                                if compo and 'composition' in compo:
-                                    new_f["composition"] = compo
+                                try:
+                                    compo = self.material_parser_wrapper.formula_to_composition(exp_f)
+                                    if compo and 'composition' in compo:
+                                        new_f["formulaComposition"] = compo['composition']
+                                except ValueError:
+                                    print(f"Cannot parse (formula to composition) {exp_f} with the material parser")
+                                except IndexError as ie:
+                                    print(f"Cannot parse (formula to composition) {exp_f}, index error: {ie}")
 
                             resolved_and_expanded_formulas.append(new_f)
 
-                    material['resolved_formulas'] = resolved_and_expanded_formulas
+                    material['resolvedFormulas'] = resolved_and_expanded_formulas
 
                 # If we don't have any formula but a name, let's try to calculate the formula from the name...
                 if self.material_parser_wrapper:
-                    if (material['formula'] is None or not material['formula'][
-                        'raw_value'].strip()) and material['name'] and not re.match(PATTERN_NAMES_TO_AVOID,
+                    if (material['formula'] is None or (material['formula'] and not material['formula'][
+                        'rawValue'].strip())) and material['name'] and not re.match(PATTERN_NAMES_TO_AVOID,
                                                                                     material['name'].replace("  ",
                                                                                                              " ")):
+                        converted_formula = {}
+                        try:
+                            converted_formula = self.material_parser_wrapper.name_to_formula(material['name'])
+                        except ValueError:
+                            print(f"Cannot parse (name to formula) {material['name']} with material parser")
 
-                        converted_formula = self.material_parser_wrapper.name_to_formula(material['name'])
                         formula = None
 
-                        if converted_formula['formula']:
-                            formula = {'raw_value': converted_formula['formula']}
+                        if 'formula' in converted_formula and converted_formula['formula']:
+                            formula = {'rawValue': converted_formula['formula']}
                             material['formula'] = formula
 
-                        if converted_formula['composition']:
+                        if 'composition' in converted_formula and converted_formula['composition']:
                             if formula is None:
                                 formula = {}
-                            formula['composition'] = converted_formula['composition']
+                            formula['formulaComposition'] = converted_formula['composition']
                             material['formula'] = formula
 
             results.extend(materials)
@@ -177,12 +220,12 @@ def process_property(materials, property_name, property_values_list):
     if len(property_values_list) > 1:
         # Multiple doping AND single material -> create multiple materials
         if len(materials) == 1:
-            materials = []
             for doping in property_values_list:
-                new_material = copy.copy(materials[0])
+                new_material = defaultdict(lambda: None, materials[0])
                 new_material[property_name] = doping
                 # Substrate and fabrication will be added later as single or joined information
                 materials.append(new_material)
+            # materials = []
         else:
             # Multiple doping AND multiple materials -> merge doping ratio and assign to each material
             single_doping = ", ".join(property_values_list)
@@ -225,10 +268,10 @@ def post_process_variable(variable: str) -> str:
 
 def resolve_variables(material):
     if not ('variables' in material and material['variables']) or not ('formula' in material and material[
-        'formula']) or not ('raw_value' in material['formula'] and material['formula']['raw_value']):
+        'formula']) or not ('rawValue' in material['formula'] and material['formula']['rawValue']):
         return []
 
-    formula_raw_value = material['formula']['raw_value']
+    formula_raw_value = material['formula']['rawValue']
 
     if not any(variable in formula_raw_value for variable in material['variables']):
         return []
@@ -397,6 +440,7 @@ def cluster_by_label(results):
             sequences.append(current_sequence)
 
         groups.append(
-            [{"text": str.strip("".join([seq[0] for seq in sequence])), "class": extract_label(sequence[0])} for sequence in sequences])
+            [{"text": str.strip("".join([seq[0] for seq in sequence])), "class": extract_label(sequence[0])} for
+             sequence in sequences])
 
     return groups
