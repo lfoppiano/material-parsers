@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.bumpversion]
+current_version = "2.2.0"
+commit = "true"
+tag = "true"
+tag_name = "v{new_version}"
+
+[project]
+name = "material-parsers"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Luca Foppiano", email = "lucanoro@duck.com" },
+]
+maintainers = [
+    { name = "Luca Foppiano", email = "lucanoro@duck.com" }
+]
+description = "Set of parsers and linkers for materials extraction"
+readme = "README.md"
+
+dynamic = ['version']
+
+[tool.setuptools_scm]
+
+[project.urls]
+Homepage = "https://github.com/lfoppiano/material-parsers"
+Repository = "https://github.com/lfoppiano/material-parsers"
+Changelog = "https://github.com/lfoppiano/material-parsers/blob/main/CHANGELOG.md"
