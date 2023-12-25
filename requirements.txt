@@ -3,7 +3,7 @@ lxml
 
 blingfire
 
--e git+https://github.com/lfoppiano/text2chem.git#egg=text2chem
+text2chem==0.02
 spacy==3.7.2
 # pymatgen==2021.3.3
 # pymatgen==2022.5.26
