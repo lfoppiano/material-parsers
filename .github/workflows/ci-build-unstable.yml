@@ -64,10 +64,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          image: lfoppiano/grobid-superconductors-tools
+          image: lfoppiano/material-parsers
           registry: docker.io
-#          pushImage: ${{ github.event_name != 'pull_request' }}
-          pushImage: true
+          pushImage: ${{ github.event_name != 'pull_request' }}
           tags: latest-develop
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
