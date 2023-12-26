@@ -339,6 +339,7 @@ def init(host='0.0.0.0', port='8080', config="config.json", development=False):
     bottle.route('/classify/formula', method="POST")(app.classify_formula)
 
     bottle.route('/version', method="GET")(app.get_version)
+    bottle.route('/', method="GET")(app.get_version)
 
     if config and os.path.exists(config):
 
