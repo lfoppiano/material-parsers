@@ -134,25 +134,34 @@ If you use our work, and write about it, please cite [our paper](https://hal.inr
 
 ### Set up on Apple M1 
 
-> python -m spacy download en_core_web_sm
-
 ```shell
 conda install -c apple tensorflow-deps
+```
+
+```shell
+pip install -r requirements.macos.txt 
+```
+
+```shell
+conda install scikit-learn=1.0.1
+```
+ 
+We need to remove tensorflow, h5py, scikit-learn from the delft dependencies in setup.py
+
+```shell
+pip install -e ../../delft 
 ```
 
 ```shell
 pip install -r requirements.txt 
 ```
 
-```shell
-conda install scikit-learn=1.0.1
-```
-
-We need to remove tensorflow, h5py, scikit-learn from the delft dependencies in setup.py
+Finally, don't forget to install the spacy model
 
 ```shell
-pip install -e ../../delft 
+python -m spacy download en_core_web_sm
 ```
+
 
 ### Release 
 
