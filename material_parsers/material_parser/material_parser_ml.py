@@ -6,8 +6,10 @@ from delft.sequenceLabelling import Sequence
 from delft.sequenceLabelling.models import BidLSTM_CRF
 
 from material_parsers.commons.grobid_tokenizer import tokenizeSimple
+from material_parsers.commons.utils import rewrite_comparison_symbol
 from material_parsers.material_parser.material_parser_formulas import MaterialParserFormulas
 
+COMPARE_SIGNS = ["≤", "<", "⩽"]
 REPLACEMENT_SYMBOLS_VARIABLES = [(" ͑", "")]
 REPLACEMENT_SYMBOLS_VALUES = [
     (" ͑", ""),
@@ -128,12 +130,13 @@ class MaterialParserML:
                             material['variables'][processing_variable].extend(prefixed_values)
                             prefixed_values = []
                     else:
-                        if "<" in text:
-                            prefixed_values.append(text)
+                        if any(map(lambda x: x in text, COMPARE_SIGNS)):
+                            prefixed_values.append(rewrite_comparison_symbol(text))
                         elif "=" in text:
                             split = text.split("=")
                             processing_variable = split[0]
                             prefixed_values.append(split[1])
+                        # elif any(map(lambda x: x in text, ["≥", ">"])):
                         else:
                             print(f"Got a value but the processing variable is empty. Value: {text}, {example}")
 

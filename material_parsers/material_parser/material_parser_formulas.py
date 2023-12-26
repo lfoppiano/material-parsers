@@ -44,7 +44,11 @@ class MaterialParserFormulas:
             output = self.material_parser.parse(formula_without_spaces)
         except SympifyError as e:
             raise ValueError(e)
-        except KeyError as ke:
+        except TypeError as te:
+            raise ValueError(te)
+        except AttributeError as ae:
+            raise ValueError(ae)
+        except KeyError:
             clean_formula = formula_without_spaces.replace("−", "-").replace("−", "-")
             clean_formula = replace_with_closest(clean_formula, ALLOWED_CHARS_MATERIAL_PARSER)
             try:
