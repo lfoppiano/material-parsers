@@ -126,7 +126,7 @@ class Service(object):
 
         return json.dumps(result)
 
-    def process_materials(self):
+    def process_material(self):
         input_raw = request.forms.get("texts")
         if input_raw is None:
             input_raw = request.forms.get("text")
@@ -330,7 +330,7 @@ def init(host='0.0.0.0', port='8080', config="config.json", development=False):
     app = Service()
 
     bottle.route('/process/link', method="POST")(app.process_link)
-    bottle.route('/process/material', method="POST")(app.process_materials)
+    bottle.route('/process/material', method="POST")(app.process_material)
 
     bottle.route('/convert/name/formula', method="POST")(app.name_to_formula)
     bottle.route('/convert/formula/composition', method="POST")(app.formula_to_composition)
