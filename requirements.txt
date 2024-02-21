@@ -5,7 +5,7 @@ blingfire
 
 text2chem==0.0.2
 spacy==3.7.2
-pymatgen==2023.8.10
+pymatgen==2024.2.20
 -e git+https://github.com/neuged/webanno_tsv#egg=webanno_tsv
 supermat
 
