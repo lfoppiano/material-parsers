@@ -121,6 +121,8 @@ class MaterialParserML:
                         values = extract_and_filter_variable_values(text)
                         if 'variables' in material and processing_variable in material['variables']:
                             material['variables'][processing_variable].extend(values)
+                        elif 'variables' in material and processing_variable not in material['variables']:
+                            material['variables'][processing_variable] = values
                         else:
                             material['variables'] = {
                                 processing_variable: values
