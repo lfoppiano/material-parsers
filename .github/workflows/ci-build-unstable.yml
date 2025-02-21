@@ -38,20 +38,20 @@ jobs:
       run: |
         pytest
   
+  # build-docker:
+  #   needs: [build]
+  #   runs-on: self-hosted
+
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Build the Docker image
+  #       run: docker build . --file Dockerfile --tag lfoppiano/grobid-superconductors-tools:latest
+  #     - name: Cleanup older than 24h images and containers
+  #       run: docker system prune --filter "until=24h" --force
+
+
   build-docker:
     needs: [build]
-    runs-on: self-hosted
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag lfoppiano/grobid-superconductors-tools:latest
-      - name: Cleanup older than 24h images and containers
-        run: docker system prune --filter "until=24h" --force
-
-
-  build-docker-public:
-    needs: [build-docker]
     runs-on: ubuntu-latest
 
     steps:
